@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jona Setiawan - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Global Styles */
+    * {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      color: #1e293b;
+    }
+
+    /* Navigation Styles */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 1000;
+      padding: 1rem 0;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .nav-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #93c5fd;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #cbd5e1;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #93c5fd;
+      background-color: rgba(30, 64, 175, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Section Styles */
+    section {
+      min-height: 100vh;
+      padding: 6rem 2rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Make About section wider */
+    .about-section {
+      max-width: 100%;
+    }
+
+    /* Make Projects section full width */
+    .projects-section {
+      max-width: 100%;
+      margin: 0;
+    }
+
+    /* Home Section Styles */
+    .home-section {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin: 0;
+      max-width: 100%;
+      padding: 0 2rem;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #ffffff, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .typing-container {
+      font-size: 2rem;
+      margin-bottom: 3rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .typing {
+      border-right: 2px solid white;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 3s steps(20) infinite, blink 0.75s step-end infinite;
+      display: inline-block;
+      max-width: 20ch;
+    }
+
+    @keyframes typing {
+      0%, 20% { max-width: 0; }
+      80%, 100% { max-width: 20ch; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    /* Enhanced Button Styles */
+    .button-group {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, #1e40af, #3b82f6);
+      color: white;
+      box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+      background: linear-gradient(45deg, #1e3a8a, #2563eb);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: #1e40af;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+    }
+
+    /* CSS-only button feedback */
+    .btn:active {
+      transform: translateY(-1px);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    /* Social Links */
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      justify-content: center;
+    }
+
+    .social-btn {
+      width: 50px;
+      height: 50px;
+      border: 2px solid white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .social-btn:hover {
+      background: white;
+      color: #1e40af;
+      transform: translateY(-5px) rotate(5deg);
+      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Stats Section */
+    .stats-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 3rem;
+      direction: rtl;
+    }
+
+    .stat-card {
+      background: rgba(30, 64, 175, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 1.5rem;
+      border-radius: 1rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      min-width: 180px;
+      direction: ltr;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      background: rgba(30, 64, 175, 0.2);
+      box-shadow: 0 10px 30px rgba(30, 64, 175, 0.3);
+    }
+
+    /* About Section Styles */
+    .about-section {
+      background: #1e293b;
+      padding: 6rem 2rem;
+      color: white;
+    }
+
+    /* New About Section Styles */
+    .about-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .about-main-title {
+      font-size: 3rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .about-subtitle {
+      font-size: 1.2rem;
+      color: #cbd5e1;
+      margin: 0;
+    }
+
+    .about-content-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .about-image-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 500px;
+    }
+
+    .about-image-container img {
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+      object-fit: cover;
+    }
+
+    .about-image-container:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Floating skill icons */
+    .floating-icon {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      background: white;
+      color: #1e293b;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .floating-icon:hover {
+      transform: scale(1.15) translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .floating-icon.html {
+      top: 8%;
+      left: 12%;
+      animation-delay: 0s;
+      background: #e34c26;
+      color: white;
+    }
+
+    .floating-icon.css {
+      top: 12%;
+      right: 8%;
+      animation-delay: 1s;
+      background: #1572b6;
+      color: white;
+    }
+
+    .floating-icon.react {
+      bottom: 15%;
+      right: 12%;
+      animation-delay: 2s;
+      background: #61dafb;
+      color: #20232a;
+    }
+
+    .floating-icon.javascript {
+      bottom: 8%;
+      left: 8%;
+      animation-delay: 3s;
+      background: #f7df1e;
+      color: #323330;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      25% {
+        transform: translateY(-15px) rotate(2deg);
+      }
+      50% {
+        transform: translateY(-8px) rotate(-1deg);
+      }
+      75% {
+        transform: translateY(-12px) rotate(1deg);
+      }
+    }
+
+    .about-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .info-card, .personal-info-card {
+      background: rgba(30, 64, 175, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .info-card:hover, .personal-info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(30, 64, 175, 0.3);
+      background: rgba(30, 64, 175, 0.2);
+    }
+
+    .personal-info-card {
+      grid-column: 1 / -1;
+    }
+
+    .info-card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .info-icon {
+      background: white;
+      color: #1e40af;
+      width: 40px;
+      height: 40px;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .info-card h3, .personal-info-card h3 {
+      color: white;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .info-card p {
+      color: #cbd5e1;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .personal-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .personal-info-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .personal-info-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateX(5px);
+    }
+
+    .personal-info-icon {
+      background: white;
+      color: #1e40af;
+      width: 32px;
+      height: 32px;
+      border-radius: 0.375rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .personal-info-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .personal-info-label {
+      color: #94a3b8;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .personal-info-value {
+      color: white;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    /* Enhanced Projects Section Styles */
+    .projects-section {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      padding: 6rem 2rem;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .projects-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(147,197,253,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .section-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #ffffff, #93c5fd, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #cbd5e1;
+      font-size: 1.2rem;
+      margin-bottom: 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Project Filter Tabs */
+    .project-filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .filter-btn {
+      padding: 0.75rem 1.5rem;
+      background: rgba(30, 64, 175, 0.1);
+      border: 1px solid rgba(147, 197, 253, 0.3);
+      border-radius: 2rem;
+      color: #cbd5e1;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      backdrop-filter: blur(10px);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: linear-gradient(45deg, #1e40af, #3b82f6);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+    }
+
+    /* Enhanced Projects Container */
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Enhanced Project Cards */
+    .project-card {
+      background: rgba(30, 41, 59, 0.8);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-card.hidden {
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+    }
+
+    .project-card:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(30, 64, 175, 0.4);
+      border-color: rgba(147, 197, 253, 0.5);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .project-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(30, 64, 175, 0.3), rgba(59, 130, 246, 0.3));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+
+    .project-card:hover .project-image::before {
+      opacity: 1;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.15);
+    }
+
+    .project-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+    }
+
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+
+    .project-quick-actions {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .quick-action-btn {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    .quick-action-btn:hover {
+      background: white;
+      color: #1e40af;
+      transform: scale(1.1);
+    }
+
+    .project-content {
+      padding: 2rem;
+      position: relative;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .project-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #93c5fd;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    .project-status {
+      padding: 0.25rem 0.75rem;
+      background: linear-gradient(45deg, #10b981, #34d399);
+      color: white;
+      border-radius: 1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .project-status.in-progress {
+      background: linear-gradient(45deg, #f59e0b, #fbbf24);
+    }
+
+    .project-status.concept {
+      background: linear-gradient(45deg, #8b5cf6, #a78bfa);
+    }
+
+    .project-description {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tech-tag {
+      padding: 0.4rem 0.8rem;
+      background: rgba(30, 64, 175, 0.2);
+      border: 1px solid rgba(147, 197, 253, 0.3);
+      border-radius: 1rem;
+      color: #93c5fd;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .tech-tag:hover {
+      background: rgba(30, 64, 175, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    .project-date {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .project-type {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+    }
+
+    /* Featured Project Styles */
+    .featured-project {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 400px;
+      margin-bottom: 2rem;
+    }
+
+    .featured-project .project-image {
+      height: 100%;
+    }
+
+    .featured-project .project-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3rem;
+    }
+
+    .featured-project .project-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .featured-project .project-description {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Load More Button */
+    .more-projects-container {
+      text-align: center;
+      margin-top: 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .more-btn {
+      background: linear-gradient(45deg, #1e40af, #3b82f6);
+      color: white;
+      padding: 1rem 3rem;
+      border: none;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(30, 64, 175, 0.3);
+    }
+
+    .more-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(30, 64, 175, 0.5);
+      background: linear-gradient(45deg, #1e3a8a, #2563eb);
+    }
+
+    .more-btn:active {
+      transform: translateY(-1px);
+    }
+
+    .more-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .more-btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 0 1rem;
+      }
+      
+      .nav-links {
+        gap: 1rem;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .typing-container {
+        font-size: 1.5rem;
+      }
+      
+      .about-content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .about-info-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .personal-info-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .button-group {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .stats-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .projects-section {
+        padding: 6rem 1rem;
+      }
+
+      .projects-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .about-image-container img {
+        width: 280px;
+        height: 280px;
+      }
+
+      .floating-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+      }
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.7);
+      animation: bounce 2s infinite;
+      cursor: pointer;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">My Portfolio</a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home" class="home-section">
+    <h1 class="hero-title">Jona Setiawan</h1>
+    <div class="typing-container">
+      <span class="typing" id="typing-text">MULTIMEDIA DESIGNER</span>
+    </div>
+    
+    <div class="button-group">
+      <a href="https://drive.usercontent.google.com/download?id=18oRkNH1VU8Gg_WOEhky9bfeP1LufCNkr&export=download&authuser=5&confirm=t&uuid=6b7a7de9-1694-4107-b6bd-43112cf1555f&at=AN8xHops-tHAbhs0J98uHkYxc9pB:1753280713067" class="btn btn-secondary">Download My CV</a>
+      <a href="#projects" class="btn btn-primary">Explore Projects</a>
+    </div>
+    
+    <div class="social-links">
+      <a href="https://www.instagram.com/jona.mmzv/" target="_blank" class="social-btn" aria-label="Instagram">IG</a>
+      <a href="https://www.linkedin.com/in/jona-setiawan-099149311/" target="_blank" class="social-btn" aria-label="LinkedIn">IN</a>
+      <a href="https://github.com/LanderLynch" target="_blank" class="social-btn" aria-label="GitHub">GH</a>
+      <a href="https://x.com/CandyLordberry/media" target="_blank" class="social-btn" aria-label="Twitter">X</a>
+    </div>
+    
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">1+</div>
+        <div>Years Experience</div>
+      </div>
+      <div class="stat-card">
+        <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Design GFX</div>
+        <div>Main Skill</div>
+      </div>
+      <div class="stat-card">
+        <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">10+</div>
+        <div>Projects</div>
+      </div>
+      <div class="stat-card">
+        <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">70/100</div>
+        <div>AVG Score</div>
+      </div>
+    </div>
+    
+    <div class="scroll-indicator">
+      <a href="#about" style="color: inherit; text-decoration: none;">&#x25BC; Scroll Down</a>
+    </div>
+  </section>
+
+  <section id="about" class="about-section">
+    <div class="about-header">
+      <h2 class="about-main-title">About Me</h2>
+      <p class="about-subtitle">Discover my journey, passions, and the story behind my work</p>
+    </div>
+    
+    <div class="about-content-wrapper">
+      <div class="about-image-container">
+        <img src="https://lh3.googleusercontent.com/fife/ALs6j_H60jeH4Dp_HkvNqNLxPs-sye3bfrJUWYJ9fa6Yf8E8korrYipNopglJf9dsHD-Abk1kCo8loMQfgtEjpN4JRa-oJDbMG25kgc6QoCoQmPEPBxcC0CyxiRrj4A-yB4Cjbq8Ax9kAs6q3zKsTkSMeSeEz0La2I_KUTLVMOlF6rqbb5qtqFRFvVFuzqcaEf35-W8yM5UVc-DIjugWOkAPtk6A4khcMAgucO4PLA8ceviquIbgoHG-fWgMjLNlkW-UIcVXqaHZ98PW45rtQJdxc8KwWv4mXzq7JQQFpYV07AUVnfugk4PZXq624gac5IfBn9d6cEd_jIRuvwk7y7DY2uJXSYdoYqABAJTsTYsDBHCmN7CYkjgeFD10psk8VRV5--nGUAbtIqVk9iQg79ib4R2iGgl3EcQaG5u6nJoiUak8QYzY7Rhl4JWwxjlPqh6t47xE-X9iee3py1wrftNHn3giTkpHESO56MNuqjxin6OugyS05OuNwUxREsyBGQqvk3ZtPIiCa4Y5C7NJdIvxUQiehyFin7lho2Mmy4UJKGbdc4qKfdpn5AhHYsu7S5QEkk7pKcZBaAYqQzigB6jdkfvRFPDdp-alwuidxzyqVT9ykEh73gdrIPz88kJ8osiVo2bWXPM5cbQjRRX42uq9q7iWfCtGyriOohcD3jDafA8xQQvEn4XV7cpKxQlj-k3355S5_Akb5XpNb61GbNLJeHT523T3d4Ou9QqtML5zpYfWThNanIPjHX9pZ5LVxOAPzisLFV1TsluQg8o4x4IcKkArBdj3O6XNd2-n10J25ecVYWkh4_On3sAsslVgJpywzyC_vJFpcbRXI6zCcd8oex6bfPF9EpGbTkC6KxQb21Dw0Y3EE25sKPni78ozVdilSxl0EpLia9Yjci33IRuTZEBNyOvWJruKyZgfI3tDmpsKXrGtHy6W8cVACIce1MTUBVLRPZXOIRkFgBQqbg1RzKNhHUFxCE14jrKyc8J7WoEMCWsrpXmucxD1UdbxpdY8W82AEyg3Mzodv7GWjn5jg87Kqt47XPSBxdajitc38ynjC00L9EzcJCYObxprJqxlWgZF9LvMHQtoBSqkTC_Qky6rorNqo_cgu8wz_NW26CI90zI0qzNAetBoWRTq_SspglzI8j5fOYsBUp-mPfLM0hcBL_8yTgNDeVoLctFpEeRURIMD8qr2uHjtanp60CGFSYTGvsFjWhEUedwAhi1-8Igkgsqi9HSJUJ_2ZYiZqBAmDYautHezez0RP510SIHXWeWUqI5q5OEuZtCzLxjaOSbs4WkIFfvxcZ3SMxQDc6byeGkWbwt7b_jW2MilGmajPdAPAyZBuK8EsJ0cuGgTSnYzc6CR87DCPw_Of61-6iWCUVLwgWgwQUFVgvMMdDRIFrc9dO6ICV1Kfs7ZaI7GAt8ot7zgAH6qduqz8_9B7nplSolejhlvxOKqzkej5O3DuRjQ2ol2E_hfaoWcWVFiVIyb0gHsL4IOxGqUHnRw0usJkNbCr8g33PQclqMd6N7Gp-_LwAufDBEB1YsZuBv6s4g6jz-zdN_B3VFG7mTVjzxwprwivLjcALuIc9xfHIeANd7LmglWh-d7iGabgH1rymU9inf0pOvAlzEjNml-IUba5v7yZHASAmsAa5OG1TC3aBK2VGQn_NmHWuWxaXveFZKp_36xcWUfswAJEwjVxgXR70XgeiYh51P0jDF_m1d_u12_xbroB9lzQCvYqZWtBjtpArUMk1UJrwd2O2_Z9r8Wlvu0u5WW-F_wbgn3LGEh2PJhHPoHWFTOjxQaO-E25A=w1920-h963?auditContext=forDisplay" alt="Jona Setiawan Photo" />
+        
+        <!-- Floating Skill Icons -->
+        <div class="floating-icon html" title="HTML5">
+          </>
+        </div>
+        <div class="floating-icon css" title="CSS3">
+          { }
+        </div>
+        <div class="floating-icon react" title="React">
+          ⚛
+        </div>
+        <div class="floating-icon javascript" title="JavaScript">
+          JS
+        </div>
+      </div>
+      
+      <div class="about-info-grid">
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-icon">👤</div>
+            <h3>Who Am I</h3>
+          </div>
+          <p>I'm a multimedia designer who specializes in graphic design and visual communication. With a background in multimedia design, I create engaging visual content that tells compelling stories.</p>
+        </div>
+        
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="info-icon">💡</div>
+            <h3>My Approach</h3>
+          </div>
+          <p>I focus on creative storytelling through visual design, combining technical skills with artistic vision to deliver impactful multimedia experiences that resonate with audiences.</p>
+        </div>
+        
+        <div class="personal-info-card">
+          <div class="info-card-header">
+            <div class="info-icon">ℹ️</div>
+            <h3>Personal Info</h3>
+          </div>
+          
+          <div class="personal-info-grid">
+            <div class="personal-info-item">
+              <div class="personal-info-icon">📝</div>
+              <div class="personal-info-content">
+                <span class="personal-info-label">Name:</span>
+                <span class="personal-info-value">Jona Setiawan</span>
+              </div>
+            </div>
+            
+            <div class="personal-info-item">
+              <div class="personal-info-icon">📅</div>
+              <div class="personal-info-content">
+                <span class="personal-info-label">Date of Birth:</span>
+                <span class="personal-info-value">Juni 05, 2006</span>
+              </div>
+            </div>
+            
+            <div class="personal-info-item">
+              <div class="personal-info-icon">📍</div>
+              <div class="personal-info-content">
+                <span class="personal-info-label">Place of Birth:</span>
+                <span class="personal-info-value">Tangerang, Indonesia</span>
+              </div>
+            </div>
+            
+            <div class="personal-info-item">
+              <div class="personal-info-icon">📧</div>
+              <div class="personal-info-content">
+                <span class="personal-info-label">Email:</span>
+                <span class="personal-info-value">jonasaevuddyinsetiawan@gmail.com</span>
+              </div>
+            </div>
+            
+            <div class="personal-info-item">
+              <div class="personal-info-icon">📞</div>
+              <div class="personal-info-content">
+                <span class="personal-info-label">Phone:</span>
+                <span class="personal-info-value">+62 895 1234 4492</span>
+              </div>
+            </div>
+            
+            <div class="personal-info-item">
+              <div class="personal-info-icon">🎓</div>
+              <div class="personal-info-content">
+                <span class="personal-info-label">Education:</span>
+                <span class="personal-info-value">SMK YUPPENTEK 1 TANGERANG</span>
+              </div>
+            </div>
+            
+            <div class="personal-info-item">
+              <div class="personal-info-icon">📊</div>
+              <div class="personal-info-content">
+                <span class="personal-info-label">AVG Score:</span>
+                <span class="personal-info-value">70/100</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- Enhanced Projects Section -->
+  <section id="projects" class="projects-section">
+    <h2 class="section-title">My Creative Portfolio</h2>
+    <p class="section-subtitle">Explore my latest multimedia design projects and creative solutions</p>
+    
+    <!-- Project Filter Tabs -->
+    <div class="project-filters">
+      <button class="filter-btn active" data-filter="all">All Projects</button>
+      <button class="filter-btn" data-filter="graphic">Graphic Design</button>
+      <button class="filter-btn" data-filter="multimedia">Multimedia</button>
+      <button class="filter-btn" data-filter="branding">Branding</button>
+      <button class="filter-btn" data-filter="video">Video Editing</button>
+      <button class="filter-btn" data-filter="ui">UI/UX</button>
+    </div>
+    
+    <div class="projects-container" id="projects-container">
+      <!-- Featured Project -->
+      <div class="project-card featured-project" data-category="graphic">
+        <div class="project-image">
+          <img src="src/Projek%20foto/BG%20GFX%20DESIGN.jpg" alt="GFX Design Background" />
+          <div class="project-overlay">
+            <div class="project-quick-actions">
+              <a href="#" class="quick-action-btn" title="View Project">👁</a>
+              <a href="#" class="quick-action-btn" title="Live Demo">🚀</a>
+              <a href="#" class="quick-action-btn" title="Source Code">💻</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">Professional GFX Design Suite</h3>
+            <span class="project-status">Completed</span>
+          </div>
+          <p class="project-description">A comprehensive graphic design project featuring modern visual elements, dynamic backgrounds, and professional branding materials. This project showcases advanced design techniques and creative problem-solving in multimedia design.</p>
+          <div class="project-tech-stack">
+            <span class="tech-tag">Adobe Photoshop</span>
+            <span class="tech-tag">Adobe Illustrator</span>
+            <span class="tech-tag">After Effects</span>
+            <span class="tech-tag">Figma</span>
+          </div>
+          <div class="project-meta">
+            <div class="project-date">
+              <span>📅</span>
+              <span>December 2024</span>
+            </div>
+            <div class="project-type">Featured Project</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Regular Project Cards -->
+      <div class="project-card" data-category="multimedia">
+        <div class="project-image">
+          <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop" alt="Multimedia Presentation" />
+          <div class="project-overlay">
+            <div class="project-quick-actions">
+              <a href="#" class="quick-action-btn" title="View Project">👁</a>
+              <a href="#" class="quick-action-btn" title="Live Demo">🚀</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">Interactive Multimedia Presentation</h3>
+            <span class="project-status">Completed</span>
+          </div>
+          <p class="project-description">Dynamic multimedia presentation combining video, audio, and interactive elements for engaging user experiences and effective communication.</p>
+          <div class="project-tech-stack">
+            <span class="tech-tag">Adobe Premiere</span>
+            <span class="tech-tag">After Effects</span>
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3</span>
+          </div>
+          <div class="project-meta">
+            <div class="project-date">
+              <span>📅</span>
+              <span>November 2024</span>
+            </div>
+            <div class="project-type">Client Work</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card" data-category="branding">
+        <div class="project-image">
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=500&h=300&fit=crop" alt="Brand Identity Design" />
+          <div class="project-overlay">
+            <div class="project-quick-actions">
+              <a href="#" class="quick-action-btn" title="View Project">👁</a>
+              <a href="#" class="quick-action-btn" title="Case Study">📋</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">Complete Brand Identity System</h3>
+            <span class="project-status">Completed</span>
+          </div>
+          <p class="project-description">Comprehensive brand identity package including logo design, color palettes, typography, and brand guidelines for consistent visual communication.</p>
+          <div class="project-tech-stack">
+            <span class="tech-tag">Adobe Illustrator</span>
+            <span class="tech-tag">Adobe InDesign</span>
+            <span class="tech-tag">Brand Strategy</span>
+            <span class="tech-tag">Typography</span>
+          </div>
+          <div class="project-meta">
+            <div class="project-date">
+              <span>📅</span>
+              <span>October 2024</span>
+            </div>
+            <div class="project-type">Personal</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card" data-category="graphic">
+        <div class="project-image">
+          <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=500&h=300&fit=crop" alt="Event Poster Design" />
+          <div class="project-overlay">
+            <div class="project-quick-actions">
+              <a href="#" class="quick-action-btn" title="View Project">👁</a>
+              <a href="#" class="quick-action-btn" title="Download">⬇</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">Event Poster Campaign</h3>
+            <span class="project-status">Completed</span>
+          </div>
+          <p class="project-description">Eye-catching poster designs for events and campaigns featuring bold typography, vibrant colors, and compelling visual hierarchy.</p>
+          <div class="project-tech-stack">
+            <span class="tech-tag">Adobe Photoshop</span>
+            <span class="tech-tag">Adobe Illustrator</span>
+            <span class="tech-tag">Typography</span>
+            <span class="tech-tag">Print Design</span>
+          </div>
+          <div class="project-meta">
+            <div class="project-date">
+              <span>📅</span>
+              <span>September 2024</span>
+            </div>
+            <div class="project-type">Client Work</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card" data-category="video">
+        <div class="project-image">
+          <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=500&h=300&fit=crop" alt="Video Editing Project" />
+          <div class="project-overlay">
+            <div class="project-quick-actions">
+              <a href="#" class="quick-action-btn" title="Watch Video">▶</a>
+              <a href="#" class="quick-action-btn" title="Behind Scenes">🎬</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">Professional Video Production</h3>
+            <span class="project-status in-progress">In Progress</span>
+          </div>
+          <p class="project-description">Professional video editing and motion graphics for promotional content, including color grading, sound design, and visual effects.</p>
+          <div class="project-tech-stack">
+            <span class="tech-tag">Adobe Premiere Pro</span>
+            <span class="tech-tag">After Effects</span>
+            <span class="tech-tag">DaVinci Resolve</span>
+            <span class="tech-tag">Motion Graphics</span>
+          </div>
+          <div class="project-meta">
+            <div class="project-date">
+              <span>📅</span>
+              <span>December 2024</span>
+            </div>
+            <div class="project-type">Ongoing</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card" data-category="ui">
+        <div class="project-image">
+          <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=300&fit=crop" alt="UI/UX Design Project" />
+          <div class="project-overlay">
+            <div class="project-quick-actions">
+              <a href="#" class="quick-action-btn" title="View Prototype">🎨</a>
+              <a href="#" class="quick-action-btn" title="Design System">📐</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">Mobile App UI/UX Design</h3>
+            <span class="project-status concept">Concept</span>
+          </div>
+          <p class="project-description">User interface and experience design for mobile applications with focus on usability, accessibility, and modern design principles.</p>
+          <div class="project-tech-stack">
+            <span class="tech-tag">Figma</span>
+            <span class="tech-tag">Adobe XD</span>
+            <span class="tech-tag">Prototyping</span>
+            <span class="tech-tag">User Research</span>
+          </div>
+          <div class="project-meta">
+            <div class="project-date">
+              <span>📅</span>
+              <span>January 2025</span>
+            </div>
+            <div class="project-type">Concept</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Hidden projects for "Load More" functionality -->
+      <div class="project-card hidden" data-category="graphic">
+        <div class="project-image">
+          <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=500&h=300&fit=crop" alt="Logo Design Collection" />
+          <div class="project-overlay">
+            <div class="project-quick-actions">
+              <a href="#" class="quick-action-btn" title="View Collection">👁</a>
+              <a href="#" class="quick-action-btn" title="Process">⚙</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">Logo Design Collection</h3>
+            <span class="project-status">Completed</span>
+          </div>
+          <p class="project-description">A collection of unique logo designs for various clients, showcasing versatility in brand identity creation and visual storytelling.</p>
+          <div class="project-tech-stack">
+            <span class="tech-tag">Adobe Illustrator</span>
+            <span class="tech-tag">Brand Identity</span>
+            <span class="tech-tag">Vector Design</span>
+          </div>
+          <div class="project-meta">
+            <div class="project-date">
+              <span>📅</span>
+              <span>August 2024</span>
+            </div>
+            <div class="project-type">Portfolio</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card hidden" data-category="multimedia">
+        <div class="project-image">
+          <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop" alt="Digital Art Project" />
+          <div class="project-overlay">
+            <div class="project-quick-actions">
+              <a href="#" class="quick-action-btn" title="View Gallery">🖼</a>
+              <a href="#" class="quick-action-btn" title="Time-lapse">⏱</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">Digital Art & Illustration</h3>
+            <span class="project-status">Completed</span>
+          </div>
+          <p class="project-description">Creative digital artwork and illustrations combining traditional art techniques with modern digital tools for unique visual experiences.</p>
+          <div class="project-tech-stack">
+            <span class="tech-tag">Adobe Photoshop</span>
+            <span class="tech-tag">Procreate</span>
+            <span class="tech-tag">Digital Painting</span>
+            <span class="tech-tag">Illustration</span>
+          </div>
+          <div class="project-meta">
+            <div class="project-date">
+              <span>📅</span>
+              <span>July 2024</span>
+            </div>
+            <div class="project-type">Personal</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="more-projects-container">
+      <button class="more-btn" id="more-btn">Load More Projects</button>
+    </div>
+  </section>
+
+  <!-- JavaScript for typing effect and minimal interactions -->
+  <script>
+    // Typing effect
+    const skills = ["MULTIMEDIA DESIGNER", "DESIGN GRAPHIC", "GFX DESIGNER", "UI/UX DESIGN"];
+    let index = 0;
+    const typingText = document.getElementById("typing-text");
+
+    function typeSkill() {
+      if (typingText) {
+        typingText.textContent = skills[index];
+        index = (index + 1) % skills.length;
+      }
+    }
+
+    setInterval(typeSkill, 3000);
+
+    // More projects button (CSS-focused interaction)
+    const moreBtn = document.getElementById('more-btn');
+    const projectsContainer = document.getElementById('projects-container');
+    let expanded = false;
+
+    if (moreBtn && projectsContainer) {
+      moreBtn.addEventListener('click', () => {
+        if (!expanded) {
+          projectsContainer.style.gridTemplateColumns = 'repeat(auto-fit, minmax(300px, 1fr))';
+          moreBtn.textContent = 'Show Less';
+          expanded = true;
+        } else {
+          projectsContainer.style.gridTemplateColumns = 'repeat(auto-fit, minmax(350px, 1fr))';
+          moreBtn.textContent = 'View More Projects';
+          expanded = false;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
