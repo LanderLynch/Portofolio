@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional GFX Design Suite - Jona Setiawan</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0f172a;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    /* Navigation */
+    .navbar {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(147, 197, 253, 0.2);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      background: linear-gradient(45deg, #1e40af, #3b82f6);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-5px);
+      box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .project-category {
+      display: inline-block;
+      background: rgba(59, 130, 246, 0.2);
+      color: #93c5fd;
+      padding: 0.5rem 1.5rem;
+      border-radius: 2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(45deg, #ffffff, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .hero-description {
+      font-size: 1.3rem;
+      color: #cbd5e1;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .meta-label {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .meta-value {
+      font-size: 1.1rem;
+      color: #93c5fd;
+      font-weight: 600;
+    }
+
+    .tech-stack {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .tech-tag {
+      background: rgba(30, 64, 175, 0.2);
+      color: #93c5fd;
+      padding: 0.5rem 1.2rem;
+      border-radius: 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid rgba(30, 64, 175, 0.3);
+    }
+
+    /* Featured Image */
+    .featured-image {
+      max-width: 1400px;
+      margin: -3rem auto 4rem;
+      padding: 0 2rem;
+    }
+
+    .featured-image img {
+      width: 100%;
+      border-radius: 1.5rem;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      border: 2px solid rgba(147, 197, 253, 0.2);
+    }
+
+    /* Content Section */
+    .content-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #93c5fd;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-content {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: #cbd5e1;
+      margin-bottom: 3rem;
+    }
+
+    .section-content p {
+      margin-bottom: 1.5rem;
+    }
+
+    /* Highlights Grid */
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .highlight-card {
+      background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+      border: 2px solid rgba(147, 197, 253, 0.2);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(30, 64, 175, 0.4);
+      border-color: rgba(147, 197, 253, 0.5);
+    }
+
+    .highlight-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .highlight-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #93c5fd;
+      margin-bottom: 0.75rem;
+    }
+
+    .highlight-description {
+      font-size: 1rem;
+      color: #cbd5e1;
+      line-height: 1.7;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.5rem;
+      border: 2px solid rgba(147, 197, 253, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 15px 35px rgba(30, 64, 175, 0.4);
+      border-color: rgba(147, 197, 253, 0.5);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.95), transparent);
+      padding: 2rem 1.5rem 1.5rem;
+      color: white;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-caption {
+      transform: translateY(0);
+    }
+
+    /* Process Section */
+    .process-steps {
+      display: grid;
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .process-step {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .step-number {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+      box-shadow: 0 10px 30px rgba(30, 64, 175, 0.4);
+    }
+
+    .step-content h3 {
+      font-size: 1.5rem;
+      color: #93c5fd;
+      margin-bottom: 0.75rem;
+    }
+
+    .step-content p {
+      font-size: 1.05rem;
+      color: #cbd5e1;
+      line-height: 1.8;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+      padding: 4rem 2rem;
+      text-align: center;
+      margin: 4rem 0 0;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      padding: 1rem 2.5rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .cta-btn-primary {
+      background: white;
+      color: #1e40af;
+    }
+
+    .cta-btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+    }
+
+    .cta-btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .cta-btn-secondary:hover {
+      background: white;
+      color: #1e40af;
+      transform: translateY(-3px);
+    }
+
+    /* Footer */
+    .footer {
+      background: #0f172a;
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(147, 197, 253, 0.2);
+    }
+
+    .footer p {
+      color: #94a3b8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-description {
+        font-size: 1.1rem;
+      }
+
+      .project-meta {
+        gap: 1.5rem;
+      }
+
+      .featured-image {
+        margin: -2rem auto 3rem;
+        padding: 0 1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .highlights-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .process-step {
+        grid-template-columns: 60px 1fr;
+        gap: 1.5rem;
+      }
+
+      .step-number {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+      }
+
+      .cta-section h2 {
+        font-size: 2rem;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="back-btn">
+        ← Back to Portfolio
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="project-category">Graphic Design</span>
+      <h1>Professional GFX Design Suite</h1>
+      <p class="hero-description">A comprehensive graphic design project featuring modern visual elements, dynamic backgrounds, and professional branding materials. This project showcases advanced design techniques and creative problem-solving in multimedia design.</p>
+
+      <div class="project-meta">
+        <div class="meta-item">
+          <span class="meta-label">Duration</span>
+          <span class="meta-value">3 Months</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Role</span>
+          <span class="meta-value">Lead Designer</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Status</span>
+          <span class="meta-value">Completed</span>
+        </div>
+      </div>
+
+      <div class="tech-stack">
+        <span class="tech-tag">Adobe Photoshop</span>
+        <span class="tech-tag">Adobe Illustrator</span>
+        <span class="tech-tag">After Effects</span>
+        <span class="tech-tag">Figma</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Image -->
+  <div class="featured-image">
+    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1400&h=700&fit=crop" alt="Professional GFX Design Suite">
+  </div>
+
+  <!-- Project Overview -->
+  <section class="content-section">
+    <h2 class="section-title">Project Overview</h2>
+    <div class="section-content">
+      <p>This comprehensive graphic design suite represents a culmination of modern design principles and cutting-edge visual techniques. The project involved creating a complete brand identity system that includes logo design, marketing materials, digital assets, and interactive elements.</p>
+
+      <p>The design approach focused on creating visually striking elements that maintain professional standards while pushing creative boundaries. Each component was carefully crafted to ensure consistency across all mediums and platforms.</p>
+    </div>
+
+    <!-- Key Highlights -->
+    <h2 class="section-title">Key Highlights</h2>
+    <div class="highlights-grid">
+      <div class="highlight-card">
+        <div class="highlight-icon">🎨</div>
+        <h3 class="highlight-title">Brand Identity</h3>
+        <p class="highlight-description">Complete logo design and brand guidelines that establish a strong visual identity across all platforms.</p>
+      </div>
+
+      <div class="highlight-card">
+        <div class="highlight-icon">📱</div>
+        <h3 class="highlight-title">Digital Assets</h3>
+        <p class="highlight-description">Responsive design elements optimized for web, mobile, and print applications.</p>
+      </div>
+
+      <div class="highlight-card">
+        <div class="highlight-icon">⚡</div>
+        <h3 class="highlight-title">Motion Graphics</h3>
+        <p class="highlight-description">Dynamic animations and transitions that bring static designs to life.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Design Process -->
+  <section class="content-section">
+    <h2 class="section-title">Design Process</h2>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Research & Planning</h3>
+          <p>Conducted thorough market research and competitor analysis to understand the target audience and industry trends. Developed a comprehensive design strategy that aligned with business objectives.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Concept Development</h3>
+          <p>Created multiple design concepts exploring different visual directions. Each concept was refined through iterative feedback sessions to ensure the final design met all requirements.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Implementation</h3>
+          <p>Executed the final design using industry-standard tools and techniques. Ensured all elements were production-ready and optimized for their intended use.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="content-section">
+    <h2 class="section-title">Project Gallery</h2>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=400&fit=crop" alt="Logo Design">
+        <div class="gallery-caption">
+          <h4>Logo Design</h4>
+          <p>Primary brand mark with clean, modern aesthetics</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=500&h=400&fit=crop" alt="Brand Guidelines">
+        <div class="gallery-caption">
+          <h4>Brand Guidelines</h4>
+          <p>Comprehensive style guide for consistent application</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=500&h=400&fit=crop" alt="Marketing Materials">
+        <div class="gallery-caption">
+          <h4>Marketing Materials</h4>
+          <p>Print and digital collateral designs</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section class="content-section">
+    <h2 class="section-title">Results & Impact</h2>
+    <div class="section-content">
+      <p>The Professional GFX Design Suite successfully delivered a cohesive brand identity that exceeded client expectations. The design system has been implemented across multiple platforms and has contributed to increased brand recognition and customer engagement.</p>
+
+      <p>The project demonstrated the importance of thoughtful design strategy and attention to detail in creating impactful visual communications.</p>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <h2>Like What You See?</h2>
+    <p>Let's work together on your next project</p>
+    <div class="cta-buttons">
+      <a href="mailto:jona@example.com" class="cta-btn cta-btn-primary">Get In Touch</a>
+      <a href="../index.html" class="cta-btn cta-btn-secondary">View More Work</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2024 Jona Setiawan. All rights reserved.</p>
+  </footer>
+</body>
+</html>
