@@ -10,7 +10,7 @@
   <!-- Portfolio Title - Separated from Navigation -->
   <div class="portfolio-title-container">
     <a href="#home" class="portfolio-title-link">
-      <span class="portfolio-text">Portfolio</span>
+      <span class="portfolio-text">Home</span>
     </a>
   </div>
 
@@ -58,7 +58,7 @@
   </nav>
 
   <!-- Home Section -->
-  <section id="home" class="home-section">
+  <section id="home" class="home-section" data-section-label="Home">
     <h1 class="hero-title">Jona Setiawan</h1>
     <div class="typing-container">
       <span class="typing" id="typing-text">MULTIMEDIA DESIGNER</span>
@@ -100,7 +100,7 @@
     </div>
   </section>
 
-  <section id="about" class="about-section">
+  <section id="about" class="about-section" data-section-label="About">
     <div class="about-header">
       <h2 class="about-main-title">About Me</h2>
       <p class="about-subtitle">Discover my journey, passions, and the story behind my work</p>
@@ -210,7 +210,7 @@
     </div>
   </section>
   <!-- Enhanced Projects Section -->
-  <section id="projects" class="projects-section">
+  <section id="projects" class="projects-section" data-section-label="Projects">
     <h2 class="section-title">My Creative Portfolio</h2>
     <p class="section-subtitle">Explore my latest multimedia design projects and creative solutions</p>
     
@@ -524,7 +524,7 @@
   <!-- Experience Section - Redesigned with Vertical Timeline -->
  <!-- Experience Section - Enhanced with Images and Reversed Timeline -->
 <!-- Experience Section - Enhanced with Images and Reversed Timeline -->
-<section id="experience" class="experience-section">
+<section id="experience" class="experience-section" data-section-label="Experience">
   <div class="experience-container">
     <h2 class="section-title">Professional Experience</h2>
     <p class="section-subtitle">My journey through creative roles and multimedia projects - from past to present</p>
@@ -617,9 +617,97 @@
   </div>
 </section>
 
+  <section id="skills" class="skills-section" data-section-label="Skills">
+    <div class="skills-shell">
+      <div class="skills-header">
+        <p class="skills-kicker">Skill Tree</p>
+        <h2 class="section-title">My Creative Skill Tree</h2>
+        <p class="section-subtitle">A visual map of the tools and design strengths I connect when building GFX edits, branding pieces, UI concepts, and multimedia work.</p>
+      </div>
+
+      <div class="skill-tree" aria-label="Creative skill tree">
+        <span class="skill-line line-branding" aria-hidden="true"></span>
+        <span class="skill-line line-ui" aria-hidden="true"></span>
+        <span class="skill-line line-gfx" aria-hidden="true"></span>
+        <span class="skill-line line-motion" aria-hidden="true"></span>
+        <span class="skill-line line-web" aria-hidden="true"></span>
+        <span class="skill-line line-direction" aria-hidden="true"></span>
+
+        <article class="skill-branch branch-branding">
+          <p class="skill-branch-label">Branch 01</p>
+          <h3 class="skill-branch-title">Branding</h3>
+          <div class="skill-nodes">
+            <span class="skill-node">Logo Design</span>
+            <span class="skill-node">Identity Systems</span>
+            <span class="skill-node">Color Direction</span>
+          </div>
+        </article>
+
+        <article class="skill-branch branch-ui">
+          <p class="skill-branch-label">Branch 02</p>
+          <h3 class="skill-branch-title">UI / UX</h3>
+          <div class="skill-nodes">
+            <span class="skill-node">Figma</span>
+            <span class="skill-node">Wireframing</span>
+            <span class="skill-node">Mobile Layouts</span>
+          </div>
+        </article>
+
+        <article class="skill-branch branch-gfx">
+          <p class="skill-branch-label">Branch 03</p>
+          <h3 class="skill-branch-title">GFX Design</h3>
+          <div class="skill-nodes">
+            <span class="skill-node">Photoshop</span>
+            <span class="skill-node">Compositing</span>
+            <span class="skill-node">Character Edits</span>
+          </div>
+        </article>
+
+        <article class="skill-branch branch-motion">
+          <p class="skill-branch-label">Branch 04</p>
+          <h3 class="skill-branch-title">Motion &amp; Video</h3>
+          <div class="skill-nodes">
+            <span class="skill-node">Premiere Pro</span>
+            <span class="skill-node">After Effects</span>
+            <span class="skill-node">Story Cuts</span>
+          </div>
+        </article>
+
+        <article class="skill-branch branch-web">
+          <p class="skill-branch-label">Branch 05</p>
+          <h3 class="skill-branch-title">Web Layout</h3>
+          <div class="skill-nodes">
+            <span class="skill-node">HTML5</span>
+            <span class="skill-node">CSS3</span>
+            <span class="skill-node">Responsive Design</span>
+          </div>
+        </article>
+
+        <article class="skill-branch branch-direction">
+          <p class="skill-branch-label">Branch 06</p>
+          <h3 class="skill-branch-title">Creative Flow</h3>
+          <div class="skill-nodes">
+            <span class="skill-node">Typography</span>
+            <span class="skill-node">Art Direction</span>
+            <span class="skill-node">Asset Planning</span>
+          </div>
+        </article>
+
+        <div class="skill-core">
+          <div class="skill-core-wheel" aria-hidden="true"></div>
+          <div class="skill-core-copy">
+            <p class="skill-core-overline">Creative Workflow</p>
+            <h3>Skill Tree</h3>
+            <p>Graphic design sits at the center of my process, connecting visual storytelling, interface thinking, motion, and polished presentation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Testimonials Section -->
 
-  <section id="testimonials" class="testimonials-section">
+  <section id="testimonials" class="testimonials-section" data-section-label="Testimonials">
     <div class="testimonials-container">
       <div class="testimonials-header">
         <h2 class="section-title">Client Testimonials</h2>
@@ -815,7 +903,7 @@
       </form>
     </div>
   </div>
-  <footer id="contact" class="portfolio-footer">
+  <footer id="contact" class="portfolio-footer" data-section-label="Contact">
     <div class="footer-inner">
       <div class="footer-brand">
         <p class="footer-kicker">Let's create something meaningful</p>
@@ -828,6 +916,7 @@
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
         <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
         <a href="#testimonials">Testimonials</a>
       </div>
 
@@ -847,6 +936,12 @@
     const hamburgerBtn = document.querySelector('.hamburger-menu');
     const navLinks = document.querySelector('.nav-links');
     const navLinkItems = document.querySelectorAll('.nav-link-item');
+    const portfolioTitleLink = document.querySelector('.portfolio-title-link');
+    const portfolioText = document.querySelector('.portfolio-text');
+    const trackedSections = Array.from(document.querySelectorAll('[data-section-label]'));
+    const projectPageLinks = document.querySelectorAll('a[href^="project/"]');
+    const returnScrollKey = 'portfolio-return-scroll';
+    const returnScrollPendingKey = 'portfolio-return-pending';
 
     if (hamburgerBtn && navLinks) {
       hamburgerBtn.addEventListener('click', () => {
@@ -911,6 +1006,98 @@
     }
 
     setInterval(typeSkill, 3000);
+
+    function setActiveSection(sectionId) {
+      const currentSection = trackedSections.find(section => section.id === sectionId);
+      if (!currentSection) {
+        return;
+      }
+
+      const currentLabel = currentSection.dataset.sectionLabel || currentSection.id;
+
+      navLinkItems.forEach(link => {
+        const isActive = link.getAttribute('href') === `#${sectionId}`;
+        link.classList.toggle('active', isActive);
+      });
+
+      if (portfolioText) {
+        portfolioText.textContent = currentLabel;
+      }
+
+      if (portfolioTitleLink) {
+        portfolioTitleLink.setAttribute('href', `#${sectionId}`);
+        portfolioTitleLink.setAttribute('aria-label', `Jump to ${currentLabel}`);
+      }
+    }
+
+    function updateActiveSection() {
+      if (!trackedSections.length) {
+        return;
+      }
+
+      const scrollMarker = window.scrollY + (window.innerHeight * 0.35);
+      let currentSection = trackedSections[0];
+
+      trackedSections.forEach(section => {
+        if (section.offsetTop <= scrollMarker) {
+          currentSection = section;
+        }
+      });
+
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+        currentSection = trackedSections[trackedSections.length - 1];
+      }
+
+      setActiveSection(currentSection.id);
+    }
+
+    function rememberMainPageScroll() {
+      sessionStorage.setItem(returnScrollKey, String(window.scrollY));
+      sessionStorage.setItem(returnScrollPendingKey, 'true');
+    }
+
+    function restoreMainPageScroll() {
+      if (window.location.hash) {
+        sessionStorage.removeItem(returnScrollPendingKey);
+        sessionStorage.removeItem(returnScrollKey);
+        updateActiveSection();
+        return;
+      }
+
+      if (sessionStorage.getItem(returnScrollPendingKey) !== 'true') {
+        updateActiveSection();
+        return;
+      }
+
+      const savedScroll = Number(sessionStorage.getItem(returnScrollKey));
+
+      if (!Number.isFinite(savedScroll)) {
+        sessionStorage.removeItem(returnScrollPendingKey);
+        sessionStorage.removeItem(returnScrollKey);
+        updateActiveSection();
+        return;
+      }
+
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: savedScroll, left: 0, behavior: 'auto' });
+        window.setTimeout(() => {
+          window.scrollTo({ top: savedScroll, left: 0, behavior: 'auto' });
+          updateActiveSection();
+        }, 120);
+      });
+
+      sessionStorage.removeItem(returnScrollPendingKey);
+      sessionStorage.removeItem(returnScrollKey);
+    }
+
+    projectPageLinks.forEach(link => {
+      link.addEventListener('click', rememberMainPageScroll);
+    });
+
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    window.addEventListener('resize', updateActiveSection);
+    window.addEventListener('pageshow', restoreMainPageScroll);
+    updateActiveSection();
 
     // Project filtering functionality
     const filterBtns = document.querySelectorAll('.filter-btn');
@@ -1004,6 +1191,9 @@
       filterBtns.forEach(btn => {
         btn.style.display = 'inline-block';
       });
+
+      restoreMainPageScroll();
+      updateActiveSection();
     });
 
     // Additional safety check for filter visibility
@@ -1014,36 +1204,6 @@
         filtersContainer.style.visibility = 'visible';
         filtersContainer.style.opacity = '1';
       }
-    });
-
-    // Skills section functionality
-    const skillsFilterBtns = document.querySelectorAll('.skills-filter-btn');
-    const skillsCategories = document.querySelectorAll('.skills-category');
-
-    // Skills filtering functionality
-    function filterSkills(category) {
-      skillsCategories.forEach(cat => {
-        cat.classList.remove('active');
-        if (cat.getAttribute('data-category') === category) {
-          cat.classList.add('active');
-        }
-      });
-
-      // Update active button
-      skillsFilterBtns.forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.getAttribute('data-category') === category) {
-          btn.classList.add('active');
-        }
-      });
-    }
-
-    // Add click event listeners to skills filter buttons
-    skillsFilterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const filterValue = btn.getAttribute('data-category');
-        filterSkills(filterValue);
-      });
     });
 
     // Testimonials functionality
