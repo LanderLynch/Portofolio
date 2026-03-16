@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile App UI/UX Design - Jona Setiawan</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0f172a;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    /* Navigation */
+    .navbar {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(147, 197, 253, 0.2);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      background: linear-gradient(45deg, #1e40af, #3b82f6);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-5px);
+      box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .project-category {
+      display: inline-block;
+      background: rgba(59, 130, 246, 0.2);
+      color: #93c5fd;
+      padding: 0.5rem 1.5rem;
+      border-radius: 2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(45deg, #ffffff, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .hero-description {
+      font-size: 1.3rem;
+      color: #cbd5e1;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .meta-label {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .meta-value {
+      font-size: 1.1rem;
+      color: #93c5fd;
+      font-weight: 600;
+    }
+
+    .tech-stack {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .tech-tag {
+      background: rgba(30, 64, 175, 0.2);
+      color: #93c5fd;
+      padding: 0.5rem 1.2rem;
+      border-radius: 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid rgba(30, 64, 175, 0.3);
+    }
+
+    /* Featured Mockup */
+    .featured-mockup {
+      max-width: 1400px;
+      margin: -3rem auto 4rem;
+      padding: 0 2rem;
+    }
+
+    .mockup-container {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .mockup-container img {
+      width: 100%;
+      border-radius: 2rem;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      border: 2px solid rgba(147, 197, 253, 0.2);
+    }
+
+    /* Content Section */
+    .content-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #93c5fd;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-content {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: #cbd5e1;
+      margin-bottom: 3rem;
+    }
+
+    .section-content p {
+      margin-bottom: 1.5rem;
+    }
+
+    /* Design Process Grid */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .process-card {
+      background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+      border: 2px solid rgba(147, 197, 253, 0.2);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .process-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(30, 64, 175, 0.4);
+      border-color: rgba(147, 197, 253, 0.5);
+    }
+
+    .process-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .process-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #93c5fd;
+      margin-bottom: 0.75rem;
+    }
+
+    .process-description {
+      font-size: 1rem;
+      color: #cbd5e1;
+      line-height: 1.7;
+    }
+
+    /* Wireframes Section */
+    .wireframes-section {
+      background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+      border-radius: 1.5rem;
+      padding: 3rem;
+      margin: 3rem 0;
+      border: 2px solid rgba(147, 197, 253, 0.2);
+    }
+
+    .wireframes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .wireframe-item {
+      text-align: center;
+    }
+
+    .wireframe-image {
+      width: 100%;
+      border-radius: 1rem;
+      border: 2px solid rgba(147, 197, 253, 0.2);
+      margin-bottom: 1rem;
+    }
+
+    .wireframe-label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #93c5fd;
+    }
+
+    /* Design System */
+    .design-system {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .system-section {
+      background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+      border: 2px solid rgba(147, 197, 253, 0.2);
+      border-radius: 1.5rem;
+      padding: 2rem;
+    }
+
+    .system-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #93c5fd;
+      margin-bottom: 1.5rem;
+    }
+
+    .color-palette {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .color-sample {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid rgba(147, 197, 253, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .typography-samples {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .font-sample {
+      border-bottom: 1px solid rgba(147, 197, 253, 0.2);
+      padding-bottom: 1rem;
+    }
+
+    .font-sample:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .font-name {
+      font-size: 1rem;
+      color: #93c5fd;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .font-display {
+      font-size: 1.5rem;
+      color: #cbd5e1;
+      margin-bottom: 0.25rem;
+    }
+
+    .font-description {
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    /* Process Section */
+    .process-steps {
+      display: grid;
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .process-step {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .step-number {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+      box-shadow: 0 10px 30px rgba(30, 64, 175, 0.4);
+    }
+
+    .step-content h3 {
+      font-size: 1.5rem;
+      color: #93c5fd;
+      margin-bottom: 0.75rem;
+    }
+
+    .step-content p {
+      font-size: 1.05rem;
+      color: #cbd5e1;
+      line-height: 1.8;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.5rem;
+      border: 2px solid rgba(147, 197, 253, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 15px 35px rgba(30, 64, 175, 0.4);
+      border-color: rgba(147, 197, 253, 0.5);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.95), transparent);
+      padding: 2rem 1.5rem 1.5rem;
+      color: white;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-caption {
+      transform: translateY(0);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+      padding: 4rem 2rem;
+      text-align: center;
+      margin: 4rem 0 0;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      padding: 1rem 2.5rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .cta-btn-primary {
+      background: white;
+      color: #1e40af;
+    }
+
+    .cta-btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+    }
+
+    .cta-btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .cta-btn-secondary:hover {
+      background: white;
+      color: #1e40af;
+      transform: translateY(-3px);
+    }
+
+    /* Footer */
+    .footer {
+      background: #0f172a;
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(147, 197, 253, 0.2);
+    }
+
+    .footer p {
+      color: #94a3b8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-description {
+        font-size: 1.1rem;
+      }
+
+      .project-meta {
+        gap: 1.5rem;
+      }
+
+      .featured-mockup {
+        margin: -2rem auto 3rem;
+        padding: 0 1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .wireframes-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      .design-system {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .color-palette {
+        justify-content: center;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .process-step {
+        grid-template-columns: 60px 1fr;
+        gap: 1.5rem;
+      }
+
+      .step-number {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+      }
+
+      .cta-section h2 {
+        font-size: 2rem;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="back-btn">
+        ← Back to Portfolio
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="project-category">UI/UX Design</span>
+      <h1>Mobile App UI/UX Design</h1>
+      <p class="hero-description">User interface and experience design for mobile applications with focus on usability, accessibility, and modern design principles.</p>
+
+      <div class="project-meta">
+        <div class="meta-item">
+          <span class="meta-label">Duration</span>
+          <span class="meta-value">2 Months</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Role</span>
+          <span class="meta-value">UI/UX Designer</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Status</span>
+          <span class="meta-value">Concept</span>
+        </div>
+      </div>
+
+      <div class="tech-stack">
+        <span class="tech-tag">Figma</span>
+        <span class="tech-tag">Adobe XD</span>
+        <span class="tech-tag">Prototyping</span>
+        <span class="tech-tag">User Research</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Mockup -->
+  <div class="featured-mockup">
+    <div class="mockup-container">
+      <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=700&fit=crop" alt="Mobile App UI/UX Design">
+    </div>
+  </div>
+
+  <!-- Project Overview -->
+  <section class="content-section">
+    <h2 class="section-title">Project Overview</h2>
+    <div class="section-content">
+      <p>This mobile app UI/UX design project focuses on creating intuitive and engaging user experiences for mobile applications. The design process encompasses user research, wireframing, prototyping, and comprehensive design system development.</p>
+
+      <p>The project emphasizes modern design principles, accessibility standards, and user-centered design methodologies to create applications that are both beautiful and functional.</p>
+    </div>
+
+    <!-- Design Process -->
+    <h2 class="section-title">Design Process</h2>
+    <div class="process-grid">
+      <div class="process-card">
+        <div class="process-icon">🔍</div>
+        <h3 class="process-title">User Research</h3>
+        <p class="process-description">Comprehensive user research including interviews, surveys, and usability testing to understand user needs and behaviors.</p>
+      </div>
+
+      <div class="process-card">
+        <div class="process-icon">📝</div>
+        <h3 class="process-title">Wireframing</h3>
+        <p class="process-description">Low-fidelity wireframes to establish layout, navigation, and information architecture.</p>
+      </div>
+
+      <div class="process-card">
+        <div class="process-icon">🎨</div>
+        <h3 class="process-title">Visual Design</h3>
+        <p class="process-description">High-fidelity designs with attention to typography, color, and visual hierarchy.</p>
+      </div>
+
+      <div class="process-card">
+        <div class="process-icon">⚡</div>
+        <h3 class="process-title">Prototyping</h3>
+        <p class="process-description">Interactive prototypes for testing user flows and gathering feedback.</p>
+      </div>
+
+      <div class="process-card">
+        <div class="process-icon">🧪</div>
+        <h3 class="process-title">Usability Testing</h3>
+        <p class="process-description">User testing sessions to validate design decisions and identify areas for improvement.</p>
+      </div>
+
+      <div class="process-card">
+        <div class="process-icon">📋</div>
+        <h3 class="process-title">Design System</h3>
+        <p class="process-description">Comprehensive design system documentation for consistent implementation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wireframes Section -->
+  <section class="content-section">
+    <h2 class="section-title">Wireframes & Prototypes</h2>
+    <div class="wireframes-section">
+      <p>Initial wireframes establish the foundation of the user experience, focusing on functionality and user flows before visual design elements are applied.</p>
+
+      <div class="wireframes-grid">
+        <div class="wireframe-item">
+          <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=300&h=500&fit=crop" alt="Home Screen Wireframe" class="wireframe-image">
+          <div class="wireframe-label">Home Screen</div>
+        </div>
+
+        <div class="wireframe-item">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=300&h=500&fit=crop" alt="Navigation Wireframe" class="wireframe-image">
+          <div class="wireframe-label">Navigation</div>
+        </div>
+
+        <div class="wireframe-item">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=500&fit=crop" alt="User Profile Wireframe" class="wireframe-image">
+          <div class="wireframe-label">User Profile</div>
+        </div>
+
+        <div class="wireframe-item">
+          <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=300&h=500&fit=crop" alt="Settings Wireframe" class="wireframe-image">
+          <div class="wireframe-label">Settings</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Design System -->
+  <section class="content-section">
+    <h2 class="section-title">Design System</h2>
+    <div class="design-system">
+      <div class="system-section">
+        <h3 class="system-title">Color Palette</h3>
+        <div class="color-palette">
+          <div class="color-sample" style="background: linear-gradient(45deg, #1e40af, #3b82f6);">Primary</div>
+          <div class="color-sample" style="background: #10b981;">Success</div>
+          <div class="color-sample" style="background: #f59e0b;">Warning</div>
+          <div class="color-sample" style="background: #ef4444;">Error</div>
+          <div class="color-sample" style="background: #64748b;">Neutral</div>
+        </div>
+      </div>
+
+      <div class="system-section">
+        <h3 class="system-title">Typography</h3>
+        <div class="typography-samples">
+          <div class="font-sample">
+            <div class="font-name">Heading Font - Montserrat</div>
+            <div class="font-display" style="font-family: 'Montserrat', sans-serif; font-weight: 700;">Design System</div>
+            <div class="font-description">Bold headings and titles</div>
+          </div>
+
+          <div class="font-sample">
+            <div class="font-name">Body Font - Inter</div>
+            <div class="font-display" style="font-family: 'Inter', sans-serif; font-weight: 400;">Clean, readable body text for optimal user experience.</div>
+            <div class="font-description">Primary body text</div>
+          </div>
+
+          <div class="font-sample">
+            <div class="font-name">Accent Font - Roboto Mono</div>
+            <div class="font-display" style="font-family: 'Roboto Mono', monospace; font-weight: 500;">Code & Data</div>
+            <div class="font-description">Technical information and code</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Development Process -->
+  <section class="content-section">
+    <h2 class="section-title">Development Process</h2>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Discovery & Research</h3>
+          <p>Conducted user interviews, competitor analysis, and market research to identify user needs and design opportunities.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Information Architecture</h3>
+          <p>Developed user flows, sitemaps, and content strategy to establish clear navigation and information hierarchy.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Wireframing & Prototyping</h3>
+          <p>Created low and high-fidelity wireframes and interactive prototypes for user testing and validation.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3>Visual Design</h3>
+          <p>Applied visual design principles, developed the design system, and created pixel-perfect interface designs.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          <h3>Testing & Iteration</h3>
+          <p>Conducted usability testing, gathered feedback, and iterated on designs based on user insights and analytics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="content-section">
+    <h2 class="section-title">Design Gallery</h2>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=400&fit=crop" alt="App Screens">
+        <div class="gallery-caption">
+          <h4>App Interface</h4>
+          <p>Clean, modern mobile interface design</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=500&h=400&fit=crop" alt="User Flow">
+        <div class="gallery-caption">
+          <h4>User Flows</h4>
+          <p>Intuitive navigation and user experience</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=500&h=400&fit=crop" alt="Design Components">
+        <div class="gallery-caption">
+          <h4>Design Components</h4>
+          <p>Reusable UI components and patterns</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section class="content-section">
+    <h2 class="section-title">Design Impact</h2>
+    <div class="section-content">
+      <p>The mobile app UI/UX design project demonstrates a comprehensive approach to user-centered design, creating interfaces that are both aesthetically pleasing and highly functional. The design system ensures consistency across all screens while the user research validates the effectiveness of the design decisions.</p>
+
+      <p>This project serves as a foundation for future mobile app development, providing a scalable design system that can be adapted and extended as the application grows.</p>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <h2>Need UI/UX Design?</h2>
+    <p>Let's create exceptional user experiences</p>
+    <div class="cta-buttons">
+      <a href="mailto:jona@example.com" class="cta-btn cta-btn-primary">Start Your Project</a>
+      <a href="../index.html" class="cta-btn cta-btn-secondary">View More Work</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2024 Jona Setiawan. All rights reserved.</p>
+  </footer>
+</body>
+</html>
