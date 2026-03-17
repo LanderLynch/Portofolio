@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Poster Campaign - Jona Setiawan</title>
+  <link rel="stylesheet" href="../zoom-controls.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0f172a;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    /* Navigation */
+    .navbar {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(147, 197, 253, 0.2);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-btn {
+      background: linear-gradient(45deg, #1e40af, #3b82f6);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-5px);
+      box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .project-category {
+      display: inline-block;
+      background: rgba(59, 130, 246, 0.2);
+      color: #93c5fd;
+      padding: 0.5rem 1.5rem;
+      border-radius: 2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(45deg, #ffffff, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .hero-description {
+      font-size: 1.3rem;
+      color: #cbd5e1;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .meta-label {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .meta-value {
+      font-size: 1.1rem;
+      color: #93c5fd;
+      font-weight: 600;
+    }
+
+    .tech-stack {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .tech-tag {
+      background: rgba(30, 64, 175, 0.2);
+      color: #93c5fd;
+      padding: 0.5rem 1.2rem;
+      border-radius: 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid rgba(30, 64, 175, 0.3);
+    }
+
+    /* Featured Image */
+    .featured-image {
+      max-width: 1400px;
+      margin: -3rem auto 4rem;
+      padding: 0 2rem;
+    }
+
+    .featured-image img {
+      width: 100%;
+      border-radius: 1.5rem;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      border: 2px solid rgba(147, 197, 253, 0.2);
+    }
+
+    /* Content Section */
+    .content-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #93c5fd;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-content {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: #cbd5e1;
+      margin-bottom: 3rem;
+    }
+
+    .section-content p {
+      margin-bottom: 1.5rem;
+    }
+
+    /* Poster Grid */
+    .poster-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .poster-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.5rem;
+      border: 2px solid rgba(147, 197, 253, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .poster-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 15px 35px rgba(30, 64, 175, 0.4);
+      border-color: rgba(147, 197, 253, 0.5);
+    }
+
+    .poster-item img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .poster-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .poster-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.95), transparent);
+      padding: 2rem 1.5rem 1.5rem;
+      color: white;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .poster-item:hover .poster-overlay {
+      transform: translateY(0);
+    }
+
+    .poster-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .poster-description {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    /* Design Elements */
+    .design-elements {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .element-card {
+      background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+      border: 2px solid rgba(147, 197, 253, 0.2);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .element-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(30, 64, 175, 0.4);
+      border-color: rgba(147, 197, 253, 0.5);
+    }
+
+    .element-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .element-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #93c5fd;
+      margin-bottom: 0.75rem;
+    }
+
+    .element-description {
+      font-size: 1rem;
+      color: #cbd5e1;
+      line-height: 1.7;
+    }
+
+    /* Color Scheme */
+    .color-scheme {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 3rem 0;
+    }
+
+    .color-sample {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid rgba(147, 197, 253, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Process Section */
+    .process-steps {
+      display: grid;
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .process-step {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .step-number {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+      box-shadow: 0 10px 30px rgba(30, 64, 175, 0.4);
+    }
+
+    .step-content h3 {
+      font-size: 1.5rem;
+      color: #93c5fd;
+      margin-bottom: 0.75rem;
+    }
+
+    .step-content p {
+      font-size: 1.05rem;
+      color: #cbd5e1;
+      line-height: 1.8;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.5rem;
+      border: 2px solid rgba(147, 197, 253, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 15px 35px rgba(30, 64, 175, 0.4);
+      border-color: rgba(147, 197, 253, 0.5);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.95), transparent);
+      padding: 2rem 1.5rem 1.5rem;
+      color: white;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-caption {
+      transform: translateY(0);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+      padding: 4rem 2rem;
+      text-align: center;
+      margin: 4rem 0 0;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      padding: 1rem 2.5rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .cta-btn-primary {
+      background: white;
+      color: #1e40af;
+    }
+
+    .cta-btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+    }
+
+    .cta-btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .cta-btn-secondary:hover {
+      background: white;
+      color: #1e40af;
+      transform: translateY(-3px);
+    }
+
+    /* Footer */
+    .footer {
+      background: #0f172a;
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(147, 197, 253, 0.2);
+    }
+
+    .footer p {
+      color: #94a3b8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-description {
+        font-size: 1.1rem;
+      }
+
+      .project-meta {
+        gap: 1.5rem;
+      }
+
+      .featured-image {
+        margin: -2rem auto 3rem;
+        padding: 0 1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .poster-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .design-elements {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .color-scheme {
+        gap: 0.5rem;
+      }
+
+      .color-sample {
+        width: 60px;
+        height: 60px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .process-step {
+        grid-template-columns: 60px 1fr;
+        gap: 1.5rem;
+      }
+
+      .step-number {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+      }
+
+      .cta-section h2 {
+        font-size: 2rem;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-zoom-control" id="page-zoom-control">
+    <button class="page-zoom-toggle" id="page-zoom-toggle" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="page-zoom-panel">
+      <svg class="page-zoom-icon" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
+    </button>
+    <div class="page-zoom-panel" id="page-zoom-panel" aria-hidden="true">
+      <span class="page-zoom-label">Zoom</span>
+      <div class="page-zoom-actions">
+        <button class="page-zoom-step" id="page-zoom-out" type="button" aria-label="Zoom out">-</button>
+        <button class="page-zoom-value" id="page-zoom-value" type="button" aria-label="Reset zoom to default">80%</button>
+        <button class="page-zoom-step" id="page-zoom-in" type="button" aria-label="Zoom in">+</button>
+      </div>
+    </div>
+  </div>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="back-btn">
+        ← Back to Portfolio
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="project-category">Graphic Design</span>
+      <h1>Event Poster Campaign</h1>
+      <p class="hero-description">Eye-catching poster designs for events and campaigns featuring bold typography, vibrant colors, and compelling visual hierarchy.</p>
+
+      <div class="project-meta">
+        <div class="meta-item">
+          <span class="meta-label">Duration</span>
+          <span class="meta-value">6 Weeks</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Role</span>
+          <span class="meta-value">Graphic Designer</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Status</span>
+          <span class="meta-value">Completed</span>
+        </div>
+      </div>
+
+      <div class="tech-stack">
+        <span class="tech-tag">Adobe Photoshop</span>
+        <span class="tech-tag">Adobe Illustrator</span>
+        <span class="tech-tag">Typography</span>
+        <span class="tech-tag">Print Design</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Image -->
+  <div class="featured-image">
+    <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=1400&h=700&fit=crop" alt="Event Poster Campaign">
+  </div>
+
+  <!-- Project Overview -->
+  <section class="content-section">
+    <h2 class="section-title">Project Overview</h2>
+    <div class="section-content">
+      <p>This event poster campaign was created for a series of community events and cultural festivals. The project involved designing multiple poster variations that maintained brand consistency while adapting to different event themes and audiences.</p>
+
+      <p>Each poster was designed to capture attention from a distance while conveying essential event information clearly and effectively.</p>
+    </div>
+
+    <!-- Poster Gallery -->
+    <h2 class="section-title">Poster Collection</h2>
+    <div class="poster-grid">
+      <div class="poster-item">
+        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=500&h=600&fit=crop" alt="Music Festival Poster">
+        <div class="poster-overlay">
+          <div class="poster-title">Summer Music Festival</div>
+          <div class="poster-description">Vibrant poster design for outdoor music event featuring dynamic typography and bold color scheme.</div>
+        </div>
+      </div>
+
+      <div class="poster-item">
+        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&h=600&fit=crop" alt="Art Exhibition Poster">
+        <div class="poster-overlay">
+          <div class="poster-title">Contemporary Art Exhibition</div>
+          <div class="poster-description">Minimalist design approach highlighting the artistic nature of the exhibition.</div>
+        </div>
+      </div>
+
+      <div class="poster-item">
+        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=500&h=600&fit=crop" alt="Tech Conference Poster">
+        <div class="poster-overlay">
+          <div class="poster-title">Tech Innovation Conference</div>
+          <div class="poster-description">Modern geometric design representing technology and innovation themes.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Design Elements -->
+  <section class="content-section">
+    <h2 class="section-title">Design Approach</h2>
+    <div class="design-elements">
+      <div class="element-card">
+        <div class="element-icon">🎨</div>
+        <h3 class="element-title">Bold Typography</h3>
+        <p class="element-description">Strong, impactful typography that ensures readability from a distance and creates visual hierarchy.</p>
+      </div>
+
+      <div class="element-card">
+        <div class="element-icon">🌈</div>
+        <h3 class="element-title">Vibrant Colors</h3>
+        <p class="element-description">Carefully selected color palettes that evoke emotion and align with each event's theme.</p>
+      </div>
+
+      <div class="element-card">
+        <div class="element-icon">📐</div>
+        <h3 class="element-title">Visual Hierarchy</h3>
+        <p class="element-description">Strategic layout design that guides the viewer's eye and emphasizes key information.</p>
+      </div>
+
+      <div class="element-card">
+        <div class="element-icon">🖼️</div>
+        <h3 class="element-title">Print Optimization</h3>
+        <p class="element-description">Designs optimized for various print formats and materials with proper bleed and safety margins.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Color Scheme -->
+  <section class="content-section">
+    <h2 class="section-title">Color Schemes</h2>
+    <div class="section-content">
+      <p>Each poster utilized a unique color scheme tailored to the event's theme and target audience, while maintaining consistency across the campaign.</p>
+    </div>
+
+    <div class="color-scheme">
+      <div class="color-sample" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24);">Festival</div>
+      <div class="color-sample" style="background: linear-gradient(45deg, #4ecdc4, #44a08d);">Art</div>
+      <div class="color-sample" style="background: linear-gradient(45deg, #45b7d1, #96c93d);">Tech</div>
+      <div class="color-sample" style="background: linear-gradient(45deg, #f9ca24, #f0932b);">Music</div>
+      <div class="color-sample" style="background: linear-gradient(45deg, #eb4d4b, #f0932b);">Sports</div>
+    </div>
+  </section>
+
+  <!-- Design Process -->
+  <section class="content-section">
+    <h2 class="section-title">Design Process</h2>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Concept Development</h3>
+          <p>Brainstormed creative concepts for each event, considering the target audience, event theme, and brand requirements.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Typography Selection</h3>
+          <p>Selected appropriate fonts and created custom typography treatments that enhance the visual impact of each poster.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Layout Design</h3>
+          <p>Developed balanced compositions that effectively communicate event information while maintaining visual appeal.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3>Print Preparation</h3>
+          <p>Prepared final designs for print production, including color correction, file optimization, and print specifications.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="content-section">
+    <h2 class="section-title">Additional Work</h2>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=500&h=400&fit=crop" alt="Typography Details">
+        <div class="gallery-caption">
+          <h4>Typography Details</h4>
+          <p>Close-up of custom typography treatments</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=500&h=400&fit=crop" alt="Color Variations">
+        <div class="gallery-caption">
+          <h4>Color Studies</h4>
+          <p>Color palette explorations for different themes</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=500&h=400&fit=crop" alt="Layout Sketches">
+        <div class="gallery-caption">
+          <h4>Layout Concepts</h4>
+          <p>Initial layout sketches and wireframes</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section class="content-section">
+    <h2 class="section-title">Campaign Results</h2>
+    <div class="section-content">
+      <p>The event poster campaign successfully increased event attendance and brand visibility across multiple community events. The designs effectively communicated event information while creating a cohesive visual identity for the organization.</p>
+
+      <p>The posters were well-received by both organizers and attendees, with several designs being featured in local design publications and winning design awards.</p>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <h2>Need Event Posters?</h2>
+    <p>Let's create designs that turn heads</p>
+    <div class="cta-buttons">
+      <a href="mailto:jona@example.com" class="cta-btn cta-btn-primary">Start Your Campaign</a>
+      <a href="../index.html" class="cta-btn cta-btn-secondary">View More Work</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2024 Jona Setiawan. All rights reserved.</p>
+  </footer>
+  <script src="../zoom-controls.js"></script>
+</body>
+</html>
