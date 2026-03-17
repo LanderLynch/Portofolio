@@ -12,6 +12,19 @@
     <a href="#home" class="portfolio-title-link">
       <span class="portfolio-text">Home</span>
     </a>
+    <div class="zoom-control" id="zoom-control">
+      <button class="zoom-toggle-btn" id="zoom-toggle-btn" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="zoom-panel">
+        <svg class="icon-svg" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
+      </button>
+      <div class="zoom-panel" id="zoom-panel" aria-hidden="true">
+        <span class="zoom-panel-label">Zoom</span>
+        <div class="zoom-panel-controls">
+          <button class="zoom-step-btn" id="zoom-out-btn" type="button" aria-label="Zoom out">-</button>
+          <button class="zoom-value-btn" id="zoom-value-btn" type="button" aria-label="Reset zoom to default">80%</button>
+          <button class="zoom-step-btn" id="zoom-in-btn" type="button" aria-label="Zoom in">+</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Navigation - Responsive Navigation Bar -->
@@ -26,31 +39,51 @@
       
       <ul class="nav-links">
         <li><a href="#home" class="nav-link-item active">
-          <span class="nav-icon">🏠</span>
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5.25 9.75V21h13.5V9.75"></path></svg>
+          </span>
           Home
         </a></li>
         <li><a href="#about" class="nav-link-item">
-          <span class="nav-icon">👤</span>
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M15.75 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path><path d="M4.5 20.25a7.5 7.5 0 0 1 15 0"></path></svg>
+          </span>
           About
         </a></li>
         <li><a href="#projects" class="nav-link-item">
-          <span class="nav-icon">💼</span>
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 7.5h16.5A1.5 1.5 0 0 1 21.75 9v9.75a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5V9a1.5 1.5 0 0 1 1.5-1.5Z"></path><path d="M9 7.5V6A1.5 1.5 0 0 1 10.5 4.5h3A1.5 1.5 0 0 1 15 6v1.5"></path></svg>
+          </span>
           Projects
         </a></li>
         <li><a href="#experience" class="nav-link-item">
-          <span class="nav-icon">💼</span>
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 7.5h16.5A1.5 1.5 0 0 1 21.75 9v9.75a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5V9a1.5 1.5 0 0 1 1.5-1.5Z"></path><path d="M9 7.5V6A1.5 1.5 0 0 1 10.5 4.5h3A1.5 1.5 0 0 1 15 6v1.5"></path></svg>
+          </span>
           Experience
         </a></li>
         <li><a href="#skills" class="nav-link-item">
-          <span class="nav-icon">⚡</span>
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"></path></svg>
+          </span>
           Skills
         </a></li>
+        <li><a href="#certificated" class="nav-link-item">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75"></path><path d="M9 3.75h6l4.5 4.5v8.25A2.25 2.25 0 0 1 17.25 18.75H6.75A2.25 2.25 0 0 1 4.5 16.5v-10.5A2.25 2.25 0 0 1 6.75 3.75H9Z"></path><path d="M15 3.75v4.5h4.5"></path></svg>
+          </span>
+          Certificated
+        </a></li>
         <li><a href="#testimonials" class="nav-link-item">
-          <span class="nav-icon">💬</span>
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M7.5 8.25h9"></path><path d="M7.5 12h6"></path><path d="M5.25 4.5h13.5A2.25 2.25 0 0 1 21 6.75v8.25a2.25 2.25 0 0 1-2.25 2.25H12l-4.5 3v-3H5.25A2.25 2.25 0 0 1 3 15V6.75A2.25 2.25 0 0 1 5.25 4.5Z"></path></svg>
+          </span>
           Testimonials
         </a></li>
         <li><a href="#contact" class="nav-link-item">
-          <span class="nav-icon">📧</span>
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M21.75 7.5v9A2.25 2.25 0 0 1 19.5 18.75h-15A2.25 2.25 0 0 1 2.25 16.5v-9"></path><path d="m3 6 8.29 6.217a1.2 1.2 0 0 0 1.42 0L21 6"></path></svg>
+          </span>
           Contact
         </a></li>
       </ul>
@@ -66,14 +99,41 @@
     
     <div class="button-group">
       <a href="https://drive.usercontent.google.com/download?id=18oRkNH1VU8Gg_WOEhky9bfeP1LufCNkr&export=download&authuser=5&confirm=t&uuid=6b7a7de9-1694-4107-b6bd-43112cf1555f&at=AN8xHops-tHAbhs0J98uHkYxc9pB:1753280713067" class="btn btn-secondary">Download My CV</a>
+      <a href="certificated.html" class="btn btn-secondary">Certificated</a>
       <a href="#projects" class="btn btn-primary">Explore Projects</a>
     </div>
     
     <div class="social-links">
-      <a href="https://www.instagram.com/jona.mmzv/" target="_blank" class="social-btn" aria-label="Instagram">IG</a>
-      <a href="https://www.linkedin.com/in/jona-setiawan-099149311/" target="_blank" class="social-btn" aria-label="LinkedIn">IN</a>
-      <a href="https://github.com/LanderLynch" target="_blank" class="social-btn" aria-label="GitHub">GH</a>
-      <a href="https://x.com/CandyLordberry/media" target="_blank" class="social-btn" aria-label="Twitter">X</a>
+      <a href="https://www.instagram.com/jona.mmzv/" target="_blank" class="social-btn" aria-label="Instagram">
+        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3.75" y="3.75" width="16.5" height="16.5" rx="4.5"></rect>
+          <circle cx="12" cy="12" r="3.75"></circle>
+          <circle cx="17.25" cy="6.75" r="0.75" class="social-icon-fill"></circle>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/jona-setiawan-099149311/" target="_blank" class="social-btn" aria-label="LinkedIn">
+        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7.125 9.75V18"></path>
+          <path d="M7.125 6.75h.015"></path>
+          <path d="M11.25 18V9.75"></path>
+          <path d="M16.875 18v-4.5a2.625 2.625 0 0 0-5.25 0"></path>
+          <rect x="3.75" y="3.75" width="16.5" height="16.5" rx="4.5"></rect>
+        </svg>
+      </a>
+      <a href="https://github.com/LanderLynch" target="_blank" class="social-btn" aria-label="GitHub">
+        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 18.75c-3.75 1.125-3.75-2.25-5.25-2.625"></path>
+          <path d="M14.25 21v-2.91c0-.78.06-1.17-.375-1.5 2.82-.315 5.775-1.38 5.775-6.24a4.875 4.875 0 0 0-1.305-3.39 4.53 4.53 0 0 0-.075-3.345s-1.065-.315-3.495 1.29a11.94 11.94 0 0 0-6.75 0c-2.43-1.605-3.495-1.29-3.495-1.29a4.53 4.53 0 0 0-.075 3.345A4.875 4.875 0 0 0 3.15 10.35c0 4.83 2.955 5.895 5.775 6.24-.435.33-.435.99-.375 1.5V21"></path>
+          <path d="M12 2.625a9.375 9.375 0 0 0-2.97 18.27"></path>
+          <path d="M12 2.625a9.375 9.375 0 0 1 2.25 18.48"></path>
+        </svg>
+      </a>
+      <a href="https://x.com/CandyLordberry/media" target="_blank" class="social-btn" aria-label="X">
+        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4.5 4.5 19.5 19.5"></path>
+          <path d="M19.5 4.5 4.5 19.5"></path>
+        </svg>
+      </a>
     </div>
     
     <div class="stats-grid">
@@ -128,7 +188,9 @@
       <div class="about-info-grid">
         <div class="info-card">
           <div class="info-card-header">
-            <div class="info-icon">👤</div>
+            <div class="info-icon" aria-hidden="true">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M15.75 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path><path d="M4.5 20.25a7.5 7.5 0 0 1 15 0"></path></svg>
+            </div>
             <h3>Who Am I</h3>
           </div>
           <p>I'm a multimedia designer who specializes in graphic design and visual communication. With a background in multimedia design, I create engaging visual content that tells compelling stories.</p>
@@ -136,7 +198,9 @@
         
         <div class="info-card">
           <div class="info-card-header">
-            <div class="info-icon">💡</div>
+            <div class="info-icon" aria-hidden="true">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 3.75a6 6 0 0 0-3.75 10.687c.49.39.75.987.75 1.613v.45h6v-.45c0-.626.26-1.223.75-1.613A6 6 0 0 0 12 3.75Z"></path><path d="M9.75 18.75h4.5"></path><path d="M10.5 21h3"></path></svg>
+            </div>
             <h3>My Approach</h3>
           </div>
           <p>I focus on creative storytelling through visual design, combining technical skills with artistic vision to deliver impactful multimedia experiences that resonate with audiences.</p>
@@ -144,13 +208,17 @@
         
         <div class="personal-info-card">
           <div class="info-card-header">
-            <div class="info-icon">ℹ️</div>
+            <div class="info-icon" aria-hidden="true">
+              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 8.25h.008v.008H12V8.25Z"></path><path d="M11.25 12h1.5v4.5h1.5"></path><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg>
+            </div>
             <h3>Personal Info</h3>
           </div>
           
           <div class="personal-info-grid">
             <div class="personal-info-item">
-              <div class="personal-info-icon">📝</div>
+              <div class="personal-info-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M16.5 3.75 20.25 7.5"></path><path d="m3.75 20.25 4.5-1.125L19.5 7.875a1.59 1.59 0 0 0 0-2.25l-1.125-1.125a1.59 1.59 0 0 0-2.25 0L4.875 15.75 3.75 20.25Z"></path></svg>
+              </div>
               <div class="personal-info-content">
                 <span class="personal-info-label">Name:</span>
                 <span class="personal-info-value">Jona Setiawan</span>
@@ -158,7 +226,9 @@
             </div>
             
             <div class="personal-info-item">
-              <div class="personal-info-icon">📅</div>
+              <div class="personal-info-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg>
+              </div>
               <div class="personal-info-content">
                 <span class="personal-info-label">Date of Birth:</span>
                 <span class="personal-info-value">Juni 05, 2006</span>
@@ -166,7 +236,9 @@
             </div>
             
             <div class="personal-info-item">
-              <div class="personal-info-icon">📍</div>
+              <div class="personal-info-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 21s6-5.245 6-11.25a6 6 0 1 0-12 0C6 15.755 12 21 12 21Z"></path><path d="M12 12.75a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg>
+              </div>
               <div class="personal-info-content">
                 <span class="personal-info-label">Place of Birth:</span>
                 <span class="personal-info-value">Tangerang, Indonesia</span>
@@ -174,7 +246,9 @@
             </div>
             
             <div class="personal-info-item">
-              <div class="personal-info-icon">📧</div>
+              <div class="personal-info-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M21.75 7.5v9A2.25 2.25 0 0 1 19.5 18.75h-15A2.25 2.25 0 0 1 2.25 16.5v-9"></path><path d="m3 6 8.29 6.217a1.2 1.2 0 0 0 1.42 0L21 6"></path></svg>
+              </div>
               <div class="personal-info-content">
                 <span class="personal-info-label">Email:</span>
                 <span class="personal-info-value">jonasaevuddyinsetiawan@gmail.com</span>
@@ -182,7 +256,9 @@
             </div>
             
             <div class="personal-info-item">
-              <div class="personal-info-icon">📞</div>
+              <div class="personal-info-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372a1.5 1.5 0 0 0-1.22-1.474l-4.423-.884a1.5 1.5 0 0 0-1.463.486l-.97 1.293a12.035 12.035 0 0 1-5.223-5.223l1.293-.97a1.5 1.5 0 0 0 .486-1.463l-.884-4.423A1.5 1.5 0 0 0 5.872 2.25H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"></path></svg>
+              </div>
               <div class="personal-info-content">
                 <span class="personal-info-label">Phone:</span>
                 <span class="personal-info-value">+62 895 1234 4492</span>
@@ -190,7 +266,9 @@
             </div>
             
             <div class="personal-info-item">
-              <div class="personal-info-icon">🎓</div>
+              <div class="personal-info-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="m3.75 8.25 8.25-4.5 8.25 4.5-8.25 4.5-8.25-4.5Z"></path><path d="M6.75 10.5v4.125c0 .621.337 1.193.879 1.493A9.72 9.72 0 0 0 12 17.25a9.72 9.72 0 0 0 4.371-1.132 1.706 1.706 0 0 0 .879-1.493V10.5"></path><path d="M20.25 9.75v4.5"></path></svg>
+              </div>
               <div class="personal-info-content">
                 <span class="personal-info-label">Education:</span>
                 <span class="personal-info-value">SMK YUPPENTEK 1 TANGERANG</span>
@@ -198,7 +276,9 @@
             </div>
             
             <div class="personal-info-item">
-              <div class="personal-info-icon">📊</div>
+              <div class="personal-info-icon" aria-hidden="true">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 3v18h18"></path><path d="M7.5 15V9.75"></path><path d="M12 15V6.75"></path><path d="M16.5 15v-3.75"></path></svg>
+              </div>
               <div class="personal-info-content">
                 <span class="personal-info-label">AVG Score:</span>
                 <span class="personal-info-value">70/100</span>
@@ -227,7 +307,9 @@
     <!-- Add New Project Button -->
     <div class="add-project-container" style="text-align: center; margin-bottom: 3rem;">
       <button class="add-project-btn" id="add-project-btn">
-        <span class="btn-icon">+</span>
+        <span class="btn-icon" aria-hidden="true">
+          <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 4.5v15"></path><path d="M4.5 12h15"></path></svg>
+        </span>
         Add New Project
       </button>
     </div>
@@ -239,9 +321,9 @@
           <img src="https://i.pinimg.com/736x/e2/79/15/e2791594bb7f8ef98b33e94fa06de84b.jpg" alt="Personal GFX Design Collection" />
           <div class="project-overlay">
             <div class="project-quick-actions">
-              <a href="#" class="quick-action-btn" title="View Project">👁</a>
-              <a href="#" class="quick-action-btn" title="Live Demo">🚀</a>
-              <a href="#" class="quick-action-btn" title="Source Code">💻</a>
+              <a href="#" class="quick-action-btn" title="View Project" aria-label="View Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
+              <a href="#" class="quick-action-btn" title="Live Demo" aria-label="Live Demo"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M13.5 6H19.5V12"></path><path d="m10.5 13.5 9-9"></path><path d="M19.5 14.25v3A2.25 2.25 0 0 1 17.25 19.5h-10.5A2.25 2.25 0 0 1 4.5 17.25v-10.5A2.25 2.25 0 0 1 6.75 4.5h3"></path></svg></a>
+              <a href="#" class="quick-action-btn" title="Source Code" aria-label="Source Code"><svg class="icon-svg" viewBox="0 0 24 24"><path d="m8.25 8.25-4.5 3.75 4.5 3.75"></path><path d="m15.75 8.25 4.5 3.75-4.5 3.75"></path><path d="m13.5 4.5-3 15"></path></svg></a>
             </div>
           </div>
         </div>
@@ -259,7 +341,7 @@
           </div>
           <div class="project-meta">
             <div class="project-date">
-              <span>📅</span>
+              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
               <span>Still Going</span>
             </div>
             <div class="project-type">Personal Project</div>
@@ -276,8 +358,8 @@
           <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop" alt="Multimedia Presentation" />
           <div class="project-overlay">
             <div class="project-quick-actions">
-              <a href="#" class="quick-action-btn" title="View Project">👁</a>
-              <a href="#" class="quick-action-btn" title="Live Demo">🚀</a>
+              <a href="#" class="quick-action-btn" title="View Project" aria-label="View Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
+              <a href="#" class="quick-action-btn" title="Live Demo" aria-label="Live Demo"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M13.5 6H19.5V12"></path><path d="m10.5 13.5 9-9"></path><path d="M19.5 14.25v3A2.25 2.25 0 0 1 17.25 19.5h-10.5A2.25 2.25 0 0 1 4.5 17.25v-10.5A2.25 2.25 0 0 1 6.75 4.5h3"></path></svg></a>
             </div>
           </div>
         </div>
@@ -295,7 +377,7 @@
           </div>
           <div class="project-meta">
             <div class="project-date">
-              <span>📅</span>
+              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
               <span>November 2024</span>
             </div>
             <div class="project-type">Client Work</div>
@@ -308,11 +390,11 @@
       
       <div class="project-card" data-category="graphic">
         <div class="project-image">
-          <img src="https://i.pinimg.com/736x/82/4f/65/824f654a7fe31c0c7bf0bc6f5cae4c62.jpg" alt="Professional GFX Design Suite" />
+          <img src="project/Preview professional GFX Design suite.jpg" alt="Professional GFX Design Suite preview" />
           <div class="project-overlay">
             <div class="project-quick-actions">
-              <a href="#" class="quick-action-btn" title="View Project">👁</a>
-              <a href="#" class="quick-action-btn" title="Case Study">📋</a>
+              <a href="#" class="quick-action-btn" title="View Project" aria-label="View Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
+              <a href="#" class="quick-action-btn" title="Case Study" aria-label="Case Study"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75"></path><path d="M9 3.75h6l4.5 4.5v8.25A2.25 2.25 0 0 1 17.25 18.75H6.75A2.25 2.25 0 0 1 4.5 16.5v-10.5A2.25 2.25 0 0 1 6.75 3.75H9Z"></path><path d="M15 3.75v4.5h4.5"></path></svg></a>
             </div>
           </div>
         </div>
@@ -330,7 +412,7 @@
           </div>
           <div class="project-meta">
             <div class="project-date">
-              <span>📅</span>
+              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
               <span>December 2024</span>
             </div>
             <div class="project-type">Portfolio</div>
@@ -346,8 +428,8 @@
           <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=500&h=300&fit=crop" alt="Event Poster Design" />
           <div class="project-overlay">
             <div class="project-quick-actions">
-              <a href="#" class="quick-action-btn" title="View Project">👁</a>
-              <a href="#" class="quick-action-btn" title="Download">⬇</a>
+              <a href="#" class="quick-action-btn" title="View Project" aria-label="View Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
+              <a href="#" class="quick-action-btn" title="Download" aria-label="Download"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 3.75v10.5"></path><path d="m8.25 10.5 3.75 3.75 3.75-3.75"></path><path d="M4.5 18.75h15"></path></svg></a>
             </div>
           </div>
         </div>
@@ -365,7 +447,7 @@
           </div>
           <div class="project-meta">
             <div class="project-date">
-              <span>📅</span>
+              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
               <span>September 2024</span>
             </div>
             <div class="project-type">Client Work</div>
@@ -381,8 +463,8 @@
           <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=500&h=300&fit=crop" alt="Video Editing Project" />
           <div class="project-overlay">
             <div class="project-quick-actions">
-              <a href="#" class="quick-action-btn" title="Watch Video">▶</a>
-              <a href="#" class="quick-action-btn" title="Behind Scenes">🎬</a>
+              <a href="#" class="quick-action-btn" title="Watch Video" aria-label="Watch Video"><svg class="icon-svg" viewBox="0 0 24 24"><path d="m8.25 7.5 8.25 4.5-8.25 4.5V7.5Z"></path></svg></a>
+              <a href="#" class="quick-action-btn" title="Behind Scenes" aria-label="Behind Scenes"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 7.5h16.5v9H3.75z"></path><path d="m9 7.5 1.5-3h3L15 7.5"></path><path d="m10.5 10.5 3 1.5-3 1.5v-3Z"></path></svg></a>
             </div>
           </div>
         </div>
@@ -400,7 +482,7 @@
           </div>
           <div class="project-meta">
             <div class="project-date">
-              <span>📅</span>
+              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
               <span>December 2024</span>
             </div>
             <div class="project-type">Ongoing</div>
@@ -416,8 +498,8 @@
           <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=300&fit=crop" alt="UI/UX Design Project" />
           <div class="project-overlay">
             <div class="project-quick-actions">
-              <a href="#" class="quick-action-btn" title="View Prototype">🎨</a>
-              <a href="#" class="quick-action-btn" title="Design System">📐</a>
+              <a href="#" class="quick-action-btn" title="View Prototype" aria-label="View Prototype"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M6 3.75h12A2.25 2.25 0 0 1 20.25 6v12A2.25 2.25 0 0 1 18 20.25H6A2.25 2.25 0 0 1 3.75 18V6A2.25 2.25 0 0 1 6 3.75Z"></path><path d="M8.25 8.25h7.5"></path><path d="M8.25 12h4.5"></path><path d="M8.25 15.75h6"></path></svg></a>
+              <a href="#" class="quick-action-btn" title="Design System" aria-label="Design System"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M4.5 6.75h15"></path><path d="M4.5 12h15"></path><path d="M4.5 17.25h15"></path><path d="M8.25 4.5v15"></path><path d="M15.75 4.5v15"></path></svg></a>
             </div>
           </div>
         </div>
@@ -435,7 +517,7 @@
           </div>
           <div class="project-meta">
             <div class="project-date">
-              <span>📅</span>
+              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
               <span>January 2025</span>
             </div>
             <div class="project-type">Concept</div>
@@ -452,8 +534,8 @@
           <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=500&h=300&fit=crop" alt="Logo Design Collection" />
           <div class="project-overlay">
             <div class="project-quick-actions">
-              <a href="#" class="quick-action-btn" title="View Collection">👁</a>
-              <a href="#" class="quick-action-btn" title="Process">⚙</a>
+              <a href="#" class="quick-action-btn" title="View Collection" aria-label="View Collection"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
+              <a href="#" class="quick-action-btn" title="Process" aria-label="Process"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M10.5 6h3"></path><path d="M9.336 3.75h5.328l.42 2.099a6.75 6.75 0 0 1 1.737.999l2.004-.667 2.664 4.614-1.584 1.404a6.792 6.792 0 0 1 0 1.998l1.584 1.404-2.664 4.614-2.004-.667a6.75 6.75 0 0 1-1.737.999l-.42 2.099H9.336l-.42-2.099a6.75 6.75 0 0 1-1.737-.999l-2.004.667L2.511 15.6l1.584-1.404a6.792 6.792 0 0 1 0-1.998L2.511 10.8l2.664-4.614 2.004.667a6.75 6.75 0 0 1 1.737-.999l.42-2.099Z"></path><path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path></svg></a>
             </div>
           </div>
         </div>
@@ -470,7 +552,7 @@
           </div>
           <div class="project-meta">
             <div class="project-date">
-              <span>📅</span>
+              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
               <span>August 2024</span>
             </div>
             <div class="project-type">Portfolio</div>
@@ -486,8 +568,8 @@
           <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop" alt="Digital Art Project" />
           <div class="project-overlay">
             <div class="project-quick-actions">
-              <a href="#" class="quick-action-btn" title="View Gallery">🖼</a>
-              <a href="#" class="quick-action-btn" title="Time-lapse">⏱</a>
+              <a href="#" class="quick-action-btn" title="View Gallery" aria-label="View Gallery"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 5.25h16.5A1.5 1.5 0 0 1 21.75 6.75v10.5a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5V6.75a1.5 1.5 0 0 1 1.5-1.5Z"></path><path d="m3.75 15 4.5-4.5 3.75 3.75 2.25-2.25 4.5 4.5"></path><path d="M15.75 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"></path></svg></a>
+              <a href="#" class="quick-action-btn" title="Time-lapse" aria-label="Time-lapse"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 6v6l3.75 2.25"></path><path d="M12 3.75a8.25 8.25 0 1 1 0 16.5 8.25 8.25 0 0 1 0-16.5Z"></path></svg></a>
             </div>
           </div>
         </div>
@@ -505,7 +587,7 @@
           </div>
           <div class="project-meta">
             <div class="project-date">
-              <span>📅</span>
+              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
               <span>July 2024</span>
             </div>
             <div class="project-type">Personal</div>
@@ -535,7 +617,7 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=400&fit=crop" alt="Digital Content Creator">
+            <img src="project/Logo preview/Yuppentek logo.jpg" alt="Yuppentek logo">
           </div>
           <div class="timeline-info">
             <div class="timeline-date">2021 - 2022</div>
@@ -543,6 +625,7 @@
             <p class="timeline-company">School Projects</p>
             <p class="timeline-description">Led multimedia projects for school events, creating digital content for presentations and promotional materials, and won recognition for creative excellence.</p>
             <div class="timeline-tags">
+              <span class="tag">School Project</span>
               <span class="tag">Canva</span>
               <span class="tag">Photography</span>
               <span class="tag">Event Design</span>
@@ -556,7 +639,29 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&h=400&fit=crop" alt="Video Production Assistant">
+            <img src="project/Logo preview/Fortress logo.jpg" alt="Pintu Baja Fortress logo">
+          </div>
+          <div class="timeline-info">
+            <div class="timeline-date">September 2022 - November 2022</div>
+            <h3 class="timeline-title">Marketing and Product Sales</h3>
+            <p class="timeline-company">Pintu Baja Fortress</p>
+            <p class="timeline-description">Promoted and sold steel door products to different customer bases, developed marketing strategies to increase brand awareness and sales, maintained customer databases in Excel, and tracked customer interactions, sales, and follow-up activities.</p>
+            <div class="timeline-tags">
+              <span class="tag">Marketing</span>
+              <span class="tag">Product Sales</span>
+              <span class="tag">Excel</span>
+              <span class="tag">Data Management</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline Item 3 - (2022-2023) -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-image">
+            <img src="project/Logo preview/Yuppentek logo.jpg" alt="Yuppentek logo">
           </div>
           <div class="timeline-info">
             <div class="timeline-date">2022 - 2023</div>
@@ -564,6 +669,7 @@
             <p class="timeline-company">Content Studio</p>
             <p class="timeline-description">Supported video production teams in creating engaging multimedia content for various platforms and mastered video editing techniques.</p>
             <div class="timeline-tags">
+              <span class="tag">School Project</span>
               <span class="tag">Premiere Pro</span>
               <span class="tag">After Effects</span>
               <span class="tag">Motion Graphics</span>
@@ -572,43 +678,69 @@
         </div>
       </div>
       
-      <!-- Timeline Item 3 - (2023-2024) -->
+      <!-- Timeline Item 4 - (2023-Present) -->
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=400&fit=crop" alt="Graphic Design Intern">
+            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=400&fit=crop" alt="Graphic Design and Photographer Freelance">
           </div>
           <div class="timeline-info">
-            <div class="timeline-date">2023 - 2024</div>
-            <h3 class="timeline-title">Graphic Design Intern</h3>
-            <p class="timeline-company">Creative Agency</p>
-            <p class="timeline-description">Contributed to marketing campaigns, brand refreshes, and digital content creation while collaborating with senior designers.</p>
+            <span class="timeline-status active">Active</span>
+            <div class="timeline-date">2023 - Present</div>
+            <h3 class="timeline-title">Graphic Design &amp; photographer Freelance</h3>
+            <p class="timeline-company">Self-Employed</p>
+            <p class="timeline-description">Headed to making project for poster, banner, and visual design, while also working as a documentary photographer in show events and live activities.</p>
             <div class="timeline-tags">
               <span class="tag">Photoshop</span>
               <span class="tag">Illustrator</span>
-              <span class="tag">Team Collaboration</span>
+              <span class="tag">Photographer</span>
+              <span class="tag">Documentary</span>
             </div>
           </div>
         </div>
       </div>
       
-      <!-- Timeline Item 4 - LATEST (2024-Present) -->
+      <!-- Timeline Item 5 - (2024) -->
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=800&h=400&fit=crop" alt="Freelance Multimedia Designer">
+            <img src="project/Logo preview/Aryaduta logo.jpg" alt="Hotel Aryaduta Country Club logo">
           </div>
           <div class="timeline-info">
-            <div class="timeline-date">2024 - Present</div>
-            <h3 class="timeline-title">Freelance Multimedia Designer</h3>
-            <p class="timeline-company">Self-Employed</p>
-            <p class="timeline-description">Providing comprehensive multimedia design services including graphic design, video editing, and brand identity development for various clients.</p>
+            <div class="timeline-date">Juli 2024 - October 2024</div>
+            <h3 class="timeline-title">Sport Desk Staff - Sport Desk Management</h3>
+            <p class="timeline-company">Hotel Aryaduta Country Club</p>
+            <p class="timeline-description">Maintained accurate records for guest participation, rental agreements, and daily reporting to support operational efficiency, while also helping promote recreational activities and events so guests clearly understood the available facilities and services.</p>
+            <div class="timeline-tags">
+              <span class="tag">Guest Service</span>
+              <span class="tag">Operations</span>
+              <span class="tag">Record Keeping</span>
+              <span class="tag">Event Promotion</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline Item 6 - LATEST (2025-Present) -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-image">
+            <img src="project/Logo preview/Internusa kreasindo mandiri.jpg" alt="PT Internusa Kreasindo Mandiri logo">
+          </div>
+          <div class="timeline-info">
+            <span class="timeline-status active">Active</span>
+            <div class="timeline-date">2025 August - Present</div>
+            <h3 class="timeline-title">Employed - Design Creative</h3>
+            <p class="timeline-company">PT Internusa Kreasindo Mandiri</p>
+            <p class="timeline-description">Creating visual communication assets and creative design materials to support branding, promotion, and company presentation needs.</p>
             <div class="timeline-tags">
               <span class="tag">Adobe Suite</span>
-              <span class="tag">Figma</span>
-              <span class="tag">Client Management</span>
+              <span class="tag">Photoshop</span>
+              <span class="tag">Illustrator</span>
+              <span class="tag">Photography</span>
             </div>
           </div>
         </div>
@@ -700,6 +832,39 @@
             <h3>Skill Tree</h3>
             <p>Graphic design sits at the center of my process, connecting visual storytelling, interface thinking, motion, and polished presentation.</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificated" class="certificated-section" data-section-label="Certificated">
+    <div class="certificated-shell">
+      <div class="certificated-copy">
+        <p class="certificated-kicker">Achievement Archive</p>
+        <h2 class="section-title">Certificated</h2>
+        <p class="section-subtitle">This is the certificated I got so far. I grouped them into one page so visitors can browse all of my MySkill certificated in one place.</p>
+        <div class="certificated-stats">
+          <div class="certificated-stat">
+            <strong>22</strong>
+            <span>Total PDF certificated</span>
+          </div>
+          <div class="certificated-stat">
+            <strong>22</strong>
+            <span>MySkill certificated</span>
+          </div>
+          <div class="certificated-stat">
+            <strong>0</strong>
+            <span>Trainee certificated</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="certificated-card">
+        <p class="certificated-card-label">Quick Access</p>
+        <h3>Open the full certificated page</h3>
+        <p>Inside the page, I added filter options for all certificated, MySkill, and trainee. The trainee tab is ready for later when you add those PDFs.</p>
+        <div class="certificated-actions">
+          <a href="certificated.html" class="view-project-btn">View All Certificated &rarr;</a>
         </div>
       </div>
     </div>
@@ -938,10 +1103,82 @@
     const navLinkItems = document.querySelectorAll('.nav-link-item');
     const portfolioTitleLink = document.querySelector('.portfolio-title-link');
     const portfolioText = document.querySelector('.portfolio-text');
+    const zoomControl = document.getElementById('zoom-control');
+    const zoomToggleBtn = document.getElementById('zoom-toggle-btn');
+    const zoomPanel = document.getElementById('zoom-panel');
+    const zoomOutBtn = document.getElementById('zoom-out-btn');
+    const zoomInBtn = document.getElementById('zoom-in-btn');
+    const zoomValueBtn = document.getElementById('zoom-value-btn');
     const trackedSections = Array.from(document.querySelectorAll('[data-section-label]'));
     const projectPageLinks = document.querySelectorAll('a[href^="project/"]');
     const returnScrollKey = 'portfolio-return-scroll';
     const returnScrollPendingKey = 'portfolio-return-pending';
+    const zoomStorageKey = 'portfolio-page-zoom';
+    const defaultZoom = 80;
+    const minZoom = 60;
+    const maxZoom = 120;
+    const zoomStep = 10;
+
+    function clampZoom(value) {
+      return Math.min(maxZoom, Math.max(minZoom, value));
+    }
+
+    function applyZoom(value) {
+      const zoomValue = clampZoom(value);
+      document.body.classList.add('zoom-ready');
+      document.body.style.setProperty('--page-zoom', String(zoomValue / 100));
+
+      if (zoomValueBtn) {
+        zoomValueBtn.textContent = `${zoomValue}%`;
+      }
+
+      localStorage.setItem(zoomStorageKey, String(zoomValue));
+      return zoomValue;
+    }
+
+    const savedZoom = Number(localStorage.getItem(zoomStorageKey));
+    let currentZoom = applyZoom(Number.isFinite(savedZoom) ? savedZoom : defaultZoom);
+
+    function setZoomPanelState(isOpen) {
+      if (!zoomControl || !zoomToggleBtn || !zoomPanel) {
+        return;
+      }
+
+      zoomControl.classList.toggle('open', isOpen);
+      zoomToggleBtn.setAttribute('aria-expanded', String(isOpen));
+      zoomPanel.setAttribute('aria-hidden', String(!isOpen));
+    }
+
+    if (zoomToggleBtn) {
+      zoomToggleBtn.addEventListener('click', () => {
+        const shouldOpen = !zoomControl.classList.contains('open');
+        setZoomPanelState(shouldOpen);
+      });
+    }
+
+    if (zoomOutBtn) {
+      zoomOutBtn.addEventListener('click', () => {
+        currentZoom = applyZoom(currentZoom - zoomStep);
+      });
+    }
+
+    if (zoomInBtn) {
+      zoomInBtn.addEventListener('click', () => {
+        currentZoom = applyZoom(currentZoom + zoomStep);
+      });
+    }
+
+    if (zoomValueBtn) {
+      zoomValueBtn.addEventListener('click', () => {
+        currentZoom = applyZoom(defaultZoom);
+      });
+    }
+
+    document.addEventListener('click', (event) => {
+      if (zoomControl && !zoomControl.contains(event.target)) {
+        setZoomPanelState(false);
+      }
+    });
 
     if (hamburgerBtn && navLinks) {
       hamburgerBtn.addEventListener('click', () => {
@@ -1035,11 +1272,27 @@
         return;
       }
 
-      const scrollMarker = window.scrollY + (window.innerHeight * 0.35);
+      const viewportAnchor = window.innerHeight * 0.35;
       let currentSection = trackedSections[0];
+      let closestDistance = Number.POSITIVE_INFINITY;
 
       trackedSections.forEach(section => {
-        if (section.offsetTop <= scrollMarker) {
+        const rect = section.getBoundingClientRect();
+        const isAnchorInsideSection = rect.top <= viewportAnchor && rect.bottom >= viewportAnchor;
+
+        if (isAnchorInsideSection) {
+          currentSection = section;
+          closestDistance = -1;
+          return;
+        }
+
+        if (closestDistance === -1) {
+          return;
+        }
+
+        const distanceToAnchor = Math.abs(rect.top - viewportAnchor);
+        if (distanceToAnchor < closestDistance) {
+          closestDistance = distanceToAnchor;
           currentSection = section;
         }
       });
@@ -1463,8 +1716,8 @@
           <img src="${imageUrl}" alt="${title}" />
           <div class="project-overlay">
             <div class="project-quick-actions">
-              <a href="#" class="quick-action-btn" title="View Project">👁</a>
-              <a href="#" class="quick-action-btn" title="Live Demo">🚀</a>
+              <a href="#" class="quick-action-btn" title="View Project" aria-label="View Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
+              <a href="#" class="quick-action-btn" title="Live Demo" aria-label="Live Demo"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M13.5 6H19.5V12"></path><path d="m10.5 13.5 9-9"></path><path d="M19.5 14.25v3A2.25 2.25 0 0 1 17.25 19.5h-10.5A2.25 2.25 0 0 1 4.5 17.25v-10.5A2.25 2.25 0 0 1 6.75 4.5h3"></path></svg></a>
             </div>
           </div>
         </div>
@@ -1479,7 +1732,7 @@
           </div>
           <div class="project-meta">
             <div class="project-date">
-              <span>📅</span>
+              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
               <span>${currentDate}</span>
             </div>
             <div class="project-type">${projectType}</div>
