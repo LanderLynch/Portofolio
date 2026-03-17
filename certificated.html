@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Certificated - Jona Setiawan</title>
+  <link rel="stylesheet" href="zoom-controls.css" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+    :root {
+      --bg: #05101d;
+      --surface: rgba(10, 23, 42, 0.82);
+      --surface-soft: rgba(15, 30, 51, 0.76);
+      --border: rgba(148, 163, 184, 0.18);
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #60a5fa;
+      --accent-strong: #2563eb;
+      --accent-soft: rgba(96, 165, 250, 0.16);
+      --shadow: 0 24px 70px rgba(2, 6, 23, 0.42);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --content-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(96, 165, 250, 0.18), transparent 34%),
+        radial-gradient(circle at 85% 12%, rgba(14, 165, 233, 0.12), transparent 28%),
+        linear-gradient(180deg, #08111f 0%, #05101d 55%, #020617 100%);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page-shell {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding: 1rem 1.2rem;
+      border-radius: 999px;
+      background: rgba(5, 16, 29, 0.84);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .back-btn,
+    .certificate-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 999px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .back-btn {
+      padding: 0.85rem 1.3rem;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+    }
+
+    .back-btn:hover,
+    .certificate-link:hover,
+    .filter-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      padding: 2.5rem;
+      border-radius: calc(var(--radius-xl) + 8px);
+      background: rgba(5, 16, 29, 0.38);
+      border: 1px solid rgba(148, 163, 184, 0.1);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-kicker {
+      margin: 0 0 0.8rem;
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2.6rem, 7vw, 4.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+
+    .hero p {
+      max-width: 780px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 1rem 0 0;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.75rem;
+    }
+
+    .hero-stat {
+      padding: 1.2rem 1.3rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-size: 1.7rem;
+    }
+
+    .hero-stat span {
+      color: var(--muted);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 2rem 0 1.5rem;
+    }
+
+    .filter-btn {
+      padding: 0.85rem 1.15rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.75);
+      color: var(--muted);
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.22), rgba(96, 165, 250, 0.18));
+      color: var(--text);
+    }
+
+    .section-note {
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+    }
+
+    .certificates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .certificate-card,
+    .empty-state {
+      padding: 1.35rem;
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .certificate-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+    }
+
+    .certificate-tag {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #bfdbfe;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .certificate-card h2 {
+      margin: 0;
+      font-size: 1.12rem;
+      line-height: 1.4;
+    }
+
+    .certificate-card p {
+      margin: 0;
+      color: var(--muted);
+      flex: 1;
+    }
+
+    .certificate-link {
+      padding: 0.85rem 1.2rem;
+      background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+      color: #fff;
+      box-shadow: 0 18px 32px rgba(37, 99, 235, 0.28);
+    }
+
+    .empty-state {
+      display: none;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .empty-state.visible {
+      display: block;
+    }
+
+    @media (max-width: 720px) {
+      .topbar {
+        border-radius: 24px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero {
+        padding: 1.5rem;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .certificates-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .back-btn,
+      .certificate-link {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-zoom-control" id="page-zoom-control">
+    <button class="page-zoom-toggle" id="page-zoom-toggle" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="page-zoom-panel">
+      <svg class="page-zoom-icon" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
+    </button>
+    <div class="page-zoom-panel" id="page-zoom-panel" aria-hidden="true">
+      <span class="page-zoom-label">Zoom</span>
+      <div class="page-zoom-actions">
+        <button class="page-zoom-step" id="page-zoom-out" type="button" aria-label="Zoom out">-</button>
+        <button class="page-zoom-value" id="page-zoom-value" type="button" aria-label="Reset zoom to default">80%</button>
+        <button class="page-zoom-step" id="page-zoom-in" type="button" aria-label="Zoom in">+</button>
+      </div>
+    </div>
+  </div>
+  <div class="page-shell">
+    <div class="topbar">
+      <div class="brand">Jona Setiawan</div>
+      <a href="index.html#certificated" class="back-btn">Back to Portfolio</a>
+    </div>
+
+    <section class="hero">
+      <p class="hero-kicker">Achievement Archive</p>
+      <h1>Certificated</h1>
+      <p>This is the certificated I got so far. I placed all PDF certificated here so visitors can open them quickly and sort them between all files, MySkill, and trainee certificated.</p>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <strong>22</strong>
+          <span>Total PDF certificated</span>
+        </div>
+        <div class="hero-stat">
+          <strong>22</strong>
+          <span>MySkill certificated</span>
+        </div>
+        <div class="hero-stat">
+          <strong>0</strong>
+          <span>Trainee certificated</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="filters" aria-label="Certificate filters">
+      <button class="filter-btn active" data-filter="all">All Certificated</button>
+      <button class="filter-btn" data-filter="myskill">MySkill</button>
+      <button class="filter-btn" data-filter="trainee">Trainee</button>
+    </div>
+
+    <p class="section-note" id="results-note">Showing all MySkill certificated.</p>
+
+    <section class="certificates-grid" id="certificates-grid">
+      <article class="certificate-card" data-category="myskill">
+        <span class="certificate-tag">MySkill</span>
+        <h2>Graphic Design MySkill Januari 2025</h2>
+        <p>E-sertifikat short class MySkill for graphic design.</p>
+        <a class="certificate-link" href="project/Certificated/Jona Saevuddyn Setiawan E-Sertifikat SC Graphic Design MySkill Januari 2025.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="myskill">
+        <span class="certificate-tag">MySkill</span>
+        <h2>Webdev MySkill</h2>
+        <p>E-sertifikat peserta short class web development from MySkill.</p>
+        <a class="certificate-link" href="project/Certificated/Jona Saevuddyn Setiawan E-Sertifikat peserta SC Webdev MySkill.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="myskill">
+        <span class="certificate-tag">MySkill</span>
+        <h2>Accounting Fundamentals MySkill</h2>
+        <p>E-sertif MySkill for accounting fundamentals.</p>
+        <a class="certificate-link" href="project/Certificated/Jona Saevuddyn Setiawan - E-Sertif SC Accounting Fundamentals MySkill.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="myskill">
+        <span class="certificate-tag">MySkill</span>
+        <h2>Motivation Letter and Interview for Scholarship Preparation</h2>
+        <p>MySkill certificate for scholarship preparation training.</p>
+        <a class="certificate-link" href="project/Certificated/Jona Saevuddyn Setiawan - E-Certificate SC Motivation Letter and Interview for Scholarship Preparation MySkill.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="myskill">
+        <span class="certificate-tag">MySkill</span>
+        <h2>Brand Identity Design</h2>
+        <p>MySkill certificate focused on brand identity design.</p>
+        <a class="certificate-link" href="project/Certificated/Jona Saevuddyn Setiawan - E-Certificate SC Brand Identity Design Juni 2025_2.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="myskill">
+        <span class="certificate-tag">MySkill</span>
+        <h2>Introduction to UX Research</h2>
+        <p>MySkill certificate on UX research basics and methods.</p>
+        <a class="certificate-link" href="project/Certificated/Jona Saevuddyn Setiawan - E-Certif SC Introduction to UX Research MySkill (1).pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="myskill">
+        <span class="certificate-tag">MySkill</span>
+        <h2>Content Marketing Strategy</h2>
+        <p>MySkill certificate covering content marketing strategy.</p>
+        <a class="certificate-link" href="project/Certificated/Jona Saevuddyn Setiawan - E-Certif SC Content Marketing Strategy MySkill.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="myskill">
+        <span class="certificate-tag">MySkill</span>
+        <h2>Color and Typography</h2>
+        <p>MySkill certificate for design fundamentals in color and typography.</p>
+        <a class="certificate-link" href="project/Certificated/Jona Saevuddyn Setiawan - E-Certif SC Color and Typography MySkill.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="general">
+        <span class="certificate-tag">Skill</span>
+        <h2>TOEFL ITP</h2>
+        <p>English learning certificate and TOEFL ITP material.</p>
+        <a class="certificate-link" href="project/Certificated/TOEFL ITP.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="general">
+        <span class="certificate-tag">Skill</span>
+        <h2>TOEFL ITP Introduction</h2>
+        <p>Introductory PDF for TOEFL ITP learning preparation.</p>
+        <a class="certificate-link" href="project/Certificated/TOEFL ITP INTRODUCTION.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="general">
+        <span class="certificate-tag">Skill</span>
+        <h2>Listening Skill Part A</h2>
+        <p>Listening practice PDF focused on TOEFL-style exercises.</p>
+        <a class="certificate-link" href="project/Certificated/LISTENING SKILL PART A.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="general">
+        <span class="certificate-tag">Skill</span>
+        <h2>Listening Skill Part B and C</h2>
+        <p>Continuation listening practice material for English training.</p>
+        <a class="certificate-link" href="project/Certificated/LISTENING SKILL PART B AND C.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="general">
+        <span class="certificate-tag">Skill</span>
+        <h2>Reading Introduction</h2>
+        <p>Reading section introduction PDF.</p>
+        <a class="certificate-link" href="project/Certificated/Reading_ Introduction.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="general">
+        <span class="certificate-tag">Skill</span>
+        <h2>Reading Explicit Questions</h2>
+        <p>Reading practice material for explicit question types.</p>
+        <a class="certificate-link" href="project/Certificated/Reading_ Explicit Questions.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="general">
+        <span class="certificate-tag">Skill</span>
+        <h2>Reading Implicit Questions</h2>
+        <p>Reading practice PDF focused on implicit question skills.</p>
+        <a class="certificate-link" href="project/Certificated/READING_ IMPLICIT QUESTIONS.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="general">
+        <span class="certificate-tag">Skill</span>
+        <h2>Reading Vocabulary Question</h2>
+        <p>Vocabulary-based reading material for English preparation.</p>
+        <a class="certificate-link" href="project/Certificated/Reading_ Vocabulary Question.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="general">
+        <span class="certificate-tag">Skill</span>
+        <h2>Written and Structure Part 1</h2>
+        <p>Writing structure training PDF part 1.</p>
+        <a class="certificate-link" href="project/Certificated/WRITTEN AND STRUCTURE  WRITING STRUCTURE PART 1.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="general">
+        <span class="certificate-tag">Skill</span>
+        <h2>Written and Structure Part 2</h2>
+        <p>Writing structure training PDF part 2.</p>
+        <a class="certificate-link" href="project/Certificated/Written & Structure  Writing Structure Part 2.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="general">
+        <span class="certificate-tag">Skill</span>
+        <h2>Written Expression Part I</h2>
+        <p>Written expression material part I.</p>
+        <a class="certificate-link" href="project/Certificated/Written & Structure _ Writen Expression Part I.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="general">
+        <span class="certificate-tag">Skill</span>
+        <h2>Written Expression Part II</h2>
+        <p>Written expression material part II.</p>
+        <a class="certificate-link" href="project/Certificated/Written & Structure _ Writen Expression Part II.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="general">
+        <span class="certificate-tag">Skill</span>
+        <h2>Writing Structure Part III</h2>
+        <p>Writing structure practice PDF part III.</p>
+        <a class="certificate-link" href="project/Certificated/Written & Structure _ Writing Structure Part III.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+
+      <article class="certificate-card" data-category="general">
+        <span class="certificate-tag">Skill</span>
+        <h2>Writing Structure Part IV</h2>
+        <p>Writing structure practice PDF part IV.</p>
+        <a class="certificate-link" href="project/Certificated/Written & Structure _ Writing Structure Part IV.pdf" target="_blank" rel="noopener noreferrer">Open PDF</a>
+      </article>
+    </section>
+
+    <div class="empty-state" id="empty-state">
+      <h2>No certificated here yet</h2>
+      <p>The trainee category is ready, but there are no trainee certificated added yet.</p>
+    </div>
+  </div>
+
+  <script>
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const certificateCards = document.querySelectorAll(".certificate-card");
+    const emptyState = document.getElementById("empty-state");
+    const resultsNote = document.getElementById("results-note");
+
+    certificateCards.forEach((card) => {
+      card.dataset.category = "myskill";
+
+      const tag = card.querySelector(".certificate-tag");
+      if (tag) {
+        tag.textContent = "MySkill";
+      }
+
+    });
+
+    function updateCertificates(filter) {
+      let visibleCount = 0;
+
+      certificateCards.forEach((card) => {
+        const cardCategory = card.dataset.category;
+        const shouldShow = filter === "all" || cardCategory === filter;
+        card.style.display = shouldShow ? "flex" : "none";
+        if (shouldShow) {
+          visibleCount += 1;
+        }
+      });
+
+      emptyState.classList.toggle("visible", visibleCount === 0);
+
+      if (filter === "all") {
+        resultsNote.textContent = "Showing all MySkill certificated.";
+      } else if (filter === "myskill") {
+        resultsNote.textContent = "Showing MySkill certificated only.";
+      } else {
+        resultsNote.textContent = "Showing trainee certificated only.";
+      }
+    }
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        filterButtons.forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+        updateCertificates(button.dataset.filter);
+      });
+    });
+  </script>
+  <script src="zoom-controls.js"></script>
+</body>
+</html>
