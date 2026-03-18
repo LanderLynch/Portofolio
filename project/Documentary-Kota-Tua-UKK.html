@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -171,7 +171,8 @@
       background: #020617;
     }
 
-    .video-container iframe {
+    .video-container iframe,
+    .video-container video {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -488,13 +489,13 @@
   <section class="featured-video">
     <div class="video-shell">
       <div class="video-container">
-        <iframe src="https://videy.co/v/?id=XKa0stNd1" title="Kota Tua Documentary Video" allowfullscreen></iframe>
+        <video controls playsinline preload="metadata" poster="Kota tua/poster.jpg" title="Kota Tua Documentary Video"><source src="https://cdn.videy.co/XKa0stNd1.mp4" type="video/mp4">Your browser does not support the video tag.</video>
       </div>
       <div class="video-note">
         <h3>Video Section</h3>
         <p>Cuplikan suasana Kota Tua yang memperlihatkan aktivitas pengunjung, detail arsitektur, serta dinamika lingkungan secara langsung.</p>
         <div class="video-actions">
-          <a href="https://videy.co/v/?id=XKa0stNd1" target="_blank" rel="noreferrer" class="video-btn">Open Video Link</a>
+          <a href="https://cdn.videy.co/XKa0stNd1.mp4" target="_blank" rel="noreferrer" class="video-btn">Open Video Link</a>
           <a href="#opening" class="cta-btn cta-btn-secondary">Read Project Story</a>
         </div>
       </div>
@@ -693,7 +694,7 @@
       <h2>Explore the Full Story of Kota Tua</h2>
       <p>Halaman ini merangkum dokumentasi lapangan, identitas visual, media promosi, dan atmosfer kawasan menjadi satu presentasi project yang lebih utuh.</p>
       <div class="cta-buttons">
-        <a href="https://videy.co/v/?id=XKa0stNd1" target="_blank" rel="noreferrer" class="cta-btn cta-btn-primary">Watch Video</a>
+        <a href="https://cdn.videy.co/XKa0stNd1.mp4" target="_blank" rel="noreferrer" class="cta-btn cta-btn-primary">Watch Video</a>
         <a href="../index.html" class="cta-btn cta-btn-secondary">Back to Portfolio</a>
       </div>
     </div>
@@ -707,3 +708,5 @@
   <script src="../zoom-controls.js"></script>
 </body>
 </html>
+
+
