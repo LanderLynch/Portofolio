@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jona Setiawan - Portfolio</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="theme-palettes.css">
 </head>
 <body>
   <!-- Portfolio Title - Separated from Navigation -->
@@ -17,11 +18,27 @@
         <svg class="icon-svg" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
       </button>
       <div class="zoom-panel" id="zoom-panel" aria-hidden="true">
-        <span class="zoom-panel-label">Zoom</span>
-        <div class="zoom-panel-controls">
-          <button class="zoom-step-btn" id="zoom-out-btn" type="button" aria-label="Zoom out">-</button>
-          <button class="zoom-value-btn" id="zoom-value-btn" type="button" aria-label="Reset zoom to default">80%</button>
-          <button class="zoom-step-btn" id="zoom-in-btn" type="button" aria-label="Zoom in">+</button>
+        <div class="zoom-panel-group">
+          <span class="zoom-panel-label">Zoom</span>
+          <div class="zoom-panel-controls">
+            <button class="zoom-step-btn" id="zoom-out-btn" type="button" aria-label="Zoom out">-</button>
+            <button class="zoom-value-btn" id="zoom-value-btn" type="button" aria-label="Reset zoom to default">80%</button>
+            <button class="zoom-step-btn" id="zoom-in-btn" type="button" aria-label="Zoom in">+</button>
+          </div>
+        </div>
+        <div class="zoom-panel-group">
+          <span class="zoom-panel-label">Palette</span>
+          <div class="zoom-theme-actions" role="group" aria-label="Color palette">
+            <button class="zoom-theme-btn" type="button" data-theme-value="blue" aria-label="Blue mode" aria-pressed="false" title="Blue mode">
+              <svg class="zoom-theme-icon" viewBox="0 0 24 24"><path d="M21 12.8A8.8 8.8 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg>
+            </button>
+            <button class="zoom-theme-btn" type="button" data-theme-value="light" aria-label="Light mode" aria-pressed="false" title="Light mode">
+              <svg class="zoom-theme-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.5"></path><path d="M12 19v2.5"></path><path d="M4.93 4.93l1.77 1.77"></path><path d="M17.3 17.3l1.77 1.77"></path><path d="M2.5 12H5"></path><path d="M19 12h2.5"></path><path d="M4.93 19.07l1.77-1.77"></path><path d="M17.3 6.7l1.77-1.77"></path></svg>
+            </button>
+            <button class="zoom-theme-btn" type="button" data-theme-value="galaxy" aria-label="Galaxy mode" aria-pressed="false" title="Galaxy mode">
+              <svg class="zoom-theme-icon hat-icon" viewBox="0 0 24 24"><path d="M4 19.5h16"></path><path d="M8 19.5c0-2.7 1.4-5.1 3.7-6.6l2.1-1.4-1.7-5.8-5.1 4.1"></path><path d="M14.4 9.8 17.7 8l2.3 5.9-3.9-.3"></path><path d="M13.2 4.5 14 6.2"></path><path d="M18.4 4.9l.4 1.2"></path><path d="M19.7 7.7l1.3.1"></path></svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -1096,6 +1113,7 @@
   </footer>
 
   <!-- JavaScript for typing effect and minimal interactions -->
+  <script src="theme-controls.js"></script>
   <script>
     // Mobile Navigation Toggle
     const hamburgerBtn = document.querySelector('.hamburger-menu');
@@ -1114,6 +1132,7 @@
     const returnScrollKey = 'portfolio-return-scroll';
     const returnScrollPendingKey = 'portfolio-return-pending';
     const zoomStorageKey = 'portfolio-page-zoom';
+    const zoomDefaultMigrationKey = 'portfolio-page-zoom-default-v2';
     const defaultZoom = 80;
     const minZoom = 60;
     const maxZoom = 120;
@@ -1137,7 +1156,12 @@
     }
 
     const savedZoom = Number(localStorage.getItem(zoomStorageKey));
-    let currentZoom = applyZoom(Number.isFinite(savedZoom) ? savedZoom : defaultZoom);
+    const hasZoomDefaultMigration = localStorage.getItem(zoomDefaultMigrationKey) === 'true';
+    const initialZoom = !hasZoomDefaultMigration && (!Number.isFinite(savedZoom) || savedZoom === 60)
+      ? defaultZoom
+      : (Number.isFinite(savedZoom) ? savedZoom : defaultZoom);
+    let currentZoom = applyZoom(initialZoom);
+    localStorage.setItem(zoomDefaultMigrationKey, 'true');
 
     function setZoomPanelState(isOpen) {
       if (!zoomControl || !zoomToggleBtn || !zoomPanel) {

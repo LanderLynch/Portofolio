@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mobile App UI/UX Design - Jona Setiawan</title>
   <link rel="stylesheet" href="../zoom-controls.css">
+  <link rel="stylesheet" href="../theme-palettes.css">
 
   <style>
     * {
@@ -570,17 +571,33 @@
     }
   </style>
 </head>
-<body>
+<body class="project-detail-page">
   <div class="page-zoom-control" id="page-zoom-control">
     <button class="page-zoom-toggle" id="page-zoom-toggle" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="page-zoom-panel">
       <svg class="page-zoom-icon" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
     </button>
     <div class="page-zoom-panel" id="page-zoom-panel" aria-hidden="true">
-      <span class="page-zoom-label">Zoom</span>
-      <div class="page-zoom-actions">
-        <button class="page-zoom-step" id="page-zoom-out" type="button" aria-label="Zoom out">-</button>
-        <button class="page-zoom-value" id="page-zoom-value" type="button" aria-label="Reset zoom to default">80%</button>
-        <button class="page-zoom-step" id="page-zoom-in" type="button" aria-label="Zoom in">+</button>
+      <div class="page-zoom-panel-group">
+        <span class="page-zoom-label">Zoom</span>
+        <div class="page-zoom-actions">
+          <button class="page-zoom-step" id="page-zoom-out" type="button" aria-label="Zoom out">-</button>
+          <button class="page-zoom-value" id="page-zoom-value" type="button" aria-label="Reset zoom to default">80%</button>
+          <button class="page-zoom-step" id="page-zoom-in" type="button" aria-label="Zoom in">+</button>
+        </div>
+      </div>
+      <div class="page-zoom-panel-group">
+        <span class="page-zoom-label">Palette</span>
+        <div class="zoom-theme-actions" role="group" aria-label="Color palette">
+          <button class="zoom-theme-btn" type="button" data-theme-value="blue" aria-label="Blue mode" aria-pressed="false" title="Blue mode">
+            <svg class="zoom-theme-icon" viewBox="0 0 24 24"><path d="M21 12.8A8.8 8.8 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg>
+          </button>
+          <button class="zoom-theme-btn" type="button" data-theme-value="light" aria-label="Light mode" aria-pressed="false" title="Light mode">
+            <svg class="zoom-theme-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.5"></path><path d="M12 19v2.5"></path><path d="M4.93 4.93l1.77 1.77"></path><path d="M17.3 17.3l1.77 1.77"></path><path d="M2.5 12H5"></path><path d="M19 12h2.5"></path><path d="M4.93 19.07l1.77-1.77"></path><path d="M17.3 6.7l1.77-1.77"></path></svg>
+          </button>
+          <button class="zoom-theme-btn" type="button" data-theme-value="galaxy" aria-label="Galaxy mode" aria-pressed="false" title="Galaxy mode">
+            <svg class="zoom-theme-icon hat-icon" viewBox="0 0 24 24"><path d="M4 19.5h16"></path><path d="M8 19.5c0-2.7 1.4-5.1 3.7-6.6l2.1-1.4-1.7-5.8-5.1 4.1"></path><path d="M14.4 9.8 17.7 8l2.3 5.9-3.9-.3"></path><path d="M13.2 4.5 14 6.2"></path><path d="M18.4 4.9l.4 1.2"></path><path d="M19.7 7.7l1.3.1"></path></svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -853,6 +870,7 @@
   <footer class="footer">
     <p>&copy; 2024 Jona Setiawan. All rights reserved.</p>
   </footer>
+  <script src="../theme-controls.js"></script>
   <script src="../zoom-controls.js"></script>
 </body>
 </html>
