@@ -117,18 +117,16 @@ footer {
 }
 
 .portfolio-title-link::before {
-  content: "JS";
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent-strong), var(--accent));
-  color: #ffffff;
-  font-weight: 700;
+  content: none;
 }
 
+.portfolio-logo {
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
 .portfolio-text {
   display: inline-block;
   min-width: 12ch;
@@ -578,8 +576,18 @@ footer {
   top: 50%;
   left: -1rem;
   transform: translateY(-50%);
-  background: rgba(245, 158, 11, 0.92);
-  color: #111827;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  overflow: hidden;
+}
+
+.floating-icon-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .about-info-grid {
@@ -1984,3 +1992,7 @@ footer {
     width: min(280px, 100%);
   }
 }
+
+
+
+
