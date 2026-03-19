@@ -196,14 +196,18 @@
         <div class="floating-icon css" title="CSS3">
           { }
         </div>
-        <div class="floating-icon react" title="React">
-          âš›
+        <div class="floating-icon react" title="React" aria-label="React icon">
+          <svg class="floating-react-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="1.9"></circle>
+            <ellipse cx="12" cy="12" rx="9" ry="3.9"></ellipse>
+            <ellipse cx="12" cy="12" rx="9" ry="3.9" transform="rotate(60 12 12)"></ellipse>
+            <ellipse cx="12" cy="12" rx="9" ry="3.9" transform="rotate(120 12 12)"></ellipse>
+          </svg>
         </div>
         <div class="floating-icon javascript" title="Logo Lemon">
           <img src="project/Logo preview/Logo Lemon.png" alt="Logo Lemon" class="floating-icon-image" />
         </div>
       </div>
-      
       <div class="about-info-grid">
         <div class="info-card">
           <div class="info-card-header">
@@ -322,18 +326,7 @@
       <button class="filter-btn" data-filter="video">Video Editing</button>
       <button class="filter-btn" data-filter="ui">UI/UX</button>
     </div>
-    
-    <!-- Add New Project Button -->
-    <div class="add-project-container" style="text-align: center; margin-bottom: 3rem;">
-      <button class="add-project-btn" id="add-project-btn">
-        <span class="btn-icon" aria-hidden="true">
-          <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 4.5v15"></path><path d="M4.5 12h15"></path></svg>
-        </span>
-        Add New Project
-      </button>
-    </div>
-    
-    <div class="projects-container" id="projects-container">
+<div class="projects-container" id="projects-container">
       <!-- Featured Project -->
       <div class="project-card featured-project" data-category="graphic">
         <div class="project-image">
@@ -366,7 +359,7 @@
             <div class="project-type">Personal Project</div>
           </div>
           <a href="project/personal-gfx-design-collection.html" class="view-project-btn">
-            View Full Project â†’
+            View Full Project &rarr;
           </a>
         </div>
       </div>
@@ -403,7 +396,7 @@
             <div class="project-type">Portfolio</div>
           </div>
           <a href="project/professional-gfx-design-suite.html" class="view-project-btn">
-            View Full Project â†’
+            View Full Project &rarr;
           </a>
         </div>
       </div>
@@ -438,7 +431,7 @@
             <div class="project-type">Client Work</div>
           </div>
           <a href="project/event-poster-campaign.html" class="view-project-btn">
-            View Full Project â†’
+            View Full Project &rarr;
           </a>
         </div>
       </div>
@@ -473,7 +466,7 @@
             <div class="project-type">School Project</div>
           </div>
           <a href="project/Documentary-Kota-Tua-UKK.html" class="view-project-btn">
-            View Full Project â†’
+            View Full Project &rarr;
           </a>
         </div>
       </div>
@@ -508,7 +501,7 @@
             <div class="project-type">Portfolio</div>
           </div>
           <a href="project/logo-design-collection.html" class="view-project-btn">
-            View Full Project â†’
+            View Full Project &rarr;
           </a>
         </div>
       </div>
@@ -813,7 +806,7 @@
                   <h4 class="testimonial-name">John Doe</h4>
                   <p class="testimonial-role">Marketing Director</p>
                 </div>
-                <div class="testimonial-rating">â­â­â­â­â­</div>
+                <div class="testimonial-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
               </div>
               <p class="testimonial-text">
                 "Jona's graphic design work exceeded all expectations. The attention to detail and creative approach brought our brand vision to life perfectly."
@@ -828,7 +821,7 @@
                   <h4 class="testimonial-name">Sarah Miller</h4>
                   <p class="testimonial-role">Startup Founder</p>
                 </div>
-                <div class="testimonial-rating">â­â­â­â­â­</div>
+                <div class="testimonial-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
               </div>
               <p class="testimonial-text">
                 "Working with Jona was a game-changer for our startup. The multimedia presentations created were not only visually stunning but also highly effective."
@@ -843,7 +836,7 @@
                   <h4 class="testimonial-name">Alex Lee</h4>
                   <p class="testimonial-role">Creative Agency</p>
                 </div>
-                <div class="testimonial-rating">â­â­â­â­â­</div>
+                <div class="testimonial-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
               </div>
               <p class="testimonial-text">
                 "The video editing skills are exceptional. Jona transformed our raw footage into compelling stories that resonate with our audience."
@@ -858,7 +851,7 @@
                   <h4 class="testimonial-name">Emma Rodriguez</h4>
                   <p class="testimonial-role">Event Coordinator</p>
                 </div>
-                <div class="testimonial-rating">â­â­â­â­â­</div>
+                <div class="testimonial-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
               </div>
               <p class="testimonial-text">
                 "The event posters designed by Jona were absolutely stunning. They captured the essence of our event perfectly and drove amazing attendance."
@@ -870,8 +863,8 @@
         
         <!-- Scroll indicators -->
         <div class="scroll-indicators">
-          <button class="scroll-btn scroll-left" id="scroll-left">â€¹</button>
-          <button class="scroll-btn scroll-right" id="scroll-right">â€º</button>
+          <button class="scroll-btn scroll-left" id="scroll-left">&lsaquo;</button>
+          <button class="scroll-btn scroll-right" id="scroll-right">&rsaquo;</button>
         </div>
       </div>
       
@@ -895,11 +888,11 @@
               <label for="testimonial-rating">Rating *</label>
               <select id="testimonial-rating" required>
                 <option value="">Select rating</option>
-                <option value="5">â­â­â­â­â­ (5 stars)</option>
-                <option value="4">â­â­â­â­ (4 stars)</option>
-                <option value="3">â­â­â­ (3 stars)</option>
-                <option value="2">â­â­ (2 stars)</option>
-                <option value="1">â­ (1 star)</option>
+                <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733; (5 stars)</option>
+                <option value="4">&#9733;&#9733;&#9733;&#9733; (4 stars)</option>
+                <option value="3">&#9733;&#9733;&#9733; (3 stars)</option>
+                <option value="2">&#9733;&#9733; (2 stars)</option>
+                <option value="1">&#9733; (1 star)</option>
               </select>
             </div>
             
@@ -1442,7 +1435,7 @@
       card.className = 'testimonial-card';
       
       const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
-      const stars = 'â­'.repeat(rating);
+      const stars = '&#9733;'.repeat(rating);
       const date = new Date().toLocaleDateString('en-US', { 
         year: 'numeric', 
         month: 'long' 
@@ -1561,7 +1554,7 @@
           techTag.className = 'tech-tag-input';
           techTag.innerHTML = `
             <span>${tech}</span>
-            <span class="remove-tech" onclick="removeTech(${index})">Ã—</span>
+            <span class="remove-tech" onclick="removeTech(${index})">&times;</span>
           `;
           techStackContainer.appendChild(techTag);
         });
@@ -1721,6 +1714,12 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
 
 
 

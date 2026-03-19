@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="Logo preview/Logo Lemon.png" />
   <title>Documentary Kota Tua UKK - Jona Setiawan</title>
   <link rel="stylesheet" href="../zoom-controls.css">
   <link rel="stylesheet" href="../theme-palettes.css">
@@ -301,11 +302,13 @@
       box-shadow: 0 18px 38px rgba(0, 0, 0, 0.22);
     }
 
-    .gallery-item.gallery-wide {
+    .gallery-item.gallery-wide,
+    .gallery-item.gallery-half {
       grid-column: span 6;
     }
 
-    .gallery-item.gallery-full {
+    .gallery-item.gallery-full,
+    .gallery-item.gallery-cover {
       grid-column: span 12;
     }
 
@@ -315,6 +318,17 @@
       object-fit: cover;
       display: block;
       background: #0b1220;
+    }
+
+    .gallery-item.no-crop img {
+      object-fit: contain;
+      padding: 1rem;
+      background: linear-gradient(135deg, rgba(6, 17, 31, 0.96), rgba(11, 18, 32, 0.96));
+    }
+
+    .gallery-item.gallery-cover img,
+    .gallery-item.gallery-poster img {
+      height: 420px;
     }
 
     .gallery-body {
@@ -386,7 +400,9 @@
 
       .gallery-item,
       .gallery-item.gallery-wide,
-      .gallery-item.gallery-full {
+      .gallery-item.gallery-full,
+      .gallery-item.gallery-half,
+      .gallery-item.gallery-cover {
         grid-column: span 12;
       }
     }
@@ -489,7 +505,10 @@
   <section class="featured-video">
     <div class="video-shell">
       <div class="video-container">
-        <video controls playsinline preload="metadata" poster="Kota tua/poster.jpg" title="Kota Tua Documentary Video"><source src="https://cdn.videy.co/XKa0stNd1.mp4" type="video/mp4">Your browser does not support the video tag.</video>
+        <video controls playsinline preload="metadata" poster="Kota tua/Bangunan kota tua 1.jpg" title="Kota Tua Documentary Video">
+          <source src="https://cdn.videy.co/XKa0stNd1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
       <div class="video-note">
         <h3>Video Section</h3>
@@ -522,15 +541,7 @@
     </div>
 
     <div class="gallery-grid">
-      <article class="gallery-item">
-        <img src="Kota tua/dvd-Cover.jpg" alt="DVD Cover">
-        <div class="gallery-body">
-          <h4>Image Alt 1 - DVD Cover</h4>
-          <p class="gallery-copy">Desain cover DVD dengan komposisi visual yang menonjolkan suasana Kota Tua melalui elemen warna klasik dan tipografi yang tegas.</p>
-        </div>
-      </article>
-
-      <article class="gallery-item">
+      <article class="gallery-item gallery-half no-crop">
         <img src="Kota tua/label dvd.jpg" alt="DVD Label Disc">
         <div class="gallery-body">
           <h4>Image Alt 2 - DVD Label Disc</h4>
@@ -538,11 +549,19 @@
         </div>
       </article>
 
-      <article class="gallery-item">
+      <article class="gallery-item gallery-half no-crop">
         <img src="Kota tua/logo-Monas.png" alt="Logo Monas Budaya Indonesia">
         <div class="gallery-body">
           <h4>Image Alt 3 - Logo Monas / Budaya Indonesia</h4>
           <p class="gallery-copy">Logo terinspirasi dari Monas sebagai simbol budaya Indonesia, dengan pendekatan visual yang sederhana namun mudah dikenali.</p>
+        </div>
+      </article>
+
+      <article class="gallery-item gallery-cover no-crop">
+        <img src="Kota tua/dvd-Cover.jpg" alt="DVD Cover">
+        <div class="gallery-body">
+          <h4>Image Alt 1 - DVD Cover</h4>
+          <p class="gallery-copy">Desain cover DVD dengan komposisi visual yang menonjolkan suasana Kota Tua melalui elemen warna klasik dan tipografi yang tegas.</p>
         </div>
       </article>
     </div>
@@ -561,7 +580,7 @@
     </div>
 
     <div class="gallery-grid">
-      <article class="gallery-item gallery-full">
+      <article class="gallery-item gallery-full gallery-poster no-crop">
         <img src="Kota tua/poster.jpg" alt="Poster Promosi">
         <div class="gallery-body">
           <h4>Image Alt 4 - Poster Promosi</h4>
@@ -708,5 +727,4 @@
   <script src="../zoom-controls.js"></script>
 </body>
 </html>
-
 
