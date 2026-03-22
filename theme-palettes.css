@@ -259,6 +259,25 @@ body::after {
   background-clip: text;
 }
 
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.back-btn {
+  gap: 0.65rem;
+}
+
+.brand-logo,
+.back-btn-logo {
+  width: 1.75rem;
+  height: 1.75rem;
+  display: block;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
 .skill-core-wheel::before {
   background: var(--timeline-core-bg);
   border-color: var(--skill-core-inner-border);
