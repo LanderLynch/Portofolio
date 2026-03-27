@@ -1538,12 +1538,22 @@ footer {
 }
 
 .testimonials-scroll-container::-webkit-scrollbar {
-  height: 8px;
+  height: var(--scrollbar-size);
+}
+
+.testimonials-scroll-container::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 999px;
 }
 
 .testimonials-scroll-container::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.28);
+  background: var(--scrollbar-thumb-fill);
   border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.testimonials-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-fill-hover);
 }
 
 .testimonials-grid {
