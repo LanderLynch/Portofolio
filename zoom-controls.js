@@ -10,8 +10,8 @@
     return;
   }
 
-  const storageKey = "portfolio-shared-page-zoom";
-  const defaultZoom = 80;
+  const storageKey = zoomControl.dataset.zoomStorageKey || "portfolio-shared-page-zoom";
+  const defaultZoom = Number(zoomControl.dataset.zoomDefault) || 80;
   const minZoom = 60;
   const maxZoom = 120;
   const step = 10;

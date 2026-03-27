@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="Logo preview/Logo Lemon.png" />
-  <title>Professional GFX Design Suite - Jona Setiawan</title>
+  <title>Designer Bag on IKM - Jona Setiawan</title>
   <link rel="stylesheet" href="../zoom-controls.css">
   <link rel="stylesheet" href="../theme-palettes.css">
 
@@ -15,444 +15,652 @@
       box-sizing: border-box;
     }
 
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0f172a;
-      color: #cbd5e1;
-      line-height: 1.6;
+    .project-detail-page {
+      --page-bg: var(--bg);
+      --page-bg-soft: var(--bg-alt);
+      --page-surface: var(--surface);
+      --page-surface-strong: var(--panel-bg-strong, var(--surface));
+      --page-border: color-mix(in srgb, var(--accent) 22%, var(--border));
+      --page-text: var(--text);
+      --page-muted: var(--muted);
+      --page-accent: var(--accent-label-text, var(--accent));
+      --page-accent-strong: var(--accent-strong);
+      --page-button-text: var(--button-primary-text, #ffffff);
+      --page-soft-fill: color-mix(in srgb, var(--surface) 84%, transparent);
+      --page-soft-fill-strong: color-mix(in srgb, var(--surface) 94%, transparent);
+      --page-highlight-fill: color-mix(in srgb, var(--accent) 12%, var(--surface));
+      --page-highlight-border: color-mix(in srgb, var(--accent) 34%, var(--border));
+      --page-highlight-shadow: 0 14px 28px color-mix(in srgb, var(--accent-strong) 22%, transparent);
+      --page-shadow: var(--shadow);
     }
 
-    /* Navigation */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--page-backdrop, linear-gradient(180deg, var(--page-bg) 0%, var(--page-bg-soft) 100%));
+      color: var(--page-text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
     .navbar {
-      background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 1rem 2rem;
       position: sticky;
       top: 0;
       z-index: 1000;
-      border-bottom: 1px solid rgba(147, 197, 253, 0.2);
+      background: var(--panel-bg, var(--page-surface-strong));
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--page-border);
+      padding: 1rem 1.5rem;
     }
 
     .nav-container {
-      max-width: 1400px;
+      max-width: 1280px;
       margin: 0 auto;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
     }
 
     .back-btn {
-      background: linear-gradient(45deg, #1e40af, #3b82f6);
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 2rem;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.7rem;
+      padding: 0.8rem 1.35rem;
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--page-button-text);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--page-accent-strong), var(--page-accent));
+      box-shadow: var(--page-highlight-shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .back-btn:hover {
-      transform: translateX(-5px);
-      box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 18px 38px color-mix(in srgb, var(--page-accent-strong) 28%, transparent);
     }
 
-    /* Hero Section */
-    .hero {
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-      padding: 6rem 2rem 4rem;
-      text-align: center;
+    .back-btn-logo {
+      width: 1.4rem;
+      height: 1.4rem;
+      object-fit: contain;
     }
 
-    .hero-content {
-      max-width: 900px;
+    .project-detail-page .page-zoom-toggle,
+    .project-detail-page .page-zoom-step,
+    .project-detail-page .page-zoom-value,
+    .project-detail-page .page-zoom-panel,
+    .project-detail-page .zoom-theme-btn {
+      border-color: var(--page-highlight-border) !important;
+      color: var(--page-text) !important;
+      background: var(--panel-bg, var(--page-surface-strong)) !important;
+      box-shadow: var(--page-shadow) !important;
+    }
+
+    .project-detail-page .page-zoom-panel {
+      background: color-mix(in srgb, var(--panel-bg, var(--page-surface-strong)) 94%, transparent) !important;
+    }
+
+    .project-detail-page .page-zoom-label {
+      color: var(--page-muted) !important;
+    }
+
+    .project-detail-page .page-zoom-value {
+      background: var(--secondary-button-bg, var(--page-soft-fill)) !important;
+    }
+
+    .project-detail-page .page-zoom-toggle:hover,
+    .project-detail-page .page-zoom-step:hover,
+    .project-detail-page .page-zoom-value:hover,
+    .project-detail-page .zoom-theme-btn:hover {
+      border-color: color-mix(in srgb, var(--page-accent) 45%, var(--page-border)) !important;
+    }
+
+    .project-detail-page .zoom-theme-btn.is-active {
+      background: linear-gradient(135deg, var(--page-accent-strong), var(--page-accent)) !important;
+      color: var(--page-button-text) !important;
+      border-color: transparent !important;
+      box-shadow: var(--page-highlight-shadow) !important;
+    }
+
+    main {
+      max-width: 1280px;
       margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
     }
 
-    .project-category {
-      display: inline-block;
-      background: rgba(59, 130, 246, 0.2);
-      color: #93c5fd;
-      padding: 0.5rem 1.5rem;
-      border-radius: 2rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      border: 1px solid rgba(59, 130, 246, 0.3);
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      gap: 1.5rem;
+      align-items: stretch;
+      margin-bottom: 1.75rem;
     }
 
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      background: linear-gradient(45deg, #ffffff, #93c5fd);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 1.5rem;
-      line-height: 1.2;
+    .hero-panel,
+    .summary-card,
+    .timeline-card,
+    .viewer-card,
+    .month-list-card,
+    .notes-card {
+      background: var(--page-surface);
+      border: 1px solid var(--page-border);
+      border-radius: 28px;
+      box-shadow: var(--page-shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-panel {
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: auto -10% -35% auto;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, color-mix(in srgb, var(--page-accent) 28%, transparent), transparent 68%);
+      z-index: -1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      background: var(--tag-bg-soft, var(--page-highlight-fill));
+      border: 1px solid var(--tag-border-soft, var(--page-highlight-border));
+      color: var(--page-accent);
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.1rem;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4.1rem);
+      line-height: 1.06;
+      margin-bottom: 1rem;
+      color: var(--page-text);
     }
 
     .hero-description {
-      font-size: 1.3rem;
-      color: #cbd5e1;
-      margin-bottom: 2rem;
-      line-height: 1.8;
+      font-size: 1.08rem;
+      color: var(--page-muted);
+      max-width: 60ch;
+      margin-bottom: 1.5rem;
     }
 
-    .project-meta {
+    .hero-tags {
       display: flex;
-      justify-content: center;
-      gap: 2rem;
       flex-wrap: wrap;
-      margin-bottom: 2rem;
+      gap: 0.75rem;
     }
 
-    .meta-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
+    .hero-tag {
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      border: 1px solid var(--page-highlight-border);
+      background: var(--page-soft-fill);
+      color: var(--page-text);
+      font-size: 0.92rem;
     }
 
-    .meta-label {
-      font-size: 0.85rem;
-      color: #94a3b8;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .meta-value {
-      font-size: 1.1rem;
-      color: #93c5fd;
-      font-weight: 600;
-    }
-
-    .tech-stack {
-      display: flex;
-      justify-content: center;
+    .summary-card {
+      padding: 1.6rem;
+      display: grid;
       gap: 1rem;
-      flex-wrap: wrap;
+      align-content: start;
     }
 
-    .tech-tag {
-      background: rgba(30, 64, 175, 0.2);
-      color: #93c5fd;
-      padding: 0.5rem 1.2rem;
-      border-radius: 1.5rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-      border: 1px solid rgba(30, 64, 175, 0.3);
+    .summary-card h2,
+    .timeline-card h2,
+    .viewer-card h2,
+    .month-list-card h2,
+    .notes-card h2 {
+      font-size: 1.2rem;
+      color: var(--page-text);
+      margin-bottom: 0.2rem;
     }
 
-    /* Featured Image */
-    .featured-image {
-      max-width: 1400px;
-      margin: -3rem auto 4rem;
-      padding: 0 2rem;
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
     }
 
-    .featured-image img {
-      width: 100%;
-      border-radius: 1.5rem;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-      border: 2px solid rgba(147, 197, 253, 0.2);
+    .summary-item {
+      padding: 1rem;
+      border-radius: 20px;
+      background: var(--page-soft-fill);
+      border: 1px solid var(--page-highlight-border);
     }
 
-    /* Content Section */
-    .content-section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 4rem 2rem;
+    .summary-label {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--page-muted);
+      margin-bottom: 0.35rem;
     }
 
-    .section-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #93c5fd;
-      margin-bottom: 1.5rem;
-    }
-
-    .section-content {
+    .summary-value {
       font-size: 1.1rem;
-      line-height: 1.9;
-      color: #cbd5e1;
-      margin-bottom: 3rem;
-    }
-
-    .section-content p {
-      margin-bottom: 1.5rem;
-    }
-
-    /* Highlights Grid */
-    .highlights-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin: 3rem 0;
-    }
-
-    .highlight-card {
-      background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
-      border: 2px solid rgba(147, 197, 253, 0.2);
-      border-radius: 1.5rem;
-      padding: 2rem;
-      transition: all 0.3s ease;
-    }
-
-    .highlight-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(30, 64, 175, 0.4);
-      border-color: rgba(147, 197, 253, 0.5);
-    }
-
-    .highlight-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .highlight-icon svg {
-      width: 2.5rem;
-      height: 2.5rem;
-      stroke: currentColor;
-      stroke-width: 1.8;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .highlight-title {
-      font-size: 1.3rem;
       font-weight: 700;
-      color: #93c5fd;
-      margin-bottom: 0.75rem;
+      color: var(--page-text);
     }
 
-    .highlight-description {
-      font-size: 1rem;
-      color: #cbd5e1;
-      line-height: 1.7;
+    .summary-copy {
+      color: var(--page-muted);
+      font-size: 0.98rem;
     }
 
-    /* Gallery */
-    .gallery-grid {
+    .layout-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-      margin: 3rem 0;
+      grid-template-columns: minmax(0, 1.22fr) minmax(300px, 0.78fr);
+      grid-template-areas: "viewer controls";
+      gap: 1.5rem;
     }
 
-    .gallery-item {
+    .controls-stack {
+      grid-area: controls;
+      display: grid;
+      gap: 1.5rem;
+      align-content: start;
+    }
+
+    .timeline-card {
+      padding: 1.5rem;
+    }
+
+    .timeline-header {
+      display: grid;
+      gap: 0.9rem;
+      margin-bottom: 1.35rem;
+    }
+
+    .timeline-header p,
+    .month-list-card p,
+    .notes-card p {
+      color: var(--page-muted);
+      font-size: 0.98rem;
+    }
+
+    .year-switcher,
+    .month-switcher,
+    .sort-switcher {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .year-switcher {
+      flex-wrap: nowrap;
+      align-items: center;
+    }
+
+    .year-btn,
+    .month-btn,
+    .sort-btn,
+    .asset-btn {
+      appearance: none;
+      border: 1px solid var(--page-highlight-border);
+      background: var(--secondary-button-bg, var(--page-soft-fill));
+      color: var(--page-text);
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .year-btn {
+      padding: 0.9rem 1.2rem;
+      border-radius: 18px;
+      min-width: 110px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .month-btn {
+      padding: 0.95rem 1rem;
+      border-radius: 16px;
+      min-width: 112px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .sort-section {
+      margin-top: 1.5rem;
+    }
+
+    .sort-section[hidden] {
+      display: none;
+    }
+
+    .sort-btn {
+      padding: 0.85rem 1.05rem;
+      border-radius: 16px;
+      min-width: 96px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .year-btn:hover,
+    .month-btn:hover,
+    .sort-btn:hover,
+    .asset-btn:hover {
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--page-accent) 48%, var(--page-border));
+      box-shadow: 0 10px 25px color-mix(in srgb, var(--page-accent-strong) 18%, transparent);
+    }
+
+    .year-btn.is-active,
+    .month-btn.is-active,
+    .sort-btn.is-active,
+    .asset-btn.is-active {
+      background: linear-gradient(135deg, var(--page-accent-strong), var(--page-accent));
+      color: var(--page-button-text);
+      border-color: transparent;
+      box-shadow: var(--page-highlight-shadow);
+    }
+
+    .viewer-stack {
+      grid-area: viewer;
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .viewer-card,
+    .month-list-card,
+    .notes-card {
+      padding: 1.5rem;
+    }
+
+    .artwork-frame {
       position: relative;
+      border-radius: 24px;
       overflow: hidden;
-      border-radius: 1.5rem;
-      border: 2px solid rgba(147, 197, 253, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    .gallery-item:hover {
-      transform: scale(1.02);
-      box-shadow: 0 15px 35px rgba(30, 64, 175, 0.4);
-      border-color: rgba(147, 197, 253, 0.5);
-    }
-
-    .gallery-item img {
+      border: 1px solid var(--page-highlight-border);
+      background: linear-gradient(180deg, var(--page-soft-fill-strong), var(--page-soft-fill));
+      margin: 1rem 0 1.15rem;
       width: 100%;
-      height: 300px;
+      aspect-ratio: var(--artwork-ratio, 4 / 5);
+      display: grid;
+      place-items: center;
+    }
+
+    .artwork-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .artwork-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 0.8rem;
+    }
+
+    .artwork-title {
+      font-size: 1.35rem;
+      color: var(--page-text);
+      margin-bottom: 0.15rem;
+    }
+
+    .artwork-subtitle {
+      color: var(--page-accent);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .artwork-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--page-highlight-border);
+      background: var(--tag-bg-soft, var(--page-highlight-fill));
+      color: var(--page-accent);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .artwork-description {
+      color: var(--page-muted);
+      font-size: 0.98rem;
+    }
+
+    .asset-gallery {
+      margin-top: 1.15rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--page-highlight-border);
+    }
+
+    .asset-gallery[hidden] {
+      display: none;
+    }
+
+    .asset-gallery-title {
+      color: var(--page-text);
+      font-size: 1rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+      gap: 0.8rem;
+    }
+
+    .asset-btn {
+      padding: 0.45rem;
+      border-radius: 18px;
+      text-align: left;
+    }
+
+    .asset-thumb {
+      width: 100%;
+      height: 96px;
       object-fit: cover;
       display: block;
-      transition: transform 0.3s ease;
+      border-radius: 12px;
+      margin-bottom: 0.55rem;
+      border: 1px solid color-mix(in srgb, var(--page-accent) 20%, var(--page-border));
     }
 
-    .gallery-item:hover img {
-      transform: scale(1.1);
+    .asset-name {
+      display: block;
+      color: inherit;
+      font-size: 0.88rem;
+      font-weight: 700;
+      line-height: 1.35;
     }
 
-    .gallery-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(15, 23, 42, 0.95), transparent);
-      padding: 2rem 1.5rem 1.5rem;
-      color: white;
-      transform: translateY(100%);
-      transition: transform 0.3s ease;
-    }
-
-    .gallery-item:hover .gallery-caption {
-      transform: translateY(0);
-    }
-
-    /* Process Section */
-    .process-steps {
+    .month-list {
+      list-style: none;
       display: grid;
-      gap: 2rem;
-      margin: 3rem 0;
+      gap: 0.85rem;
+      margin-top: 1rem;
     }
 
-    .process-step {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 2rem;
-      align-items: start;
-    }
-
-    .step-number {
-      width: 80px;
-      height: 80px;
-      background: linear-gradient(135deg, #1e40af, #3b82f6);
-      border-radius: 50%;
+    .month-list li {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      font-weight: 700;
-      color: white;
-      box-shadow: 0 10px 30px rgba(30, 64, 175, 0.4);
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.85rem 1rem;
+      border-radius: 16px;
+      background: var(--page-soft-fill);
+      border: 1px solid var(--page-highlight-border);
+      color: var(--page-text);
     }
 
-    .step-content h3 {
-      font-size: 1.5rem;
-      color: #93c5fd;
-      margin-bottom: 0.75rem;
+    .month-list span:last-child {
+      color: var(--page-muted);
+      font-size: 0.9rem;
     }
 
-    .step-content p {
-      font-size: 1.05rem;
-      color: #cbd5e1;
-      line-height: 1.8;
+    .notes-list {
+      list-style: none;
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 1rem;
     }
 
-    /* CTA Section */
+    .notes-list li {
+      padding-left: 1.15rem;
+      position: relative;
+      color: var(--page-muted);
+    }
+
+    .notes-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.58rem;
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 50%;
+      background: var(--page-accent);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--page-accent) 16%, transparent);
+    }
+
     .cta-section {
-      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-      padding: 4rem 2rem;
-      text-align: center;
-      margin: 4rem 0 0;
+      margin-top: 1.75rem;
+      padding: 1.8rem 2rem;
+      border-radius: 28px;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--page-accent) 14%, var(--page-surface)) 0%, var(--page-surface-strong) 100%);
+      border: 1px solid var(--page-highlight-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      box-shadow: var(--page-shadow);
     }
 
     .cta-section h2 {
-      font-size: 2.5rem;
-      color: white;
-      margin-bottom: 1rem;
+      font-size: 1.45rem;
+      color: var(--page-text);
+      margin-bottom: 0.25rem;
     }
 
     .cta-section p {
-      font-size: 1.2rem;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 2rem;
+      color: var(--page-muted);
     }
 
     .cta-buttons {
       display: flex;
-      justify-content: center;
-      gap: 1.5rem;
+      gap: 0.9rem;
       flex-wrap: wrap;
     }
 
     .cta-btn {
-      padding: 1rem 2.5rem;
-      border-radius: 2rem;
-      font-weight: 600;
-      font-size: 1.1rem;
       text-decoration: none;
-      transition: all 0.3s ease;
-      display: inline-block;
+      border-radius: 999px;
+      padding: 0.9rem 1.35rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
     }
 
     .cta-btn-primary {
-      background: white;
-      color: #1e40af;
-    }
-
-    .cta-btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+      background: linear-gradient(135deg, var(--page-accent-strong), var(--page-accent));
+      color: var(--page-button-text);
+      box-shadow: var(--page-highlight-shadow);
     }
 
     .cta-btn-secondary {
-      background: transparent;
-      color: white;
-      border: 2px solid white;
+      background: var(--secondary-button-bg, var(--page-soft-fill));
+      border: 1px solid var(--page-highlight-border);
+      color: var(--page-text);
     }
 
-    .cta-btn-secondary:hover {
-      background: white;
-      color: #1e40af;
-      transform: translateY(-3px);
-    }
-
-    /* Footer */
     .footer {
-      background: #0f172a;
-      padding: 2rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem 2.5rem;
+      color: var(--page-muted);
       text-align: center;
-      border-top: 1px solid rgba(147, 197, 253, 0.2);
     }
 
-    .footer p {
-      color: #94a3b8;
+    @media (max-width: 980px) {
+      .hero,
+      .layout-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "controls"
+          "viewer";
+      }
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5rem;
+    @media (max-width: 720px) {
+      .navbar,
+      main,
+      .footer {
+        padding-left: 1rem;
+        padding-right: 1rem;
       }
 
-      .hero-description {
-        font-size: 1.1rem;
+      .hero-panel,
+      .summary-card,
+      .timeline-card,
+      .viewer-card,
+      .month-list-card,
+      .notes-card,
+      .cta-section {
+        border-radius: 22px;
       }
 
-      .project-meta {
-        gap: 1.5rem;
+      .hero-panel,
+      .summary-card,
+      .timeline-card,
+      .viewer-card,
+      .month-list-card,
+      .notes-card {
+        padding: 1.25rem;
       }
 
-      .featured-image {
-        margin: -2rem auto 3rem;
-        padding: 0 1rem;
-      }
-
-      .section-title {
-        font-size: 2rem;
-      }
-
-      .highlights-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
-      .gallery-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
-      .process-step {
-        grid-template-columns: 60px 1fr;
-        gap: 1.5rem;
-      }
-
-      .step-number {
-        width: 60px;
-        height: 60px;
-        font-size: 1.5rem;
-      }
-
-      .cta-section h2 {
-        font-size: 2rem;
-      }
-
-      .cta-buttons {
+      .artwork-meta,
+      .cta-section {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
+      }
+
+      .year-btn,
+      .month-btn,
+      .sort-btn,
+      .asset-btn {
+        width: 100%;
+      }
+
+      .year-switcher {
+        flex-wrap: wrap;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body class="project-detail-page">
-  <div class="page-zoom-control" id="page-zoom-control">
+  <div class="page-zoom-control" id="page-zoom-control" data-zoom-default="70" data-zoom-storage-key="portfolio-professional-gfx-page-zoom">
     <button class="page-zoom-toggle" id="page-zoom-toggle" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="page-zoom-panel">
       <svg class="page-zoom-icon" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
     </button>
@@ -461,7 +669,7 @@
         <span class="page-zoom-label">Zoom</span>
         <div class="page-zoom-actions">
           <button class="page-zoom-step" id="page-zoom-out" type="button" aria-label="Zoom out">-</button>
-          <button class="page-zoom-value" id="page-zoom-value" type="button" aria-label="Reset zoom to default">80%</button>
+          <button class="page-zoom-value" id="page-zoom-value" type="button" aria-label="Reset zoom to default">70%</button>
           <button class="page-zoom-step" id="page-zoom-in" type="button" aria-label="Zoom in">+</button>
         </div>
       </div>
@@ -481,7 +689,7 @@
       </div>
     </div>
   </div>
-  <!-- Navigation -->
+
   <nav class="navbar">
     <div class="nav-container">
       <a href="../index.html" class="back-btn">
@@ -491,166 +699,511 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <span class="project-category">Graphic Design</span>
-      <h1>Professional GFX Design Suite</h1>
-      <p class="hero-description">A comprehensive graphic design project featuring modern visual elements, dynamic backgrounds, and professional branding materials. This project showcases advanced design techniques and creative problem-solving in multimedia design.</p>
-
-      <div class="project-meta">
-        <div class="meta-item">
-          <span class="meta-label">Duration</span>
-          <span class="meta-value">3 Months</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-label">Role</span>
-          <span class="meta-value">Lead Designer</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-label">Status</span>
-          <span class="meta-value">Completed</span>
+  <main>
+    <section class="hero">
+      <div class="hero-panel">
+        <span class="eyebrow">Designer Bag on IKM</span>
+        <h1>Designer Bag on IKM</h1>
+        <p class="hero-description">This page features work of the month on IKM. Choose a year, then choose a month, and the main panel will switch to the bag design shown for that period, including pouch, totebag, backpack, and travel bag concepts I created.</p>
+        <div class="hero-tags">
+          <span class="hero-tag">2025: August to December</span>
+          <span class="hero-tag">2026: January to March</span>
+          <span class="hero-tag">8 monthly bag designs</span>
         </div>
       </div>
 
-      <div class="tech-stack">
-        <span class="tech-tag">Adobe Photoshop</span>
-        <span class="tech-tag">Adobe Illustrator</span>
-        <span class="tech-tag">After Effects</span>
-        <span class="tech-tag">Figma</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured Image -->
-  <div class="featured-image">
-    <img src="Preview professional GFX Design suite.jpg" alt="Professional GFX Design Suite">
-  </div>
-
-  <!-- Project Overview -->
-  <section class="content-section">
-    <h2 class="section-title">Project Overview</h2>
-    <div class="section-content">
-      <p>This comprehensive graphic design suite represents a culmination of modern design principles and cutting-edge visual techniques. The project involved creating a complete brand identity system that includes logo design, marketing materials, digital assets, and interactive elements.</p>
-
-      <p>The design approach focused on creating visually striking elements that maintain professional standards while pushing creative boundaries. Each component was carefully crafted to ensure consistency across all mediums and platforms.</p>
-    </div>
-
-    <!-- Key Highlights -->
-    <h2 class="section-title">Key Highlights</h2>
-    <div class="highlights-grid">
-      <div class="highlight-card">
-        <div class="highlight-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M6 3.75h12A2.25 2.25 0 0 1 20.25 6v12A2.25 2.25 0 0 1 18 20.25H6A2.25 2.25 0 0 1 3.75 18V6A2.25 2.25 0 0 1 6 3.75Z"></path><path d="M8.25 8.25h7.5"></path><path d="M8.25 12h4.5"></path><path d="M8.25 15.75h6"></path></svg>
+      <aside class="summary-card">
+        <h2>Quick Summary</h2>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <span class="summary-label">Years</span>
+            <span class="summary-value">2025 - 2026</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Format</span>
+            <span class="summary-value">Work of the Month</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Category</span>
+            <span class="summary-value">Bag Design IKM</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Design Count</span>
+            <span class="summary-value">8 Pieces</span>
+          </div>
         </div>
-        <h3 class="highlight-title">Brand Identity</h3>
-        <p class="highlight-description">Complete logo design and brand guidelines that establish a strong visual identity across all platforms.</p>
-      </div>
+        <p class="summary-copy">This page is focused on monthly IKM bag design work, so each selection highlights one design direction and its product idea for that month.</p>
+      </aside>
+    </section>
 
-      <div class="highlight-card">
-        <div class="highlight-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M8.25 3.75h7.5A2.25 2.25 0 0 1 18 6v12A2.25 2.25 0 0 1 15.75 20.25h-7.5A2.25 2.25 0 0 1 6 18V6a2.25 2.25 0 0 1 2.25-2.25Z"></path><path d="M10.5 17.25h3"></path></svg>
+    <section class="layout-grid">
+      <div class="controls-stack">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <h2>Select a Year</h2>
+            </div>
+            <div class="year-switcher" id="year-switcher" aria-label="Bag design year selector"></div>
+          </div>
+
+          <h2>Select a Month</h2>
+          <div class="month-switcher" id="month-switcher" aria-label="Bag design month selector"></div>
+
+          <div class="sort-section" id="sort-section" hidden>
+            <h2>Select a Sort</h2>
+            <div class="sort-switcher" id="sort-switcher" aria-label="Bag design sort selector"></div>
+          </div>
         </div>
-        <h3 class="highlight-title">Digital Assets</h3>
-        <p class="highlight-description">Responsive design elements optimized for web, mobile, and print applications.</p>
+
+        <aside class="month-list-card">
+          <h2>Visible Timeline</h2>
+          <p>The list below reflects the months currently available for the selected year and the bag type featured in each one.</p>
+          <ul class="month-list" id="month-list"></ul>
+        </aside>
+
+        <aside class="notes-card">
+          <h2>Viewer Notes</h2>
+          <p>This redesigned page is built around a simpler idea: one year switcher, one month switcher, and one large image display for the featured IKM bag design of the month.</p>
+          <ul class="notes-list">
+            <li>2025 shows August, September, October, November, and December.</li>
+            <li>2026 shows January, February, and March.</li>
+            <li>Every month button updates the main image instantly.</li>
+            <li>March 2026 now includes dedicated S26, Kitkat, Nyamnyam, Indomilk, and Lactogrow sorts for the files you added.</li>
+            <li>The concepts are written around pouch, totebag, backpack, and travel bag work created for IKM.</li>
+          </ul>
+        </aside>
       </div>
 
-      <div class="highlight-card">
-        <div class="highlight-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"></path></svg>
-        </div>
-        <h3 class="highlight-title">Motion Graphics</h3>
-        <p class="highlight-description">Dynamic animations and transitions that bring static designs to life.</p>
+      <div class="viewer-stack">
+        <section class="viewer-card">
+          <h2 id="viewer-heading">Featured Bag Design</h2>
+          <div class="artwork-frame">
+            <img id="artwork-image" class="artwork-image" src="Preview professional GFX Design suite.jpg" alt="Featured monthly IKM bag design">
+          </div>
+          <div class="artwork-meta">
+            <div>
+              <div class="artwork-subtitle" id="artwork-date">August 2025</div>
+              <h3 class="artwork-title" id="artwork-title">Pouch Bag Concept</h3>
+            </div>
+            <span class="artwork-badge" id="artwork-badge">2025 Collection</span>
+          </div>
+          <p class="artwork-description" id="artwork-description">A compact pouch bag concept for the August 2025 IKM collection. Use the month buttons to browse other bag designs and product directions.</p>
+          <div class="asset-gallery" id="asset-gallery" hidden>
+            <h3 class="asset-gallery-title" id="asset-gallery-title">Files in This Sort</h3>
+            <div class="asset-grid" id="asset-grid"></div>
+          </div>
+        </section>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Design Process -->
-  <section class="content-section">
-    <h2 class="section-title">Design Process</h2>
-
-    <div class="process-steps">
-      <div class="process-step">
-        <div class="step-number">1</div>
-        <div class="step-content">
-          <h3>Research & Planning</h3>
-          <p>Conducted thorough market research and competitor analysis to understand the target audience and industry trends. Developed a comprehensive design strategy that aligned with business objectives.</p>
-        </div>
+    <section class="cta-section">
+      <div>
+        <h2>Want to see more work?</h2>
+        <p>You can jump back to the portfolio homepage or contact me directly from here.</p>
       </div>
-
-      <div class="process-step">
-        <div class="step-number">2</div>
-        <div class="step-content">
-          <h3>Concept Development</h3>
-          <p>Created multiple design concepts exploring different visual directions. Each concept was refined through iterative feedback sessions to ensure the final design met all requirements.</p>
-        </div>
+      <div class="cta-buttons">
+        <a href="../index.html" class="cta-btn cta-btn-secondary">Back to Home</a>
+        <a href="mailto:jonasaevuddyinsetiawan@gmail.com" class="cta-btn cta-btn-primary">Contact Me</a>
       </div>
+    </section>
+  </main>
 
-      <div class="process-step">
-        <div class="step-number">3</div>
-        <div class="step-content">
-          <h3>Implementation</h3>
-          <p>Executed the final design using industry-standard tools and techniques. Ensured all elements were production-ready and optimized for their intended use.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Gallery Section -->
-  <section class="content-section">
-    <h2 class="section-title">Project Gallery</h2>
-
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="Preview professional GFX Design suite.jpg" alt="Professional GFX Design Suite preview">
-        <div class="gallery-caption">
-          <h4>Logo Design</h4>
-          <p>Primary brand mark with clean, modern aesthetics</p>
-        </div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=500&h=400&fit=crop" alt="Brand Guidelines">
-        <div class="gallery-caption">
-          <h4>Brand Guidelines</h4>
-          <p>Comprehensive style guide for consistent application</p>
-        </div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=500&h=400&fit=crop" alt="Marketing Materials">
-        <div class="gallery-caption">
-          <h4>Marketing Materials</h4>
-          <p>Print and digital collateral designs</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Results Section -->
-  <section class="content-section">
-    <h2 class="section-title">Results & Impact</h2>
-    <div class="section-content">
-      <p>The Professional GFX Design Suite successfully delivered a cohesive brand identity that exceeded client expectations. The design system has been implemented across multiple platforms and has contributed to increased brand recognition and customer engagement.</p>
-
-      <p>The project demonstrated the importance of thoughtful design strategy and attention to detail in creating impactful visual communications.</p>
-    </div>
-  </section>
-
-  <!-- Call to Action -->
-  <section class="cta-section">
-    <h2>Like What You See?</h2>
-    <p>Let's work together on your next project</p>
-    <div class="cta-buttons">
-      <a href="mailto:jona@example.com" class="cta-btn cta-btn-primary">Get In Touch</a>
-      <a href="../index.html" class="cta-btn cta-btn-secondary">View More Work</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer class="footer">
-    <p>&copy; 2024 Jona Setiawan. All rights reserved.</p>
+    <p>&copy; 2026 Jona Setiawan. All rights reserved.</p>
   </footer>
+
+  <script>
+    const archiveData = {
+      2025: [
+        {
+          month: 'August',
+          title: 'Pouch Bag Concept',
+          image: 'Design GFX/Ayane Nakiri.jpg',
+          description: 'A compact pouch bag concept for daily essentials, focused on a clean silhouette, practical compartments, and a neat front-panel identity for the August 2025 IKM feature.'
+        },
+        {
+          month: 'September',
+          title: 'Canvas Totebag Design',
+          image: 'Design GFX/Lawine strinova.jpg',
+          description: 'A totebag direction built for casual use and light carrying needs, with an emphasis on usable storage, simple branding, and a balanced everyday shape.'
+        },
+        {
+          month: 'October',
+          title: 'Student Backpack Series',
+          image: 'Design GFX/Hoshimi Miyabi.jpg',
+          description: 'A backpack concept aimed at students and active users, combining stronger structure, layered pockets, and a cleaner layout for both function and style.'
+        },
+        {
+          month: 'November',
+          title: 'Travel Bag Utility Concept',
+          image: 'Design GFX/RUAN MEI.jpg',
+          description: 'A travel bag concept with a wider body, stronger handle treatment, and organized storage planning for short trips and heavier packing needs.'
+        },
+        {
+          month: 'December',
+          title: 'Premium Totebag Refresh',
+          image: 'Design GFX/Zani wuthering wave.jpg',
+          description: 'An end-of-year totebag refresh that explores a more premium look through cleaner proportions, stronger material direction, and more polished visual presentation.'
+        }
+      ],
+      2026: [
+        {
+          month: 'January',
+          title: 'Mini Sling Pouch',
+          image: 'Design GFX/FIrefly.jpg',
+          description: 'A small sling pouch concept for the January 2026 lineup, developed around mobility, quick access, and a compact form suitable for daily movement.'
+        },
+        {
+          month: 'February',
+          title: 'Urban Backpack Update',
+          image: 'Design GFX/Hu tao GFX design.jpg',
+          description: 'A refined urban backpack update featuring practical capacity, cleaner straps, and a more mature styling direction for IKM product development.'
+        },
+        {
+          month: 'March',
+          title: 'March Bag Series',
+          image: 'IKM project/2026/March/s26 totebag.jpeg',
+          description: 'March 2026 is now grouped into separate sorts, including S26, Kitkat, Nyamnyam, Indomilk, and Lactogrow, so each bag concept line can be browsed on its own.',
+          sorts: [
+            {
+              id: 's26',
+              label: 'S26',
+              description: 'S26 is the current March 2026 sort. It highlights the totebag family and related bag variations you have added so far for IKM.',
+              assets: [
+                {
+                  title: 'S26 Totebag',
+                  image: 'IKM project/2026/March/s26 totebag.jpeg',
+                  description: 'The base S26 totebag concept, focused on a clean everyday carry direction for the March 2026 IKM lineup.'
+                },
+                {
+                  title: 'S26 Totebag 2',
+                  image: 'IKM project/2026/March/s26 totebag 2.jpeg',
+                  description: 'A second totebag variation in the S26 sort with adjusted layout and bag proportion exploration.'
+                },
+                {
+                  title: 'S26 Totebag 3',
+                  image: 'IKM project/2026/March/s26 totebag 3.jpeg',
+                  description: 'A third totebag direction that continues the S26 range with another structure and presentation approach.'
+                },
+                {
+                  title: 'S26 Totebag 4',
+                  image: 'IKM project/2026/March/s26 totebag 4.jpeg',
+                  description: 'A fourth totebag development piece in the same S26 series, expanding the March concept options.'
+                },
+                {
+                  title: 'S26 Portrait Printing Totebag',
+                  image: 'IKM project/2026/March/s26 portrait printing totebag.jpeg',
+                  description: 'A portrait-oriented printing totebag version in the S26 sort, showing how the bag design can support a print-heavy layout.'
+                },
+                {
+                  title: 'S26 Landscape Printing Totebag',
+                  image: 'IKM project/2026/March/s26 landscape printing totebag.jpeg',
+                  description: 'A landscape-oriented printing totebag variant for the S26 collection, built around wider graphic placement.'
+                },
+                {
+                  title: 'Lunch Bag S26',
+                  image: 'IKM project/2026/March/lunch bag s26.jpeg',
+                  description: 'A lunch bag variation connected to the S26 March group, with a more compact and practical carry purpose.'
+                },
+                {
+                  title: 'Travel Bag S26',
+                  image: 'IKM project/2026/March/travel bag s26.jpeg',
+                  description: 'A travel bag extension of the S26 sort, adding a larger-capacity product direction to the March 2026 work.'
+                }
+              ]
+            },
+            {
+              id: 'kitkat',
+              label: 'Kitkat',
+              description: 'Kitkat groups the pouch and handbag directions from the March 2026 IKM bag work into one dedicated sort.',
+              assets: [
+                {
+                  title: 'Kitkat Pouch',
+                  image: 'IKM project/2026/March/Kitkat pouch.jpeg',
+                  description: 'A pouch concept in the Kitkat line, focused on a compact body and a cleaner product presentation for daily use.'
+                },
+                {
+                  title: 'Kitkat Pouch 2',
+                  image: 'IKM project/2026/March/Kitkat pouch 2.jpeg',
+                  description: 'A second Kitkat pouch variation that explores another layout and refinement of the same bag concept line.'
+                },
+                {
+                  title: 'Kitkat Hand Bag',
+                  image: 'IKM project/2026/March/kitkat pouch hand bag.jpeg',
+                  description: 'A handbag-oriented extension of the Kitkat pouch concept, shifting toward a more carried and styled product direction.'
+                },
+                {
+                  title: 'Kitkat 2 Ver 1',
+                  image: 'IKM project/2026/March/Kitkat 2 ver 1.jpeg',
+                  description: 'Another Kitkat development version that adds variety to the March concept set and broadens the product family.'
+                }
+              ]
+            },
+            {
+              id: 'nyamnyam',
+              label: 'Nyamnyam',
+              description: 'Nyamnyam collects the totebag drawing studies you added for March 2026 so they can be reviewed as their own product sort.',
+              assets: [
+                {
+                  title: 'Nyamnyam Totebag Drawing',
+                  image: 'IKM project/2026/March/nyamnyam totebag drawing.jpeg',
+                  description: 'The first Nyamnyam totebag drawing in the March set, used as the base direction for this sort.'
+                },
+                {
+                  title: 'Nyamnyam Totebag Drawing 2',
+                  image: 'IKM project/2026/March/nyamnyam totebag drawing 2.jpeg',
+                  description: 'A second Nyamnyam totebag drawing that continues the concept with another arrangement and bag presentation.'
+                },
+                {
+                  title: 'Nyamnyam Totebag Drawing 3',
+                  image: 'IKM project/2026/March/nyamnyam totebag drawing 3.jpeg',
+                  description: 'A third Nyamnyam totebag drawing that expands the March bag concept line with another visual variation.'
+                }
+              ]
+            },
+            {
+              id: 'indomilk',
+              label: 'Indomilk',
+              description: 'Indomilk holds the travel bag direction you added for March 2026 as its own separate product sort.',
+              assets: [
+                {
+                  title: 'Indomilk Travel Bag',
+                  image: 'IKM project/2026/March/Indomilk travel bag.jpeg',
+                  description: 'A travel bag concept for the Indomilk line, focused on larger storage capacity and a clearer branded product direction.'
+                }
+              ]
+            },
+            {
+              id: 'lactogrow',
+              label: 'Lactogrow',
+              description: 'Lactogrow groups the lunch bag work you added for March 2026 into a standalone sort.',
+              assets: [
+                {
+                  title: 'Lactogrow Lunch Bag',
+                  image: 'IKM project/2026/March/Lunchbag Lactogrow.jpeg',
+                  description: 'A lunch bag concept for the Lactogrow line, built around a compact carry format and a more product-focused presentation.'
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    };
+
+    const yearSwitcher = document.getElementById('year-switcher');
+    const monthSwitcher = document.getElementById('month-switcher');
+    const sortSection = document.getElementById('sort-section');
+    const sortSwitcher = document.getElementById('sort-switcher');
+    const monthList = document.getElementById('month-list');
+    const artworkFrame = document.querySelector('.artwork-frame');
+    const artworkImage = document.getElementById('artwork-image');
+    const artworkDate = document.getElementById('artwork-date');
+    const artworkTitle = document.getElementById('artwork-title');
+    const artworkBadge = document.getElementById('artwork-badge');
+    const artworkDescription = document.getElementById('artwork-description');
+    const assetGallery = document.getElementById('asset-gallery');
+    const assetGalleryTitle = document.getElementById('asset-gallery-title');
+    const assetGrid = document.getElementById('asset-grid');
+
+    let activeYear = '2025';
+    let activeMonth = 'August';
+    let activeSort = null;
+    let activeAssetIndex = 0;
+
+    function updateArtworkFrameRatio() {
+      if (!artworkImage.naturalWidth || !artworkImage.naturalHeight) {
+        artworkFrame.style.setProperty('--artwork-ratio', '4 / 5');
+        return;
+      }
+
+      artworkFrame.style.setProperty('--artwork-ratio', `${artworkImage.naturalWidth} / ${artworkImage.naturalHeight}`);
+    }
+
+    function getActiveEntry() {
+      return archiveData[activeYear].find((item) => item.month === activeMonth);
+    }
+
+    function getActiveSortData() {
+      const entry = getActiveEntry();
+      if (!entry || !entry.sorts || !entry.sorts.length) {
+        return null;
+      }
+
+      return entry.sorts.find((sort) => sort.id === activeSort) || entry.sorts[0];
+    }
+
+    function renderYears() {
+      const years = Object.keys(archiveData);
+      yearSwitcher.innerHTML = years.map((year) => `
+        <button class="year-btn${year === activeYear ? ' is-active' : ''}" type="button" data-year="${year}">
+          ${year}
+        </button>
+      `).join('');
+    }
+
+    function renderMonths() {
+      const months = archiveData[activeYear];
+
+      monthSwitcher.innerHTML = months.map((entry) => `
+        <button class="month-btn${entry.month === activeMonth ? ' is-active' : ''}" type="button" data-month="${entry.month}">
+          ${entry.month}
+        </button>
+      `).join('');
+
+      monthList.innerHTML = months.map((entry) => `
+        <li>
+          <span>${entry.month}</span>
+          <span>${entry.title}</span>
+        </li>
+      `).join('');
+    }
+
+    function renderSorts() {
+      const entry = getActiveEntry();
+      if (!entry || !entry.sorts || !entry.sorts.length) {
+        sortSection.hidden = true;
+        sortSwitcher.innerHTML = '';
+        assetGallery.hidden = true;
+        assetGrid.innerHTML = '';
+        activeSort = null;
+        activeAssetIndex = 0;
+        return;
+      }
+
+      const availableSorts = entry.sorts;
+      const selectedSort = availableSorts.find((sort) => sort.id === activeSort) || availableSorts[0];
+      activeSort = selectedSort.id;
+      sortSection.hidden = false;
+      sortSwitcher.innerHTML = availableSorts.map((sort) => `
+        <button class="sort-btn${sort.id === activeSort ? ' is-active' : ''}" type="button" data-sort="${sort.id}">
+          ${sort.label}
+        </button>
+      `).join('');
+    }
+
+    function renderAssets() {
+      const activeSortData = getActiveSortData();
+      if (!activeSortData || !activeSortData.assets || !activeSortData.assets.length) {
+        assetGallery.hidden = true;
+        assetGrid.innerHTML = '';
+        activeAssetIndex = 0;
+        return;
+      }
+
+      if (activeAssetIndex >= activeSortData.assets.length) {
+        activeAssetIndex = 0;
+      }
+
+      assetGallery.hidden = false;
+      assetGalleryTitle.textContent = `${activeSortData.label} Files`;
+      assetGrid.innerHTML = activeSortData.assets.map((asset, index) => `
+        <button class="asset-btn${index === activeAssetIndex ? ' is-active' : ''}" type="button" data-asset-index="${index}">
+          <img class="asset-thumb" src="${asset.image}" alt="${asset.title}">
+          <span class="asset-name">${asset.title}</span>
+        </button>
+      `).join('');
+    }
+
+    function renderArtwork() {
+      const entry = getActiveEntry();
+      if (!entry) {
+        return;
+      }
+
+      const activeSortData = getActiveSortData();
+      const activeAsset = activeSortData && activeSortData.assets
+        ? activeSortData.assets[activeAssetIndex] || activeSortData.assets[0]
+        : null;
+      const displayItem = activeAsset || entry;
+
+      artworkImage.src = displayItem.image;
+      artworkImage.alt = `${displayItem.title} for ${entry.month} ${activeYear}`;
+      artworkDate.textContent = `${entry.month} ${activeYear}`;
+      artworkTitle.textContent = displayItem.title;
+      artworkBadge.textContent = activeSortData ? `${activeYear} ${activeSortData.label}` : `${activeYear} Collection`;
+      artworkDescription.textContent = displayItem.description || entry.description;
+
+      if (artworkImage.complete) {
+        updateArtworkFrameRatio();
+      }
+    }
+
+    function setYear(year) {
+      activeYear = year;
+      activeMonth = archiveData[year][0].month;
+      activeSort = null;
+      activeAssetIndex = 0;
+      renderYears();
+      renderMonths();
+      renderSorts();
+      renderAssets();
+      renderArtwork();
+    }
+
+    function setMonth(month) {
+      activeMonth = month;
+      activeSort = null;
+      activeAssetIndex = 0;
+      renderMonths();
+      renderSorts();
+      renderAssets();
+      renderArtwork();
+    }
+
+    function setSort(sortId) {
+      activeSort = sortId;
+      activeAssetIndex = 0;
+      renderSorts();
+      renderAssets();
+      renderArtwork();
+    }
+
+    function setAsset(index) {
+      activeAssetIndex = index;
+      renderAssets();
+      renderArtwork();
+    }
+
+    yearSwitcher.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-year]');
+      if (!button) {
+        return;
+      }
+      setYear(button.dataset.year);
+    });
+
+    monthSwitcher.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-month]');
+      if (!button) {
+        return;
+      }
+      setMonth(button.dataset.month);
+    });
+
+    sortSwitcher.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-sort]');
+      if (!button) {
+        return;
+      }
+      setSort(button.dataset.sort);
+    });
+
+    assetGrid.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-asset-index]');
+      if (!button) {
+        return;
+      }
+      setAsset(Number(button.dataset.assetIndex));
+    });
+
+    artworkImage.addEventListener('load', updateArtworkFrameRatio);
+
+    renderYears();
+    renderMonths();
+    renderSorts();
+    renderAssets();
+    renderArtwork();
+  </script>
   <script src="../theme-controls.js"></script>
   <script src="../zoom-controls.js"></script>
 </body>
