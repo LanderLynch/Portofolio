@@ -706,9 +706,9 @@
         <h1>Designer Bag on IKM</h1>
         <p class="hero-description">This page features work of the month on IKM. Choose a year, then choose a month, and the main panel will switch to the bag design shown for that period, including pouch, totebag, backpack, and travel bag concepts I created.</p>
         <div class="hero-tags">
-          <span class="hero-tag">2025: August to December</span>
+          <span class="hero-tag">2025: October to December</span>
           <span class="hero-tag">2026: January to March</span>
-          <span class="hero-tag">8 monthly bag designs</span>
+          <span class="hero-tag">6 monthly bag designs</span>
         </div>
       </div>
 
@@ -729,7 +729,7 @@
           </div>
           <div class="summary-item">
             <span class="summary-label">Design Count</span>
-            <span class="summary-value">8 Pieces</span>
+            <span class="summary-value">6 Pieces</span>
           </div>
         </div>
         <p class="summary-copy">This page is focused on monthly IKM bag design work, so each selection highlights one design direction and its product idea for that month.</p>
@@ -765,7 +765,7 @@
           <h2>Viewer Notes</h2>
           <p>This redesigned page is built around a simpler idea: one year switcher, one month switcher, and one large image display for the featured IKM bag design of the month.</p>
           <ul class="notes-list">
-            <li>2025 shows August, September, October, November, and December.</li>
+            <li>2025 shows October, November, and December.</li>
             <li>2026 shows January, February, and March.</li>
             <li>Every month button updates the main image instantly.</li>
             <li>March 2026 now includes dedicated S26, Kitkat, Nyamnyam, Indomilk, and Lactogrow sorts for the files you added.</li>
@@ -778,16 +778,16 @@
         <section class="viewer-card">
           <h2 id="viewer-heading">Featured Bag Design</h2>
           <div class="artwork-frame">
-            <img id="artwork-image" class="artwork-image" src="Preview professional GFX Design suite.jpg" alt="Featured monthly IKM bag design">
+            <img id="artwork-image" class="artwork-image" src="IKM project/2025/October/Tas serut Arnotts October.jpg" alt="Featured monthly IKM bag design">
           </div>
           <div class="artwork-meta">
             <div>
-              <div class="artwork-subtitle" id="artwork-date">August 2025</div>
-              <h3 class="artwork-title" id="artwork-title">Pouch Bag Concept</h3>
+              <div class="artwork-subtitle" id="artwork-date">October 2025</div>
+              <h3 class="artwork-title" id="artwork-title">Arnotts Drawstring Bag</h3>
             </div>
             <span class="artwork-badge" id="artwork-badge">2025 Collection</span>
           </div>
-          <p class="artwork-description" id="artwork-description">A compact pouch bag concept for the August 2025 IKM collection. Use the month buttons to browse other bag designs and product directions.</p>
+          <p class="artwork-description" id="artwork-description">A drawstring bag concept from the October 2025 IKM work set. Use the month and sort buttons to browse the synced files based on the folders and filenames you added.</p>
           <div class="asset-gallery" id="asset-gallery" hidden>
             <h3 class="asset-gallery-title" id="asset-gallery-title">Files in This Sort</h3>
             <div class="asset-grid" id="asset-grid"></div>
@@ -816,59 +816,262 @@
     const archiveData = {
       2025: [
         {
-          month: 'August',
-          title: 'Pouch Bag Concept',
-          image: 'Design GFX/Ayane Nakiri.jpg',
-          description: 'A compact pouch bag concept for daily essentials, focused on a clean silhouette, practical compartments, and a neat front-panel identity for the August 2025 IKM feature.'
-        },
-        {
-          month: 'September',
-          title: 'Canvas Totebag Design',
-          image: 'Design GFX/Lawine strinova.jpg',
-          description: 'A totebag direction built for casual use and light carrying needs, with an emphasis on usable storage, simple branding, and a balanced everyday shape.'
-        },
-        {
           month: 'October',
-          title: 'Student Backpack Series',
-          image: 'Design GFX/Hoshimi Miyabi.jpg',
-          description: 'A backpack concept aimed at students and active users, combining stronger structure, layered pockets, and a cleaner layout for both function and style.'
+          title: 'Arnotts Drawstring Bag Series',
+          image: 'IKM project/2025/October/Tas serut Arnotts October.jpg',
+          description: 'October 2025 now uses the actual Arnotts bag files from the IKM project folder, grouped together as one synced month entry.',
+          sorts: [
+            {
+              id: 'arnotts',
+              label: 'Arnotts',
+              description: 'Arnotts contains the drawstring bag variations found in the root IKM project folder for October 2025.',
+              assets: [
+                {
+                  title: 'Tas Serut Arnotts',
+                  image: 'IKM project/2025/October/Tas serut Arnotts October.jpg',
+                  description: 'A drawstring bag design for Arnotts from the October 2025 IKM work set.'
+                },
+                {
+                  title: 'Tas Serut Arnotts 2',
+                  image: 'IKM project/2025/October/Tas serut Arnotts 2 October.jpg',
+                  description: 'A second Arnotts drawstring bag variation from the same October 2025 series.'
+                }
+              ]
+            }
+          ]
         },
         {
           month: 'November',
-          title: 'Travel Bag Utility Concept',
-          image: 'Design GFX/RUAN MEI.jpg',
-          description: 'A travel bag concept with a wider body, stronger handle treatment, and organized storage planning for short trips and heavier packing needs.'
+          title: 'Yogya Pouch Series',
+          image: 'IKM project/2025/November/Pouch Yogya November.jpg',
+          description: 'November 2025 is synced from the Yogya pouch files placed in the IKM project folder.',
+          sorts: [
+            {
+              id: 'yogya',
+              label: 'Yogya',
+              description: 'Yogya groups the pouch files whose names point to the November 2025 work set.',
+              assets: [
+                {
+                  title: 'Pouch Yogya',
+                  image: 'IKM project/2025/November/Pouch Yogya November.jpg',
+                  description: 'A Yogya pouch concept synced from the November 2025 IKM files.'
+                },
+                {
+                  title: 'Pouch Handle Yogya',
+                  image: 'IKM project/2025/November/Pouch handle yogya november.jpg',
+                  description: 'A second Yogya pouch variation with a handle-focused layout from the same month.'
+                }
+              ]
+            }
+          ]
         },
         {
           month: 'December',
-          title: 'Premium Totebag Refresh',
-          image: 'Design GFX/Zani wuthering wave.jpg',
-          description: 'An end-of-year totebag refresh that explores a more premium look through cleaner proportions, stronger material direction, and more polished visual presentation.'
+          title: 'December Bag Series',
+          image: 'IKM project/2025/December/Tas laptop bag lactogrow december.jpg',
+          description: 'December 2025 now reflects the actual Lactogrow and Almond Koka files found in the IKM project folder.',
+          sorts: [
+            {
+              id: 'lactogrow',
+              label: 'Lactogrow',
+              description: 'Lactogrow contains the December 2025 bag files whose names already include the month.',
+              assets: [
+                {
+                  title: 'Tas Laptop Bag Lactogrow',
+                  image: 'IKM project/2025/December/Tas laptop bag lactogrow december.jpg',
+                  description: 'A laptop bag concept in the December 2025 Lactogrow set.'
+                },
+                {
+                  title: 'Tas Travel Bag Lactogrow',
+                  image: 'IKM project/2025/December/Tas travel bag lactogrow december.jpg',
+                  description: 'A travel bag concept from the same December 2025 Lactogrow work.'
+                },
+                {
+                  title: 'Tas Lactogrow Travel Bag',
+                  image: 'IKM project/2025/December/tas lactogrow travel bag december.jpg',
+                  description: 'Another travel bag direction in the synced December Lactogrow collection.'
+                }
+              ]
+            },
+            {
+              id: 'almond-koka',
+              label: 'Almond Koka',
+              description: 'Almond Koka uses the December file placed directly in the IKM project folder.',
+              assets: [
+                {
+                  title: 'Almond Koka',
+                  image: 'IKM project/2025/December/Almond koka december.jpg',
+                  description: 'An Almond Koka design entry grouped under December 2025 based on its filename.'
+                }
+              ]
+            }
+          ]
         }
       ],
       2026: [
         {
           month: 'January',
-          title: 'Mini Sling Pouch',
-          image: 'Design GFX/FIrefly.jpg',
-          description: 'A small sling pouch concept for the January 2026 lineup, developed around mobility, quick access, and a compact form suitable for daily movement.'
+          title: 'January Bag Series',
+          image: 'IKM project/2026/January/Totebag lipat dancow fortigrow january.jpg',
+          description: 'January 2026 is now synced from the month-labeled files in the IKM project folder, with related Dancow extras grouped into the same period.',
+          sorts: [
+            {
+              id: 'dancow-fortigrow',
+              label: 'Dancow Fortigrow',
+              description: 'Dancow Fortigrow groups the January files and closely related extra Dancow bag assets found in the root IKM project folder.',
+              assets: [
+                {
+                  title: 'Totebag Lipat Dancow Fortigrow',
+                  image: 'IKM project/2026/January/Totebag lipat dancow fortigrow january.jpg',
+                  description: 'A foldable totebag concept from the January 2026 Dancow Fortigrow set.'
+                },
+                {
+                  title: 'Totebag Lipat Koper Dancow Fortigrow',
+                  image: 'IKM project/2026/January/totebag lipat koper dancow fortigrow january.jpg',
+                  description: 'A foldable bag variation with a koper-style direction from the same January collection.'
+                },
+                {
+                  title: 'Totebag Lipat Koper Dancow Fortigrow 2',
+                  image: 'IKM project/2026/January/totebag lipat koper dancow fortigrow 2 january.jpg',
+                  description: 'A second koper-style Dancow Fortigrow variation synced from the January files.'
+                },
+                {
+                  title: 'Pouch Dancow Fortigrow',
+                  image: 'IKM project/2026/January/Pouch Dancow Fortigrow january.jpg',
+                  description: 'An extra Dancow pouch file grouped into the January sync set to keep related brand assets together.'
+                },
+                {
+                  title: 'Pencil Case Dancow Fortigrow',
+                  image: 'IKM project/2026/January/Pencil case Dancow fortigrow January.jpg',
+                  description: 'A Dancow pencil case concept included with the January Dancow Fortigrow files.'
+                },
+                {
+                  title: 'Tas Waist Bag Dancow',
+                  image: 'IKM project/2026/January/Tas waist bag Dancow january.jpg',
+                  description: 'A waist bag file grouped with the January Dancow Fortigrow set as a related brand asset.'
+                }
+              ]
+            },
+            {
+              id: 'nestle',
+              label: 'Nestle',
+              description: 'Nestle contains the month-labeled January file found directly in the IKM project folder.',
+              assets: [
+                {
+                  title: 'Karpet Lipat Nestle',
+                  image: 'IKM project/2026/January/Karpet lipat Nestle January.jpg',
+                  description: 'A foldable mat design synced under January 2026 based on its filename.'
+                }
+              ]
+            }
+          ]
         },
         {
           month: 'February',
-          title: 'Urban Backpack Update',
-          image: 'Design GFX/Hu tao GFX design.jpg',
-          description: 'A refined urban backpack update featuring practical capacity, cleaner straps, and a more mature styling direction for IKM product development.'
+          title: 'February Bag Series',
+          image: 'IKM project/2026/Febuary/child go pouch febuary.jpg',
+          description: 'February 2026 now combines the Chil Go, Dancow Fortigrow, Lactogrow, and Indomilk files named for the month, plus close matching brand files that were placed outside the year folder.',
+          sorts: [
+            {
+              id: 'chil-go',
+              label: 'Chil Go',
+              description: 'Chil Go collects the pouch series whose filenames point to February 2026.',
+              assets: [
+                {
+                  title: 'Child Go Pouch',
+                  image: 'IKM project/2026/Febuary/child go pouch febuary.jpg',
+                  description: 'The base Chil Go pouch file synced from February 2026.'
+                },
+                {
+                  title: 'Chil Go Pouch 2',
+                  image: 'IKM project/2026/Febuary/Chil go pouch 2 febuary.jpg',
+                  description: 'A second Chil Go pouch variation from the same February file set.'
+                },
+                {
+                  title: 'Chil Go Pouch 3',
+                  image: 'IKM project/2026/Febuary/Chil go pouch 3 febuary.jpg',
+                  description: 'A third Chil Go pouch variation synced by filename.'
+                },
+                {
+                  title: 'Chil Go Pouch 4',
+                  image: 'IKM project/2026/Febuary/Chil go pouch 4 febuary.jpg',
+                  description: 'A fourth Chil Go pouch option from the February files.'
+                },
+                {
+                  title: 'Chil Go Pouch 5',
+                  image: 'IKM project/2026/Febuary/Chil go pouch 5 febuary.jpg',
+                  description: 'A fifth Chil Go pouch variation included in the synced February set.'
+                }
+              ]
+            },
+            {
+              id: 'dancow-fortigrow',
+              label: 'Dancow Fortigrow',
+              description: 'Dancow Fortigrow groups the February files placed in the IKM project folder.',
+              assets: [
+                {
+                  title: 'Lunch Bag Dancow Fortigrow',
+                  image: 'IKM project/2026/Febuary/lunch bag dancow fortigrow febuary.jpg',
+                  description: 'A lunch bag concept from the February 2026 Dancow Fortigrow files.'
+                },
+                {
+                  title: 'Totebag Dancow Fortigrow JPG',
+                  image: 'IKM project/2026/Febuary/Totebag dancow fortigrow febuary.jpg',
+                  description: 'A totebag file from the February Dancow Fortigrow set.'
+                },
+                {
+                  title: 'Totebag Dancow Fortigrow JPEG',
+                  image: 'IKM project/2026/Febuary/Totebag dancow fortigrow febuary.jpeg',
+                  description: 'A second February Dancow Fortigrow totebag file with the alternate image format you added.'
+                }
+              ]
+            },
+            {
+              id: 'lactogrow',
+              label: 'Lactogrow',
+              description: 'Lactogrow groups the February month-labeled files plus the closely matching extra Lactogrow bag image placed outside the year folders.',
+              assets: [
+                {
+                  title: 'Lunchbag Lactogrow',
+                  image: 'IKM project/2026/Febuary/Lunchbag lactogrow febuary.jpg',
+                  description: 'A Lactogrow lunch bag synced from the February 2026 files.'
+                },
+                {
+                  title: 'Pouch Lactogrow',
+                  image: 'IKM project/2026/Febuary/Pouch lactogrow febuary.jpg',
+                  description: 'A pouch concept for the February Lactogrow set.'
+                },
+                {
+                  title: 'Lunchbag Putih Lactogrow',
+                  image: 'IKM project/2026/Febuary/lunchbag putih lactogrow febuary.jpg',
+                  description: 'An additional Lactogrow bag file grouped into February because it matches the same brand set.'
+                }
+              ]
+            },
+            {
+              id: 'indomilk',
+              label: 'Indomilk',
+              description: 'Indomilk contains the February travel koper file found directly in the IKM project folder.',
+              assets: [
+                {
+                  title: 'Indomilk Travel Koper',
+                  image: 'IKM project/2026/Febuary/indomilk travel koper febuary.jpg',
+                  description: 'A travel koper concept synced under February 2026 based on its filename.'
+                }
+              ]
+            }
+          ]
         },
         {
           month: 'March',
           title: 'March Bag Series',
           image: 'IKM project/2026/March/s26 totebag.jpeg',
-          description: 'March 2026 is now grouped into separate sorts, including S26, Kitkat, Nyamnyam, Indomilk, and Lactogrow, so each bag concept line can be browsed on its own.',
+          description: 'March 2026 is synced from the dedicated month folder and grouped into separate sorts, including S26, Kitkat, Nyamnyam, Indomilk, and Lactogrow.',
           sorts: [
             {
               id: 's26',
               label: 'S26',
-              description: 'S26 is the current March 2026 sort. It highlights the totebag family and related bag variations you have added so far for IKM.',
+              description: 'S26 is the current March 2026 sort. It highlights the totebag family and related bag variations stored inside the March folder.',
               assets: [
                 {
                   title: 'S26 Totebag',
@@ -1006,7 +1209,7 @@
     const assetGrid = document.getElementById('asset-grid');
 
     let activeYear = '2025';
-    let activeMonth = 'August';
+    let activeMonth = 'October';
     let activeSort = null;
     let activeAssetIndex = 0;
 
