@@ -726,6 +726,144 @@ footer {
   margin-bottom: 1.8rem;
 }
 
+.admin-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.9fr);
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, transparent), color-mix(in srgb, var(--panel-bg-strong, var(--surface)) 96%, transparent));
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.admin-panel-modal {
+  position: relative;
+  width: min(100%, 940px);
+  max-height: min(88vh, 760px);
+  overflow-y: auto;
+}
+
+.admin-panel-kicker {
+  margin: 0 0 0.5rem;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.admin-panel h3 {
+  margin: 0 0 0.6rem;
+}
+
+.admin-panel-text {
+  margin: 0;
+  color: var(--muted);
+}
+
+.admin-status {
+  margin: 1rem 0 0;
+  font-weight: 600;
+}
+
+.admin-status[data-tone="success"] {
+  color: #86efac;
+}
+
+.admin-status[data-tone="error"] {
+  color: #fca5a5;
+}
+
+.admin-status[data-tone="info"] {
+  color: #bfdbfe;
+}
+
+.admin-panel-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  align-items: stretch;
+}
+
+.admin-login-form,
+.admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.admin-login-form input {
+  min-width: 0;
+  flex: 1 1 180px;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.78);
+  color: var(--text);
+}
+
+.admin-login-form input:focus {
+  outline: none;
+  border-color: rgba(96, 165, 250, 0.42);
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.12);
+}
+
+.admin-user {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 14%, var(--border));
+  color: var(--text);
+  font-weight: 600;
+}
+
+.admin-popout {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background:
+    radial-gradient(circle at top, color-mix(in srgb, var(--accent) 16%, transparent), transparent 36%),
+    rgba(2, 6, 23, 0.78);
+  backdrop-filter: blur(14px);
+}
+
+.admin-popout.is-open {
+  display: flex;
+}
+
+.close-admin-popout {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.close-admin-popout:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--accent) 38%, var(--border));
+}
+
 .filter-btn {
   padding: 0.75rem 1.1rem;
   border-radius: 999px;
@@ -985,6 +1123,27 @@ footer {
 .view-project-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
+}
+
+.project-admin-actions {
+  margin-top: 0.4rem;
+}
+
+.project-delete-btn {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  border-radius: 999px;
+  background: rgba(127, 29, 29, 0.24);
+  color: #fecaca;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.project-delete-btn:hover {
+  transform: translateY(-2px);
+  border-color: rgba(248, 113, 113, 0.55);
 }
 
 .more-projects-container {
@@ -1860,6 +2019,30 @@ footer {
   color: var(--muted);
 }
 
+.footer-admin-trigger {
+  display: block;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease, text-shadow 0.2s ease;
+}
+
+.footer-admin-trigger:hover,
+.footer-admin-trigger:focus-visible {
+  color: var(--text);
+  transform: translateY(-1px);
+  text-shadow: 0 0 18px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.footer-admin-trigger:focus-visible {
+  outline: none;
+}
+
 @media (max-width: 1120px) {
   .skill-tree {
     min-height: auto;
@@ -2036,6 +2219,26 @@ footer {
   .modal-content,
   .project-modal-content {
     padding: 1.5rem;
+  }
+
+  .admin-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-panel-modal {
+    width: min(100%, 620px);
+  }
+
+  .admin-login-form,
+  .admin-actions {
+    justify-content: stretch;
+  }
+
+  .admin-user,
+  .admin-login-form input,
+  .admin-actions button,
+  .admin-login-form button {
+    width: 100%;
   }
 
   .testimonials-grid {

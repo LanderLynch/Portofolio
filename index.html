@@ -317,7 +317,6 @@
   <section id="projects" class="projects-section" data-section-label="Projects">
     <h2 class="section-title">My Creative Portfolio</h2>
     <p class="section-subtitle">Explore my latest multimedia design projects and creative solutions</p>
-    
     <!-- Project Filter Tabs -->
     <div class="project-filters">
       <button class="filter-btn active" data-filter="all">All Projects</button>
@@ -950,6 +949,16 @@
           <label for="project-image">Project Image URL</label>
           <input type="url" id="project-image" placeholder="https://example.com/image.jpg">
         </div>
+
+        <div class="project-form-group">
+          <label for="project-link">Project Link</label>
+          <input type="url" id="project-link" placeholder="https://example.com/project">
+        </div>
+
+        <div class="project-form-group">
+          <label for="project-date-label">Project Date Label</label>
+          <input type="text" id="project-date-label" placeholder="March 2026">
+        </div>
         
         <div class="project-form-group">
           <label>Tech Stack</label>
@@ -1000,10 +1009,39 @@
       </div>
     </div>
 
-    <p class="footer-copy">&copy; 2024 Jona Setiawan. All rights reserved.</p>
+    <button type="button" class="footer-copy footer-admin-trigger" id="footer-admin-trigger" aria-haspopup="dialog" aria-controls="admin-popout" aria-expanded="false">&copy; 2024 Jona Setiawan. All rights reserved.</button>
   </footer>
 
+  <div class="admin-popout" id="admin-popout" aria-hidden="true">
+    <div class="admin-panel admin-panel-modal" id="admin-panel" role="dialog" aria-modal="true" aria-labelledby="admin-panel-title" tabindex="-1">
+      <button type="button" class="close-admin-popout" id="close-admin-popout" aria-label="Close admin panel">&times;</button>
+      <div class="admin-panel-copy">
+        <p class="admin-panel-kicker">Admin Panel</p>
+        <h3 id="admin-panel-title">Manage Firestore Projects</h3>
+        <p class="admin-panel-text">Public visitors can read your project entries. Sign in as the admin to add or delete items from Firestore.</p>
+        <p class="admin-status" id="admin-status" data-tone="info">Public portfolio mode. Sign in to manage projects.</p>
+      </div>
+      <div class="admin-panel-controls">
+        <form class="admin-login-form" id="admin-login-form">
+          <input type="email" id="admin-email" placeholder="Admin email" required>
+          <input type="password" id="admin-password" placeholder="Password" required>
+          <button type="submit" class="add-project-btn">Sign In</button>
+        </form>
+        <div class="admin-actions" id="admin-actions" hidden>
+          <span class="admin-user" id="admin-user">Public mode</span>
+          <button type="button" class="add-project-btn" id="add-project-btn">
+            <span class="btn-icon">+</span>
+            Add Project
+          </button>
+          <button type="button" class="more-btn" id="admin-logout-btn">Sign Out</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- JavaScript for typing effect and minimal interactions -->
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="admin-panel.js"></script>
   <script src="theme-controls.js?v=20260319-1"></script>
   <script>
     // Mobile Navigation Toggle
@@ -1274,16 +1312,25 @@
 
     // Project filtering functionality
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const projectCards = Array.from(document.querySelectorAll('.project-card'));
-    const hiddenProjects = Array.from(document.querySelectorAll('.project-card.hidden'));
+    let projectCards = [];
+    let hiddenProjects = [];
     let activeProjectFilter = 'all';
 
+    function refreshProjectRegistry() {
+      projectCards = Array.from(document.querySelectorAll('.project-card'));
+      hiddenProjects = Array.from(document.querySelectorAll('.project-card.hidden'));
+    }
+
+    refreshProjectRegistry();
     hiddenProjects.forEach(card => {
-      card.dataset.extraProject = 'true';
+      if (card.dataset.projectSource !== 'firebase') {
+        card.dataset.extraProject = 'true';
+      }
     });
 
     // Filter functionality
     function filterProjects(category) {
+      refreshProjectRegistry();
       activeProjectFilter = category;
 
       projectCards.forEach(card => {
@@ -1579,6 +1626,10 @@
     if (projectForm) {
       projectForm.addEventListener('submit', (e) => {
         e.preventDefault();
+
+        if (projectForm.dataset.mode === 'firebase') {
+          return;
+        }
         
         const title = document.getElementById('project-title').value;
         const category = document.getElementById('project-category').value;
@@ -1654,6 +1705,12 @@
       return card;
     }
 
+    function closeProjectModalPanel() {
+      if (projectModal) {
+        projectModal.style.display = 'none';
+      }
+    }
+
     // Show success message
     function showSuccessMessage(message) {
       const successDiv = document.createElement('div');
@@ -1707,6 +1764,15 @@
         }
       });
     });
+
+    window.portfolioProjectHelpers = {
+      closeProjectModal: closeProjectModalPanel,
+      filterProjects,
+      getActiveProjectFilter: () => activeProjectFilter,
+      refreshProjectRegistry,
+      resetProjectForm,
+      showSuccessMessage
+    };
   </script>
 </body>
 </html>

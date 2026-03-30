@@ -1,0 +1,9 @@
+.env
+.env.local
+.env.*.local
+*.env
+*.pem
+*.key
+serviceAccountKey.json
+firebase-adminsdk-*.json
+portofolio-jsfolio-firebase-adminsdk-*.json

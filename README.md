@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Site
 
-## Getting Started
+This repository is a static portfolio site built with HTML, CSS, JavaScript, and Firebase.
 
-First, run the development server:
+## Project Structure
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- `index.html`: main portfolio page
+- `certification.html`: certification archive page
+- `styles.css`: shared site styling
+- `theme-controls.js`: theme switcher
+- `zoom-controls.js`: zoom controls
+- `firebase-config.js`: browser Firebase setup
+- `admin-panel.js`: Firebase Auth and Firestore admin panel logic
+- `firestore.rules`: Firestore security rule template
+- `.env.example`: safe environment variable template
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Firebase Notes
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- The Firebase web config in `firebase-config.js` is for browser use.
+- Do not place a Firebase service account JSON key in this repo or in browser code.
+- Replace `REPLACE_WITH_YOUR_ADMIN_UID` in `firestore.rules` with your real Firebase Auth UID.
+- See `FIREBASE_SECURITY.md` for security guidance.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Local Development
 
-## Learn More
+Open the HTML files with a local web server rather than `file://` if you want Firebase features like Auth and Firestore to work properly.
 
-To learn more about Next.js, take a look at the following resources:
+## Security
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+If a service account key was exposed, revoke it immediately in Firebase / Google Cloud and generate a new one.
