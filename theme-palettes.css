@@ -225,6 +225,7 @@ body::after {
 
 .portfolio-title-link,
 .nav-container,
+.nav-links,
 .zoom-toggle-btn,
 .zoom-step-btn,
 .zoom-value-btn,
@@ -509,7 +510,9 @@ body::after {
 .project-detail-page .note-panel,
 .project-detail-page .focus-card,
 .project-detail-page .software-card,
-.project-detail-page .process-step {
+.project-detail-page .process-step,
+.project-detail-page .video-shell,
+.project-detail-page .cta-shell {
   background: var(--surface) !important;
   border-color: var(--border) !important;
   box-shadow: var(--shadow) !important;
@@ -550,6 +553,19 @@ body::after {
   border-color: color-mix(in srgb, var(--accent) 20%, var(--border)) !important;
 }
 
+.project-detail-page .video-container,
+.project-detail-page .gallery-item img {
+  background: color-mix(in srgb, var(--bg) 92%, transparent) !important;
+}
+
+.project-detail-page .gallery-item.no-crop img {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--surface) 94%, transparent),
+    color-mix(in srgb, var(--bg) 90%, var(--surface))
+  ) !important;
+}
+
 .project-detail-page .gallery-caption {
   background: linear-gradient(to top, color-mix(in srgb, var(--bg) 92%, transparent), transparent) !important;
   color: var(--text) !important;
@@ -586,6 +602,7 @@ body::before,
 body::after,
 .portfolio-title-link,
 .nav-container,
+.nav-links,
 .zoom-toggle-btn,
 .zoom-step-btn,
 .zoom-value-btn,

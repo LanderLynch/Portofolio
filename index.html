@@ -49,6 +49,7 @@
   <!-- Navigation - Responsive Navigation Bar -->
   <nav class="navbar">
     <div class="nav-container">
+      <div class="mobile-current-chip" id="mobile-current-chip" aria-hidden="true">Home</div>
       <!-- Hamburger Menu Button (Mobile Only) -->
       <button class="hamburger-menu" aria-label="Toggle Menu" aria-expanded="false">
         <span class="bar"></span>
@@ -1011,6 +1012,7 @@
     const navLinkItems = document.querySelectorAll('.nav-link-item');
     const portfolioTitleLink = document.querySelector('.portfolio-title-link');
     const portfolioText = document.querySelector('.portfolio-text');
+    const mobileCurrentChip = document.getElementById('mobile-current-chip');
     const zoomControl = document.getElementById('zoom-control');
     const zoomToggleBtn = document.getElementById('zoom-toggle-btn');
     const zoomPanel = document.getElementById('zoom-panel');
@@ -1175,6 +1177,10 @@
         portfolioText.textContent = currentLabel;
       }
 
+      if (mobileCurrentChip) {
+        mobileCurrentChip.textContent = currentLabel;
+      }
+
       if (portfolioTitleLink) {
         portfolioTitleLink.setAttribute('href', `#${sectionId}`);
         portfolioTitleLink.setAttribute('aria-label', `Jump to ${currentLabel}`);
@@ -1268,30 +1274,36 @@
 
     // Project filtering functionality
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-    const hiddenProjects = document.querySelectorAll('.project-card.hidden');
+    const projectCards = Array.from(document.querySelectorAll('.project-card'));
+    const hiddenProjects = Array.from(document.querySelectorAll('.project-card.hidden'));
+    let activeProjectFilter = 'all';
+
+    hiddenProjects.forEach(card => {
+      card.dataset.extraProject = 'true';
+    });
 
     // Filter functionality
     function filterProjects(category) {
+      activeProjectFilter = category;
+
       projectCards.forEach(card => {
-        if (category === 'all') {
-          card.style.display = 'block';
-        } else {
-          const cardCategory = card.getAttribute('data-category');
-          if (cardCategory === category) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        }
+        const matchesCategory = category === 'all' || card.getAttribute('data-category') === category;
+        const isExtraProject = card.dataset.extraProject === 'true';
+        const shouldHideForLoadMore = category === 'all' && isExtraProject && !expanded;
+        card.classList.toggle('hidden', !matchesCategory || shouldHideForLoadMore);
       });
 
-      // Show hidden projects when filtering
-      hiddenProjects.forEach(card => {
-        if (category === 'all' || card.getAttribute('data-category') === category) {
-          card.classList.remove('hidden');
-        }
-      });
+      if (moreBtn) {
+        const hasMatchingExtraProjects = hiddenProjects.some(card => category === 'all' || card.getAttribute('data-category') === category);
+        moreBtn.style.display = category === 'all' && hasMatchingExtraProjects ? 'inline-flex' : 'none';
+        moreBtn.textContent = expanded ? 'Show Less Projects' : 'Load More Projects';
+      }
+
+      if (projectsContainer) {
+        const visibleCards = projectCards.filter(card => !card.classList.contains('hidden'));
+        const shouldUseSingleCardLayout = visibleCards.length === 1 && !visibleCards[0].classList.contains('featured-project');
+        projectsContainer.classList.toggle('single-card-view', shouldUseSingleCardLayout);
+      }
     }
 
     // Add click event listeners to filter buttons
@@ -1306,14 +1318,8 @@
         // Get filter category
         const filterValue = btn.getAttribute('data-filter');
         
-        // Filter projects
+        expanded = false;
         filterProjects(filterValue);
-        
-        // Reset load more button
-        const moreBtn = document.getElementById('more-btn');
-        if (moreBtn) {
-          moreBtn.textContent = 'Load More Projects';
-        }
       });
     });
 
@@ -1325,22 +1331,12 @@
     if (moreBtn && projectsContainer) {
       moreBtn.addEventListener('click', () => {
         if (!expanded) {
-          // Show all hidden projects
-          hiddenProjects.forEach(card => {
-            card.classList.remove('hidden');
-          });
-          
-          moreBtn.textContent = 'Show Less Projects';
           expanded = true;
         } else {
-          // Hide extra projects
-          hiddenProjects.forEach(card => {
-            card.classList.add('hidden');
-          });
-          
-          moreBtn.textContent = 'Load More Projects';
           expanded = false;
         }
+
+        filterProjects(activeProjectFilter);
       });
     }
 
@@ -1359,6 +1355,7 @@
         btn.style.display = 'inline-block';
       });
 
+      filterProjects(activeProjectFilter);
       restoreMainPageScroll();
       updateActiveSection();
     });
