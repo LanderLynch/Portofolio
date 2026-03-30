@@ -26,6 +26,9 @@
   --shell-bg: rgba(5, 16, 29, 0.38);
   --shell-border: rgba(148, 163, 184, 0.1);
   --secondary-button-bg: rgba(255, 255, 255, 0.08);
+  --quick-action-text: #ffffff;
+  --quick-action-bg: rgba(15, 23, 42, 0.78);
+  --quick-action-border: rgba(255, 255, 255, 0.12);
   --input-bg: rgba(15, 23, 42, 0.72);
   --overlay-bg: linear-gradient(180deg, rgba(2, 6, 23, 0) 15%, rgba(2, 6, 23, 0.74) 100%);
   --modal-backdrop: rgba(2, 6, 23, 0.82);
@@ -647,6 +650,9 @@ body[data-theme="light"] {
   --shell-bg: rgba(241, 242, 248, 0.6);
   --shell-border: rgba(85, 88, 123, 0.1);
   --secondary-button-bg: rgba(236, 237, 244, 0.96);
+  --quick-action-text: #3f4462;
+  --quick-action-bg: rgba(244, 245, 250, 0.92);
+  --quick-action-border: rgba(79, 84, 121, 0.18);
   --input-bg: rgba(234, 235, 243, 0.96);
   --overlay-bg: linear-gradient(180deg, rgba(236, 236, 240, 0) 25%, rgba(79, 84, 121, 0.18) 100%);
   --modal-backdrop: rgba(164, 165, 181, 0.52);
