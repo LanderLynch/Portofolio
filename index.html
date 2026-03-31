@@ -781,128 +781,64 @@
 
   <section id="testimonials" class="testimonials-section" data-section-label="Testimonials">
     <div class="testimonials-container">
-      <div class="testimonials-header">
-        <h2 class="section-title">Client Testimonials</h2>
-        <p class="section-subtitle">What others say about my work and collaboration</p>
-        
-        <!-- Add New Testimonial Button - Moved to Top -->
-        <button class="add-testimonial-btn" id="add-testimonial-btn">
-          <span class="btn-icon">+</span>
-          Add Your Review
-        </button>
-      </div>
-      
-      <!-- Testimonials Display -->
-      <div class="testimonials-wrapper">
-        <div class="testimonials-scroll-container" id="testimonials-scroll">
-          <div class="testimonials-grid" id="testimonials-grid">
-            
-            <!-- Existing testimonials -->
-            <div class="testimonial-card">
-              <div class="testimonial-header">
-                <div class="testimonial-avatar">JD</div>
-                <div class="testimonial-info">
-                  <h4 class="testimonial-name">John Doe</h4>
-                  <p class="testimonial-role">Marketing Director</p>
-                </div>
-                <div class="testimonial-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-              </div>
-              <p class="testimonial-text">
-                "Jona's graphic design work exceeded all expectations. The attention to detail and creative approach brought our brand vision to life perfectly."
-              </p>
-              <div class="testimonial-date">December 2024</div>
-            </div>
-            
-            <div class="testimonial-card">
-              <div class="testimonial-header">
-                <div class="testimonial-avatar">SM</div>
-                <div class="testimonial-info">
-                  <h4 class="testimonial-name">Sarah Miller</h4>
-                  <p class="testimonial-role">Startup Founder</p>
-                </div>
-                <div class="testimonial-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-              </div>
-              <p class="testimonial-text">
-                "Working with Jona was a game-changer for our startup. The multimedia presentations created were not only visually stunning but also highly effective."
-              </p>
-              <div class="testimonial-date">November 2024</div>
-            </div>
-            
-            <div class="testimonial-card">
-              <div class="testimonial-header">
-                <div class="testimonial-avatar">AL</div>
-                <div class="testimonial-info">
-                  <h4 class="testimonial-name">Alex Lee</h4>
-                  <p class="testimonial-role">Creative Agency</p>
-                </div>
-                <div class="testimonial-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-              </div>
-              <p class="testimonial-text">
-                "The video editing skills are exceptional. Jona transformed our raw footage into compelling stories that resonate with our audience."
-              </p>
-              <div class="testimonial-date">October 2024</div>
-            </div>
-            
-            <div class="testimonial-card">
-              <div class="testimonial-header">
-                <div class="testimonial-avatar">ER</div>
-                <div class="testimonial-info">
-                  <h4 class="testimonial-name">Emma Rodriguez</h4>
-                  <p class="testimonial-role">Event Coordinator</p>
-                </div>
-                <div class="testimonial-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-              </div>
-              <p class="testimonial-text">
-                "The event posters designed by Jona were absolutely stunning. They captured the essence of our event perfectly and drove amazing attendance."
-              </p>
-              <div class="testimonial-date">September 2024</div>
-            </div>
+      <div class="guestbook-shell guestbook-shell-inline">
+        <div class="guestbook-header">
+          <p class="guestbook-kicker">Guestbook</p>
+          <h3>Guestbook</h3>
+          <p class="guestbook-intro">Feel free to share your thoughts, suggestions, questions, or anything else.</p>
+        </div>
+
+        <div class="guestbook-feed" id="guestbook-feed">
+          <div class="guestbook-empty" id="guestbook-empty">
+            No guestbook messages yet. Be the first to say hello.
           </div>
         </div>
-        
-        <!-- Scroll indicators -->
-        <div class="scroll-indicators">
-          <button class="scroll-btn scroll-left" id="scroll-left">&lsaquo;</button>
-          <button class="scroll-btn scroll-right" id="scroll-right">&rsaquo;</button>
-        </div>
-      </div>
-      
-      <!-- Add Testimonial Modal -->
-      <div class="testimonial-modal" id="testimonial-modal">
-        <div class="modal-content">
-          <span class="close-modal" id="close-modal">&times;</span>
-          <h3>Add Your Testimonial</h3>
-          <form id="testimonial-form">
-            <div class="form-group">
-              <label for="testimonial-name">Your Name *</label>
-              <input type="text" id="testimonial-name" required placeholder="Enter your full name">
+
+        <div class="guestbook-auth-bar" id="guestbook-auth-bar">
+          <p class="guestbook-auth-copy" id="guestbook-auth-copy">Please sign in to join the conversation. Don&apos;t worry, your data is safe with us.</p>
+
+          <div class="guestbook-provider-actions" id="guestbook-provider-actions">
+            <button type="button" class="provider-btn provider-btn-google" id="guestbook-google-btn">
+              <span class="provider-btn-mark">G</span>
+              Sign in with Google
+            </button>
+            <button type="button" class="provider-btn provider-btn-facebook" id="guestbook-facebook-btn">
+              <span class="provider-btn-mark">f</span>
+              Sign in with Facebook
+            </button>
+          </div>
+
+          <form class="email-auth-form" id="email-auth-form">
+            <div class="email-auth-grid">
+              <input type="email" id="guestbook-email" placeholder="Email address" autocomplete="email" required>
+              <input type="password" id="guestbook-password" placeholder="Password" autocomplete="current-password" required>
             </div>
-            
-            <div class="form-group">
-              <label for="testimonial-role">Your Role/Position</label>
-              <input type="text" id="testimonial-role" placeholder="e.g., CEO, Designer, Client">
+            <div class="email-auth-actions">
+              <button type="submit" class="provider-btn provider-btn-email" id="guestbook-email-login-btn">Sign in with Email</button>
+              <button type="button" class="provider-btn provider-btn-email-secondary" id="guestbook-email-signup-btn">Create Account</button>
             </div>
-            
-            <div class="form-group">
-              <label for="testimonial-rating">Rating *</label>
-              <select id="testimonial-rating" required>
-                <option value="">Select rating</option>
-                <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733; (5 stars)</option>
-                <option value="4">&#9733;&#9733;&#9733;&#9733; (4 stars)</option>
-                <option value="3">&#9733;&#9733;&#9733; (3 stars)</option>
-                <option value="2">&#9733;&#9733; (2 stars)</option>
-                <option value="1">&#9733; (1 star)</option>
-              </select>
-            </div>
-            
-            <div class="form-group">
-              <label for="testimonial-text">Your Testimonial *</label>
-              <textarea id="testimonial-text" required placeholder="Share your experience working with me..." rows="4"></textarea>
-            </div>
-            
-            <button type="submit" class="submit-btn">Submit Testimonial</button>
           </form>
+
+          <div class="guestbook-user-bar" id="guestbook-user-bar" hidden>
+            <div class="guestbook-user-meta">
+              <img src="" alt="" class="guestbook-user-avatar" id="guestbook-user-avatar">
+              <div>
+                <strong id="guestbook-user-name">Signed in</strong>
+                <p id="guestbook-user-provider">Ready to post a message</p>
+              </div>
+            </div>
+            <button type="button" class="more-btn" id="guestbook-signout-btn">Sign Out</button>
+          </div>
         </div>
+
+        <form class="guestbook-composer" id="guestbook-form">
+          <label class="guestbook-label" for="guestbook-message">Message</label>
+          <textarea id="guestbook-message" rows="3" maxlength="400" placeholder="Write something kind, ask a question, or leave feedback..." required></textarea>
+          <div class="guestbook-composer-footer">
+            <span class="guestbook-status" id="guestbook-status">Please sign in to join the conversation. Don&apos;t worry, your data is safe with us.</span>
+            <button type="submit" class="submit-btn" id="guestbook-submit-btn" disabled>Send Message</button>
+          </div>
+        </form>
       </div>
     </div>
   </section>
@@ -1042,6 +978,7 @@
   <!-- JavaScript for typing effect and minimal interactions -->
   <script type="module" src="firebase-config.js"></script>
   <script type="module" src="admin-panel.js"></script>
+  <script type="module" src="testimonials-guestbook.js"></script>
   <script src="theme-controls.js?v=20260319-1"></script>
   <script>
     // Mobile Navigation Toggle
