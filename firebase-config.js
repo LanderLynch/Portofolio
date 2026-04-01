@@ -4,8 +4,9 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-aut
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDS-gB4Aaqf7i__kOF8aINMOPyhBJtX6YQ",
+  apiKey: "AIzaSyDS-gB4Aaqf7i__k0F8aINMOPyhBJtX6YQ",
   authDomain: "portofolio-jsfolio.firebaseapp.com",
+  databaseURL: "https://portofolio-jsfolio-default-rtdb.firebaseio.com",
   projectId: "portofolio-jsfolio",
   storageBucket: "portofolio-jsfolio.firebasestorage.app",
   messagingSenderId: "992494176616",

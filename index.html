@@ -798,25 +798,31 @@
           <p class="guestbook-auth-copy" id="guestbook-auth-copy">Please sign in to join the conversation. Don&apos;t worry, your data is safe with us.</p>
 
           <div class="guestbook-provider-actions" id="guestbook-provider-actions">
-            <button type="button" class="provider-btn provider-btn-google" id="guestbook-google-btn">
-              <span class="provider-btn-mark">G</span>
-              Sign in with Google
-            </button>
-            <button type="button" class="provider-btn provider-btn-facebook" id="guestbook-facebook-btn">
-              <span class="provider-btn-mark">f</span>
-              Sign in with Facebook
+            <button type="button" class="provider-btn provider-btn-google-circle" id="guestbook-google-btn" aria-label="Sign in with Google" title="Sign in with Google">
+              <span class="provider-btn-mark provider-btn-mark-google" aria-hidden="true">G</span>
             </button>
           </div>
 
           <form class="email-auth-form" id="email-auth-form">
             <div class="email-auth-grid">
-              <input type="email" id="guestbook-email" placeholder="Email address" autocomplete="email" required>
+              <input type="text" id="guestbook-username" placeholder="Username" autocomplete="username" required>
               <input type="password" id="guestbook-password" placeholder="Password" autocomplete="current-password" required>
             </div>
             <div class="email-auth-actions">
-              <button type="submit" class="provider-btn provider-btn-email" id="guestbook-email-login-btn">Sign in with Email</button>
+              <button type="submit" class="provider-btn provider-btn-email" id="guestbook-email-login-btn">Sign in with Username</button>
               <button type="button" class="provider-btn provider-btn-email-secondary" id="guestbook-email-signup-btn">Create Account</button>
             </div>
+            <button type="button" class="guestbook-forgot-link" id="guestbook-forgot-link">Forgot Password?</button>
+          </form>
+
+          <form class="guestbook-recovery-form" id="guestbook-recovery-form" hidden>
+            <div class="guestbook-recovery-grid">
+              <input type="email" id="guestbook-recovery-email" placeholder="Email here" autocomplete="email">
+            </div>
+            <div class="email-auth-actions">
+              <button type="submit" class="provider-btn provider-btn-email" id="guestbook-recovery-send-btn">Send Email</button>
+            </div>
+            <button type="button" class="guestbook-forgot-link" id="guestbook-recovery-back-btn">Back to Sign In</button>
           </form>
 
           <div class="guestbook-user-bar" id="guestbook-user-bar" hidden>
