@@ -73,7 +73,8 @@
     }
 
     .back-btn,
-    .certificate-link {
+    .certificate-link,
+    .folder-open-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -92,6 +93,7 @@
 
     .back-btn:hover,
     .certificate-link:hover,
+    .folder-open-btn:hover,
     .filter-btn:hover {
       transform: translateY(-2px);
     }
@@ -233,6 +235,240 @@
       box-shadow: 0 18px 32px rgba(37, 99, 235, 0.28);
     }
 
+    .folder-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .folder-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(96, 165, 250, 0.12), transparent 32%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent);
+      pointer-events: none;
+    }
+
+    .folder-card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .folder-icon {
+      width: 3.1rem;
+      height: 3.1rem;
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 1rem;
+      background: rgba(96, 165, 250, 0.12);
+      color: #bfdbfe;
+      border: 1px solid rgba(96, 165, 250, 0.18);
+    }
+
+    .folder-icon svg {
+      width: 1.55rem;
+      height: 1.55rem;
+      stroke: currentColor;
+      stroke-width: 1.9;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .folder-summary {
+      display: grid;
+      gap: 0.55rem;
+      flex: 1;
+    }
+
+    .folder-stats {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: #bfdbfe;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .folder-open-btn {
+      width: 100%;
+      padding: 0.85rem 1.2rem;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .folder-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: rgba(2, 6, 23, 0.7);
+      backdrop-filter: blur(12px);
+    }
+
+    .folder-modal.is-open {
+      display: flex;
+    }
+
+    .folder-modal-card {
+      position: relative;
+      width: min(100%, 760px);
+      max-height: min(88vh, 820px);
+      overflow: auto;
+      padding: 1.5rem;
+      border-radius: calc(var(--radius-xl) + 4px);
+      background: rgba(5, 16, 29, 0.94);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .folder-modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 2.7rem;
+      height: 2.7rem;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1.35rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .folder-modal-close:hover {
+      transform: translateY(-1px);
+      border-color: rgba(96, 165, 250, 0.35);
+    }
+
+    .folder-modal-header {
+      display: grid;
+      gap: 0.7rem;
+      margin-bottom: 1.4rem;
+      padding-right: 3.2rem;
+    }
+
+    .folder-modal-kicker {
+      margin: 0;
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .folder-modal-header h2 {
+      margin: 0;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      line-height: 1.1;
+    }
+
+    .folder-modal-header p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .folder-accordion {
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .folder-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.1rem;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .folder-toggle-copy {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      min-width: 0;
+    }
+
+    .folder-toggle-copy strong {
+      display: block;
+      font-size: 1rem;
+    }
+
+    .folder-toggle-copy span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .folder-chevron {
+      transition: transform 0.22s ease;
+      color: var(--muted);
+      font-size: 1.2rem;
+    }
+
+    .folder-accordion.open .folder-chevron {
+      transform: rotate(180deg);
+    }
+
+    .folder-files {
+      display: grid;
+      gap: 0.85rem;
+      padding: 0 1.1rem 1.1rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.24s ease;
+    }
+
+    .folder-accordion.open .folder-files {
+      max-height: 1400px;
+    }
+
+    .folder-file {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.95rem 1rem;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(148, 163, 184, 0.1);
+    }
+
+    .folder-file-copy {
+      min-width: 0;
+    }
+
+    .folder-file-copy strong {
+      display: block;
+      font-size: 0.98rem;
+      line-height: 1.4;
+    }
+
+    .folder-file-copy span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 0.2rem;
+    }
+
     .empty-state {
       display: none;
       text-align: center;
@@ -241,6 +477,94 @@
 
     .empty-state.visible {
       display: block;
+    }
+
+    body[data-theme="light"] {
+      color: #2c2f47;
+      background:
+        radial-gradient(circle at top left, rgba(111, 125, 181, 0.18), transparent 34%),
+        radial-gradient(circle at 85% 12%, rgba(148, 163, 184, 0.16), transparent 28%),
+        linear-gradient(180deg, #f3f4fb 0%, #eceff7 55%, #e7ebf5 100%);
+    }
+
+    body[data-theme="light"] .topbar,
+    body[data-theme="light"] .hero,
+    body[data-theme="light"] .hero-stat,
+    body[data-theme="light"] .certificate-card,
+    body[data-theme="light"] .empty-state,
+    body[data-theme="light"] .folder-accordion {
+      background: rgba(245, 246, 251, 0.94);
+      border-color: rgba(93, 98, 136, 0.14);
+      box-shadow: 0 24px 54px rgba(93, 98, 136, 0.14);
+    }
+
+    body[data-theme="light"] .brand,
+    body[data-theme="light"] .hero h1,
+    body[data-theme="light"] .certificate-card h2,
+    body[data-theme="light"] .folder-modal-header h2,
+    body[data-theme="light"] .folder-toggle,
+    body[data-theme="light"] .folder-file-copy strong {
+      color: #2c2f47;
+    }
+
+    body[data-theme="light"] .hero p,
+    body[data-theme="light"] .hero-stat span,
+    body[data-theme="light"] .section-note,
+    body[data-theme="light"] .certificate-card p,
+    body[data-theme="light"] .empty-state,
+    body[data-theme="light"] .folder-modal-header p,
+    body[data-theme="light"] .folder-toggle-copy span,
+    body[data-theme="light"] .folder-file-copy span,
+    body[data-theme="light"] .folder-chevron {
+      color: #6b7191;
+    }
+
+    body[data-theme="light"] .back-btn,
+    body[data-theme="light"] .folder-open-btn,
+    body[data-theme="light"] .filter-btn {
+      background: rgba(255, 255, 255, 0.88);
+      color: #4f5479;
+      border-color: rgba(93, 98, 136, 0.16);
+    }
+
+    body[data-theme="light"] .filter-btn.active {
+      background: linear-gradient(135deg, rgba(111, 125, 181, 0.18), rgba(151, 164, 214, 0.22));
+      color: #2c2f47;
+    }
+
+    body[data-theme="light"] .certificate-tag,
+    body[data-theme="light"] .folder-icon,
+    body[data-theme="light"] .folder-stats {
+      background: rgba(111, 125, 181, 0.14);
+      color: #5b638e;
+      border-color: rgba(111, 125, 181, 0.18);
+    }
+
+    body[data-theme="light"] .folder-card::before {
+      background:
+        radial-gradient(circle at top right, rgba(111, 125, 181, 0.12), transparent 32%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.62), transparent);
+    }
+
+    body[data-theme="light"] .folder-modal {
+      background: rgba(110, 119, 154, 0.28);
+    }
+
+    body[data-theme="light"] .folder-modal-card {
+      background: rgba(245, 246, 251, 0.98);
+      border-color: rgba(93, 98, 136, 0.16);
+      box-shadow: 0 28px 58px rgba(93, 98, 136, 0.18);
+    }
+
+    body[data-theme="light"] .folder-modal-close {
+      background: rgba(255, 255, 255, 0.88);
+      color: #4f5479;
+      border-color: rgba(93, 98, 136, 0.14);
+    }
+
+    body[data-theme="light"] .folder-file {
+      background: rgba(255, 255, 255, 0.76);
+      border-color: rgba(93, 98, 136, 0.1);
     }
 
     @media (max-width: 720px) {
@@ -263,8 +587,14 @@
       }
 
       .back-btn,
-      .certificate-link {
+      .certificate-link,
+      .folder-open-btn {
         width: 100%;
+      }
+
+      .folder-file {
+        flex-direction: column;
+        align-items: stretch;
       }
     }
   </style>
@@ -338,7 +668,7 @@
       <button class="filter-btn" data-filter="competition">Competition</button>
     </div>
 
-    <p class="section-note" id="results-note">Showing all 25 certification files.</p>
+    <p class="section-note" id="results-note">Showing all certification groups and files.</p>
 
     <section class="certificates-grid" id="certificates-grid">
       <article class="certificate-card" data-category="myskill">
@@ -397,102 +727,21 @@
         <a class="certificate-link" href="project/Certification/Jona Saevuddyn Setiawan - E-Certif SC Color and Typography MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
-      <article class="certificate-card" data-category="skill">
+      <article class="certificate-card folder-card" data-category="skill">
         <span class="certificate-tag">Skill</span>
-        <h2>TOEFL ITP</h2>
-        <p>English learning certificate and TOEFL ITP material.</p>
-        <a class="certificate-link" href="project/Certification/TOEFL ITP.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="skill">
-        <span class="certificate-tag">Skill</span>
-        <h2>TOEFL ITP Introduction</h2>
-        <p>Introductory PDF for TOEFL ITP learning preparation.</p>
-        <a class="certificate-link" href="project/Certification/TOEFL ITP INTRODUCTION.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="skill">
-        <span class="certificate-tag">Skill</span>
-        <h2>Listening Skill Part A</h2>
-        <p>Listening practice PDF focused on TOEFL-style exercises.</p>
-        <a class="certificate-link" href="project/Certification/LISTENING SKILL PART A.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="skill">
-        <span class="certificate-tag">Skill</span>
-        <h2>Listening Skill Part B and C</h2>
-        <p>Continuation listening practice material for English training.</p>
-        <a class="certificate-link" href="project/Certification/LISTENING SKILL PART B AND C.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="skill">
-        <span class="certificate-tag">Skill</span>
-        <h2>Reading Introduction</h2>
-        <p>Reading section introduction PDF.</p>
-        <a class="certificate-link" href="project/Certification/Reading_ Introduction.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="skill">
-        <span class="certificate-tag">Skill</span>
-        <h2>Reading Explicit Questions</h2>
-        <p>Reading practice material for explicit question types.</p>
-        <a class="certificate-link" href="project/Certification/Reading_ Explicit Questions.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="skill">
-        <span class="certificate-tag">Skill</span>
-        <h2>Reading Implicit Questions</h2>
-        <p>Reading practice PDF focused on implicit question skills.</p>
-        <a class="certificate-link" href="project/Certification/READING_ IMPLICIT QUESTIONS.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="skill">
-        <span class="certificate-tag">Skill</span>
-        <h2>Reading Vocabulary Question</h2>
-        <p>Vocabulary-based reading material for English preparation.</p>
-        <a class="certificate-link" href="project/Certification/Reading_ Vocabulary Question.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="skill">
-        <span class="certificate-tag">Skill</span>
-        <h2>Written and Structure Part 1</h2>
-        <p>Writing structure training PDF part 1.</p>
-        <a class="certificate-link" href="project/Certification/WRITTEN AND STRUCTURE  WRITING STRUCTURE PART 1.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="skill">
-        <span class="certificate-tag">Skill</span>
-        <h2>Written and Structure Part 2</h2>
-        <p>Writing structure training PDF part 2.</p>
-        <a class="certificate-link" href="project/Certification/Written & Structure  Writing Structure Part 2.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="skill">
-        <span class="certificate-tag">Skill</span>
-        <h2>Written Expression Part I</h2>
-        <p>Written expression material part I.</p>
-        <a class="certificate-link" href="project/Certification/Written & Structure _ Writen Expression Part I.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="skill">
-        <span class="certificate-tag">Skill</span>
-        <h2>Written Expression Part II</h2>
-        <p>Written expression material part II.</p>
-        <a class="certificate-link" href="project/Certification/Written & Structure _ Writen Expression Part II.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="skill">
-        <span class="certificate-tag">Skill</span>
-        <h2>Writing Structure Part III</h2>
-        <p>Writing structure practice PDF part III.</p>
-        <a class="certificate-link" href="project/Certification/Written & Structure _ Writing Structure Part III.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="skill">
-        <span class="certificate-tag">Skill</span>
-        <h2>Writing Structure Part IV</h2>
-        <p>Writing structure practice PDF part IV.</p>
-        <a class="certificate-link" href="project/Certification/Written & Structure _ Writing Structure Part IV.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        <div class="folder-card-head">
+          <span class="folder-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3.75 6.75A2.25 2.25 0 0 1 6 4.5h4.06c.4 0 .78.16 1.06.44l1.19 1.19c.28.28.66.44 1.06.44h4.63A2.25 2.25 0 0 1 20.25 8.8v8.45A2.25 2.25 0 0 1 18 19.5H6a2.25 2.25 0 0 1-2.25-2.25V6.75Z"></path></svg>
+          </span>
+          <div class="folder-summary">
+            <h2>TOEFL Training PDFs</h2>
+            <p>All skill files here are part of the same TOEFL training material set. Open this group to browse the full listening, reading, and structure PDF collection in one place.</p>
+            <div class="folder-stats">
+              <span>14 PDFs grouped</span>
+            </div>
+          </div>
+        </div>
+        <button class="folder-open-btn" type="button" id="toefl-folder-open-btn">Open Folder Group</button>
       </article>
 
       <article class="certificate-card" data-category="trainee">
@@ -523,11 +772,143 @@
     </div>
   </div>
 
+  <div class="folder-modal" id="toefl-folder-modal" aria-hidden="true">
+    <div class="folder-modal-card" role="dialog" aria-modal="true" aria-labelledby="toefl-folder-title">
+      <button class="folder-modal-close" type="button" id="toefl-folder-close-btn" aria-label="Close TOEFL folder">&times;</button>
+      <div class="folder-modal-header">
+        <p class="folder-modal-kicker">Skill Group</p>
+        <h2 id="toefl-folder-title">TOEFL Training PDFs</h2>
+        <p>This folder gathers the full TOEFL training set into one expandable place so the skill section stays cleaner while still showing every related PDF.</p>
+      </div>
+
+      <div class="folder-accordion" id="toefl-folder-accordion">
+        <button class="folder-toggle" type="button" id="toefl-folder-toggle" aria-expanded="true">
+          <span class="folder-toggle-copy">
+            <span class="folder-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3.75 6.75A2.25 2.25 0 0 1 6 4.5h4.06c.4 0 .78.16 1.06.44l1.19 1.19c.28.28.66.44 1.06.44h4.63A2.25 2.25 0 0 1 20.25 8.8v8.45A2.25 2.25 0 0 1 18 19.5H6a2.25 2.25 0 0 1-2.25-2.25V6.75Z"></path></svg>
+            </span>
+            <span>
+              <strong>TOEFL Training PDFs</strong>
+              <span>Expand this folder to reveal every TOEFL-related learning PDF.</span>
+            </span>
+          </span>
+          <span class="folder-chevron" aria-hidden="true">⌄</span>
+        </button>
+
+        <div class="folder-files" id="toefl-folder-files">
+          <div class="folder-file">
+            <div class="folder-file-copy">
+              <strong>TOEFL ITP</strong>
+              <span>English learning certificate and TOEFL ITP material.</span>
+            </div>
+            <a class="certificate-link" href="project/Certification/TOEFL ITP.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+          </div>
+          <div class="folder-file">
+            <div class="folder-file-copy">
+              <strong>TOEFL ITP Introduction</strong>
+              <span>Introductory PDF for TOEFL ITP learning preparation.</span>
+            </div>
+            <a class="certificate-link" href="project/Certification/TOEFL ITP INTRODUCTION.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+          </div>
+          <div class="folder-file">
+            <div class="folder-file-copy">
+              <strong>Listening Skill Part A</strong>
+              <span>Listening practice PDF focused on TOEFL-style exercises.</span>
+            </div>
+            <a class="certificate-link" href="project/Certification/LISTENING SKILL PART A.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+          </div>
+          <div class="folder-file">
+            <div class="folder-file-copy">
+              <strong>Listening Skill Part B and C</strong>
+              <span>Continuation listening practice material for English training.</span>
+            </div>
+            <a class="certificate-link" href="project/Certification/LISTENING SKILL PART B AND C.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+          </div>
+          <div class="folder-file">
+            <div class="folder-file-copy">
+              <strong>Reading Introduction</strong>
+              <span>Reading section introduction PDF.</span>
+            </div>
+            <a class="certificate-link" href="project/Certification/Reading_ Introduction.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+          </div>
+          <div class="folder-file">
+            <div class="folder-file-copy">
+              <strong>Reading Explicit Questions</strong>
+              <span>Reading practice material for explicit question types.</span>
+            </div>
+            <a class="certificate-link" href="project/Certification/Reading_ Explicit Questions.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+          </div>
+          <div class="folder-file">
+            <div class="folder-file-copy">
+              <strong>Reading Implicit Questions</strong>
+              <span>Reading practice PDF focused on implicit question skills.</span>
+            </div>
+            <a class="certificate-link" href="project/Certification/READING_ IMPLICIT QUESTIONS.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+          </div>
+          <div class="folder-file">
+            <div class="folder-file-copy">
+              <strong>Reading Vocabulary Question</strong>
+              <span>Vocabulary-based reading material for English preparation.</span>
+            </div>
+            <a class="certificate-link" href="project/Certification/Reading_ Vocabulary Question.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+          </div>
+          <div class="folder-file">
+            <div class="folder-file-copy">
+              <strong>Written and Structure Part 1</strong>
+              <span>Writing structure training PDF part 1.</span>
+            </div>
+            <a class="certificate-link" href="project/Certification/WRITTEN AND STRUCTURE  WRITING STRUCTURE PART 1.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+          </div>
+          <div class="folder-file">
+            <div class="folder-file-copy">
+              <strong>Written and Structure Part 2</strong>
+              <span>Writing structure training PDF part 2.</span>
+            </div>
+            <a class="certificate-link" href="project/Certification/Written & Structure  Writing Structure Part 2.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+          </div>
+          <div class="folder-file">
+            <div class="folder-file-copy">
+              <strong>Written Expression Part I</strong>
+              <span>Written expression material part I.</span>
+            </div>
+            <a class="certificate-link" href="project/Certification/Written & Structure _ Writen Expression Part I.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+          </div>
+          <div class="folder-file">
+            <div class="folder-file-copy">
+              <strong>Written Expression Part II</strong>
+              <span>Written expression material part II.</span>
+            </div>
+            <a class="certificate-link" href="project/Certification/Written & Structure _ Writen Expression Part II.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+          </div>
+          <div class="folder-file">
+            <div class="folder-file-copy">
+              <strong>Writing Structure Part III</strong>
+              <span>Writing structure practice PDF part III.</span>
+            </div>
+            <a class="certificate-link" href="project/Certification/Written & Structure _ Writing Structure Part III.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+          </div>
+          <div class="folder-file">
+            <div class="folder-file-copy">
+              <strong>Writing Structure Part IV</strong>
+              <span>Writing structure practice PDF part IV.</span>
+            </div>
+            <a class="certificate-link" href="project/Certification/Written & Structure _ Writing Structure Part IV.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     const filterButtons = document.querySelectorAll(".filter-btn");
     const certificateCards = document.querySelectorAll(".certificate-card");
     const emptyState = document.getElementById("empty-state");
     const resultsNote = document.getElementById("results-note");
+    const toeflFolderOpenBtn = document.getElementById("toefl-folder-open-btn");
+    const toeflFolderModal = document.getElementById("toefl-folder-modal");
+    const toeflFolderCloseBtn = document.getElementById("toefl-folder-close-btn");
+    const toeflFolderAccordion = document.getElementById("toefl-folder-accordion");
+    const toeflFolderToggle = document.getElementById("toefl-folder-toggle");
 
     function updateCertificates(filter) {
       let visibleCount = 0;
@@ -544,11 +925,11 @@
       emptyState.classList.toggle("visible", visibleCount === 0);
 
       if (filter === "all") {
-        resultsNote.textContent = "Showing all 25 certification files.";
+        resultsNote.textContent = "Showing all certification groups and files.";
       } else if (filter === "myskill") {
         resultsNote.textContent = "Showing MySkill certifications only.";
       } else if (filter === "skill") {
-        resultsNote.textContent = "Showing skill certifications only.";
+        resultsNote.textContent = "Showing the grouped TOEFL training PDF folder.";
       } else if (filter === "trainee") {
         resultsNote.textContent = "Showing trainee certifications only.";
       } else {
@@ -562,6 +943,42 @@
         button.classList.add("active");
         updateCertificates(button.dataset.filter);
       });
+    });
+
+    function setToeflFolderOpen(isOpen) {
+      toeflFolderModal.classList.toggle("is-open", isOpen);
+      toeflFolderModal.setAttribute("aria-hidden", String(!isOpen));
+      document.body.style.overflow = isOpen ? "hidden" : "";
+    }
+
+    function setAccordionOpen(isOpen) {
+      toeflFolderAccordion.classList.toggle("open", isOpen);
+      toeflFolderToggle.setAttribute("aria-expanded", String(isOpen));
+    }
+
+    toeflFolderOpenBtn?.addEventListener("click", () => {
+      setToeflFolderOpen(true);
+      setAccordionOpen(true);
+    });
+
+    toeflFolderCloseBtn?.addEventListener("click", () => {
+      setToeflFolderOpen(false);
+    });
+
+    toeflFolderModal?.addEventListener("click", (event) => {
+      if (event.target === toeflFolderModal) {
+        setToeflFolderOpen(false);
+      }
+    });
+
+    toeflFolderToggle?.addEventListener("click", () => {
+      setAccordionOpen(!toeflFolderAccordion.classList.contains("open"));
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && toeflFolderModal?.classList.contains("is-open")) {
+        setToeflFolderOpen(false);
+      }
     });
   </script>
   <script src="theme-controls.js"></script>

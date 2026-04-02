@@ -4,7 +4,7 @@
   const themeButtons = Array.from(document.querySelectorAll("[data-theme-value]"));
 
   function normalizeTheme(theme) {
-    return supportedThemes.has(theme) ? theme : "blue";
+    return supportedThemes.has(theme) ? theme : "light";
   }
 
   function applyTheme(theme) {

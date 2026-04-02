@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="Logo preview/Logo Lemon.png">
+  <title>Marketing &amp; Assistant HR - Jona Setiawan</title>
+  <link rel="stylesheet" href="../zoom-controls.css">
+  <link rel="stylesheet" href="../theme-palettes.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .project-detail-page .page-zoom-toggle,
+    .project-detail-page .page-zoom-step,
+    .project-detail-page .page-zoom-value,
+    .project-detail-page .page-zoom-panel,
+    .project-detail-page .zoom-theme-btn {
+      border-color: color-mix(in srgb, var(--accent) 34%, var(--border)) !important;
+      color: var(--text) !important;
+      background: var(--panel-bg) !important;
+      box-shadow: var(--shadow) !important;
+    }
+
+    .project-detail-page .page-zoom-panel {
+      background: color-mix(in srgb, var(--panel-bg) 94%, transparent) !important;
+    }
+
+    .project-detail-page .page-zoom-label {
+      color: var(--muted) !important;
+    }
+
+    .project-detail-page .page-zoom-value {
+      background: var(--secondary-button-bg) !important;
+    }
+
+    .project-detail-page .page-zoom-toggle:hover,
+    .project-detail-page .page-zoom-step:hover,
+    .project-detail-page .page-zoom-value:hover,
+    .project-detail-page .zoom-theme-btn:hover {
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--border)) !important;
+    }
+
+    .project-detail-page .zoom-theme-btn.is-active {
+      background: linear-gradient(135deg, var(--accent-strong), var(--accent)) !important;
+      color: var(--button-primary-text) !important;
+      border-color: transparent !important;
+      box-shadow: 0 14px 28px color-mix(in srgb, var(--accent-strong) 22%, transparent) !important;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1rem 2rem;
+      background: color-mix(in srgb, var(--panel-bg-strong) 90%, transparent);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+    }
+
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.8rem 1.4rem;
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--button-primary-text);
+      background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+      font-weight: 700;
+      box-shadow: 0 18px 40px color-mix(in srgb, var(--accent-strong) 30%, transparent);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-4px);
+      box-shadow: 0 22px 48px color-mix(in srgb, var(--accent-strong) 38%, transparent);
+    }
+
+    .back-btn-logo {
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .hero {
+      padding: 6rem 2rem 3.5rem;
+      background:
+        radial-gradient(circle at top left, color-mix(in srgb, var(--accent) 18%, transparent), transparent 36%),
+        radial-gradient(circle at 85% 14%, color-mix(in srgb, var(--accent-strong) 14%, transparent), transparent 24%),
+        linear-gradient(180deg, color-mix(in srgb, var(--bg-alt) 92%, transparent), color-mix(in srgb, var(--bg) 96%, transparent));
+    }
+
+    .hero-content,
+    .content-section,
+    .cta-section {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.95fr);
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-preview,
+    .feature-card,
+    .workbook-shell,
+    .cta-shell {
+      border: 1px solid color-mix(in srgb, var(--accent) 16%, var(--border));
+      background: linear-gradient(180deg, color-mix(in srgb, var(--panel-bg) 94%, transparent), color-mix(in srgb, var(--panel-soft) 92%, transparent));
+      box-shadow: var(--shadow);
+      border-radius: 2rem;
+    }
+
+    .hero-copy {
+      padding: 2.3rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.48rem 0.95rem;
+      margin-bottom: 1.2rem;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border));
+      background: color-mix(in srgb, var(--accent-soft) 80%, transparent);
+      color: var(--accent-label-text);
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.7rem, 5vw, 4.4rem);
+      line-height: 1.03;
+      margin-bottom: 1rem;
+      background: var(--hero-title-highlight);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-description {
+      max-width: 58rem;
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-bottom: 1.7rem;
+    }
+
+    .project-meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .meta-item {
+      padding: 1rem 1.1rem;
+      border-radius: 1.35rem;
+      background: color-mix(in srgb, var(--panel-soft) 78%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+      min-height: 6.2rem;
+    }
+
+    .meta-label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.45rem;
+    }
+
+    .meta-value {
+      color: var(--text);
+      font-size: 1.03rem;
+      font-weight: 700;
+    }
+
+    .tech-stack,
+    .hero-actions,
+    .feature-grid,
+    .summary-grid,
+    .toolbar-actions,
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .tech-tag,
+    .summary-chip,
+    .sheet-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.68rem 1rem;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+      background: color-mix(in srgb, var(--tag-bg-soft) 70%, transparent);
+      color: var(--tag-text);
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      margin-top: 1.45rem;
+    }
+
+    .action-btn,
+    .toolbar-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.9rem 1.35rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .action-btn:hover,
+    .toolbar-btn:hover,
+    .sheet-tab:hover,
+    .header-sort-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .action-btn-primary,
+    .toolbar-btn-primary {
+      color: var(--button-primary-text);
+      background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+      box-shadow: 0 16px 34px color-mix(in srgb, var(--accent-strong) 24%, transparent);
+    }
+
+    .action-btn-secondary,
+    .toolbar-btn-secondary {
+      color: var(--text);
+      background: color-mix(in srgb, var(--panel-soft-alt) 82%, transparent);
+      border-color: color-mix(in srgb, var(--accent) 20%, var(--border));
+    }
+
+    .hero-preview {
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.2rem;
+      min-height: 100%;
+    }
+
+    .preview-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 1.5rem;
+      background: color-mix(in srgb, var(--panel-soft) 74%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 16%, var(--border));
+    }
+
+    .preview-brand img {
+      width: 4.6rem;
+      height: 4.6rem;
+      border-radius: 1.25rem;
+      object-fit: cover;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+    }
+
+    .preview-brand h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .preview-brand p,
+    .preview-note,
+    .table-hint,
+    .load-message,
+    .footer-note {
+      color: var(--muted);
+    }
+
+    .preview-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .preview-metric {
+      padding: 1rem;
+      border-radius: 1.35rem;
+      background: color-mix(in srgb, var(--panel-soft-alt) 78%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 15%, var(--border));
+    }
+
+    .preview-metric span {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.35rem;
+    }
+
+    .preview-metric strong {
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .content-section {
+      padding: 0 2rem 4rem;
+    }
+
+    .section-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 54rem;
+      font-size: 1.05rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .feature-card {
+      padding: 1.35rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.18rem;
+      margin-bottom: 0.65rem;
+      color: var(--text);
+    }
+
+    .feature-card p {
+      color: var(--muted);
+    }
+
+    .workbook-shell {
+      padding: 1.4rem;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .summary-card {
+      padding: 1rem 1.05rem;
+      border-radius: 1.35rem;
+      background: color-mix(in srgb, var(--panel-soft) 78%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 16%, var(--border));
+    }
+
+    .summary-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.35rem;
+    }
+
+    .summary-card strong {
+      color: var(--text);
+      font-size: 1.18rem;
+    }
+
+    .workbook-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0 1.2rem;
+      border-top: 1px solid var(--panel-separator);
+      border-bottom: 1px solid var(--panel-separator);
+      margin-bottom: 1rem;
+    }
+
+    .toolbar-search {
+      flex: 1 1 320px;
+      position: relative;
+    }
+
+    .toolbar-search input,
+    .toolbar-select {
+      width: 100%;
+      padding: 0.92rem 1rem;
+      border-radius: 1.1rem;
+      border: 1px solid color-mix(in srgb, var(--accent) 16%, var(--border));
+      background: var(--input-bg);
+      color: var(--text);
+      font: inherit;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .toolbar-search input:focus,
+    .toolbar-select:focus {
+      border-color: color-mix(in srgb, var(--accent) 48%, var(--border));
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 15%, transparent);
+    }
+
+    .toolbar-search input::placeholder {
+      color: color-mix(in srgb, var(--muted) 82%, transparent);
+    }
+
+    .toolbar-actions {
+      justify-content: flex-end;
+      flex: 1 1 380px;
+    }
+
+    .toolbar-btn,
+    .toolbar-select {
+      min-height: 3.15rem;
+    }
+
+    .toolbar-select {
+      width: auto;
+      min-width: 7rem;
+    }
+
+    .sheet-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .sheet-tab {
+      cursor: pointer;
+      color: var(--text);
+      background: color-mix(in srgb, var(--panel-soft-alt) 82%, transparent);
+    }
+
+    .sheet-tab.is-active {
+      background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+      color: var(--button-primary-text);
+      border-color: transparent;
+      box-shadow: 0 16px 36px color-mix(in srgb, var(--accent-strong) 20%, transparent);
+    }
+
+    .table-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.85rem;
+    }
+
+    .table-wrap {
+      overflow: auto;
+      border-radius: 1.6rem;
+      border: 1px solid color-mix(in srgb, var(--accent) 14%, var(--border));
+      background: color-mix(in srgb, var(--panel-soft) 76%, transparent);
+    }
+
+    table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: color-mix(in srgb, var(--panel-bg-strong) 96%, transparent);
+      color: var(--text);
+      text-align: left;
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid var(--panel-separator);
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+
+    tbody td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--panel-separator) 58%, transparent);
+      color: color-mix(in srgb, var(--text) 92%, var(--muted));
+      vertical-align: top;
+      min-width: 10rem;
+    }
+
+    tbody tr:nth-child(even) td {
+      background: color-mix(in srgb, var(--panel-soft-alt) 42%, transparent);
+    }
+
+    tbody tr:hover td {
+      background: color-mix(in srgb, var(--accent-soft) 80%, transparent);
+    }
+
+    .header-sort-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: transparent;
+      border: 0;
+      color: inherit;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .sort-indicator {
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1;
+    }
+
+    .sort-indicator.is-active {
+      color: var(--accent);
+    }
+
+    .load-message {
+      padding: 1.2rem 0.35rem 0;
+      font-size: 0.98rem;
+    }
+
+    .load-message.is-error {
+      color: #fca5a5;
+    }
+
+    .cta-section {
+      padding: 0 2rem 4rem;
+    }
+
+    .cta-shell {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .cta-shell h2 {
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      margin-bottom: 0.8rem;
+    }
+
+    .cta-shell p {
+      max-width: 44rem;
+      margin: 0 auto 1.4rem;
+      color: var(--muted);
+    }
+
+    .footer {
+      padding: 0 2rem 3rem;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    body[data-theme="light"] .toolbar-search input,
+    body[data-theme="light"] .toolbar-select {
+      background: rgba(255, 255, 255, 0.96);
+      color: #1f2a44;
+    }
+
+    body[data-theme="light"] .table-wrap {
+      background: rgba(255, 255, 255, 0.74);
+    }
+
+    body[data-theme="light"] thead th {
+      background: rgba(255, 255, 255, 0.96);
+    }
+
+    body[data-theme="light"] tbody td {
+      color: #394869;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .feature-grid,
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-meta {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .navbar,
+      .hero,
+      .content-section,
+      .cta-section,
+      .footer {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .hero {
+        padding-top: 5.4rem;
+      }
+
+      .hero-copy,
+      .hero-preview,
+      .workbook-shell,
+      .cta-shell {
+        border-radius: 1.5rem;
+      }
+
+      .hero-copy,
+      .hero-preview,
+      .workbook-shell,
+      .cta-shell,
+      .feature-card {
+        padding: 1.2rem;
+      }
+
+      .project-meta {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-metrics,
+      .summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .workbook-toolbar,
+      .table-meta {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .toolbar-actions {
+        justify-content: stretch;
+      }
+
+      .toolbar-actions > * {
+        flex: 1 1 auto;
+      }
+
+      .sheet-tab {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body class="project-detail-page">
+  <div class="page-zoom-control" id="page-zoom-control">
+    <button class="page-zoom-toggle" id="page-zoom-toggle" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="page-zoom-panel">
+      <svg class="page-zoom-icon" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
+    </button>
+    <div class="page-zoom-panel" id="page-zoom-panel" aria-hidden="true">
+      <div class="page-zoom-panel-group">
+        <span class="page-zoom-label">Zoom</span>
+        <div class="page-zoom-actions">
+          <button class="page-zoom-step" id="page-zoom-out" type="button" aria-label="Zoom out">-</button>
+          <button class="page-zoom-value" id="page-zoom-value" type="button" aria-label="Reset zoom to default">80%</button>
+          <button class="page-zoom-step" id="page-zoom-in" type="button" aria-label="Zoom in">+</button>
+        </div>
+      </div>
+      <div class="page-zoom-panel-group">
+        <span class="page-zoom-label">Palette</span>
+        <div class="zoom-theme-actions" role="group" aria-label="Color palette">
+          <button class="zoom-theme-btn" type="button" data-theme-value="blue" aria-label="Blue mode" aria-pressed="false" title="Blue mode">
+            <svg class="zoom-theme-icon" viewBox="0 0 24 24"><path d="M21 12.8A8.8 8.8 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg>
+          </button>
+          <button class="zoom-theme-btn" type="button" data-theme-value="light" aria-label="Light mode" aria-pressed="false" title="Light mode">
+            <svg class="zoom-theme-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.5"></path><path d="M12 19v2.5"></path><path d="M4.93 4.93l1.77 1.77"></path><path d="M17.3 17.3l1.77 1.77"></path><path d="M2.5 12H5"></path><path d="M19 12h2.5"></path><path d="M4.93 19.07l1.77-1.77"></path><path d="M17.3 6.7l1.77-1.77"></path></svg>
+          </button>
+          <button class="zoom-theme-btn" type="button" data-theme-value="galaxy" aria-label="Galaxy mode" aria-pressed="false" title="Galaxy mode">
+            <svg class="zoom-theme-icon hat-icon" viewBox="0 0 24 24"><path d="M4 19.5h16"></path><path d="M8 19.5c0-2.7 1.4-5.1 3.7-6.6l2.1-1.4-1.7-5.8-5.1 4.1"></path><path d="M14.4 9.8 17.7 8l2.3 5.9-3.9-.3"></path><path d="M13.2 4.5 14 6.2"></path><path d="M18.4 4.9l.4 1.2"></path><path d="M19.7 7.7l1.3.1"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html#projects" class="back-btn">
+        <img src="Logo preview/Fortress logo.jpg" alt="" class="back-btn-logo">
+        <span>&larr; Back to Portfolio</span>
+      </a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Training / PKL Project</span>
+          <h1>Marketing &amp; Assistant HR</h1>
+          <p class="hero-description">This project turns my Fortress training workbook into a web-based table experience. During the September 2022 to November 2022 PKL period, I supported marketing, social media, advertisement preparation, and assistant HR tasks using Excel as the main operational workspace.</p>
+
+          <div class="project-meta">
+            <div class="meta-item">
+              <span class="meta-label">Period</span>
+              <span class="meta-value">September 2022 - November 2022</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Status</span>
+              <span class="meta-value">Completed</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Purpose</span>
+              <span class="meta-value">Training / PKL</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Company</span>
+              <span class="meta-value">Fortress</span>
+            </div>
+          </div>
+
+          <div class="tech-stack">
+            <span class="tech-tag">Excel</span>
+            <span class="tech-tag">Marketing Social Media</span>
+            <span class="tech-tag">Advertisement</span>
+            <span class="tech-tag">Assistant HR</span>
+          </div>
+
+          <div class="hero-actions">
+            <a class="action-btn action-btn-primary" href="#workbook-explorer">Open Web Table</a>
+            <a class="action-btn action-btn-secondary" href="Project Fortress/Riset data nama Fortress.xlsx" download>Download Excel File</a>
+          </div>
+        </div>
+
+        <aside class="hero-preview">
+          <div class="preview-brand">
+            <img src="Logo preview/Fortress logo.jpg" alt="Fortress logo">
+            <div>
+              <h2>Fortress Training Archive</h2>
+              <p>Original workbook source from the Fortress internship documentation.</p>
+            </div>
+          </div>
+
+          <div class="preview-metrics">
+            <div class="preview-metric">
+              <span>Workbook File</span>
+              <strong>Riset data nama Fortress.xlsx</strong>
+            </div>
+            <div class="preview-metric">
+              <span>Primary Output</span>
+              <strong>Interactive Excel-style Web Table</strong>
+            </div>
+            <div class="preview-metric">
+              <span>Main Focus</span>
+              <strong>Marketing Support</strong>
+            </div>
+            <div class="preview-metric">
+              <span>Secondary Focus</span>
+              <strong>Assistant HR Admin</strong>
+            </div>
+          </div>
+
+          <p class="preview-note">Each page inside the workbook is rendered as its own tab below, so the Excel structure stays readable while feeling more like a website dashboard.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="section-header">
+      <span class="eyebrow">Responsibility Snapshot</span>
+      <h2 class="section-title">What This Training Covered</h2>
+      <p class="section-intro">The project was not a client delivery or main company project. It was a PKL / training experience where Excel supported daily coordination, data tracking, and internal support work.</p>
+    </div>
+
+    <div class="feature-grid">
+      <article class="feature-card">
+        <h3>Marketing Support</h3>
+        <p>Helped organize material related to marketing activity, campaign tracking, and social-media-oriented supporting work inside one practical workbook flow.</p>
+      </article>
+      <article class="feature-card">
+        <h3>Advertisement Tasks</h3>
+        <p>Used spreadsheet structure to keep ad-related references, planning, and activity notes easier to scan and update during the training period.</p>
+      </article>
+      <article class="feature-card">
+        <h3>Assistant HR Admin</h3>
+        <p>Supported assistant HR administration through structured records, making naming data and tabular information easier to revisit and work with.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="content-section" id="workbook-explorer">
+    <div class="section-header">
+      <span class="eyebrow">Excel Website Project</span>
+      <h2 class="section-title">Interactive Workbook Explorer</h2>
+      <p class="section-intro">This page reads the Excel file directly from the Fortress project folder and displays every worksheet as a switchable web table. You can search the active sheet, sort columns, change row visibility, and export the current view to CSV.</p>
+    </div>
+
+    <div class="workbook-shell">
+      <div class="summary-grid">
+        <div class="summary-card">
+          <span>Sheets</span>
+          <strong id="summary-sheet-count">--</strong>
+        </div>
+        <div class="summary-card">
+          <span>Total Rows</span>
+          <strong id="summary-total-rows">--</strong>
+        </div>
+        <div class="summary-card">
+          <span>Visible Columns</span>
+          <strong id="summary-column-count">--</strong>
+        </div>
+        <div class="summary-card">
+          <span>Active Sheet</span>
+          <strong id="summary-active-sheet">Loading...</strong>
+        </div>
+      </div>
+
+      <div class="workbook-toolbar">
+        <div class="toolbar-search">
+          <input type="search" id="sheet-search" placeholder="Search within the active worksheet...">
+        </div>
+        <div class="toolbar-actions">
+          <select id="row-limit" class="toolbar-select" aria-label="Visible rows">
+            <option value="10">Show 10</option>
+            <option value="25" selected>Show 25</option>
+            <option value="50">Show 50</option>
+            <option value="100">Show 100</option>
+            <option value="all">Show All</option>
+          </select>
+          <button type="button" class="toolbar-btn toolbar-btn-secondary" id="clear-search-btn">Clear Search</button>
+          <button type="button" class="toolbar-btn toolbar-btn-secondary" id="export-csv-btn">Export CSV</button>
+          <a class="toolbar-btn toolbar-btn-primary" href="Project Fortress/Riset data nama Fortress.xlsx" download>Download Workbook</a>
+        </div>
+      </div>
+
+      <div class="sheet-tabs" id="sheet-tabs"></div>
+
+      <div class="table-meta">
+        <div class="summary-chip" id="table-record-count">Preparing workbook...</div>
+        <div class="table-hint">Tip: click any header to sort that column.</div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead id="sheet-table-head"></thead>
+          <tbody id="sheet-table-body"></tbody>
+        </table>
+      </div>
+
+      <p class="load-message" id="load-message">Loading workbook data from the Fortress project folder...</p>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-shell">
+      <h2>Excel Data, Presented Like a Project Page</h2>
+      <p>This project page keeps the original Fortress workbook connected to the portfolio while turning its sheets into a cleaner, easier-to-browse website experience.</p>
+      <div class="cta-buttons">
+        <a href="Project Fortress/Riset data nama Fortress.xlsx" download class="action-btn action-btn-primary">Download Source Workbook</a>
+        <a href="../index.html#projects" class="action-btn action-btn-secondary">Back to Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p class="footer-note">&copy; 2024 Jona Setiawan. All rights reserved.</p>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script>
+    const workbookUrl = "Project Fortress/Riset data nama Fortress.xlsx";
+    const sheetTabs = document.getElementById("sheet-tabs");
+    const tableHead = document.getElementById("sheet-table-head");
+    const tableBody = document.getElementById("sheet-table-body");
+    const searchInput = document.getElementById("sheet-search");
+    const rowLimitSelect = document.getElementById("row-limit");
+    const clearSearchBtn = document.getElementById("clear-search-btn");
+    const exportCsvBtn = document.getElementById("export-csv-btn");
+    const loadMessage = document.getElementById("load-message");
+    const recordCount = document.getElementById("table-record-count");
+    const summarySheetCount = document.getElementById("summary-sheet-count");
+    const summaryTotalRows = document.getElementById("summary-total-rows");
+    const summaryColumnCount = document.getElementById("summary-column-count");
+    const summaryActiveSheet = document.getElementById("summary-active-sheet");
+
+    const workbookState = {
+      sheets: [],
+      activeSheetIndex: 0,
+      search: "",
+      rowLimit: 25,
+      sortKey: "",
+      sortDirection: "asc"
+    };
+
+    function trimTrailingEmptyCells(row) {
+      const nextRow = Array.isArray(row) ? [...row] : [];
+
+      while (nextRow.length && String(nextRow[nextRow.length - 1] ?? "").trim() === "") {
+        nextRow.pop();
+      }
+
+      return nextRow;
+    }
+
+    function normalizeRows(rows) {
+      return rows
+        .map(trimTrailingEmptyCells)
+        .filter((row) => row.some((cell) => String(cell ?? "").trim() !== ""));
+    }
+
+    function detectHeaderIndex(rows) {
+      let bestIndex = 0;
+      let bestScore = -1;
+      const scanLength = Math.min(rows.length, 10);
+
+      for (let index = 0; index < scanLength; index += 1) {
+        const score = rows[index].filter((cell) => String(cell ?? "").trim() !== "").length;
+
+        if (score > bestScore) {
+          bestScore = score;
+          bestIndex = index;
+        }
+      }
+
+      return bestIndex;
+    }
+
+    function normalizeHeaders(headerRow, columnCount) {
+      const used = new Set();
+
+      return Array.from({ length: columnCount }, (_, index) => {
+        const baseValue = String(headerRow[index] ?? "").trim() || "Column " + (index + 1);
+        let header = baseValue;
+        let suffix = 2;
+
+        while (used.has(header)) {
+          header = baseValue + " " + suffix;
+          suffix += 1;
+        }
+
+        used.add(header);
+        return header;
+      });
+    }
+
+    function parseSheet(sheetName, worksheet) {
+      const rawRows = XLSX.utils.sheet_to_json(worksheet, {
+        header: 1,
+        raw: false,
+        defval: "",
+        blankrows: false
+      });
+
+      const rows = normalizeRows(rawRows);
+
+      if (!rows.length) {
+        return { name: sheetName, headers: [], rows: [] };
+      }
+
+      const headerIndex = detectHeaderIndex(rows);
+      const dataRows = rows.slice(headerIndex + 1).filter((row) => row.some((cell) => String(cell ?? "").trim() !== ""));
+      const columnCount = Math.max(rows[headerIndex].length, ...dataRows.map((row) => row.length), 0);
+      const headers = normalizeHeaders(rows[headerIndex], columnCount);
+      const records = dataRows.map((row, index) => {
+        const record = { __rowIndex: index };
+
+        headers.forEach((header, columnIndex) => {
+          record[header] = row[columnIndex] ?? "";
+        });
+
+        return record;
+      });
+
+      return { name: sheetName, headers, rows: records };
+    }
+
+    function getActiveSheet() {
+      return workbookState.sheets[workbookState.activeSheetIndex] || null;
+    }
+
+    function compareValues(leftValue, rightValue) {
+      const normalizeNumber = (value) => {
+        if (typeof value === "number") {
+          return value;
+        }
+
+        const parsed = Number(String(value).replace(/,/g, ""));
+        return Number.isFinite(parsed) ? parsed : null;
+      };
+
+      const leftNumber = normalizeNumber(leftValue);
+      const rightNumber = normalizeNumber(rightValue);
+
+      if (leftNumber !== null && rightNumber !== null) {
+        return leftNumber - rightNumber;
+      }
+
+      return String(leftValue ?? "").localeCompare(String(rightValue ?? ""), undefined, {
+        numeric: true,
+        sensitivity: "base"
+      });
+    }
+
+    function getFilteredRows(sheet) {
+      if (!sheet) {
+        return [];
+      }
+
+      const searchValue = workbookState.search.trim().toLowerCase();
+      let rows = [...sheet.rows];
+
+      if (searchValue) {
+        rows = rows.filter((record) =>
+          sheet.headers.some((header) => String(record[header] ?? "").toLowerCase().includes(searchValue))
+        );
+      }
+
+      if (workbookState.sortKey) {
+        const sortKey = workbookState.sortKey;
+        const direction = workbookState.sortDirection === "asc" ? 1 : -1;
+        rows.sort((leftRecord, rightRecord) => compareValues(leftRecord[sortKey], rightRecord[sortKey]) * direction);
+      }
+
+      return rows;
+    }
+
+    function getVisibleRows(sheet) {
+      const filteredRows = getFilteredRows(sheet);
+
+      if (workbookState.rowLimit === "all") {
+        return filteredRows;
+      }
+
+      return filteredRows.slice(0, Number(workbookState.rowLimit));
+    }
+
+    function updateSummary(sheet) {
+      const totalRows = workbookState.sheets.reduce((sum, entry) => sum + entry.rows.length, 0);
+      const filteredRows = getFilteredRows(sheet);
+
+      summarySheetCount.textContent = String(workbookState.sheets.length || 0);
+      summaryTotalRows.textContent = String(totalRows);
+      summaryColumnCount.textContent = sheet ? String(sheet.headers.length) : "0";
+      summaryActiveSheet.textContent = sheet ? sheet.name : "Unavailable";
+      recordCount.textContent = sheet
+        ? filteredRows.length + " matching row" + (filteredRows.length === 1 ? "" : "s")
+        : "No workbook data available";
+    }
+
+    function renderTabs() {
+      sheetTabs.innerHTML = "";
+
+      workbookState.sheets.forEach((sheet, index) => {
+        const tab = document.createElement("button");
+        tab.type = "button";
+        tab.className = "sheet-tab" + (index === workbookState.activeSheetIndex ? " is-active" : "");
+        tab.textContent = sheet.name;
+        tab.addEventListener("click", () => {
+          workbookState.activeSheetIndex = index;
+          workbookState.sortKey = "";
+          workbookState.sortDirection = "asc";
+          renderWorkbook();
+        });
+        sheetTabs.appendChild(tab);
+      });
+    }
+
+    function renderTable() {
+      const sheet = getActiveSheet();
+      tableHead.innerHTML = "";
+      tableBody.innerHTML = "";
+      updateSummary(sheet);
+
+      if (!sheet || !sheet.headers.length) {
+        loadMessage.textContent = "This workbook page does not contain readable table columns yet.";
+        return;
+      }
+
+      const headerRow = document.createElement("tr");
+
+      sheet.headers.forEach((header) => {
+        const th = document.createElement("th");
+        const button = document.createElement("button");
+        const indicator = document.createElement("span");
+
+        button.type = "button";
+        button.className = "header-sort-btn";
+        button.textContent = header;
+        button.addEventListener("click", () => {
+          if (workbookState.sortKey === header) {
+            workbookState.sortDirection = workbookState.sortDirection === "asc" ? "desc" : "asc";
+          } else {
+            workbookState.sortKey = header;
+            workbookState.sortDirection = "asc";
+          }
+
+          renderWorkbook();
+        });
+
+        indicator.className = "sort-indicator";
+
+        if (workbookState.sortKey === header) {
+          indicator.classList.add("is-active");
+          indicator.textContent = workbookState.sortDirection === "asc" ? "^" : "v";
+        } else {
+          indicator.textContent = "<>";
+        }
+
+        button.appendChild(indicator);
+        th.appendChild(button);
+        headerRow.appendChild(th);
+      });
+
+      tableHead.appendChild(headerRow);
+
+      const visibleRows = getVisibleRows(sheet);
+
+      if (!visibleRows.length) {
+        const emptyRow = document.createElement("tr");
+        const emptyCell = document.createElement("td");
+        emptyCell.colSpan = sheet.headers.length;
+        emptyCell.textContent = workbookState.search
+          ? "No rows matched your current search."
+          : "No rows are available to display in this sheet.";
+        emptyRow.appendChild(emptyCell);
+        tableBody.appendChild(emptyRow);
+        loadMessage.textContent = "Workbook loaded. Adjust the search or switch sheets to keep exploring.";
+        return;
+      }
+
+      visibleRows.forEach((record) => {
+        const row = document.createElement("tr");
+
+        sheet.headers.forEach((header) => {
+          const cell = document.createElement("td");
+          cell.textContent = String(record[header] ?? "");
+          row.appendChild(cell);
+        });
+
+        tableBody.appendChild(row);
+      });
+
+      loadMessage.textContent = "Workbook loaded successfully. Every worksheet can be explored as its own web table tab.";
+      loadMessage.classList.remove("is-error");
+    }
+
+    function renderWorkbook() {
+      renderTabs();
+      renderTable();
+    }
+
+    function exportCurrentSheetCsv() {
+      const sheet = getActiveSheet();
+
+      if (!sheet || !sheet.headers.length) {
+        return;
+      }
+
+      const filteredRows = getFilteredRows(sheet);
+      const aoa = [sheet.headers, ...filteredRows.map((record) => sheet.headers.map((header) => record[header]))];
+      const worksheet = XLSX.utils.aoa_to_sheet(aoa);
+      const csv = XLSX.utils.sheet_to_csv(worksheet);
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const downloadUrl = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+
+      link.href = downloadUrl;
+      link.download = sheet.name.replace(/[\\/:*?\"<>|]/g, "-") + ".csv";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(downloadUrl);
+    }
+
+    async function loadWorkbook() {
+      if (!window.XLSX) {
+        loadMessage.textContent = "The workbook library could not be loaded. Refresh the page or check your connection.";
+        loadMessage.classList.add("is-error");
+        return;
+      }
+
+      try {
+        const response = await fetch(workbookUrl);
+
+        if (!response.ok) {
+          throw new Error("Workbook file could not be reached.");
+        }
+
+        const arrayBuffer = await response.arrayBuffer();
+        const workbook = XLSX.read(arrayBuffer, { type: "array" });
+
+        workbookState.sheets = workbook.SheetNames.map((sheetName) => parseSheet(sheetName, workbook.Sheets[sheetName]));
+
+        if (!workbookState.sheets.length) {
+          throw new Error("No worksheets were found inside the workbook.");
+        }
+
+        renderWorkbook();
+      } catch (error) {
+        tableHead.innerHTML = "";
+        tableBody.innerHTML = "";
+        summarySheetCount.textContent = "0";
+        summaryTotalRows.textContent = "0";
+        summaryColumnCount.textContent = "0";
+        summaryActiveSheet.textContent = "Unavailable";
+        recordCount.textContent = "Workbook preview unavailable";
+        loadMessage.textContent = "The workbook preview could not load. If you opened this page with file://, try a local server or the deployed site, then download the Excel file directly if needed.";
+        loadMessage.classList.add("is-error");
+      }
+    }
+
+    searchInput.addEventListener("input", (event) => {
+      workbookState.search = event.target.value;
+      renderTable();
+    });
+
+    rowLimitSelect.addEventListener("change", (event) => {
+      workbookState.rowLimit = event.target.value === "all" ? "all" : Number(event.target.value);
+      renderTable();
+    });
+
+    clearSearchBtn.addEventListener("click", () => {
+      workbookState.search = "";
+      searchInput.value = "";
+      renderTable();
+    });
+
+    exportCsvBtn.addEventListener("click", exportCurrentSheetCsv);
+
+    loadWorkbook();
+  </script>
+  <script src="../theme-controls.js"></script>
+  <script src="../zoom-controls.js"></script>
+</body>
+</html>
