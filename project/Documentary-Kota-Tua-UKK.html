@@ -1,10 +1,24 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="Logo preview/Logo Lemon.png" />
+  <link rel="icon" type="image/png" href="logo-preview/logo-lemon.png" />
   <title>Documentary Kota Tua UKK - Jona Setiawan</title>
+  <script>
+    (function () {
+      var storedTheme = "light";
+
+      try {
+        var savedTheme = window.localStorage.getItem("portfolio-color-theme");
+        storedTheme = savedTheme === "blue" || savedTheme === "light" || savedTheme === "galaxy" ? savedTheme : "light";
+      } catch (error) {
+        storedTheme = "light";
+      }
+
+      document.documentElement.setAttribute("data-theme", storedTheme);
+    })();
+  </script>
   <link rel="stylesheet" href="../zoom-controls.css">
   <link rel="stylesheet" href="../theme-palettes.css">
   <style>
@@ -126,7 +140,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: url("Logo preview/Yuppentek logo kota tua version Banner.jpg") center center / cover no-repeat;
+      background: url("logo-preview/yuppentek-logo-kota-tua-version-banner.jpg") center center / cover no-repeat;
       pointer-events: none;
     }
 
@@ -137,58 +151,58 @@
       z-index: 1;
     }
 
-    body[data-theme="light"] .hero::before {
-      background: url("Logo preview/Yuppentek logo kota tua version Banner.jpg") center center / cover no-repeat;
+    :root[data-theme="light"] .hero::before {
+      background: url("logo-preview/yuppentek-logo-kota-tua-version-banner.jpg") center center / cover no-repeat;
     }
 
-    body[data-theme="light"] .project-category,
-    body[data-theme="light"] .meta-item,
-    body[data-theme="light"] .tech-tag,
-    body[data-theme="blue"] .project-category,
-    body[data-theme="blue"] .meta-item,
-    body[data-theme="blue"] .tech-tag,
-    body[data-theme="galaxy"] .project-category,
-    body[data-theme="galaxy"] .meta-item,
-    body[data-theme="galaxy"] .tech-tag {
+    :root[data-theme="light"] .project-category,
+    :root[data-theme="light"] .meta-item,
+    :root[data-theme="light"] .tech-tag,
+    :root[data-theme="blue"] .project-category,
+    :root[data-theme="blue"] .meta-item,
+    :root[data-theme="blue"] .tech-tag,
+    :root[data-theme="galaxy"] .project-category,
+    :root[data-theme="galaxy"] .meta-item,
+    :root[data-theme="galaxy"] .tech-tag {
       border: 1px solid #ffffff !important;
       box-shadow:
         0 0 0 1px #ffffff,
         0 16px 34px rgba(15, 23, 42, 0.12);
     }
 
-    body[data-theme="light"] .project-category,
-    body[data-theme="blue"] .project-category,
-    body[data-theme="galaxy"] .project-category {
+    :root[data-theme="light"] .project-category,
+    :root[data-theme="blue"] .project-category,
+    :root[data-theme="galaxy"] .project-category {
       background: rgba(255, 255, 255, 0.72);
     }
 
-    body[data-theme="light"] .meta-item,
-    body[data-theme="light"] .tech-tag,
-    body[data-theme="blue"] .meta-item,
-    body[data-theme="blue"] .tech-tag,
-    body[data-theme="galaxy"] .meta-item,
-    body[data-theme="galaxy"] .tech-tag {
+    :root[data-theme="light"] .meta-item,
+    :root[data-theme="light"] .tech-tag,
+    :root[data-theme="blue"] .meta-item,
+    :root[data-theme="blue"] .tech-tag,
+    :root[data-theme="galaxy"] .meta-item,
+    :root[data-theme="galaxy"] .tech-tag {
       background: rgba(255, 255, 255, 0.82);
     }
 
-    body[data-theme="light"] .hero h1,
-    body[data-theme="light"] .hero-description,
-    body[data-theme="light"] .project-category,
-    body[data-theme="light"] .meta-label,
-    body[data-theme="light"] .meta-value,
-    body[data-theme="light"] .tech-tag,
-    body[data-theme="blue"] .hero h1,
-    body[data-theme="blue"] .hero-description,
-    body[data-theme="blue"] .project-category,
-    body[data-theme="blue"] .meta-label,
-    body[data-theme="blue"] .meta-value,
-    body[data-theme="blue"] .tech-tag,
-    body[data-theme="galaxy"] .hero h1,
-    body[data-theme="galaxy"] .hero-description,
-    body[data-theme="galaxy"] .project-category,
-    body[data-theme="galaxy"] .meta-label,
-    body[data-theme="galaxy"] .meta-value,
-    body[data-theme="galaxy"] .tech-tag {
+    :root[data-theme="light"] .hero h1,
+    :root[data-theme="light"] .hero-description,
+    :root[data-theme="light"] .project-category,
+    :root[data-theme="light"] .meta-label,
+    :root[data-theme="light"] .meta-value,
+    :root[data-theme="light"] .tech-tag,
+    :root[data-theme="blue"] .hero h1,
+    :root[data-theme="blue"] .hero-description,
+    :root[data-theme="blue"] .project-category,
+    :root[data-theme="blue"] .meta-label,
+    :root[data-theme="blue"] .meta-value,
+    :root[data-theme="blue"] .tech-tag,
+    :root[data-theme="galaxy"] .hero h1,
+    :root[data-theme="galaxy"] .hero-description,
+    :root[data-theme="galaxy"] .project-category,
+    :root[data-theme="galaxy"] .meta-label,
+    :root[data-theme="galaxy"] .meta-value,
+    :root[data-theme="galaxy"] .tech-tag {
       color: #ffffff !important;
       -webkit-text-fill-color: #ffffff !important;
       text-shadow:
@@ -197,9 +211,9 @@
         0 16px 38px rgba(15, 23, 42, 0.28);
     }
 
-    body[data-theme="light"] .hero h1,
-    body[data-theme="blue"] .hero h1,
-    body[data-theme="galaxy"] .hero h1 {
+    :root[data-theme="light"] .hero h1,
+    :root[data-theme="blue"] .hero h1,
+    :root[data-theme="galaxy"] .hero h1 {
       background: none;
     }
 
@@ -604,7 +618,7 @@
   <nav class="navbar">
     <div class="nav-container">
       <a href="../index.html" class="back-btn">
-        <img src="Logo preview/Logo Lemon.png" alt="" class="back-btn-logo">
+        <img src="logo-preview/logo-lemon.png" alt="" class="back-btn-logo">
         <span>&larr; Back to Portfolio</span>
       </a>
     </div>
@@ -643,7 +657,7 @@
   <section class="featured-video">
     <div class="video-shell">
       <div class="video-container">
-        <video controls playsinline preload="metadata" poster="Kota tua/Bangunan kota tua 1.jpg" title="Kota Tua Documentary Video">
+        <video controls playsinline preload="metadata" poster="kota-tua/bangunan-kota-tua-1.jpg" title="Kota Tua Documentary Video">
           <source src="https://cdn.videy.co/nrpCDtrK1.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -680,7 +694,7 @@
 
     <div class="gallery-grid">
       <article class="gallery-item gallery-half no-crop">
-        <img src="Kota tua/label dvd.jpg" alt="DVD Label Disc">
+        <img src="kota-tua/label-dvd.jpg" alt="DVD Label Disc">
         <div class="gallery-body">
           <h4>DVD Label Disc</h4>
           <p class="gallery-copy">Label disc yang dirancang dengan tampilan minimalis namun tetap konsisten dengan identitas visual utama project.</p>
@@ -688,7 +702,7 @@
       </article>
 
       <article class="gallery-item gallery-half no-crop">
-        <img src="Kota tua/logo-Monas.png" alt="Logo Monas Budaya Indonesia">
+        <img src="kota-tua/logo-monas.png" alt="Logo Monas Budaya Indonesia">
         <div class="gallery-body">
           <h4>Logo Monas / Budaya Indonesia</h4>
           <p class="gallery-copy">Logo terinspirasi dari Monas sebagai simbol budaya Indonesia, dengan pendekatan visual yang sederhana namun mudah dikenali.</p>
@@ -696,7 +710,7 @@
       </article>
 
       <article class="gallery-item gallery-cover no-crop">
-        <img src="Kota tua/dvd-Cover.jpg" alt="DVD Cover">
+        <img src="kota-tua/dvd-cover.jpg" alt="DVD Cover">
         <div class="gallery-body">
           <h4>DVD Cover</h4>
           <p class="gallery-copy">Desain cover DVD dengan komposisi visual yang menonjolkan suasana Kota Tua melalui elemen warna klasik dan tipografi yang tegas.</p>
@@ -719,7 +733,7 @@
 
     <div class="gallery-grid">
       <article class="gallery-item gallery-full gallery-poster no-crop">
-        <img src="Kota tua/poster.jpg" alt="Poster Promosi">
+        <img src="kota-tua/poster.jpg" alt="Poster Promosi">
         <div class="gallery-body">
           <h4>Poster Promosi</h4>
           <p class="gallery-copy">Poster promosi dengan komposisi visual yang fokus pada daya tarik utama project, memadukan elemen tipografi dan gambar untuk menarik perhatian audiens.</p>
@@ -755,7 +769,7 @@
 
     <div class="gallery-grid">
       <article class="gallery-item gallery-wide">
-        <img src="Kota tua/cosplayer 1.JPG" alt="Cosplayer 1">
+        <img src="kota-tua/cosplayer-1.jpg" alt="Cosplayer 1">
         <div class="gallery-body">
           <h4>Cosplayer 1</h4>
           <p class="gallery-copy">Cosplayer dengan kostum karakter yang mencolok, menarik perhatian pengunjung di area terbuka.</p>
@@ -763,7 +777,7 @@
       </article>
 
       <article class="gallery-item gallery-wide">
-        <img src="Kota tua/cosplayer 2.JPG" alt="Cosplayer 2">
+        <img src="kota-tua/cosplayer-2.jpg" alt="Cosplayer 2">
         <div class="gallery-body">
           <h4>Cosplayer 2</h4>
           <p class="gallery-copy">Interaksi cosplayer dengan pengunjung yang menciptakan suasana yang lebih hidup dan dinamis.</p>
@@ -771,7 +785,7 @@
       </article>
 
       <article class="gallery-item gallery-wide">
-        <img src="Kota tua/cosplayer 3.JPG" alt="Cosplayer 3">
+        <img src="kota-tua/cosplayer-3.jpg" alt="Cosplayer 3">
         <div class="gallery-body">
           <h4>Cosplayer 3</h4>
           <p class="gallery-copy">Detail kostum yang menunjukkan kreativitas dan dedikasi dalam menampilkan karakter tertentu.</p>
@@ -779,7 +793,7 @@
       </article>
 
       <article class="gallery-item gallery-wide">
-        <img src="Kota tua/cosplayer 4.JPG" alt="Cosplayer 4">
+        <img src="kota-tua/cosplayer-4.jpg" alt="Cosplayer 4">
         <div class="gallery-body">
           <h4>Cosplayer 4</h4>
           <p class="gallery-copy">Pose karakter yang memperkuat nuansa hiburan di tengah kawasan bersejarah.</p>
@@ -797,7 +811,7 @@
 
     <div class="gallery-grid">
       <article class="gallery-item">
-        <img src="Kota tua/Bangunan kota tua 1.jpg" alt="Tempat Dalam 1">
+        <img src="kota-tua/bangunan-kota-tua-1.jpg" alt="Tempat Dalam 1">
         <div class="gallery-body">
           <h4>Tempat Dalam 1</h4>
           <p class="gallery-copy">Interior bangunan dengan pencahayaan alami yang menonjolkan tekstur dan struktur klasik.</p>
@@ -805,7 +819,7 @@
       </article>
 
       <article class="gallery-item">
-        <img src="Kota tua/bangunan kota tua 2.jpg" alt="Tempat Dalam 2">
+        <img src="kota-tua/bangunan-kota-tua-2.jpg" alt="Tempat Dalam 2">
         <div class="gallery-body">
           <h4>Tempat Dalam 2</h4>
           <p class="gallery-copy">Sudut ruang dengan elemen arsitektur lama yang masih terjaga dengan baik.</p>
@@ -813,7 +827,7 @@
       </article>
 
       <article class="gallery-item">
-        <img src="Kota tua/Stasiun Kota tua.JPG" alt="Stasiun Kota Tua">
+        <img src="kota-tua/stasiun-kota-tua.jpg" alt="Stasiun Kota Tua">
         <div class="gallery-body">
           <h4>Stasiun Kota Tua</h4>
           <p class="gallery-copy">Area stasiun dengan aktivitas pengunjung yang mencerminkan mobilitas dan kehidupan sehari-hari di kawasan tersebut.</p>
@@ -841,7 +855,7 @@
 
       <div class="info-panel">
         <h3>Project Outcome</h3>
-        <p>Seluruh elemen dalam halaman ini menggunakan aset yang tersedia di folder <strong>Kota tua</strong>, sehingga hasil presentasinya selaras dengan proses produksi asli project dan mudah ditelusuri kembali ke sumber dokumentasinya.</p>
+        <p>Seluruh elemen dalam halaman ini menggunakan aset yang tersedia di folder <strong>kota-tua</strong>, sehingga hasil presentasinya selaras dengan proses produksi asli project dan mudah ditelusuri kembali ke sumber dokumentasinya.</p>
       </div>
     </div>
   </section>

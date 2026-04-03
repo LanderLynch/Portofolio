@@ -1,10 +1,24 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jona Setiawan - Portfolio</title>
-  <link rel="icon" type="image/png" href="project/Logo preview/Logo Lemon.png" />
+  <script>
+    (function () {
+      var storedTheme = "light";
+
+      try {
+        var savedTheme = window.localStorage.getItem("portfolio-color-theme");
+        storedTheme = savedTheme === "blue" || savedTheme === "light" || savedTheme === "galaxy" ? savedTheme : "light";
+      } catch (error) {
+        storedTheme = "light";
+      }
+
+      document.documentElement.setAttribute("data-theme", storedTheme);
+    })();
+  </script>
+  <link rel="icon" type="image/png" href="project/logo-preview/logo-lemon.png" />
   <link rel="stylesheet" href="styles.css?v=20260319-1">
   <link rel="stylesheet" href="theme-palettes.css?v=20260319-1">
 </head>
@@ -12,7 +26,7 @@
   <!-- Portfolio Title - Separated from Navigation -->
   <div class="portfolio-title-container">
     <a href="#home" class="portfolio-title-link">
-      <img src="project/Logo preview/Logo Lemon.png" alt="Logo Lemon" class="portfolio-logo" />
+      <img src="project/logo-preview/logo-lemon.png" alt="Logo Lemon" class="portfolio-logo" />
       <span class="portfolio-text">Home</span>
     </a>
     <div class="zoom-control" id="zoom-control">
@@ -88,7 +102,7 @@
           </span>
           Skills
         </a></li>
-        <li><a href="#certificated" class="nav-link-item">
+        <li><a href="#certification" class="nav-link-item">
           <span class="nav-icon" aria-hidden="true">
             <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75"></path><path d="M9 3.75h6l4.5 4.5v8.25A2.25 2.25 0 0 1 17.25 18.75H6.75A2.25 2.25 0 0 1 4.5 16.5v-10.5A2.25 2.25 0 0 1 6.75 3.75H9Z"></path><path d="M15 3.75v4.5h4.5"></path></svg>
           </span>
@@ -158,25 +172,25 @@
     
     <div class="stats-grid">
       <div class="stat-card">
-        <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">1+</div>
+        <div class="stat-value">1+</div>
         <div>Years Experience</div>
       </div>
       <div class="stat-card">
-        <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Design GFX</div>
+        <div class="stat-value">Design GFX</div>
         <div>Main Skill</div>
       </div>
       <div class="stat-card">
-        <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">10+</div>
+        <div class="stat-value">10+</div>
         <div>Projects</div>
       </div>
       <div class="stat-card">
-        <div style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">70/100</div>
+        <div class="stat-value">70/100</div>
         <div>AVG Score</div>
       </div>
     </div>
     
     <div class="scroll-indicator">
-      <a href="#about" style="color: inherit; text-decoration: none;">&#x25BC; Scroll Down</a>
+      <a href="#about" class="scroll-indicator-link">&#x25BC; Scroll Down</a>
     </div>
   </section>
 
@@ -206,7 +220,7 @@
           </svg>
         </div>
         <div class="floating-icon javascript" title="Logo Lemon">
-          <img src="project/Logo preview/Logo Lemon.png" alt="Logo Lemon" class="floating-icon-image" />
+          <img src="project/logo-preview/logo-lemon.png" alt="Logo Lemon" class="floating-icon-image" />
         </div>
       </div>
       <div class="about-info-grid">
@@ -368,7 +382,7 @@
       
       <div class="project-card" data-category="graphic">
         <div class="project-image">
-          <img src="project/Logo preview/Internusa kreasindo mandiri.jpg" alt="Internusa Kreasindo Mandiri logo" />
+          <img src="project/logo-preview/internusa-kreasindo-mandiri.jpg" alt="Internusa Kreasindo Mandiri logo" />
           <div class="project-overlay">
             <div class="project-quick-actions">
               <a href="#" class="quick-action-btn" title="View Project" aria-label="View Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
@@ -394,7 +408,7 @@
             </div>
             <div class="project-type">Main work</div>
           </div>
-          <a href="project/IKM Design Creative Project.html" class="view-project-btn">
+          <a href="project/ikm-design-creative-project.html" class="view-project-btn">
             View Full Project &rarr;
           </a>
         </div>
@@ -402,11 +416,11 @@
 
       <div class="project-card" data-category="ui">
         <div class="project-image">
-          <img src="project/Logo preview/Fortress logo.jpg" alt="Fortress logo" />
+          <img src="project/logo-preview/fortress-logo.jpg" alt="Fortress logo" />
           <div class="project-overlay">
             <div class="project-quick-actions">
               <a href="project/marketing-assistant-hr.html" class="quick-action-btn" title="View Project" aria-label="View Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
-              <a href="project/Project Fortress/Riset data nama Fortress.xlsx" class="quick-action-btn" title="Open Workbook" aria-label="Open Workbook"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M19.5 14.25v3A2.25 2.25 0 0 1 17.25 19.5H6.75A2.25 2.25 0 0 1 4.5 17.25v-10.5A2.25 2.25 0 0 1 6.75 4.5h5.379a2.25 2.25 0 0 1 1.591.659l5.121 5.121a2.25 2.25 0 0 1 .659 1.591v.879"></path><path d="M12 8.25v6"></path><path d="m9.75 12 2.25 2.25L14.25 12"></path></svg></a>
+              <a href="project/project-fortress/riset-data-nama-fortress.xlsx" class="quick-action-btn" title="Open Workbook" aria-label="Open Workbook"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M19.5 14.25v3A2.25 2.25 0 0 1 17.25 19.5H6.75A2.25 2.25 0 0 1 4.5 17.25v-10.5A2.25 2.25 0 0 1 6.75 4.5h5.379a2.25 2.25 0 0 1 1.591.659l5.121 5.121a2.25 2.25 0 0 1 .659 1.591v.879"></path><path d="M12 8.25v6"></path><path d="m9.75 12 2.25 2.25L14.25 12"></path></svg></a>
             </div>
           </div>
         </div>
@@ -472,7 +486,7 @@
       
       <div class="project-card" data-category="video">
         <div class="project-image">
-          <img src="project/Logo preview/Yuppentek logo kota tua version.jpg" alt="Yuppentek Kota Tua logo for Documentary Kota Tua UKK" />
+          <img src="project/logo-preview/yuppentek-logo-kota-tua-version.jpg" alt="Yuppentek Kota Tua logo for Documentary Kota Tua UKK" />
           <div class="project-overlay">
             <div class="project-quick-actions">
               <a href="#" class="quick-action-btn" title="Watch Video" aria-label="Watch Video"><svg class="icon-svg" viewBox="0 0 24 24"><path d="m8.25 7.5 8.25 4.5-8.25 4.5V7.5Z"></path></svg></a>
@@ -499,7 +513,7 @@
             </div>
             <div class="project-type">School Project</div>
           </div>
-          <a href="project/Documentary-Kota-Tua-UKK.html" class="view-project-btn">
+          <a href="project/documentary-kota-tua-ukk.html" class="view-project-btn">
             View Full Project &rarr;
           </a>
         </div>
@@ -559,7 +573,7 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="project/Logo preview/Yuppentek logo.jpg" alt="Yuppentek logo">
+            <img src="project/logo-preview/yuppentek-logo.jpg" alt="Yuppentek logo">
           </div>
           <div class="timeline-info">
             <div class="timeline-date">2021 - 2022</div>
@@ -581,7 +595,7 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="project/Logo preview/Fortress logo.jpg" alt="Pintu Baja Fortress logo">
+            <img src="project/logo-preview/fortress-logo.jpg" alt="Pintu Baja Fortress logo">
           </div>
           <div class="timeline-info">
             <div class="timeline-date">September 2022 - November 2022</div>
@@ -603,7 +617,7 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="project/Logo preview/Yuppentek logo.jpg" alt="Yuppentek logo">
+            <img src="project/logo-preview/yuppentek-logo.jpg" alt="Yuppentek logo">
           </div>
           <div class="timeline-info">
             <div class="timeline-date">2022 - 2023</div>
@@ -630,7 +644,7 @@
           <div class="timeline-info">
             <span class="timeline-status active">Active</span>
             <div class="timeline-date">2023 - Present</div>
-            <h3 class="timeline-title">Graphic Design &amp; photographer Freelance</h3>
+            <h3 class="timeline-title">Freelance Graphic Designer &amp; Photographer</h3>
             <p class="timeline-company">Self-Employed</p>
             <p class="timeline-description">Headed to making project for poster, banner, and visual design, while also working as a documentary photographer in show events and live activities.</p>
             <div class="timeline-tags">
@@ -648,10 +662,10 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="project/Logo preview/Aryaduta logo.jpg" alt="Hotel Aryaduta Country Club logo">
+            <img src="project/logo-preview/aryaduta-logo.jpg" alt="Hotel Aryaduta Country Club logo">
           </div>
           <div class="timeline-info">
-            <div class="timeline-date">Juli 2024 - October 2024</div>
+            <div class="timeline-date">July 2024 - October 2024</div>
             <h3 class="timeline-title">Sport Desk Staff - Sport Desk Management</h3>
             <p class="timeline-company">Hotel Aryaduta Country Club</p>
             <p class="timeline-description">Maintained accurate records for guest participation, rental agreements, and daily reporting to support operational efficiency, while also helping promote recreational activities and events so guests clearly understood the available facilities and services.</p>
@@ -670,7 +684,7 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="project/Logo preview/Internusa kreasindo mandiri.jpg" alt="PT Internusa Kreasindo Mandiri logo">
+            <img src="project/logo-preview/internusa-kreasindo-mandiri.jpg" alt="PT Internusa Kreasindo Mandiri logo">
           </div>
           <div class="timeline-info">
             <span class="timeline-status active">Active</span>
@@ -779,33 +793,33 @@
     </div>
   </section>
 
-  <section id="certificated" class="certificated-section" data-section-label="Certification">
-    <div class="certificated-shell">
-      <div class="certificated-copy">
-        <p class="certificated-kicker">Achievement Archive</p>
+  <section id="certification" class="certification-section" data-section-label="Certification">
+    <div class="certification-shell">
+      <div class="certification-copy">
+        <p class="certification-kicker">Achievement Archive</p>
         <h2 class="section-title">Certification</h2>
         <p class="section-subtitle">These are the certification files I have so far, including MySkill, skill, trainee, and competition records grouped into one page.</p>
-        <div class="certificated-stats">
-          <div class="certificated-stat">
+        <div class="certification-stats">
+          <div class="certification-stat">
             <strong>25</strong>
             <span>Total certification files</span>
           </div>
-          <div class="certificated-stat">
+          <div class="certification-stat">
             <strong>8</strong>
             <span>MySkill certifications</span>
           </div>
-          <div class="certificated-stat">
+          <div class="certification-stat">
             <strong>3</strong>
             <span>Trainee & competition files</span>
           </div>
         </div>
       </div>
 
-      <div class="certificated-card">
-        <p class="certificated-card-label">Quick Access</p>
+      <div class="certification-card">
+        <p class="certification-card-label">Quick Access</p>
         <h3>Open the full certification page</h3>
         <p>Inside the page, I added filter options for all certifications, MySkill, skill, trainee, and competition so everything stays grouped and easy to browse.</p>
-        <div class="certificated-actions">
+        <div class="certification-actions">
           <a href="certification.html" class="view-project-btn">View All Certifications &rarr;</a>
         </div>
       </div>
@@ -952,8 +966,8 @@
           <div class="tech-stack-input" id="tech-stack-container">
             <!-- Tech tags will be added here -->
           </div>
-          <div style="margin-top: 0.5rem;">
-            <input type="text" id="tech-input" placeholder="Add technology (e.g., Adobe Photoshop)" style="width: 70%; margin-right: 0.5rem;">
+          <div class="tech-stack-entry">
+            <input type="text" id="tech-input" class="tech-input-field" placeholder="Add technology (e.g., Adobe Photoshop)">
             <button type="button" class="add-tech-btn" id="add-tech-btn">Add</button>
           </div>
         </div>
@@ -1027,11 +1041,13 @@
   </div>
 
   <!-- JavaScript for typing effect and minimal interactions -->
+  <script src="project-card-utils.js"></script>
   <script type="module" src="firebase-config.js"></script>
   <script type="module" src="admin-panel.js"></script>
   <script type="module" src="testimonials-guestbook.js"></script>
   <script src="theme-controls.js?v=20260319-1"></script>
   <script>
+    const projectCardUtils = window.portfolioProjectCardUtils;
     // Mobile Navigation Toggle
     const hamburgerBtn = document.querySelector('.hamburger-menu');
     const navLinks = document.querySelector('.nav-links');
@@ -1583,10 +1599,19 @@
         techStack.forEach((tech, index) => {
           const techTag = document.createElement('div');
           techTag.className = 'tech-tag-input';
-          techTag.innerHTML = `
-            <span>${tech}</span>
-            <span class="remove-tech" onclick="removeTech(${index})">&times;</span>
-          `;
+
+          const techLabel = document.createElement('span');
+          techLabel.textContent = tech;
+
+          const removeButton = document.createElement('button');
+          removeButton.type = 'button';
+          removeButton.className = 'remove-tech';
+          removeButton.setAttribute('aria-label', `Remove ${tech}`);
+          removeButton.innerHTML = '&times;';
+          removeButton.addEventListener('click', () => removeTech(index));
+
+          techTag.appendChild(techLabel);
+          techTag.appendChild(removeButton);
           techStackContainer.appendChild(techTag);
         });
       }
@@ -1597,9 +1622,6 @@
       techStack.splice(index, 1);
       renderTechStack();
     }
-
-    // Make removeTech function global
-    window.removeTech = removeTech;
 
     // Reset project form
     function resetProjectForm() {
@@ -1624,10 +1646,25 @@
         const status = document.getElementById('project-status').value;
         const description = document.getElementById('project-description').value;
         const imageUrl = document.getElementById('project-image').value || 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop';
+        const projectLink = document.getElementById('project-link').value || '#';
+        const dateLabel = document.getElementById('project-date-label').value || new Date().toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long'
+        });
         const projectType = document.getElementById('project-type').value;
         
         // Create new project card
-        const newProject = createProjectCard(title, category, status, description, imageUrl, techStack, projectType);
+        const newProject = createProjectCard({
+          category,
+          dateLabel,
+          description,
+          imageUrl,
+          projectLink,
+          projectType,
+          status,
+          techStack,
+          title
+        });
         
         // Add to projects container
         const projectsContainer = document.getElementById('projects-container');
@@ -1648,49 +1685,8 @@
     }
 
     // Create project card element
-    function createProjectCard(title, category, status, description, imageUrl, techStack, projectType) {
-      const card = document.createElement('div');
-      card.className = 'project-card';
-      card.setAttribute('data-category', category);
-      
-      const statusClass = status.toLowerCase().replace(' ', '-');
-      const currentDate = new Date().toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'long' 
-      });
-      
-      const techTags = techStack.map(tech => `<span class="tech-tag">${tech}</span>`).join('');
-      
-      card.innerHTML = `
-        <div class="project-image">
-          <img src="${imageUrl}" alt="${title}" />
-          <div class="project-overlay">
-            <div class="project-quick-actions">
-              <a href="#" class="quick-action-btn" title="View Project" aria-label="View Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
-              <a href="#" class="quick-action-btn" title="Live Demo" aria-label="Live Demo"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M13.5 6H19.5V12"></path><path d="m10.5 13.5 9-9"></path><path d="M19.5 14.25v3A2.25 2.25 0 0 1 17.25 19.5h-10.5A2.25 2.25 0 0 1 4.5 17.25v-10.5A2.25 2.25 0 0 1 6.75 4.5h3"></path></svg></a>
-            </div>
-          </div>
-        </div>
-        <div class="project-content">
-          <div class="project-header">
-            <h3 class="project-title">${title}</h3>
-            <span class="project-status ${statusClass}">${status}</span>
-          </div>
-          <p class="project-description">${description}</p>
-          <div class="project-tech-stack">
-            ${techTags}
-          </div>
-          <div class="project-meta">
-            <div class="project-date">
-              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
-              <span>${currentDate}</span>
-            </div>
-            <div class="project-type">${projectType}</div>
-          </div>
-        </div>
-      `;
-      
-      return card;
+    function createProjectCard(project) {
+      return projectCardUtils.createProjectCard(project);
     }
 
     function closeProjectModalPanel() {

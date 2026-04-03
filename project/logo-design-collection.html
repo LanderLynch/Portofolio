@@ -1,10 +1,24 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="Logo preview/Logo Lemon.png" />
+  <link rel="icon" type="image/png" href="logo-preview/logo-lemon.png" />
   <title>Logo Design Collection - Jona Setiawan</title>
+  <script>
+    (function () {
+      var storedTheme = "light";
+
+      try {
+        var savedTheme = window.localStorage.getItem("portfolio-color-theme");
+        storedTheme = savedTheme === "blue" || savedTheme === "light" || savedTheme === "galaxy" ? savedTheme : "light";
+      } catch (error) {
+        storedTheme = "light";
+      }
+
+      document.documentElement.setAttribute("data-theme", storedTheme);
+    })();
+  </script>
   <link rel="stylesheet" href="../zoom-controls.css">
   <link rel="stylesheet" href="../theme-palettes.css">
 
@@ -17,20 +31,20 @@
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0f172a;
-      color: #cbd5e1;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
 
     /* Navigation */
     .navbar {
-      background: rgba(15, 23, 42, 0.95);
+      background: color-mix(in srgb, var(--panel-bg-strong) 92%, transparent);
       backdrop-filter: blur(10px);
       padding: 1rem 2rem;
       position: sticky;
       top: 0;
       z-index: 1000;
-      border-bottom: 1px solid rgba(147, 197, 253, 0.2);
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
     }
 
     .nav-container {
@@ -42,7 +56,7 @@
     }
 
     .back-btn {
-      background: linear-gradient(45deg, #1e40af, #3b82f6);
+      background: linear-gradient(45deg, var(--accent-strong), var(--accent));
       color: white;
       padding: 0.75rem 1.5rem;
       border-radius: 2rem;
@@ -56,12 +70,12 @@
 
     .back-btn:hover {
       transform: translateX(-5px);
-      box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+      box-shadow: 0 8px 25px color-mix(in srgb, var(--accent-strong) 30%, transparent);
     }
 
     /* Hero Section */
     .hero {
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent-strong) 22%, var(--bg-alt)) 0%, color-mix(in srgb, var(--accent) 10%, var(--bg)) 100%);
       padding: 6rem 2rem 4rem;
       text-align: center;
     }
@@ -73,20 +87,20 @@
 
     .project-category {
       display: inline-block;
-      background: rgba(59, 130, 246, 0.2);
-      color: #93c5fd;
+      background: var(--tag-bg-soft);
+      color: var(--accent-label-text);
       padding: 0.5rem 1.5rem;
       border-radius: 2rem;
       font-size: 0.9rem;
       font-weight: 600;
       margin-bottom: 1.5rem;
-      border: 1px solid rgba(59, 130, 246, 0.3);
+      border: 1px solid var(--tag-border-soft);
     }
 
     .hero h1 {
       font-size: 3.5rem;
       font-weight: 800;
-      background: linear-gradient(45deg, #ffffff, #93c5fd);
+      background: var(--hero-title-highlight);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -96,7 +110,7 @@
 
     .hero-description {
       font-size: 1.3rem;
-      color: #cbd5e1;
+      color: var(--text);
       margin-bottom: 2rem;
       line-height: 1.8;
     }
@@ -118,14 +132,14 @@
 
     .meta-label {
       font-size: 0.85rem;
-      color: #94a3b8;
+      color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
     .meta-value {
       font-size: 1.1rem;
-      color: #93c5fd;
+      color: var(--accent-label-text);
       font-weight: 600;
     }
 
@@ -137,13 +151,13 @@
     }
 
     .tech-tag {
-      background: rgba(30, 64, 175, 0.2);
-      color: #93c5fd;
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      color: var(--accent-label-text);
       padding: 0.5rem 1.2rem;
       border-radius: 1.5rem;
       font-size: 0.9rem;
       font-weight: 500;
-      border: 1px solid rgba(30, 64, 175, 0.3);
+      border: 1px solid color-mix(in srgb, var(--accent-strong) 24%, var(--border));
     }
 
     /* Featured Image */
@@ -156,8 +170,8 @@
     .featured-image img {
       width: 100%;
       border-radius: 1.5rem;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-      border: 2px solid rgba(147, 197, 253, 0.2);
+      box-shadow: var(--shadow);
+      border: 2px solid color-mix(in srgb, var(--accent) 18%, var(--border));
     }
 
     /* Content Section */
@@ -170,14 +184,14 @@
     .section-title {
       font-size: 2.5rem;
       font-weight: 700;
-      color: #93c5fd;
+      color: var(--accent-label-text);
       margin-bottom: 1.5rem;
     }
 
     .section-content {
       font-size: 1.1rem;
       line-height: 1.9;
-      color: #cbd5e1;
+      color: var(--text);
       margin-bottom: 3rem;
     }
 
@@ -194,8 +208,8 @@
     }
 
     .logo-item {
-      background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
-      border: 2px solid rgba(147, 197, 253, 0.2);
+      background: linear-gradient(135deg, color-mix(in srgb, var(--panel-bg) 96%, transparent) 0%, color-mix(in srgb, var(--panel-soft) 92%, transparent) 100%);
+      border: 2px solid color-mix(in srgb, var(--accent) 18%, var(--border));
       border-radius: 1.5rem;
       padding: 2rem;
       transition: all 0.3s ease;
@@ -204,8 +218,8 @@
 
     .logo-item:hover {
       transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(30, 64, 175, 0.4);
-      border-color: rgba(147, 197, 253, 0.5);
+      box-shadow: 0 15px 35px color-mix(in srgb, var(--accent-strong) 26%, transparent);
+      border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
     }
 
     .logo-image {
@@ -214,7 +228,7 @@
       margin: 0 auto 1.5rem;
       border-radius: 1rem;
       overflow: hidden;
-      border: 2px solid rgba(147, 197, 253, 0.2);
+      border: 2px solid color-mix(in srgb, var(--accent) 18%, var(--border));
       display: flex;
       align-items: center;
       justify-content: center;
@@ -224,13 +238,13 @@
     .logo-title {
       font-size: 1.3rem;
       font-weight: 700;
-      color: #93c5fd;
+      color: var(--accent-label-text);
       margin-bottom: 0.75rem;
     }
 
     .logo-description {
       font-size: 1rem;
-      color: #cbd5e1;
+      color: var(--text);
       line-height: 1.7;
     }
 
@@ -243,8 +257,8 @@
     }
 
     .style-card {
-      background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
-      border: 2px solid rgba(147, 197, 253, 0.2);
+      background: linear-gradient(135deg, color-mix(in srgb, var(--panel-bg) 96%, transparent) 0%, color-mix(in srgb, var(--panel-soft) 92%, transparent) 100%);
+      border: 2px solid color-mix(in srgb, var(--accent) 18%, var(--border));
       border-radius: 1.5rem;
       padding: 2rem;
       text-align: center;
@@ -253,8 +267,8 @@
 
     .style-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(30, 64, 175, 0.4);
-      border-color: rgba(147, 197, 253, 0.5);
+      box-shadow: 0 15px 35px color-mix(in srgb, var(--accent-strong) 26%, transparent);
+      border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
     }
 
     .style-icon {
@@ -265,13 +279,13 @@
     .style-title {
       font-size: 1.2rem;
       font-weight: 700;
-      color: #93c5fd;
+      color: var(--accent-label-text);
       margin-bottom: 0.75rem;
     }
 
     .style-description {
       font-size: 0.95rem;
-      color: #cbd5e1;
+      color: var(--text);
       line-height: 1.6;
     }
 
@@ -292,7 +306,7 @@
     .step-number {
       width: 80px;
       height: 80px;
-      background: linear-gradient(135deg, #1e40af, #3b82f6);
+      background: linear-gradient(135deg, var(--accent-strong), var(--accent));
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -300,18 +314,18 @@
       font-size: 2rem;
       font-weight: 700;
       color: white;
-      box-shadow: 0 10px 30px rgba(30, 64, 175, 0.4);
+      box-shadow: 0 10px 30px color-mix(in srgb, var(--accent-strong) 30%, transparent);
     }
 
     .step-content h3 {
       font-size: 1.5rem;
-      color: #93c5fd;
+      color: var(--accent-label-text);
       margin-bottom: 0.75rem;
     }
 
     .step-content p {
       font-size: 1.05rem;
-      color: #cbd5e1;
+      color: var(--text);
       line-height: 1.8;
     }
 
@@ -327,14 +341,14 @@
       position: relative;
       overflow: hidden;
       border-radius: 1.5rem;
-      border: 2px solid rgba(147, 197, 253, 0.2);
+      border: 2px solid color-mix(in srgb, var(--accent) 18%, var(--border));
       transition: all 0.3s ease;
     }
 
     .gallery-item:hover {
       transform: scale(1.02);
-      box-shadow: 0 15px 35px rgba(30, 64, 175, 0.4);
-      border-color: rgba(147, 197, 253, 0.5);
+      box-shadow: 0 15px 35px color-mix(in srgb, var(--accent-strong) 26%, transparent);
+      border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
     }
 
     .gallery-item img {
@@ -354,7 +368,7 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(to top, rgba(15, 23, 42, 0.95), transparent);
+      background: linear-gradient(to top, color-mix(in srgb, var(--panel-bg-strong) 92%, transparent), transparent);
       padding: 2rem 1.5rem 1.5rem;
       color: white;
       transform: translateY(100%);
@@ -367,11 +381,11 @@
 
     /* Tools Section */
     .tools-section {
-      background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+      background: linear-gradient(135deg, color-mix(in srgb, var(--panel-bg) 96%, transparent) 0%, color-mix(in srgb, var(--panel-soft) 92%, transparent) 100%);
       border-radius: 1.5rem;
       padding: 3rem;
       margin: 3rem 0;
-      border: 2px solid rgba(147, 197, 253, 0.2);
+      border: 2px solid color-mix(in srgb, var(--accent) 18%, var(--border));
     }
 
     .tools-grid {
@@ -393,18 +407,18 @@
     .tool-name {
       font-size: 1.1rem;
       font-weight: 600;
-      color: #93c5fd;
+      color: var(--accent-label-text);
       margin-bottom: 0.5rem;
     }
 
     .tool-description {
       font-size: 0.9rem;
-      color: #94a3b8;
+      color: var(--muted);
     }
 
     /* CTA Section */
     .cta-section {
-      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+      background: linear-gradient(135deg, var(--accent-strong) 0%, var(--accent) 100%);
       padding: 4rem 2rem;
       text-align: center;
       margin: 4rem 0 0;
@@ -441,7 +455,7 @@
 
     .cta-btn-primary {
       background: white;
-      color: #1e40af;
+      color: var(--accent-strong);
     }
 
     .cta-btn-primary:hover {
@@ -457,20 +471,20 @@
 
     .cta-btn-secondary:hover {
       background: white;
-      color: #1e40af;
+      color: var(--accent-strong);
       transform: translateY(-3px);
     }
 
     /* Footer */
     .footer {
-      background: #0f172a;
+      background: var(--bg);
       padding: 2rem;
       text-align: center;
-      border-top: 1px solid rgba(147, 197, 253, 0.2);
+      border-top: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
     }
 
     .footer p {
-      color: #94a3b8;
+      color: var(--muted);
     }
 
     /* Responsive */
@@ -572,7 +586,7 @@
   <nav class="navbar">
     <div class="nav-container">
       <a href="../index.html" class="back-btn">
-        <img src="Logo preview/Logo Lemon.png" alt="" class="back-btn-logo">
+        <img src="logo-preview/logo-lemon.png" alt="" class="back-btn-logo">
         <span>&larr; Back to Portfolio</span>
       </a>
     </div>
@@ -626,37 +640,37 @@
     <h2 class="section-title">Logo Collection</h2>
     <div class="logo-grid">
       <div class="logo-item">
-        <div class="logo-image">ðŸ¢</div>
+        <div class="logo-image">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸Ãƒâ€šÃ‚ÂÃƒâ€šÃ‚Â¢</div>
         <h3 class="logo-title">Corporate Tech</h3>
         <p class="logo-description">Clean, modern logo for a technology consulting firm featuring geometric shapes and professional typography.</p>
       </div>
 
       <div class="logo-item">
-        <div class="logo-image">â˜•</div>
-        <h3 class="logo-title">CafÃ© Brand</h3>
+        <div class="logo-image">ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã…â€œÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢</div>
+        <h3 class="logo-title">CafÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© Brand</h3>
         <p class="logo-description">Warm, inviting logo for a local coffee shop combining handwritten elements with modern iconography.</p>
       </div>
 
       <div class="logo-item">
-        <div class="logo-image">ðŸŽ¨</div>
+        <div class="logo-image">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸Ãƒâ€¦Ã‚Â½Ãƒâ€šÃ‚Â¨</div>
         <h3 class="logo-title">Creative Agency</h3>
         <p class="logo-description">Bold, artistic logo for a design agency that captures creativity and innovation through dynamic shapes.</p>
       </div>
 
       <div class="logo-item">
-        <div class="logo-image">ðŸŒ±</div>
+        <div class="logo-image">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸Ãƒâ€¦Ã¢â‚¬â„¢Ãƒâ€šÃ‚Â±</div>
         <h3 class="logo-title">Eco-Friendly</h3>
         <p class="logo-description">Nature-inspired logo for an environmental organization using organic shapes and earth tones.</p>
       </div>
 
       <div class="logo-item">
-        <div class="logo-image">ðŸ’ª</div>
+        <div class="logo-image">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢Ãƒâ€šÃ‚Âª</div>
         <h3 class="logo-title">Fitness Brand</h3>
         <p class="logo-description">Energetic logo for a fitness center combining strength motifs with clean, athletic typography.</p>
       </div>
 
       <div class="logo-item">
-        <div class="logo-image">ðŸ“š</div>
+        <div class="logo-image">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒâ€¦Ã‚Â¡</div>
         <h3 class="logo-title">Education</h3>
         <p class="logo-description">Trustworthy logo for an educational institution featuring classical elements with modern touches.</p>
       </div>
@@ -668,37 +682,37 @@
     <h2 class="section-title">Design Approaches</h2>
     <div class="design-styles">
       <div class="style-card">
-        <div class="style-icon">â–«ï¸</div>
+        <div class="style-icon">ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“Ãƒâ€šÃ‚Â«ÃƒÆ’Ã‚Â¯Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â</div>
         <h3 class="style-title">Minimalist</h3>
         <p class="style-description">Clean, simple designs that focus on essential elements and negative space.</p>
       </div>
 
       <div class="style-card">
-        <div class="style-icon">ðŸ”·</div>
+        <div class="style-icon">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒâ€šÃ‚Â·</div>
         <h3 class="style-title">Geometric</h3>
         <p class="style-description">Shapes and patterns based on mathematical forms and geometric principles.</p>
       </div>
 
       <div class="style-card">
-        <div class="style-icon">âœï¸</div>
+        <div class="style-icon">ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã¢â‚¬Å“Ãƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¯Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â</div>
         <h3 class="style-title">Illustrative</h3>
         <p class="style-description">Hand-drawn or custom illustrated elements that tell a visual story.</p>
       </div>
 
       <div class="style-card">
-        <div class="style-icon">ðŸ”¤</div>
+        <div class="style-icon">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒâ€šÃ‚Â¤</div>
         <h3 class="style-title">Typographic</h3>
         <p class="style-description">Designs that use typography as the primary visual element.</p>
       </div>
 
       <div class="style-card">
-        <div class="style-icon">ðŸŽ­</div>
+        <div class="style-icon">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸Ãƒâ€¦Ã‚Â½Ãƒâ€šÃ‚Â­</div>
         <h3 class="style-title">Symbolic</h3>
         <p class="style-description">Logos that use symbols and metaphors to represent brand values.</p>
       </div>
 
       <div class="style-card">
-        <div class="style-icon">ðŸŒˆ</div>
+        <div class="style-icon">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸Ãƒâ€¦Ã¢â‚¬â„¢Ãƒâ€¹Ã¢â‚¬Â </div>
         <h3 class="style-title">Color-Driven</h3>
         <p class="style-description">Designs where color plays a crucial role in brand recognition.</p>
       </div>
@@ -760,37 +774,37 @@
 
       <div class="tools-grid">
         <div class="tool-item">
-          <div class="tool-icon">ðŸŽ¨</div>
+          <div class="tool-icon">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸Ãƒâ€¦Ã‚Â½Ãƒâ€šÃ‚Â¨</div>
           <div class="tool-name">Adobe Illustrator</div>
           <div class="tool-description">Primary vector design tool for logo creation</div>
         </div>
 
         <div class="tool-item">
-          <div class="tool-icon">ðŸ–¼ï¸</div>
+          <div class="tool-icon">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“Ãƒâ€šÃ‚Â¼ÃƒÆ’Ã‚Â¯Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â</div>
           <div class="tool-name">Adobe Photoshop</div>
           <div class="tool-description">Image editing and raster graphics</div>
         </div>
 
         <div class="tool-item">
-          <div class="tool-icon">ðŸ“</div>
+          <div class="tool-icon">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒâ€šÃ‚Â</div>
           <div class="tool-name">Sketch</div>
           <div class="tool-description">Digital design and prototyping</div>
         </div>
 
         <div class="tool-item">
-          <div class="tool-icon">ðŸŽ¯</div>
+          <div class="tool-icon">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸Ãƒâ€¦Ã‚Â½Ãƒâ€šÃ‚Â¯</div>
           <div class="tool-name">Figma</div>
           <div class="tool-description">Collaborative design platform</div>
         </div>
 
         <div class="tool-item">
-          <div class="tool-icon">âš¡</div>
+          <div class="tool-icon">ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã‚Â¡Ãƒâ€šÃ‚Â¡</div>
           <div class="tool-name">Procreate</div>
           <div class="tool-description">Digital illustration and sketching</div>
         </div>
 
         <div class="tool-item">
-          <div class="tool-icon">ðŸ”</div>
+          <div class="tool-icon">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒâ€šÃ‚Â</div>
           <div class="tool-name">Font Libraries</div>
           <div class="tool-description">Google Fonts, Adobe Fonts, custom typefaces</div>
         </div>

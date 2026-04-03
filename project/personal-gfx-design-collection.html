@@ -1,10 +1,24 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="Logo preview/Logo Lemon.png" />
+  <link rel="icon" type="image/png" href="logo-preview/logo-lemon.png" />
   <title>Personal GFX Design Collection - Jona Setiawan</title>
+  <script>
+    (function () {
+      var storedTheme = "light";
+
+      try {
+        var savedTheme = window.localStorage.getItem("portfolio-color-theme");
+        storedTheme = savedTheme === "blue" || savedTheme === "light" || savedTheme === "galaxy" ? savedTheme : "light";
+      } catch (error) {
+        storedTheme = "light";
+      }
+
+      document.documentElement.setAttribute("data-theme", storedTheme);
+    })();
+  </script>
   <link rel="stylesheet" href="../zoom-controls.css">
   <link rel="stylesheet" href="../theme-palettes.css">
 
@@ -521,7 +535,7 @@
   <nav class="navbar">
     <div class="nav-container">
       <a href="../index.html" class="back-btn">
-        <img src="Logo preview/Logo Lemon.png" alt="" class="back-btn-logo">
+        <img src="logo-preview/logo-lemon.png" alt="" class="back-btn-logo">
         <span>Back to Portfolio</span>
       </a>
     </div>
@@ -610,8 +624,8 @@
   <section class="content-section">
     <div class="gallery-header">
       <div>
-        <h2 class="section-title">All Design GFX</h2>
-        <p class="section-intro">Every item below is pulled from the local image files currently inside the Design GFX folder in this project.</p>
+        <h2 class="section-title">All GFX Designs</h2>
+        <p class="section-intro">Every item below is pulled from the local image files currently inside the design-gfx folder in this project.</p>
       </div>
       <span class="gallery-count" id="gallery-count">0 local artworks</span>
     </div>
@@ -650,7 +664,7 @@
       "3.jpg",
       "Ayane Nakiri.jpg",
       "Chisa GFX design.jpg",
-      "FIrefly.jpg",
+      "Firefly.jpg",
       "Hoshimi Miyabi.jpg",
       "Hu tao GFX design.jpg",
       "Kar98k.jpg",
@@ -669,13 +683,14 @@
     const formatTitle = (file) => {
       const name = file.replace(/\.[^.]+$/, "");
       return name
+        .replace(/^FIrefly$/i, "Firefly")
         .replace(/\(\d+\)/g, " Alt")
         .replace(/-/g, " ")
         .replace(/\s+/g, " ")
         .trim();
     };
 
-    const gfxFolder = "Design GFX/";
+    const gfxFolder = "design-gfx/";
     const gallery = document.getElementById("gfx-gallery");
     const count = document.getElementById("gallery-count");
 

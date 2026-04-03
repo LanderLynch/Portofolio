@@ -14,75 +14,14 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const projectCollection = collection(db, "projects");
-
-function escapeHtml(value, fallback = "") {
-  return String(value || fallback)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
+const projectCardUtils = window.portfolioProjectCardUtils;
 
 function createFirebaseProjectCard(project, isAdmin) {
-  const card = document.createElement("div");
-  const category = project.category || "graphic";
-  const status = project.status || "concept";
-  const label = status.replace(/-/g, " ");
-  const imageUrl =
-    project.imageUrl ||
-    "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop";
-  const projectLink = project.projectLink || "#";
-  const projectType = project.projectType || "Portfolio";
-  const projectDate = project.dateLabel || "Recent";
-  const techStack = Array.isArray(project.techStack) ? project.techStack : [];
-
-  card.className = "project-card project-card-dynamic";
-  card.dataset.category = category;
-  card.dataset.projectSource = "firebase";
-  card.dataset.docId = project.id;
-
-  const deleteAction = isAdmin
-    ? `
-      <div class="project-admin-actions">
-        <button type="button" class="project-delete-btn" data-delete-project="${escapeHtml(project.id)}">Delete</button>
-      </div>
-    `
-    : "";
-
-  card.innerHTML = `
-    <div class="project-image">
-      <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(project.title, "Untitled Project")}" />
-      <div class="project-overlay">
-        <div class="project-quick-actions">
-          <a href="${escapeHtml(projectLink)}" class="quick-action-btn" title="Open Project" aria-label="Open Project">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M13.5 6H19.5V12"></path><path d="m10.5 13.5 9-9"></path><path d="M19.5 14.25v3A2.25 2.25 0 0 1 17.25 19.5h-10.5A2.25 2.25 0 0 1 4.5 17.25v-10.5A2.25 2.25 0 0 1 6.75 4.5h3"></path></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="project-content">
-      <div class="project-header">
-        <h3 class="project-title">${escapeHtml(project.title, "Untitled Project")}</h3>
-        <span class="project-status ${escapeHtml(status)}">${escapeHtml(label)}</span>
-      </div>
-      <p class="project-description">${escapeHtml(project.description)}</p>
-      <div class="project-tech-stack">
-        ${techStack.map((item) => `<span class="tech-tag">${escapeHtml(item)}</span>`).join("")}
-      </div>
-      <div class="project-meta">
-        <div class="project-date">
-          <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
-          <span>${escapeHtml(projectDate)}</span>
-        </div>
-        <div class="project-type">${escapeHtml(projectType)}</div>
-      </div>
-      <a href="${escapeHtml(projectLink)}" class="view-project-btn">View Project &rarr;</a>
-      ${deleteAction}
-    </div>
-  `;
-
-  return card;
+  return projectCardUtils.createProjectCard(project, {
+    cardClassName: "project-card project-card-dynamic",
+    isAdmin,
+    projectSource: "firebase"
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {

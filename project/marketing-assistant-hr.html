@@ -3,8 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="Logo preview/Logo Lemon.png">
+  <link rel="icon" type="image/png" href="logo-preview/logo-lemon.png">
   <title>Marketing &amp; Assistant HR - Jona Setiawan</title>
+  <script>
+    (function () {
+      var storedTheme = "light";
+
+      try {
+        var savedTheme = window.localStorage.getItem("portfolio-color-theme");
+        storedTheme = savedTheme === "blue" || savedTheme === "light" || savedTheme === "galaxy" ? savedTheme : "light";
+      } catch (error) {
+        storedTheme = "light";
+      }
+
+      document.documentElement.setAttribute("data-theme", storedTheme);
+    })();
+  </script>
   <link rel="stylesheet" href="../zoom-controls.css">
   <link rel="stylesheet" href="../theme-palettes.css">
   <style>
@@ -594,21 +608,21 @@
       color: var(--muted);
     }
 
-    body[data-theme="light"] .toolbar-search input,
-    body[data-theme="light"] .toolbar-select {
+    :root[data-theme="light"] .toolbar-search input,
+    :root[data-theme="light"] .toolbar-select {
       background: rgba(255, 255, 255, 0.96);
       color: #1f2a44;
     }
 
-    body[data-theme="light"] .table-wrap {
+    :root[data-theme="light"] .table-wrap {
       background: rgba(255, 255, 255, 0.74);
     }
 
-    body[data-theme="light"] thead th {
+    :root[data-theme="light"] thead th {
       background: rgba(255, 255, 255, 0.96);
     }
 
-    body[data-theme="light"] tbody td {
+    :root[data-theme="light"] tbody td {
       color: #394869;
     }
 
@@ -717,7 +731,7 @@
   <nav class="navbar">
     <div class="nav-container">
       <a href="../index.html#projects" class="back-btn">
-        <img src="Logo preview/Fortress logo.jpg" alt="" class="back-btn-logo">
+        <img src="logo-preview/fortress-logo.jpg" alt="" class="back-btn-logo">
         <span>&larr; Back to Portfolio</span>
       </a>
     </div>
@@ -759,13 +773,13 @@
 
           <div class="hero-actions">
             <a class="action-btn action-btn-primary" href="#workbook-explorer">Open Web Table</a>
-            <a class="action-btn action-btn-secondary" href="Project Fortress/Riset data nama Fortress.xlsx" download>Download Excel File</a>
+            <a class="action-btn action-btn-secondary" href="project-fortress/riset-data-nama-fortress.xlsx" download>Download Excel File</a>
           </div>
         </div>
 
         <aside class="hero-preview">
           <div class="preview-brand">
-            <img src="Logo preview/Fortress logo.jpg" alt="Fortress logo">
+            <img src="logo-preview/fortress-logo.jpg" alt="Fortress logo">
             <div>
               <h2>Fortress Training Archive</h2>
               <p>Original workbook source from the Fortress internship documentation.</p>
@@ -775,7 +789,7 @@
           <div class="preview-metrics">
             <div class="preview-metric">
               <span>Workbook File</span>
-              <strong>Riset data nama Fortress.xlsx</strong>
+              <strong>riset-data-nama-fortress.xlsx</strong>
             </div>
             <div class="preview-metric">
               <span>Primary Output</span>
@@ -861,7 +875,7 @@
           </select>
           <button type="button" class="toolbar-btn toolbar-btn-secondary" id="clear-search-btn">Clear Search</button>
           <button type="button" class="toolbar-btn toolbar-btn-secondary" id="export-csv-btn">Export CSV</button>
-          <a class="toolbar-btn toolbar-btn-primary" href="Project Fortress/Riset data nama Fortress.xlsx" download>Download Workbook</a>
+          <a class="toolbar-btn toolbar-btn-primary" href="project-fortress/riset-data-nama-fortress.xlsx" download>Download Workbook</a>
         </div>
       </div>
 
@@ -888,7 +902,7 @@
       <h2>Excel Data, Presented Like a Project Page</h2>
       <p>This project page keeps the original Fortress workbook connected to the portfolio while turning its sheets into a cleaner, easier-to-browse website experience.</p>
       <div class="cta-buttons">
-        <a href="Project Fortress/Riset data nama Fortress.xlsx" download class="action-btn action-btn-primary">Download Source Workbook</a>
+        <a href="project-fortress/riset-data-nama-fortress.xlsx" download class="action-btn action-btn-primary">Download Source Workbook</a>
         <a href="../index.html#projects" class="action-btn action-btn-secondary">Back to Projects</a>
       </div>
     </div>
@@ -899,7 +913,7 @@
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script>
-    const workbookUrl = "Project Fortress/Riset data nama Fortress.xlsx";
+    const workbookUrl = "project-fortress/riset-data-nama-fortress.xlsx";
     const sheetTabs = document.getElementById("sheet-tabs");
     const tableHead = document.getElementById("sheet-table-head");
     const tableBody = document.getElementById("sheet-table-body");

@@ -1,10 +1,24 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" type="image/png" href="project/Logo preview/Logo Lemon.png" />
+  <link rel="icon" type="image/png" href="project/logo-preview/logo-lemon.png" />
   <title>Certification - Jona Setiawan</title>
+  <script>
+    (function () {
+      var storedTheme = "light";
+
+      try {
+        var savedTheme = window.localStorage.getItem("portfolio-color-theme");
+        storedTheme = savedTheme === "blue" || savedTheme === "light" || savedTheme === "galaxy" ? savedTheme : "light";
+      } catch (error) {
+        storedTheme = "light";
+      }
+
+      document.documentElement.setAttribute("data-theme", storedTheme);
+    })();
+  </script>
   <link rel="stylesheet" href="zoom-controls.css" />
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
@@ -479,7 +493,7 @@
       display: block;
     }
 
-    body[data-theme="light"] {
+    :root[data-theme="light"] {
       color: #2c2f47;
       background:
         radial-gradient(circle at top left, rgba(111, 125, 181, 0.18), transparent 34%),
@@ -487,82 +501,82 @@
         linear-gradient(180deg, #f3f4fb 0%, #eceff7 55%, #e7ebf5 100%);
     }
 
-    body[data-theme="light"] .topbar,
-    body[data-theme="light"] .hero,
-    body[data-theme="light"] .hero-stat,
-    body[data-theme="light"] .certificate-card,
-    body[data-theme="light"] .empty-state,
-    body[data-theme="light"] .folder-accordion {
+    :root[data-theme="light"] .topbar,
+    :root[data-theme="light"] .hero,
+    :root[data-theme="light"] .hero-stat,
+    :root[data-theme="light"] .certificate-card,
+    :root[data-theme="light"] .empty-state,
+    :root[data-theme="light"] .folder-accordion {
       background: rgba(245, 246, 251, 0.94);
       border-color: rgba(93, 98, 136, 0.14);
       box-shadow: 0 24px 54px rgba(93, 98, 136, 0.14);
     }
 
-    body[data-theme="light"] .brand,
-    body[data-theme="light"] .hero h1,
-    body[data-theme="light"] .certificate-card h2,
-    body[data-theme="light"] .folder-modal-header h2,
-    body[data-theme="light"] .folder-toggle,
-    body[data-theme="light"] .folder-file-copy strong {
+    :root[data-theme="light"] .brand,
+    :root[data-theme="light"] .hero h1,
+    :root[data-theme="light"] .certificate-card h2,
+    :root[data-theme="light"] .folder-modal-header h2,
+    :root[data-theme="light"] .folder-toggle,
+    :root[data-theme="light"] .folder-file-copy strong {
       color: #2c2f47;
     }
 
-    body[data-theme="light"] .hero p,
-    body[data-theme="light"] .hero-stat span,
-    body[data-theme="light"] .section-note,
-    body[data-theme="light"] .certificate-card p,
-    body[data-theme="light"] .empty-state,
-    body[data-theme="light"] .folder-modal-header p,
-    body[data-theme="light"] .folder-toggle-copy span,
-    body[data-theme="light"] .folder-file-copy span,
-    body[data-theme="light"] .folder-chevron {
+    :root[data-theme="light"] .hero p,
+    :root[data-theme="light"] .hero-stat span,
+    :root[data-theme="light"] .section-note,
+    :root[data-theme="light"] .certificate-card p,
+    :root[data-theme="light"] .empty-state,
+    :root[data-theme="light"] .folder-modal-header p,
+    :root[data-theme="light"] .folder-toggle-copy span,
+    :root[data-theme="light"] .folder-file-copy span,
+    :root[data-theme="light"] .folder-chevron {
       color: #6b7191;
     }
 
-    body[data-theme="light"] .back-btn,
-    body[data-theme="light"] .folder-open-btn,
-    body[data-theme="light"] .filter-btn {
+    :root[data-theme="light"] .back-btn,
+    :root[data-theme="light"] .folder-open-btn,
+    :root[data-theme="light"] .filter-btn {
       background: rgba(255, 255, 255, 0.88);
       color: #4f5479;
       border-color: rgba(93, 98, 136, 0.16);
     }
 
-    body[data-theme="light"] .filter-btn.active {
+    :root[data-theme="light"] .filter-btn.active {
       background: linear-gradient(135deg, rgba(111, 125, 181, 0.18), rgba(151, 164, 214, 0.22));
       color: #2c2f47;
     }
 
-    body[data-theme="light"] .certificate-tag,
-    body[data-theme="light"] .folder-icon,
-    body[data-theme="light"] .folder-stats {
+    :root[data-theme="light"] .certificate-tag,
+    :root[data-theme="light"] .folder-icon,
+    :root[data-theme="light"] .folder-stats {
       background: rgba(111, 125, 181, 0.14);
       color: #5b638e;
       border-color: rgba(111, 125, 181, 0.18);
     }
 
-    body[data-theme="light"] .folder-card::before {
+    :root[data-theme="light"] .folder-card::before {
       background:
         radial-gradient(circle at top right, rgba(111, 125, 181, 0.12), transparent 32%),
         linear-gradient(180deg, rgba(255, 255, 255, 0.62), transparent);
     }
 
-    body[data-theme="light"] .folder-modal {
+    :root[data-theme="light"] .folder-modal {
       background: rgba(110, 119, 154, 0.28);
     }
 
-    body[data-theme="light"] .folder-modal-card {
+    :root[data-theme="light"] .folder-modal-card {
       background: rgba(245, 246, 251, 0.98);
       border-color: rgba(93, 98, 136, 0.16);
       box-shadow: 0 28px 58px rgba(93, 98, 136, 0.18);
     }
 
-    body[data-theme="light"] .folder-modal-close {
+    :root[data-theme="light"] .folder-modal-close {
       background: rgba(255, 255, 255, 0.88);
       color: #4f5479;
       border-color: rgba(93, 98, 136, 0.14);
     }
 
-    body[data-theme="light"] .folder-file {
+    :root[data-theme="light"] .folder-file {
       background: rgba(255, 255, 255, 0.76);
       border-color: rgba(93, 98, 136, 0.1);
     }
@@ -633,10 +647,10 @@
   <div class="page-shell">
     <div class="topbar">
       <div class="brand">
-        <img src="project/Logo preview/Logo Lemon.png" alt="" class="brand-logo">
+        <img src="project/logo-preview/logo-lemon.png" alt="" class="brand-logo">
         <span>Jona Setiawan</span>
       </div>
-      <a href="index.html#certificated" class="back-btn">Back to Portfolio</a>
+      <a href="index.html#certification" class="back-btn">Back to Portfolio</a>
     </div>
 
     <section class="hero">
@@ -675,56 +689,56 @@
         <span class="certificate-tag">MySkill</span>
         <h2>Graphic Design MySkill Januari 2025</h2>
         <p>E-sertifikat short class MySkill for graphic design.</p>
-        <a class="certificate-link" href="project/Certification/Jona Saevuddyn Setiawan E-Sertifikat SC Graphic Design MySkill Januari 2025.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        <a class="certificate-link" href="project/certification-files/Jona Saevuddyn Setiawan E-Sertifikat SC Graphic Design MySkill Januari 2025.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
       <article class="certificate-card" data-category="myskill">
         <span class="certificate-tag">MySkill</span>
         <h2>Webdev MySkill</h2>
         <p>E-sertifikat peserta short class web development from MySkill.</p>
-        <a class="certificate-link" href="project/Certification/Jona Saevuddyn Setiawan E-Sertifikat peserta SC Webdev MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        <a class="certificate-link" href="project/certification-files/Jona Saevuddyn Setiawan E-Sertifikat peserta SC Webdev MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
       <article class="certificate-card" data-category="myskill">
         <span class="certificate-tag">MySkill</span>
         <h2>Accounting Fundamentals MySkill</h2>
         <p>E-sertif MySkill for accounting fundamentals.</p>
-        <a class="certificate-link" href="project/Certification/Jona Saevuddyn Setiawan - E-Sertif SC Accounting Fundamentals MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        <a class="certificate-link" href="project/certification-files/Jona Saevuddyn Setiawan - E-Sertif SC Accounting Fundamentals MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
       <article class="certificate-card" data-category="myskill">
         <span class="certificate-tag">MySkill</span>
         <h2>Motivation Letter and Interview for Scholarship Preparation</h2>
         <p>MySkill certificate for scholarship preparation training.</p>
-        <a class="certificate-link" href="project/Certification/Jona Saevuddyn Setiawan - E-Certificate SC Motivation Letter and Interview for Scholarship Preparation MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        <a class="certificate-link" href="project/certification-files/Jona Saevuddyn Setiawan - E-Certificate SC Motivation Letter and Interview for Scholarship Preparation MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
       <article class="certificate-card" data-category="myskill">
         <span class="certificate-tag">MySkill</span>
         <h2>Brand Identity Design</h2>
         <p>MySkill certificate focused on brand identity design.</p>
-        <a class="certificate-link" href="project/Certification/Jona Saevuddyn Setiawan - E-Certificate SC Brand Identity Design Juni 2025_2.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        <a class="certificate-link" href="project/certification-files/Jona Saevuddyn Setiawan - E-Certificate SC Brand Identity Design Juni 2025_2.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
       <article class="certificate-card" data-category="myskill">
         <span class="certificate-tag">MySkill</span>
         <h2>Introduction to UX Research</h2>
         <p>MySkill certificate on UX research basics and methods.</p>
-        <a class="certificate-link" href="project/Certification/Jona Saevuddyn Setiawan - E-Certif SC Introduction to UX Research MySkill (1).pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        <a class="certificate-link" href="project/certification-files/Jona Saevuddyn Setiawan - E-Certif SC Introduction to UX Research MySkill (1).pdf" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
       <article class="certificate-card" data-category="myskill">
         <span class="certificate-tag">MySkill</span>
         <h2>Content Marketing Strategy</h2>
         <p>MySkill certificate covering content marketing strategy.</p>
-        <a class="certificate-link" href="project/Certification/Jona Saevuddyn Setiawan - E-Certif SC Content Marketing Strategy MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        <a class="certificate-link" href="project/certification-files/Jona Saevuddyn Setiawan - E-Certif SC Content Marketing Strategy MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
       <article class="certificate-card" data-category="myskill">
         <span class="certificate-tag">MySkill</span>
         <h2>Color and Typography</h2>
         <p>MySkill certificate for design fundamentals in color and typography.</p>
-        <a class="certificate-link" href="project/Certification/Jona Saevuddyn Setiawan - E-Certif SC Color and Typography MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        <a class="certificate-link" href="project/certification-files/Jona Saevuddyn Setiawan - E-Certif SC Color and Typography MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
       <article class="certificate-card folder-card" data-category="skill">
@@ -748,21 +762,21 @@
         <span class="certificate-tag">Trainee</span>
         <h2>Aryaduta Trainee Website Certification</h2>
         <p>Certification file from the Aryaduta trainee program website work.</p>
-        <a class="certificate-link" href="project/Certification/Certification Trainee/Certification of Aryaduta Trainee website.jpg" target="_blank" rel="noopener noreferrer">Open File</a>
+        <a class="certificate-link" href="project/certification-files/certification-trainee/aryaduta-trainee-website-certification.jpg" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
       <article class="certificate-card" data-category="trainee">
         <span class="certificate-tag">Trainee</span>
         <h2>Aryaduta Trainee Performance Score</h2>
         <p>Performance score file from the Aryaduta trainee period.</p>
-        <a class="certificate-link" href="project/Certification/Certification Trainee/Trainne performance Score Of Aryaduta.jpg" target="_blank" rel="noopener noreferrer">Open File</a>
+        <a class="certificate-link" href="project/certification-files/certification-trainee/aryaduta-trainee-performance-score.jpg" target="_blank" rel="noopener noreferrer">Open Performance Score</a>
       </article>
 
       <article class="certificate-card" data-category="competition">
         <span class="certificate-tag">Competition</span>
         <h2>Kota Tangerang Competition Award 2024</h2>
         <p>Competition recognition file from the antar Kota Tangerang event on 26-29 February 2024.</p>
-        <a class="certificate-link" href="project/Certification/Certification Trainee/Certification of piagam perhargaan antar Kota tangerang 26 - 29 feb 2024.jpg" target="_blank" rel="noopener noreferrer">Open File</a>
+        <a class="certificate-link" href="project/certification-files/certification-trainee/kota-tangerang-competition-award-feb-2024.jpg" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
     </section>
 
@@ -792,7 +806,7 @@
               <span>Expand this folder to reveal every TOEFL-related learning PDF.</span>
             </span>
           </span>
-          <span class="folder-chevron" aria-hidden="true">⌄</span>
+          <span class="folder-chevron" aria-hidden="true">Ã¢Å’â€ž</span>
         </button>
 
         <div class="folder-files" id="toefl-folder-files">
@@ -801,98 +815,98 @@
               <strong>TOEFL ITP</strong>
               <span>English learning certificate and TOEFL ITP material.</span>
             </div>
-            <a class="certificate-link" href="project/Certification/TOEFL ITP.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+            <a class="certificate-link" href="project/certification-files/TOEFL ITP.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
           </div>
           <div class="folder-file">
             <div class="folder-file-copy">
               <strong>TOEFL ITP Introduction</strong>
               <span>Introductory PDF for TOEFL ITP learning preparation.</span>
             </div>
-            <a class="certificate-link" href="project/Certification/TOEFL ITP INTRODUCTION.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+            <a class="certificate-link" href="project/certification-files/TOEFL ITP INTRODUCTION.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
           </div>
           <div class="folder-file">
             <div class="folder-file-copy">
               <strong>Listening Skill Part A</strong>
               <span>Listening practice PDF focused on TOEFL-style exercises.</span>
             </div>
-            <a class="certificate-link" href="project/Certification/LISTENING SKILL PART A.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+            <a class="certificate-link" href="project/certification-files/LISTENING SKILL PART A.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
           </div>
           <div class="folder-file">
             <div class="folder-file-copy">
               <strong>Listening Skill Part B and C</strong>
               <span>Continuation listening practice material for English training.</span>
             </div>
-            <a class="certificate-link" href="project/Certification/LISTENING SKILL PART B AND C.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+            <a class="certificate-link" href="project/certification-files/LISTENING SKILL PART B AND C.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
           </div>
           <div class="folder-file">
             <div class="folder-file-copy">
               <strong>Reading Introduction</strong>
               <span>Reading section introduction PDF.</span>
             </div>
-            <a class="certificate-link" href="project/Certification/Reading_ Introduction.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+            <a class="certificate-link" href="project/certification-files/Reading_ Introduction.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
           </div>
           <div class="folder-file">
             <div class="folder-file-copy">
               <strong>Reading Explicit Questions</strong>
               <span>Reading practice material for explicit question types.</span>
             </div>
-            <a class="certificate-link" href="project/Certification/Reading_ Explicit Questions.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+            <a class="certificate-link" href="project/certification-files/Reading_ Explicit Questions.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
           </div>
           <div class="folder-file">
             <div class="folder-file-copy">
               <strong>Reading Implicit Questions</strong>
               <span>Reading practice PDF focused on implicit question skills.</span>
             </div>
-            <a class="certificate-link" href="project/Certification/READING_ IMPLICIT QUESTIONS.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+            <a class="certificate-link" href="project/certification-files/READING_ IMPLICIT QUESTIONS.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
           </div>
           <div class="folder-file">
             <div class="folder-file-copy">
               <strong>Reading Vocabulary Question</strong>
               <span>Vocabulary-based reading material for English preparation.</span>
             </div>
-            <a class="certificate-link" href="project/Certification/Reading_ Vocabulary Question.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+            <a class="certificate-link" href="project/certification-files/Reading_ Vocabulary Question.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
           </div>
           <div class="folder-file">
             <div class="folder-file-copy">
               <strong>Written and Structure Part 1</strong>
               <span>Writing structure training PDF part 1.</span>
             </div>
-            <a class="certificate-link" href="project/Certification/WRITTEN AND STRUCTURE  WRITING STRUCTURE PART 1.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+            <a class="certificate-link" href="project/certification-files/WRITTEN AND STRUCTURE  WRITING STRUCTURE PART 1.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
           </div>
           <div class="folder-file">
             <div class="folder-file-copy">
               <strong>Written and Structure Part 2</strong>
               <span>Writing structure training PDF part 2.</span>
             </div>
-            <a class="certificate-link" href="project/Certification/Written & Structure  Writing Structure Part 2.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+            <a class="certificate-link" href="project/certification-files/Written & Structure  Writing Structure Part 2.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
           </div>
           <div class="folder-file">
             <div class="folder-file-copy">
               <strong>Written Expression Part I</strong>
               <span>Written expression material part I.</span>
             </div>
-            <a class="certificate-link" href="project/Certification/Written & Structure _ Writen Expression Part I.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+            <a class="certificate-link" href="project/certification-files/Written & Structure _ Written Expression Part I.pdf" target="_blank" rel="noopener noreferrer">Open Written Expression Part I</a>
           </div>
           <div class="folder-file">
             <div class="folder-file-copy">
               <strong>Written Expression Part II</strong>
               <span>Written expression material part II.</span>
             </div>
-            <a class="certificate-link" href="project/Certification/Written & Structure _ Writen Expression Part II.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+            <a class="certificate-link" href="project/certification-files/Written & Structure _ Written Expression Part II.pdf" target="_blank" rel="noopener noreferrer">Open Written Expression Part II</a>
           </div>
           <div class="folder-file">
             <div class="folder-file-copy">
               <strong>Writing Structure Part III</strong>
               <span>Writing structure practice PDF part III.</span>
             </div>
-            <a class="certificate-link" href="project/Certification/Written & Structure _ Writing Structure Part III.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+            <a class="certificate-link" href="project/certification-files/Written & Structure _ Writing Structure Part III.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
           </div>
           <div class="folder-file">
             <div class="folder-file-copy">
               <strong>Writing Structure Part IV</strong>
               <span>Writing structure practice PDF part IV.</span>
             </div>
-            <a class="certificate-link" href="project/Certification/Written & Structure _ Writing Structure Part IV.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+            <a class="certificate-link" href="project/certification-files/Written & Structure _ Writing Structure Part IV.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
           </div>
         </div>
       </div>

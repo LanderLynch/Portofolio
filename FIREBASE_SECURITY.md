@@ -37,4 +37,4 @@ This repository is a static HTML/CSS/JS portfolio. A `.env` file can keep local 
 
 ## Example server usage
 
-If you need Firebase Admin SDK code, keep it in a server-only file such as [server/firebase-admin.example.js](/c:/Users/Design-IKM/Documents/GitHub/Portofolio/server/firebase-admin.example.js). Do not import that file from `index.html`, `admin-panel.js`, or any other browser script.
+If you need Firebase Admin SDK code, keep it in a server-only file such as [server/firebase-admin.example.js](/c:/Users/Jona/Documents/GitHub/Portofolio/server/firebase-admin.example.js). Do not import that file from `index.html`, `admin-panel.js`, or any other browser script.
