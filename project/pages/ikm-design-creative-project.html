@@ -1,26 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="logo-preview/logo-lemon.png" />
+  <link rel="icon" type="image/png" href="../assets/logo-preview/logo-lemon.png" />
   <title>Designer Bag on IKM - Jona Setiawan</title>
-  <script>
-    (function () {
-      var storedTheme = "light";
-
-      try {
-        var savedTheme = window.localStorage.getItem("portfolio-color-theme");
-        storedTheme = savedTheme === "blue" || savedTheme === "light" || savedTheme === "galaxy" ? savedTheme : "light";
-      } catch (error) {
-        storedTheme = "light";
-      }
-
-      document.documentElement.setAttribute("data-theme", storedTheme);
-    })();
-  </script>
-  <link rel="stylesheet" href="../zoom-controls.css">
-  <link rel="stylesheet" href="../theme-palettes.css">
+  <script src="../../theme-init.js"></script>
+  <link rel="stylesheet" href="../../zoom-controls.css">
+  <link rel="stylesheet" href="../../theme-palettes.css">
 
   <style>
     * {
@@ -46,6 +33,11 @@
       --page-highlight-border: color-mix(in srgb, var(--accent) 34%, var(--border));
       --page-highlight-shadow: 0 14px 28px color-mix(in srgb, var(--accent-strong) 22%, transparent);
       --page-shadow: var(--shadow);
+    }
+
+    html,
+    body {
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
     }
 
     body {
@@ -279,12 +271,22 @@
     .layout-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.22fr) minmax(300px, 0.78fr);
-      grid-template-areas: "viewer controls";
+      grid-template-areas:
+        "viewer controls"
+        "viewer info";
       gap: 1.5rem;
+      align-items: start;
     }
 
     .controls-stack {
       grid-area: controls;
+      display: grid;
+      gap: 1.5rem;
+      align-content: start;
+    }
+
+    .info-stack {
+      grid-area: info;
       display: grid;
       gap: 1.5rem;
       align-content: start;
@@ -609,6 +611,9 @@
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 1.5rem 2.5rem;
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
       color: var(--page-muted);
       text-align: center;
     }
@@ -619,7 +624,8 @@
         grid-template-columns: 1fr;
         grid-template-areas:
           "controls"
-          "viewer";
+          "viewer"
+          "info";
       }
     }
 
@@ -706,8 +712,8 @@
 
   <nav class="navbar">
     <div class="nav-container">
-      <a href="../index.html" class="back-btn">
-        <img src="logo-preview/logo-lemon.png" alt="" class="back-btn-logo">
+      <a href="../../index.html" class="back-btn">
+        <img src="../assets/logo-preview/logo-lemon.png" alt="" class="back-btn-logo">
         <span>&larr; Back to Portfolio</span>
       </a>
     </div>
@@ -768,7 +774,30 @@
             <div class="sort-switcher" id="sort-switcher" aria-label="Bag design sort selector"></div>
           </div>
         </div>
+      </div>
 
+      <div class="viewer-stack">
+        <section class="viewer-card">
+          <h2 id="viewer-heading">Featured Bag Design</h2>
+          <div class="artwork-frame">
+            <img id="artwork-image" class="artwork-image" src="../assets/ikm-project/2025/October/Tas serut Arnotts October.jpg" alt="Featured monthly IKM bag design">
+          </div>
+          <div class="artwork-meta">
+            <div>
+              <div class="artwork-subtitle" id="artwork-date">October 2025</div>
+              <h3 class="artwork-title" id="artwork-title">Arnotts Drawstring Bag</h3>
+            </div>
+            <span class="artwork-badge" id="artwork-badge">2025 Collection</span>
+          </div>
+          <p class="artwork-description" id="artwork-description">A drawstring bag concept from the October 2025 IKM work set. Use the month and sort buttons to browse the synced files based on the folders and filenames you added.</p>
+          <div class="asset-gallery" id="asset-gallery" hidden>
+            <h3 class="asset-gallery-title" id="asset-gallery-title">Files in This Sort</h3>
+            <div class="asset-grid" id="asset-grid"></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="info-stack">
         <aside class="month-list-card">
           <h2>Visible Timeline</h2>
           <p>The list below reflects the months currently available for the selected year and the bag type featured in each one.</p>
@@ -787,27 +816,6 @@
           </ul>
         </aside>
       </div>
-
-      <div class="viewer-stack">
-        <section class="viewer-card">
-          <h2 id="viewer-heading">Featured Bag Design</h2>
-          <div class="artwork-frame">
-            <img id="artwork-image" class="artwork-image" src="ikm-project/2025/October/Tas serut Arnotts October.jpg" alt="Featured monthly IKM bag design">
-          </div>
-          <div class="artwork-meta">
-            <div>
-              <div class="artwork-subtitle" id="artwork-date">October 2025</div>
-              <h3 class="artwork-title" id="artwork-title">Arnotts Drawstring Bag</h3>
-            </div>
-            <span class="artwork-badge" id="artwork-badge">2025 Collection</span>
-          </div>
-          <p class="artwork-description" id="artwork-description">A drawstring bag concept from the October 2025 IKM work set. Use the month and sort buttons to browse the synced files based on the folders and filenames you added.</p>
-          <div class="asset-gallery" id="asset-gallery" hidden>
-            <h3 class="asset-gallery-title" id="asset-gallery-title">Files in This Sort</h3>
-            <div class="asset-grid" id="asset-grid"></div>
-          </div>
-        </section>
-      </div>
     </section>
 
     <section class="cta-section">
@@ -816,7 +824,7 @@
         <p>You can jump back to the portfolio homepage or contact me directly from here.</p>
       </div>
       <div class="cta-buttons">
-        <a href="../index.html" class="cta-btn cta-btn-secondary">Back to Home</a>
+        <a href="../../index.html" class="cta-btn cta-btn-secondary">Back to Home</a>
         <a href="mailto:jonasaevuddyinsetiawan@gmail.com" class="cta-btn cta-btn-primary">Contact Me</a>
       </div>
     </section>
@@ -1255,6 +1263,15 @@
     const assetGallery = document.getElementById('asset-gallery');
     const assetGalleryTitle = document.getElementById('asset-gallery-title');
     const assetGrid = document.getElementById('asset-grid');
+    const assetBase = '../assets/';
+    const withAssetBase = (path) => {
+      if (!path) {
+        return path;
+      }
+      return path.startsWith('http') || path.startsWith('../')
+        ? path
+        : `${assetBase}${path}`;
+    };
 
     let activeYear = '2025';
     let activeMonth = 'October';
@@ -1349,7 +1366,7 @@
       assetGalleryTitle.textContent = `${activeSortData.label} Files`;
       assetGrid.innerHTML = activeSortData.assets.map((asset, index) => `
         <button class="asset-btn${index === activeAssetIndex ? ' is-active' : ''}" type="button" data-asset-index="${index}">
-          <img class="asset-thumb" src="${asset.image}" alt="${asset.title}">
+          <img class="asset-thumb" src="${withAssetBase(asset.image)}" alt="${asset.title}">
           <span class="asset-name">${asset.title}</span>
         </button>
       `).join('');
@@ -1367,7 +1384,7 @@
         : null;
       const displayItem = activeAsset || entry;
 
-      artworkImage.src = displayItem.image;
+      artworkImage.src = withAssetBase(displayItem.image);
       artworkImage.alt = `${displayItem.title} for ${entry.month} ${activeYear}`;
       artworkDate.textContent = `${entry.month} ${activeYear}`;
       artworkTitle.textContent = displayItem.title;
@@ -1455,8 +1472,8 @@
     renderAssets();
     renderArtwork();
   </script>
-  <script src="../theme-controls.js"></script>
-  <script src="../zoom-controls.js"></script>
+  <script src="../../theme-controls.js"></script>
+  <script src="../../zoom-controls.js"></script>
 </body>
 </html>
 

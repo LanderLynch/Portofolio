@@ -106,6 +106,7 @@ footer {
 .portfolio-title-link {
   display: inline-flex;
   align-items: center;
+  flex-direction: row-reverse;
   gap: 0.75rem;
   padding: 0.8rem 1.1rem;
   border-radius: 999px;
@@ -1769,13 +1770,15 @@ footer {
 
 .guestbook-shell {
   display: grid;
-  gap: 1.6rem;
-  min-height: min(78vh, 820px);
+  align-content: start;
+  grid-auto-rows: max-content;
+  gap: 0.6rem;
+  min-height: auto;
   color: #f5f5f5;
 }
 
 .guestbook-shell-inline {
-  min-height: min(82vh, 900px);
+  min-height: auto;
 }
 
 .guestbook-header h3 {
@@ -2063,7 +2066,7 @@ footer {
 
 .email-auth-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 320px));
+  grid-template-columns: minmax(0, 420px);
   justify-content: center;
   gap: 0.9rem;
   width: 100%;
@@ -2994,16 +2997,17 @@ footer {
     top: calc(100% + 0.75rem);
     left: auto;
     right: 0;
-    width: min(86vw, 340px);
+    width: min(70vw, 250px);
     display: none;
     flex-direction: column;
-    align-items: stretch;
-    padding: 1rem;
+    align-items: flex-end;
+    padding: 0.85rem;
     border-radius: 24px;
     background: var(--panel-bg-strong);
     border: 1px solid var(--border);
     box-shadow: var(--shadow);
     backdrop-filter: blur(18px);
+    text-align: right;
   }
 
   .nav-links.active {
@@ -3011,7 +3015,10 @@ footer {
   }
 
   .nav-link-item {
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    padding: 0.7rem 0.9rem;
+    text-align: right;
   }
 
   .home-section {
@@ -3125,6 +3132,29 @@ footer {
   .guestbook-message.is-own .guestbook-bubble-wrap {
     order: 0;
     justify-items: stretch;
+  }
+
+  .guestbook-message.is-own {
+    justify-items: end;
+  }
+
+  .guestbook-message.is-own .guestbook-avatar {
+    justify-self: end;
+  }
+
+  .guestbook-message.is-own .guestbook-bubble-wrap {
+    width: 100%;
+    justify-items: end;
+  }
+
+  .guestbook-message.is-own .guestbook-meta {
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  .guestbook-message.is-own .guestbook-bubble {
+    max-width: min(100%, 28rem);
+    margin-left: auto;
   }
 
   .testimonials-grid {

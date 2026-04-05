@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="../assets/logo-preview/logo-lemon.png" />
+  <title>Photography - Jona Setiawan</title>
+  <script src="../../theme-init.js"></script>
+  <link rel="stylesheet" href="../../zoom-controls.css" />
+  <link rel="stylesheet" href="../../theme-palettes.css" />
+  <style>
+    :root {
+      --hero-image: none;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Inter", "Segoe UI", sans-serif; }
+    img { display: block; max-width: 100%; }
+    button { font: inherit; }
+    a { color: inherit; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .project-detail-page .page-zoom-toggle,
+    .project-detail-page .page-zoom-step,
+    .project-detail-page .page-zoom-value,
+    .project-detail-page .page-zoom-panel,
+    .project-detail-page .zoom-theme-btn {
+      border-color: color-mix(in srgb, var(--accent) 34%, var(--border)) !important;
+      color: var(--text) !important;
+      background: var(--panel-bg) !important;
+      box-shadow: var(--shadow) !important;
+    }
+
+    .project-detail-page .page-zoom-panel { background: color-mix(in srgb, var(--panel-bg) 94%, transparent) !important; }
+    .project-detail-page .page-zoom-label { color: var(--muted) !important; }
+    .project-detail-page .page-zoom-value { background: var(--secondary-button-bg) !important; }
+    .project-detail-page .page-zoom-toggle:hover,
+    .project-detail-page .page-zoom-step:hover,
+    .project-detail-page .page-zoom-value:hover,
+    .project-detail-page .zoom-theme-btn:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)) !important; }
+    .project-detail-page .zoom-theme-btn.is-active {
+      background: linear-gradient(135deg, var(--accent-strong), var(--accent)) !important;
+      color: var(--button-primary-text) !important;
+      border-color: transparent !important;
+    }
+
+    .navbar, .footer { background: transparent !important; border: 0 !important; }
+    .nav-container, .hero-content, .content-section, .cta-section, .footer-inner { width: min(1240px, calc(100% - 3rem)); margin: 0 auto; }
+    .navbar { padding-top: 1rem; }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      color: var(--text);
+      background: color-mix(in srgb, var(--panel-bg) 78%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+      box-shadow: 0 10px 24px color-mix(in srgb, var(--shadow-strong, #000) 18%, transparent);
+      backdrop-filter: blur(12px);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-1px);
+      border-color: color-mix(in srgb, var(--accent) 36%, var(--border));
+      box-shadow: 0 16px 32px color-mix(in srgb, var(--accent-strong) 18%, transparent);
+      background: color-mix(in srgb, var(--panel-bg) 86%, transparent);
+    }
+
+    .back-btn-logo { width: 28px; height: 28px; border-radius: 50%; }
+    .hero { position: relative; overflow: hidden; padding: 5.4rem 0 4rem; background: transparent !important; }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--overlay-bg), var(--hero-image) center center / cover no-repeat;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg,
+          color-mix(in srgb, var(--bg) 86%, transparent) 0%,
+          color-mix(in srgb, var(--bg) 60%, transparent) 35%,
+          color-mix(in srgb, var(--bg) 25%, transparent) 100%);
+      opacity: 0.75;
+      pointer-events: none;
+    }
+
+    .hero-content, .content-section, .cta-section, .footer { position: relative; z-index: 1; }
+    .hero-grid, .overview-grid { display: grid; gap: 1rem; }
+    .hero-grid { grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr); }
+    .hero-copy {
+      display: grid;
+      gap: 1rem;
+      padding: 1.4rem;
+      border-radius: 24px;
+      background: color-mix(in srgb, var(--panel-bg) 82%, transparent);
+      border: 1px solid color-mix(in srgb, white 10%, var(--border));
+      box-shadow: 0 20px 50px color-mix(in srgb, var(--shadow-strong, #000) 20%, transparent);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero h1 {
+      color: color-mix(in srgb, var(--text) 96%, white 4%);
+      text-shadow: 0 12px 28px color-mix(in srgb, var(--shadow-strong, #000) 32%, transparent);
+    }
+
+    .hero-description {
+      max-width: 720px;
+      color: color-mix(in srgb, var(--text) 92%, white 8%) !important;
+      text-shadow: 0 10px 22px color-mix(in srgb, var(--shadow-strong, #000) 26%, transparent);
+    }
+    .hero-panels { display: grid; gap: 1rem; }
+    .hero-note, .hero-meta, .archive-toolbar, .year-section, .cta-shell {
+      border-radius: 24px;
+      background: color-mix(in srgb, var(--panel-bg) 90%, transparent);
+      border: 1px solid color-mix(in srgb, white 8%, var(--border));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-note, .panel, .year-section, .cta-shell { padding: 1.25rem; }
+    .hero-note h2, .panel h3, .year-heading h3, .shoot-body h4, .lightbox-caption { color: var(--text); }
+    .hero-note p, .panel p, .panel li, .archive-count, .year-summary, .shoot-description, .footer p { color: var(--muted) !important; }
+    .hero-meta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; padding: 1rem; }
+    .meta-item {
+      display: grid;
+      align-content: start;
+      gap: 0.38rem;
+      border-radius: 16px;
+      padding: 1rem;
+      background: color-mix(in srgb, var(--surface-soft) 92%, transparent) !important;
+      border: 1px solid color-mix(in srgb, white 6%, var(--border)) !important;
+    }
+    .meta-label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .meta-value {
+      display: block;
+      color: var(--text);
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .content-section, .cta-section { padding-bottom: 3rem; }
+    .content-section { padding-top: 0.5rem; }
+    .overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 1.5rem 0; }
+    .panel ul { list-style: none; display: grid; gap: 0.75rem; }
+    .panel li { position: relative; padding-left: 1rem; }
+    .panel li::before { content: ""; position: absolute; top: 0.66rem; left: 0; width: 0.42rem; height: 0.42rem; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-strong)); }
+
+    .archive-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.15rem; margin-bottom: 1.25rem; }
+    .year-filter-group { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+    .year-filter-btn {
+      border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border));
+      background: color-mix(in srgb, var(--surface) 92%, transparent);
+      color: var(--text);
+      padding: 0.78rem 1rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .year-filter-btn:hover, .year-filter-btn.is-active {
+      transform: translateY(-1px);
+      border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
+      background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+    }
+
+    .archive-years, .shoot-list, .hero-panels { display: grid; gap: 1rem; }
+    .shoot-card {
+      display: grid;
+      grid-template-columns: minmax(240px, 340px) minmax(0, 1fr);
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 18px;
+      background: color-mix(in srgb, var(--surface-soft) 92%, transparent);
+      border: 1px solid color-mix(in srgb, white 6%, var(--border));
+    }
+
+    .shoot-cover { position: relative; min-height: 240px; overflow: hidden; border-radius: 16px; border: 1px solid color-mix(in srgb, white 8%, var(--border)); }
+    .shoot-cover img { width: 100%; height: 100%; object-fit: cover; }
+    .shoot-cover-badge {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--panel-bg) 88%, transparent);
+      border: 1px solid color-mix(in srgb, white 8%, var(--border));
+      color: var(--text);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .shoot-body, .shoot-meta { display: grid; gap: 0.9rem; }
+    .shoot-meta { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+    .shoot-tag, .project-category {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--tag-bg-soft) 86%, transparent) !important;
+      border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--tag-border-soft)) !important;
+      color: color-mix(in srgb, var(--accent-label-text) 96%, white 4%) !important;
+      font-weight: 700;
+    }
+
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.75rem; }
+    .gallery-thumb {
+      width: 100%;
+      padding: 0;
+      border: 1px solid color-mix(in srgb, white 8%, var(--border));
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--surface) 94%, transparent);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .gallery-thumb:hover {
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
+      box-shadow: 0 16px 36px color-mix(in srgb, var(--accent-strong) 18%, transparent);
+    }
+
+    .gallery-thumb img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+    .gallery-thumb-label { display: block; padding: 0.55rem 0.65rem 0.7rem; color: var(--muted); font-size: 0.82rem; text-align: left; }
+    .empty-state { border-radius: 18px; padding: 1.1rem; border: 1px dashed color-mix(in srgb, var(--accent) 24%, var(--border)); background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+    .empty-state h4 { margin-bottom: 0.4rem; color: var(--text); }
+
+    .cta-shell {
+      display: grid;
+      gap: 0.75rem;
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--accent-strong) 18%, transparent), color-mix(in srgb, var(--accent) 12%, transparent)),
+        var(--surface);
+    }
+
+    .cta-buttons, .lightbox-controls { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .cta-buttons { margin-top: 0.35rem; }
+    .cta-btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.85rem 1.2rem; border-radius: 999px; text-decoration: none; font-weight: 700; transition: transform 0.2s ease; }
+    .cta-btn:hover { transform: translateY(-2px); }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      place-items: center;
+      padding: 1.5rem;
+      background: var(--modal-backdrop);
+      backdrop-filter: blur(10px);
+      z-index: 50;
+    }
+
+    .lightbox.is-open { display: grid; }
+    .lightbox-dialog {
+      width: min(980px, 100%);
+      display: grid;
+      grid-template-rows: auto auto auto;
+      background: var(--modal-surface);
+      border: 1px solid color-mix(in srgb, white 8%, var(--border));
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .lightbox-topbar, .lightbox-controls { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem 1.2rem; }
+    .lightbox-topbar { border-bottom: 1px solid color-mix(in srgb, white 8%, var(--border)); }
+    .lightbox-close, .lightbox-nav {
+      border: 1px solid color-mix(in srgb, white 8%, var(--border));
+      background: color-mix(in srgb, var(--surface) 94%, transparent);
+      color: var(--text);
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    .lightbox-close { padding: 0.7rem 1rem; }
+    .lightbox-nav { flex: 1; padding: 0.85rem 1rem; }
+    .lightbox-nav:disabled { opacity: 0.45; cursor: not-allowed; }
+    .lightbox-image-wrap {
+      display: grid;
+      place-items: center;
+      width: min(calc(100vw - 5rem), calc(100dvh - 13rem), 760px);
+      height: min(calc(100vw - 5rem), calc(100dvh - 13rem), 760px);
+      max-width: calc(100% - 2rem);
+      padding: 1rem;
+      margin: 0 auto;
+      background: color-mix(in srgb, var(--bg) 96%, black 4%);
+    }
+
+    .lightbox-image {
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      object-fit: contain;
+      background: color-mix(in srgb, var(--bg) 96%, black 4%);
+    }
+
+    .lightbox-image-wrap.is-portrait .lightbox-image {
+      width: auto;
+      height: 88%;
+      max-width: 88%;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid, .overview-grid, .shoot-card { grid-template-columns: 1fr; }
+      .hero-meta { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-container, .hero-content, .content-section, .cta-section, .footer-inner { width: min(1240px, calc(100% - 2rem)); }
+      .hero { padding-top: 4.8rem; }
+      .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .lightbox { padding: 1rem; }
+      .lightbox-dialog { width: 100%; }
+      .lightbox-image-wrap {
+        width: min(calc(100vw - 2rem), calc(100dvh - 11.5rem));
+        height: min(calc(100vw - 2rem), calc(100dvh - 11.5rem));
+        padding: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body class="project-detail-page">
+  <div class="page-zoom-control" id="page-zoom-control" data-zoom-default="80" data-zoom-storage-key="portfolio-photography-page-zoom">
+    <button class="page-zoom-toggle" id="page-zoom-toggle" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="page-zoom-panel">
+      <svg class="page-zoom-icon" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
+    </button>
+    <div class="page-zoom-panel" id="page-zoom-panel" aria-hidden="true">
+      <div class="page-zoom-panel-group">
+        <span class="page-zoom-label">Zoom</span>
+        <div class="page-zoom-actions">
+          <button class="page-zoom-step" id="page-zoom-out" type="button" aria-label="Zoom out">-</button>
+          <button class="page-zoom-value" id="page-zoom-value" type="button" aria-label="Reset zoom to default">80%</button>
+          <button class="page-zoom-step" id="page-zoom-in" type="button" aria-label="Zoom in">+</button>
+        </div>
+      </div>
+      <div class="page-zoom-panel-group">
+        <span class="page-zoom-label">Palette</span>
+        <div class="zoom-theme-actions" role="group" aria-label="Color palette">
+          <button class="zoom-theme-btn" type="button" data-theme-value="blue" aria-label="Blue mode" aria-pressed="false" title="Blue mode"><svg class="zoom-theme-icon" viewBox="0 0 24 24"><path d="M21 12.8A8.8 8.8 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button>
+          <button class="zoom-theme-btn" type="button" data-theme-value="light" aria-label="Light mode" aria-pressed="false" title="Light mode"><svg class="zoom-theme-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.5"></path><path d="M12 19v2.5"></path><path d="M4.93 4.93l1.77 1.77"></path><path d="M17.3 17.3l1.77 1.77"></path><path d="M2.5 12H5"></path><path d="M19 12h2.5"></path><path d="M4.93 19.07l1.77-1.77"></path><path d="M17.3 6.7l1.77-1.77"></path></svg></button>
+          <button class="zoom-theme-btn" type="button" data-theme-value="galaxy" aria-label="Galaxy mode" aria-pressed="false" title="Galaxy mode"><svg class="zoom-theme-icon hat-icon" viewBox="0 0 24 24"><path d="M4 19.5h16"></path><path d="M8 19.5c0-2.7 1.4-5.1 3.7-6.6l2.1-1.4-1.7-5.8-5.1 4.1"></path><path d="M14.4 9.8 17.7 8l2.3 5.9-3.9-.3"></path><path d="M13.2 4.5 14 6.2"></path><path d="M18.4 4.9l.4 1.2"></path><path d="M19.7 7.7l1.3.1"></path></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a class="back-btn" href="../../index.html#photography">
+        <img src="../assets/logo-preview/logo-lemon.png" alt="" class="back-btn-logo" />
+        <span>Back to Portfolio</span>
+      </a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="project-category">Client Photography Archive</span>
+          <h1>Photography</h1>
+          <p class="hero-description">A growing archive of client-to-client photography work, from event coverage and milestone documentation to portrait moments and atmosphere-driven storytelling.</p>
+        </div>
+        <div class="hero-panels">
+          <article class="hero-note">
+            <h2>Archive Direction</h2>
+            <p>This page is built as a reusable photography hub, so new shoots can be grouped by year without turning the portfolio into a cluttered image wall.</p>
+          </article>
+          <div class="hero-meta">
+            <div class="meta-item"><span class="meta-label">Years</span><span class="meta-value" id="hero-years">-</span></div>
+            <div class="meta-item"><span class="meta-label">Latest Added</span><span class="meta-value" id="hero-latest">-</span></div>
+            <div class="meta-item"><span class="meta-label">Focus</span><span class="meta-value" id="hero-focus">-</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="content-section">
+    <section aria-labelledby="archive-overview-title">
+      <h2 class="section-title" id="archive-overview-title">Archive Overview</h2>
+      <p class="section-intro">Each photography project can live under its year, keep a short summary, and expand into a thumbnail gallery without needing a custom one-off page every time.</p>
+      <div class="overview-grid">
+        <article class="panel">
+          <h3>How This Page Is Organized</h3>
+          <p>The archive is split by year first, then each shoot is shown as its own client project with a cover image, date, project type, and a thumbnail gallery.</p>
+        </article>
+        <article class="panel">
+          <h3>What Fits Here</h3>
+          <ul>
+            <li>Client event coverage and ceremonial documentation</li>
+            <li>Portrait sessions, group photos, and candid storytelling</li>
+            <li>Future jobs from 2024, 2025, and 2026 in the same archive pattern</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="archive-directory-title">
+      <h2 class="sr-only" id="archive-directory-title">Photography archive directory</h2>
+      <div class="archive-toolbar">
+        <div class="year-filter-group" id="year-filter-group" role="group" aria-label="Filter archive by year"></div>
+        <p class="archive-count" id="archive-count" aria-live="polite">0 projects · 0 photos</p>
+      </div>
+      <div class="archive-years" id="archive-years"></div>
+    </section>
+  </main>
+
+  <section class="cta-section">
+    <div class="cta-shell">
+      <h2>Want a dedicated event gallery?</h2>
+      <p>This archive format is ready to scale, and the active theme now stays synchronized with the rest of the portfolio while the gallery grows.</p>
+      <div class="cta-buttons">
+        <a class="cta-btn cta-btn-primary" href="mailto:jonaskeleton2@gmail.com">Book a Session</a>
+        <a class="cta-btn cta-btn-secondary" href="../../index.html#contact">Open Contact Section</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>Photography archive page with synchronized theme, shared zoom controls, and reusable year-based gallery sections.</p>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lightbox-caption">
+    <div class="lightbox-dialog">
+      <div class="lightbox-topbar">
+        <p class="lightbox-caption" id="lightbox-caption">Preview</p>
+        <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close image preview">Close</button>
+      </div>
+      <div class="lightbox-image-wrap"><img class="lightbox-image" id="lightbox-image" alt="" /></div>
+      <div class="lightbox-controls">
+        <button class="lightbox-nav" id="lightbox-prev" type="button">Previous</button>
+        <button class="lightbox-nav" id="lightbox-next" type="button">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../scripts/photography-archive.js"></script>
+  <script>
+    (function () {
+      const archive = Array.isArray(window.photographyArchive) ? [...window.photographyArchive] : [];
+      const filters = document.getElementById("year-filter-group");
+      const count = document.getElementById("archive-count");
+      const yearsRoot = document.getElementById("archive-years");
+      const heroYears = document.getElementById("hero-years");
+      const heroLatest = document.getElementById("hero-latest");
+      const heroFocus = document.getElementById("hero-focus");
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImage = document.getElementById("lightbox-image");
+      const lightboxCaption = document.getElementById("lightbox-caption");
+      const lightboxImageWrap = document.querySelector(".lightbox-image-wrap");
+      const prevButton = document.getElementById("lightbox-prev");
+      const nextButton = document.getElementById("lightbox-next");
+      let activeYear = "all";
+      let lightboxImages = [];
+      let lightboxIndex = 0;
+
+      if (!archive.length) {
+        yearsRoot.innerHTML = '<div class="empty-state"><h4>No photography archive yet</h4><p>Add entries to <code>project/scripts/photography-archive.js</code> to populate this page.</p></div>';
+        return;
+      }
+
+      archive.sort((a, b) => (b.year - a.year) || String(b.dateLabel).localeCompare(String(a.dateLabel)));
+      const years = Array.from(new Set(archive.map((entry) => entry.year))).sort((a, b) => b - a);
+      const escapeHtml = (value) => String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;").replace(/'/g, "&#39;");
+
+      function visibleEntries() {
+        return activeYear === "all" ? archive : archive.filter((entry) => String(entry.year) === String(activeYear));
+      }
+
+      function renderFilters() {
+        filters.innerHTML = ['<button class="year-filter-btn' + (activeYear === "all" ? ' is-active' : '') + '" type="button" data-year-filter="all">All Years</button>']
+          .concat(years.map((year) => '<button class="year-filter-btn' + (String(activeYear) === String(year) ? ' is-active' : '') + '" type="button" data-year-filter="' + year + '">' + year + '</button>'))
+          .join("");
+      }
+
+      function renderArchive() {
+        const entries = visibleEntries();
+        const totalPhotos = entries.reduce((sum, entry) => sum + entry.images.length, 0);
+        count.textContent = entries.length + ' ' + (entries.length === 1 ? 'project' : 'projects') + ' · ' + totalPhotos + ' photos';
+
+        if (!entries.length) {
+          yearsRoot.innerHTML = '<div class="empty-state"><h4>No shoots in this filter</h4><p>Switch to another year or add a new entry to the archive data.</p></div>';
+          return;
+        }
+
+        yearsRoot.innerHTML = years
+          .map((year) => ({ year, entries: entries.filter((entry) => entry.year === year) }))
+          .filter((group) => group.entries.length)
+          .map((group) => {
+            const photos = group.entries.reduce((sum, entry) => sum + entry.images.length, 0);
+            return '<section class="year-section"><div class="year-heading"><h3>' + group.year + '</h3><p class="year-summary">' + group.entries.length + ' project' + (group.entries.length === 1 ? '' : 's') + ' · ' + photos + ' photos</p></div><div class="shoot-list">' + group.entries.map(renderCard).join("") + '</div></section>';
+          })
+          .join("");
+      }
+
+      function renderCard(entry) {
+        const thumbs = entry.images.slice(0, 8).map((image, index) => '<button class="gallery-thumb" type="button" data-entry="' + entry.slug + '" data-index="' + index + '" aria-label="Open image ' + (index + 1) + ' from ' + escapeHtml(entry.title) + '"><img src="' + image + '" alt="' + escapeHtml(entry.title) + ' preview ' + (index + 1) + '" loading="lazy" /><span class="gallery-thumb-label">Frame ' + (index + 1) + '</span></button>').join("");
+        return '<article class="shoot-card"><div class="shoot-cover"><img src="' + entry.coverImage + '" alt="' + escapeHtml(entry.title) + ' cover image" loading="lazy" /><span class="shoot-cover-badge">' + entry.images.length + ' photos</span></div><div class="shoot-body"><div class="shoot-meta"><span class="shoot-tag">' + escapeHtml(entry.projectType) + '</span><span class="shoot-tag">' + escapeHtml(entry.dateLabel) + '</span></div><div><h4>' + escapeHtml(entry.title) + '</h4><p class="shoot-description">' + escapeHtml(entry.description) + '</p></div><div class="gallery-grid">' + thumbs + '</div></div></article>';
+      }
+
+      function updateHero() {
+        const latest = archive[0];
+        heroYears.textContent = years.length > 1 ? years[years.length - 1] + ' - ' + years[0] : String(years[0]);
+        heroLatest.textContent = latest ? latest.dateLabel : '-';
+        heroFocus.textContent = latest ? latest.projectType : '-';
+        if (latest && latest.coverImage) {
+          document.documentElement.style.setProperty('--hero-image', 'url(\"' + latest.coverImage + '\")');
+        }
+      }
+
+      function currentTitle() {
+        const current = lightboxImages[lightboxIndex];
+        const entry = archive.find((item) => item.images.includes(current));
+        return entry ? entry.title : 'Preview';
+      }
+
+      function updateLightbox() {
+        const current = lightboxImages[lightboxIndex];
+        if (!current) return;
+        lightboxImageWrap.classList.remove("is-portrait");
+        lightboxImage.src = current;
+        lightboxImage.alt = currentTitle() + ' image ' + (lightboxIndex + 1);
+        lightboxCaption.textContent = currentTitle() + ' · ' + (lightboxIndex + 1) + ' / ' + lightboxImages.length;
+        prevButton.disabled = lightboxIndex === 0;
+        nextButton.disabled = lightboxIndex === lightboxImages.length - 1;
+      }
+
+      lightboxImage.addEventListener("load", () => {
+        lightboxImageWrap.classList.toggle("is-portrait", lightboxImage.naturalHeight > lightboxImage.naturalWidth);
+      });
+
+      filters.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-year-filter]");
+        if (!button) return;
+        activeYear = button.dataset.yearFilter;
+        renderFilters();
+        renderArchive();
+      });
+
+      yearsRoot.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-entry]");
+        if (!button) return;
+        const entry = archive.find((item) => item.slug === button.dataset.entry);
+        if (!entry) return;
+        lightboxImages = entry.images;
+        lightboxIndex = Number(button.dataset.index);
+        updateLightbox();
+        lightbox.classList.add("is-open");
+        lightbox.setAttribute("aria-hidden", "false");
+      });
+
+      document.getElementById("lightbox-close").addEventListener("click", () => {
+        lightbox.classList.remove("is-open");
+        lightbox.setAttribute("aria-hidden", "true");
+        lightboxImage.removeAttribute("src");
+      });
+
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) document.getElementById("lightbox-close").click();
+      });
+
+      prevButton.addEventListener("click", () => { if (lightboxIndex > 0) { lightboxIndex -= 1; updateLightbox(); } });
+      nextButton.addEventListener("click", () => { if (lightboxIndex < lightboxImages.length - 1) { lightboxIndex += 1; updateLightbox(); } });
+      document.addEventListener("keydown", (event) => {
+        if (!lightbox.classList.contains("is-open")) return;
+        if (event.key === "Escape") document.getElementById("lightbox-close").click();
+        if (event.key === "ArrowLeft" && !prevButton.disabled) prevButton.click();
+        if (event.key === "ArrowRight" && !nextButton.disabled) nextButton.click();
+      });
+
+      updateHero();
+      renderFilters();
+      renderArchive();
+    })();
+  </script>
+  <script src="../../theme-controls.js"></script>
+  <script src="../../zoom-controls.js"></script>
+</body>
+</html>

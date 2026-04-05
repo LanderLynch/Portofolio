@@ -4,21 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jona Setiawan - Portfolio</title>
-  <script>
-    (function () {
-      var storedTheme = "light";
-
-      try {
-        var savedTheme = window.localStorage.getItem("portfolio-color-theme");
-        storedTheme = savedTheme === "blue" || savedTheme === "light" || savedTheme === "galaxy" ? savedTheme : "light";
-      } catch (error) {
-        storedTheme = "light";
-      }
-
-      document.documentElement.setAttribute("data-theme", storedTheme);
-    })();
-  </script>
-  <link rel="icon" type="image/png" href="project/logo-preview/logo-lemon.png" />
+  <script src="theme-init.js"></script>
+  <link rel="icon" type="image/png" href="project/assets/logo-preview/logo-lemon.png" />
   <link rel="stylesheet" href="styles.css?v=20260319-1">
   <link rel="stylesheet" href="theme-palettes.css?v=20260319-1">
 </head>
@@ -26,7 +13,7 @@
   <!-- Portfolio Title - Separated from Navigation -->
   <div class="portfolio-title-container">
     <a href="#home" class="portfolio-title-link">
-      <img src="project/logo-preview/logo-lemon.png" alt="Logo Lemon" class="portfolio-logo" />
+      <img src="project/assets/logo-preview/logo-lemon.png" alt="Logo Lemon" class="portfolio-logo" />
       <span class="portfolio-text">Home</span>
     </a>
     <div class="zoom-control" id="zoom-control">
@@ -220,7 +207,7 @@
           </svg>
         </div>
         <div class="floating-icon javascript" title="Logo Lemon">
-          <img src="project/logo-preview/logo-lemon.png" alt="Logo Lemon" class="floating-icon-image" />
+          <img src="project/assets/logo-preview/logo-lemon.png" alt="Logo Lemon" class="floating-icon-image" />
         </div>
       </div>
       <div class="about-info-grid">
@@ -372,7 +359,7 @@
             </div>
             <div class="project-type">Personal Project</div>
           </div>
-          <a href="project/personal-gfx-design-collection.html" class="view-project-btn">
+          <a href="project/pages/personal-gfx-design-collection.html" class="view-project-btn">
             View Full Project &rarr;
           </a>
         </div>
@@ -382,7 +369,7 @@
       
       <div class="project-card" data-category="graphic">
         <div class="project-image">
-          <img src="project/logo-preview/internusa-kreasindo-mandiri.jpg" alt="Internusa Kreasindo Mandiri logo" />
+          <img src="project/assets/logo-preview/internusa-kreasindo-mandiri.jpg" alt="Internusa Kreasindo Mandiri logo" />
           <div class="project-overlay">
             <div class="project-quick-actions">
               <a href="#" class="quick-action-btn" title="View Project" aria-label="View Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
@@ -408,7 +395,7 @@
             </div>
             <div class="project-type">Main work</div>
           </div>
-          <a href="project/ikm-design-creative-project.html" class="view-project-btn">
+          <a href="project/pages/ikm-design-creative-project.html" class="view-project-btn">
             View Full Project &rarr;
           </a>
         </div>
@@ -416,11 +403,11 @@
 
       <div class="project-card" data-category="ui">
         <div class="project-image">
-          <img src="project/logo-preview/fortress-logo.jpg" alt="Fortress logo" />
+          <img src="project/assets/logo-preview/fortress-logo.jpg" alt="Fortress logo" />
           <div class="project-overlay">
             <div class="project-quick-actions">
-              <a href="project/marketing-assistant-hr.html" class="quick-action-btn" title="View Project" aria-label="View Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
-              <a href="project/project-fortress/riset-data-nama-fortress.xlsx" class="quick-action-btn" title="Open Workbook" aria-label="Open Workbook"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M19.5 14.25v3A2.25 2.25 0 0 1 17.25 19.5H6.75A2.25 2.25 0 0 1 4.5 17.25v-10.5A2.25 2.25 0 0 1 6.75 4.5h5.379a2.25 2.25 0 0 1 1.591.659l5.121 5.121a2.25 2.25 0 0 1 .659 1.591v.879"></path><path d="M12 8.25v6"></path><path d="m9.75 12 2.25 2.25L14.25 12"></path></svg></a>
+              <a href="project/pages/marketing-assistant-hr.html" class="quick-action-btn" title="View Project" aria-label="View Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
+              <a href="project/assets/project-fortress/riset-data-nama-fortress.xlsx" class="quick-action-btn" title="Open Workbook" aria-label="Open Workbook"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M19.5 14.25v3A2.25 2.25 0 0 1 17.25 19.5H6.75A2.25 2.25 0 0 1 4.5 17.25v-10.5A2.25 2.25 0 0 1 6.75 4.5h5.379a2.25 2.25 0 0 1 1.591.659l5.121 5.121a2.25 2.25 0 0 1 .659 1.591v.879"></path><path d="M12 8.25v6"></path><path d="m9.75 12 2.25 2.25L14.25 12"></path></svg></a>
             </div>
           </div>
         </div>
@@ -443,7 +430,7 @@
             </div>
             <div class="project-type">Training / PKL</div>
           </div>
-          <a href="project/marketing-assistant-hr.html" class="view-project-btn">
+          <a href="project/pages/marketing-assistant-hr.html" class="view-project-btn">
             View Full Project &rarr;
           </a>
         </div>
@@ -478,7 +465,41 @@
             </div>
             <div class="project-type">Client Work</div>
           </div>
-          <a href="project/event-poster-campaign.html" class="view-project-btn">
+          <a href="project/pages/event-poster-campaign.html" class="view-project-btn">
+            View Full Project &rarr;
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card" data-category="multimedia">
+        <div class="project-image">
+          <img src="project/assets/photography/2025/november/haflah khotmul Qur'an dan imtihan ke-4/DSCF1650.JPG" alt="Haflah Khotmul Qur'an event photography" />
+          <div class="project-overlay">
+            <div class="project-quick-actions">
+              <a href="project/pages/photography.html" class="quick-action-btn" title="View Archive" aria-label="View Archive"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
+              <a href="project/pages/photography.html" class="quick-action-btn" title="Open Gallery" aria-label="Open Gallery"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 6.75h16.5v10.5H3.75z"></path><path d="m7.5 13.5 2.25-2.25 2.25 2.25 3-3 3 3"></path></svg></a>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-header">
+            <h3 class="project-title">Photography Archive</h3>
+            <span class="project-status in-progress">Growing</span>
+          </div>
+          <p class="project-description">A living archive of client photography projects, organized by year with cover highlights and gallery previews for each shoot.</p>
+          <div class="project-tech-stack">
+            <span class="tech-tag">Event Coverage</span>
+            <span class="tech-tag">Portraits</span>
+            <span class="tech-tag">Storytelling</span>
+          </div>
+          <div class="project-meta">
+            <div class="project-date">
+              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
+              <span>November 2025</span>
+            </div>
+            <div class="project-type">Client Work</div>
+          </div>
+          <a href="project/pages/photography.html" class="view-project-btn">
             View Full Project &rarr;
           </a>
         </div>
@@ -486,7 +507,7 @@
       
       <div class="project-card" data-category="video">
         <div class="project-image">
-          <img src="project/logo-preview/yuppentek-logo-kota-tua-version.jpg" alt="Yuppentek Kota Tua logo for Documentary Kota Tua UKK" />
+          <img src="project/assets/logo-preview/yuppentek-logo-kota-tua-version.jpg" alt="Yuppentek Kota Tua logo for Documentary Kota Tua UKK" />
           <div class="project-overlay">
             <div class="project-quick-actions">
               <a href="#" class="quick-action-btn" title="Watch Video" aria-label="Watch Video"><svg class="icon-svg" viewBox="0 0 24 24"><path d="m8.25 7.5 8.25 4.5-8.25 4.5V7.5Z"></path></svg></a>
@@ -513,7 +534,7 @@
             </div>
             <div class="project-type">School Project</div>
           </div>
-          <a href="project/documentary-kota-tua-ukk.html" class="view-project-btn">
+          <a href="project/pages/documentary-kota-tua-ukk.html" class="view-project-btn">
             View Full Project &rarr;
           </a>
         </div>
@@ -548,7 +569,7 @@
             </div>
             <div class="project-type">Portfolio</div>
           </div>
-          <a href="project/logo-design-collection.html" class="view-project-btn">
+          <a href="project/pages/logo-design-collection.html" class="view-project-btn">
             View Full Project &rarr;
           </a>
         </div>
@@ -573,7 +594,7 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="project/logo-preview/yuppentek-logo.jpg" alt="Yuppentek logo">
+            <img src="project/assets/logo-preview/yuppentek-logo.jpg" alt="Yuppentek logo">
           </div>
           <div class="timeline-info">
             <div class="timeline-date">2021 - 2022</div>
@@ -595,7 +616,7 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="project/logo-preview/fortress-logo.jpg" alt="Pintu Baja Fortress logo">
+            <img src="project/assets/logo-preview/fortress-logo.jpg" alt="Pintu Baja Fortress logo">
           </div>
           <div class="timeline-info">
             <div class="timeline-date">September 2022 - November 2022</div>
@@ -617,7 +638,7 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="project/logo-preview/yuppentek-logo.jpg" alt="Yuppentek logo">
+            <img src="project/assets/logo-preview/yuppentek-logo.jpg" alt="Yuppentek logo">
           </div>
           <div class="timeline-info">
             <div class="timeline-date">2022 - 2023</div>
@@ -662,7 +683,7 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="project/logo-preview/aryaduta-logo.jpg" alt="Hotel Aryaduta Country Club logo">
+            <img src="project/assets/logo-preview/aryaduta-logo.jpg" alt="Hotel Aryaduta Country Club logo">
           </div>
           <div class="timeline-info">
             <div class="timeline-date">July 2024 - October 2024</div>
@@ -684,7 +705,7 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="project/logo-preview/internusa-kreasindo-mandiri.jpg" alt="PT Internusa Kreasindo Mandiri logo">
+            <img src="project/assets/logo-preview/internusa-kreasindo-mandiri.jpg" alt="PT Internusa Kreasindo Mandiri logo">
           </div>
           <div class="timeline-info">
             <span class="timeline-status active">Active</span>
@@ -855,23 +876,10 @@
           <form class="email-auth-form" id="email-auth-form">
             <div class="email-auth-grid">
               <input type="text" id="guestbook-username" placeholder="Username" autocomplete="username" required>
-              <input type="password" id="guestbook-password" placeholder="Password" autocomplete="current-password" required>
             </div>
             <div class="email-auth-actions">
-              <button type="submit" class="provider-btn provider-btn-email" id="guestbook-email-login-btn">Sign in with Username</button>
-              <button type="button" class="provider-btn provider-btn-email-secondary" id="guestbook-email-signup-btn">Create Account</button>
+              <button type="submit" class="provider-btn provider-btn-email" id="guestbook-email-login-btn">Continue with Username</button>
             </div>
-            <button type="button" class="guestbook-forgot-link" id="guestbook-forgot-link">Forgot Password?</button>
-          </form>
-
-          <form class="guestbook-recovery-form" id="guestbook-recovery-form" hidden>
-            <div class="guestbook-recovery-grid">
-              <input type="email" id="guestbook-recovery-email" placeholder="Email here" autocomplete="email">
-            </div>
-            <div class="email-auth-actions">
-              <button type="submit" class="provider-btn provider-btn-email" id="guestbook-recovery-send-btn">Send Email</button>
-            </div>
-            <button type="button" class="guestbook-forgot-link" id="guestbook-recovery-back-btn">Back to Sign In</button>
           </form>
 
           <div class="guestbook-user-bar" id="guestbook-user-bar" hidden>
@@ -1062,7 +1070,7 @@
     const zoomInBtn = document.getElementById('zoom-in-btn');
     const zoomValueBtn = document.getElementById('zoom-value-btn');
     const trackedSections = Array.from(document.querySelectorAll('[data-section-label]'));
-    const projectPageLinks = document.querySelectorAll('a[href^="project/"]');
+    const projectPageLinks = document.querySelectorAll('a[href^="project/pages/"]');
     const returnScrollKey = 'portfolio-return-scroll';
     const returnScrollPendingKey = 'portfolio-return-pending';
     const zoomStorageKey = 'portfolio-page-zoom';

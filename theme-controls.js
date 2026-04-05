@@ -1,19 +1,36 @@
 (function () {
-  const storageKey = "portfolio-color-theme";
-  const supportedThemes = ["blue", "light", "galaxy"];
+  const themeConfig = window.portfolioThemeConfig || {
+    defaultTheme: "light",
+    storageKey: "portfolio-color-theme",
+    supportedThemes: ["blue", "light", "galaxy"],
+  };
+  const storageKey = themeConfig.storageKey;
+  const supportedThemes = Array.isArray(themeConfig.supportedThemes)
+    ? [...themeConfig.supportedThemes]
+    : ["blue", "light", "galaxy"];
   const supportedThemeSet = new Set(supportedThemes);
+  const defaultTheme =
+    typeof themeConfig.defaultTheme === "string"
+      ? themeConfig.defaultTheme
+      : "light";
   let hasBoundThemeEvents = false;
   let hasInitializedThemeControls = false;
 
+  window.portfolioThemeConfig = {
+    defaultTheme,
+    storageKey,
+    supportedThemes: [...supportedThemes],
+  };
+
   function normalizeTheme(theme) {
-    return supportedThemeSet.has(theme) ? theme : "light";
+    return supportedThemeSet.has(theme) ? theme : defaultTheme;
   }
 
   function getStoredTheme() {
     try {
       return normalizeTheme(window.localStorage.getItem(storageKey));
     } catch (error) {
-      return "light";
+      return defaultTheme;
     }
   }
 

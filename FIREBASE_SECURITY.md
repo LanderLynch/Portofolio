@@ -31,6 +31,14 @@ Use only on server:
 
 Replace `REPLACE_WITH_YOUR_ADMIN_UID` in `firestore.rules` with your real Firebase Auth user UID.
 
+## Storage rules
+
+`storage.rules` is a separate ruleset for Firebase Storage.
+
+- Use `firestore.rules` for Firestore documents and collections.
+- Use `storage.rules` for uploaded files in Firebase Storage buckets.
+- Do not paste Storage rules into `firestore.rules`, and do not paste Firestore rules into `storage.rules`.
+
 ## Current project note
 
 This repository is a static HTML/CSS/JS portfolio. A `.env` file can keep local values out of Git, but it does not make browser-side values secret after deployment.

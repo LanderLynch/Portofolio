@@ -1,10 +1,8 @@
 import { auth, db } from "./firebase-config.js";
 import {
   GoogleAuthProvider,
-  createUserWithEmailAndPassword,
   onAuthStateChanged,
-  sendPasswordResetEmail,
-  signInWithEmailAndPassword,
+  signInAnonymously,
   signInWithPopup,
   signOut,
   updateProfile
@@ -68,21 +66,6 @@ function normalizeUsername(value) {
     .replace(/[^a-z0-9._-]/g, "");
 }
 
-function resolveAuthEmail(value) {
-  const input = String(value || "").trim();
-
-  if (!input) {
-    return "";
-  }
-
-  if (input.includes("@")) {
-    return input.toLowerCase();
-  }
-
-  const username = normalizeUsername(input);
-  return username ? `${username}@portofolio-jsfolio.local` : "";
-}
-
 function formatMessageDateParts(timestamp) {
   if (!timestamp?.toDate) {
     return { date: "Today", time: "Now" };
@@ -107,6 +90,10 @@ function formatMessageDateParts(timestamp) {
 function getGuestRoleLabel(providerId) {
   if (providerId === "google.com") {
     return "Google";
+  }
+
+  if (providerId === "guest-username" || providerId === "anonymous") {
+    return "Username";
   }
 
   return "Guest";
@@ -136,8 +123,8 @@ function getFriendlyAuthError(error) {
   if (code.includes("email-already-in-use")) {
     return "That username is already being used.";
   }
-  if (code.includes("user-not-found") || code.includes("wrong-password") || code.includes("invalid-login-credentials")) {
-    return "Username or password is incorrect.";
+  if (code.includes("operation-not-allowed")) {
+    return "Enable Anonymous sign-in in Firebase Authentication first.";
   }
   if (code.includes("too-many-requests")) {
     return "Too many attempts. Please wait a bit and try again.";
@@ -150,6 +137,18 @@ function getFriendlyAuthError(error) {
   }
 
   return error?.message || "Something went wrong. Please try again.";
+}
+
+function getProviderId(user, fallback = "") {
+  if (user?.isAnonymous) {
+    return "guest-username";
+  }
+
+  return user?.providerData?.[0]?.providerId || fallback || "guest-username";
+}
+
+function isGoogleUser(user, profile) {
+  return getProviderId(user, profile?.provider) === "google.com";
 }
 
 function createFallbackAvatar(name) {
@@ -170,12 +169,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const guestbookGoogleBtn = document.getElementById("guestbook-google-btn");
   const emailAuthForm = document.getElementById("email-auth-form");
   const guestbookUsername = document.getElementById("guestbook-username");
-  const guestbookPassword = document.getElementById("guestbook-password");
-  const guestbookEmailSignupBtn = document.getElementById("guestbook-email-signup-btn");
-  const guestbookForgotLink = document.getElementById("guestbook-forgot-link");
-  const guestbookRecoveryForm = document.getElementById("guestbook-recovery-form");
-  const guestbookRecoveryEmail = document.getElementById("guestbook-recovery-email");
-  const guestbookRecoveryBackBtn = document.getElementById("guestbook-recovery-back-btn");
   const guestbookUserBar = document.getElementById("guestbook-user-bar");
   const guestbookUserAvatar = document.getElementById("guestbook-user-avatar");
   const guestbookUserName = document.getElementById("guestbook-user-name");
@@ -198,12 +191,6 @@ document.addEventListener("DOMContentLoaded", () => {
     !guestbookGoogleBtn ||
     !emailAuthForm ||
     !guestbookUsername ||
-    !guestbookPassword ||
-    !guestbookEmailSignupBtn ||
-    !guestbookForgotLink ||
-    !guestbookRecoveryForm ||
-    !guestbookRecoveryEmail ||
-    !guestbookRecoveryBackBtn ||
     !guestbookUserBar ||
     !guestbookUserAvatar ||
     !guestbookUserName ||
@@ -220,7 +207,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  guestbookRecoveryForm.hidden = false;
   guestbookUserBar.hidden = false;
   guestbookAvatarPicker.hidden = true;
 
@@ -269,9 +255,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updateAuthLayout(mode) {
     const isSignedIn = mode === "signed-in";
-    const isForgotMode = mode === "forgot";
     guestbookAuthBar.classList.toggle("is-signed-in", isSignedIn);
-    guestbookAuthBar.classList.toggle("is-forgot-mode", isForgotMode);
     guestbookUserBar.classList.toggle("is-visible", isSignedIn);
 
     if (!isSignedIn) {
@@ -318,6 +302,10 @@ document.addEventListener("DOMContentLoaded", () => {
       return AUTHOR_PHOTO;
     }
 
+    if (isGoogleUser(user)) {
+      return user.photoURL || currentProfileData?.photoURL || "";
+    }
+
     return currentProfileData?.photoURL || user.photoURL || "";
   }
 
@@ -328,6 +316,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (user.uid === ADMIN_UID) {
       return AUTHOR_AVATAR_POSITION;
+    }
+
+    if (isGoogleUser(user)) {
+      return "center";
     }
 
     return currentProfileData?.avatarPosition || "center";
@@ -343,7 +335,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function createMessageMarkup(message, currentUserId, isAdminViewer) {
     const isAuthor = message.uid === ADMIN_UID || message.provider === "author" || message.isAuthor === true;
-    const isOwn = !isAuthor && currentUserId && currentUserId === message.uid;
+    const currentUsernameKey = normalizeUsername(currentProfileData?.username || currentProfileData?.displayName || "");
+    const isOwnUsername =
+      currentUsernameKey &&
+      message.provider === "guest-username" &&
+      message.usernameKey &&
+      currentUsernameKey === message.usernameKey;
+    const isOwn = !isAuthor && ((currentUserId && currentUserId === message.uid) || isOwnUsername);
     const alignRight = isAuthor || isOwn;
     const parts = formatMessageDateParts(message.createdAt);
     const displayName = isAuthor ? AUTHOR_NAME : (message.displayName || "Guest");
@@ -388,6 +386,7 @@ document.addEventListener("DOMContentLoaded", () => {
       photoURL: isAuthor ? AUTHOR_PHOTO : (data.photoURL || ""),
       avatarPosition: isAuthor ? AUTHOR_AVATAR_POSITION : (data.avatarPosition || "center"),
       provider: isAuthor ? "author" : (data.provider || "guest"),
+      usernameKey: data.usernameKey || normalizeUsername(data.displayName || ""),
       text: data.text || "",
       createdAt: data.createdAt || null
     };
@@ -416,19 +415,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const snapshot = await getDoc(userRef);
     const existing = snapshot.exists() ? snapshot.data() : {};
     const isAdmin = user.uid === ADMIN_UID;
+    const providerId = isAdmin ? "author" : getProviderId(user, existing.provider);
+    const isGoogle = providerId === "google.com";
     const usernameFallback = existing.username || user.displayName || (user.email ? user.email.split("@")[0] : "guest");
     const profile = {
       username: isAdmin ? "jona" : usernameFallback,
-      displayName: isAdmin ? AUTHOR_NAME : (existing.displayName || usernameFallback),
-      photoURL: isAdmin ? AUTHOR_PHOTO : (existing.photoURL || user.photoURL || ""),
-      avatarPosition: isAdmin ? AUTHOR_AVATAR_POSITION : (existing.avatarPosition || "center"),
-      provider: isAdmin ? "author" : (existing.provider || user.providerData?.[0]?.providerId || "password")
+      usernameKey: isAdmin ? "jona" : normalizeUsername(existing.username || existing.displayName || user.displayName || usernameFallback),
+      displayName: isAdmin ? AUTHOR_NAME : (isGoogle ? (user.displayName || existing.displayName || usernameFallback) : (existing.displayName || user.displayName || usernameFallback)),
+      photoURL: isAdmin ? AUTHOR_PHOTO : (isGoogle ? (user.photoURL || existing.photoURL || "") : (existing.photoURL || user.photoURL || AVATAR_OPTIONS[0].url)),
+      avatarPosition: isAdmin ? AUTHOR_AVATAR_POSITION : (isGoogle ? "center" : (existing.avatarPosition || AVATAR_OPTIONS[0].position)),
+      provider: providerId
     };
 
-    if (!snapshot.exists()) {
+    if (
+      !snapshot.exists() ||
+      existing.username !== profile.username ||
+      existing.usernameKey !== profile.usernameKey ||
+      existing.displayName !== profile.displayName ||
+      existing.photoURL !== profile.photoURL ||
+      existing.avatarPosition !== profile.avatarPosition ||
+      existing.provider !== profile.provider
+    ) {
       await setDoc(userRef, {
         ...profile,
-        createdAt: serverTimestamp(),
+        ...(!snapshot.exists() ? { createdAt: serverTimestamp() } : {}),
         updatedAt: serverTimestamp()
       }, { merge: true });
     }
@@ -455,36 +465,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   emailAuthForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const loginValue = guestbookUsername.value.trim();
-    const passwordValue = guestbookPassword.value;
-
-    if (!loginValue || !passwordValue) {
-      const message = "Enter both username and password before signing in.";
-      setGuestbookStatus(message);
-      showToast(message, "warning");
-      return;
-    }
-
-    try {
-      setGuestbookStatus("Signing in...");
-      showToast("Signing in...", "info");
-      await signInWithEmailAndPassword(auth, resolveAuthEmail(loginValue), passwordValue);
-      setGuestbookStatus("Signed in successfully. You can post your message now.");
-      showToast("Username login successful.", "success");
-    } catch (error) {
-      const message = getFriendlyAuthError(error);
-      setGuestbookStatus(message);
-      showToast(`Login failed. ${message}`, "error");
-    }
-  });
-
-  guestbookEmailSignupBtn.addEventListener("click", async () => {
     const usernameValue = guestbookUsername.value.trim();
-    const passwordValue = guestbookPassword.value;
     const normalizedUsername = normalizeUsername(usernameValue);
 
-    if (!usernameValue || !passwordValue) {
-      const message = "Enter username and password before creating an account.";
+    if (!usernameValue) {
+      const message = "Enter a username first.";
       setGuestbookStatus(message);
       showToast(message, "warning");
       return;
@@ -498,67 +483,46 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      setGuestbookStatus("Creating account...");
-      showToast("Creating account...", "info");
-      const credential = await createUserWithEmailAndPassword(auth, resolveAuthEmail(normalizedUsername), passwordValue);
-      const avatar = AVATAR_OPTIONS[0];
+      setGuestbookStatus("Starting username session...");
+      showToast("Starting username session...", "info");
+      const credential = auth.currentUser || (await signInAnonymously(auth)).user;
+      const userRef = doc(db, "users", credential.uid);
+      const userSnapshot = await getDoc(userRef);
+      const existingProfile = currentProfileData || {};
+      const avatarUrl = existingProfile.photoURL || AVATAR_OPTIONS[0].url;
+      const avatarPosition = existingProfile.avatarPosition || AVATAR_OPTIONS[0].position;
 
-      await updateProfile(credential.user, {
+      await updateProfile(credential, {
         displayName: usernameValue,
-        photoURL: avatar.url
+        photoURL: avatarUrl
       });
 
-      await setDoc(doc(db, "users", credential.user.uid), {
+      await setDoc(userRef, {
         username: usernameValue,
+        usernameKey: normalizedUsername,
         displayName: usernameValue,
-        photoURL: avatar.url,
-        avatarPosition: avatar.position,
-        provider: "password",
-        createdAt: serverTimestamp(),
+        photoURL: avatarUrl,
+        avatarPosition,
+        provider: "guest-username",
+        ...(!userSnapshot.exists() ? { createdAt: serverTimestamp() } : {}),
         updatedAt: serverTimestamp()
       }, { merge: true });
 
-      setGuestbookStatus("Account created. You are now signed in.");
-      showToast("Account created successfully.", "success");
+      currentProfileData = {
+        username: usernameValue,
+        usernameKey: normalizedUsername,
+        displayName: usernameValue,
+        photoURL: avatarUrl,
+        avatarPosition,
+        provider: "guest-username"
+      };
+
+      setGuestbookStatus("Signed in with username. You can post your message now.");
+      showToast("Username session ready.", "success");
     } catch (error) {
       const message = getFriendlyAuthError(error);
       setGuestbookStatus(message);
-      showToast(`Account creation failed. ${message}`, "error");
-    }
-  });
-
-  guestbookForgotLink.addEventListener("click", () => {
-    guestbookRecoveryEmail.value = guestbookUsername.value.trim();
-    updateAuthLayout("forgot");
-    setGuestbookStatus("Enter your email or username to reset your password.");
-  });
-
-  guestbookRecoveryBackBtn.addEventListener("click", () => {
-    updateAuthLayout(auth.currentUser ? "signed-in" : "signed-out");
-    setGuestbookStatus(auth.currentUser ? "Signed in. You can post your message now." : "Sign in to send a message.");
-  });
-
-  guestbookRecoveryForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const recoveryValue = guestbookRecoveryEmail.value.trim();
-
-    if (!recoveryValue) {
-      const message = "Enter your email or username first.";
-      setGuestbookStatus(message);
-      showToast(message, "warning");
-      return;
-    }
-
-    try {
-      setGuestbookStatus("Sending reset email...");
-      showToast("Sending reset email...", "info");
-      await sendPasswordResetEmail(auth, resolveAuthEmail(recoveryValue));
-      setGuestbookStatus("Password reset email sent.");
-      showToast("Password reset email sent.", "success");
-    } catch (error) {
-      const message = getFriendlyAuthError(error);
-      setGuestbookStatus(message);
-      showToast(`Password reset failed. ${message}`, "error");
+      showToast(`Username sign-in failed. ${message}`, "error");
     }
   });
 
@@ -577,8 +541,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   guestbookAvatarTrigger.addEventListener("click", () => {
-    if (!auth.currentUser || auth.currentUser.uid === ADMIN_UID) {
+    if (!auth.currentUser) {
+      return;
+    }
+
+    if (auth.currentUser.uid === ADMIN_UID) {
       showToast("The author profile photo is fixed for this account.", "info");
+      return;
+    }
+
+    if (isGoogleUser(auth.currentUser)) {
+      showToast("Google accounts use the synced Google profile picture here.", "info");
       return;
     }
 
@@ -656,7 +629,8 @@ document.addEventListener("DOMContentLoaded", () => {
         displayName: isAdmin ? AUTHOR_NAME : getCurrentDisplayName(auth.currentUser),
         photoURL: isAdmin ? AUTHOR_PHOTO : getCurrentPhoto(auth.currentUser),
         avatarPosition: isAdmin ? AUTHOR_AVATAR_POSITION : getCurrentAvatarPosition(auth.currentUser),
-        provider: isAdmin ? "author" : (auth.currentUser.providerData?.[0]?.providerId || "password"),
+        provider: isAdmin ? "author" : getProviderId(auth.currentUser, currentProfileData?.provider),
+        usernameKey: isAdmin ? "jona" : normalizeUsername(getCurrentDisplayName(auth.currentUser)),
         text,
         createdAt: serverTimestamp()
       });
@@ -714,7 +688,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const profile = await ensureProfile(user);
         const isAdmin = user.uid === ADMIN_UID;
         const displayName = isAdmin ? AUTHOR_NAME : (profile.displayName || profile.username || user.displayName || "Guest");
-        const providerId = isAdmin ? "author" : (user.providerData?.[0]?.providerId || profile.provider || "password");
+        const providerId = isAdmin ? "author" : getProviderId(user, profile.provider);
 
         updateAuthLayout("signed-in");
         setComposerState(true);
@@ -726,7 +700,7 @@ document.addEventListener("DOMContentLoaded", () => {
             : providerId === "google.com"
               ? "Signed in with Google"
               : "Signed in with Username";
-        guestbookAvatarTrigger.disabled = isAdmin;
+        guestbookAvatarTrigger.disabled = isAdmin || providerId === "google.com";
         applyUserAvatar(getCurrentPhoto(user), displayName, getCurrentAvatarPosition(user));
         renderAvatarOptions(profile.photoURL || "", profile.avatarPosition || "center");
         setGuestbookStatus("Signed in. You can post your message now.");
