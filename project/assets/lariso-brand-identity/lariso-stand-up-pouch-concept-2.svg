@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Lariso stand up pouch concept 2 placeholder</title>
+  <desc id="desc">Refined Lariso stand-up pouch concept placeholder.</desc>
+  <rect width="1400" height="1000" fill="#fff9f4"/>
+  <text x="100" y="130" font-family="Arial, sans-serif" font-size="34" letter-spacing="6" fill="#a15a2f">CONCEPT 2</text>
+  <rect x="250" y="170" width="900" height="660" rx="42" fill="#fff1e2" stroke="#d7b08b" stroke-width="8"/>
+  <g transform="translate(420 210)">
+    <rect x="0" y="0" width="560" height="580" rx="38" fill="#d66b2d" stroke="#8e3d18" stroke-width="10"/>
+    <circle cx="280" cy="160" r="82" fill="#fff6ed" opacity=".95"/>
+    <text x="280" y="332" text-anchor="middle" font-family="Georgia, serif" font-size="96" font-style="italic" font-weight="700" fill="#fff6ed">Lariso</text>
+    <text x="280" y="394" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" letter-spacing="10" fill="#fff6ed">REFINED WARM SHELF LOOK</text>
+    <path d="M104 462h352" stroke="#f7d5b5" stroke-width="10" opacity=".55"/>
+    <path d="M104 506h352" stroke="#f7d5b5" stroke-width="10" opacity=".4"/>
+  </g>
+  <text x="700" y="920" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" fill="#5d4736">A cleaner hierarchy, warmer palette, and stronger front-of-pack focus improved recall and shelf appeal.</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Lariso stand up pouch concept 1 placeholder</title>
+  <desc id="desc">Initial Lariso stand-up pouch concept placeholder.</desc>
+  <rect width="1400" height="1000" fill="#fff7ef"/>
+  <text x="100" y="130" font-family="Arial, sans-serif" font-size="34" letter-spacing="6" fill="#a15a2f">CONCEPT 1</text>
+  <rect x="240" y="180" width="460" height="620" rx="40" fill="#f1b16e" stroke="#9c4e1f" stroke-width="10"/>
+  <rect x="760" y="250" width="470" height="480" rx="32" fill="#fff3e6" stroke="#ddb996" stroke-width="6"/>
+  <text x="470" y="380" text-anchor="middle" font-family="Georgia, serif" font-size="84" font-style="italic" font-weight="700" fill="#fff7ef">Lariso</text>
+  <text x="470" y="452" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" letter-spacing="8" fill="#fff7ef">EARLY STAND-UP POUCH</text>
+  <circle cx="470" cy="560" r="86" fill="#ffe8d1" opacity=".9"/>
+  <text x="820" y="340" font-family="Arial, sans-serif" font-size="28" fill="#5b4635">Initial direction tested a brighter, denser front panel with</text>
+  <text x="820" y="390" font-family="Arial, sans-serif" font-size="28" fill="#5b4635">more decorative energy. It created impact, but I needed</text>
+  <text x="820" y="440" font-family="Arial, sans-serif" font-size="28" fill="#5b4635">a clearer hierarchy for the mascot, name, and flavor zone.</text>
+</svg>

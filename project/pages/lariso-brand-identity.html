@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../assets/logo-preview/logo-lemon.png" />
+  <title>Lariso Brand Identity - Jona Setiawan</title>
+  <script src="../../theme-init.js"></script>
+  <link rel="stylesheet" href="../../zoom-controls.css">
+  <link rel="stylesheet" href="../../theme-palettes.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: inherit; }
+    img { max-width: 100%; height: auto; }
+
+    .project-detail-page .page-zoom-toggle,
+    .project-detail-page .page-zoom-step,
+    .project-detail-page .page-zoom-value,
+    .project-detail-page .page-zoom-panel,
+    .project-detail-page .zoom-theme-btn {
+      border-color: color-mix(in srgb, var(--accent) 34%, var(--border)) !important;
+      color: var(--text) !important;
+      background: var(--panel-bg) !important;
+      box-shadow: var(--shadow) !important;
+    }
+
+    .project-detail-page .page-zoom-panel { background: color-mix(in srgb, var(--panel-bg) 94%, transparent) !important; }
+    .project-detail-page .page-zoom-label { color: var(--muted) !important; }
+    .project-detail-page .page-zoom-value { background: var(--secondary-button-bg) !important; }
+    .project-detail-page .page-zoom-toggle:hover,
+    .project-detail-page .page-zoom-step:hover,
+    .project-detail-page .page-zoom-value:hover,
+    .project-detail-page .zoom-theme-btn:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)) !important; }
+    .project-detail-page .zoom-theme-btn.is-active {
+      background: linear-gradient(135deg, var(--accent-strong), var(--accent)) !important;
+      color: var(--button-primary-text) !important;
+      border-color: transparent !important;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1rem 2rem;
+      background: color-mix(in srgb, var(--panel-bg-strong) 90%, transparent);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+    }
+
+    .nav-container,
+    .hero-shell,
+    .story-shell,
+    .closing-shell { width: min(1240px, calc(100% - 3rem)); margin: 0 auto; }
+
+    .nav-container { display: flex; align-items: center; justify-content: space-between; }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.82rem 1.4rem;
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--button-primary-text);
+      background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+      font-weight: 700;
+      box-shadow: 0 18px 40px color-mix(in srgb, var(--accent-strong) 30%, transparent);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .back-btn:hover { transform: translateX(-4px); box-shadow: 0 22px 48px color-mix(in srgb, var(--accent-strong) 38%, transparent); }
+    .back-btn-logo { width: 1.8rem; height: 1.8rem; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.3); }
+
+    .hero {
+      padding: 5.8rem 0 2.5rem;
+      background:
+        radial-gradient(circle at top left, color-mix(in srgb, #ffb066 22%, transparent), transparent 32%),
+        radial-gradient(circle at 85% 14%, color-mix(in srgb, #d96c2f 18%, transparent), transparent 24%),
+        linear-gradient(180deg, color-mix(in srgb, var(--bg-alt) 92%, transparent), color-mix(in srgb, var(--bg) 97%, transparent));
+    }
+
+    .hero-shell { display: grid; gap: 1.6rem; }
+
+    .hero-copy,
+    .meta-card,
+    .summary-card,
+    .section-card,
+    .concept-card,
+    .final-showcase,
+    .collateral-card,
+    .closing-shell {
+      background: linear-gradient(135deg, color-mix(in srgb, var(--panel-bg) 96%, transparent), color-mix(in srgb, var(--panel-soft) 94%, transparent));
+      border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+      box-shadow: var(--shadow);
+      border-radius: 28px;
+    }
+
+    .hero-copy { display: grid; gap: 1.2rem; padding: 2rem; }
+
+    .project-category {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      background: color-mix(in srgb, #f0a65e 20%, transparent);
+      border: 1px solid color-mix(in srgb, #f0a65e 30%, var(--border));
+      color: color-mix(in srgb, #ffdcb7 75%, white 25%);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.02;
+      background: linear-gradient(135deg, #ffffff 0%, #ffe0c4 50%, #f2a45d 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .hero-description { max-width: 820px; font-size: 1.12rem; color: var(--muted); }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+
+    .meta-card {
+      min-width: 170px;
+      padding: 1rem 1.1rem;
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .meta-label { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; }
+    .meta-value { color: var(--text); font-weight: 700; font-size: 1.02rem; }
+
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .tech-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.55rem 0.95rem;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border));
+      color: var(--accent-label-text);
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .hero-image,
+    .media-card { overflow: hidden; border-radius: 34px; border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border)); }
+    .hero-image { box-shadow: 0 32px 70px color-mix(in srgb, var(--accent-strong) 16%, transparent); }
+    .hero-image img,
+    .media-card img { width: 100%; display: block; }
+    .hero-image img { aspect-ratio: 16 / 9; object-fit: cover; }
+
+    .story-shell { padding: 1rem 0 4rem; display: grid; gap: 1.4rem; }
+
+    .summary-card { padding: 1.5rem; display: grid; gap: 1rem; grid-template-columns: 1.1fr 0.9fr; }
+    .summary-points { display: grid; gap: 0.8rem; align-content: start; }
+
+    .point-row { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.9rem; align-items: start; }
+    .point-number {
+      width: 2rem; height: 2rem; display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 50%; background: linear-gradient(135deg, #f0a65e, #d96c2f); color: #fff6ed; font-weight: 800;
+    }
+
+    .section-card { padding: 1.7rem; display: grid; gap: 1.35rem; }
+    .section-kicker { color: #f2b178; font-size: 0.86rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .section-title { font-size: clamp(1.9rem, 3.4vw, 2.9rem); color: var(--text); margin-top: 0.4rem; }
+    .section-copy { display: grid; gap: 1rem; color: var(--muted); font-size: 1.03rem; }
+
+    .logo-story-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 1rem; align-items: start; }
+    .logo-secondary-stack { display: grid; gap: 1rem; align-items: start; }
+    .media-card { min-width: 0; background: color-mix(in srgb, var(--surface) 96%, transparent); border-radius: 24px; }
+    .media-card img {
+      aspect-ratio: 3 / 2;
+      object-fit: contain;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 240, 231, 0.98));
+      padding: 0.9rem;
+    }
+    .media-copy { padding: 1rem 1.05rem 1.1rem; display: grid; gap: 0.45rem; }
+    .media-copy h3 { color: var(--text); font-size: 1.05rem; }
+    .media-copy p { color: var(--muted); font-size: 0.94rem; }
+
+    .concept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 1rem; align-items: start; }
+    .concept-card,
+    .final-showcase,
+    .collateral-card { min-width: 0; padding: 1rem; display: grid; gap: 0.95rem; }
+    .concept-card img,
+    .final-showcase > img,
+    .collateral-card > img {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 22px;
+      border: 1px solid color-mix(in srgb, var(--accent) 16%, var(--border));
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(247, 239, 230, 0.98));
+      object-fit: contain;
+      padding: 0.8rem;
+    }
+    .concept-card img { aspect-ratio: 4 / 5; }
+    .final-showcase > img,
+    .collateral-card > img { aspect-ratio: 4 / 5; }
+    .concept-card h3,
+    .final-showcase h3,
+    .collateral-card h3 { color: var(--text); font-size: 1.2rem; }
+    .concept-card p,
+    .final-showcase p,
+    .collateral-card p,
+    .summary-card p { color: var(--muted); }
+
+    .final-showcase { grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr); align-items: start; }
+    .collateral-card { grid-template-columns: minmax(280px, 0.92fr) minmax(0, 1.08fr); align-items: start; }
+
+    .closing-shell {
+      margin-bottom: 4rem;
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .closing-copy { display: grid; gap: 0.35rem; }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.3rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      color: var(--button-primary-text);
+      background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+      box-shadow: 0 18px 34px color-mix(in srgb, var(--accent-strong) 24%, transparent);
+    }
+
+    @media (max-width: 960px) {
+      .summary-card,
+      .logo-story-grid,
+      .concept-grid,
+      .final-showcase,
+      .collateral-card,
+      .closing-shell { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 720px) {
+      .nav-container,
+      .hero-shell,
+      .story-shell,
+      .closing-shell { width: min(1240px, calc(100% - 2rem)); }
+      .navbar { padding: 0.9rem 1rem; }
+      .back-btn { padding: 0.72rem 1.1rem; font-size: 0.94rem; }
+      .hero { padding-top: 4.9rem; }
+      .hero-copy,
+      .section-card,
+      .summary-card,
+      .closing-shell { padding: 1.25rem; }
+      .media-card img,
+      .concept-card img,
+      .final-showcase > img,
+      .collateral-card > img { padding: 0.55rem; }
+    }
+  </style>
+</head>
+<body class="project-detail-page">
+  <div class="page-zoom-control" id="page-zoom-control" data-zoom-default="80" data-zoom-storage-key="portfolio-lariso-page-zoom">
+    <button class="page-zoom-toggle" id="page-zoom-toggle" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="page-zoom-panel">
+      <svg class="page-zoom-icon" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
+    </button>
+    <div class="page-zoom-panel" id="page-zoom-panel" aria-hidden="true">
+      <div class="page-zoom-panel-group">
+        <span class="page-zoom-label">Zoom</span>
+        <div class="page-zoom-actions">
+          <button class="page-zoom-step" id="page-zoom-out" type="button" aria-label="Zoom out">-</button>
+          <button class="page-zoom-value" id="page-zoom-value" type="button" aria-label="Reset zoom to default">80%</button>
+          <button class="page-zoom-step" id="page-zoom-in" type="button" aria-label="Zoom in">+</button>
+        </div>
+      </div>
+      <div class="page-zoom-panel-group">
+        <span class="page-zoom-label">Palette</span>
+        <div class="zoom-theme-actions" role="group" aria-label="Color palette">
+          <button class="zoom-theme-btn" type="button" data-theme-value="blue" aria-label="Blue mode" aria-pressed="false" title="Blue mode"><svg class="zoom-theme-icon" viewBox="0 0 24 24"><path d="M21 12.8A8.8 8.8 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button>
+          <button class="zoom-theme-btn" type="button" data-theme-value="light" aria-label="Light mode" aria-pressed="false" title="Light mode"><svg class="zoom-theme-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.5"></path><path d="M12 19v2.5"></path><path d="M4.93 4.93l1.77 1.77"></path><path d="M17.3 17.3l1.77 1.77"></path><path d="M2.5 12H5"></path><path d="M19 12h2.5"></path><path d="M4.93 19.07l1.77-1.77"></path><path d="M17.3 6.7l1.77-1.77"></path></svg></button>
+          <button class="zoom-theme-btn" type="button" data-theme-value="galaxy" aria-label="Galaxy mode" aria-pressed="false" title="Galaxy mode"><svg class="zoom-theme-icon hat-icon" viewBox="0 0 24 24"><path d="M4 19.5h16"></path><path d="M8 19.5c0-2.7 1.4-5.1 3.7-6.6l2.1-1.4-1.7-5.8-5.1 4.1"></path><path d="M14.4 9.8 17.7 8l2.3 5.9-3.9-.3"></path><path d="M13.2 4.5 14 6.2"></path><path d="M18.4 4.9l.4 1.2"></path><path d="M19.7 7.7l1.3.1"></path></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a class="back-btn" href="../../index.html#projects">
+        <img src="../assets/logo-preview/logo-lemon.png" alt="" class="back-btn-logo">
+        <span>Back to Portfolio</span>
+      </a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-shell">
+      <div class="hero-copy">
+        <span class="project-category">Client Work / Brand Identity</span>
+        <h1>Making a Snack Brand Memorable Starts With a System, Not Just a Logo</h1>
+        <p class="hero-description">For Lariso, my goal was to shape a snack brand that felt warm, character-led, and instantly recognizable. I designed the identity as a point-to-point story: from logo construction, to packaging iteration, to the final 3D pouch presentation and supporting invoice collateral.</p>
+        <div class="hero-meta">
+          <div class="meta-card"><span class="meta-label">Date</span><span class="meta-value">4 January 2026</span></div>
+          <div class="meta-card"><span class="meta-label">Status</span><span class="meta-value">Completed</span></div>
+          <div class="meta-card"><span class="meta-label">Category</span><span class="meta-value">Client Work</span></div>
+        </div>
+        <div class="tech-stack">
+          <span class="tech-tag">Adobe Illustrator</span>
+          <span class="tech-tag">Adobe Photoshop</span>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="../assets/lariso-project/lariso mock up concept final banner.jpg" alt="Lariso mock up concept final banner">
+      </div>
+    </div>
+  </header>
+
+  <main class="story-shell">
+    <section class="summary-card" aria-labelledby="lariso-brief-title">
+      <div class="summary-points">
+        <div><span class="section-kicker">Section 1</span><h2 class="section-title" id="lariso-brief-title">The Brief &amp; Hero Image</h2></div>
+        <p>I approached Lariso as a shelf-memory problem. The brand needed to feel friendly enough for a snack audience, structured enough for packaging, and flexible enough to grow into social media, sales materials, and everyday client touchpoints without losing its personality.</p>
+      </div>
+      <div class="summary-points">
+        <div class="point-row"><span class="point-number">1</span><p>I decided to start with a packaging-first lens so every design move would support real product visibility.</p></div>
+        <div class="point-row"><span class="point-number">2</span><p>My goal was to make the final hero image feel like the result of a system: logo, pouch design, and supporting brand materials working together.</p></div>
+        <div class="point-row"><span class="point-number">3</span><p>This banner acts as a placeholder for the final photo-realistic pouch mockup while preserving the exact slot for the real export.</p></div>
+      </div>
+    </section>
+
+    <section class="section-card" aria-labelledby="lariso-logo-title">
+      <div><span class="section-kicker">Section 2</span><h2 class="section-title" id="lariso-logo-title">Building the Foundation With a Chef Mascot and Flexible Logo Variations</h2></div>
+      <div class="section-copy">
+        <p>I decided to build the identity around a chef mascot because I wanted Lariso to feel warm, handcrafted, and immediately personable. Instead of treating the logo as one fixed graphic, I developed it as a flexible family that could adapt to different contexts without losing recognition.</p>
+        <p>My first priority was the mascot construction itself: expression, silhouette, and proportion had to feel friendly and clear even at small sizes. From there, I expanded the system into a round logo for social use and compact placements, plus a cleaner script-based main logo that could sit more comfortably on the front of the stand-up pouch.</p>
+        <p>That flexibility mattered. It meant the brand could feel expressive in marketing moments, but still stay legible and controlled when the packaging needed a cleaner hierarchy.</p>
+      </div>
+      <div class="logo-story-grid">
+        <article class="media-card">
+          <img src="../assets/lariso-project/logo Masterbuild.jpg" alt="Lariso chef mascot construction">
+          <div class="media-copy">
+            <h3>Chef Mascot Construction</h3>
+            <p>I used the mascot as the emotional anchor so the brand could feel inviting before the customer even reads the product line.</p>
+          </div>
+        </article>
+        <div class="logo-secondary-stack">
+          <article class="media-card">
+            <img src="../assets/lariso-project/Lariso logo circle.png" alt="Lariso logo circle">
+            <div class="media-copy">
+              <h3>Round Social Variation</h3>
+              <p>I kept the circular mark compact so it could carry the brand on avatars, stickers, and smaller placements.</p>
+            </div>
+          </article>
+          <article class="media-card">
+            <img src="../assets/lariso-project/Logo.png" alt="Lariso main script logo">
+            <div class="media-copy">
+              <h3>Main Script Logo</h3>
+              <p>I simplified the primary wordmark so the front packaging layout could breathe and the name could land faster.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card" aria-labelledby="lariso-packaging-title">
+      <div><span class="section-kicker">Section 3</span><h2 class="section-title" id="lariso-packaging-title">Iteration &amp; Packaging Concepts</h2></div>
+      <div class="section-copy">
+        <p>I treated the stand-up pouch as an iterative design problem rather than a one-pass visual. The first concept explored stronger decorative energy and a fuller layout, but I felt the front panel still needed a clearer story. The packaging needed warmth and shelf appeal, but it also needed immediate hierarchy.</p>
+        <p>Based on that, I refined the concept into a warmer, cleaner direction. I made the mascot and wordmark more intentional, simplified the supporting details, and gave the composition more breathing room so the pouch could feel polished instead of crowded. Every change was driven by feedback, readability, and what would actually help the brand perform in a real market context.</p>
+      </div>
+      <div class="concept-grid">
+        <article class="concept-card">
+          <img src="../assets/lariso-project/concept first.jpg" alt="Lariso stand up pouch concept 1">
+          <h3>Concept 1: Energy First</h3>
+          <p>I explored a more decorative first pass to test presence and flavor personality, but it showed me where the hierarchy still needed control.</p>
+        </article>
+        <article class="concept-card">
+          <img src="../assets/lariso-project/concept second.jpg" alt="Lariso stand up pouch concept 2">
+          <h3>Concept 2: Warmth and Shelf Appeal</h3>
+          <p>I refined the structure so the pouch felt warmer, cleaner, and easier to read at a glance while still keeping the brand lively.</p>
+        </article>
+      </div>
+      <article class="final-showcase">
+        <img src="../assets/lariso-project/lariso mock up concept final.jpg" alt="Lariso final 3D packaging mockup">
+        <div>
+          <h3>Final 3D Packaging Mockup</h3>
+          <p>I used the final 3D presentation to prove that the system worked beyond flat artwork. The pouch mockup helped me evaluate color balance, front-facing clarity, and the way the logo family held together in a more realistic retail setting.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section-card" aria-labelledby="lariso-collateral-title">
+      <div><span class="section-kicker">Section 4</span><h2 class="section-title" id="lariso-collateral-title">Real-World Collateral</h2></div>
+      <div class="section-copy">
+        <p>My goal was to show Lariso as a complete brand system, not just a good-looking pouch. That is why I extended the identity into business-facing collateral like an invoice. I wanted the client to feel the same brand confidence in operational documents that customers would feel on packaging.</p>
+        <p>Applying the identity to an invoice helped reinforce consistency at every level of the business. The typography, logo treatment, and color rhythm become repeatable assets, which makes the brand feel more professional and more trustworthy across every interaction.</p>
+      </div>
+      <article class="collateral-card">
+        <img src="../assets/lariso-project/Invoice.png" alt="Lariso branded invoice collateral">
+        <div>
+          <h3>Branded Invoice Collateral</h3>
+          <p>I kept the invoice direction clean and structured so it would feel practical, but still unmistakably Lariso. That kind of consistency is what helps a smaller food brand look more established and credible from the first order to the final handoff.</p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <section class="closing-shell">
+    <div class="closing-copy">
+      <h2>Need a packaging identity with a stronger story?</h2>
+      <p>I can turn the Lariso-style structure into a full system for logos, packaging, and collateral.</p>
+    </div>
+    <a class="cta-btn" href="../../index.html#contact">Open Contact Section</a>
+  </section>
+
+  <script src="../../theme-controls.js"></script>
+  <script src="../../zoom-controls.js"></script>
+</body>
+</html>

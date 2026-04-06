@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Lariso mock up concept final banner placeholder</title>
+  <desc id="desc">Wide placeholder banner showing final Lariso packaging mockup.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#fff8f0"/>
+      <stop offset="55%" stop-color="#ffe8d2"/>
+      <stop offset="100%" stop-color="#f7c89d"/>
+    </linearGradient>
+    <linearGradient id="pack" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f4a259"/>
+      <stop offset="100%" stop-color="#cf5f25"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1220" cy="180" r="140" fill="#ffffff" opacity=".35"/>
+  <circle cx="260" cy="170" r="90" fill="#ffffff" opacity=".28"/>
+  <rect x="130" y="640" width="1340" height="120" rx="60" fill="#ffffff" opacity=".55"/>
+  <g transform="translate(885 155)">
+    <rect x="0" y="0" width="340" height="470" rx="34" fill="url(#pack)" stroke="#8e3d18" stroke-width="8"/>
+    <path d="M48 88h244M48 128h244" stroke="#fbe7d0" stroke-width="10" opacity=".45"/>
+    <circle cx="170" cy="190" r="72" fill="#fff6ed" opacity=".95"/>
+    <path d="M144 150c-18 0-32 14-32 30 0 8 3 15 8 21-22 8-38 29-38 54 0 32 26 58 58 58h60c32 0 58-26 58-58 0-25-16-46-38-54 5-6 8-13 8-21 0-16-14-30-32-30-7 0-14 3-20 7-6-4-13-7-20-7Z" fill="#f4c693" stroke="#7f3717" stroke-width="8"/>
+    <text x="170" y="338" text-anchor="middle" font-family="Georgia, serif" font-size="52" font-style="italic" font-weight="700" fill="#fff6ed">Lariso</text>
+    <text x="170" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" letter-spacing="6" fill="#fff6ed">SNACK &amp; CRISPY BITES</text>
+  </g>
+  <g transform="translate(320 200)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="28" letter-spacing="8" fill="#9b5429">MAIN HERO PLACEHOLDER</text>
+    <text x="0" y="120" font-family="Georgia, serif" font-size="106" font-weight="700" fill="#2d2622">Lariso Brand Identity</text>
+    <text x="0" y="208" font-family="Arial, sans-serif" font-size="42" fill="#6b4b34">Final packaging mockup concept with shelf-ready warmth</text>
+    <text x="0" y="308" font-family="Arial, sans-serif" font-size="34" fill="#7f5f45">Swap this banner with the real “lariso mock up concept final banner” export anytime.</text>
+  </g>
+</svg>

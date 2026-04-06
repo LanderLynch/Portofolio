@@ -191,6 +191,7 @@
     }
 
     .archive-years, .shoot-list, .hero-panels { display: grid; gap: 1rem; }
+    .archive-years, .year-section, .shoot-card { content-visibility: auto; contain-intrinsic-size: 1px 520px; }
     .shoot-card {
       display: grid;
       grid-template-columns: minmax(240px, 340px) minmax(0, 1fr);
@@ -250,8 +251,38 @@
 
     .gallery-thumb img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
     .gallery-thumb-label { display: block; padding: 0.55rem 0.65rem 0.7rem; color: var(--muted); font-size: 0.82rem; text-align: left; }
+    .gallery-thumb-more {
+      display: grid;
+      place-items: center;
+      aspect-ratio: 1 / 1;
+      padding: 1rem;
+      text-align: center;
+      color: var(--text);
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, transparent), color-mix(in srgb, var(--accent-strong) 12%, transparent)),
+        color-mix(in srgb, var(--surface) 94%, transparent);
+    }
+    .gallery-thumb-more strong { font-size: 1.12rem; }
+    .gallery-thumb-more span { color: var(--muted); font-size: 0.82rem; }
     .empty-state { border-radius: 18px; padding: 1.1rem; border: 1px dashed color-mix(in srgb, var(--accent) 24%, var(--border)); background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
     .empty-state h4 { margin-bottom: 0.4rem; color: var(--text); }
+    .archive-footer { display: flex; justify-content: center; padding-top: 0.35rem; }
+    .archive-load-more {
+      border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border));
+      background: color-mix(in srgb, var(--surface) 94%, transparent);
+      color: var(--text);
+      padding: 0.82rem 1.2rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+    .archive-load-more:hover {
+      transform: translateY(-1px);
+      border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
+      background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+    }
+    .archive-footer[hidden] { display: none !important; }
 
     .cta-shell {
       display: grid;
@@ -429,6 +460,9 @@
         <p class="archive-count" id="archive-count" aria-live="polite">0 projects · 0 photos</p>
       </div>
       <div class="archive-years" id="archive-years"></div>
+      <div class="archive-footer" id="archive-footer" hidden>
+        <button class="archive-load-more" id="archive-load-more" type="button">Load More Projects</button>
+      </div>
     </section>
   </main>
 
@@ -463,6 +497,7 @@
     </div>
   </div>
 
+  <script src="../../performance-utils.js"></script>
   <script src="../scripts/photography-archive.js"></script>
   <script>
     (function () {
@@ -470,6 +505,8 @@
       const filters = document.getElementById("year-filter-group");
       const count = document.getElementById("archive-count");
       const yearsRoot = document.getElementById("archive-years");
+      const archiveFooter = document.getElementById("archive-footer");
+      const loadMoreButton = document.getElementById("archive-load-more");
       const heroYears = document.getElementById("hero-years");
       const heroLatest = document.getElementById("hero-latest");
       const heroFocus = document.getElementById("hero-focus");
@@ -479,7 +516,10 @@
       const lightboxImageWrap = document.querySelector(".lightbox-image-wrap");
       const prevButton = document.getElementById("lightbox-prev");
       const nextButton = document.getElementById("lightbox-next");
+      const INITIAL_ENTRY_BATCH = 4;
+      const MAX_THUMBS_PER_CARD = 4;
       let activeYear = "all";
+      let visibleEntryLimit = INITIAL_ENTRY_BATCH;
       let lightboxImages = [];
       let lightboxIndex = 0;
 
@@ -504,27 +544,40 @@
 
       function renderArchive() {
         const entries = visibleEntries();
+        const renderedEntries = entries.slice(0, visibleEntryLimit);
         const totalPhotos = entries.reduce((sum, entry) => sum + entry.images.length, 0);
         count.textContent = entries.length + ' ' + (entries.length === 1 ? 'project' : 'projects') + ' · ' + totalPhotos + ' photos';
 
         if (!entries.length) {
           yearsRoot.innerHTML = '<div class="empty-state"><h4>No shoots in this filter</h4><p>Switch to another year or add a new entry to the archive data.</p></div>';
+          archiveFooter.hidden = true;
           return;
         }
 
         yearsRoot.innerHTML = years
-          .map((year) => ({ year, entries: entries.filter((entry) => entry.year === year) }))
+          .map((year) => ({ year, entries: renderedEntries.filter((entry) => entry.year === year) }))
           .filter((group) => group.entries.length)
           .map((group) => {
             const photos = group.entries.reduce((sum, entry) => sum + entry.images.length, 0);
             return '<section class="year-section"><div class="year-heading"><h3>' + group.year + '</h3><p class="year-summary">' + group.entries.length + ' project' + (group.entries.length === 1 ? '' : 's') + ' · ' + photos + ' photos</p></div><div class="shoot-list">' + group.entries.map(renderCard).join("") + '</div></section>';
           })
           .join("");
+
+        archiveFooter.hidden = renderedEntries.length >= entries.length;
+        if (!archiveFooter.hidden) {
+          loadMoreButton.textContent = 'Load More Projects (' + (entries.length - renderedEntries.length) + ' left)';
+        }
+
+        window.portfolioPerformance?.applyImageOptimizations(yearsRoot);
       }
 
       function renderCard(entry) {
-        const thumbs = entry.images.slice(0, 8).map((image, index) => '<button class="gallery-thumb" type="button" data-entry="' + entry.slug + '" data-index="' + index + '" aria-label="Open image ' + (index + 1) + ' from ' + escapeHtml(entry.title) + '"><img src="' + image + '" alt="' + escapeHtml(entry.title) + ' preview ' + (index + 1) + '" loading="lazy" /><span class="gallery-thumb-label">Frame ' + (index + 1) + '</span></button>').join("");
-        return '<article class="shoot-card"><div class="shoot-cover"><img src="' + entry.coverImage + '" alt="' + escapeHtml(entry.title) + ' cover image" loading="lazy" /><span class="shoot-cover-badge">' + entry.images.length + ' photos</span></div><div class="shoot-body"><div class="shoot-meta"><span class="shoot-tag">' + escapeHtml(entry.projectType) + '</span><span class="shoot-tag">' + escapeHtml(entry.dateLabel) + '</span></div><div><h4>' + escapeHtml(entry.title) + '</h4><p class="shoot-description">' + escapeHtml(entry.description) + '</p></div><div class="gallery-grid">' + thumbs + '</div></div></article>';
+        const previewCount = Math.min(entry.images.length, MAX_THUMBS_PER_CARD);
+        const thumbs = entry.images.slice(0, previewCount).map((image, index) => '<button class="gallery-thumb" type="button" data-entry="' + entry.slug + '" data-index="' + index + '" aria-label="Open image ' + (index + 1) + ' from ' + escapeHtml(entry.title) + '"><img src="' + image + '" alt="' + escapeHtml(entry.title) + ' preview ' + (index + 1) + '" loading="lazy" decoding="async" fetchpriority="low" /><span class="gallery-thumb-label">Frame ' + (index + 1) + '</span></button>').join("");
+        const moreButton = entry.images.length > previewCount
+          ? '<button class="gallery-thumb" type="button" data-entry="' + entry.slug + '" data-index="' + previewCount + '" aria-label="Open more images from ' + escapeHtml(entry.title) + '"><span class="gallery-thumb-more"><strong>+' + (entry.images.length - previewCount) + '</strong><span>More frames</span></span></button>'
+          : "";
+        return '<article class="shoot-card"><div class="shoot-cover"><img src="' + entry.coverImage + '" alt="' + escapeHtml(entry.title) + ' cover image" loading="lazy" decoding="async" fetchpriority="low" /><span class="shoot-cover-badge">' + entry.images.length + ' photos</span></div><div class="shoot-body"><div class="shoot-meta"><span class="shoot-tag">' + escapeHtml(entry.projectType) + '</span><span class="shoot-tag">' + escapeHtml(entry.dateLabel) + '</span></div><div><h4>' + escapeHtml(entry.title) + '</h4><p class="shoot-description">' + escapeHtml(entry.description) + '</p></div><div class="gallery-grid">' + thumbs + moreButton + '</div></div></article>';
       }
 
       function updateHero() {
@@ -562,7 +615,13 @@
         const button = event.target.closest("[data-year-filter]");
         if (!button) return;
         activeYear = button.dataset.yearFilter;
+        visibleEntryLimit = INITIAL_ENTRY_BATCH;
         renderFilters();
+        renderArchive();
+      });
+
+      loadMoreButton.addEventListener("click", () => {
+        visibleEntryLimit += INITIAL_ENTRY_BATCH;
         renderArchive();
       });
 

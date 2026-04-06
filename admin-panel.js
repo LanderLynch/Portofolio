@@ -24,7 +24,7 @@ function createFirebaseProjectCard(project, isAdmin) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function initAdminPanel() {
   const adminPopout = document.getElementById("admin-popout");
   const adminPanel = document.getElementById("admin-panel");
   const adminTrigger = document.getElementById("footer-admin-trigger");
@@ -219,4 +219,10 @@ document.addEventListener("DOMContentLoaded", () => {
     (snapshot) => rerenderFirebaseCards(snapshot),
     (error) => setStatus(error.message || "Could not load Firestore projects.", "error")
   );
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initAdminPanel, { once: true });
+} else {
+  initAdminPanel();
+}

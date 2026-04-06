@@ -160,7 +160,7 @@ function createFallbackAvatar(name) {
   );
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function initGuestbook() {
   const guestbookFeed = document.getElementById("guestbook-feed");
   const guestbookEmpty = document.getElementById("guestbook-empty");
   const guestbookAuthBar = document.getElementById("guestbook-auth-bar");
@@ -739,4 +739,10 @@ document.addEventListener("DOMContentLoaded", () => {
       showToast(`Could not load guestbook messages. ${message}`, "error");
     }
   );
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initGuestbook, { once: true });
+} else {
+  initGuestbook();
+}

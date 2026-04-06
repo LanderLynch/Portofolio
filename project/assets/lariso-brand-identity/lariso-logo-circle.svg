@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Lariso logo circle placeholder</title>
+  <desc id="desc">Round Lariso logo placeholder with chef mascot and circular badge typography.</desc>
+  <rect width="1200" height="1200" fill="#f7f0e7"/>
+  <circle cx="600" cy="600" r="420" fill="#fffaf4" stroke="#d96c2f" stroke-width="28"/>
+  <circle cx="600" cy="600" r="350" fill="#ffe2c9" stroke="#2b2522" stroke-width="12" stroke-dasharray="14 18"/>
+  <path d="M560 330c-46 0-82 34-82 76 0 18 7 35 20 48-58 16-101 69-101 132 0 76 61 138 137 138h132c76 0 137-62 137-138 0-63-43-116-101-132 13-13 20-30 20-48 0-42-36-76-82-76-18 0-35 5-49 15-14-10-31-15-49-15Z" fill="#fffaf4" stroke="#2b2522" stroke-width="18"/>
+  <path d="M526 506c20-26 45-39 74-39 30 0 55 13 74 39" fill="none" stroke="#2b2522" stroke-linecap="round" stroke-width="16"/>
+  <circle cx="548" cy="558" r="12" fill="#2b2522"/>
+  <circle cx="652" cy="558" r="12" fill="#2b2522"/>
+  <path d="M555 620c24 18 45 26 63 26 18 0 39-8 63-26" fill="none" stroke="#2b2522" stroke-linecap="round" stroke-width="18"/>
+  <text x="600" y="785" text-anchor="middle" font-family="Georgia, serif" font-size="130" font-style="italic" font-weight="700" fill="#b14f1d">Lariso</text>
+  <text x="600" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" letter-spacing="14" fill="#7e3e1f">SNACK BRAND IDENTITY</text>
+  <text x="600" y="1030" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" letter-spacing="10" fill="#7e3e1f">CIRCLE LOGO PLACEHOLDER</text>
+</svg>

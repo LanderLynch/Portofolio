@@ -38,6 +38,8 @@
       category: project?.category || "graphic",
       dateLabel: project?.dateLabel || "Recent",
       description: project?.description || "",
+      imageSizes: project?.imageSizes || "",
+      imageSrcSet: project?.imageSrcSet || "",
       id: project?.id || "",
       imageUrl: project?.imageUrl || DEFAULT_IMAGE,
       projectLink: project?.projectLink || "#",
@@ -68,6 +70,12 @@
 
     const statusClass = escapeHtml(normalizedProject.status).replace(/\s+/g, "-");
     const statusLabel = escapeHtml(normalizedProject.status.replace(/-/g, " "));
+    const imageSrcSetAttr = normalizedProject.imageSrcSet
+      ? ` data-srcset="${escapeHtml(normalizedProject.imageSrcSet)}"`
+      : "";
+    const imageSizesAttr = normalizedProject.imageSizes
+      ? ` data-sizes="${escapeHtml(normalizedProject.imageSizes)}"`
+      : "";
     const deleteAction =
       settings.isAdmin && normalizedProject.id
         ? `
@@ -83,7 +91,7 @@
 
     card.innerHTML = `
       <div class="project-image">
-        <img src="${escapeHtml(normalizedProject.imageUrl)}" alt="${escapeHtml(normalizedProject.title)}" />
+        <img src="${escapeHtml(normalizedProject.imageUrl)}" alt="${escapeHtml(normalizedProject.title)}" loading="lazy" decoding="async" fetchpriority="low"${imageSrcSetAttr}${imageSizesAttr} />
         <div class="project-overlay">
           <div class="project-quick-actions">
             ${quickActions

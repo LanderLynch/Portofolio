@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../assets/logo-preview/logo-lemon.png" />
+  <title>Honkai: Star Rail E-Money Transit Series - Jona Setiawan</title>
+  <script src="../../theme-init.js"></script>
+  <link rel="stylesheet" href="../../zoom-controls.css">
+  <link rel="stylesheet" href="../../theme-palettes.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; height: auto; }
+
+    .project-detail-page .page-zoom-toggle,
+    .project-detail-page .page-zoom-step,
+    .project-detail-page .page-zoom-value,
+    .project-detail-page .page-zoom-panel,
+    .project-detail-page .zoom-theme-btn {
+      border-color: color-mix(in srgb, var(--accent) 34%, var(--border)) !important;
+      color: var(--text) !important;
+      background: var(--panel-bg) !important;
+      box-shadow: var(--shadow) !important;
+    }
+
+    .project-detail-page .page-zoom-panel { background: color-mix(in srgb, var(--panel-bg) 94%, transparent) !important; }
+    .project-detail-page .page-zoom-label { color: var(--muted) !important; }
+    .project-detail-page .page-zoom-value { background: var(--secondary-button-bg) !important; }
+    .project-detail-page .page-zoom-toggle:hover,
+    .project-detail-page .page-zoom-step:hover,
+    .project-detail-page .page-zoom-value:hover,
+    .project-detail-page .zoom-theme-btn:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)) !important; }
+    .project-detail-page .zoom-theme-btn.is-active {
+      background: linear-gradient(135deg, var(--accent-strong), var(--accent)) !important;
+      color: var(--button-primary-text) !important;
+      border-color: transparent !important;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1rem 2rem;
+      background: color-mix(in srgb, var(--panel-bg-strong) 90%, transparent);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+    }
+
+    .nav-container,
+    .hero-shell,
+    .story-shell,
+    .closing-shell { width: min(1240px, calc(100% - 3rem)); margin: 0 auto; }
+
+    .nav-container { display: flex; align-items: center; justify-content: space-between; }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.82rem 1.4rem;
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--button-primary-text);
+      background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+      font-weight: 700;
+      box-shadow: 0 18px 40px color-mix(in srgb, var(--accent-strong) 30%, transparent);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .back-btn:hover { transform: translateX(-4px); box-shadow: 0 22px 48px color-mix(in srgb, var(--accent-strong) 38%, transparent); }
+    .back-btn-logo { width: 1.8rem; height: 1.8rem; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.3); }
+
+    .hero {
+      padding: 5.8rem 0 2.5rem;
+      background:
+        radial-gradient(circle at top left, color-mix(in srgb, #6fd7ff 22%, transparent), transparent 30%),
+        radial-gradient(circle at 86% 14%, color-mix(in srgb, #7f7cff 16%, transparent), transparent 28%),
+        linear-gradient(180deg, color-mix(in srgb, var(--bg-alt) 92%, transparent), color-mix(in srgb, var(--bg) 97%, transparent));
+    }
+
+    .hero-shell { display: grid; gap: 1.6rem; }
+
+    .hero-copy,
+    .meta-card,
+    .summary-card,
+    .section-card,
+    .process-card,
+    .gallery-card,
+    .note-card,
+    .closing-shell {
+      background: linear-gradient(135deg, color-mix(in srgb, var(--panel-bg) 96%, transparent), color-mix(in srgb, var(--panel-soft) 94%, transparent));
+      border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+      box-shadow: var(--shadow);
+      border-radius: 28px;
+    }
+
+    .hero-copy { display: grid; gap: 1.2rem; padding: 2rem; }
+
+    .project-category {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      background: color-mix(in srgb, #74d6ff 18%, transparent);
+      border: 1px solid color-mix(in srgb, #74d6ff 32%, var(--border));
+      color: color-mix(in srgb, #d8f5ff 82%, white 18%);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.7rem, 5.8vw, 4.8rem);
+      line-height: 1.02;
+      background: linear-gradient(135deg, #ffffff 0%, #dff7ff 52%, #7ecfff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .hero-description { max-width: 860px; font-size: 1.1rem; color: var(--muted); }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+
+    .meta-card {
+      min-width: 170px;
+      padding: 1rem 1.1rem;
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .meta-label { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; }
+    .meta-value { color: var(--text); font-weight: 700; font-size: 1.02rem; }
+
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .tech-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.55rem 0.95rem;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border));
+      color: var(--accent-label-text);
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .hero-image,
+    .media-frame { overflow: hidden; border-radius: 34px; border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border)); }
+    .hero-image { box-shadow: 0 32px 70px color-mix(in srgb, var(--accent-strong) 16%, transparent); }
+    .hero-image img,
+    .media-frame img { width: 100%; }
+    .hero-image img { aspect-ratio: 16 / 9; object-fit: cover; }
+
+    .story-shell { padding: 1rem 0 4rem; display: grid; gap: 1.4rem; }
+
+    .summary-card { padding: 1.5rem; display: grid; gap: 1rem; grid-template-columns: 1.1fr 0.9fr; }
+    .summary-points { display: grid; gap: 0.8rem; align-content: start; }
+
+    .point-row { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.9rem; align-items: start; }
+    .point-number {
+      width: 2rem;
+      height: 2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #63d5ff, #6f83ff);
+      color: #effaff;
+      font-weight: 800;
+    }
+
+    .section-card { padding: 1.7rem; display: grid; gap: 1.35rem; }
+    .section-kicker { color: #8ed8ff; font-size: 0.86rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .section-title { font-size: clamp(1.9rem, 3.4vw, 2.9rem); color: var(--text); margin-top: 0.4rem; }
+    .section-copy { display: grid; gap: 1rem; color: var(--muted); font-size: 1.03rem; }
+
+    .process-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 1rem; align-items: start; }
+    .process-stack,
+    .note-stack { display: grid; gap: 1rem; align-items: start; }
+
+    .process-card,
+    .gallery-card,
+    .note-card {
+      min-width: 0;
+      padding: 1rem;
+      display: grid;
+      gap: 0.95rem;
+    }
+
+    .media-frame {
+      min-width: 0;
+      background: color-mix(in srgb, var(--surface) 96%, transparent);
+      border-radius: 24px;
+    }
+
+    .media-frame img {
+      aspect-ratio: 3 / 2;
+      object-fit: contain;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(237, 247, 255, 0.96));
+      padding: 0.9rem;
+    }
+
+    .process-card h3,
+    .gallery-card h3,
+    .note-card h3 { color: var(--text); font-size: 1.12rem; }
+    .process-card p,
+    .gallery-card p,
+    .note-card p,
+    .summary-card p { color: var(--muted); }
+
+    .layout-highlight {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+    }
+
+    .process-chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .process-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border));
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      color: var(--accent-label-text);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .gallery-stack { display: grid; gap: 1rem; }
+
+    .gallery-card .media-frame img,
+    .note-card .media-frame img {
+      width: 100%;
+      border-radius: 22px;
+      border: 1px solid color-mix(in srgb, var(--accent) 16%, var(--border));
+      object-fit: contain;
+      padding: 0.8rem;
+    }
+
+    .gallery-card.hero-merch .media-frame img { aspect-ratio: 16 / 9; }
+    .gallery-card.card-face .media-frame img { aspect-ratio: 4 / 3; }
+
+    .note-list {
+      display: grid;
+      gap: 0.8rem;
+      padding-left: 1.15rem;
+      color: var(--muted);
+    }
+
+    .closing-shell {
+      margin-bottom: 4rem;
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .closing-copy { display: grid; gap: 0.35rem; }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.3rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      color: var(--button-primary-text);
+      background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+      box-shadow: 0 18px 34px color-mix(in srgb, var(--accent-strong) 24%, transparent);
+    }
+
+    @media (max-width: 960px) {
+      .summary-card,
+      .process-grid,
+      .layout-highlight,
+      .gallery-grid,
+      .closing-shell { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 720px) {
+      .nav-container,
+      .hero-shell,
+      .story-shell,
+      .closing-shell { width: min(1240px, calc(100% - 2rem)); }
+      .navbar { padding: 0.9rem 1rem; }
+      .back-btn { padding: 0.72rem 1.1rem; font-size: 0.94rem; }
+      .hero { padding-top: 4.9rem; }
+      .hero-copy,
+      .section-card,
+      .summary-card,
+      .closing-shell { padding: 1.25rem; }
+      .hero-image,
+      .media-frame { border-radius: 24px; }
+      .media-frame img { padding: 0.55rem; }
+    }
+  </style>
+</head>
+<body class="project-detail-page">
+  <div class="page-zoom-control" id="page-zoom-control" data-zoom-default="80" data-zoom-storage-key="portfolio-hsr-emoney-page-zoom">
+    <button class="page-zoom-toggle" id="page-zoom-toggle" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="page-zoom-panel">
+      <svg class="page-zoom-icon" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
+    </button>
+    <div class="page-zoom-panel" id="page-zoom-panel" aria-hidden="true">
+      <div class="page-zoom-panel-group">
+        <span class="page-zoom-label">Zoom</span>
+        <div class="page-zoom-actions">
+          <button class="page-zoom-step" id="page-zoom-out" type="button" aria-label="Zoom out">-</button>
+          <button class="page-zoom-value" id="page-zoom-value" type="button" aria-label="Reset zoom to default">80%</button>
+          <button class="page-zoom-step" id="page-zoom-in" type="button" aria-label="Zoom in">+</button>
+        </div>
+      </div>
+      <div class="page-zoom-panel-group">
+        <span class="page-zoom-label">Palette</span>
+        <div class="zoom-theme-actions" role="group" aria-label="Color palette">
+          <button class="zoom-theme-btn" type="button" data-theme-value="blue" aria-label="Blue mode" aria-pressed="false" title="Blue mode"><svg class="zoom-theme-icon" viewBox="0 0 24 24"><path d="M21 12.8A8.8 8.8 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg></button>
+          <button class="zoom-theme-btn" type="button" data-theme-value="light" aria-label="Light mode" aria-pressed="false" title="Light mode"><svg class="zoom-theme-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.5"></path><path d="M12 19v2.5"></path><path d="M4.93 4.93l1.77 1.77"></path><path d="M17.3 17.3l1.77 1.77"></path><path d="M2.5 12H5"></path><path d="M19 12h2.5"></path><path d="M4.93 19.07l1.77-1.77"></path><path d="M17.3 6.7l1.77-1.77"></path></svg></button>
+          <button class="zoom-theme-btn" type="button" data-theme-value="galaxy" aria-label="Galaxy mode" aria-pressed="false" title="Galaxy mode"><svg class="zoom-theme-icon hat-icon" viewBox="0 0 24 24"><path d="M4 19.5h16"></path><path d="M8 19.5c0-2.7 1.4-5.1 3.7-6.6l2.1-1.4-1.7-5.8-5.1 4.1"></path><path d="M14.4 9.8 17.7 8l2.3 5.9-3.9-.3"></path><path d="M13.2 4.5 14 6.2"></path><path d="M18.4 4.9l.4 1.2"></path><path d="M19.7 7.7l1.3.1"></path></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a class="back-btn" href="../../index.html#projects">
+        <img src="../assets/logo-preview/logo-lemon.png" alt="" class="back-btn-logo">
+        <span>Back to Portfolio</span>
+      </a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-shell">
+      <div class="hero-copy">
+        <span class="project-category">Client Work / Transit Card Series</span>
+        <h1>Turning a Daily Commute Into a Collectible Honkai: Star Rail Moment</h1>
+        <p class="hero-description">For this e-money transit series, my goal was to merge the visual energy of Honkai: Star Rail with the compact, everyday function of a public transportation card. I designed the system to feel collectible without losing the practical clarity needed for a real transit product people would carry, tap, and use every day.</p>
+        <div class="hero-meta">
+          <div class="meta-card"><span class="meta-label">Date</span><span class="meta-value">2 February 2026</span></div>
+          <div class="meta-card"><span class="meta-label">Status</span><span class="meta-value">Completed</span></div>
+          <div class="meta-card"><span class="meta-label">Category</span><span class="meta-value">Client Work</span></div>
+        </div>
+        <div class="tech-stack">
+          <span class="tech-tag">Adobe Illustrator</span>
+          <span class="tech-tag">Adobe Photoshop</span>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="../assets/E-Money card Design Honkai star rail/E-money hsr.jpg" alt="Honkai Star Rail e-money transit series hero mockup">
+      </div>
+    </div>
+  </header>
+
+  <main class="story-shell">
+    <section class="summary-card" aria-labelledby="hsr-overview-title">
+      <div class="summary-points">
+        <div><span class="section-kicker">Section 1</span><h2 class="section-title" id="hsr-overview-title">Project Overview</h2></div>
+        <p>I developed this project as a custom e-money card series for public transportation, built around the appeal of Honkai: Star Rail characters and the ritual of daily commuting. My objective was to make the card feel like more than a payment tool. I wanted it to behave like a small piece of character merchandise that still fits naturally into real-world transit use.</p>
+      </div>
+      <div class="summary-points">
+        <div class="point-row"><span class="point-number">1</span><p>I decided to treat the card as a bridge between fan culture and product utility, so the design had to feel collectible and practical at the same time.</p></div>
+        <div class="point-row"><span class="point-number">2</span><p>My goal was to carry the atmosphere of the game into a format people could use in a daily commute without the composition feeling overworked.</p></div>
+        <div class="point-row"><span class="point-number">3</span><p>The final result frames transit merchandise as part of a lifestyle system, not just a novelty print on plastic.</p></div>
+      </div>
+    </section>
+
+    <section class="section-card" aria-labelledby="hsr-layout-title">
+      <div><span class="section-kicker">Section 2</span><h2 class="section-title" id="hsr-layout-title">Character Adaptation &amp; Layout</h2></div>
+      <div class="section-copy">
+        <p>I approached the layout phase by translating high-energy game visuals into the narrow proportions of a standard transit card. The artwork had to hold the identity of the featured characters while still leaving space for the physical smart chip area, transit authority placement, and the visual breathing room needed for a clean final product.</p>
+        <p>That meant I could not simply drop full character illustrations onto the card. I had to crop, scale, and reposition the imagery so the character presence still felt dramatic, but the layout stayed readable and production-ready. I also used UI-inspired accents from the game to reinforce the Honkai: Star Rail feeling without making the card too crowded for an everyday object.</p>
+      </div>
+      <div class="process-grid">
+        <article class="process-card">
+          <div class="media-frame">
+            <img src="../assets/E-Money card Design Honkai star rail/Preview depan E-money HSR.jpg" alt="Front design preview for Honkai Star Rail e-money transit card">
+          </div>
+          <h3>Front Layout Adaptation</h3>
+          <p>I organized the front side around character impact first, then carefully balanced the empty zones needed for the smart chip and supporting transport marks. The goal was to keep the card expressive without sacrificing functionality.</p>
+          <div class="process-chip-list">
+            <span class="process-chip">Character Cropping</span>
+            <span class="process-chip">Transit Chip Clearance</span>
+            <span class="process-chip">UI Motif Balance</span>
+          </div>
+        </article>
+        <div class="process-stack">
+          <article class="note-card">
+            <h3>Why the Layout Needed Restraint</h3>
+            <p>I wanted the card to feel vibrant, but transit cards have almost no tolerance for clutter. Keeping selective negative space was important because the hardware elements and service branding still needed a clear visual home.</p>
+          </article>
+          <article class="note-card">
+            <h3>Visual Translation Strategy</h3>
+            <p>Rather than replicating a full game screen, I distilled the artwork into a tighter composition. That helped the final design retain the tone of the source material while still looking like a professionally manufactured object.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card" aria-labelledby="hsr-tech-title">
+      <div><span class="section-kicker">Section 3</span><h2 class="section-title" id="hsr-tech-title">Technical Setup &amp; Print Preparation</h2></div>
+      <div class="section-copy">
+        <p>I set up the production files between Adobe Illustrator and Adobe Photoshop so the card series would be ready for physical output, not just screen presentation. Illustrator handled the core vector layout and precise placement logic, while Photoshop helped me refine artwork treatment, tonal balance, and mockup presentation.</p>
+        <p>For print readiness, I configured CMYK-safe color decisions, added proper bleed space, and kept the exported assets high resolution so the details would remain crisp on the plastic card surface. That production discipline mattered because transit card merchandise becomes very unforgiving once it moves from screen to print.</p>
+      </div>
+      <div class="layout-highlight">
+        <article class="note-card">
+          <h3>Illustrator Setup</h3>
+          <p>I used Illustrator to control card dimensions, alignment, vector sharpness, and the placement of mandatory production zones. That gave the layout a reliable technical foundation before any mockup styling was introduced.</p>
+        </article>
+        <article class="note-card">
+          <h3>Photoshop &amp; Output Prep</h3>
+          <p>I used Photoshop to refine the final presentation, test material feel, and make sure colors stayed cohesive once translated toward print conditions. Bleed, resolution, and export discipline were all part of making the design production-aware.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-card" aria-labelledby="hsr-final-title">
+      <div><span class="section-kicker">Section 4</span><h2 class="section-title" id="hsr-final-title">The Final Merchandise</h2></div>
+      <div class="section-copy">
+        <p>I concluded the project by presenting the card series as finished merchandise rather than isolated flat artwork. Showing the front and back together helps communicate the system as a complete object, while the wider mockup frame suggests how the card could live in real use, whether it is being held, stored in a wallet, or tapped at a station gate.</p>
+        <p>If additional lifestyle renders are created later, this section can expand naturally with scenarios that place the card in a hand, against a wallet slot, or beside a transit turnstile. The current layout already reserves space for that kind of real-world storytelling.</p>
+      </div>
+      <div class="gallery-grid">
+        <article class="gallery-card hero-merch">
+          <div class="media-frame">
+            <img src="../assets/E-Money card Design Honkai star rail/E-money hsr.jpg" alt="Honkai Star Rail e-money card series mockup presentation">
+          </div>
+          <h3>Series Presentation Mockup</h3>
+          <p>I used the wider mockup to frame the set as premium fan merchandise, not just a single printed card. It helps communicate how the design feels as a finished collectible transit accessory.</p>
+        </article>
+        <div class="gallery-stack">
+          <article class="gallery-card card-face">
+            <div class="media-frame">
+              <img src="../assets/E-Money card Design Honkai star rail/Preview depan E-money HSR.jpg" alt="Front side design for Honkai Star Rail e-money transit card">
+            </div>
+            <h3>Front Design</h3>
+            <p>The front side carries the strongest character impression while still protecting the practical transit-card hierarchy.</p>
+          </article>
+          <article class="gallery-card card-face">
+            <div class="media-frame">
+              <img src="../assets/E-Money card Design Honkai star rail/Preview belakang E-money HSR.jpg" alt="Back side design for Honkai Star Rail e-money transit card">
+            </div>
+            <h3>Back Design</h3>
+            <p>The reverse side completes the set with a cleaner supporting structure, helping the series feel intentional from both sides.</p>
+          </article>
+        </div>
+      </div>
+      <article class="note-card">
+        <h3>Future Mockup Opportunities</h3>
+        <ul class="note-list">
+          <li>A hand-held lifestyle render to show the transit card as a personal everyday object.</li>
+          <li>A wallet-placement scene to reinforce scale, portability, and collectible appeal.</li>
+          <li>A tap-at-turnstile mockup to connect the design directly to public transportation use.</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <section class="closing-shell">
+    <div class="closing-copy">
+      <h2>Need character-driven merchandise that still feels production-ready?</h2>
+      <p>I can build card, packaging, and promotional layouts that stay collectible without losing print logic.</p>
+    </div>
+    <a class="cta-btn" href="../../index.html#contact">Open Contact Section</a>
+  </section>
+
+  <script src="../../theme-controls.js"></script>
+  <script src="../../zoom-controls.js"></script>
+</body>
+</html>
