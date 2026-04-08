@@ -147,10 +147,7 @@
     :root[data-theme="light"] .tech-tag,
     :root[data-theme="blue"] .project-category,
     :root[data-theme="blue"] .meta-item,
-    :root[data-theme="blue"] .tech-tag,
-    :root[data-theme="galaxy"] .project-category,
-    :root[data-theme="galaxy"] .meta-item,
-    :root[data-theme="galaxy"] .tech-tag {
+    :root[data-theme="blue"] .tech-tag {
       border: 1px solid #ffffff !important;
       box-shadow:
         0 0 0 1px #ffffff,
@@ -158,17 +155,14 @@
     }
 
     :root[data-theme="light"] .project-category,
-    :root[data-theme="blue"] .project-category,
-    :root[data-theme="galaxy"] .project-category {
+    :root[data-theme="blue"] .project-category {
       background: rgba(255, 255, 255, 0.72);
     }
 
     :root[data-theme="light"] .meta-item,
     :root[data-theme="light"] .tech-tag,
     :root[data-theme="blue"] .meta-item,
-    :root[data-theme="blue"] .tech-tag,
-    :root[data-theme="galaxy"] .meta-item,
-    :root[data-theme="galaxy"] .tech-tag {
+    :root[data-theme="blue"] .tech-tag {
       background: rgba(255, 255, 255, 0.82);
     }
 
@@ -183,13 +177,7 @@
     :root[data-theme="blue"] .project-category,
     :root[data-theme="blue"] .meta-label,
     :root[data-theme="blue"] .meta-value,
-    :root[data-theme="blue"] .tech-tag,
-    :root[data-theme="galaxy"] .hero h1,
-    :root[data-theme="galaxy"] .hero-description,
-    :root[data-theme="galaxy"] .project-category,
-    :root[data-theme="galaxy"] .meta-label,
-    :root[data-theme="galaxy"] .meta-value,
-    :root[data-theme="galaxy"] .tech-tag {
+    :root[data-theme="blue"] .tech-tag {
       color: #ffffff !important;
       -webkit-text-fill-color: #ffffff !important;
       text-shadow:
@@ -199,9 +187,46 @@
     }
 
     :root[data-theme="light"] .hero h1,
-    :root[data-theme="blue"] .hero h1,
-    :root[data-theme="galaxy"] .hero h1 {
+    :root[data-theme="blue"] .hero h1 {
       background: none;
+    }
+
+    :root[data-theme="galaxy"] .project-category,
+    :root[data-theme="galaxy"] .meta-item,
+    :root[data-theme="galaxy"] .tech-tag {
+      border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border)) !important;
+      box-shadow:
+        0 0 0 1px color-mix(in srgb, var(--accent) 12%, transparent),
+        0 16px 34px rgba(33, 6, 53, 0.2);
+    }
+
+    :root[data-theme="galaxy"] .project-category {
+      background: color-mix(in srgb, var(--tag-bg-soft) 90%, rgba(33, 6, 53, 0.2)) !important;
+      color: var(--accent-label-text) !important;
+      -webkit-text-fill-color: var(--accent-label-text) !important;
+    }
+
+    :root[data-theme="galaxy"] .meta-item,
+    :root[data-theme="galaxy"] .tech-tag {
+      background: color-mix(in srgb, var(--surface) 92%, transparent) !important;
+    }
+
+    :root[data-theme="galaxy"] .hero h1 {
+      background: linear-gradient(135deg, #f5d5e0 0%, #b7b2e7 45%, #6667ab 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent !important;
+      color: transparent !important;
+      text-shadow: none;
+    }
+
+    :root[data-theme="galaxy"] .hero-description,
+    :root[data-theme="galaxy"] .meta-label,
+    :root[data-theme="galaxy"] .meta-value,
+    :root[data-theme="galaxy"] .tech-tag {
+      color: var(--text) !important;
+      -webkit-text-fill-color: initial !important;
+      text-shadow: 0 2px 12px rgba(33, 6, 53, 0.32);
     }
 
     .project-category {

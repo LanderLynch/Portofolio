@@ -664,31 +664,31 @@
     :root[data-theme="galaxy"] .page-zoom-value,
     :root[data-theme="galaxy"] .page-zoom-panel,
     :root[data-theme="galaxy"] .zoom-theme-btn {
-      background: rgba(23, 17, 49, 0.94);
-      color: #f3e8ff;
-      border-color: rgba(167, 139, 250, 0.24);
-      box-shadow: 0 24px 64px rgba(44, 19, 81, 0.34);
+      background: color-mix(in srgb, var(--panel-bg) 94%, transparent);
+      color: var(--text);
+      border-color: color-mix(in srgb, var(--accent) 34%, var(--border));
+      box-shadow: var(--shadow);
     }
 
     :root[data-theme="galaxy"] .page-zoom-label {
-      color: #c4b5fd;
+      color: var(--muted);
     }
 
     :root[data-theme="galaxy"] .page-zoom-value {
-      background: rgba(58, 42, 107, 0.82);
-      color: #f8f4ff;
+      background: var(--secondary-button-bg);
+      color: var(--text);
     }
 
     :root[data-theme="galaxy"] .page-zoom-toggle:hover,
     :root[data-theme="galaxy"] .page-zoom-step:hover,
     :root[data-theme="galaxy"] .page-zoom-value:hover,
     :root[data-theme="galaxy"] .zoom-theme-btn:hover {
-      border-color: rgba(192, 132, 252, 0.42);
+      border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
     }
 
     :root[data-theme="galaxy"] .zoom-theme-btn.is-active {
-      background: linear-gradient(135deg, #7c3aed, #c084fc);
-      color: #ffffff;
+      background: linear-gradient(135deg, var(--accent-strong), var(--accent));
+      color: var(--button-primary-text);
       border-color: transparent;
     }
 
