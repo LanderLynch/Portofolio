@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDS-gB4Aaqf7i__k0F8aINMOPyhBJtX6YQ",
@@ -18,6 +19,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
 const analytics = null;
 
 // Expose Firebase instances for the existing non-module scripts on the page.
@@ -25,5 +27,6 @@ window.firebaseApp = app;
 window.firebaseAnalytics = analytics;
 window.firebaseAuth = auth;
 window.db = db;
+window.firebaseStorage = storage;
 
-export { app, analytics, auth, db };
+export { app, analytics, auth, db, storage };

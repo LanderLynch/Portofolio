@@ -1,11 +1,12 @@
-const STATIC_CACHE = "portfolio-static-v1";
-const RUNTIME_CACHE = "portfolio-runtime-v1";
+const STATIC_CACHE = "portfolio-static-v8";
+const RUNTIME_CACHE = "portfolio-runtime-v8";
 const CORE_ASSETS = [
   "/",
   "/index.html",
-  "/styles.css?v=20260319-1",
-  "/theme-palettes.css?v=20260319-1",
+  "/styles.css?v=20260410-5",
+  "/theme-palettes.css?v=20260410-4",
   "/theme-controls.js?v=20260319-1",
+  "/language-controls.js?v=20260410-2",
   "/project-card-utils.js",
   "/performance-utils.js",
   "/zoom-controls.css",

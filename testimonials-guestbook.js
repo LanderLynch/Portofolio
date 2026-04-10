@@ -1,4 +1,4 @@
-import { auth, db } from "./firebase-config.js";
+import { auth, db, storage } from "./firebase-config.js";
 import {
   GoogleAuthProvider,
   onAuthStateChanged,
@@ -19,11 +19,19 @@ import {
   serverTimestamp,
   setDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {
+  getDownloadURL,
+  listAll,
+  ref,
+  uploadBytes
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 const ADMIN_UID = "SGqCpB7UmfeO1I8BiWug6EH8W1N2";
 const AUTHOR_NAME = "Jona Setiawan";
 const AUTHOR_PHOTO = "https://i.pinimg.com/736x/51/6b/3d/516b3dfcab87be8bbf46c9ed05184eeb.jpg";
 const AUTHOR_AVATAR_POSITION = "center 24%";
+const CUSTOM_AVATAR_MAX_BYTES = 2 * 1024 * 1024;
+const CUSTOM_AVATAR_ACCEPTED_TYPES = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
 const guestbookCollection = collection(db, "guestbookMessages");
 const guestbookQuery = query(guestbookCollection, orderBy("createdAt", "asc"));
 
@@ -160,6 +168,31 @@ function createFallbackAvatar(name) {
   );
 }
 
+function isPresetAvatar(photoURL, position) {
+  return AVATAR_OPTIONS.some((option) => option.url === photoURL && option.position === position);
+}
+
+function getAvatarFileExtension(file) {
+  const nameExtension = String(file?.name || "")
+    .split(".")
+    .pop()
+    ?.toLowerCase()
+    .replace(/[^a-z0-9]/g, "");
+
+  if (nameExtension) {
+    return nameExtension === "jpeg" ? "jpg" : nameExtension;
+  }
+
+  const typeMap = {
+    "image/jpeg": "jpg",
+    "image/png": "png",
+    "image/webp": "webp",
+    "image/gif": "gif"
+  };
+
+  return typeMap[file?.type] || "jpg";
+}
+
 function initGuestbook() {
   const guestbookFeed = document.getElementById("guestbook-feed");
   const guestbookEmpty = document.getElementById("guestbook-empty");
@@ -176,6 +209,7 @@ function initGuestbook() {
   const guestbookAvatarTrigger = document.getElementById("guestbook-avatar-trigger");
   const guestbookAvatarPicker = document.getElementById("guestbook-avatar-picker");
   const guestbookAvatarOptions = document.getElementById("guestbook-avatar-options");
+  const guestbookAvatarUploadInput = document.getElementById("guestbook-avatar-upload-input");
   const guestbookSignoutBtn = document.getElementById("guestbook-signout-btn");
   const guestbookForm = document.getElementById("guestbook-form");
   const guestbookMessage = document.getElementById("guestbook-message");
@@ -198,6 +232,7 @@ function initGuestbook() {
     !guestbookAvatarTrigger ||
     !guestbookAvatarPicker ||
     !guestbookAvatarOptions ||
+    !guestbookAvatarUploadInput ||
     !guestbookSignoutBtn ||
     !guestbookForm ||
     !guestbookMessage ||
@@ -218,6 +253,7 @@ function initGuestbook() {
 
   let latestGuestbookSnapshot = null;
   let currentProfileData = null;
+  let customAvatarOptions = [];
 
   function showToast(message, tone = "info") {
     const toast = document.createElement("div");
@@ -270,8 +306,34 @@ function initGuestbook() {
     guestbookUserAvatar.style.objectPosition = position;
   }
 
+  async function loadCustomAvatarOptions(user) {
+    if (!user || user.uid === ADMIN_UID || isGoogleUser(user, currentProfileData)) {
+      customAvatarOptions = [];
+      return customAvatarOptions;
+    }
+
+    try {
+      const folderRef = ref(storage, `guestbook-avatars/${user.uid}`);
+      const listed = await listAll(folderRef);
+      const sortedItems = [...listed.items].sort((a, b) => b.name.localeCompare(a.name));
+
+      customAvatarOptions = await Promise.all(
+        sortedItems.map(async (item) => ({
+          url: await getDownloadURL(item),
+          position: "center",
+          storagePath: item.fullPath
+        }))
+      );
+    } catch (error) {
+      customAvatarOptions = [];
+      showToast(`Could not load saved avatars. ${getFriendlyAuthError(error)}`, "warning");
+    }
+
+    return customAvatarOptions;
+  }
+
   function renderAvatarOptions(activeUrl, activePosition) {
-    guestbookAvatarOptions.innerHTML = AVATAR_OPTIONS.map((option) => {
+    const presetOptions = AVATAR_OPTIONS.map((option) => {
       const isActive = option.url === activeUrl && option.position === activePosition;
       return `
         <button type="button" class="guestbook-avatar-option${isActive ? " is-active" : ""}" data-avatar-url="${escapeHtml(option.url)}" data-avatar-position="${escapeHtml(option.position)}" aria-label="Use selected avatar">
@@ -279,6 +341,33 @@ function initGuestbook() {
         </button>
       `;
     }).join("");
+    const customOptionsMarkup = customAvatarOptions.map((option) => {
+      const isActive = option.url === activeUrl && option.position === activePosition;
+      return `
+        <button type="button" class="guestbook-avatar-option${isActive ? " is-active" : ""}" data-avatar-url="${escapeHtml(option.url)}" data-avatar-position="${escapeHtml(option.position)}" data-avatar-storage-path="${escapeHtml(option.storagePath)}" aria-label="Use your uploaded avatar">
+          <img src="${escapeHtml(option.url)}" alt="" style="object-position:${escapeHtml(option.position)}">
+        </button>
+      `;
+    }).join("");
+    const hasActiveCustomOption = customAvatarOptions.some((option) => option.url === activeUrl && option.position === activePosition);
+    const activeCustomFallback =
+      Boolean(activeUrl) && !isPresetAvatar(activeUrl, activePosition) && !hasActiveCustomOption
+        ? `
+          <button type="button" class="guestbook-avatar-option is-active" data-avatar-url="${escapeHtml(activeUrl)}" data-avatar-position="${escapeHtml(activePosition || "center")}" data-avatar-storage-path="${escapeHtml(currentProfileData?.avatarStoragePath || "")}" aria-label="Use your current uploaded avatar">
+            <img src="${escapeHtml(activeUrl)}" alt="" style="object-position:${escapeHtml(activePosition || "center")}">
+          </button>
+        `
+        : "";
+
+    guestbookAvatarOptions.innerHTML = `
+      ${presetOptions}
+      ${customOptionsMarkup}
+      ${activeCustomFallback}
+      <button type="button" class="guestbook-avatar-option guestbook-avatar-option-upload" data-avatar-upload="true" aria-label="Upload custom avatar">
+        <span class="guestbook-avatar-upload-plus" aria-hidden="true">+</span>
+        <span class="guestbook-avatar-upload-label">Custom</span>
+      </button>
+    `;
   }
 
   function getCurrentDisplayName(user) {
@@ -375,6 +464,27 @@ function initGuestbook() {
     `;
   }
 
+  async function persistAvatarSelection(avatarUrl, avatarPosition, avatarStoragePath = "") {
+    await updateProfile(auth.currentUser, { photoURL: avatarUrl });
+    await setDoc(doc(db, "users", auth.currentUser.uid), {
+      photoURL: avatarUrl,
+      avatarPosition,
+      avatarStoragePath,
+      updatedAt: serverTimestamp()
+    }, { merge: true });
+
+    currentProfileData = {
+      ...(currentProfileData || {}),
+      photoURL: avatarUrl,
+      avatarPosition,
+      avatarStoragePath
+    };
+
+    applyUserAvatar(avatarUrl, getCurrentDisplayName(auth.currentUser), avatarPosition);
+    renderAvatarOptions(avatarUrl, avatarPosition);
+    closeAvatarPicker();
+  }
+
   function normalizeSnapshotMessage(entry) {
     const data = entry.data();
     const isAuthor = data.uid === ADMIN_UID || data.provider === "author" || data.isAuthor === true;
@@ -424,6 +534,7 @@ function initGuestbook() {
       displayName: isAdmin ? AUTHOR_NAME : (isGoogle ? (user.displayName || existing.displayName || usernameFallback) : (existing.displayName || user.displayName || usernameFallback)),
       photoURL: isAdmin ? AUTHOR_PHOTO : (isGoogle ? (user.photoURL || existing.photoURL || "") : (existing.photoURL || user.photoURL || AVATAR_OPTIONS[0].url)),
       avatarPosition: isAdmin ? AUTHOR_AVATAR_POSITION : (isGoogle ? "center" : (existing.avatarPosition || AVATAR_OPTIONS[0].position)),
+      avatarStoragePath: isAdmin ? "" : (existing.avatarStoragePath || ""),
       provider: providerId
     };
 
@@ -434,6 +545,7 @@ function initGuestbook() {
       existing.displayName !== profile.displayName ||
       existing.photoURL !== profile.photoURL ||
       existing.avatarPosition !== profile.avatarPosition ||
+      existing.avatarStoragePath !== profile.avatarStoragePath ||
       existing.provider !== profile.provider
     ) {
       await setDoc(userRef, {
@@ -491,6 +603,7 @@ function initGuestbook() {
       const existingProfile = currentProfileData || {};
       const avatarUrl = existingProfile.photoURL || AVATAR_OPTIONS[0].url;
       const avatarPosition = existingProfile.avatarPosition || AVATAR_OPTIONS[0].position;
+      const avatarStoragePath = existingProfile.avatarStoragePath || "";
 
       await updateProfile(credential, {
         displayName: usernameValue,
@@ -503,6 +616,7 @@ function initGuestbook() {
         displayName: usernameValue,
         photoURL: avatarUrl,
         avatarPosition,
+        avatarStoragePath,
         provider: "guest-username",
         ...(!userSnapshot.exists() ? { createdAt: serverTimestamp() } : {}),
         updatedAt: serverTimestamp()
@@ -514,6 +628,7 @@ function initGuestbook() {
         displayName: usernameValue,
         photoURL: avatarUrl,
         avatarPosition,
+        avatarStoragePath,
         provider: "guest-username"
       };
 
@@ -540,7 +655,7 @@ function initGuestbook() {
     }
   });
 
-  guestbookAvatarTrigger.addEventListener("click", () => {
+  guestbookAvatarTrigger.addEventListener("click", async () => {
     if (!auth.currentUser) {
       return;
     }
@@ -562,12 +677,20 @@ function initGuestbook() {
       return;
     }
 
+    await loadCustomAvatarOptions(auth.currentUser);
     renderAvatarOptions(currentProfileData?.photoURL || "", currentProfileData?.avatarPosition || "center");
     guestbookAvatarPicker.hidden = false;
     guestbookAvatarTrigger.setAttribute("aria-expanded", "true");
   });
 
   guestbookAvatarOptions.addEventListener("click", async (event) => {
+    const uploadTrigger = event.target.closest("[data-avatar-upload]");
+
+    if (uploadTrigger) {
+      guestbookAvatarUploadInput.click();
+      return;
+    }
+
     const option = event.target.closest(".guestbook-avatar-option");
 
     if (!option || !auth.currentUser || auth.currentUser.uid === ADMIN_UID) {
@@ -576,27 +699,61 @@ function initGuestbook() {
 
     const avatarUrl = option.dataset.avatarUrl || "";
     const avatarPosition = option.dataset.avatarPosition || "center";
+    const avatarStoragePath = option.dataset.avatarStoragePath || "";
 
     try {
-      await updateProfile(auth.currentUser, { photoURL: avatarUrl });
-      await setDoc(doc(db, "users", auth.currentUser.uid), {
-        photoURL: avatarUrl,
-        avatarPosition,
-        updatedAt: serverTimestamp()
-      }, { merge: true });
-
-      currentProfileData = {
-        ...(currentProfileData || {}),
-        photoURL: avatarUrl,
-        avatarPosition
-      };
-
-      applyUserAvatar(avatarUrl, getCurrentDisplayName(auth.currentUser), avatarPosition);
-      renderAvatarOptions(avatarUrl, avatarPosition);
-      closeAvatarPicker();
+      await persistAvatarSelection(avatarUrl, avatarPosition, avatarStoragePath);
       showToast("Profile picture updated.", "success");
     } catch (error) {
       showToast(`Avatar update failed. ${getFriendlyAuthError(error)}`, "error");
+    }
+  });
+
+  guestbookAvatarUploadInput.addEventListener("change", async (event) => {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+
+    if (!file || !auth.currentUser || auth.currentUser.uid === ADMIN_UID) {
+      return;
+    }
+
+    if (!CUSTOM_AVATAR_ACCEPTED_TYPES.has(file.type)) {
+      showToast("Use PNG, JPG, WEBP, or GIF for your avatar.", "warning");
+      return;
+    }
+
+    if (file.size > CUSTOM_AVATAR_MAX_BYTES) {
+      showToast("Custom avatar must be 2 MB or smaller.", "warning");
+      return;
+    }
+
+    const extension = getAvatarFileExtension(file);
+    const avatarPath = `guestbook-avatars/${auth.currentUser.uid}/${Date.now()}.${extension}`;
+
+    try {
+      setGuestbookStatus("Uploading custom avatar...");
+      showToast("Uploading custom avatar...", "info");
+
+      const avatarRef = ref(storage, avatarPath);
+      await uploadBytes(avatarRef, file, {
+        contentType: file.type,
+        cacheControl: "public,max-age=604800"
+      });
+
+      const avatarUrl = await getDownloadURL(avatarRef);
+      customAvatarOptions = [
+        {
+          url: avatarUrl,
+          position: "center",
+          storagePath: avatarPath
+        },
+        ...customAvatarOptions.filter((option) => option.storagePath !== avatarPath)
+      ];
+      await persistAvatarSelection(avatarUrl, "center", avatarPath);
+      setGuestbookStatus("Custom avatar uploaded.");
+      showToast("Custom avatar uploaded.", "success");
+    } catch (error) {
+      showToast(`Custom avatar upload failed. ${getFriendlyAuthError(error)}`, "error");
     }
   });
 
@@ -701,11 +858,13 @@ function initGuestbook() {
               ? "Signed in with Google"
               : "Signed in with Username";
         guestbookAvatarTrigger.disabled = isAdmin || providerId === "google.com";
+        await loadCustomAvatarOptions(user);
         applyUserAvatar(getCurrentPhoto(user), displayName, getCurrentAvatarPosition(user));
         renderAvatarOptions(profile.photoURL || "", profile.avatarPosition || "center");
         setGuestbookStatus("Signed in. You can post your message now.");
       } catch (error) {
         currentProfileData = null;
+        customAvatarOptions = [];
         updateAuthLayout("signed-in");
         setComposerState(true);
         guestbookAvatarTrigger.disabled = user.uid === ADMIN_UID;
@@ -717,6 +876,7 @@ function initGuestbook() {
       }
     } else {
       currentProfileData = null;
+      customAvatarOptions = [];
       updateAuthLayout("signed-out");
       setComposerState(false);
       guestbookAuthCopy.textContent = "Please sign in to join the conversation. Don't worry, your data is safe with us.";

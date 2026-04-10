@@ -1,13 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="../assets/logo-preview/logo-lemon.png" />
+  <link rel="icon" type="image/png" href="Logo preview/Logo Lemon.png" />
   <title>Documentary Kota Tua UKK - Jona Setiawan</title>
-  <script src="../../theme-init.js"></script>
-  <link rel="stylesheet" href="../../zoom-controls.css">
-  <link rel="stylesheet" href="../../theme-palettes.css">
+  <link rel="stylesheet" href="../zoom-controls.css">
+  <link rel="stylesheet" href="../theme-palettes.css">
   <style>
     * {
       margin: 0;
@@ -127,7 +126,9 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: url("../assets/logo-preview/yuppentek-logo-kota-tua-version-banner.jpg") center center / cover no-repeat;
+      background:
+        linear-gradient(180deg, rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.56)),
+        url("Logo preview/Yuppentek logo kota tua version Banner.jpg") center center / cover no-repeat;
       pointer-events: none;
     }
 
@@ -138,95 +139,10 @@
       z-index: 1;
     }
 
-    :root[data-theme="light"] .hero::before {
-      background: url("../assets/logo-preview/yuppentek-logo-kota-tua-version-banner.jpg") center center / cover no-repeat;
-    }
-
-    :root[data-theme="light"] .project-category,
-    :root[data-theme="light"] .meta-item,
-    :root[data-theme="light"] .tech-tag,
-    :root[data-theme="blue"] .project-category,
-    :root[data-theme="blue"] .meta-item,
-    :root[data-theme="blue"] .tech-tag {
-      border: 1px solid #ffffff !important;
-      box-shadow:
-        0 0 0 1px #ffffff,
-        0 16px 34px rgba(15, 23, 42, 0.12);
-    }
-
-    :root[data-theme="light"] .project-category,
-    :root[data-theme="blue"] .project-category {
-      background: rgba(255, 255, 255, 0.72);
-    }
-
-    :root[data-theme="light"] .meta-item,
-    :root[data-theme="light"] .tech-tag,
-    :root[data-theme="blue"] .meta-item,
-    :root[data-theme="blue"] .tech-tag {
-      background: rgba(255, 255, 255, 0.82);
-    }
-
-    :root[data-theme="light"] .hero h1,
-    :root[data-theme="light"] .hero-description,
-    :root[data-theme="light"] .project-category,
-    :root[data-theme="light"] .meta-label,
-    :root[data-theme="light"] .meta-value,
-    :root[data-theme="light"] .tech-tag,
-    :root[data-theme="blue"] .hero h1,
-    :root[data-theme="blue"] .hero-description,
-    :root[data-theme="blue"] .project-category,
-    :root[data-theme="blue"] .meta-label,
-    :root[data-theme="blue"] .meta-value,
-    :root[data-theme="blue"] .tech-tag {
-      color: #ffffff !important;
-      -webkit-text-fill-color: #ffffff !important;
-      text-shadow:
-        0 2px 6px rgba(15, 23, 42, 0.72),
-        0 8px 20px rgba(15, 23, 42, 0.42),
-        0 16px 38px rgba(15, 23, 42, 0.28);
-    }
-
-    :root[data-theme="light"] .hero h1,
-    :root[data-theme="blue"] .hero h1 {
-      background: none;
-    }
-
-    :root[data-theme="galaxy"] .project-category,
-    :root[data-theme="galaxy"] .meta-item,
-    :root[data-theme="galaxy"] .tech-tag {
-      border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border)) !important;
-      box-shadow:
-        0 0 0 1px color-mix(in srgb, var(--accent) 12%, transparent),
-        0 16px 34px rgba(33, 6, 53, 0.2);
-    }
-
-    :root[data-theme="galaxy"] .project-category {
-      background: color-mix(in srgb, var(--tag-bg-soft) 90%, rgba(33, 6, 53, 0.2)) !important;
-      color: var(--accent-label-text) !important;
-      -webkit-text-fill-color: var(--accent-label-text) !important;
-    }
-
-    :root[data-theme="galaxy"] .meta-item,
-    :root[data-theme="galaxy"] .tech-tag {
-      background: color-mix(in srgb, var(--surface) 92%, transparent) !important;
-    }
-
-    :root[data-theme="galaxy"] .hero h1 {
-      background: linear-gradient(135deg, #f5d5e0 0%, #b7b2e7 45%, #6667ab 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent !important;
-      color: transparent !important;
-      text-shadow: none;
-    }
-
-    :root[data-theme="galaxy"] .hero-description,
-    :root[data-theme="galaxy"] .meta-label,
-    :root[data-theme="galaxy"] .meta-value,
-    :root[data-theme="galaxy"] .tech-tag {
-      color: var(--text) !important;
-      -webkit-text-fill-color: initial !important;
-      text-shadow: 0 2px 12px rgba(33, 6, 53, 0.32);
+    body[data-theme="light"] .hero::before {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.62)),
+        url("Logo preview/Yuppentek logo kota tua version Banner.jpg") center center / cover no-repeat;
     }
 
     .project-category {
@@ -629,8 +545,8 @@
 
   <nav class="navbar">
     <div class="nav-container">
-      <a href="../../index.html" class="back-btn">
-        <img src="../assets/logo-preview/logo-lemon.png" alt="" class="back-btn-logo">
+      <a href="../index.html" class="back-btn">
+        <img src="Logo preview/Logo Lemon.png" alt="" class="back-btn-logo">
         <span>&larr; Back to Portfolio</span>
       </a>
     </div>
@@ -669,8 +585,8 @@
   <section class="featured-video">
     <div class="video-shell">
       <div class="video-container">
-        <video controls playsinline preload="metadata" poster="../assets/kota-tua/bangunan-kota-tua-1.jpg" title="Kota Tua Documentary Video">
-          <source src="https://cdn.videy.co/nrpCDtrK1.mp4" type="video/mp4">
+        <video controls playsinline preload="metadata" poster="Kota tua/Bangunan kota tua 1.jpg" title="Kota Tua Documentary Video">
+          <source src="https://cdn.videy.co/XKa0stNd1.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
@@ -678,7 +594,7 @@
         <h3>Project Video</h3>
         <p>Cuplikan suasana Kota Tua yang memperlihatkan aktivitas pengunjung, detail arsitektur, serta dinamika lingkungan secara langsung.</p>
         <div class="video-actions">
-          <a href="https://cdn.videy.co/nrpCDtrK1.mp4" target="_blank" rel="noreferrer" class="video-btn">Open Video Link</a>
+          <a href="https://cdn.videy.co/XKa0stNd1.mp4" target="_blank" rel="noreferrer" class="video-btn">Open Video Link</a>
           <a href="#opening" class="cta-btn cta-btn-secondary">Read Project Story</a>
         </div>
       </div>
@@ -706,7 +622,7 @@
 
     <div class="gallery-grid">
       <article class="gallery-item gallery-half no-crop">
-        <img src="../assets/kota-tua/label-dvd.jpg" alt="DVD Label Disc">
+        <img src="Kota tua/label dvd.jpg" alt="DVD Label Disc">
         <div class="gallery-body">
           <h4>DVD Label Disc</h4>
           <p class="gallery-copy">Label disc yang dirancang dengan tampilan minimalis namun tetap konsisten dengan identitas visual utama project.</p>
@@ -714,7 +630,7 @@
       </article>
 
       <article class="gallery-item gallery-half no-crop">
-        <img src="../assets/kota-tua/logo-monas.png" alt="Logo Monas Budaya Indonesia">
+        <img src="Kota tua/logo-Monas.png" alt="Logo Monas Budaya Indonesia">
         <div class="gallery-body">
           <h4>Logo Monas / Budaya Indonesia</h4>
           <p class="gallery-copy">Logo terinspirasi dari Monas sebagai simbol budaya Indonesia, dengan pendekatan visual yang sederhana namun mudah dikenali.</p>
@@ -722,7 +638,7 @@
       </article>
 
       <article class="gallery-item gallery-cover no-crop">
-        <img src="../assets/kota-tua/dvd-cover.jpg" alt="DVD Cover">
+        <img src="Kota tua/dvd-Cover.jpg" alt="DVD Cover">
         <div class="gallery-body">
           <h4>DVD Cover</h4>
           <p class="gallery-copy">Desain cover DVD dengan komposisi visual yang menonjolkan suasana Kota Tua melalui elemen warna klasik dan tipografi yang tegas.</p>
@@ -745,7 +661,7 @@
 
     <div class="gallery-grid">
       <article class="gallery-item gallery-full gallery-poster no-crop">
-        <img src="../assets/kota-tua/poster.jpg" alt="Poster Promosi">
+        <img src="Kota tua/poster.jpg" alt="Poster Promosi">
         <div class="gallery-body">
           <h4>Poster Promosi</h4>
           <p class="gallery-copy">Poster promosi dengan komposisi visual yang fokus pada daya tarik utama project, memadukan elemen tipografi dan gambar untuk menarik perhatian audiens.</p>
@@ -781,7 +697,7 @@
 
     <div class="gallery-grid">
       <article class="gallery-item gallery-wide">
-        <img src="../assets/kota-tua/cosplayer-1.jpg" alt="Cosplayer 1">
+        <img src="Kota tua/cosplayer 1.JPG" alt="Cosplayer 1">
         <div class="gallery-body">
           <h4>Cosplayer 1</h4>
           <p class="gallery-copy">Cosplayer dengan kostum karakter yang mencolok, menarik perhatian pengunjung di area terbuka.</p>
@@ -789,7 +705,7 @@
       </article>
 
       <article class="gallery-item gallery-wide">
-        <img src="../assets/kota-tua/cosplayer-2.jpg" alt="Cosplayer 2">
+        <img src="Kota tua/cosplayer 2.JPG" alt="Cosplayer 2">
         <div class="gallery-body">
           <h4>Cosplayer 2</h4>
           <p class="gallery-copy">Interaksi cosplayer dengan pengunjung yang menciptakan suasana yang lebih hidup dan dinamis.</p>
@@ -797,7 +713,7 @@
       </article>
 
       <article class="gallery-item gallery-wide">
-        <img src="../assets/kota-tua/cosplayer-3.jpg" alt="Cosplayer 3">
+        <img src="Kota tua/cosplayer 3.JPG" alt="Cosplayer 3">
         <div class="gallery-body">
           <h4>Cosplayer 3</h4>
           <p class="gallery-copy">Detail kostum yang menunjukkan kreativitas dan dedikasi dalam menampilkan karakter tertentu.</p>
@@ -805,7 +721,7 @@
       </article>
 
       <article class="gallery-item gallery-wide">
-        <img src="../assets/kota-tua/cosplayer-4.jpg" alt="Cosplayer 4">
+        <img src="Kota tua/cosplayer 4.JPG" alt="Cosplayer 4">
         <div class="gallery-body">
           <h4>Cosplayer 4</h4>
           <p class="gallery-copy">Pose karakter yang memperkuat nuansa hiburan di tengah kawasan bersejarah.</p>
@@ -823,7 +739,7 @@
 
     <div class="gallery-grid">
       <article class="gallery-item">
-        <img src="../assets/kota-tua/bangunan-kota-tua-1.jpg" alt="Tempat Dalam 1">
+        <img src="Kota tua/Bangunan kota tua 1.jpg" alt="Tempat Dalam 1">
         <div class="gallery-body">
           <h4>Tempat Dalam 1</h4>
           <p class="gallery-copy">Interior bangunan dengan pencahayaan alami yang menonjolkan tekstur dan struktur klasik.</p>
@@ -831,7 +747,7 @@
       </article>
 
       <article class="gallery-item">
-        <img src="../assets/kota-tua/bangunan-kota-tua-2.jpg" alt="Tempat Dalam 2">
+        <img src="Kota tua/bangunan kota tua 2.jpg" alt="Tempat Dalam 2">
         <div class="gallery-body">
           <h4>Tempat Dalam 2</h4>
           <p class="gallery-copy">Sudut ruang dengan elemen arsitektur lama yang masih terjaga dengan baik.</p>
@@ -839,7 +755,7 @@
       </article>
 
       <article class="gallery-item">
-        <img src="../assets/kota-tua/stasiun-kota-tua.jpg" alt="Stasiun Kota Tua">
+        <img src="Kota tua/Stasiun Kota tua.JPG" alt="Stasiun Kota Tua">
         <div class="gallery-body">
           <h4>Stasiun Kota Tua</h4>
           <p class="gallery-copy">Area stasiun dengan aktivitas pengunjung yang mencerminkan mobilitas dan kehidupan sehari-hari di kawasan tersebut.</p>
@@ -867,7 +783,7 @@
 
       <div class="info-panel">
         <h3>Project Outcome</h3>
-        <p>Seluruh elemen dalam halaman ini menggunakan aset yang tersedia di folder <strong>kota-tua</strong>, sehingga hasil presentasinya selaras dengan proses produksi asli project dan mudah ditelusuri kembali ke sumber dokumentasinya.</p>
+        <p>Seluruh elemen dalam halaman ini menggunakan aset yang tersedia di folder <strong>Kota tua</strong>, sehingga hasil presentasinya selaras dengan proses produksi asli project dan mudah ditelusuri kembali ke sumber dokumentasinya.</p>
       </div>
     </div>
   </section>
@@ -877,8 +793,8 @@
       <h2>Explore the Full Story of Kota Tua</h2>
       <p>Halaman ini merangkum dokumentasi lapangan, identitas visual, media promosi, dan atmosfer kawasan menjadi satu presentasi project yang lebih utuh.</p>
       <div class="cta-buttons">
-        <a href="https://cdn.videy.co/nrpCDtrK1.mp4" target="_blank" rel="noreferrer" class="cta-btn cta-btn-primary">Watch Video</a>
-        <a href="../../index.html" class="cta-btn cta-btn-secondary">Back to Portfolio</a>
+        <a href="https://cdn.videy.co/XKa0stNd1.mp4" target="_blank" rel="noreferrer" class="cta-btn cta-btn-primary">Watch Video</a>
+        <a href="../index.html" class="cta-btn cta-btn-secondary">Back to Portfolio</a>
       </div>
     </div>
   </section>
@@ -887,9 +803,9 @@
     <p>&copy; 2024 Jona Setiawan. All rights reserved.</p>
   </footer>
 
-  <script src="../../language-controls.js?v=20260410-2"></script>
-  <script src="../../theme-controls.js"></script>
-  <script src="../../zoom-controls.js"></script>
+  <script src="../language-controls.js?v=20260410-2"></script>
+  <script src="../theme-controls.js"></script>
+  <script src="../zoom-controls.js"></script>
 </body>
 </html>
 

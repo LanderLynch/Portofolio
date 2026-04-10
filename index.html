@@ -1,127 +1,188 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jona Setiawan - Portfolio</title>
   <script src="theme-init.js"></script>
   <link rel="icon" type="image/png" href="project/assets/logo-preview/logo-lemon.png" />
-  <link rel="stylesheet" href="styles.css?v=20260319-1">
-  <link rel="stylesheet" href="theme-palettes.css?v=20260319-1">
+  <link rel="stylesheet" href="styles.css?v=20260410-5">
+  <link rel="stylesheet" href="theme-palettes.css?v=20260410-4">
 </head>
 <body>
   <!-- Portfolio Title - Separated from Navigation -->
   <div class="portfolio-title-container">
-    <a href="#home" class="portfolio-title-link">
-      <img src="project/assets/logo-preview/logo-lemon.png" alt="Logo Lemon" class="portfolio-logo" loading="eager" decoding="async" fetchpriority="high" data-priority="high" />
-      <span class="portfolio-text">Home</span>
-    </a>
-    <div class="zoom-control" id="zoom-control">
-      <button class="zoom-toggle-btn" id="zoom-toggle-btn" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="zoom-panel">
-        <svg class="icon-svg" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
-      </button>
-      <div class="zoom-panel" id="zoom-panel" aria-hidden="true">
-        <div class="zoom-panel-group">
-          <span class="zoom-panel-label">Zoom</span>
-          <div class="zoom-panel-controls">
-            <button class="zoom-step-btn" id="zoom-out-btn" type="button" aria-label="Zoom out">-</button>
-            <button class="zoom-value-btn" id="zoom-value-btn" type="button" aria-label="Reset zoom to default">80%</button>
-            <button class="zoom-step-btn" id="zoom-in-btn" type="button" aria-label="Zoom in">+</button>
-          </div>
-        </div>
-        <div class="zoom-panel-group">
-          <span class="zoom-panel-label">Palette</span>
-          <div class="zoom-theme-actions" role="group" aria-label="Color palette">
-            <button class="zoom-theme-btn" type="button" data-theme-value="blue" aria-label="Blue mode" aria-pressed="false" title="Blue mode">
-              <svg class="zoom-theme-icon" viewBox="0 0 24 24"><path d="M21 12.8A8.8 8.8 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg>
-            </button>
-            <button class="zoom-theme-btn" type="button" data-theme-value="light" aria-label="Light mode" aria-pressed="false" title="Light mode">
-              <svg class="zoom-theme-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.5"></path><path d="M12 19v2.5"></path><path d="M4.93 4.93l1.77 1.77"></path><path d="M17.3 17.3l1.77 1.77"></path><path d="M2.5 12H5"></path><path d="M19 12h2.5"></path><path d="M4.93 19.07l1.77-1.77"></path><path d="M17.3 6.7l1.77-1.77"></path></svg>
-            </button>
-            <button class="zoom-theme-btn" type="button" data-theme-value="galaxy" aria-label="Galaxy mode" aria-pressed="false" title="Galaxy mode">
-              <svg class="zoom-theme-icon hat-icon" viewBox="0 0 24 24"><path d="M4 19.5h16"></path><path d="M8 19.5c0-2.7 1.4-5.1 3.7-6.6l2.1-1.4-1.7-5.8-5.1 4.1"></path><path d="M14.4 9.8 17.7 8l2.3 5.9-3.9-.3"></path><path d="M13.2 4.5 14 6.2"></path><path d="M18.4 4.9l.4 1.2"></path><path d="M19.7 7.7l1.3.1"></path></svg>
-            </button>
+    <div class="portfolio-title-row">
+      <a href="#home" class="portfolio-title-link">
+        <img src="project/assets/logo-preview/logo-lemon.png" alt="Logo Lemon" class="portfolio-logo" loading="eager" decoding="async" fetchpriority="high" data-priority="high" />
+        <span class="portfolio-text">Beranda</span>
+      </a>
+      <div class="zoom-control" id="zoom-control">
+        <button class="zoom-toggle-btn" id="zoom-toggle-btn" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="zoom-panel">
+          <svg class="icon-svg" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
+        </button>
+        <div class="zoom-panel" id="zoom-panel" aria-hidden="true">
+          <div class="zoom-panel-group">
+            <span class="zoom-panel-label">Zoom</span>
+            <div class="zoom-panel-controls">
+              <button class="zoom-step-btn" id="zoom-out-btn" type="button" aria-label="Zoom out">-</button>
+              <button class="zoom-value-btn" id="zoom-value-btn" type="button" aria-label="Reset zoom to default">80%</button>
+              <button class="zoom-step-btn" id="zoom-in-btn" type="button" aria-label="Zoom in">+</button>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="desktop-theme-palette" role="group" aria-label="Color palette">
+      <button class="zoom-theme-btn" type="button" data-theme-value="blue" aria-label="Blue mode" aria-pressed="false" title="Blue mode">
+        <svg class="zoom-theme-icon" viewBox="0 0 24 24"><path d="M21 12.8A8.8 8.8 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg>
+      </button>
+      <button class="zoom-theme-btn" type="button" data-theme-value="light" aria-label="Light mode" aria-pressed="false" title="Light mode">
+        <svg class="zoom-theme-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.5"></path><path d="M12 19v2.5"></path><path d="M4.93 4.93l1.77 1.77"></path><path d="M17.3 17.3l1.77 1.77"></path><path d="M2.5 12H5"></path><path d="M19 12h2.5"></path><path d="M4.93 19.07l1.77-1.77"></path><path d="M17.3 6.7l1.77-1.77"></path></svg>
+      </button>
+      <button class="zoom-theme-btn" type="button" data-theme-value="galaxy" aria-label="Galaxy mode" aria-pressed="false" title="Galaxy mode">
+        <svg class="zoom-theme-icon hat-icon" viewBox="0 0 24 24"><path d="M4 19.5h16"></path><path d="M8 19.5c0-2.7 1.4-5.1 3.7-6.6l2.1-1.4-1.7-5.8-5.1 4.1"></path><path d="M14.4 9.8 17.7 8l2.3 5.9-3.9-.3"></path><path d="M13.2 4.5 14 6.2"></path><path d="M18.4 4.9l.4 1.2"></path><path d="M19.7 7.7l1.3.1"></path></svg>
+      </button>
     </div>
   </div>
 
   <!-- Navigation - Responsive Navigation Bar -->
   <nav class="navbar">
     <div class="nav-container">
-      <div class="mobile-current-chip" id="mobile-current-chip" aria-hidden="true">Home</div>
+      <div class="mobile-current-chip" id="mobile-current-chip" aria-hidden="true">Beranda</div>
       <!-- Hamburger Menu Button (Mobile Only) -->
-      <button class="hamburger-menu" aria-label="Toggle Menu" aria-expanded="false">
+      <button class="hamburger-menu" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobile-menu-panel">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
       </button>
-      
+
       <ul class="nav-links">
         <li><a href="#home" class="nav-link-item active">
           <span class="nav-icon" aria-hidden="true">
             <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5.25 9.75V21h13.5V9.75"></path></svg>
           </span>
-          Home
+          <span data-i18n-key="nav-home">Beranda</span>
         </a></li>
         <li><a href="#about" class="nav-link-item">
           <span class="nav-icon" aria-hidden="true">
             <svg class="icon-svg" viewBox="0 0 24 24"><path d="M15.75 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path><path d="M4.5 20.25a7.5 7.5 0 0 1 15 0"></path></svg>
           </span>
-          About
-        </a></li>
-        <li><a href="#projects" class="nav-link-item">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 7.5h16.5A1.5 1.5 0 0 1 21.75 9v9.75a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5V9a1.5 1.5 0 0 1 1.5-1.5Z"></path><path d="M9 7.5V6A1.5 1.5 0 0 1 10.5 4.5h3A1.5 1.5 0 0 1 15 6v1.5"></path></svg>
-          </span>
-          Projects
-        </a></li>
-        <li><a href="#experience" class="nav-link-item">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 7.5h16.5A1.5 1.5 0 0 1 21.75 9v9.75a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5V9a1.5 1.5 0 0 1 1.5-1.5Z"></path><path d="M9 7.5V6A1.5 1.5 0 0 1 10.5 4.5h3A1.5 1.5 0 0 1 15 6v1.5"></path></svg>
-          </span>
-          Experience
-        </a></li>
-        <li><a href="#skills" class="nav-link-item">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"></path></svg>
-          </span>
-          Skills
+          <span data-i18n-key="nav-about">Tentang</span>
         </a></li>
         <li><a href="#certification" class="nav-link-item">
           <span class="nav-icon" aria-hidden="true">
             <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75"></path><path d="M9 3.75h6l4.5 4.5v8.25A2.25 2.25 0 0 1 17.25 18.75H6.75A2.25 2.25 0 0 1 4.5 16.5v-10.5A2.25 2.25 0 0 1 6.75 3.75H9Z"></path><path d="M15 3.75v4.5h4.5"></path></svg>
           </span>
-          Certification
+          <span data-i18n-key="nav-certification">Pencapaian</span>
+        </a></li>
+        <li><a href="#projects" class="nav-link-item">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 7.5h16.5A1.5 1.5 0 0 1 21.75 9v9.75a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5V9a1.5 1.5 0 0 1 1.5-1.5Z"></path><path d="M9 7.5V6A1.5 1.5 0 0 1 10.5 4.5h3A1.5 1.5 0 0 1 15 6v1.5"></path></svg>
+          </span>
+          <span data-i18n-key="nav-projects">Proyek</span>
         </a></li>
         <li><a href="#testimonials" class="nav-link-item">
           <span class="nav-icon" aria-hidden="true">
             <svg class="icon-svg" viewBox="0 0 24 24"><path d="M7.5 8.25h9"></path><path d="M7.5 12h6"></path><path d="M5.25 4.5h13.5A2.25 2.25 0 0 1 21 6.75v8.25a2.25 2.25 0 0 1-2.25 2.25H12l-4.5 3v-3H5.25A2.25 2.25 0 0 1 3 15V6.75A2.25 2.25 0 0 1 5.25 4.5Z"></path></svg>
           </span>
-          Testimonials
+          <span data-i18n-key="nav-testimonials">Buku Tamu</span>
         </a></li>
         <li><a href="#contact" class="nav-link-item">
           <span class="nav-icon" aria-hidden="true">
             <svg class="icon-svg" viewBox="0 0 24 24"><path d="M21.75 7.5v9A2.25 2.25 0 0 1 19.5 18.75h-15A2.25 2.25 0 0 1 2.25 16.5v-9"></path><path d="m3 6 8.29 6.217a1.2 1.2 0 0 0 1.42 0L21 6"></path></svg>
           </span>
-          Contact
+          <span data-i18n-key="nav-contact">Kontak</span>
         </a></li>
       </ul>
     </div>
   </nav>
 
+  <aside class="mobile-menu-panel" id="mobile-menu-panel" aria-hidden="true">
+    <div class="mobile-menu-surface" role="dialog" aria-modal="true" aria-label="Mobile navigation menu" tabindex="-1">
+      <div class="mobile-menu-header">
+        <p class="mobile-menu-kicker" data-i18n-key="menu-kicker">PORTOFOLIO</p>
+        <button class="mobile-menu-close" id="mobile-menu-close" type="button" aria-label="Close menu">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <div class="mobile-menu-language" role="group" aria-label="Language switcher">
+        <button class="mobile-language-btn" type="button" data-lang-value="id">ID</button>
+        <button class="mobile-language-btn" type="button" data-lang-value="en">ENG</button>
+      </div>
+
+      <div class="mobile-menu-actions" aria-label="Quick actions">
+        <a href="https://www.instagram.com/jona.mmzv/" target="_blank" rel="noreferrer" class="mobile-menu-action mobile-menu-direct">
+          <span class="mobile-menu-action-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"></path></svg>
+          </span>
+          <span class="mobile-menu-action-copy" data-i18n-key="menu-direct">PESAN LANGSUNG</span>
+        </a>
+
+        <button class="mobile-menu-action mobile-menu-theme" id="mobile-theme-toggle" type="button" aria-label="Change color theme">
+          <span class="mobile-menu-action-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.5"></path><path d="M12 19v2.5"></path><path d="M4.93 4.93l1.77 1.77"></path><path d="M17.3 17.3l1.77 1.77"></path><path d="M2.5 12H5"></path><path d="M19 12h2.5"></path><path d="M4.93 19.07l1.77-1.77"></path><path d="M17.3 6.7l1.77-1.77"></path></svg>
+          </span>
+          <span class="mobile-menu-action-copy" id="mobile-theme-label">THEME: LIGHT</span>
+        </button>
+      </div>
+
+      <div class="mobile-menu-divider" aria-hidden="true"></div>
+
+      <nav class="mobile-menu-nav" aria-label="Mobile portfolio navigation">
+        <a href="#home" class="nav-link-item mobile-nav-link active">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5.25 9.75V21h13.5V9.75"></path></svg>
+          </span>
+          <span class="mobile-nav-label" data-i18n-key="nav-home">Beranda</span>
+        </a>
+        <a href="#about" class="nav-link-item mobile-nav-link">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M15.75 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path><path d="M4.5 20.25a7.5 7.5 0 0 1 15 0"></path></svg>
+          </span>
+          <span class="mobile-nav-label" data-i18n-key="nav-about">Tentang</span>
+        </a>
+        <a href="#certification" class="nav-link-item mobile-nav-link">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75"></path><path d="M9 3.75h6l4.5 4.5v8.25A2.25 2.25 0 0 1 17.25 18.75H6.75A2.25 2.25 0 0 1 4.5 16.5v-10.5A2.25 2.25 0 0 1 6.75 3.75H9Z"></path><path d="M15 3.75v4.5h4.5"></path></svg>
+          </span>
+          <span class="mobile-nav-label" data-i18n-key="nav-certification">Pencapaian</span>
+        </a>
+        <a href="#projects" class="nav-link-item mobile-nav-link">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 7.5h16.5A1.5 1.5 0 0 1 21.75 9v9.75a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5V9a1.5 1.5 0 0 1 1.5-1.5Z"></path><path d="M9 7.5V6A1.5 1.5 0 0 1 10.5 4.5h3A1.5 1.5 0 0 1 15 6v1.5"></path></svg>
+          </span>
+          <span class="mobile-nav-label" data-i18n-key="nav-projects">Proyek</span>
+        </a>
+        <a href="#testimonials" class="nav-link-item mobile-nav-link">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M7.5 8.25h9"></path><path d="M7.5 12h6"></path><path d="M5.25 4.5h13.5A2.25 2.25 0 0 1 21 6.75v8.25a2.25 2.25 0 0 1-2.25 2.25H12l-4.5 3v-3H5.25A2.25 2.25 0 0 1 3 15V6.75A2.25 2.25 0 0 1 5.25 4.5Z"></path></svg>
+          </span>
+          <span class="mobile-nav-label" data-i18n-key="nav-testimonials">Buku Tamu</span>
+        </a>
+        <a href="#contact" class="nav-link-item mobile-nav-link">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M21.75 7.5v9A2.25 2.25 0 0 1 19.5 18.75h-15A2.25 2.25 0 0 1 2.25 16.5v-9"></path><path d="m3 6 8.29 6.217a1.2 1.2 0 0 0 1.42 0L21 6"></path></svg>
+          </span>
+          <span class="mobile-nav-label" data-i18n-key="nav-contact">Kontak</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+
   <!-- Home Section -->
-  <section id="home" class="home-section" data-section-label="Home">
+  <section id="home" class="home-section" data-section-label="Beranda">
     <h1 class="hero-title">Jona Setiawan</h1>
     <div class="typing-container">
       <span class="typing" id="typing-text">MULTIMEDIA DESIGNER</span>
     </div>
     
     <div class="button-group">
-      <a href="https://drive.usercontent.google.com/download?id=18oRkNH1VU8Gg_WOEhky9bfeP1LufCNkr&export=download&authuser=5&confirm=t&uuid=6b7a7de9-1694-4107-b6bd-43112cf1555f&at=AN8xHops-tHAbhs0J98uHkYxc9pB:1753280713067" class="btn btn-secondary">Download My CV</a>
-      <a href="certification.html" class="btn btn-secondary">Certification</a>
-      <a href="#projects" class="btn btn-primary">Explore Projects</a>
+      <a href="https://drive.usercontent.google.com/download?id=18oRkNH1VU8Gg_WOEhky9bfeP1LufCNkr&export=download&authuser=5&confirm=t&uuid=6b7a7de9-1694-4107-b6bd-43112cf1555f&at=AN8xHops-tHAbhs0J98uHkYxc9pB:1753280713067" class="btn btn-secondary" data-i18n-key="hero-download-cv">Unduh CV</a>
+      <a href="certification.html" class="btn btn-secondary" data-i18n-key="hero-certification">Sertifikasi</a>
+      <a href="#projects" class="btn btn-primary" data-i18n-key="hero-explore-projects">Lihat Proyek</a>
     </div>
     
     <div class="social-links">
@@ -181,7 +242,7 @@
     </div>
   </section>
 
-  <section id="about" class="about-section" data-section-label="About">
+  <section id="about" class="about-section" data-section-label="Tentang">
     <div class="about-header">
       <h2 class="about-main-title">About Me</h2>
       <p class="about-subtitle">Discover my journey, passions, and the story behind my work</p>
@@ -315,7 +376,7 @@
     </div>
   </section>
   <!-- Enhanced Projects Section -->
-  <section id="projects" class="projects-section" data-section-label="Projects">
+  <section id="projects" class="projects-section" data-section-label="Proyek">
     <h2 class="section-title">My Creative Portfolio</h2>
     <p class="section-subtitle">Explore my latest multimedia design projects and creative solutions</p>
     <!-- Project Filter Tabs -->
@@ -649,7 +710,7 @@
   <!-- Experience Section - Redesigned with Vertical Timeline -->
  <!-- Experience Section - Enhanced with Images and Reversed Timeline -->
 <!-- Experience Section - Enhanced with Images and Reversed Timeline -->
-<section id="experience" class="experience-section" data-section-label="Experience">
+<section id="experience" class="experience-section" data-section-label="Pengalaman">
   <div class="experience-container">
     <h2 class="section-title">Professional Experience</h2>
     <p class="section-subtitle">My journey through creative roles and multimedia projects - from past to present</p>
@@ -792,7 +853,7 @@
   </div>
 </section>
 
-  <section id="skills" class="skills-section" data-section-label="Skills">
+  <section id="skills" class="skills-section" data-section-label="Keahlian">
     <div class="skills-shell">
       <div class="skills-header">
         <p class="skills-kicker">Skill Tree</p>
@@ -880,7 +941,7 @@
     </div>
   </section>
 
-  <section id="certification" class="certification-section" data-section-label="Certification">
+  <section id="certification" class="certification-section" data-section-label="Pencapaian">
     <div class="certification-shell">
       <div class="certification-copy">
         <p class="certification-kicker">Achievement Archive</p>
@@ -915,7 +976,7 @@
 
   <!-- Testimonials Section -->
 
-  <section id="testimonials" class="testimonials-section" data-section-label="Testimonials">
+  <section id="testimonials" class="testimonials-section" data-section-label="Buku Tamu">
     <div class="testimonials-container">
       <div class="guestbook-shell guestbook-shell-inline">
         <div class="guestbook-header">
@@ -958,6 +1019,7 @@
                   <div class="guestbook-avatar-picker-bubble">
                     <p class="guestbook-avatar-picker-title">Choose Avatar</p>
                     <div class="guestbook-avatar-options" id="guestbook-avatar-options"></div>
+                    <input type="file" id="guestbook-avatar-upload-input" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
                   </div>
                 </div>
               </div>
@@ -1060,7 +1122,7 @@
       </form>
     </div>
   </div>
-  <footer id="contact" class="portfolio-footer" data-section-label="Contact">
+  <footer id="contact" class="portfolio-footer" data-section-label="Kontak">
     <div class="footer-inner">
       <div class="footer-brand">
         <p class="footer-kicker">Let's create something meaningful</p>
@@ -1168,15 +1230,20 @@
     testimonialsSection?.addEventListener("focusin", loadGuestbookModules, { once: true });
   </script>
   <script src="theme-controls.js?v=20260319-1"></script>
+  <script src="language-controls.js?v=20260410-2"></script>
   <script>
     const projectCardUtils = window.portfolioProjectCardUtils;
     // Mobile Navigation Toggle
     const hamburgerBtn = document.querySelector('.hamburger-menu');
-    const navLinks = document.querySelector('.nav-links');
     const navLinkItems = document.querySelectorAll('.nav-link-item');
     const portfolioTitleLink = document.querySelector('.portfolio-title-link');
     const portfolioText = document.querySelector('.portfolio-text');
     const mobileCurrentChip = document.getElementById('mobile-current-chip');
+    const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+    const mobileMenuSurface = mobileMenuPanel ? mobileMenuPanel.querySelector('.mobile-menu-surface') : null;
+    const mobileMenuCloseBtn = document.getElementById('mobile-menu-close');
+    const mobileThemeToggleBtn = document.getElementById('mobile-theme-toggle');
+    const mobileThemeLabel = document.getElementById('mobile-theme-label');
     const zoomControl = document.getElementById('zoom-control');
     const zoomToggleBtn = document.getElementById('zoom-toggle-btn');
     const zoomPanel = document.getElementById('zoom-panel');
@@ -1254,64 +1321,130 @@
       });
     }
 
+    function formatThemeName(theme) {
+      const currentLanguage = window.portfolioLanguage?.getCurrentLanguage?.() || 'id';
+
+      switch (theme) {
+        case 'blue':
+          return currentLanguage === 'id' ? 'BIRU' : 'BLUE';
+        case 'galaxy':
+          return 'GALAXY';
+        default:
+          return currentLanguage === 'id' ? 'TERANG' : 'LIGHT';
+      }
+    }
+
+    function syncMobileThemeLabel(themeName) {
+      if (!mobileThemeLabel) {
+        return;
+      }
+
+      const activeTheme = window.portfolioTheme?.normalizeTheme(themeName) || 'light';
+      const currentLanguage = window.portfolioLanguage?.getCurrentLanguage?.() || 'id';
+      const labelPrefix = currentLanguage === 'id' ? 'TEMA' : 'THEME';
+      mobileThemeLabel.textContent = `${labelPrefix}: ${formatThemeName(activeTheme)}`;
+    }
+
+    function setMobileMenuState(isOpen) {
+      if (!hamburgerBtn || !mobileMenuPanel) {
+        return;
+      }
+
+      setZoomPanelState(false);
+      mobileMenuPanel.classList.toggle('active', isOpen);
+      mobileMenuPanel.setAttribute('aria-hidden', String(!isOpen));
+      hamburgerBtn.classList.toggle('active', isOpen);
+      hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
+      document.body.classList.toggle('mobile-menu-open', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+
+      if (isOpen) {
+        window.setTimeout(() => {
+          mobileMenuCloseBtn?.focus();
+        }, 50);
+      }
+    }
+
+    syncMobileThemeLabel(window.portfolioTheme?.getStoredTheme?.());
+
+    if (mobileThemeToggleBtn) {
+      mobileThemeToggleBtn.addEventListener('click', () => {
+        const supportedThemes = window.portfolioTheme?.supportedThemes || ['blue', 'light', 'galaxy'];
+        const currentTheme = window.portfolioTheme?.getStoredTheme?.() || 'light';
+        const activeIndex = supportedThemes.indexOf(currentTheme);
+        const nextTheme = supportedThemes[(activeIndex + 1 + supportedThemes.length) % supportedThemes.length];
+
+        if (window.portfolioTheme?.applyTheme) {
+          window.portfolioTheme.applyTheme(nextTheme);
+        }
+
+        syncMobileThemeLabel(nextTheme);
+      });
+    }
+
+    document.addEventListener('portfolio-theme-change', (event) => {
+      syncMobileThemeLabel(event.detail?.theme);
+    });
+
+    document.addEventListener('portfolio-language-change', () => {
+      syncMobileThemeLabel(window.portfolioTheme?.getStoredTheme?.());
+      updateActiveSection();
+    });
+
     document.addEventListener('click', (event) => {
       if (zoomControl && !zoomControl.contains(event.target)) {
         setZoomPanelState(false);
       }
     });
 
-    if (hamburgerBtn && navLinks) {
+    if (hamburgerBtn && mobileMenuPanel) {
       hamburgerBtn.addEventListener('click', () => {
-        const isActive = navLinks.classList.toggle('active');
-        hamburgerBtn.classList.toggle('active');
-        hamburgerBtn.setAttribute('aria-expanded', isActive);
-        
-        // Prevent body scroll when menu is open
-        if (isActive) {
-          document.body.style.overflow = 'hidden';
-        } else {
-          document.body.style.overflow = '';
+        const shouldOpen = !mobileMenuPanel.classList.contains('active');
+        setMobileMenuState(shouldOpen);
+      });
+
+      mobileMenuCloseBtn?.addEventListener('click', () => {
+        setMobileMenuState(false);
+      });
+
+      mobileMenuPanel.addEventListener('click', (event) => {
+        if (event.target === mobileMenuPanel) {
+          setMobileMenuState(false);
         }
       });
 
-      // Close mobile menu when clicking on nav links
       navLinkItems.forEach(link => {
         link.addEventListener('click', () => {
           if (window.innerWidth <= 768) {
-            navLinks.classList.remove('active');
-            hamburgerBtn.classList.remove('active');
-            hamburgerBtn.setAttribute('aria-expanded', false);
-            document.body.style.overflow = '';
+            setMobileMenuState(false);
           }
         });
       });
 
-      // Close mobile menu when clicking outside
       document.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768 && 
-            !hamburgerBtn.contains(e.target) && 
-            !navLinks.contains(e.target) && 
-            navLinks.classList.contains('active')) {
-          navLinks.classList.remove('active');
-          hamburgerBtn.classList.remove('active');
-          hamburgerBtn.setAttribute('aria-expanded', false);
-          document.body.style.overflow = '';
+        if (window.innerWidth <= 768 &&
+            !hamburgerBtn.contains(e.target) &&
+            !mobileMenuSurface?.contains(e.target) &&
+            mobileMenuPanel.classList.contains('active')) {
+          setMobileMenuState(false);
         }
       });
 
-      // Handle window resize
       window.addEventListener('resize', () => {
         if (window.innerWidth > 768) {
-          navLinks.classList.remove('active');
-          hamburgerBtn.classList.remove('active');
-          hamburgerBtn.setAttribute('aria-expanded', false);
-          document.body.style.overflow = '';
+          setMobileMenuState(false);
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && mobileMenuPanel.classList.contains('active')) {
+          setMobileMenuState(false);
         }
       });
     }
 
     // Typing effect
-    const skills = ["MULTIMEDIA DESIGNER", "DESIGN GRAPHIC", "GFX DESIGNER", "UI/UX DESIGN"];
+    let skills = window.portfolioLanguage?.getSkillWords?.() || ["DESAINER MULTIMEDIA", "DESAIN GRAFIS", "DESAINER GFX", "DESAIN UI/UX"];
     let index = 0;
     const typingText = document.getElementById("typing-text");
 
@@ -1324,13 +1457,21 @@
 
     setInterval(typeSkill, 3000);
 
+    document.addEventListener('portfolio-language-change', () => {
+      skills = window.portfolioLanguage?.getSkillWords?.() || skills;
+      index = 0;
+      typeSkill();
+    });
+
     function setActiveSection(sectionId) {
       const currentSection = trackedSections.find(section => section.id === sectionId);
       if (!currentSection) {
         return;
       }
 
-      const currentLabel = currentSection.dataset.sectionLabel || currentSection.id;
+      const currentLabel = window.portfolioLanguage?.getSectionLabel?.(sectionId)
+        || currentSection.dataset.sectionLabel
+        || currentSection.id;
 
       navLinkItems.forEach(link => {
         const isActive = link.getAttribute('href') === `#${sectionId}`;

@@ -95,7 +95,7 @@
     .back-btn:hover,
     .certificate-link:hover,
     .folder-open-btn:hover,
-    .filter-btn:hover {
+    .filter-control:hover {
       transform: translateY(-2px);
     }
 
@@ -155,26 +155,235 @@
     }
 
     .filters {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(220px, 1fr) minmax(220px, 1fr);
+      gap: 0.9rem;
+      align-items: start;
+      margin: 2rem 0 1rem;
+    }
+
+    .filter-control {
+      position: relative;
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin: 2rem 0 1.5rem;
-    }
-
-    .filter-btn {
-      padding: 0.85rem 1.15rem;
-      border: 1px solid var(--border);
-      border-radius: 999px;
+      align-items: center;
+      min-height: 3.9rem;
+      border-radius: 1.35rem;
       background: rgba(15, 23, 42, 0.75);
-      color: var(--muted);
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      transition:
+        transform 0.24s ease,
+        border-color 0.24s ease,
+        box-shadow 0.24s ease,
+        background 0.24s ease;
     }
 
-    .filter-btn.active {
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.22), rgba(96, 165, 250, 0.18));
+    .filter-control:hover {
+      border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+    }
+
+    .filter-control:focus-within {
+      border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
+      box-shadow:
+        var(--shadow),
+        0 0 0 4px color-mix(in srgb, var(--accent) 14%, transparent);
+    }
+
+    .filter-dropdown {
+      position: relative;
+    }
+
+    .filter-control-search {
+      padding: 0 1.15rem;
+      gap: 0.8rem;
+    }
+
+    .filter-icon {
+      width: 1.4rem;
+      height: 1.4rem;
+      flex: 0 0 auto;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .filter-icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      stroke-width: 1.9;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .filter-search-input,
+    .filter-dropdown-search-input,
+    .filter-dropdown-toggle {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
       color: var(--text);
+      font: inherit;
+    }
+
+    .filter-search-input {
+      padding: 0;
+      font-size: 1rem;
+    }
+
+    .filter-search-input::placeholder {
+      color: var(--muted);
+      opacity: 1;
+    }
+
+    .filter-dropdown-search-input::placeholder {
+      color: var(--muted);
+      opacity: 1;
+    }
+
+    .filter-dropdown-toggle {
+      display: flex;
+      align-items: center;
+      min-height: 3.9rem;
+      padding: 0 3.25rem 0 1.15rem;
+      text-align: left;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .filter-dropdown-value {
+      display: block;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .filter-chevron {
+      position: absolute;
+      right: 1.05rem;
+      top: 50%;
+      width: 1.35rem;
+      height: 1.35rem;
+      pointer-events: none;
+      color: var(--muted);
+      transform: translateY(-50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .filter-chevron svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .filter-dropdown-panel {
+      position: absolute;
+      top: calc(100% + 0.65rem);
+      left: 0;
+      right: 0;
+      z-index: 30;
+      display: grid;
+      gap: 0.55rem;
+      padding: 0.8rem 0.45rem 0.45rem;
+      border-radius: 1.35rem;
+      background: rgba(15, 23, 42, 0.94);
+      border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+      box-shadow: 0 26px 54px rgba(2, 6, 23, 0.26);
+      backdrop-filter: blur(22px);
+      opacity: 0;
+      transform: translateY(-10px) scale(0.98);
+      transform-origin: top center;
+      pointer-events: none;
+      transition: opacity 0.24s ease, transform 0.28s ease;
+    }
+
+    .filter-dropdown.is-open .filter-dropdown-panel {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .filter-dropdown-search {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin: 0 0.35rem;
+      padding: 0 0.35rem 0.7rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 10%, var(--border));
+    }
+
+    .filter-dropdown-search-input {
+      padding: 0;
+      font-size: 0.98rem;
+    }
+
+    .filter-dropdown-options {
+      display: grid;
+      gap: 0.18rem;
+      max-height: 16.5rem;
+      overflow: auto;
+      padding: 0 0.2rem;
+    }
+
+    .filter-dropdown-option {
+      width: 100%;
+      padding: 0.82rem 0.95rem;
+      border: 0;
+      border-radius: 0.95rem;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
+    }
+
+    .filter-dropdown-option:hover,
+    .filter-dropdown-option.is-active {
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      color: color-mix(in srgb, var(--text) 92%, white 8%);
+      transform: translateX(2px);
+    }
+
+    .filter-dropdown-empty {
+      display: none;
+      padding: 0.75rem 0.95rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .filter-dropdown-empty.is-visible {
+      display: block;
+    }
+
+    .filter-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .filter-summary .section-note {
+      margin: 0;
+    }
+
+    .results-total {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 600;
     }
 
     .section-note {
@@ -580,14 +789,40 @@
 
     :root[data-theme="light"] .back-btn,
     :root[data-theme="light"] .folder-open-btn,
-    :root[data-theme="light"] .filter-btn {
+    :root[data-theme="light"] .filter-control {
       background: rgba(255, 255, 255, 0.88);
       color: #4f5479;
       border-color: rgba(93, 98, 136, 0.16);
     }
 
-    :root[data-theme="light"] .filter-btn.active {
-      background: linear-gradient(135deg, rgba(111, 125, 181, 0.18), rgba(151, 164, 214, 0.22));
+    :root[data-theme="light"] .filter-search-input,
+    :root[data-theme="light"] .filter-dropdown-search-input,
+    :root[data-theme="light"] .filter-dropdown-toggle,
+    :root[data-theme="light"] .filter-dropdown-option {
+      color: #2c2f47;
+    }
+
+    :root[data-theme="light"] .filter-search-input::placeholder,
+    :root[data-theme="light"] .filter-dropdown-search-input::placeholder,
+    :root[data-theme="light"] .filter-icon,
+    :root[data-theme="light"] .filter-chevron,
+    :root[data-theme="light"] .results-total {
+      color: #7b829f;
+    }
+
+    :root[data-theme="light"] .filter-dropdown-panel {
+      background: rgba(245, 246, 251, 0.98);
+      border-color: rgba(93, 98, 136, 0.16);
+      box-shadow: 0 28px 58px rgba(93, 98, 136, 0.18);
+    }
+
+    :root[data-theme="light"] .filter-dropdown-search {
+      border-bottom-color: rgba(93, 98, 136, 0.16);
+    }
+
+    :root[data-theme="light"] .filter-dropdown-option:hover,
+    :root[data-theme="light"] .filter-dropdown-option.is-active {
+      background: rgba(111, 125, 181, 0.12);
       color: #2c2f47;
     }
 
@@ -707,6 +942,15 @@
         grid-template-columns: 1fr;
       }
 
+      .filters {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-summary {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
       .certificates-grid {
         grid-template-columns: 1fr;
       }
@@ -802,73 +1046,125 @@
     </section>
 
     <div class="filters" aria-label="Certificate filters">
-      <button class="filter-btn active" data-filter="all">All Certifications</button>
-      <button class="filter-btn" data-filter="myskill">MySkill</button>
-      <button class="filter-btn" data-filter="skill">Skill</button>
-      <button class="filter-btn" data-filter="trainee">Trainee</button>
-      <button class="filter-btn" data-filter="competition">Competition</button>
+      <label class="filter-control filter-control-search" for="certificate-search">
+        <span class="filter-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path></svg>
+        </span>
+        <input class="filter-search-input" id="certificate-search" type="search" placeholder="Search..." autocomplete="off">
+      </label>
+
+      <div class="filter-dropdown" id="certificate-type-filter" data-dropdown-type="type" data-value="all">
+        <button class="filter-control filter-dropdown-toggle" type="button" aria-expanded="false" aria-controls="certificate-type-panel">
+          <span class="filter-dropdown-value">Filter by Type</span>
+        </button>
+        <span class="filter-chevron" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
+        </span>
+        <div class="filter-dropdown-panel" id="certificate-type-panel">
+          <label class="filter-dropdown-search" for="certificate-type-search">
+            <span class="filter-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path></svg>
+            </span>
+            <input class="filter-dropdown-search-input" id="certificate-type-search" type="search" placeholder="Search type" autocomplete="off">
+          </label>
+          <div class="filter-dropdown-options">
+            <button class="filter-dropdown-option is-active" type="button" data-value="all" data-label="filter by type">Filter by Type</button>
+            <button class="filter-dropdown-option" type="button" data-value="certificate" data-label="certificate file">Certificate File</button>
+            <button class="filter-dropdown-option" type="button" data-value="folder" data-label="folder group">Folder Group</button>
+          </div>
+          <div class="filter-dropdown-empty">No type found.</div>
+        </div>
+      </div>
+
+      <div class="filter-dropdown" id="certificate-category-filter" data-dropdown-type="category" data-value="all">
+        <button class="filter-control filter-dropdown-toggle" type="button" aria-expanded="false" aria-controls="certificate-category-panel">
+          <span class="filter-dropdown-value">Filter by Category</span>
+        </button>
+        <span class="filter-chevron" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
+        </span>
+        <div class="filter-dropdown-panel" id="certificate-category-panel">
+          <label class="filter-dropdown-search" for="certificate-category-search">
+            <span class="filter-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path></svg>
+            </span>
+            <input class="filter-dropdown-search-input" id="certificate-category-search" type="search" placeholder="Search category" autocomplete="off">
+          </label>
+          <div class="filter-dropdown-options">
+            <button class="filter-dropdown-option is-active" type="button" data-value="all" data-label="filter by category">Filter by Category</button>
+            <button class="filter-dropdown-option" type="button" data-value="myskill" data-label="myskill">MySkill</button>
+            <button class="filter-dropdown-option" type="button" data-value="skill" data-label="skill">Skill</button>
+            <button class="filter-dropdown-option" type="button" data-value="trainee" data-label="trainee">Trainee</button>
+            <button class="filter-dropdown-option" type="button" data-value="competition" data-label="competition">Competition</button>
+          </div>
+          <div class="filter-dropdown-empty">No category found.</div>
+        </div>
+      </div>
     </div>
 
-    <p class="section-note" id="results-note">Showing all certification groups and files.</p>
+    <div class="filter-summary">
+      <p class="results-total" id="results-total">Total: 11</p>
+      <p class="section-note" id="results-note">Showing all certification groups and files.</p>
+    </div>
 
     <section class="certificates-grid" id="certificates-grid">
-      <article class="certificate-card" data-category="myskill">
+      <article class="certificate-card" data-category="myskill" data-type="certificate">
         <span class="certificate-tag">MySkill</span>
         <h2>Graphic Design MySkill Januari 2025</h2>
         <p>E-sertifikat short class MySkill for graphic design.</p>
         <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan E-Sertifikat SC Graphic Design MySkill Januari 2025.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
-      <article class="certificate-card" data-category="myskill">
+      <article class="certificate-card" data-category="myskill" data-type="certificate">
         <span class="certificate-tag">MySkill</span>
         <h2>Webdev MySkill</h2>
         <p>E-sertifikat peserta short class web development from MySkill.</p>
         <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan E-Sertifikat peserta SC Webdev MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
-      <article class="certificate-card" data-category="myskill">
+      <article class="certificate-card" data-category="myskill" data-type="certificate">
         <span class="certificate-tag">MySkill</span>
         <h2>Accounting Fundamentals MySkill</h2>
         <p>E-sertif MySkill for accounting fundamentals.</p>
         <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan - E-Sertif SC Accounting Fundamentals MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
-      <article class="certificate-card" data-category="myskill">
+      <article class="certificate-card" data-category="myskill" data-type="certificate">
         <span class="certificate-tag">MySkill</span>
         <h2>Motivation Letter and Interview for Scholarship Preparation</h2>
         <p>MySkill certificate for scholarship preparation training.</p>
         <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan - E-Certificate SC Motivation Letter and Interview for Scholarship Preparation MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
-      <article class="certificate-card" data-category="myskill">
+      <article class="certificate-card" data-category="myskill" data-type="certificate">
         <span class="certificate-tag">MySkill</span>
         <h2>Brand Identity Design</h2>
         <p>MySkill certificate focused on brand identity design.</p>
         <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan - E-Certificate SC Brand Identity Design Juni 2025_2.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
-      <article class="certificate-card" data-category="myskill">
+      <article class="certificate-card" data-category="myskill" data-type="certificate">
         <span class="certificate-tag">MySkill</span>
         <h2>Introduction to UX Research</h2>
         <p>MySkill certificate on UX research basics and methods.</p>
         <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan - E-Certif SC Introduction to UX Research MySkill (1).pdf" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
-      <article class="certificate-card" data-category="myskill">
+      <article class="certificate-card" data-category="myskill" data-type="certificate">
         <span class="certificate-tag">MySkill</span>
         <h2>Content Marketing Strategy</h2>
         <p>MySkill certificate covering content marketing strategy.</p>
         <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan - E-Certif SC Content Marketing Strategy MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
-      <article class="certificate-card" data-category="myskill">
+      <article class="certificate-card" data-category="myskill" data-type="certificate">
         <span class="certificate-tag">MySkill</span>
         <h2>Color and Typography</h2>
         <p>MySkill certificate for design fundamentals in color and typography.</p>
         <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan - E-Certif SC Color and Typography MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
-      <article class="certificate-card folder-card" data-category="skill">
+      <article class="certificate-card folder-card" data-category="skill" data-type="folder">
         <span class="certificate-tag">Skill</span>
         <div class="folder-card-head">
           <span class="folder-icon" aria-hidden="true">
@@ -885,21 +1181,21 @@
         <button class="folder-open-btn" type="button" id="toefl-folder-open-btn">Open Folder Group</button>
       </article>
 
-      <article class="certificate-card" data-category="trainee">
+      <article class="certificate-card" data-category="trainee" data-type="certificate">
         <span class="certificate-tag">Trainee</span>
         <h2>Aryaduta Trainee Website Certification</h2>
         <p>Certification file from the Aryaduta trainee program website work.</p>
         <a class="certificate-link" href="project/assets/certification-files/certification-trainee/aryaduta-trainee-website-certification.jpg" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
-      <article class="certificate-card" data-category="trainee">
+      <article class="certificate-card" data-category="trainee" data-type="certificate">
         <span class="certificate-tag">Trainee</span>
         <h2>Aryaduta Trainee Performance Score</h2>
         <p>Performance score file from the Aryaduta trainee period.</p>
         <a class="certificate-link" href="project/assets/certification-files/certification-trainee/aryaduta-trainee-performance-score.jpg" target="_blank" rel="noopener noreferrer">Open Performance Score</a>
       </article>
 
-      <article class="certificate-card" data-category="competition">
+      <article class="certificate-card" data-category="competition" data-type="certificate">
         <span class="certificate-tag">Competition</span>
         <h2>Kota Tangerang Competition Award 2024</h2>
         <p>Competition recognition file from the antar Kota Tangerang event on 26-29 February 2024.</p>
@@ -1041,22 +1337,147 @@
   </div>
 
   <script>
-    const filterButtons = document.querySelectorAll(".filter-btn");
+    const certificateSearch = document.getElementById("certificate-search");
+    const certificateTypeFilter = document.getElementById("certificate-type-filter");
+    const certificateCategoryFilter = document.getElementById("certificate-category-filter");
+    const filterDropdowns = document.querySelectorAll(".filter-dropdown");
     const certificateCards = document.querySelectorAll(".certificate-card");
     const emptyState = document.getElementById("empty-state");
     const resultsNote = document.getElementById("results-note");
+    const resultsTotal = document.getElementById("results-total");
     const toeflFolderOpenBtn = document.getElementById("toefl-folder-open-btn");
     const toeflFolderModal = document.getElementById("toefl-folder-modal");
     const toeflFolderCloseBtn = document.getElementById("toefl-folder-close-btn");
     const toeflFolderAccordion = document.getElementById("toefl-folder-accordion");
     const toeflFolderToggle = document.getElementById("toefl-folder-toggle");
 
-    function updateCertificates(filter) {
+    function buildResultsNote(categoryFilter, typeFilter, searchTerm, visibleCount) {
+      const parts = [];
+
+      if (categoryFilter !== "all") {
+        const categoryMap = {
+          myskill: "MySkill",
+          skill: "Skill",
+          trainee: "Trainee",
+          competition: "Competition"
+        };
+        parts.push(`${categoryMap[categoryFilter] || "Selected"} category`);
+      }
+
+      if (typeFilter !== "all") {
+        parts.push(typeFilter === "folder" ? "folder groups" : "certificate files");
+      }
+
+      if (searchTerm) {
+        parts.push(`matching "${searchTerm}"`);
+      }
+
+      if (!parts.length) {
+        return "Showing all certification groups and files.";
+      }
+
+      return `Showing ${visibleCount} result${visibleCount === 1 ? "" : "s"} for ${parts.join(" | ")}.`;
+    }
+
+    function closeDropdown(dropdown) {
+      if (!dropdown) {
+        return;
+      }
+
+      dropdown.classList.remove("is-open");
+      dropdown.querySelector(".filter-dropdown-toggle")?.setAttribute("aria-expanded", "false");
+    }
+
+    function closeAllDropdowns(exceptDropdown = null) {
+      filterDropdowns.forEach((dropdown) => {
+        if (dropdown !== exceptDropdown) {
+          closeDropdown(dropdown);
+        }
+      });
+    }
+
+    function filterDropdownOptions(dropdown) {
+      const searchInput = dropdown.querySelector(".filter-dropdown-search-input");
+      const emptyLabel = dropdown.querySelector(".filter-dropdown-empty");
+      const query = (searchInput?.value || "").trim().toLowerCase();
+      let visibleCount = 0;
+
+      dropdown.querySelectorAll(".filter-dropdown-option").forEach((option) => {
+        const label = option.dataset.label || option.textContent.toLowerCase();
+        const isVisible = !query || label.includes(query);
+        option.hidden = !isVisible;
+        if (isVisible) {
+          visibleCount += 1;
+        }
+      });
+
+      emptyLabel?.classList.toggle("is-visible", visibleCount === 0);
+    }
+
+    function setDropdownValue(dropdown, value) {
+      const option = dropdown.querySelector(`.filter-dropdown-option[data-value="${value}"]`);
+      const fallbackOption = dropdown.querySelector('.filter-dropdown-option[data-value="all"]');
+      const activeOption = option || fallbackOption;
+
+      if (!activeOption) {
+        return;
+      }
+
+      dropdown.dataset.value = activeOption.dataset.value || "all";
+      dropdown.querySelector(".filter-dropdown-value").textContent = activeOption.textContent.trim();
+      dropdown.querySelectorAll(".filter-dropdown-option").forEach((item) => {
+        const isActive = item === activeOption;
+        item.classList.toggle("is-active", isActive);
+        item.setAttribute("aria-pressed", String(isActive));
+      });
+    }
+
+    function setupDropdown(dropdown) {
+      const toggle = dropdown.querySelector(".filter-dropdown-toggle");
+      const searchInput = dropdown.querySelector(".filter-dropdown-search-input");
+
+      setDropdownValue(dropdown, dropdown.dataset.value || "all");
+      filterDropdownOptions(dropdown);
+
+      toggle?.addEventListener("click", () => {
+        const isOpen = dropdown.classList.contains("is-open");
+        closeAllDropdowns(dropdown);
+        dropdown.classList.toggle("is-open", !isOpen);
+        toggle.setAttribute("aria-expanded", String(!isOpen));
+        if (!isOpen) {
+          window.setTimeout(() => searchInput?.focus(), 120);
+        }
+      });
+
+      searchInput?.addEventListener("input", () => {
+        filterDropdownOptions(dropdown);
+      });
+
+      dropdown.querySelectorAll(".filter-dropdown-option").forEach((option) => {
+        option.addEventListener("click", () => {
+          setDropdownValue(dropdown, option.dataset.value || "all");
+          searchInput.value = "";
+          filterDropdownOptions(dropdown);
+          closeDropdown(dropdown);
+          updateCertificates();
+        });
+      });
+    }
+
+    function updateCertificates() {
+      const searchTerm = (certificateSearch?.value || "").trim().toLowerCase();
+      const typeFilter = certificateTypeFilter?.dataset.value || "all";
+      const categoryFilter = certificateCategoryFilter?.dataset.value || "all";
       let visibleCount = 0;
 
       certificateCards.forEach((card) => {
         const cardCategory = card.dataset.category;
-        const shouldShow = filter === "all" || cardCategory === filter;
+        const cardType = card.dataset.type || "certificate";
+        const cardText = card.textContent.toLowerCase();
+        const matchesCategory = categoryFilter === "all" || cardCategory === categoryFilter;
+        const matchesType = typeFilter === "all" || cardType === typeFilter;
+        const matchesSearch = !searchTerm || cardText.includes(searchTerm);
+        const shouldShow = matchesCategory && matchesType && matchesSearch;
         card.style.display = shouldShow ? "flex" : "none";
         if (shouldShow) {
           visibleCount += 1;
@@ -1065,26 +1486,15 @@
 
       emptyState.classList.toggle("visible", visibleCount === 0);
 
-      if (filter === "all") {
-        resultsNote.textContent = "Showing all certification groups and files.";
-      } else if (filter === "myskill") {
-        resultsNote.textContent = "Showing MySkill certifications only.";
-      } else if (filter === "skill") {
-        resultsNote.textContent = "Showing the grouped TOEFL training PDF folder.";
-      } else if (filter === "trainee") {
-        resultsNote.textContent = "Showing trainee certifications only.";
-      } else {
-        resultsNote.textContent = "Showing competition certifications only.";
+      if (resultsTotal) {
+        resultsTotal.textContent = `Total: ${visibleCount}`;
       }
+
+      resultsNote.textContent = buildResultsNote(categoryFilter, typeFilter, searchTerm, visibleCount);
     }
 
-    filterButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        filterButtons.forEach((item) => item.classList.remove("active"));
-        button.classList.add("active");
-        updateCertificates(button.dataset.filter);
-      });
-    });
+    certificateSearch?.addEventListener("input", updateCertificates);
+    filterDropdowns.forEach(setupDropdown);
 
     function setToeflFolderOpen(isOpen) {
       toeflFolderModal.classList.toggle("is-open", isOpen);
@@ -1112,16 +1522,29 @@
       }
     });
 
+    document.addEventListener("click", (event) => {
+      if (!event.target.closest(".filter-dropdown")) {
+        closeAllDropdowns();
+      }
+    });
+
     toeflFolderToggle?.addEventListener("click", () => {
       setAccordionOpen(!toeflFolderAccordion.classList.contains("open"));
     });
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && toeflFolderModal?.classList.contains("is-open")) {
-        setToeflFolderOpen(false);
+      if (event.key === "Escape") {
+        closeAllDropdowns();
+
+        if (toeflFolderModal?.classList.contains("is-open")) {
+          setToeflFolderOpen(false);
+        }
       }
     });
+
+    updateCertificates();
   </script>
+  <script src="language-controls.js?v=20260410-2"></script>
   <script src="theme-controls.js"></script>
   <script src="zoom-controls.js"></script>
 </body>
