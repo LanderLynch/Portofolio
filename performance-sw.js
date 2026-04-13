@@ -1,17 +1,21 @@
-const STATIC_CACHE = "portfolio-static-v8";
-const RUNTIME_CACHE = "portfolio-runtime-v8";
+const STATIC_CACHE = "portfolio-static-v27";
+const RUNTIME_CACHE = "portfolio-runtime-v27";
 const CORE_ASSETS = [
   "/",
   "/index.html",
-  "/styles.css?v=20260410-5",
-  "/theme-palettes.css?v=20260410-4",
+  "/changelog.html",
+  "/styles.css?v=20260413-6",
+  "/theme-palettes.css?v=20260413-7",
   "/theme-controls.js?v=20260319-1",
   "/language-controls.js?v=20260410-2",
   "/project-card-utils.js",
   "/performance-utils.js",
   "/zoom-controls.css",
   "/zoom-controls.js",
-  "/theme-init.js"
+  "/theme-init.js",
+  "/webmeji-main/webmeji.css",
+  "/webmeji-main/config.js",
+  "/webmeji-main/webmeji.js"
 ];
 
 self.addEventListener("install", (event) => {

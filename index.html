@@ -6,8 +6,9 @@
   <title>Jona Setiawan - Portfolio</title>
   <script src="theme-init.js"></script>
   <link rel="icon" type="image/png" href="project/assets/logo-preview/logo-lemon.png" />
-  <link rel="stylesheet" href="styles.css?v=20260410-5">
-  <link rel="stylesheet" href="theme-palettes.css?v=20260410-4">
+  <link rel="stylesheet" href="styles.css?v=20260413-6">
+  <link rel="stylesheet" href="theme-palettes.css?v=20260413-7">
+  <link rel="stylesheet" href="webmeji-main/webmeji.css">
 </head>
 <body>
   <!-- Portfolio Title - Separated from Navigation -->
@@ -32,6 +33,21 @@
           </div>
         </div>
       </div>
+      <button class="sidebar-toggle-btn" id="desktop-sidebar-toggle" type="button" aria-label="Switch to topbar layout" aria-controls="desktop-sidebar-nav" data-layout-target="topbar">
+        <svg class="icon-svg sidebar-toggle-icon sidebar-toggle-icon-topbar" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3.5" y="4.5" width="17" height="15" rx="2.5"></rect>
+          <path d="M6.5 8.25h11"></path>
+          <path d="M6.5 11.75h11"></path>
+          <path d="M6.5 15.25h7.5"></path>
+        </svg>
+        <svg class="icon-svg sidebar-toggle-icon sidebar-toggle-icon-sidebar" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3.5" y="4.5" width="17" height="15" rx="2.5"></rect>
+          <path d="M9 4.5v15"></path>
+          <path d="M12.5 9h4"></path>
+          <path d="M12.5 12h4"></path>
+          <path d="M12.5 15h3"></path>
+        </svg>
+      </button>
     </div>
     <div class="desktop-theme-palette" role="group" aria-label="Color palette">
       <button class="zoom-theme-btn" type="button" data-theme-value="blue" aria-label="Blue mode" aria-pressed="false" title="Blue mode">
@@ -47,7 +63,7 @@
   </div>
 
   <!-- Navigation - Responsive Navigation Bar -->
-  <nav class="navbar">
+  <nav class="navbar" id="desktop-sidebar-nav" aria-label="Portfolio navigation">
     <div class="nav-container">
       <div class="mobile-current-chip" id="mobile-current-chip" aria-hidden="true">Beranda</div>
       <!-- Hamburger Menu Button (Mobile Only) -->
@@ -70,17 +86,29 @@
           </span>
           <span data-i18n-key="nav-about">Tentang</span>
         </a></li>
-        <li><a href="#certification" class="nav-link-item">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75"></path><path d="M9 3.75h6l4.5 4.5v8.25A2.25 2.25 0 0 1 17.25 18.75H6.75A2.25 2.25 0 0 1 4.5 16.5v-10.5A2.25 2.25 0 0 1 6.75 3.75H9Z"></path><path d="M15 3.75v4.5h4.5"></path></svg>
-          </span>
-          <span data-i18n-key="nav-certification">Pencapaian</span>
-        </a></li>
         <li><a href="#projects" class="nav-link-item">
           <span class="nav-icon" aria-hidden="true">
             <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 7.5h16.5A1.5 1.5 0 0 1 21.75 9v9.75a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5V9a1.5 1.5 0 0 1 1.5-1.5Z"></path><path d="M9 7.5V6A1.5 1.5 0 0 1 10.5 4.5h3A1.5 1.5 0 0 1 15 6v1.5"></path></svg>
           </span>
           <span data-i18n-key="nav-projects">Proyek</span>
+        </a></li>
+        <li><a href="#experience" class="nav-link-item">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 7.5h16.5A1.5 1.5 0 0 1 21.75 9v9.75a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5V9a1.5 1.5 0 0 1 1.5-1.5Z"></path><path d="M9 7.5V6A1.5 1.5 0 0 1 10.5 4.5h3A1.5 1.5 0 0 1 15 6v1.5"></path></svg>
+          </span>
+          <span data-i18n-key="nav-experience">Pengalaman</span>
+        </a></li>
+        <li><a href="#skills" class="nav-link-item">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 3.75v16.5"></path><path d="M12 8.25c-1.125 0-1.875-.375-3-1.5S6.75 5.25 5.25 5.25"></path><path d="M12 12c1.125 0 1.875-.375 3-1.5s2.25-1.5 3.75-1.5"></path><path d="M12 15.75c-1.125 0-1.875-.375-3-1.5s-2.25-1.5-3.75-1.5"></path><path d="M12 20.25c1.125 0 1.875-.375 3-1.5s2.25-1.5 3.75-1.5"></path></svg>
+          </span>
+          <span data-i18n-key="nav-skills">Keahlian</span>
+        </a></li>
+        <li><a href="#certification" class="nav-link-item">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75"></path><path d="M9 3.75h6l4.5 4.5v8.25A2.25 2.25 0 0 1 17.25 18.75H6.75A2.25 2.25 0 0 1 4.5 16.5v-10.5A2.25 2.25 0 0 1 6.75 3.75H9Z"></path><path d="M15 3.75v4.5h4.5"></path></svg>
+          </span>
+          <span data-i18n-key="nav-certification">Pencapaian</span>
         </a></li>
         <li><a href="#testimonials" class="nav-link-item">
           <span class="nav-icon" aria-hidden="true">
@@ -88,11 +116,11 @@
           </span>
           <span data-i18n-key="nav-testimonials">Buku Tamu</span>
         </a></li>
-        <li><a href="#contact" class="nav-link-item">
+        <li><a href="changelog.html" class="nav-link-item">
           <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M21.75 7.5v9A2.25 2.25 0 0 1 19.5 18.75h-15A2.25 2.25 0 0 1 2.25 16.5v-9"></path><path d="m3 6 8.29 6.217a1.2 1.2 0 0 0 1.42 0L21 6"></path></svg>
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 6.75v5.25l3.75 2.25"></path><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"></path></svg>
           </span>
-          <span data-i18n-key="nav-contact">Kontak</span>
+          <span data-i18n-key="nav-changelog">Changelog</span>
         </a></li>
       </ul>
     </div>
@@ -144,17 +172,29 @@
           </span>
           <span class="mobile-nav-label" data-i18n-key="nav-about">Tentang</span>
         </a>
-        <a href="#certification" class="nav-link-item mobile-nav-link">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75"></path><path d="M9 3.75h6l4.5 4.5v8.25A2.25 2.25 0 0 1 17.25 18.75H6.75A2.25 2.25 0 0 1 4.5 16.5v-10.5A2.25 2.25 0 0 1 6.75 3.75H9Z"></path><path d="M15 3.75v4.5h4.5"></path></svg>
-          </span>
-          <span class="mobile-nav-label" data-i18n-key="nav-certification">Pencapaian</span>
-        </a>
         <a href="#projects" class="nav-link-item mobile-nav-link">
           <span class="nav-icon" aria-hidden="true">
             <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 7.5h16.5A1.5 1.5 0 0 1 21.75 9v9.75a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5V9a1.5 1.5 0 0 1 1.5-1.5Z"></path><path d="M9 7.5V6A1.5 1.5 0 0 1 10.5 4.5h3A1.5 1.5 0 0 1 15 6v1.5"></path></svg>
           </span>
           <span class="mobile-nav-label" data-i18n-key="nav-projects">Proyek</span>
+        </a>
+        <a href="#experience" class="nav-link-item mobile-nav-link">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 7.5h16.5A1.5 1.5 0 0 1 21.75 9v9.75a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5V9a1.5 1.5 0 0 1 1.5-1.5Z"></path><path d="M9 7.5V6A1.5 1.5 0 0 1 10.5 4.5h3A1.5 1.5 0 0 1 15 6v1.5"></path></svg>
+          </span>
+          <span class="mobile-nav-label" data-i18n-key="nav-experience">Pengalaman</span>
+        </a>
+        <a href="#skills" class="nav-link-item mobile-nav-link">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 3.75v16.5"></path><path d="M12 8.25c-1.125 0-1.875-.375-3-1.5S6.75 5.25 5.25 5.25"></path><path d="M12 12c1.125 0 1.875-.375 3-1.5s2.25-1.5 3.75-1.5"></path><path d="M12 15.75c-1.125 0-1.875-.375-3-1.5s-2.25-1.5-3.75-1.5"></path><path d="M12 20.25c1.125 0 1.875-.375 3-1.5s2.25-1.5 3.75-1.5"></path></svg>
+          </span>
+          <span class="mobile-nav-label" data-i18n-key="nav-skills">Keahlian</span>
+        </a>
+        <a href="#certification" class="nav-link-item mobile-nav-link">
+          <span class="nav-icon" aria-hidden="true">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75"></path><path d="M9 3.75h6l4.5 4.5v8.25A2.25 2.25 0 0 1 17.25 18.75H6.75A2.25 2.25 0 0 1 4.5 16.5v-10.5A2.25 2.25 0 0 1 6.75 3.75H9Z"></path><path d="M15 3.75v4.5h4.5"></path></svg>
+          </span>
+          <span class="mobile-nav-label" data-i18n-key="nav-certification">Pencapaian</span>
         </a>
         <a href="#testimonials" class="nav-link-item mobile-nav-link">
           <span class="nav-icon" aria-hidden="true">
@@ -162,11 +202,11 @@
           </span>
           <span class="mobile-nav-label" data-i18n-key="nav-testimonials">Buku Tamu</span>
         </a>
-        <a href="#contact" class="nav-link-item mobile-nav-link">
+        <a href="changelog.html" class="nav-link-item mobile-nav-link">
           <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M21.75 7.5v9A2.25 2.25 0 0 1 19.5 18.75h-15A2.25 2.25 0 0 1 2.25 16.5v-9"></path><path d="m3 6 8.29 6.217a1.2 1.2 0 0 0 1.42 0L21 6"></path></svg>
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 6.75v5.25l3.75 2.25"></path><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"></path></svg>
           </span>
-          <span class="mobile-nav-label" data-i18n-key="nav-contact">Kontak</span>
+          <span class="mobile-nav-label" data-i18n-key="nav-changelog">Changelog</span>
         </a>
       </nav>
     </div>
@@ -1244,6 +1284,7 @@
     const mobileMenuCloseBtn = document.getElementById('mobile-menu-close');
     const mobileThemeToggleBtn = document.getElementById('mobile-theme-toggle');
     const mobileThemeLabel = document.getElementById('mobile-theme-label');
+    const desktopSidebarToggleBtn = document.getElementById('desktop-sidebar-toggle');
     const zoomControl = document.getElementById('zoom-control');
     const zoomToggleBtn = document.getElementById('zoom-toggle-btn');
     const zoomPanel = document.getElementById('zoom-panel');
@@ -1255,7 +1296,7 @@
     const returnScrollKey = 'portfolio-return-scroll';
     const returnScrollPendingKey = 'portfolio-return-pending';
     const zoomStorageKey = 'portfolio-page-zoom';
-    const zoomDefaultMigrationKey = 'portfolio-page-zoom-default-v3';
+    const desktopNavLayoutStorageKey = 'portfolio-desktop-nav-layout';
     const defaultZoom = 80;
     const minZoom = 60;
     const maxZoom = 120;
@@ -1278,13 +1319,7 @@
       return zoomValue;
     }
 
-    const savedZoom = Number(localStorage.getItem(zoomStorageKey));
-    const hasZoomDefaultMigration = localStorage.getItem(zoomDefaultMigrationKey) === 'true';
-    const initialZoom = !hasZoomDefaultMigration && (!Number.isFinite(savedZoom) || savedZoom === 60)
-      ? defaultZoom
-      : (Number.isFinite(savedZoom) ? savedZoom : defaultZoom);
-    let currentZoom = applyZoom(initialZoom);
-    localStorage.setItem(zoomDefaultMigrationKey, 'true');
+    let currentZoom = applyZoom(defaultZoom);
 
     function setZoomPanelState(isOpen) {
       if (!zoomControl || !zoomToggleBtn || !zoomPanel) {
@@ -1345,6 +1380,28 @@
       mobileThemeLabel.textContent = `${labelPrefix}: ${formatThemeName(activeTheme)}`;
     }
 
+    function setDesktopNavLayout(layout, shouldPersist = true) {
+      const nextLayout = layout === 'topbar' ? 'topbar' : 'sidebar';
+      document.body.classList.toggle('desktop-nav-topbar', nextLayout === 'topbar');
+
+      if (desktopSidebarToggleBtn) {
+        const targetLayout = nextLayout === 'topbar' ? 'sidebar' : 'topbar';
+        desktopSidebarToggleBtn.dataset.layoutTarget = targetLayout;
+        desktopSidebarToggleBtn.setAttribute(
+          'aria-label',
+          targetLayout === 'sidebar' ? 'Switch to sidebar layout' : 'Switch to topbar layout'
+        );
+        desktopSidebarToggleBtn.setAttribute('title', targetLayout === 'sidebar' ? 'Switch to sidebar layout' : 'Switch to topbar layout');
+      }
+
+      if (shouldPersist) {
+        localStorage.setItem(desktopNavLayoutStorageKey, nextLayout);
+      }
+    }
+
+    const storedDesktopNavLayout = localStorage.getItem(desktopNavLayoutStorageKey);
+    setDesktopNavLayout(storedDesktopNavLayout === 'topbar' ? 'topbar' : 'sidebar', false);
+
     function setMobileMenuState(isOpen) {
       if (!hamburgerBtn || !mobileMenuPanel) {
         return;
@@ -1397,6 +1454,13 @@
       }
     });
 
+    if (desktopSidebarToggleBtn) {
+      desktopSidebarToggleBtn.addEventListener('click', () => {
+        const targetLayout = desktopSidebarToggleBtn.dataset.layoutTarget === 'topbar' ? 'topbar' : 'sidebar';
+        setDesktopNavLayout(targetLayout);
+      });
+    }
+
     if (hamburgerBtn && mobileMenuPanel) {
       hamburgerBtn.addEventListener('click', () => {
         const shouldOpen = !mobileMenuPanel.classList.contains('active');
@@ -1433,6 +1497,11 @@
       window.addEventListener('resize', () => {
         if (window.innerWidth > 768) {
           setMobileMenuState(false);
+        }
+
+        if (window.innerWidth > 768) {
+          const persistedLayout = localStorage.getItem(desktopNavLayoutStorageKey);
+          setDesktopNavLayout(persistedLayout === 'topbar' ? 'topbar' : 'sidebar', false);
         }
       });
 
@@ -2021,6 +2090,8 @@
       showSuccessMessage
     };
   </script>
+  <script src="webmeji-main/config.js"></script>
+  <script src="webmeji-main/webmeji.js"></script>
 </body>
 </html>
 

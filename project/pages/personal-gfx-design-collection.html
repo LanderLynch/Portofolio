@@ -8,6 +8,7 @@
   <script src="../../theme-init.js"></script>
   <link rel="stylesheet" href="../../zoom-controls.css">
   <link rel="stylesheet" href="../../theme-palettes.css">
+  <link rel="stylesheet" href="../../webmeji-main/webmeji.css">
 
   <style>
     :root {
@@ -31,7 +32,13 @@
       box-sizing: border-box;
     }
 
+    html {
+      min-height: 100%;
+      background: var(--bg);
+    }
+
     body {
+      min-height: 100vh;
       font-family: "Inter", "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
@@ -664,7 +671,8 @@
       "result - yae miko.jpg",
       "result.jpg",
       "RUAN MEI.jpg",
-      "Zani wuthering wave.jpg"
+      "Zani wuthering wave.jpg",
+      "Columbina design GFX.jpg",
     ];
 
     const formatTitle = (file) => {
@@ -707,5 +715,7 @@
   <script src="../../language-controls.js?v=20260410-2"></script>
   <script src="../../theme-controls.js"></script>
   <script src="../../zoom-controls.js"></script>
+  <script src="../../webmeji-main/config.js"></script>
+  <script src="../../webmeji-main/webmeji.js"></script>
 </body>
 </html>

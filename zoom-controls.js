@@ -10,8 +10,8 @@
     return;
   }
 
-  const storageKey = zoomControl.dataset.zoomStorageKey || "portfolio-shared-page-zoom";
-  const defaultZoom = Number(zoomControl.dataset.zoomDefault) || 80;
+  const storageKey = "portfolio-shared-page-zoom";
+  const defaultZoom = 80;
   const minZoom = 60;
   const maxZoom = 120;
   const step = 10;
@@ -35,8 +35,7 @@
     zoomPanel.setAttribute("aria-hidden", String(!isOpen));
   }
 
-  const savedZoom = Number(localStorage.getItem(storageKey));
-  let currentZoom = applyZoom(Number.isFinite(savedZoom) ? savedZoom : defaultZoom);
+  let currentZoom = applyZoom(defaultZoom);
 
   zoomToggle.addEventListener("click", function () {
     setPanelState(!zoomControl.classList.contains("open"));

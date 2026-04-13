@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="project/assets/logo-preview/logo-lemon.png" />
+  <title>Changelog - Jona Setiawan</title>
+  <script src="theme-init.js"></script>
+  <link rel="stylesheet" href="zoom-controls.css" />
+  <link rel="stylesheet" href="theme-palettes.css?v=20260413-7" />
+  <link rel="stylesheet" href="webmeji-main/webmeji.css" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+    :root {
+      --bg: #05101d;
+      --bg-strong: #020617;
+      --surface: rgba(10, 23, 42, 0.82);
+      --surface-soft: rgba(15, 30, 51, 0.72);
+      --surface-bright: rgba(12, 28, 50, 0.92);
+      --border: rgba(148, 163, 184, 0.18);
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #60a5fa;
+      --accent-soft: rgba(96, 165, 250, 0.14);
+      --shadow: 0 24px 70px rgba(2, 6, 23, 0.42);
+      --radius-xl: 32px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --content-width: 1200px;
+    }
+
+    html[data-theme="light"],
+    body[data-theme="light"] {
+      --bg: #f6f8fc;
+      --bg-strong: #e5ebf6;
+      --surface: rgba(255, 255, 255, 0.84);
+      --surface-soft: rgba(255, 255, 255, 0.78);
+      --surface-bright: rgba(255, 255, 255, 0.92);
+      --border: rgba(140, 155, 184, 0.18);
+      --text: #2f3654;
+      --muted: #6a7390;
+      --accent: #5a6fa8;
+      --accent-soft: rgba(90, 111, 168, 0.14);
+      --shadow: 0 24px 70px rgba(166, 174, 191, 0.18);
+    }
+
+    html[data-theme="blue"],
+    body[data-theme="blue"] {
+      --bg: #08111f;
+      --bg-strong: #020617;
+      --surface: rgba(10, 23, 42, 0.82);
+      --surface-soft: rgba(15, 30, 51, 0.72);
+      --surface-bright: rgba(12, 28, 50, 0.92);
+      --border: rgba(148, 163, 184, 0.18);
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #60a5fa;
+      --accent-soft: rgba(96, 165, 250, 0.14);
+      --shadow: 0 24px 70px rgba(2, 6, 23, 0.42);
+    }
+
+    html[data-theme="galaxy"],
+    body[data-theme="galaxy"] {
+      --bg: #140b24;
+      --bg-strong: #080312;
+      --surface: rgba(35, 20, 58, 0.82);
+      --surface-soft: rgba(48, 28, 78, 0.72);
+      --surface-bright: rgba(43, 25, 72, 0.92);
+      --border: rgba(194, 169, 255, 0.16);
+      --text: #efe8ff;
+      --muted: #b8add8;
+      --accent: #b794ff;
+      --accent-soft: rgba(183, 148, 255, 0.14);
+      --shadow: 0 24px 70px rgba(8, 3, 18, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Inter", "Segoe UI", sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, color-mix(in srgb, var(--accent) 26%, transparent), transparent 34%),
+        radial-gradient(circle at 84% 10%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 26%),
+        linear-gradient(180deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 88%, var(--bg-strong)) 55%, var(--bg-strong) 100%);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.92em;
+      padding: 0.08rem 0.4rem;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--surface-soft) 88%, transparent);
+      border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+    }
+
+    .page-shell {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding: 1rem 1.2rem;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--surface) 78%, transparent);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-soft);
+      border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border));
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      flex: 0 0 auto;
+    }
+
+    .brand-mark img {
+      width: 78%;
+      height: 78%;
+      object-fit: contain;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.85rem 1.35rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      background: color-mix(in srgb, var(--surface) 72%, transparent);
+      border: 1px solid var(--border);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+      background: var(--accent-soft);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 2.5rem;
+      border-radius: calc(var(--radius-xl) + 8px);
+      background:
+        radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 20%, transparent), transparent 30%),
+        color-mix(in srgb, var(--surface) 78%, transparent);
+      border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      margin-bottom: 2rem;
+    }
+
+    .hero-kicker {
+      margin: 0 0 0.85rem;
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 1rem 0 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .hero-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border));
+      color: color-mix(in srgb, var(--accent) 64%, white);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.75rem;
+    }
+
+    .hero-stat {
+      padding: 1.2rem 1.3rem;
+      border-radius: var(--radius-lg);
+      background: color-mix(in srgb, var(--surface) 90%, white 10%);
+      border: 1px solid var(--border);
+      box-shadow: 0 16px 38px rgba(2, 6, 23, 0.1);
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-size: 1.55rem;
+    }
+
+    .hero-stat span {
+      color: var(--muted);
+    }
+
+    .preview-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .preview-card {
+      padding: 1.15rem 1.2rem;
+      border-radius: var(--radius-lg);
+      background: color-mix(in srgb, var(--surface-soft) 94%, white 6%);
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 45px rgba(2, 6, 23, 0.14);
+      backdrop-filter: blur(16px);
+    }
+
+    .preview-card span {
+      display: inline-block;
+      margin-bottom: 0.55rem;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .preview-card strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 1.1rem;
+    }
+
+    .preview-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .timeline-entry {
+      padding: 1.8rem;
+      border-radius: calc(var(--radius-xl) + 4px);
+      background: color-mix(in srgb, var(--surface) 82%, transparent);
+      border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .entry-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .entry-head h2 {
+      margin: 0;
+      font-size: clamp(1.9rem, 4vw, 2.75rem);
+      line-height: 1.02;
+    }
+
+    .entry-head p {
+      margin: 0.45rem 0 0;
+      color: var(--muted);
+    }
+
+    .entry-date {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border));
+      color: color-mix(in srgb, var(--accent) 64%, white);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .change-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .change-card {
+      padding: 1.35rem;
+      border-radius: var(--radius-lg);
+      background: color-mix(in srgb, var(--surface-bright) 96%, white 4%);
+      border: 1px solid var(--border);
+      box-shadow: 0 16px 40px rgba(2, 6, 23, 0.12);
+    }
+
+    .change-card h3 {
+      margin: 0 0 0.85rem;
+      font-size: 1.12rem;
+      line-height: 1.2;
+    }
+
+    .change-list {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--muted);
+    }
+
+    .change-list li + li {
+      margin-top: 0.5rem;
+    }
+
+    .footer-note {
+      margin-top: 1.5rem;
+      padding: 1rem 1.2rem;
+      border-radius: var(--radius-md);
+      background: var(--accent-soft);
+      border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+      color: var(--muted);
+    }
+
+    .floating-language-toggle {
+      background: color-mix(in srgb, var(--surface-bright) 90%, transparent);
+      border-color: var(--border);
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+    }
+
+    .floating-language-toggle .mobile-language-btn {
+      background: color-mix(in srgb, var(--surface) 88%, white);
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .floating-language-toggle .mobile-language-btn.is-active {
+      background: var(--accent-soft);
+      border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
+    }
+
+    @media (max-width: 1000px) {
+      .preview-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero-stats,
+      .change-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .entry-head {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page-shell {
+        padding: 1.25rem 1rem 3rem;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: stretch;
+        border-radius: 1.5rem;
+      }
+
+      .hero,
+      .timeline-entry {
+        padding: 1.35rem;
+      }
+
+      .preview-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">
+          <img src="project/assets/logo-preview/logo-lemon.png" alt="Lemon Logo" loading="eager" decoding="async" />
+        </span>
+        <span data-i18n-key="changelog-brand">Portfolio Changelog</span>
+      </div>
+      <a href="index.html" class="back-btn" data-i18n-key="changelog-back">Back to Portfolio</a>
+    </header>
+
+    <section class="hero">
+      <p class="hero-kicker" data-i18n-key="changelog-kicker">Latest Update</p>
+      <h1 data-i18n-key="changelog-title">Today's Changelog</h1>
+      <p data-i18n-key="changelog-desc">This page keeps today's exact work recap in one place, with the biggest portfolio changes grouped into a clean release-style preview.</p>
+
+      <div class="hero-meta">
+        <span class="hero-chip">April 13, 2026</span>
+        <span class="hero-chip" data-i18n-key="changelog-chip-scope">Homepage, mobile UI, guestbook, Firebase, mascot</span>
+      </div>
+
+      <div class="hero-stats">
+        <article class="hero-stat">
+          <strong>12</strong>
+          <span data-i18n-key="changelog-stat-areas">Major change groups</span>
+        </article>
+        <article class="hero-stat">
+          <strong data-i18n-key="changelog-stat-day">1 day</strong>
+          <span data-i18n-key="changelog-stat-session">Focused update session</span>
+        </article>
+        <article class="hero-stat">
+          <strong data-i18n-key="changelog-stat-exact">Exact recap</strong>
+          <span data-i18n-key="changelog-stat-recap">Written from today's implemented work</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="preview-strip" aria-label="Changelog preview">
+      <article class="preview-card">
+        <span data-i18n-key="changelog-preview-nav-kicker">Navigation</span>
+        <strong data-i18n-key="changelog-preview-nav-title">Homepage + mobile refresh</strong>
+        <p data-i18n-key="changelog-preview-nav-desc">Sidebar, topbar, language access, and mobile menu cleanup all moved forward together.</p>
+      </article>
+      <article class="preview-card">
+        <span data-i18n-key="changelog-preview-guestbook-kicker">Guestbook</span>
+        <strong data-i18n-key="changelog-preview-guestbook-title">Better identity flow</strong>
+        <p data-i18n-key="changelog-preview-guestbook-desc">Avatar layout, Firebase uploads, and user-specific custom avatars were added and refined.</p>
+      </article>
+      <article class="preview-card">
+        <span data-i18n-key="changelog-preview-system-kicker">System</span>
+        <strong data-i18n-key="changelog-preview-system-title">Shared controls expanded</strong>
+        <p data-i18n-key="changelog-preview-system-desc">Language switching, cursor updates, and service-worker refreshes were rolled across the site.</p>
+      </article>
+      <article class="preview-card">
+        <span data-i18n-key="changelog-preview-webmeji-kicker">Webmeji</span>
+        <strong data-i18n-key="changelog-preview-webmeji-title">Furina integration</strong>
+        <p data-i18n-key="changelog-preview-webmeji-desc">The mascot setup was renamed, expanded, resized, and pushed closer to the Shimeji XML behavior style.</p>
+      </article>
+    </section>
+
+    <article class="timeline-entry">
+      <div class="entry-head">
+        <div>
+          <h2>April 13, 2026</h2>
+          <p data-i18n-key="changelog-entry-subtitle">Exact recap of today's portfolio work session.</p>
+        </div>
+        <span class="entry-date" data-i18n-key="changelog-entry-today">Today</span>
+      </div>
+
+      <div class="change-grid">
+        <section class="change-card">
+          <h3 data-i18n-key="changelog-section-homepage">Homepage Navigation</h3>
+          <ul class="change-list">
+            <li data-i18n-key="changelog-li-homepage-intro">Reworked the homepage navigation a lot:</li>
+            <li data-i18n-html-key="changelog-li-homepage-switching">added desktop <code>sidebar / topbar</code> switching</li>
+            <li data-i18n-key="changelog-li-homepage-order">changed the sidebar menu order</li>
+            <li data-i18n-key="changelog-li-homepage-position">adjusted sidebar vertical position several times</li>
+            <li data-i18n-html-key="changelog-li-homepage-language">added the floating <code>ID / ENG</code> language toggle on the homepage too</li>
+          </ul>
+        </section>
+
+        <section class="change-card">
+          <h3 data-i18n-key="changelog-section-mobile">Mobile Menu</h3>
+          <ul class="change-list">
+            <li data-i18n-key="changelog-li-mobile-intro">Rebuilt the mobile menu:</li>
+            <li data-i18n-key="changelog-li-mobile-popout">replaced the older popout with a cleaner glass-style mobile menu</li>
+            <li data-i18n-key="changelog-li-mobile-profile">removed oversized profile/name blocks from the opened menu</li>
+            <li data-i18n-key="changelog-li-mobile-heights">reduced mobile button heights</li>
+            <li data-i18n-key="changelog-li-mobile-controls">fixed the mobile top controls so the chip and hamburger don't sit inside a broken oversized capsule</li>
+          </ul>
+        </section>
+
+        <section class="change-card">
+          <h3 data-i18n-key="changelog-section-zoom">Zoom And Page Scale</h3>
+          <ul class="change-list">
+            <li data-i18n-key="changelog-li-zoom-intro">Removed zoom UI across the site:</li>
+            <li data-i18n-key="changelog-li-zoom-hide">hid zoom controls on homepage and shared pages</li>
+            <li data-i18n-html-key="changelog-li-zoom-default">kept page zoom defaulted to <code>80%</code></li>
+            <li data-i18n-key="changelog-li-zoom-mobile">removed zoom buttons on mobile only where requested</li>
+          </ul>
+        </section>
+
+        <section class="change-card">
+          <h3 data-i18n-key="changelog-section-language">Language System</h3>
+          <ul class="change-list">
+            <li data-i18n-key="changelog-li-language-intro">Added sitewide language switching:</li>
+            <li data-i18n-html-key="changelog-li-language-shared">created shared language handling in <code>language-controls.js</code></li>
+            <li data-i18n-html-key="changelog-li-language-persist">made <code>ID / ENG</code> persist with <code>localStorage</code></li>
+            <li data-i18n-key="changelog-li-language-common">translated common labels, nav items, and page text across homepage, certification, and project pages</li>
+          </ul>
+        </section>
+
+        <section class="change-card">
+          <h3 data-i18n-key="changelog-section-guestbook">Guestbook</h3>
+          <ul class="change-list">
+            <li data-i18n-key="changelog-li-guestbook-intro">Reworked guestbook features:</li>
+            <li data-i18n-key="changelog-li-guestbook-mobile">improved mobile guestbook message layout so avatars can sit beside chat bubbles</li>
+            <li data-i18n-key="changelog-li-guestbook-right">fixed right-side/admin-author message alignment</li>
+            <li data-i18n-key="changelog-li-guestbook-upload">added custom avatar upload in the avatar chooser</li>
+            <li data-i18n-key="changelog-li-guestbook-storage">stored uploaded avatars in Firebase Storage per user UID</li>
+            <li data-i18n-key="changelog-li-guestbook-reuse">kept uploaded avatars reusable for that same signed-in user only</li>
+          </ul>
+        </section>
+
+        <section class="change-card">
+          <h3 data-i18n-key="changelog-section-storage">Firebase Storage</h3>
+          <ul class="change-list">
+            <li data-i18n-key="changelog-li-storage-intro">Updated Firebase Storage setup:</li>
+            <li data-i18n-html-key="changelog-li-storage-path">defined <code>guestbook-avatars/{userId}/{fileName}</code></li>
+            <li data-i18n-key="changelog-li-storage-rules">added secure upload/delete rules for signed-in owners only</li>
+            <li data-i18n-html-key="changelog-li-storage-limit">limited uploads to image files under <code>2 MB</code></li>
+          </ul>
+        </section>
+
+        <section class="change-card">
+          <h3 data-i18n-key="changelog-section-certification">Certification Page</h3>
+          <ul class="change-list">
+            <li data-i18n-key="changelog-li-certification-intro">Improved the certification page:</li>
+            <li data-i18n-key="changelog-li-certification-filter">replaced simple click filters with search + type/category filter UI</li>
+            <li data-i18n-key="changelog-li-certification-layout">added mobile-friendly stacked filter layout and desktop row layout</li>
+            <li data-i18n-key="changelog-li-certification-soft">added softer dropdown-style behavior and smoother filter interactions</li>
+          </ul>
+        </section>
+
+        <section class="change-card">
+          <h3 data-i18n-key="changelog-section-theme">Theme Utilities</h3>
+          <ul class="change-list">
+            <li data-i18n-key="changelog-li-theme-intro">Changed desktop theme/utility placement:</li>
+            <li data-i18n-key="changelog-li-theme-palette">moved the palette out of the zoom group and into its own top-left desktop bar</li>
+            <li data-i18n-key="changelog-li-theme-separation">kept desktop and mobile behavior separated more clearly</li>
+          </ul>
+        </section>
+
+        <section class="change-card">
+          <h3 data-i18n-key="changelog-section-cursor">Cursor</h3>
+          <ul class="change-list">
+            <li data-i18n-key="changelog-li-cursor-intro">Added and tuned custom cursors:</li>
+            <li data-i18n-html-key="changelog-li-cursor-support">wired custom cursor support through <code>theme-palettes.css</code></li>
+            <li data-i18n-key="changelog-li-cursor-small">switched to your smaller cursor assets</li>
+            <li data-i18n-key="changelog-li-cursor-same">made all cursor states use the same image</li>
+            <li data-i18n-key="changelog-li-cursor-fix">fixed missing cursor issues caused by oversized source images</li>
+          </ul>
+        </section>
+
+        <section class="change-card">
+          <h3 data-i18n-key="changelog-section-webmeji">Webmeji Integration</h3>
+          <ul class="change-list">
+            <li data-i18n-key="changelog-li-webmeji-intro">Integrated Webmeji mascot support:</li>
+            <li data-i18n-key="changelog-li-webmeji-add">added one roaming mascot across homepage, certification, and project pages</li>
+            <li data-i18n-html-key="changelog-li-webmeji-drag">fixed drag math for the site's <code>80%</code> zoom</li>
+            <li data-i18n-key="changelog-li-webmeji-drop">fixed the mascot's drop-to-bottom math</li>
+            <li data-i18n-html-key="changelog-li-webmeji-rename">renamed the mascot setup from <code>miku</code> to <code>Furina</code></li>
+            <li data-i18n-html-key="changelog-li-webmeji-chase">added <code>ChaseMouse</code> and <code>SitAndFaceMouse</code>-style behavior</li>
+            <li data-i18n-html-key="changelog-li-webmeji-variants">expanded Furina frame usage with <code>v2 / v3</code> variants where available</li>
+            <li data-i18n-key="changelog-li-webmeji-size">increased mascot size a few times, currently larger than the original setup</li>
+          </ul>
+        </section>
+
+        <section class="change-card">
+          <h3 data-i18n-key="changelog-section-furina">Furina Behavior</h3>
+          <ul class="change-list">
+            <li data-i18n-key="changelog-li-furina-intro">Reworked Furina behavior closer to Shimeji XML logic:</li>
+            <li data-i18n-key="changelog-li-furina-actions">added more literal action-style sequences for sit, look up, spin head, dangle legs, lie down, crawl, run, dash, falling, and climbing</li>
+            <li data-i18n-key="changelog-li-furina-follow">added more structured follow-up behavior chains after sitting/chasing/falling</li>
+          </ul>
+        </section>
+
+        <section class="change-card">
+          <h3 data-i18n-key="changelog-section-pagefixes">Page Fixes</h3>
+          <ul class="change-list">
+            <li data-i18n-key="changelog-li-pagefixes-intro">Fixed page-specific issues:</li>
+            <li data-i18n-html-key="changelog-li-pagefixes-gfx">fixed the <code>Personal GFX Design Collection</code> page background mismatch by aligning <code>html</code> and <code>body</code> background behavior</li>
+            <li data-i18n-key="changelog-li-pagefixes-cache">refreshed multiple cached assets through repeated service worker version bumps so changes actually show up</li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="footer-note" data-i18n-key="changelog-footer">
+        This page shows today's exact changelog. Future updates can be added as new dated entries with the same structure.
+      </div>
+    </article>
+  </div>
+
+  <script>
+    (function () {
+      const defaultZoom = 80;
+      document.body.classList.add("zoom-ready");
+      document.body.style.setProperty("--page-zoom", String(defaultZoom / 100));
+    })();
+  </script>
+  <script src="language-controls.js?v=20260410-2"></script>
+  <script src="theme-controls.js"></script>
+  <script src="webmeji-main/config.js"></script>
+  <script src="webmeji-main/webmeji.js"></script>
+</body>
+</html>
