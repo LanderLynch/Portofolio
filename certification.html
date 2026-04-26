@@ -6,11 +6,12 @@
   <link rel="icon" type="image/png" href="project/assets/logo-preview/logo-lemon.png" />
   <title>Certification - Jona Setiawan</title>
   <script src="theme-init.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="zoom-controls.css" />
   <link rel="stylesheet" href="webmeji-main/webmeji.css" />
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
-
     :root {
       --bg: #05101d;
       --surface: rgba(10, 23, 42, 0.82);
@@ -21,6 +22,7 @@
       --accent: #60a5fa;
       --accent-strong: #2563eb;
       --accent-soft: rgba(96, 165, 250, 0.16);
+      --focus-ring: 0 0 0 4px color-mix(in srgb, var(--accent) 28%, transparent);
       --shadow: 0 24px 70px rgba(2, 6, 23, 0.42);
       --radius-xl: 28px;
       --radius-lg: 20px;
@@ -34,8 +36,9 @@
 
     body {
       margin: 0;
-      font-family: "Inter", "Segoe UI", sans-serif;
-      line-height: 1.6;
+      font-family: "Plus Jakarta Sans", "Inter", "Segoe UI", sans-serif;
+      line-height: 1.65;
+      letter-spacing: 0;
       color: var(--text);
       background:
         radial-gradient(circle at top left, rgba(96, 165, 250, 0.18), transparent 34%),
@@ -80,10 +83,20 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      min-height: 2.95rem;
       text-decoration: none;
       font-weight: 700;
+      line-height: 1.25;
+      text-align: center;
+      overflow-wrap: anywhere;
       border-radius: 999px;
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    :where(a, button, input):focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      box-shadow: var(--focus-ring);
     }
 
     .back-btn {
@@ -372,6 +385,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
       gap: 1rem;
       margin-bottom: 1.5rem;
     }
@@ -444,6 +458,13 @@
       background: linear-gradient(135deg, var(--accent-strong), var(--accent));
       color: #fff;
       box-shadow: 0 18px 32px rgba(37, 99, 235, 0.28);
+    }
+
+    .certificate-link:focus-visible {
+      outline-color: #ffffff;
+      box-shadow:
+        0 18px 32px rgba(37, 99, 235, 0.28),
+        0 0 0 4px color-mix(in srgb, var(--accent) 32%, transparent);
     }
 
     .folder-card {
@@ -539,6 +560,7 @@
       padding: 1.5rem;
       background: rgba(2, 6, 23, 0.7);
       backdrop-filter: blur(12px);
+      overscroll-behavior: contain;
     }
 
     .folder-modal.is-open {
@@ -548,7 +570,7 @@
     .folder-modal-card {
       position: relative;
       width: min(100%, 760px);
-      max-height: min(88vh, 820px);
+      max-height: min(88dvh, 820px);
       overflow: auto;
       padding: 1.5rem;
       border-radius: calc(var(--radius-xl) + 4px);
@@ -685,6 +707,11 @@
       border: 1px solid color-mix(in srgb, var(--accent) 10%, var(--border));
     }
 
+    .folder-file .certificate-link {
+      flex: 0 0 auto;
+      max-width: 16rem;
+    }
+
     .folder-file-copy {
       min-width: 0;
     }
@@ -710,6 +737,10 @@
 
     .empty-state.visible {
       display: block;
+    }
+
+    [hidden] {
+      display: none !important;
     }
 
     .page-zoom-toggle,
@@ -929,6 +960,10 @@
     }
 
     @media (max-width: 720px) {
+      .page-shell {
+        padding: 1rem 1rem 3rem;
+      }
+
       .topbar {
         border-radius: 24px;
         flex-direction: column;
@@ -937,6 +972,11 @@
 
       .hero {
         padding: 1.5rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.15rem, 15vw, 3.15rem);
+        line-height: 1;
       }
 
       .hero-stats {
@@ -967,6 +1007,22 @@
         align-items: stretch;
       }
 
+      .folder-modal {
+        align-items: stretch;
+        padding: 0.75rem;
+      }
+
+      .folder-modal-card {
+        width: 100%;
+        max-height: calc(100dvh - 1.5rem);
+        padding: 1rem;
+        border-radius: var(--radius-lg);
+      }
+
+      .folder-modal-header {
+        padding-right: 3rem;
+      }
+
       .folder-card-head,
       .folder-toggle-copy {
         grid-template-columns: 1fr;
@@ -981,6 +1037,17 @@
       .folder-toggle {
         grid-template-columns: 1fr auto;
         align-items: start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
       }
     }
   </style>
@@ -1103,8 +1170,8 @@
       </div>
     </div>
 
-    <div class="filter-summary">
-      <p class="results-total" id="results-total">Total: 11</p>
+    <div class="filter-summary" aria-live="polite">
+      <p class="results-total" id="results-total">Shown: 12</p>
       <p class="section-note" id="results-note">Showing all certification groups and files.</p>
     </div>
 
@@ -1165,7 +1232,7 @@
         <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan - E-Certif SC Color and Typography MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
       </article>
 
-      <article class="certificate-card folder-card" data-category="skill" data-type="folder">
+      <article class="certificate-card folder-card" data-category="skill" data-type="folder" data-search="toefl itp introduction listening skill part a listening skill part b c reading introduction explicit questions implicit questions vocabulary written structure writing expression pdf">
         <span class="certificate-tag">Skill</span>
         <div class="folder-card-head">
           <span class="folder-icon" aria-hidden="true">
@@ -1211,7 +1278,7 @@
   </div>
 
   <div class="folder-modal" id="toefl-folder-modal" aria-hidden="true">
-    <div class="folder-modal-card" role="dialog" aria-modal="true" aria-labelledby="toefl-folder-title">
+    <div class="folder-modal-card" role="dialog" aria-modal="true" aria-labelledby="toefl-folder-title" tabindex="-1">
       <button class="folder-modal-close" type="button" id="toefl-folder-close-btn" aria-label="Close TOEFL folder">&times;</button>
       <div class="folder-modal-header">
         <p class="folder-modal-kicker">Skill Group</p>
@@ -1351,6 +1418,8 @@
     const toeflFolderCloseBtn = document.getElementById("toefl-folder-close-btn");
     const toeflFolderAccordion = document.getElementById("toefl-folder-accordion");
     const toeflFolderToggle = document.getElementById("toefl-folder-toggle");
+    const toeflFolderDialog = toeflFolderModal?.querySelector(".folder-modal-card");
+    let lastFocusedElement = null;
 
     function buildResultsNote(categoryFilter, typeFilter, searchTerm, visibleCount) {
       const parts = [];
@@ -1377,7 +1446,7 @@
         return "Showing all certification groups and files.";
       }
 
-      return `Showing ${visibleCount} result${visibleCount === 1 ? "" : "s"} for ${parts.join(" | ")}.`;
+      return `Showing ${visibleCount} result${visibleCount === 1 ? "" : "s"} for ${parts.join(" / ")}.`;
     }
 
     function closeDropdown(dropdown) {
@@ -1474,7 +1543,7 @@
       certificateCards.forEach((card) => {
         const cardCategory = card.dataset.category;
         const cardType = card.dataset.type || "certificate";
-        const cardText = card.textContent.toLowerCase();
+        const cardText = `${card.textContent} ${card.dataset.search || ""}`.toLowerCase();
         const matchesCategory = categoryFilter === "all" || cardCategory === categoryFilter;
         const matchesType = typeFilter === "all" || cardType === typeFilter;
         const matchesSearch = !searchTerm || cardText.includes(searchTerm);
@@ -1488,7 +1557,7 @@
       emptyState.classList.toggle("visible", visibleCount === 0);
 
       if (resultsTotal) {
-        resultsTotal.textContent = `Total: ${visibleCount}`;
+        resultsTotal.textContent = `Shown: ${visibleCount}`;
       }
 
       resultsNote.textContent = buildResultsNote(categoryFilter, typeFilter, searchTerm, visibleCount);
@@ -1498,9 +1567,23 @@
     filterDropdowns.forEach(setupDropdown);
 
     function setToeflFolderOpen(isOpen) {
+      if (!toeflFolderModal) {
+        return;
+      }
+
+      if (isOpen) {
+        lastFocusedElement = document.activeElement;
+      }
+
       toeflFolderModal.classList.toggle("is-open", isOpen);
       toeflFolderModal.setAttribute("aria-hidden", String(!isOpen));
       document.body.style.overflow = isOpen ? "hidden" : "";
+
+      if (isOpen) {
+        window.setTimeout(() => toeflFolderCloseBtn?.focus(), 0);
+      } else if (lastFocusedElement instanceof HTMLElement) {
+        lastFocusedElement.focus();
+      }
     }
 
     function setAccordionOpen(isOpen) {
@@ -1534,6 +1617,24 @@
     });
 
     document.addEventListener("keydown", (event) => {
+      if (event.key === "Tab" && toeflFolderModal?.classList.contains("is-open")) {
+        const focusableElements = toeflFolderModal.querySelectorAll(
+          'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (firstElement && lastElement) {
+          if (event.shiftKey && document.activeElement === firstElement) {
+            event.preventDefault();
+            lastElement.focus();
+          } else if (!event.shiftKey && document.activeElement === lastElement) {
+            event.preventDefault();
+            firstElement.focus();
+          }
+        }
+      }
+
       if (event.key === "Escape") {
         closeAllDropdowns();
 

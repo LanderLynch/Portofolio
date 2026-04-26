@@ -11,7 +11,7 @@
   }
 
   const storageKey = "portfolio-shared-page-zoom";
-  const defaultZoom = 80;
+  const defaultZoom = window.portfolioResolutionScale?.getZoomPercent?.() || 80;
   const minZoom = 60;
   const maxZoom = 120;
   const step = 10;
@@ -24,6 +24,7 @@
     const zoom = clampZoom(value);
     document.body.classList.add("zoom-ready");
     document.body.style.setProperty("--page-zoom", String(zoom / 100));
+    document.documentElement.style.setProperty("--page-zoom", String(zoom / 100));
     zoomValue.textContent = `${zoom}%`;
     localStorage.setItem(storageKey, String(zoom));
     return zoom;

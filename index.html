@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jona Setiawan - Portfolio</title>
   <script src="theme-init.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="project/assets/logo-preview/logo-lemon.png" />
   <link rel="stylesheet" href="styles.css?v=20260413-6">
   <link rel="stylesheet" href="theme-palettes.css?v=20260413-7">
@@ -1297,7 +1300,7 @@
     const returnScrollPendingKey = 'portfolio-return-pending';
     const zoomStorageKey = 'portfolio-page-zoom';
     const desktopNavLayoutStorageKey = 'portfolio-desktop-nav-layout';
-    const defaultZoom = 80;
+    const defaultZoom = window.portfolioResolutionScale?.getZoomPercent?.() || 80;
     const minZoom = 60;
     const maxZoom = 120;
     const zoomStep = 10;
@@ -1310,6 +1313,7 @@
       const zoomValue = clampZoom(value);
       document.body.classList.add('zoom-ready');
       document.body.style.setProperty('--page-zoom', String(zoomValue / 100));
+      document.documentElement.style.setProperty('--page-zoom', String(zoomValue / 100));
 
       if (zoomValueBtn) {
         zoomValueBtn.textContent = `${zoomValue}%`;

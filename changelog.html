@@ -298,6 +298,7 @@
 
     .timeline-entry {
       padding: 1.8rem;
+      margin-bottom: 2rem;
       border-radius: calc(var(--radius-xl) + 4px);
       background: color-mix(in srgb, var(--surface) 82%, transparent);
       border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
@@ -370,6 +371,74 @@
       margin-top: 0.5rem;
     }
 
+    .comparison-grid {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .comparison-row {
+      display: grid;
+      grid-template-columns: minmax(8rem, 0.72fr) minmax(0, 1fr) minmax(0, 1fr);
+      gap: 0.75rem;
+      align-items: stretch;
+      padding: 0.8rem;
+      border-radius: var(--radius-lg);
+      background: color-mix(in srgb, var(--surface-soft) 92%, transparent);
+      border: 1px solid color-mix(in srgb, var(--border) 92%, transparent);
+    }
+
+    .comparison-row.comparison-head {
+      background: var(--accent-soft);
+      border-color: color-mix(in srgb, var(--accent) 20%, var(--border));
+    }
+
+    .comparison-cell {
+      min-width: 0;
+      padding: 0.85rem 0.95rem;
+      border-radius: var(--radius-md);
+      background: color-mix(in srgb, var(--surface) 84%, transparent);
+      border: 1px solid color-mix(in srgb, var(--border) 74%, transparent);
+      color: var(--muted);
+    }
+
+    .comparison-cell strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.98rem;
+      line-height: 1.35;
+    }
+
+    .comparison-cell span {
+      display: block;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .comparison-label {
+      display: flex;
+      align-items: center;
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    .comparison-before {
+      border-color: color-mix(in srgb, var(--border) 92%, transparent);
+    }
+
+    .comparison-after {
+      background: color-mix(in srgb, var(--accent-soft) 74%, var(--surface) 26%);
+      border-color: color-mix(in srgb, var(--accent) 24%, var(--border));
+    }
+
+    .comparison-head .comparison-cell {
+      color: var(--text);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      background: color-mix(in srgb, var(--surface-bright) 72%, transparent);
+    }
+
     .footer-note {
       margin-top: 1.5rem;
       padding: 1rem 1.2rem;
@@ -404,7 +473,8 @@
 
     @media (max-width: 900px) {
       .hero-stats,
-      .change-grid {
+      .change-grid,
+      .comparison-row {
         grid-template-columns: 1fr;
       }
 
@@ -432,6 +502,47 @@
       .preview-strip {
         grid-template-columns: 1fr;
       }
+
+      .comparison-row {
+        padding: 0.7rem;
+      }
+
+      .comparison-head {
+        display: none;
+      }
+
+      .comparison-label::before {
+        content: "Area";
+        display: block;
+        margin-bottom: 0.35rem;
+        color: var(--accent);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .comparison-before::before {
+        content: "Before";
+        display: block;
+        margin-bottom: 0.35rem;
+        color: var(--accent);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .comparison-after::before {
+        content: "After";
+        display: block;
+        margin-bottom: 0.35rem;
+        color: var(--accent);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
     }
   </style>
 </head>
@@ -453,25 +564,120 @@
       <p data-i18n-key="changelog-desc">This page keeps today's exact work recap in one place, with the biggest portfolio changes grouped into a clean release-style preview.</p>
 
       <div class="hero-meta">
-        <span class="hero-chip">April 13, 2026</span>
-        <span class="hero-chip" data-i18n-key="changelog-chip-scope">Homepage, mobile UI, guestbook, Firebase, mascot</span>
+        <span class="hero-chip">April 27, 2026</span>
+        <span class="hero-chip" data-i18n-key="changelog-chip-scope">Performance, typography, light mode, scaling, motion system</span>
       </div>
 
       <div class="hero-stats">
         <article class="hero-stat">
-          <strong>12</strong>
-          <span data-i18n-key="changelog-stat-areas">Major change groups</span>
+          <strong>7</strong>
+          <span data-i18n-key="changelog-stat-areas">UI/UX upgrade areas</span>
         </article>
         <article class="hero-stat">
-          <strong data-i18n-key="changelog-stat-day">1 day</strong>
-          <span data-i18n-key="changelog-stat-session">Focused update session</span>
+          <strong data-i18n-key="changelog-stat-day">Zero-lag</strong>
+          <span data-i18n-key="changelog-stat-session">Transform and opacity motion pass</span>
         </article>
         <article class="hero-stat">
-          <strong data-i18n-key="changelog-stat-exact">Exact recap</strong>
-          <span data-i18n-key="changelog-stat-recap">Written from today's implemented work</span>
+          <strong data-i18n-key="changelog-stat-exact">Global scale</strong>
+          <span data-i18n-key="changelog-stat-recap">Resolution-aware page zoom</span>
         </article>
       </div>
     </section>
+
+    <article class="timeline-entry">
+      <div class="entry-head">
+        <div>
+          <h2>April 27, 2026</h2>
+          <p>UI/UX overhaul focused on smoother motion, better readability, adaptive scaling, and a cleaner premium presentation layer.</p>
+        </div>
+        <span class="entry-date">Today</span>
+      </div>
+
+      <div class="comparison-grid" role="table" aria-label="April 27 before and after changelog comparison">
+        <div class="comparison-row comparison-head" role="row">
+          <div class="comparison-cell comparison-label" role="columnheader">Area</div>
+          <div class="comparison-cell" role="columnheader">Before</div>
+          <div class="comparison-cell" role="columnheader">After</div>
+        </div>
+
+        <div class="comparison-row" role="row">
+          <div class="comparison-cell comparison-label" role="cell">Performance</div>
+          <div class="comparison-cell comparison-before" role="cell">
+            <span>Unsmooth and laggy animations that could feel heavy during hover and scroll interactions.</span>
+          </div>
+          <div class="comparison-cell comparison-after" role="cell">
+            <strong>Hardware-accelerated smooth UI</strong>
+            <span>Motion now leans on transform and opacity for a zero-lag interaction feel.</span>
+          </div>
+        </div>
+
+        <div class="comparison-row" role="row">
+          <div class="comparison-cell comparison-label" role="cell">Viewport Scaling</div>
+          <div class="comparison-cell comparison-before" role="cell">
+            <span>Static default zoom that did not adapt to smaller laptop and tablet-style widths.</span>
+          </div>
+          <div class="comparison-cell comparison-after" role="cell">
+            <strong>Dynamic JS scaling</strong>
+            <span>Resolution-aware scaling now targets 80% on 1920x1080 and 70% around 1024x768.</span>
+          </div>
+        </div>
+
+        <div class="comparison-row" role="row">
+          <div class="comparison-cell comparison-label" role="cell">Typography</div>
+          <div class="comparison-cell comparison-before" role="cell">
+            <span>Standard font treatment with less premium rhythm across body copy and headings.</span>
+          </div>
+          <div class="comparison-cell comparison-after" role="cell">
+            <strong>Premium sans-serif stack</strong>
+            <span>Plus Jakarta Sans and Inter now drive cleaner hierarchy, spacing, and readability.</span>
+          </div>
+        </div>
+
+        <div class="comparison-row" role="row">
+          <div class="comparison-cell comparison-label" role="cell">Light Mode Buttons</div>
+          <div class="comparison-cell comparison-before" role="cell">
+            <span>Button text could blend into the background and lose contrast in light mode.</span>
+          </div>
+          <div class="comparison-cell comparison-after" role="cell">
+            <strong>Readable white text</strong>
+            <span>Project buttons now use pure white text with smooth hover reveal effects.</span>
+          </div>
+        </div>
+
+        <div class="comparison-row" role="row">
+          <div class="comparison-cell comparison-label" role="cell">Loading State</div>
+          <div class="comparison-cell comparison-before" role="cell">
+            <span>No dedicated page-load feedback at the top of the viewport.</span>
+          </div>
+          <div class="comparison-cell comparison-after" role="cell">
+            <strong>Blue top-loading bar</strong>
+            <span>A dynamic loading progress line now runs across the top edge and fades out.</span>
+          </div>
+        </div>
+
+        <div class="comparison-row" role="row">
+          <div class="comparison-cell comparison-label" role="cell">Scroll Animations</div>
+          <div class="comparison-cell comparison-before" role="cell">
+            <span>Cards appeared statically with no staged reveal on scroll.</span>
+          </div>
+          <div class="comparison-cell comparison-after" role="cell">
+            <strong>Staggered reveal system</strong>
+            <span>Project and certification cards now reveal on scroll with lightweight Intersection Observer logic.</span>
+          </div>
+        </div>
+
+        <div class="comparison-row" role="row">
+          <div class="comparison-cell comparison-label" role="cell">Scrollbar & Selection</div>
+          <div class="comparison-cell comparison-before" role="cell">
+            <span>Browser default scrollbar and default text selection styling.</span>
+          </div>
+          <div class="comparison-cell comparison-after" role="cell">
+            <strong>Polished browser chrome</strong>
+            <span>Custom minimalist scrollbar and matching primary blue selection now align with the UI system.</span>
+          </div>
+        </div>
+      </div>
+    </article>
 
     <section class="preview-strip" aria-label="Changelog preview">
       <article class="preview-card">
@@ -641,9 +847,10 @@
 
   <script>
     (function () {
-      const defaultZoom = 80;
+      const defaultZoom = window.portfolioResolutionScale?.getZoomPercent?.() || 80;
       document.body.classList.add("zoom-ready");
       document.body.style.setProperty("--page-zoom", String(defaultZoom / 100));
+      document.documentElement.style.setProperty("--page-zoom", String(defaultZoom / 100));
     })();
   </script>
   <script src="language-controls.js?v=20260410-2"></script>

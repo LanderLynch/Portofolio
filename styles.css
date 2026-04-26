@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
-
 :root {
   --bg: #05101d;
   --bg-alt: #091827;
@@ -47,12 +45,36 @@ html {
 
 body {  
   margin: 0;
-  font-family: "Inter", "Segoe UI", sans-serif;
-  line-height: 1.6;
+  font-family: "Plus Jakarta Sans", "Inter", "Segoe UI", sans-serif;
+  line-height: 1.65;
+  letter-spacing: 0;
   color: var(--text);
   background: var(--bg);
   overflow-x: hidden;
   position: relative;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.hero-title,
+.section-title,
+.project-title {
+  font-family: "Plus Jakarta Sans", "Inter", "Segoe UI", sans-serif;
+  letter-spacing: 0;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+p,
+li,
+.project-description,
+.section-intro {
+  letter-spacing: 0;
+  line-height: 1.7;
 }
 
 body.zoom-ready {
@@ -675,7 +697,7 @@ body.desktop-nav-topbar .sidebar-toggle-icon-sidebar {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(236, 243, 249, 0.62));
   color: #233247;
   text-decoration: none;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .mobile-menu-action:hover,
@@ -812,7 +834,7 @@ body.desktop-nav-topbar .sidebar-toggle-icon-sidebar {
   border-radius: 999px;
   text-decoration: none;
   font-weight: 700;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .btn:hover {
@@ -1309,7 +1331,7 @@ body.desktop-nav-topbar .sidebar-toggle-icon-sidebar {
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 14px 30px rgba(37, 99, 235, 0.28);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .add-project-btn:hover,
@@ -1317,7 +1339,6 @@ body.desktop-nav-topbar .sidebar-toggle-icon-sidebar {
 .submit-btn:hover,
 .project-submit-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 34px rgba(37, 99, 235, 0.32);
 }
 
 .btn-icon {
@@ -1345,11 +1366,13 @@ body.desktop-nav-topbar .sidebar-toggle-icon-sidebar {
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
-  transition: transform 0.25s ease, border-color 0.25s ease;
+  transform: translate3d(0, 0, 0);
+  will-change: transform, opacity;
+  transition: transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease, border-color 0.2s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-8px);
+  transform: translate3d(0, -8px, 0);
   border-color: rgba(96, 165, 250, 0.35);
 }
 
@@ -1375,7 +1398,9 @@ body.desktop-nav-topbar .sidebar-toggle-icon-sidebar {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transform: translate3d(0, 0, 0) scale(1.001);
+  will-change: transform;
+  transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .featured-project .project-image {
@@ -1384,7 +1409,7 @@ body.desktop-nav-topbar .sidebar-toggle-icon-sidebar {
 }
 
 .project-card:hover .project-image img {
-  transform: scale(1.06);
+  transform: translate3d(0, 0, 0) scale(1.055);
 }
 
 .project-overlay {
@@ -1396,7 +1421,8 @@ body.desktop-nav-topbar .sidebar-toggle-icon-sidebar {
   padding: 1rem;
   background: linear-gradient(180deg, rgba(2, 6, 23, 0) 15%, rgba(2, 6, 23, 0.74) 100%);
   opacity: 0;
-  transition: opacity 0.25s ease;
+  will-change: opacity;
+  transition: opacity 0.22s ease;
 }
 
 .project-card:hover .project-overlay {
@@ -1420,6 +1446,12 @@ body.desktop-nav-topbar .sidebar-toggle-icon-sidebar {
   background: var(--quick-action-bg);
   border: 1px solid var(--quick-action-border);
   backdrop-filter: blur(10px);
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.18s ease, opacity 0.18s ease, border-color 0.18s ease;
+}
+
+.quick-action-btn:hover {
+  transform: translate3d(0, -2px, 0);
 }
 
 .quick-action-btn .icon-svg,
@@ -1519,22 +1551,46 @@ body.desktop-nav-topbar .sidebar-toggle-icon-sidebar {
 }
 
 .view-project-btn {
+  position: relative;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   align-self: flex-start;
   margin-top: 0.5rem;
   padding: 0.85rem 1.3rem;
   border-radius: 999px;
-  background: #ffffff;
-  color: #0f172a;
-  font-weight: 700;
+  background: #2563eb;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff !important;
+  font-weight: 800;
+  letter-spacing: 0;
   text-decoration: none;
-  box-shadow: 0 16px 32px rgba(255, 255, 255, 0.15);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  isolation: isolate;
+  overflow: hidden;
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.22);
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.view-project-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, #1d4ed8, #1e40af);
+  transform: translate3d(-105%, 0, 0);
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
 }
 
 .view-project-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.32);
+  transform: translate3d(0, -2px, 0);
+}
+
+.view-project-btn:hover::before {
+  transform: translate3d(0, 0, 0);
 }
 
 .project-admin-actions {
@@ -2730,14 +2786,13 @@ body.desktop-nav-topbar .sidebar-toggle-icon-sidebar {
   background: rgba(255, 255, 255, 0.04);
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .guestbook-avatar-option:hover,
 .guestbook-avatar-option.is-active {
   transform: translateY(-1px);
   border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
 }
 
 .guestbook-avatar-option img {
@@ -3140,7 +3195,7 @@ body.desktop-nav-topbar .sidebar-toggle-icon-sidebar {
   background: rgba(15, 23, 42, 0.72);
   color: var(--text);
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
 .form-group input:focus,
