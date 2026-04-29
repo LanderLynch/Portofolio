@@ -1,2115 +1,313 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jona Setiawan - Portfolio</title>
-  <script src="theme-init.js"></script>
+  <title>Jona Setiawan - Desktop Portfolio</title>
+  <meta name="description" content="Desktop-style portfolio of Jona Setiawan, multimedia designer and creative designer." />
   <link rel="icon" type="image/png" href="project/assets/logo-preview/logo-lemon.png" />
-  <link rel="stylesheet" href="styles.css?v=20260413-6">
-  <link rel="stylesheet" href="theme-palettes.css?v=20260413-7">
-  <link rel="stylesheet" href="webmeji-main/webmeji.css">
+  <link rel="stylesheet" href="desktop-layout.css" />
 </head>
 <body>
-  <!-- Portfolio Title - Separated from Navigation -->
-  <div class="portfolio-title-container">
-    <div class="portfolio-title-row">
-      <a href="#home" class="portfolio-title-link">
-        <img src="project/assets/logo-preview/logo-lemon.png" alt="Logo Lemon" class="portfolio-logo" loading="eager" decoding="async" fetchpriority="high" data-priority="high" />
-        <span class="portfolio-text">Beranda</span>
-      </a>
-      <div class="zoom-control" id="zoom-control">
-        <button class="zoom-toggle-btn" id="zoom-toggle-btn" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="zoom-panel">
-          <svg class="icon-svg" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
-        </button>
-        <div class="zoom-panel" id="zoom-panel" aria-hidden="true">
-          <div class="zoom-panel-group">
-            <span class="zoom-panel-label">Zoom</span>
-            <div class="zoom-panel-controls">
-              <button class="zoom-step-btn" id="zoom-out-btn" type="button" aria-label="Zoom out">-</button>
-              <button class="zoom-value-btn" id="zoom-value-btn" type="button" aria-label="Reset zoom to default">80%</button>
-              <button class="zoom-step-btn" id="zoom-in-btn" type="button" aria-label="Zoom in">+</button>
-            </div>
-          </div>
-        </div>
+  <div class="desktop" aria-label="Jona Setiawan desktop portfolio">
+    <div class="wallpaper" aria-hidden="true">
+      <div class="mountain mountain-one"></div>
+      <div class="mountain mountain-two"></div>
+      <div class="mountain mountain-three"></div>
+      <div class="window-mark">
+        <span></span><span></span><span></span><span></span>
       </div>
-      <button class="sidebar-toggle-btn" id="desktop-sidebar-toggle" type="button" aria-label="Switch to topbar layout" aria-controls="desktop-sidebar-nav" data-layout-target="topbar">
-        <svg class="icon-svg sidebar-toggle-icon sidebar-toggle-icon-topbar" viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="3.5" y="4.5" width="17" height="15" rx="2.5"></rect>
-          <path d="M6.5 8.25h11"></path>
-          <path d="M6.5 11.75h11"></path>
-          <path d="M6.5 15.25h7.5"></path>
-        </svg>
-        <svg class="icon-svg sidebar-toggle-icon sidebar-toggle-icon-sidebar" viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="3.5" y="4.5" width="17" height="15" rx="2.5"></rect>
-          <path d="M9 4.5v15"></path>
-          <path d="M12.5 9h4"></path>
-          <path d="M12.5 12h4"></path>
-          <path d="M12.5 15h3"></path>
-        </svg>
-      </button>
     </div>
-    <div class="desktop-theme-palette" role="group" aria-label="Color palette">
-      <button class="zoom-theme-btn" type="button" data-theme-value="blue" aria-label="Blue mode" aria-pressed="false" title="Blue mode">
-        <svg class="zoom-theme-icon" viewBox="0 0 24 24"><path d="M21 12.8A8.8 8.8 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg>
+
+    <header class="menu-bar">
+      <button class="start-mark" type="button" data-window-target="about" aria-label="Open About window">
+        <span></span><span></span><span></span><span></span>
       </button>
-      <button class="zoom-theme-btn" type="button" data-theme-value="light" aria-label="Light mode" aria-pressed="false" title="Light mode">
-        <svg class="zoom-theme-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.5"></path><path d="M12 19v2.5"></path><path d="M4.93 4.93l1.77 1.77"></path><path d="M17.3 17.3l1.77 1.77"></path><path d="M2.5 12H5"></path><path d="M19 12h2.5"></path><path d="M4.93 19.07l1.77-1.77"></path><path d="M17.3 6.7l1.77-1.77"></path></svg>
-      </button>
-      <button class="zoom-theme-btn" type="button" data-theme-value="galaxy" aria-label="Galaxy mode" aria-pressed="false" title="Galaxy mode">
-        <svg class="zoom-theme-icon hat-icon" viewBox="0 0 24 24"><path d="M4 19.5h16"></path><path d="M8 19.5c0-2.7 1.4-5.1 3.7-6.6l2.1-1.4-1.7-5.8-5.1 4.1"></path><path d="M14.4 9.8 17.7 8l2.3 5.9-3.9-.3"></path><path d="M13.2 4.5 14 6.2"></path><path d="M18.4 4.9l.4 1.2"></path><path d="M19.7 7.7l1.3.1"></path></svg>
-      </button>
-    </div>
-  </div>
-
-  <!-- Navigation - Responsive Navigation Bar -->
-  <nav class="navbar" id="desktop-sidebar-nav" aria-label="Portfolio navigation">
-    <div class="nav-container">
-      <div class="mobile-current-chip" id="mobile-current-chip" aria-hidden="true">Beranda</div>
-      <!-- Hamburger Menu Button (Mobile Only) -->
-      <button class="hamburger-menu" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobile-menu-panel">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
-
-      <ul class="nav-links">
-        <li><a href="#home" class="nav-link-item active">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5.25 9.75V21h13.5V9.75"></path></svg>
-          </span>
-          <span data-i18n-key="nav-home">Beranda</span>
-        </a></li>
-        <li><a href="#about" class="nav-link-item">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M15.75 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path><path d="M4.5 20.25a7.5 7.5 0 0 1 15 0"></path></svg>
-          </span>
-          <span data-i18n-key="nav-about">Tentang</span>
-        </a></li>
-        <li><a href="#projects" class="nav-link-item">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 7.5h16.5A1.5 1.5 0 0 1 21.75 9v9.75a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5V9a1.5 1.5 0 0 1 1.5-1.5Z"></path><path d="M9 7.5V6A1.5 1.5 0 0 1 10.5 4.5h3A1.5 1.5 0 0 1 15 6v1.5"></path></svg>
-          </span>
-          <span data-i18n-key="nav-projects">Proyek</span>
-        </a></li>
-        <li><a href="#experience" class="nav-link-item">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 7.5h16.5A1.5 1.5 0 0 1 21.75 9v9.75a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5V9a1.5 1.5 0 0 1 1.5-1.5Z"></path><path d="M9 7.5V6A1.5 1.5 0 0 1 10.5 4.5h3A1.5 1.5 0 0 1 15 6v1.5"></path></svg>
-          </span>
-          <span data-i18n-key="nav-experience">Pengalaman</span>
-        </a></li>
-        <li><a href="#skills" class="nav-link-item">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 3.75v16.5"></path><path d="M12 8.25c-1.125 0-1.875-.375-3-1.5S6.75 5.25 5.25 5.25"></path><path d="M12 12c1.125 0 1.875-.375 3-1.5s2.25-1.5 3.75-1.5"></path><path d="M12 15.75c-1.125 0-1.875-.375-3-1.5s-2.25-1.5-3.75-1.5"></path><path d="M12 20.25c1.125 0 1.875-.375 3-1.5s2.25-1.5 3.75-1.5"></path></svg>
-          </span>
-          <span data-i18n-key="nav-skills">Keahlian</span>
-        </a></li>
-        <li><a href="#certification" class="nav-link-item">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75"></path><path d="M9 3.75h6l4.5 4.5v8.25A2.25 2.25 0 0 1 17.25 18.75H6.75A2.25 2.25 0 0 1 4.5 16.5v-10.5A2.25 2.25 0 0 1 6.75 3.75H9Z"></path><path d="M15 3.75v4.5h4.5"></path></svg>
-          </span>
-          <span data-i18n-key="nav-certification">Pencapaian</span>
-        </a></li>
-        <li><a href="#testimonials" class="nav-link-item">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M7.5 8.25h9"></path><path d="M7.5 12h6"></path><path d="M5.25 4.5h13.5A2.25 2.25 0 0 1 21 6.75v8.25a2.25 2.25 0 0 1-2.25 2.25H12l-4.5 3v-3H5.25A2.25 2.25 0 0 1 3 15V6.75A2.25 2.25 0 0 1 5.25 4.5Z"></path></svg>
-          </span>
-          <span data-i18n-key="nav-testimonials">Buku Tamu</span>
-        </a></li>
-        <li><a href="changelog.html" class="nav-link-item">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 6.75v5.25l3.75 2.25"></path><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"></path></svg>
-          </span>
-          <span data-i18n-key="nav-changelog">Changelog</span>
-        </a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <aside class="mobile-menu-panel" id="mobile-menu-panel" aria-hidden="true">
-    <div class="mobile-menu-surface" role="dialog" aria-modal="true" aria-label="Mobile navigation menu" tabindex="-1">
-      <div class="mobile-menu-header">
-        <p class="mobile-menu-kicker" data-i18n-key="menu-kicker">PORTOFOLIO</p>
-        <button class="mobile-menu-close" id="mobile-menu-close" type="button" aria-label="Close menu">
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-
-      <div class="mobile-menu-language" role="group" aria-label="Language switcher">
-        <button class="mobile-language-btn" type="button" data-lang-value="id">ID</button>
-        <button class="mobile-language-btn" type="button" data-lang-value="en">ENG</button>
-      </div>
-
-      <div class="mobile-menu-actions" aria-label="Quick actions">
-        <a href="https://www.instagram.com/jona.mmzv/" target="_blank" rel="noreferrer" class="mobile-menu-action mobile-menu-direct">
-          <span class="mobile-menu-action-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"></path></svg>
-          </span>
-          <span class="mobile-menu-action-copy" data-i18n-key="menu-direct">PESAN LANGSUNG</span>
-        </a>
-
-        <button class="mobile-menu-action mobile-menu-theme" id="mobile-theme-toggle" type="button" aria-label="Change color theme">
-          <span class="mobile-menu-action-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.5"></path><path d="M12 19v2.5"></path><path d="M4.93 4.93l1.77 1.77"></path><path d="M17.3 17.3l1.77 1.77"></path><path d="M2.5 12H5"></path><path d="M19 12h2.5"></path><path d="M4.93 19.07l1.77-1.77"></path><path d="M17.3 6.7l1.77-1.77"></path></svg>
-          </span>
-          <span class="mobile-menu-action-copy" id="mobile-theme-label">THEME: LIGHT</span>
-        </button>
-      </div>
-
-      <div class="mobile-menu-divider" aria-hidden="true"></div>
-
-      <nav class="mobile-menu-nav" aria-label="Mobile portfolio navigation">
-        <a href="#home" class="nav-link-item mobile-nav-link active">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5.25 9.75V21h13.5V9.75"></path></svg>
-          </span>
-          <span class="mobile-nav-label" data-i18n-key="nav-home">Beranda</span>
-        </a>
-        <a href="#about" class="nav-link-item mobile-nav-link">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M15.75 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path><path d="M4.5 20.25a7.5 7.5 0 0 1 15 0"></path></svg>
-          </span>
-          <span class="mobile-nav-label" data-i18n-key="nav-about">Tentang</span>
-        </a>
-        <a href="#projects" class="nav-link-item mobile-nav-link">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 7.5h16.5A1.5 1.5 0 0 1 21.75 9v9.75a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5V9a1.5 1.5 0 0 1 1.5-1.5Z"></path><path d="M9 7.5V6A1.5 1.5 0 0 1 10.5 4.5h3A1.5 1.5 0 0 1 15 6v1.5"></path></svg>
-          </span>
-          <span class="mobile-nav-label" data-i18n-key="nav-projects">Proyek</span>
-        </a>
-        <a href="#experience" class="nav-link-item mobile-nav-link">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 7.5h16.5A1.5 1.5 0 0 1 21.75 9v9.75a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5V9a1.5 1.5 0 0 1 1.5-1.5Z"></path><path d="M9 7.5V6A1.5 1.5 0 0 1 10.5 4.5h3A1.5 1.5 0 0 1 15 6v1.5"></path></svg>
-          </span>
-          <span class="mobile-nav-label" data-i18n-key="nav-experience">Pengalaman</span>
-        </a>
-        <a href="#skills" class="nav-link-item mobile-nav-link">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 3.75v16.5"></path><path d="M12 8.25c-1.125 0-1.875-.375-3-1.5S6.75 5.25 5.25 5.25"></path><path d="M12 12c1.125 0 1.875-.375 3-1.5s2.25-1.5 3.75-1.5"></path><path d="M12 15.75c-1.125 0-1.875-.375-3-1.5s-2.25-1.5-3.75-1.5"></path><path d="M12 20.25c1.125 0 1.875-.375 3-1.5s2.25-1.5 3.75-1.5"></path></svg>
-          </span>
-          <span class="mobile-nav-label" data-i18n-key="nav-skills">Keahlian</span>
-        </a>
-        <a href="#certification" class="nav-link-item mobile-nav-link">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75"></path><path d="M9 3.75h6l4.5 4.5v8.25A2.25 2.25 0 0 1 17.25 18.75H6.75A2.25 2.25 0 0 1 4.5 16.5v-10.5A2.25 2.25 0 0 1 6.75 3.75H9Z"></path><path d="M15 3.75v4.5h4.5"></path></svg>
-          </span>
-          <span class="mobile-nav-label" data-i18n-key="nav-certification">Pencapaian</span>
-        </a>
-        <a href="#testimonials" class="nav-link-item mobile-nav-link">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M7.5 8.25h9"></path><path d="M7.5 12h6"></path><path d="M5.25 4.5h13.5A2.25 2.25 0 0 1 21 6.75v8.25a2.25 2.25 0 0 1-2.25 2.25H12l-4.5 3v-3H5.25A2.25 2.25 0 0 1 3 15V6.75A2.25 2.25 0 0 1 5.25 4.5Z"></path></svg>
-          </span>
-          <span class="mobile-nav-label" data-i18n-key="nav-testimonials">Buku Tamu</span>
-        </a>
-        <a href="changelog.html" class="nav-link-item mobile-nav-link">
-          <span class="nav-icon" aria-hidden="true">
-            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 6.75v5.25l3.75 2.25"></path><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"></path></svg>
-          </span>
-          <span class="mobile-nav-label" data-i18n-key="nav-changelog">Changelog</span>
-        </a>
+      <nav class="menu-links" aria-label="Desktop navigation">
+        <button type="button" data-window-target="about">About</button>
+        <button type="button" data-window-target="projects">Project</button>
+        <button type="button" data-window-target="skills">Skill tree</button>
+        <button type="button" data-window-target="experience">Experience</button>
+        <button type="button" data-window-target="achievement">Achievement</button>
+        <a href="changelog.html" data-browser-tab="Changelog">Changelog</a>
+        <button type="button" data-window-target="guestbook">Guestbook</button>
       </nav>
-    </div>
-  </aside>
+      <div class="menu-status">
+        <span>Jona OS</span>
+        <time id="desktop-clock" datetime="">--:--</time>
+      </div>
+    </header>
 
-  <!-- Home Section -->
-  <section id="home" class="home-section" data-section-label="Beranda">
-    <h1 class="hero-title">Jona Setiawan</h1>
-    <div class="typing-container">
-      <span class="typing" id="typing-text">MULTIMEDIA DESIGNER</span>
-    </div>
-    
-    <div class="button-group">
-      <a href="https://drive.usercontent.google.com/download?id=18oRkNH1VU8Gg_WOEhky9bfeP1LufCNkr&export=download&authuser=5&confirm=t&uuid=6b7a7de9-1694-4107-b6bd-43112cf1555f&at=AN8xHops-tHAbhs0J98uHkYxc9pB:1753280713067" class="btn btn-secondary" data-i18n-key="hero-download-cv">Unduh CV</a>
-      <a href="certification.html" class="btn btn-secondary" data-i18n-key="hero-certification">Sertifikasi</a>
-      <a href="#projects" class="btn btn-primary" data-i18n-key="hero-explore-projects">Lihat Proyek</a>
-    </div>
-    
-    <div class="social-links">
-      <a href="https://www.instagram.com/jona.mmzv/" target="_blank" class="social-btn" aria-label="Instagram">
-        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="3.75" y="3.75" width="16.5" height="16.5" rx="4.5"></rect>
-          <circle cx="12" cy="12" r="3.75"></circle>
-          <circle cx="17.25" cy="6.75" r="0.75" class="social-icon-fill"></circle>
-        </svg>
-      </a>
-      <a href="https://www.linkedin.com/in/jona-setiawan-099149311/" target="_blank" class="social-btn" aria-label="LinkedIn">
-        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M7.125 9.75V18"></path>
-          <path d="M7.125 6.75h.015"></path>
-          <path d="M11.25 18V9.75"></path>
-          <path d="M16.875 18v-4.5a2.625 2.625 0 0 0-5.25 0"></path>
-          <rect x="3.75" y="3.75" width="16.5" height="16.5" rx="4.5"></rect>
-        </svg>
-      </a>
-      <a href="https://github.com/LanderLynch" target="_blank" class="social-btn" aria-label="GitHub">
-        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M9 18.75c-3.75 1.125-3.75-2.25-5.25-2.625"></path>
-          <path d="M14.25 21v-2.91c0-.78.06-1.17-.375-1.5 2.82-.315 5.775-1.38 5.775-6.24a4.875 4.875 0 0 0-1.305-3.39 4.53 4.53 0 0 0-.075-3.345s-1.065-.315-3.495 1.29a11.94 11.94 0 0 0-6.75 0c-2.43-1.605-3.495-1.29-3.495-1.29a4.53 4.53 0 0 0-.075 3.345A4.875 4.875 0 0 0 3.15 10.35c0 4.83 2.955 5.895 5.775 6.24-.435.33-.435.99-.375 1.5V21"></path>
-          <path d="M12 2.625a9.375 9.375 0 0 0-2.97 18.27"></path>
-          <path d="M12 2.625a9.375 9.375 0 0 1 2.25 18.48"></path>
-        </svg>
-      </a>
-      <a href="https://x.com/CandyLordberry/media" target="_blank" class="social-btn" aria-label="X">
-        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4.5 4.5 19.5 19.5"></path>
-          <path d="M19.5 4.5 4.5 19.5"></path>
-        </svg>
-      </a>
-    </div>
-    
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-value">1+</div>
-        <div>Years Experience</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">Design GFX</div>
-        <div>Main Skill</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">10+</div>
-        <div>Projects</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">70/100</div>
-        <div>AVG Score</div>
-      </div>
-    </div>
-    
-    <div class="scroll-indicator">
-      <a href="#about" class="scroll-indicator-link">&#x25BC; Scroll Down</a>
-    </div>
-  </section>
+    <main class="desktop-stage">
+      <section class="desktop-window is-open is-focused" id="window-about" data-window="about" aria-labelledby="about-title">
+        <div class="window-titlebar">
+          <div class="traffic-lights">
+            <button class="traffic maximize" type="button" data-window-maximize aria-label="Maximize About"></button>
+            <button class="traffic close" type="button" data-window-close aria-label="Close About"></button>
+          </div>
+          <p>About.exe</p>
+        </div>
+        <div class="window-content about-layout">
+          <div class="profile-wrap">
+            <div class="profile-panel">
+              <img src="https://i.pinimg.com/736x/51/6b/3d/516b3dfcab87be8bbf46c9ed05184eeb.jpg" alt="Jona Setiawan profile" />
+            </div>
+            <span>Available for creative design work</span>
+          </div>
+          <div>
+            <p class="eyebrow">Multimedia Designer</p>
+            <h1 id="about-title">Jona Setiawan</h1>
+            <p class="lead">I build visual identities, GFX edits, product mockups, photography archives, and web layouts with a strong focus on presentation, detail, and visual storytelling.</p>
+            <div class="quick-actions">
+              <button type="button" data-window-target="projects">Open Projects</button>
+              <button type="button" data-window-target="achievement">View Achievements</button>
+              <a href="mailto:jonasaevuddyinsetiawan@gmail.com">Contact</a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <section id="about" class="about-section" data-section-label="Tentang">
-    <div class="about-header">
-      <h2 class="about-main-title">About Me</h2>
-      <p class="about-subtitle">Discover my journey, passions, and the story behind my work</p>
-    </div>
-    
-    <div class="about-content-wrapper">
-      <div class="about-image-container">
-        <img src="https://i.pinimg.com/736x/51/6b/3d/516b3dfcab87be8bbf46c9ed05184eeb.jpg" alt="Jona Setiawan Photo" loading="lazy" decoding="async" fetchpriority="low" />
-        
-        <!-- Floating Skill Icons -->
-        <div class="floating-icon html" title="HTML5">
-          &lt;/&gt;
-        </div>
-        <div class="floating-icon css" title="CSS3">
-          { }
-        </div>
-        <div class="floating-icon react" title="React" aria-label="React icon">
-          <svg class="floating-react-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="1.9"></circle>
-            <ellipse cx="12" cy="12" rx="9" ry="3.9"></ellipse>
-            <ellipse cx="12" cy="12" rx="9" ry="3.9" transform="rotate(60 12 12)"></ellipse>
-            <ellipse cx="12" cy="12" rx="9" ry="3.9" transform="rotate(120 12 12)"></ellipse>
-          </svg>
-        </div>
-        <div class="floating-icon javascript" title="Logo Lemon">
-          <img src="project/assets/logo-preview/logo-lemon.png" alt="Logo Lemon" class="floating-icon-image" loading="lazy" decoding="async" fetchpriority="low" />
-        </div>
-      </div>
-      <div class="about-info-grid">
-        <div class="info-card">
-          <div class="info-card-header">
-            <div class="info-icon" aria-hidden="true">
-              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M15.75 6.75a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"></path><path d="M4.5 20.25a7.5 7.5 0 0 1 15 0"></path></svg>
-            </div>
-            <h3>Who Am I</h3>
+      <section class="desktop-window window-projects" id="window-projects" data-window="projects" aria-labelledby="projects-title">
+        <div class="window-titlebar">
+          <div class="traffic-lights">
+            <button class="traffic maximize" type="button" data-window-maximize aria-label="Maximize Projects"></button>
+            <button class="traffic close" type="button" data-window-close aria-label="Close Projects"></button>
           </div>
-          <p>I'm a multimedia designer who specializes in graphic design and visual communication. With a background in multimedia design, I create engaging visual content that tells compelling stories.</p>
+          <p>Project Finder</p>
         </div>
-        
-        <div class="info-card">
-          <div class="info-card-header">
-            <div class="info-icon" aria-hidden="true">
-              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 3.75a6 6 0 0 0-3.75 10.687c.49.39.75.987.75 1.613v.45h6v-.45c0-.626.26-1.223.75-1.613A6 6 0 0 0 12 3.75Z"></path><path d="M9.75 18.75h4.5"></path><path d="M10.5 21h3"></path></svg>
+        <div class="window-content project-showcase">
+          <div class="window-heading project-heading">
+            <div>
+              <h2 id="projects-title">Explore My Diverse Design Portfolio</h2>
+              <p>Browse selected visual identity, photography, campaign, and GFX projects inside the desktop browser.</p>
             </div>
-            <h3>My Approach</h3>
           </div>
-          <p>I focus on creative storytelling through visual design, combining technical skills with artistic vision to deliver impactful multimedia experiences that resonate with audiences.</p>
-        </div>
-        
-        <div class="personal-info-card">
-          <div class="info-card-header">
-            <div class="info-icon" aria-hidden="true">
-              <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 8.25h.008v.008H12V8.25Z"></path><path d="M11.25 12h1.5v4.5h1.5"></path><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path></svg>
-            </div>
-            <h3>Personal Info</h3>
-          </div>
-          
-          <div class="personal-info-grid">
-            <div class="personal-info-item">
-              <div class="personal-info-icon" aria-hidden="true">
-                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M16.5 3.75 20.25 7.5"></path><path d="m3.75 20.25 4.5-1.125L19.5 7.875a1.59 1.59 0 0 0 0-2.25l-1.125-1.125a1.59 1.59 0 0 0-2.25 0L4.875 15.75 3.75 20.25Z"></path></svg>
+          <div class="project-grid project-grid-archive">
+            <a class="project-card project-card-featured" href="project/pages/personal-gfx-design-collection.html" data-browser-tab="GFX">
+              <img src="project/assets/preview-professional-gfx-design-suite.jpg" alt="Personal GFX design collection preview" />
+              <div class="project-card-body">
+                <div class="project-title-row"><h3>Personal GFX Design Collection</h3><span class="status status-growing">On-going</span></div>
+                <p>An ongoing personal GFX project featuring character edits, poster compositions, layered effects, and typography experiments built from my latest design work.</p>
+                <div class="project-tags"><span>Adobe Photoshop</span><span>Adobe Illustrator</span><span>Photo Manipulation</span><span>Typography</span></div>
+                <div class="project-meta"><span>Still Going</span><span>Personal Project</span></div>
+                <strong>View Full Project -></strong>
               </div>
-              <div class="personal-info-content">
-                <span class="personal-info-label">Name:</span>
-                <span class="personal-info-value">Jona Setiawan</span>
+            </a>
+            <a class="project-card" href="project/pages/ikm-design-creative-project.html" data-browser-tab="IKM Design">
+              <img src="project/assets/logo-preview/internusa-kreasindo-mandiri.jpg" alt="IKM design creative project preview" />
+              <div class="project-card-body">
+                <div class="project-title-row"><h3>IKM Design Creative Project</h3><span class="status status-growing">On-going</span></div>
+                <p>The main job work project focused on IKM design tasks and creative production for brand and bag-related visual needs.</p>
+                <div class="project-tags"><span>Adobe Photoshop</span><span>Adobe Illustrator</span><span>Canva</span></div>
+                <div class="project-meta"><span>Agustus 2025</span><span>Main work</span></div>
+                <strong>View Full Project -></strong>
               </div>
-            </div>
-            
-            <div class="personal-info-item">
-              <div class="personal-info-icon" aria-hidden="true">
-                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg>
+            </a>
+            <a class="project-card" href="project/pages/marketing-assistant-hr.html" data-browser-tab="Marketing Assistant HR">
+              <img src="project/assets/logo-preview/fortress-logo.jpg" alt="Marketing Assistant HR preview" />
+              <div class="project-card-body">
+                <div class="project-title-row"><h3>Marketing & Assistant HR</h3><span class="status status-completed">Completed</span></div>
+                <p>Training / PKL project at Fortress focused on marketing support, social media and advertisement tasks, plus assistant HR administration organized through an Excel-based workflow.</p>
+                <div class="project-tags"><span>Excel</span><span>Marketing Social Media</span><span>Advertisement</span><span>Assistant HR</span></div>
+                <div class="project-meta"><span>September 2022 - November 2022</span><span>Training / PKL</span></div>
+                <strong>View Full Project -></strong>
               </div>
-              <div class="personal-info-content">
-                <span class="personal-info-label">Date of Birth:</span>
-                <span class="personal-info-value">Juni 05, 2006</span>
+            </a>
+            <a class="project-card" href="project/pages/event-poster-campaign.html" data-browser-tab="Event Poster">
+              <img src="project/assets/kota-tua/poster.jpg" alt="Event poster campaign preview" />
+              <div class="project-card-body">
+                <div class="project-title-row"><h3>Event Poster Campaign</h3><span class="status status-completed">Completed</span></div>
+                <p>Eye-catching poster designs for events and campaigns featuring bold typography, vibrant colors, and compelling visual hierarchy.</p>
+                <div class="project-tags"><span>Adobe Photoshop</span><span>Adobe Illustrator</span><span>Typography</span><span>Print Design</span></div>
+                <div class="project-meta"><span>September 2024</span><span>Client Work</span></div>
+                <strong>View Full Project -></strong>
               </div>
-            </div>
-            
-            <div class="personal-info-item">
-              <div class="personal-info-icon" aria-hidden="true">
-                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 21s6-5.245 6-11.25a6 6 0 1 0-12 0C6 15.755 12 21 12 21Z"></path><path d="M12 12.75a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg>
+            </a>
+            <a class="project-card" href="project/pages/photography.html" data-browser-tab="Photography">
+              <img src="project/assets/kota-tua/cosplayer-1.jpg" alt="Photography archive preview" />
+              <div class="project-card-body">
+                <div class="project-title-row"><h3>Photography Archive</h3><span class="status status-growing">Growing</span></div>
+                <p>A living archive of client photography projects, organized by year with cover highlights and gallery previews for each shoot.</p>
+                <div class="project-tags"><span>Event Coverage</span><span>Portraits</span><span>Storytelling</span></div>
+                <div class="project-meta"><span>November 2025</span><span>Client Work</span></div>
+                <strong>View Full Project -></strong>
               </div>
-              <div class="personal-info-content">
-                <span class="personal-info-label">Place of Birth:</span>
-                <span class="personal-info-value">Tangerang, Indonesia</span>
+            </a>
+            <a class="project-card" href="project/pages/lariso-brand-identity.html" data-browser-tab="Lariso">
+              <img src="project/assets/lariso-project/Lariso logo circle.png" alt="Lariso brand identity preview" />
+              <div class="project-card-body">
+                <div class="project-title-row"><h3>Lariso Brand Identity</h3><span class="status status-completed">Completed</span></div>
+                <p>A story-driven snack brand identity project built from logo construction to pouch packaging iteration, final mockup presentation, and branded invoice collateral.</p>
+                <div class="project-tags"><span>Adobe Illustrator</span><span>Adobe Photoshop</span></div>
+                <div class="project-meta"><span>4 January 2026</span><span>Client Work</span></div>
+                <strong>View Full Project -></strong>
               </div>
-            </div>
-            
-            <div class="personal-info-item">
-              <div class="personal-info-icon" aria-hidden="true">
-                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M21.75 7.5v9A2.25 2.25 0 0 1 19.5 18.75h-15A2.25 2.25 0 0 1 2.25 16.5v-9"></path><path d="m3 6 8.29 6.217a1.2 1.2 0 0 0 1.42 0L21 6"></path></svg>
+            </a>
+            <a class="project-card" href="project/pages/honkai-star-rail-e-money-transit-series.html" data-browser-tab="HSR E-Money">
+              <img src="project/assets/E-Money card Design Honkai star rail/Preview belakang E-money HSR.jpg" alt="Honkai Star Rail e-money preview" />
+              <div class="project-card-body">
+                <div class="project-title-row"><h3>Honkai: Star Rail E-Money Transit Series</h3><span class="status status-completed">Completed</span></div>
+                <p>A custom public transit card series that translates Honkai: Star Rail character energy into collectible everyday merchandise with print-ready production thinking.</p>
+                <div class="project-tags"><span>Adobe Illustrator</span><span>Adobe Photoshop</span></div>
+                <div class="project-meta"><span>2 February 2026</span><span>Client Work</span></div>
+                <strong>View Full Project -></strong>
               </div>
-              <div class="personal-info-content">
-                <span class="personal-info-label">Email:</span>
-                <span class="personal-info-value">jonasaevuddyinsetiawan@gmail.com</span>
+            </a>
+            <a class="project-card" href="project/pages/documentary-kota-tua-ukk.html" data-browser-tab="Documentary Kota Tua">
+              <img src="project/assets/logo-preview/yuppentek-logo-kota-tua-version-banner.jpg" alt="Documentary Kota Tua UKK preview" />
+              <div class="project-card-body">
+                <div class="project-title-row"><h3>Documentary Kota Tua UKK</h3><span class="status status-progress">In Progress</span></div>
+                <p>School project documentation created in Kota Tua for a UKK assignment, focused on promoting the area through visual storytelling, editing, and supporting design assets.</p>
+                <div class="project-tags"><span>Adobe Premiere Pro</span><span>School Project</span><span>Photoshop</span><span>Documentary</span></div>
+                <div class="project-meta"><span>UKK Project</span><span>School Work</span></div>
+                <strong>View Full Project -></strong>
               </div>
-            </div>
-            
-            <div class="personal-info-item">
-              <div class="personal-info-icon" aria-hidden="true">
-                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372a1.5 1.5 0 0 0-1.22-1.474l-4.423-.884a1.5 1.5 0 0 0-1.463.486l-.97 1.293a12.035 12.035 0 0 1-5.223-5.223l1.293-.97a1.5 1.5 0 0 0 .486-1.463l-.884-4.423A1.5 1.5 0 0 0 5.872 2.25H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"></path></svg>
-              </div>
-              <div class="personal-info-content">
-                <span class="personal-info-label">Phone:</span>
-                <span class="personal-info-value">+62 895 2886 3062</span>
-              </div>
-            </div>
-            
-            <div class="personal-info-item">
-              <div class="personal-info-icon" aria-hidden="true">
-                <svg class="icon-svg" viewBox="0 0 24 24"><path d="m3.75 8.25 8.25-4.5 8.25 4.5-8.25 4.5-8.25-4.5Z"></path><path d="M6.75 10.5v4.125c0 .621.337 1.193.879 1.493A9.72 9.72 0 0 0 12 17.25a9.72 9.72 0 0 0 4.371-1.132 1.706 1.706 0 0 0 .879-1.493V10.5"></path><path d="M20.25 9.75v4.5"></path></svg>
-              </div>
-              <div class="personal-info-content">
-                <span class="personal-info-label">Education:</span>
-                <span class="personal-info-value">SMK YUPPENTEK 1 TANGERANG</span>
-              </div>
-            </div>
-            
-            <div class="personal-info-item">
-              <div class="personal-info-icon" aria-hidden="true">
-                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 3v18h18"></path><path d="M7.5 15V9.75"></path><path d="M12 15V6.75"></path><path d="M16.5 15v-3.75"></path></svg>
-              </div>
-              <div class="personal-info-content">
-                <span class="personal-info-label">AVG Score:</span>
-                <span class="personal-info-value">70/100</span>
-              </div>
-            </div>
+            </a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <!-- Enhanced Projects Section -->
-  <section id="projects" class="projects-section" data-section-label="Proyek">
-    <h2 class="section-title">My Creative Portfolio</h2>
-    <p class="section-subtitle">Explore my latest multimedia design projects and creative solutions</p>
-    <!-- Project Filter Tabs -->
-    <div class="project-filters">
-      <button class="filter-btn active" data-filter="all">All Projects</button>
-      <button class="filter-btn" data-filter="graphic">Graphic Design</button>
-      <button class="filter-btn" data-filter="multimedia">Multimedia</button>
-      <button class="filter-btn" data-filter="branding">Branding</button>
-      <button class="filter-btn" data-filter="video">Video Editing</button>
-      <button class="filter-btn" data-filter="ui">UI/UX</button>
-    </div>
-<div class="projects-container" id="projects-container">
-      <!-- Featured Project -->
-      <div class="project-card featured-project" data-category="graphic">
-        <div class="project-image">
-          <img src="https://i.pinimg.com/736x/e2/79/15/e2791594bb7f8ef98b33e94fa06de84b.jpg" alt="Personal GFX Design Collection" loading="lazy" decoding="async" fetchpriority="low" />
-          <div class="project-overlay">
-            <div class="project-quick-actions">
-              <a href="#" class="quick-action-btn" title="View Project" aria-label="View Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
-              <a href="#" class="quick-action-btn" title="Live Demo" aria-label="Live Demo"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M13.5 6H19.5V12"></path><path d="m10.5 13.5 9-9"></path><path d="M19.5 14.25v3A2.25 2.25 0 0 1 17.25 19.5h-10.5A2.25 2.25 0 0 1 4.5 17.25v-10.5A2.25 2.25 0 0 1 6.75 4.5h3"></path></svg></a>
-              <a href="#" class="quick-action-btn" title="Source Code" aria-label="Source Code"><svg class="icon-svg" viewBox="0 0 24 24"><path d="m8.25 8.25-4.5 3.75 4.5 3.75"></path><path d="m15.75 8.25 4.5 3.75-4.5 3.75"></path><path d="m13.5 4.5-3 15"></path></svg></a>
-            </div>
-          </div>
-        </div>
-        <div class="project-content">
-          <div class="project-header">
-            <h3 class="project-title">Personal GFX Design Collection</h3>
-            <span class="project-status in-progress">On-going</span>
-          </div>
-          <p class="project-description">An ongoing personal GFX project featuring character edits, poster compositions, layered effects, and typography experiments built from my latest design work.</p>
-          <div class="project-tech-stack">
-            <span class="tech-tag">Adobe Photoshop</span>
-            <span class="tech-tag">Adobe Illustrator</span>
-            <span class="tech-tag">Photo Manipulation</span>
-            <span class="tech-tag">Typography</span>
-          </div>
-          <div class="project-meta">
-            <div class="project-date">
-              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
-              <span>Still Going</span>
-            </div>
-            <div class="project-type">Personal Project</div>
-          </div>
-          <a href="project/pages/personal-gfx-design-collection.html" class="view-project-btn">
-            View Full Project &rarr;
-          </a>
-        </div>
-      </div>
-      
-      <!-- Regular Project Cards -->
-      
-      <div class="project-card" data-category="graphic">
-        <div class="project-image">
-          <img src="project/assets/logo-preview/internusa-kreasindo-mandiri.jpg" alt="Internusa Kreasindo Mandiri logo" loading="lazy" decoding="async" fetchpriority="low" />
-          <div class="project-overlay">
-            <div class="project-quick-actions">
-              <a href="#" class="quick-action-btn" title="View Project" aria-label="View Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
-              <a href="#" class="quick-action-btn" title="Case Study" aria-label="Case Study"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75"></path><path d="M9 3.75h6l4.5 4.5v8.25A2.25 2.25 0 0 1 17.25 18.75H6.75A2.25 2.25 0 0 1 4.5 16.5v-10.5A2.25 2.25 0 0 1 6.75 3.75H9Z"></path><path d="M15 3.75v4.5h4.5"></path></svg></a>
-            </div>
-          </div>
-        </div>
-        <div class="project-content">
-          <div class="project-header">
-            <h3 class="project-title">IKM Design Creative Project</h3>
-            <span class="project-status in-progress">On-going</span>
-          </div>
-          <p class="project-description">The main job work project focused on IKM design tasks and creative production for brand and bag-related visual needs.</p>
-          <div class="project-tech-stack">
-            <span class="tech-tag">Adobe Photoshop</span>
-            <span class="tech-tag">Adobe illustrator</span>
-            <span class="tech-tag">Canva</span>
-          </div>
-          <div class="project-meta">
-            <div class="project-date">
-              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
-              <span>Agustus 2025</span>
-            </div>
-            <div class="project-type">Main work</div>
-          </div>
-          <a href="project/pages/ikm-design-creative-project.html" class="view-project-btn">
-            View Full Project &rarr;
-          </a>
-        </div>
-      </div>
+      </section>
 
-      <div class="project-card" data-category="ui">
-        <div class="project-image">
-          <img src="project/assets/logo-preview/fortress-logo.jpg" alt="Fortress logo" loading="lazy" decoding="async" fetchpriority="low" />
-          <div class="project-overlay">
-            <div class="project-quick-actions">
-              <a href="project/pages/marketing-assistant-hr.html" class="quick-action-btn" title="View Project" aria-label="View Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
-              <a href="project/assets/project-fortress/riset-data-nama-fortress.xlsx" class="quick-action-btn" title="Open Workbook" aria-label="Open Workbook"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M19.5 14.25v3A2.25 2.25 0 0 1 17.25 19.5H6.75A2.25 2.25 0 0 1 4.5 17.25v-10.5A2.25 2.25 0 0 1 6.75 4.5h5.379a2.25 2.25 0 0 1 1.591.659l5.121 5.121a2.25 2.25 0 0 1 .659 1.591v.879"></path><path d="M12 8.25v6"></path><path d="m9.75 12 2.25 2.25L14.25 12"></path></svg></a>
-            </div>
+      <section class="desktop-window window-skills" id="window-skills" data-window="skills" aria-labelledby="skills-title">
+        <div class="window-titlebar">
+          <div class="traffic-lights">
+            <button class="traffic maximize" type="button" data-window-maximize aria-label="Maximize Skill tree"></button>
+            <button class="traffic close" type="button" data-window-close aria-label="Close Skill tree"></button>
+          </div>
+          <p>Skill Tree</p>
+        </div>
+        <div class="window-content">
+          <div class="window-heading">
+            <p class="eyebrow">Creative System</p>
+            <h2 id="skills-title">Skill tree</h2>
+          </div>
+          <div class="skill-map">
+            <article><strong>Branding</strong><span>Logo design, identity systems, color direction</span></article>
+            <article><strong>GFX Design</strong><span>Photoshop compositing, character edits, social visuals</span></article>
+            <article><strong>UI / Web</strong><span>HTML, CSS, responsive layouts, portfolio systems</span></article>
+            <article><strong>Photography</strong><span>Event coverage, documentary framing, archive curation</span></article>
+            <article><strong>Motion</strong><span>Premiere Pro, After Effects, story edits</span></article>
+            <article><strong>Production</strong><span>Mockups, print-ready visuals, marketing assets</span></article>
           </div>
         </div>
-        <div class="project-content">
-          <div class="project-header">
-            <h3 class="project-title">Marketing &amp; Assistant HR</h3>
-            <span class="project-status completed">Completed</span>
-          </div>
-          <p class="project-description">Training / PKL project at Fortress focused on marketing support, social media and advertisement tasks, plus assistant HR administration organized through an Excel-based workflow.</p>
-          <div class="project-tech-stack">
-            <span class="tech-tag">Excel</span>
-            <span class="tech-tag">Marketing Social Media</span>
-            <span class="tech-tag">Advertisement</span>
-            <span class="tech-tag">Assistant HR</span>
-          </div>
-          <div class="project-meta">
-            <div class="project-date">
-              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
-              <span>September 2022 - November 2022</span>
-            </div>
-            <div class="project-type">Training / PKL</div>
-          </div>
-          <a href="project/pages/marketing-assistant-hr.html" class="view-project-btn">
-            View Full Project &rarr;
-          </a>
-        </div>
-      </div>
-      
-      <div class="project-card" data-category="graphic">
-        <div class="project-image">
-          <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=500&h=300&fit=crop" alt="Event Poster Design" loading="lazy" decoding="async" fetchpriority="low" />
-          <div class="project-overlay">
-            <div class="project-quick-actions">
-              <a href="#" class="quick-action-btn" title="View Project" aria-label="View Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
-              <a href="#" class="quick-action-btn" title="Download" aria-label="Download"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 3.75v10.5"></path><path d="m8.25 10.5 3.75 3.75 3.75-3.75"></path><path d="M4.5 18.75h15"></path></svg></a>
-            </div>
-          </div>
-        </div>
-        <div class="project-content">
-          <div class="project-header">
-            <h3 class="project-title">Event Poster Campaign</h3>
-            <span class="project-status completed">Completed</span>
-          </div>
-          <p class="project-description">Eye-catching poster designs for events and campaigns featuring bold typography, vibrant colors, and compelling visual hierarchy.</p>
-          <div class="project-tech-stack">
-            <span class="tech-tag">Adobe Photoshop</span>
-            <span class="tech-tag">Adobe Illustrator</span>
-            <span class="tech-tag">Typography</span>
-            <span class="tech-tag">Print Design</span>
-          </div>
-          <div class="project-meta">
-            <div class="project-date">
-              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
-              <span>September 2024</span>
-            </div>
-            <div class="project-type">Client Work</div>
-          </div>
-          <a href="project/pages/event-poster-campaign.html" class="view-project-btn">
-            View Full Project &rarr;
-          </a>
-        </div>
-      </div>
+      </section>
 
-      <div class="project-card" data-category="multimedia">
-        <div class="project-image">
-          <img src="https://firebasestorage.googleapis.com/v0/b/portofolio-jsfolio.firebasestorage.app/o/photography%2F2025%2FNovember%2Fhaflah%20khotmul%20Qur%27an%20dan%20imtihan%20ke-4%2FDSCF1753.JPG?alt=media" alt="Haflah Khotmul Qur'an event photography" loading="lazy" decoding="async" fetchpriority="low" />
-          <div class="project-overlay">
-            <div class="project-quick-actions">
-              <a href="project/pages/photography.html" class="quick-action-btn" title="View Archive" aria-label="View Archive"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
-              <a href="project/pages/photography.html" class="quick-action-btn" title="Open Gallery" aria-label="Open Gallery"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 6.75h16.5v10.5H3.75z"></path><path d="m7.5 13.5 2.25-2.25 2.25 2.25 3-3 3 3"></path></svg></a>
-            </div>
+      <section class="desktop-window window-experience" id="window-experience" data-window="experience" aria-labelledby="experience-title">
+        <div class="window-titlebar">
+          <div class="traffic-lights">
+            <button class="traffic maximize" type="button" data-window-maximize aria-label="Maximize Experience"></button>
+            <button class="traffic close" type="button" data-window-close aria-label="Close Experience"></button>
           </div>
+          <p>Experience.log</p>
         </div>
-        <div class="project-content">
-          <div class="project-header">
-            <h3 class="project-title">Photography Archive</h3>
-            <span class="project-status in-progress">Growing</span>
+        <div class="window-content">
+          <div class="window-heading">
+            <p class="eyebrow">Timeline</p>
+            <h2 id="experience-title">Experience</h2>
           </div>
-          <p class="project-description">A living archive of client photography projects, organized by year with cover highlights and gallery previews for each shoot.</p>
-          <div class="project-tech-stack">
-            <span class="tech-tag">Event Coverage</span>
-            <span class="tech-tag">Portraits</span>
-            <span class="tech-tag">Storytelling</span>
-          </div>
-          <div class="project-meta">
-            <div class="project-date">
-              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
-              <span>November 2025</span>
-            </div>
-            <div class="project-type">Client Work</div>
-          </div>
-          <a href="project/pages/photography.html" class="view-project-btn">
-            View Full Project &rarr;
-          </a>
+          <ol class="timeline experience-cards">
+            <li>
+              <img src="project/assets/ikm-project/2026/March/s26 totebag.jpeg" alt="IKM creative design preview" />
+              <time>2025 Aug - Present</time>
+              <strong>Design Creative - PT Internusa Kreasindo Mandiri</strong>
+              <span>Producing social media visuals, product mockups, company presentation graphics, marketing layouts, and branded design assets from concept to delivery.</span>
+            </li>
+            <li>
+              <img src="project/assets/kota-tua/cosplayer-1.jpg" alt="Freelance photography preview" />
+              <time>2023 - Present</time>
+              <strong>Freelance Graphic Designer & Photographer</strong>
+              <span>Handling poster design, banners, GFX visuals, event documentation, portrait sessions, and curated web project pages for personal and client-facing archives.</span>
+            </li>
+            <li>
+              <img src="project/assets/certification-files/certification-trainee/aryaduta-trainee-website-certification.jpg" alt="Hotel trainee certificate preview" />
+              <time>Jul - Oct 2024</time>
+              <strong>Sport Desk Staff - Hotel Aryaduta Country Club</strong>
+              <span>Supported guest service, day-to-day reporting, sport facility operations, and promotion support while building stronger communication and service workflow habits.</span>
+            </li>
+          </ol>
         </div>
-      </div>
+      </section>
 
-      <div class="project-card" data-category="branding">
-        <div class="project-image">
-          <img src="project/assets/lariso-project/Lariso logo circle.png" alt="Lariso logo circle" loading="lazy" decoding="async" fetchpriority="low" />
-          <div class="project-overlay">
-            <div class="project-quick-actions">
-              <a href="project/pages/lariso-brand-identity.html" class="quick-action-btn" title="View Brand Story" aria-label="View Brand Story"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
-              <a href="project/pages/lariso-brand-identity.html" class="quick-action-btn" title="Open Project" aria-label="Open Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M13.5 6H19.5V12"></path><path d="m10.5 13.5 9-9"></path><path d="M19.5 14.25v3A2.25 2.25 0 0 1 17.25 19.5h-10.5A2.25 2.25 0 0 1 4.5 17.25v-10.5A2.25 2.25 0 0 1 6.75 4.5h3"></path></svg></a>
-            </div>
+      <section class="desktop-window window-achievement" id="window-achievement" data-window="achievement" aria-labelledby="achievement-title">
+        <div class="window-titlebar">
+          <div class="traffic-lights">
+            <button class="traffic maximize" type="button" data-window-maximize aria-label="Maximize Achievement"></button>
+            <button class="traffic close" type="button" data-window-close aria-label="Close Achievement"></button>
           </div>
+          <p>Achievement Vault</p>
         </div>
-        <div class="project-content">
-          <div class="project-header">
-            <h3 class="project-title">Lariso Brand Identity</h3>
-            <span class="project-status completed">Completed</span>
+        <div class="window-content achievement-layout">
+          <div>
+            <p class="eyebrow">Certificates</p>
+            <h2 id="achievement-title">Achievement</h2>
+            <p class="lead">MySkill certificates, TOEFL training files, trainee records, and competition awards are collected in a dedicated archive.</p>
           </div>
-          <p class="project-description">A story-driven snack brand identity project built from logo construction to pouch packaging iteration, final mockup presentation, and branded invoice collateral.</p>
-          <div class="project-tech-stack">
-            <span class="tech-tag">Adobe Illustrator</span>
-            <span class="tech-tag">Adobe Photoshop</span>
-          </div>
-          <div class="project-meta">
-            <div class="project-date">
-              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
-              <span>4 January 2026</span>
-            </div>
-            <div class="project-type">Client Work</div>
-          </div>
-          <a href="project/pages/lariso-brand-identity.html" class="view-project-btn">
-            View Full Project &rarr;
-          </a>
+          <a class="big-link" href="certification.html" data-browser-tab="Certification">Open Certification Archive</a>
         </div>
-      </div>
+      </section>
 
-      <div class="project-card" data-category="graphic">
-        <div class="project-image">
-          <img src="project/assets/E-Money card Design Honkai star rail/E-money hsr.jpg" alt="Honkai Star Rail e-money transit card series thumbnail" loading="lazy" decoding="async" fetchpriority="low" />
-          <div class="project-overlay">
-            <div class="project-quick-actions">
-              <a href="project/pages/honkai-star-rail-e-money-transit-series.html" class="quick-action-btn" title="View Case Study" aria-label="View Case Study"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
-              <a href="project/pages/honkai-star-rail-e-money-transit-series.html" class="quick-action-btn" title="Open Project" aria-label="Open Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M13.5 6H19.5V12"></path><path d="m10.5 13.5 9-9"></path><path d="M19.5 14.25v3A2.25 2.25 0 0 1 17.25 19.5h-10.5A2.25 2.25 0 0 1 4.5 17.25v-10.5A2.25 2.25 0 0 1 6.75 4.5h3"></path></svg></a>
-            </div>
+      <section class="desktop-window browser-window" id="window-browser" data-window="browser" aria-labelledby="browser-title">
+        <div class="window-titlebar">
+          <div class="traffic-lights">
+            <button class="traffic maximize" type="button" data-window-maximize aria-label="Maximize Browser"></button>
+            <button class="traffic close" type="button" data-window-close aria-label="Close Browser"></button>
           </div>
+          <p id="browser-title">Portfolio Browser</p>
         </div>
-        <div class="project-content">
-          <div class="project-header">
-            <h3 class="project-title">Honkai: Star Rail E-Money Transit Series</h3>
-            <span class="project-status completed">Completed</span>
+        <div class="browser-shell">
+          <div class="browser-tabbar" id="browser-tabbar" role="tablist" aria-label="Open page tabs"></div>
+          <div class="browser-addressbar">
+            <span class="browser-lock" aria-hidden="true"></span>
+            <input id="browser-address" class="browser-address-input" type="text" value="Open a portfolio page" aria-label="Browser address or search" />
           </div>
-          <p class="project-description">A custom public transit card series that translates Honkai: Star Rail character energy into collectible everyday merchandise with print-ready production thinking.</p>
-          <div class="project-tech-stack">
-            <span class="tech-tag">Adobe Illustrator</span>
-            <span class="tech-tag">Adobe Photoshop</span>
-          </div>
-          <div class="project-meta">
-            <div class="project-date">
-              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
-              <span>2 February 2026</span>
-            </div>
-            <div class="project-type">Client Work</div>
-          </div>
-          <a href="project/pages/honkai-star-rail-e-money-transit-series.html" class="view-project-btn">
-            View Full Project &rarr;
-          </a>
+          <iframe class="browser-frame" id="browser-frame" title="Portfolio page preview"></iframe>
         </div>
-      </div>
-      
-      <div class="project-card" data-category="video">
-        <div class="project-image">
-          <img src="project/assets/logo-preview/yuppentek-logo-kota-tua-version.jpg" alt="Yuppentek Kota Tua logo for Documentary Kota Tua UKK" loading="lazy" decoding="async" fetchpriority="low" />
-          <div class="project-overlay">
-            <div class="project-quick-actions">
-              <a href="#" class="quick-action-btn" title="Watch Video" aria-label="Watch Video"><svg class="icon-svg" viewBox="0 0 24 24"><path d="m8.25 7.5 8.25 4.5-8.25 4.5V7.5Z"></path></svg></a>
-              <a href="#" class="quick-action-btn" title="Behind Scenes" aria-label="Behind Scenes"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 7.5h16.5v9H3.75z"></path><path d="m9 7.5 1.5-3h3L15 7.5"></path><path d="m10.5 10.5 3 1.5-3 1.5v-3Z"></path></svg></a>
-            </div>
+      </section>
+
+      <section class="desktop-window window-guestbook" id="window-guestbook" data-window="guestbook" aria-labelledby="guestbook-title">
+        <div class="window-titlebar">
+          <div class="traffic-lights">
+            <button class="traffic maximize" type="button" data-window-maximize aria-label="Maximize Guestbook"></button>
+            <button class="traffic close" type="button" data-window-close aria-label="Close Guestbook"></button>
           </div>
+          <p>Guestbook.txt</p>
         </div>
-        <div class="project-content">
-          <div class="project-header">
-            <h3 class="project-title">Documentary Kota Tua UKK</h3>
-            <span class="project-status in-progress">In Progress</span>
+        <div class="window-content guestbook-layout">
+          <div>
+            <p class="eyebrow">Visitor Notes</p>
+            <h2 id="guestbook-title">Guestbook</h2>
+            <p class="lead">Leave a small note for the portfolio. Messages stay in this browser using local storage, so the page feels alive without needing a server.</p>
           </div>
-          <p class="project-description">School project documentation created in Kota Tua for a UKK assignment, focused on promoting the area through visual storytelling, editing, and supporting design assets.</p>
-          <div class="project-tech-stack">
-            <span class="tech-tag">Adobe Premiere Pro</span>
-            <span class="tech-tag">School Project</span>
-            <span class="tech-tag">Photoshop</span>
-            <span class="tech-tag">Documentary</span>
-          </div>
-          <div class="project-meta">
-            <div class="project-date">
-              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
-              <span>December 2024</span>
-            </div>
-            <div class="project-type">School Project</div>
-          </div>
-          <a href="project/pages/documentary-kota-tua-ukk.html" class="view-project-btn">
-            View Full Project &rarr;
-          </a>
-        </div>
-      </div>
-      
-      <!-- Hidden projects for "Load More" functionality -->
-      <div class="project-card hidden" data-category="graphic">
-        <div class="project-image">
-          <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=500&h=300&fit=crop" alt="Logo Design Collection" loading="lazy" decoding="async" fetchpriority="low" />
-          <div class="project-overlay">
-            <div class="project-quick-actions">
-              <a href="#" class="quick-action-btn" title="View Collection" aria-label="View Collection"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
-              <a href="#" class="quick-action-btn" title="Process" aria-label="Process"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M10.5 6h3"></path><path d="M9.336 3.75h5.328l.42 2.099a6.75 6.75 0 0 1 1.737.999l2.004-.667 2.664 4.614-1.584 1.404a6.792 6.792 0 0 1 0 1.998l1.584 1.404-2.664 4.614-2.004-.667a6.75 6.75 0 0 1-1.737.999l-.42 2.099H9.336l-.42-2.099a6.75 6.75 0 0 1-1.737-.999l-2.004.667L2.511 15.6l1.584-1.404a6.792 6.792 0 0 1 0-1.998L2.511 10.8l2.664-4.614 2.004.667a6.75 6.75 0 0 1 1.737-.999l.42-2.099Z"></path><path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path></svg></a>
-            </div>
-          </div>
-        </div>
-        <div class="project-content">
-          <div class="project-header">
-            <h3 class="project-title">Logo Design Collection</h3>
-            <span class="project-status Completed">Completed</span>
-          </div>
-          <p class="project-description">A collection of unique logo designs for various clients, showcasing versatility in brand identity creation and visual storytelling.</p>
-          <div class="project-tech-stack">
-            <span class="tech-tag">Adobe Illustrator</span>
-            <span class="tech-tag">Brand Identity</span>
-            <span class="tech-tag">Vector Design</span>
-          </div>
-          <div class="project-meta">
-            <div class="project-date">
-              <span aria-hidden="true"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M8.25 2.25v3"></path><path d="M15.75 2.25v3"></path><path d="M3.75 8.25h16.5"></path><path d="M4.5 4.5h15A2.25 2.25 0 0 1 21.75 6.75v12A2.25 2.25 0 0 1 19.5 21h-15a2.25 2.25 0 0 1-2.25-2.25v-12A2.25 2.25 0 0 1 4.5 4.5Z"></path></svg></span>
-              <span>August 2024</span>
-            </div>
-            <div class="project-type">Portfolio</div>
-          </div>
-          <a href="project/pages/logo-design-collection.html" class="view-project-btn">
-            View Full Project &rarr;
-          </a>
-        </div>
-      </div>
-    </div>
-    
-    <div class="more-projects-container">
-      <button class="more-btn" id="more-btn">Load More Projects</button>
-    </div>
-  </section>
-  <!-- Experience Section - Redesigned with Vertical Timeline -->
- <!-- Experience Section - Enhanced with Images and Reversed Timeline -->
-<!-- Experience Section - Enhanced with Images and Reversed Timeline -->
-<section id="experience" class="experience-section" data-section-label="Pengalaman">
-  <div class="experience-container">
-    <h2 class="section-title">Professional Experience</h2>
-    <p class="section-subtitle">My journey through creative roles and multimedia projects - from past to present</p>
-    
-    <div class="experience-timeline">
-      <!-- Timeline Item 1 - OLDEST (2021-2022) -->
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-image">
-            <img src="project/assets/logo-preview/yuppentek-logo.jpg" alt="Yuppentek logo" loading="lazy" decoding="async" fetchpriority="low">
-          </div>
-          <div class="timeline-info">
-            <div class="timeline-date">2021 - 2022</div>
-            <h3 class="timeline-title">Digital Content Creator</h3>
-            <p class="timeline-company">School Projects</p>
-            <p class="timeline-description">Led multimedia projects for school events, creating digital content for presentations and promotional materials, and won recognition for creative excellence.</p>
-            <div class="timeline-tags">
-              <span class="tag">School Project</span>
-              <span class="tag">Canva</span>
-              <span class="tag">Photography</span>
-              <span class="tag">Event Design</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Timeline Item 2 - (2022-2023) -->
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-image">
-            <img src="project/assets/logo-preview/fortress-logo.jpg" alt="Pintu Baja Fortress logo" loading="lazy" decoding="async" fetchpriority="low">
-          </div>
-          <div class="timeline-info">
-            <div class="timeline-date">September 2022 - November 2022</div>
-            <h3 class="timeline-title">Marketing and Product Sales</h3>
-            <p class="timeline-company">Pintu Baja Fortress</p>
-            <p class="timeline-description">Promoted and sold steel door products to different customer bases, developed marketing strategies to increase brand awareness and sales, maintained customer databases in Excel, and tracked customer interactions, sales, and follow-up activities.</p>
-            <div class="timeline-tags">
-              <span class="tag">Marketing</span>
-              <span class="tag">Product Sales</span>
-              <span class="tag">Excel</span>
-              <span class="tag">Data Management</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Timeline Item 3 - (2022-2023) -->
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-image">
-            <img src="project/assets/logo-preview/yuppentek-logo.jpg" alt="Yuppentek logo" loading="lazy" decoding="async" fetchpriority="low">
-          </div>
-          <div class="timeline-info">
-            <div class="timeline-date">2022 - 2023</div>
-            <h3 class="timeline-title">Video Production Assistant</h3>
-            <p class="timeline-company">Content Studio</p>
-            <p class="timeline-description">Supported video production teams in creating engaging multimedia content for various platforms and mastered video editing techniques.</p>
-            <div class="timeline-tags">
-              <span class="tag">School Project</span>
-              <span class="tag">Premiere Pro</span>
-              <span class="tag">After Effects</span>
-              <span class="tag">Motion Graphics</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Timeline Item 4 - (2023-Present) -->
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-image">
-            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=400&fit=crop" alt="Graphic Design and Photographer Freelance" loading="lazy" decoding="async" fetchpriority="low">
-          </div>
-          <div class="timeline-info">
-            <span class="timeline-status active">Active</span>
-            <div class="timeline-date">2023 - Present</div>
-            <h3 class="timeline-title">Freelance Graphic Designer &amp; Photographer</h3>
-            <p class="timeline-company">Self-Employed</p>
-            <p class="timeline-description">Headed to making project for poster, banner, and visual design, while also working as a documentary photographer in show events and live activities.</p>
-            <div class="timeline-tags">
-              <span class="tag">Photoshop</span>
-              <span class="tag">Illustrator</span>
-              <span class="tag">Photographer</span>
-              <span class="tag">Documentary</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Timeline Item 5 - (2024) -->
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-image">
-            <img src="project/assets/logo-preview/aryaduta-logo.jpg" alt="Hotel Aryaduta Country Club logo" loading="lazy" decoding="async" fetchpriority="low">
-          </div>
-          <div class="timeline-info">
-            <div class="timeline-date">July 2024 - October 2024</div>
-            <h3 class="timeline-title">Sport Desk Staff - Sport Desk Management</h3>
-            <p class="timeline-company">Hotel Aryaduta Country Club</p>
-            <p class="timeline-description">Maintained accurate records for guest participation, rental agreements, and daily reporting to support operational efficiency, while also helping promote recreational activities and events so guests clearly understood the available facilities and services.</p>
-            <div class="timeline-tags">
-              <span class="tag">Guest Service</span>
-              <span class="tag">Operations</span>
-              <span class="tag">Record Keeping</span>
-              <span class="tag">Event Promotion</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Timeline Item 6 - LATEST (2025-Present) -->
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-image">
-            <img src="project/assets/logo-preview/internusa-kreasindo-mandiri.jpg" alt="PT Internusa Kreasindo Mandiri logo" loading="lazy" decoding="async" fetchpriority="low">
-          </div>
-          <div class="timeline-info">
-            <span class="timeline-status active">Active</span>
-            <div class="timeline-date">2025 August - Present</div>
-            <h3 class="timeline-title">Employed - Design Creative</h3>
-            <p class="timeline-company">PT Internusa Kreasindo Mandiri</p>
-            <p class="timeline-description">Creating visual communication assets and creative design materials to support branding, promotion, and company presentation needs.</p>
-            <div class="timeline-tags">
-              <span class="tag">Adobe Suite</span>
-              <span class="tag">Photoshop</span>
-              <span class="tag">Illustrator</span>
-              <span class="tag">Photography</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-  <section id="skills" class="skills-section" data-section-label="Keahlian">
-    <div class="skills-shell">
-      <div class="skills-header">
-        <p class="skills-kicker">Skill Tree</p>
-        <h2 class="section-title">My Creative Skill Tree</h2>
-        <p class="section-subtitle">A visual map of the tools and design strengths I connect when building GFX edits, branding pieces, UI concepts, and multimedia work.</p>
-      </div>
-
-      <div class="skill-tree" aria-label="Creative skill tree">
-        <span class="skill-line line-branding" aria-hidden="true"></span>
-        <span class="skill-line line-ui" aria-hidden="true"></span>
-        <span class="skill-line line-gfx" aria-hidden="true"></span>
-        <span class="skill-line line-motion" aria-hidden="true"></span>
-        <span class="skill-line line-web" aria-hidden="true"></span>
-        <span class="skill-line line-direction" aria-hidden="true"></span>
-
-        <article class="skill-branch branch-branding">
-          <p class="skill-branch-label">Branch 01</p>
-          <h3 class="skill-branch-title">Branding</h3>
-          <div class="skill-nodes">
-            <span class="skill-node">Logo Design</span>
-            <span class="skill-node">Identity Systems</span>
-            <span class="skill-node">Color Direction</span>
-          </div>
-        </article>
-
-        <article class="skill-branch branch-ui">
-          <p class="skill-branch-label">Branch 02</p>
-          <h3 class="skill-branch-title">UI / UX</h3>
-          <div class="skill-nodes">
-            <span class="skill-node">Figma</span>
-            <span class="skill-node">Wireframing</span>
-            <span class="skill-node">Mobile Layouts</span>
-          </div>
-        </article>
-
-        <article class="skill-branch branch-gfx">
-          <p class="skill-branch-label">Branch 03</p>
-          <h3 class="skill-branch-title">GFX Design</h3>
-          <div class="skill-nodes">
-            <span class="skill-node">Photoshop</span>
-            <span class="skill-node">Compositing</span>
-            <span class="skill-node">Character Edits</span>
-          </div>
-        </article>
-
-        <article class="skill-branch branch-motion">
-          <p class="skill-branch-label">Branch 04</p>
-          <h3 class="skill-branch-title">Motion &amp; Video</h3>
-          <div class="skill-nodes">
-            <span class="skill-node">Premiere Pro</span>
-            <span class="skill-node">After Effects</span>
-            <span class="skill-node">Story Cuts</span>
-          </div>
-        </article>
-
-        <article class="skill-branch branch-web">
-          <p class="skill-branch-label">Branch 05</p>
-          <h3 class="skill-branch-title">Web Layout</h3>
-          <div class="skill-nodes">
-            <span class="skill-node">HTML5</span>
-            <span class="skill-node">CSS3</span>
-            <span class="skill-node">Responsive Design</span>
-          </div>
-        </article>
-
-        <article class="skill-branch branch-direction">
-          <p class="skill-branch-label">Branch 06</p>
-          <h3 class="skill-branch-title">Creative Flow</h3>
-          <div class="skill-nodes">
-            <span class="skill-node">Typography</span>
-            <span class="skill-node">Art Direction</span>
-            <span class="skill-node">Asset Planning</span>
-          </div>
-        </article>
-
-        <div class="skill-core">
-          <div class="skill-core-wheel" aria-hidden="true"></div>
-          <div class="skill-core-copy">
-            <p class="skill-core-overline">Creative Workflow</p>
-            <h3>Skill Tree</h3>
-            <p>Graphic design sits at the center of my process, connecting visual storytelling, interface thinking, motion, and polished presentation.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="certification" class="certification-section" data-section-label="Pencapaian">
-    <div class="certification-shell">
-      <div class="certification-copy">
-        <p class="certification-kicker">Achievement Archive</p>
-        <h2 class="section-title">Certification</h2>
-        <p class="section-subtitle">These are the certification files I have so far, including MySkill, skill, trainee, and competition records grouped into one page.</p>
-        <div class="certification-stats">
-          <div class="certification-stat">
-            <strong>25</strong>
-            <span>Total certification files</span>
-          </div>
-          <div class="certification-stat">
-            <strong>8</strong>
-            <span>MySkill certifications</span>
-          </div>
-          <div class="certification-stat">
-            <strong>3</strong>
-            <span>Trainee & competition files</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="certification-card">
-        <p class="certification-card-label">Quick Access</p>
-        <h3>Open the full certification page</h3>
-        <p>Inside the page, I added filter options for all certifications, MySkill, skill, trainee, and competition so everything stays grouped and easy to browse.</p>
-        <div class="certification-actions">
-          <a href="certification.html" class="view-project-btn">View All Certifications &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials Section -->
-
-  <section id="testimonials" class="testimonials-section" data-section-label="Buku Tamu">
-    <div class="testimonials-container">
-      <div class="guestbook-shell guestbook-shell-inline">
-        <div class="guestbook-header">
-          <p class="guestbook-kicker">Guestbook</p>
-          <h3>Guestbook</h3>
-          <p class="guestbook-intro">Feel free to share your thoughts, suggestions, questions, or anything else.</p>
-        </div>
-
-        <div class="guestbook-feed" id="guestbook-feed">
-          <div class="guestbook-empty" id="guestbook-empty">
-            No guestbook messages yet. Be the first to say hello.
-          </div>
-        </div>
-
-        <div class="guestbook-auth-bar" id="guestbook-auth-bar">
-          <p class="guestbook-auth-copy" id="guestbook-auth-copy">Please sign in to join the conversation. Don&apos;t worry, your data is safe with us.</p>
-
-          <div class="guestbook-provider-actions" id="guestbook-provider-actions">
-            <button type="button" class="provider-btn provider-btn-google-circle" id="guestbook-google-btn" aria-label="Sign in with Google" title="Sign in with Google">
-              <span class="provider-btn-mark provider-btn-mark-google" aria-hidden="true">G</span>
-            </button>
-          </div>
-
-          <form class="email-auth-form" id="email-auth-form">
-            <div class="email-auth-grid">
-              <input type="text" id="guestbook-username" placeholder="Username" autocomplete="username" required>
-            </div>
-            <div class="email-auth-actions">
-              <button type="submit" class="provider-btn provider-btn-email" id="guestbook-email-login-btn">Continue with Username</button>
-            </div>
+          <form class="guestbook-form" id="guestbook-form">
+            <input id="guestbook-name" type="text" placeholder="Name" aria-label="Name" required />
+            <textarea id="guestbook-message" placeholder="Message" aria-label="Message" required></textarea>
+            <button type="submit">Add note</button>
           </form>
+          <div class="guestbook-notes" id="guestbook-notes" aria-live="polite"></div>
+        </div>
+      </section>
+    </main>
 
-          <div class="guestbook-user-bar" id="guestbook-user-bar" hidden>
-            <div class="guestbook-user-meta">
-              <div class="guestbook-user-avatar-stack">
-                <button type="button" class="guestbook-avatar-trigger" id="guestbook-avatar-trigger" aria-label="Choose profile picture" aria-expanded="false" aria-controls="guestbook-avatar-picker">
-                  <img src="" alt="" class="guestbook-user-avatar" id="guestbook-user-avatar">
-                </button>
-                <div class="guestbook-avatar-picker" id="guestbook-avatar-picker" hidden>
-                  <div class="guestbook-avatar-picker-bubble">
-                    <p class="guestbook-avatar-picker-title">Choose Avatar</p>
-                    <div class="guestbook-avatar-options" id="guestbook-avatar-options"></div>
-                    <input type="file" id="guestbook-avatar-upload-input" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <strong id="guestbook-user-name">Signed in</strong>
-                <p id="guestbook-user-provider">Ready to post a message</p>
-              </div>
-            </div>
-            <button type="button" class="more-btn" id="guestbook-signout-btn">Sign Out</button>
-          </div>
-        </div>
+    <aside class="desktop-icons" aria-label="Desktop shortcuts">
+      <button type="button" data-window-target="about"><span class="icon-folder"></span>About</button>
+      <button type="button" data-window-target="projects"><span class="icon-folder"></span>Project</button>
+      <button type="button" data-window-target="skills"><span class="icon-folder"></span>Skills</button>
+      <a href="https://www.instagram.com/jona.mmzv/" data-browser-tab="Instagram"><span class="social-logo social-instagram">IG</span>Instagram</a>
+      <a href="https://www.linkedin.com/in/jona-setiawan-099149311/" data-browser-tab="LinkedIn"><span class="social-logo social-linkedin">in</span>LinkedIn</a>
+      <a href="https://github.com/LanderLynch" data-browser-tab="GitHub"><span class="social-logo social-github">GH</span>GitHub</a>
+      <a href="https://x.com/CandyLordberry" data-browser-tab="X"><span class="social-logo social-x">X</span>X</a>
+    </aside>
 
-        <form class="guestbook-composer" id="guestbook-form">
-          <label class="guestbook-label" for="guestbook-message">Message</label>
-          <textarea id="guestbook-message" rows="3" maxlength="400" placeholder="Write something kind, ask a question, or leave feedback..." required></textarea>
-          <div class="guestbook-composer-footer">
-            <span class="guestbook-status" id="guestbook-status">Please sign in to join the conversation. Don&apos;t worry, your data is safe with us.</span>
-            <button type="submit" class="submit-btn" id="guestbook-submit-btn" disabled>Send Message</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- Add New Project Modal -->
-  <div class="project-modal" id="project-modal">
-    <div class="project-modal-content">
-      <span class="close-project-modal" id="close-project-modal">&times;</span>
-      <h3>Add New Project</h3>
-      <form id="project-form">
-        <div class="project-form-group">
-          <label for="project-title">Project Title *</label>
-          <input type="text" id="project-title" required placeholder="Enter project title">
-        </div>
-        
-        <div class="project-form-group">
-          <label for="project-category">Project Category *</label>
-          <select id="project-category" required>
-            <option value="">Select category</option>
-            <option value="graphic">Graphic Design</option>
-            <option value="multimedia">Multimedia</option>
-            <option value="branding">Branding</option>
-            <option value="video">Video Editing</option>
-            <option value="ui">UI/UX</option>
-          </select>
-        </div>
-        
-        <div class="project-form-group">
-          <label for="project-status">Project Status *</label>
-          <select id="project-status" required>
-            <option value="">Select status</option>
-            <option value="completed">Completed</option>
-            <option value="in-progress">In Progress</option>
-            <option value="concept">Concept</option>
-          </select>
-        </div>
-        
-        <div class="project-form-group">
-          <label for="project-description">Project Description *</label>
-          <textarea id="project-description" required placeholder="Describe your project..." rows="4"></textarea>
-        </div>
-        
-        <div class="project-form-group">
-          <label for="project-image">Project Image URL</label>
-          <input type="url" id="project-image" placeholder="https://example.com/image.jpg">
-        </div>
-
-        <div class="project-form-group">
-          <label for="project-link">Project Link</label>
-          <input type="url" id="project-link" placeholder="https://example.com/project">
-        </div>
-
-        <div class="project-form-group">
-          <label for="project-date-label">Project Date Label</label>
-          <input type="text" id="project-date-label" placeholder="March 2026">
-        </div>
-        
-        <div class="project-form-group">
-          <label>Tech Stack</label>
-          <div class="tech-stack-input" id="tech-stack-container">
-            <!-- Tech tags will be added here -->
-          </div>
-          <div class="tech-stack-entry">
-            <input type="text" id="tech-input" class="tech-input-field" placeholder="Add technology (e.g., Adobe Photoshop)">
-            <button type="button" class="add-tech-btn" id="add-tech-btn">Add</button>
-          </div>
-        </div>
-        
-        <div class="project-form-group">
-          <label for="project-type">Project Type</label>
-          <select id="project-type">
-            <option value="Personal">Personal</option>
-            <option value="Client Work">Client Work</option>
-            <option value="Portfolio">Portfolio</option>
-            <option value="Concept">Concept</option>
-            <option value="Featured Project">Featured Project</option>
-          </select>
-        </div>
-        <button type="submit" class="project-submit-btn">Add Project</button>
-      </form>
-    </div>
-  </div>
-  <footer id="contact" class="portfolio-footer" data-section-label="Kontak">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <p class="footer-kicker">Let's create something meaningful</p>
-        <h2>Jona Setiawan</h2>
-        <p>Multimedia designer focused on graphic design, branding, UI/UX, and visual storytelling.</p>
-      </div>
-
-      <div class="footer-links" aria-label="Footer Navigation">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#testimonials">Testimonials</a>
-      </div>
-
-      <div class="footer-contact">
-        <a href="mailto:jonasaevuddyinsetiawan@gmail.com">jonasaevuddyinsetiawan@gmail.com</a>
-        <a href="https://www.instagram.com/jona.mmzv/" target="_blank" rel="noreferrer">Instagram</a>
-        <a href="https://www.linkedin.com/in/jona-setiawan-099149311/" target="_blank" rel="noreferrer">LinkedIn</a>
-      </div>
-    </div>
-
-    <button type="button" class="footer-copy footer-admin-trigger" id="footer-admin-trigger" aria-haspopup="dialog" aria-controls="admin-popout" aria-expanded="false">&copy; 2024 Jona Setiawan. All rights reserved.</button>
-  </footer>
-
-  <div class="admin-popout" id="admin-popout" aria-hidden="true">
-    <div class="admin-panel admin-panel-modal" id="admin-panel" role="dialog" aria-modal="true" aria-labelledby="admin-panel-title" tabindex="-1">
-      <button type="button" class="close-admin-popout" id="close-admin-popout" aria-label="Close admin panel">&times;</button>
-      <div class="admin-panel-copy">
-        <p class="admin-panel-kicker">Admin Panel</p>
-        <h3 id="admin-panel-title">Manage Firestore Projects</h3>
-        <p class="admin-panel-text">Public visitors can read your project entries. Sign in as the admin to add or delete items from Firestore.</p>
-        <p class="admin-status" id="admin-status" data-tone="info">Public portfolio mode. Sign in to manage projects.</p>
-      </div>
-      <div class="admin-panel-controls">
-        <form class="admin-login-form" id="admin-login-form">
-          <input type="email" id="admin-email" placeholder="Admin email" required>
-          <input type="password" id="admin-password" placeholder="Password" required>
-          <button type="submit" class="add-project-btn">Sign In</button>
-        </form>
-        <div class="admin-actions" id="admin-actions" hidden>
-          <span class="admin-user" id="admin-user">Public mode</span>
-          <button type="button" class="add-project-btn" id="add-project-btn">
-            <span class="btn-icon">+</span>
-            Add Project
-          </button>
-          <button type="button" class="more-btn" id="admin-logout-btn">Sign Out</button>
-        </div>
-      </div>
-    </div>
+    <footer class="dock" aria-label="Application dock">
+      <button class="dock-item dock-start" type="button" data-window-target="about" aria-label="Open About">
+        <span></span><span></span><span></span><span></span>
+      </button>
+      <span class="dock-separator" aria-hidden="true"></span>
+      <div class="taskbar-recents" id="taskbar-recents" aria-label="Recently opened windows"></div>
+      <span class="dock-spacer" aria-hidden="true"></span>
+      <a class="dock-item app-file" href="certification.html" data-browser-tab="Certification" aria-label="Open Certification">PDF</a>
+    </footer>
   </div>
 
-  <!-- JavaScript for typing effect and minimal interactions -->
-  <script src="project-card-utils.js"></script>
-  <script src="performance-utils.js"></script>
-  <script type="module">
-    const testimonialsSection = document.getElementById("testimonials");
-    const adminTrigger = document.getElementById("footer-admin-trigger");
-    const guestbookGoogleBtn = document.getElementById("guestbook-google-btn");
-    let firebaseModulesPromise = null;
-
-    async function loadGuestbookModules() {
-      if (firebaseModulesPromise) {
-        return firebaseModulesPromise;
-      }
-
-      firebaseModulesPromise = import("./firebase-config.js")
-        .then(() => Promise.all([
-          import("./admin-panel.js"),
-          import("./testimonials-guestbook.js")
-        ]))
-        .catch((error) => {
-          console.error("Failed to load guestbook modules.", error);
-          throw error;
-        });
-
-      return firebaseModulesPromise;
-    }
-
-    if (testimonialsSection && "IntersectionObserver" in window) {
-      const guestbookObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          loadGuestbookModules();
-          observer.disconnect();
-        });
-      }, { rootMargin: "640px 0px" });
-
-      guestbookObserver.observe(testimonialsSection);
-    } else {
-      window.addEventListener("load", () => {
-        window.setTimeout(() => {
-          loadGuestbookModules();
-        }, 1200);
-      }, { once: true });
-    }
-
-    adminTrigger?.addEventListener("pointerdown", loadGuestbookModules, { once: true });
-    guestbookGoogleBtn?.addEventListener("pointerdown", loadGuestbookModules, { once: true });
-    testimonialsSection?.addEventListener("pointerdown", loadGuestbookModules, { once: true });
-    testimonialsSection?.addEventListener("focusin", loadGuestbookModules, { once: true });
-  </script>
-  <script src="theme-controls.js?v=20260319-1"></script>
-  <script src="language-controls.js?v=20260410-2"></script>
-  <script>
-    const projectCardUtils = window.portfolioProjectCardUtils;
-    // Mobile Navigation Toggle
-    const hamburgerBtn = document.querySelector('.hamburger-menu');
-    const navLinkItems = document.querySelectorAll('.nav-link-item');
-    const portfolioTitleLink = document.querySelector('.portfolio-title-link');
-    const portfolioText = document.querySelector('.portfolio-text');
-    const mobileCurrentChip = document.getElementById('mobile-current-chip');
-    const mobileMenuPanel = document.getElementById('mobile-menu-panel');
-    const mobileMenuSurface = mobileMenuPanel ? mobileMenuPanel.querySelector('.mobile-menu-surface') : null;
-    const mobileMenuCloseBtn = document.getElementById('mobile-menu-close');
-    const mobileThemeToggleBtn = document.getElementById('mobile-theme-toggle');
-    const mobileThemeLabel = document.getElementById('mobile-theme-label');
-    const desktopSidebarToggleBtn = document.getElementById('desktop-sidebar-toggle');
-    const zoomControl = document.getElementById('zoom-control');
-    const zoomToggleBtn = document.getElementById('zoom-toggle-btn');
-    const zoomPanel = document.getElementById('zoom-panel');
-    const zoomOutBtn = document.getElementById('zoom-out-btn');
-    const zoomInBtn = document.getElementById('zoom-in-btn');
-    const zoomValueBtn = document.getElementById('zoom-value-btn');
-    const trackedSections = Array.from(document.querySelectorAll('[data-section-label]'));
-    const projectPageLinks = document.querySelectorAll('a[href^="project/pages/"]');
-    const returnScrollKey = 'portfolio-return-scroll';
-    const returnScrollPendingKey = 'portfolio-return-pending';
-    const zoomStorageKey = 'portfolio-page-zoom';
-    const desktopNavLayoutStorageKey = 'portfolio-desktop-nav-layout';
-    const defaultZoom = 80;
-    const minZoom = 60;
-    const maxZoom = 120;
-    const zoomStep = 10;
-
-    function clampZoom(value) {
-      return Math.min(maxZoom, Math.max(minZoom, value));
-    }
-
-    function applyZoom(value) {
-      const zoomValue = clampZoom(value);
-      document.body.classList.add('zoom-ready');
-      document.body.style.setProperty('--page-zoom', String(zoomValue / 100));
-
-      if (zoomValueBtn) {
-        zoomValueBtn.textContent = `${zoomValue}%`;
-      }
-
-      localStorage.setItem(zoomStorageKey, String(zoomValue));
-      return zoomValue;
-    }
-
-    let currentZoom = applyZoom(defaultZoom);
-
-    function setZoomPanelState(isOpen) {
-      if (!zoomControl || !zoomToggleBtn || !zoomPanel) {
-        return;
-      }
-
-      zoomControl.classList.toggle('open', isOpen);
-      zoomToggleBtn.setAttribute('aria-expanded', String(isOpen));
-      zoomPanel.setAttribute('aria-hidden', String(!isOpen));
-    }
-
-    if (zoomToggleBtn) {
-      zoomToggleBtn.addEventListener('click', () => {
-        const shouldOpen = !zoomControl.classList.contains('open');
-        setZoomPanelState(shouldOpen);
-      });
-    }
-
-    if (zoomOutBtn) {
-      zoomOutBtn.addEventListener('click', () => {
-        currentZoom = applyZoom(currentZoom - zoomStep);
-      });
-    }
-
-    if (zoomInBtn) {
-      zoomInBtn.addEventListener('click', () => {
-        currentZoom = applyZoom(currentZoom + zoomStep);
-      });
-    }
-
-    if (zoomValueBtn) {
-      zoomValueBtn.addEventListener('click', () => {
-        currentZoom = applyZoom(defaultZoom);
-      });
-    }
-
-    function formatThemeName(theme) {
-      const currentLanguage = window.portfolioLanguage?.getCurrentLanguage?.() || 'id';
-
-      switch (theme) {
-        case 'blue':
-          return currentLanguage === 'id' ? 'BIRU' : 'BLUE';
-        case 'galaxy':
-          return 'GALAXY';
-        default:
-          return currentLanguage === 'id' ? 'TERANG' : 'LIGHT';
-      }
-    }
-
-    function syncMobileThemeLabel(themeName) {
-      if (!mobileThemeLabel) {
-        return;
-      }
-
-      const activeTheme = window.portfolioTheme?.normalizeTheme(themeName) || 'light';
-      const currentLanguage = window.portfolioLanguage?.getCurrentLanguage?.() || 'id';
-      const labelPrefix = currentLanguage === 'id' ? 'TEMA' : 'THEME';
-      mobileThemeLabel.textContent = `${labelPrefix}: ${formatThemeName(activeTheme)}`;
-    }
-
-    function setDesktopNavLayout(layout, shouldPersist = true) {
-      const nextLayout = layout === 'topbar' ? 'topbar' : 'sidebar';
-      document.body.classList.toggle('desktop-nav-topbar', nextLayout === 'topbar');
-
-      if (desktopSidebarToggleBtn) {
-        const targetLayout = nextLayout === 'topbar' ? 'sidebar' : 'topbar';
-        desktopSidebarToggleBtn.dataset.layoutTarget = targetLayout;
-        desktopSidebarToggleBtn.setAttribute(
-          'aria-label',
-          targetLayout === 'sidebar' ? 'Switch to sidebar layout' : 'Switch to topbar layout'
-        );
-        desktopSidebarToggleBtn.setAttribute('title', targetLayout === 'sidebar' ? 'Switch to sidebar layout' : 'Switch to topbar layout');
-      }
-
-      if (shouldPersist) {
-        localStorage.setItem(desktopNavLayoutStorageKey, nextLayout);
-      }
-    }
-
-    const storedDesktopNavLayout = localStorage.getItem(desktopNavLayoutStorageKey);
-    setDesktopNavLayout(storedDesktopNavLayout === 'topbar' ? 'topbar' : 'sidebar', false);
-
-    function setMobileMenuState(isOpen) {
-      if (!hamburgerBtn || !mobileMenuPanel) {
-        return;
-      }
-
-      setZoomPanelState(false);
-      mobileMenuPanel.classList.toggle('active', isOpen);
-      mobileMenuPanel.setAttribute('aria-hidden', String(!isOpen));
-      hamburgerBtn.classList.toggle('active', isOpen);
-      hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
-      document.body.classList.toggle('mobile-menu-open', isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
-
-      if (isOpen) {
-        window.setTimeout(() => {
-          mobileMenuCloseBtn?.focus();
-        }, 50);
-      }
-    }
-
-    syncMobileThemeLabel(window.portfolioTheme?.getStoredTheme?.());
-
-    if (mobileThemeToggleBtn) {
-      mobileThemeToggleBtn.addEventListener('click', () => {
-        const supportedThemes = window.portfolioTheme?.supportedThemes || ['blue', 'light', 'galaxy'];
-        const currentTheme = window.portfolioTheme?.getStoredTheme?.() || 'light';
-        const activeIndex = supportedThemes.indexOf(currentTheme);
-        const nextTheme = supportedThemes[(activeIndex + 1 + supportedThemes.length) % supportedThemes.length];
-
-        if (window.portfolioTheme?.applyTheme) {
-          window.portfolioTheme.applyTheme(nextTheme);
-        }
-
-        syncMobileThemeLabel(nextTheme);
-      });
-    }
-
-    document.addEventListener('portfolio-theme-change', (event) => {
-      syncMobileThemeLabel(event.detail?.theme);
-    });
-
-    document.addEventListener('portfolio-language-change', () => {
-      syncMobileThemeLabel(window.portfolioTheme?.getStoredTheme?.());
-      updateActiveSection();
-    });
-
-    document.addEventListener('click', (event) => {
-      if (zoomControl && !zoomControl.contains(event.target)) {
-        setZoomPanelState(false);
-      }
-    });
-
-    if (desktopSidebarToggleBtn) {
-      desktopSidebarToggleBtn.addEventListener('click', () => {
-        const targetLayout = desktopSidebarToggleBtn.dataset.layoutTarget === 'topbar' ? 'topbar' : 'sidebar';
-        setDesktopNavLayout(targetLayout);
-      });
-    }
-
-    if (hamburgerBtn && mobileMenuPanel) {
-      hamburgerBtn.addEventListener('click', () => {
-        const shouldOpen = !mobileMenuPanel.classList.contains('active');
-        setMobileMenuState(shouldOpen);
-      });
-
-      mobileMenuCloseBtn?.addEventListener('click', () => {
-        setMobileMenuState(false);
-      });
-
-      mobileMenuPanel.addEventListener('click', (event) => {
-        if (event.target === mobileMenuPanel) {
-          setMobileMenuState(false);
-        }
-      });
-
-      navLinkItems.forEach(link => {
-        link.addEventListener('click', () => {
-          if (window.innerWidth <= 768) {
-            setMobileMenuState(false);
-          }
-        });
-      });
-
-      document.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768 &&
-            !hamburgerBtn.contains(e.target) &&
-            !mobileMenuSurface?.contains(e.target) &&
-            mobileMenuPanel.classList.contains('active')) {
-          setMobileMenuState(false);
-        }
-      });
-
-      window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
-          setMobileMenuState(false);
-        }
-
-        if (window.innerWidth > 768) {
-          const persistedLayout = localStorage.getItem(desktopNavLayoutStorageKey);
-          setDesktopNavLayout(persistedLayout === 'topbar' ? 'topbar' : 'sidebar', false);
-        }
-      });
-
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && mobileMenuPanel.classList.contains('active')) {
-          setMobileMenuState(false);
-        }
-      });
-    }
-
-    // Typing effect
-    let skills = window.portfolioLanguage?.getSkillWords?.() || ["DESAINER MULTIMEDIA", "DESAIN GRAFIS", "DESAINER GFX", "DESAIN UI/UX"];
-    let index = 0;
-    const typingText = document.getElementById("typing-text");
-
-    function typeSkill() {
-      if (typingText) {
-        typingText.textContent = skills[index];
-        index = (index + 1) % skills.length;
-      }
-    }
-
-    setInterval(typeSkill, 3000);
-
-    document.addEventListener('portfolio-language-change', () => {
-      skills = window.portfolioLanguage?.getSkillWords?.() || skills;
-      index = 0;
-      typeSkill();
-    });
-
-    function setActiveSection(sectionId) {
-      const currentSection = trackedSections.find(section => section.id === sectionId);
-      if (!currentSection) {
-        return;
-      }
-
-      const currentLabel = window.portfolioLanguage?.getSectionLabel?.(sectionId)
-        || currentSection.dataset.sectionLabel
-        || currentSection.id;
-
-      navLinkItems.forEach(link => {
-        const isActive = link.getAttribute('href') === `#${sectionId}`;
-        link.classList.toggle('active', isActive);
-      });
-
-      if (portfolioText) {
-        portfolioText.textContent = currentLabel;
-      }
-
-      if (mobileCurrentChip) {
-        mobileCurrentChip.textContent = currentLabel;
-      }
-
-      if (portfolioTitleLink) {
-        portfolioTitleLink.setAttribute('href', `#${sectionId}`);
-        portfolioTitleLink.setAttribute('aria-label', `Jump to ${currentLabel}`);
-      }
-    }
-
-    function updateActiveSection() {
-      if (!trackedSections.length) {
-        return;
-      }
-
-      const viewportAnchor = window.innerHeight * 0.35;
-      let currentSection = trackedSections[0];
-      let closestDistance = Number.POSITIVE_INFINITY;
-
-      trackedSections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        const isAnchorInsideSection = rect.top <= viewportAnchor && rect.bottom >= viewportAnchor;
-
-        if (isAnchorInsideSection) {
-          currentSection = section;
-          closestDistance = -1;
-          return;
-        }
-
-        if (closestDistance === -1) {
-          return;
-        }
-
-        const distanceToAnchor = Math.abs(rect.top - viewportAnchor);
-        if (distanceToAnchor < closestDistance) {
-          closestDistance = distanceToAnchor;
-          currentSection = section;
-        }
-      });
-
-      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
-        currentSection = trackedSections[trackedSections.length - 1];
-      }
-
-      setActiveSection(currentSection.id);
-    }
-
-    function rememberMainPageScroll() {
-      sessionStorage.setItem(returnScrollKey, String(window.scrollY));
-      sessionStorage.setItem(returnScrollPendingKey, 'true');
-    }
-
-    function restoreMainPageScroll() {
-      if (window.location.hash) {
-        sessionStorage.removeItem(returnScrollPendingKey);
-        sessionStorage.removeItem(returnScrollKey);
-        updateActiveSection();
-        return;
-      }
-
-      if (sessionStorage.getItem(returnScrollPendingKey) !== 'true') {
-        updateActiveSection();
-        return;
-      }
-
-      const savedScroll = Number(sessionStorage.getItem(returnScrollKey));
-
-      if (!Number.isFinite(savedScroll)) {
-        sessionStorage.removeItem(returnScrollPendingKey);
-        sessionStorage.removeItem(returnScrollKey);
-        updateActiveSection();
-        return;
-      }
-
-      requestAnimationFrame(() => {
-        window.scrollTo({ top: savedScroll, left: 0, behavior: 'auto' });
-        window.setTimeout(() => {
-          window.scrollTo({ top: savedScroll, left: 0, behavior: 'auto' });
-          updateActiveSection();
-        }, 120);
-      });
-
-      sessionStorage.removeItem(returnScrollPendingKey);
-      sessionStorage.removeItem(returnScrollKey);
-    }
-
-    projectPageLinks.forEach(link => {
-      link.addEventListener('click', rememberMainPageScroll);
-    });
-
-    window.addEventListener('scroll', updateActiveSection, { passive: true });
-    window.addEventListener('resize', updateActiveSection);
-    window.addEventListener('pageshow', restoreMainPageScroll);
-    updateActiveSection();
-
-    // Project filtering functionality
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    let projectCards = [];
-    let hiddenProjects = [];
-    let activeProjectFilter = 'all';
-
-    function refreshProjectRegistry() {
-      projectCards = Array.from(document.querySelectorAll('.project-card'));
-      hiddenProjects = Array.from(document.querySelectorAll('.project-card.hidden'));
-    }
-
-    refreshProjectRegistry();
-    hiddenProjects.forEach(card => {
-      if (card.dataset.projectSource !== 'firebase') {
-        card.dataset.extraProject = 'true';
-      }
-    });
-
-    // Filter functionality
-    function filterProjects(category) {
-      refreshProjectRegistry();
-      activeProjectFilter = category;
-
-      projectCards.forEach(card => {
-        const matchesCategory = category === 'all' || card.getAttribute('data-category') === category;
-        const isExtraProject = card.dataset.extraProject === 'true';
-        const shouldHideForLoadMore = category === 'all' && isExtraProject && !expanded;
-        card.classList.toggle('hidden', !matchesCategory || shouldHideForLoadMore);
-      });
-
-      if (moreBtn) {
-        const hasMatchingExtraProjects = hiddenProjects.some(card => category === 'all' || card.getAttribute('data-category') === category);
-        moreBtn.style.display = category === 'all' && hasMatchingExtraProjects ? 'inline-flex' : 'none';
-        moreBtn.textContent = expanded ? 'Show Less Projects' : 'Load More Projects';
-      }
-
-      if (projectsContainer) {
-        const visibleCards = projectCards.filter(card => !card.classList.contains('hidden'));
-        const shouldUseSingleCardLayout = visibleCards.length === 1 && !visibleCards[0].classList.contains('featured-project');
-        projectsContainer.classList.toggle('single-card-view', shouldUseSingleCardLayout);
-      }
-    }
-
-    // Add click event listeners to filter buttons
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Remove active class from all buttons
-        filterBtns.forEach(b => b.classList.remove('active'));
-        
-        // Add active class to clicked button
-        btn.classList.add('active');
-        
-        // Get filter category
-        const filterValue = btn.getAttribute('data-filter');
-        
-        expanded = false;
-        filterProjects(filterValue);
-      });
-    });
-
-    // More projects button functionality
-    const moreBtn = document.getElementById('more-btn');
-    const projectsContainer = document.getElementById('projects-container');
-    let expanded = false;
-
-    if (moreBtn && projectsContainer) {
-      moreBtn.addEventListener('click', () => {
-        if (!expanded) {
-          expanded = true;
-        } else {
-          expanded = false;
-        }
-
-        filterProjects(activeProjectFilter);
-      });
-    }
-
-    // Ensure filter tabs are visible on load
-    window.addEventListener('load', () => {
-      const filtersContainer = document.querySelector('.project-filters');
-      if (filtersContainer) {
-        filtersContainer.style.display = 'flex';
-        filtersContainer.style.visibility = 'visible';
-        filtersContainer.style.opacity = '1';
-      }
-      
-      // Force display of filter buttons
-      const filterBtns = document.querySelectorAll('.filter-btn');
-      filterBtns.forEach(btn => {
-        btn.style.display = 'inline-block';
-      });
-
-      filterProjects(activeProjectFilter);
-      restoreMainPageScroll();
-      updateActiveSection();
-    });
-
-    // Additional safety check for filter visibility
-    document.addEventListener('DOMContentLoaded', () => {
-      const filtersContainer = document.querySelector('.project-filters');
-      if (filtersContainer) {
-        filtersContainer.style.display = 'flex';
-        filtersContainer.style.visibility = 'visible';
-        filtersContainer.style.opacity = '1';
-      }
-    });
-
-    // Testimonials functionality
-    const addTestimonialBtn = document.getElementById('add-testimonial-btn');
-    const testimonialModal = document.getElementById('testimonial-modal');
-    const closeModal = document.getElementById('close-modal');
-    const testimonialForm = document.getElementById('testimonial-form');
-    const testimonialsGrid = document.getElementById('testimonials-grid');
-    const scrollContainer = document.getElementById('testimonials-scroll');
-    const scrollLeftBtn = document.getElementById('scroll-left');
-    const scrollRightBtn = document.getElementById('scroll-right');
-
-    // Modal functionality
-    if (addTestimonialBtn && testimonialModal) {
-      addTestimonialBtn.addEventListener('click', () => {
-        testimonialModal.style.display = 'flex';
-      });
-    }
-
-    if (closeModal && testimonialModal) {
-      closeModal.addEventListener('click', () => {
-        testimonialModal.style.display = 'none';
-      });
-    }
-
-    // Close modal when clicking outside
-    window.addEventListener('click', (e) => {
-      if (e.target === testimonialModal) {
-        testimonialModal.style.display = 'none';
-      }
-    });
-
-    // Form submission
-    if (testimonialForm) {
-      testimonialForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const name = document.getElementById('testimonial-name').value;
-        const role = document.getElementById('testimonial-role').value || 'Client';
-        const rating = parseInt(document.getElementById('testimonial-rating').value);
-        const text = document.getElementById('testimonial-text').value;
-        
-        // Create new testimonial
-        const newTestimonial = createTestimonial(name, role, rating, text);
-        
-        // Add to grid
-        testimonialsGrid.appendChild(newTestimonial);
-        
-        // Reset form and close modal
-        testimonialForm.reset();
-        testimonialModal.style.display = 'none';
-        
-        // Scroll to new testimonial
-        newTestimonial.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      });
-    }
-
-    // Create testimonial element
-    function createTestimonial(name, role, rating, text) {
-      const card = document.createElement('div');
-      card.className = 'testimonial-card';
-      
-      const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
-      const stars = '&#9733;'.repeat(rating);
-      const date = new Date().toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'long' 
-      });
-      
-      card.innerHTML = `
-        <div class="testimonial-header">
-          <div class="testimonial-avatar">${initials}</div>
-          <div class="testimonial-info">
-            <h4 class="testimonial-name">${name}</h4>
-            <p class="testimonial-role">${role}</p>
-          </div>
-          <div class="testimonial-rating">${stars}</div>
-        </div>
-        <p class="testimonial-text">"${text}"</p>
-        <div class="testimonial-date">${date}</div>
-      `;
-      
-      return card;
-    }
-
-    // Scroll functionality
-    if (scrollLeftBtn && scrollContainer) {
-      scrollLeftBtn.addEventListener('click', () => {
-        scrollContainer.scrollBy({ left: -300, behavior: 'smooth' });
-      });
-    }
-
-    if (scrollRightBtn && scrollContainer) {
-      scrollRightBtn.addEventListener('click', () => {
-        scrollContainer.scrollBy({ left: 300, behavior: 'smooth' });
-      });
-    }
-
-
-
-    // Experience Timeline Animation on Scroll
-    document.addEventListener('DOMContentLoaded', () => {
-        const timelineItems = document.querySelectorAll('.timeline-item');
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-
-        timelineItems.forEach(item => {
-            observer.observe(item);
-        });
-    });
-
-    // Add New Project functionality
-    const addProjectBtn = document.getElementById('add-project-btn');
-    const projectModal = document.getElementById('project-modal');
-    const closeProjectModal = document.getElementById('close-project-modal');
-    const projectForm = document.getElementById('project-form');
-    const techStackContainer = document.getElementById('tech-stack-container');
-    const techInput = document.getElementById('tech-input');
-    const addTechBtn = document.getElementById('add-tech-btn');
-    let techStack = [];
-
-    // Open project modal
-    if (addProjectBtn && projectModal) {
-      addProjectBtn.addEventListener('click', () => {
-        projectModal.style.display = 'flex';
-      });
-    }
-
-    // Close project modal
-    if (closeProjectModal && projectModal) {
-      closeProjectModal.addEventListener('click', () => {
-        projectModal.style.display = 'none';
-        resetProjectForm();
-      });
-    }
-
-    // Close modal when clicking outside
-    window.addEventListener('click', (e) => {
-      if (e.target === projectModal) {
-        projectModal.style.display = 'none';
-        resetProjectForm();
-      }
-    });
-
-    // Add tech stack functionality
-    if (addTechBtn && techInput) {
-      addTechBtn.addEventListener('click', () => {
-        const tech = techInput.value.trim();
-        if (tech && !techStack.includes(tech)) {
-          techStack.push(tech);
-          renderTechStack();
-          techInput.value = '';
-        }
-      });
-
-      // Allow Enter key to add tech
-      techInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          addTechBtn.click();
-        }
-      });
-    }
-
-    // Render tech stack tags
-    function renderTechStack() {
-      if (techStackContainer) {
-        techStackContainer.innerHTML = '';
-        techStack.forEach((tech, index) => {
-          const techTag = document.createElement('div');
-          techTag.className = 'tech-tag-input';
-
-          const techLabel = document.createElement('span');
-          techLabel.textContent = tech;
-
-          const removeButton = document.createElement('button');
-          removeButton.type = 'button';
-          removeButton.className = 'remove-tech';
-          removeButton.setAttribute('aria-label', `Remove ${tech}`);
-          removeButton.innerHTML = '&times;';
-          removeButton.addEventListener('click', () => removeTech(index));
-
-          techTag.appendChild(techLabel);
-          techTag.appendChild(removeButton);
-          techStackContainer.appendChild(techTag);
-        });
-      }
-    }
-
-    // Remove tech from stack
-    function removeTech(index) {
-      techStack.splice(index, 1);
-      renderTechStack();
-    }
-
-    // Reset project form
-    function resetProjectForm() {
-      if (projectForm) {
-        projectForm.reset();
-        techStack = [];
-        renderTechStack();
-      }
-    }
-
-    // Handle project form submission
-    if (projectForm) {
-      projectForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        if (projectForm.dataset.mode === 'firebase') {
-          return;
-        }
-        
-        const title = document.getElementById('project-title').value;
-        const category = document.getElementById('project-category').value;
-        const status = document.getElementById('project-status').value;
-        const description = document.getElementById('project-description').value;
-        const imageUrl = document.getElementById('project-image').value || 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop';
-        const projectLink = document.getElementById('project-link').value || '#';
-        const dateLabel = document.getElementById('project-date-label').value || new Date().toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long'
-        });
-        const projectType = document.getElementById('project-type').value;
-        
-        // Create new project card
-        const newProject = createProjectCard({
-          category,
-          dateLabel,
-          description,
-          imageUrl,
-          projectLink,
-          projectType,
-          status,
-          techStack,
-          title
-        });
-        
-        // Add to projects container
-        const projectsContainer = document.getElementById('projects-container');
-        if (projectsContainer) {
-          projectsContainer.appendChild(newProject);
-        }
-        
-        // Close modal and reset form
-        projectModal.style.display = 'none';
-        resetProjectForm();
-        
-        // Scroll to new project
-        newProject.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        
-        // Show success message
-        showSuccessMessage('Project added successfully!');
-      });
-    }
-
-    // Create project card element
-    function createProjectCard(project) {
-      return projectCardUtils.createProjectCard(project);
-    }
-
-    function closeProjectModalPanel() {
-      if (projectModal) {
-        projectModal.style.display = 'none';
-      }
-    }
-
-    // Show success message
-    function showSuccessMessage(message) {
-      const successDiv = document.createElement('div');
-      successDiv.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: linear-gradient(45deg, #22c55e, #16a34a);
-        color: white;
-        padding: 1rem 2rem;
-        border-radius: 0.5rem;
-        box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
-        z-index: 3000;
-        font-weight: 600;
-        animation: slideIn 0.3s ease-out;
-      `;
-      successDiv.textContent = message;
-      
-      // Add animation keyframes
-      if (!document.querySelector('#success-animation-style')) {
-        const style = document.createElement('style');
-        style.id = 'success-animation-style';
-        style.textContent = `
-          @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-          }
-        `;
-        document.head.appendChild(style);
-      }
-      
-      document.body.appendChild(successDiv);
-      
-      // Remove after 3 seconds
-      setTimeout(() => {
-        successDiv.remove();
-      }, 3000);
-    }
-
-    // Smooth scroll for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-
-    window.portfolioProjectHelpers = {
-      closeProjectModal: closeProjectModalPanel,
-      filterProjects,
-      getActiveProjectFilter: () => activeProjectFilter,
-      refreshProjectRegistry,
-      resetProjectForm,
-      showSuccessMessage
-    };
-  </script>
-  <script src="webmeji-main/config.js"></script>
-  <script src="webmeji-main/webmeji.js"></script>
+  <script src="desktop-layout.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
