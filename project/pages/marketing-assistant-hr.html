@@ -6,9 +6,10 @@
   <link rel="icon" type="image/png" href="../assets/logo-preview/logo-lemon.png">
   <title>Marketing &amp; Assistant HR - Jona Setiawan</title>
   <script src="../../theme-init.js"></script>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="../../zoom-controls.css">
   <link rel="stylesheet" href="../../theme-palettes.css">
-  <link rel="stylesheet" href="../../webmeji-main/webmeji.css">
   <style>
     * {
       box-sizing: border-box;
@@ -925,7 +926,6 @@
   <footer class="footer">
     <p class="footer-note">&copy; 2024 Jona Setiawan. All rights reserved.</p>
   </footer>
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script>
     const workbookUrl = "../assets/project-fortress/riset-data-nama-fortress.xlsx";
     const sheetTabs = document.getElementById("sheet-tabs");
@@ -1231,8 +1231,34 @@
       URL.revokeObjectURL(downloadUrl);
     }
 
+    const XLSX_CDN_URL = "https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js";
+    let xlsxLoadPromise = null;
+
+    function ensureXlsxLoaded() {
+      if (window.XLSX) {
+        return Promise.resolve();
+      }
+
+      if (!xlsxLoadPromise) {
+        xlsxLoadPromise = new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src = XLSX_CDN_URL;
+          script.onload = resolve;
+          script.onerror = () => {
+            xlsxLoadPromise = null;
+            reject(new Error("XLSX library could not be loaded."));
+          };
+          document.head.appendChild(script);
+        });
+      }
+
+      return xlsxLoadPromise;
+    }
+
     async function loadWorkbook() {
-      if (!window.XLSX) {
+      try {
+        await ensureXlsxLoaded();
+      } catch (error) {
         loadMessage.textContent = "The workbook library could not be loaded. Refresh the page or check your connection.";
         loadMessage.classList.add("is-error");
         return;
@@ -1286,12 +1312,36 @@
 
     exportCsvBtn.addEventListener("click", exportCurrentSheetCsv);
 
-    loadWorkbook();
+    const workbookExplorer = document.getElementById("workbook-explorer");
+    let workbookStarted = false;
+
+    function startWorkbook() {
+      if (workbookStarted) {
+        return;
+      }
+      workbookStarted = true;
+      loadWorkbook();
+    }
+
+    if (workbookExplorer && "IntersectionObserver" in window) {
+      const workbookObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+          startWorkbook();
+          observer.disconnect();
+        });
+      }, { rootMargin: "400px 0px" });
+
+      workbookObserver.observe(workbookExplorer);
+    } else {
+      startWorkbook();
+    }
   </script>
-  <script src="../../language-controls.js?v=20260410-2"></script>
-  <script src="../../theme-controls.js"></script>
-  <script src="../../zoom-controls.js"></script>
-  <script src="../../webmeji-main/config.js"></script>
-  <script src="../../webmeji-main/webmeji.js"></script>
+  <script defer src="../../language-controls.js?v=20260410-2"></script>
+  <script defer src="../../performance-utils.js"></script>
+  <script defer src="../../theme-controls.js"></script>
+  <script defer src="../../zoom-controls.js"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
-const STATIC_CACHE = "portfolio-static-v27";
-const RUNTIME_CACHE = "portfolio-runtime-v27";
+const STATIC_CACHE = "portfolio-static-v29";
+const RUNTIME_CACHE = "portfolio-runtime-v29";
+const IMAGE_CACHE = "portfolio-images-v1";
 const CORE_ASSETS = [
   "/",
   "/index.html",
@@ -10,12 +11,10 @@ const CORE_ASSETS = [
   "/language-controls.js?v=20260410-2",
   "/project-card-utils.js",
   "/performance-utils.js",
+  "/performance-main.js",
   "/zoom-controls.css",
   "/zoom-controls.js",
-  "/theme-init.js",
-  "/webmeji-main/webmeji.css",
-  "/webmeji-main/config.js",
-  "/webmeji-main/webmeji.js"
+  "/theme-init.js"
 ];
 
 self.addEventListener("install", (event) => {
@@ -29,7 +28,7 @@ self.addEventListener("activate", (event) => {
     caches.keys().then((keys) =>
       Promise.all(
         keys
-          .filter((key) => ![STATIC_CACHE, RUNTIME_CACHE].includes(key))
+          .filter((key) => ![STATIC_CACHE, RUNTIME_CACHE, IMAGE_CACHE].includes(key))
           .map((key) => caches.delete(key))
       )
     ).then(() => self.clients.claim())
@@ -51,6 +50,21 @@ async function staleWhileRevalidate(request) {
   return cachedResponse || networkPromise;
 }
 
+async function cacheFirstWithRefresh(request, cacheName) {
+  const cache = await caches.open(cacheName);
+  const cachedResponse = await cache.match(request);
+  if (cachedResponse) {
+    fetch(request).then(resp => {
+      if (resp && resp.ok) cache.put(request, resp.clone());
+    }).catch(() => {});
+    return cachedResponse;
+  }
+  return fetch(request).then(resp => {
+    if (resp && resp.ok) cache.put(request, resp.clone());
+    return resp;
+  });
+}
+
 async function networkFirst(request) {
   const cache = await caches.open(RUNTIME_CACHE);
 
@@ -62,28 +76,29 @@ async function networkFirst(request) {
     return response;
   } catch (error) {
     const cachedResponse = await cache.match(request);
-    if (cachedResponse) {
-      return cachedResponse;
-    }
-
+    if (cachedResponse) return cachedResponse;
     throw error;
   }
 }
 
 self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") {
-    return;
-  }
+  if (event.request.method !== "GET") return;
 
   const request = event.request;
   const destination = request.destination;
+  const url = new URL(request.url);
 
   if (request.mode === "navigate") {
     event.respondWith(networkFirst(request));
     return;
   }
 
-  if (["image", "style", "script", "font"].includes(destination)) {
+  if (destination === "image") {
+    event.respondWith(cacheFirstWithRefresh(request, IMAGE_CACHE));
+    return;
+  }
+
+  if (["style", "script", "font"].includes(destination)) {
     event.respondWith(staleWhileRevalidate(request));
   }
 });

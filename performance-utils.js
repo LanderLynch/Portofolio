@@ -95,26 +95,38 @@
       return;
     }
 
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        mutation.addedNodes.forEach((node) => {
-          if (!(node instanceof HTMLElement)) {
-            return;
-          }
+    let pendingNodes = [];
+    let flushScheduled = false;
 
-          if (node.matches("img")) {
-            optimizeImage(node);
-            if (node.dataset.src || node.dataset.srcset) {
-              observeDeferredImages(node.parentElement || document);
-            }
+    function flush() {
+      var nodes = pendingNodes;
+      pendingNodes = [];
+      flushScheduled = false;
+      nodes.forEach(function (node) {
+        if (!(node instanceof HTMLElement)) return;
+        if (node.matches("img")) {
+          optimizeImage(node);
+          if (node.dataset.src || node.dataset.srcset) {
+            observeDeferredImages(node.parentElement || document);
           }
+        }
+        if (typeof node.querySelectorAll === "function") {
+          applyImageOptimizations(node);
+          observeDeferredImages(node);
+        }
+      });
+    }
 
-          if (typeof node.querySelectorAll === "function") {
-            applyImageOptimizations(node);
-            observeDeferredImages(node);
-          }
+    const observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        mutation.addedNodes.forEach(function (node) {
+          pendingNodes.push(node);
         });
       });
+      if (!flushScheduled) {
+        flushScheduled = true;
+        requestAnimationFrame(flush);
+      }
     });
 
     observer.observe(document.documentElement, {

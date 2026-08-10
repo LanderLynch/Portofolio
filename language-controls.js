@@ -114,6 +114,10 @@
       "changelog-li-pagefixes-intro": "Masalah khusus halaman diperbaiki:",
       "changelog-li-pagefixes-gfx": "memperbaiki background halaman <code>Personal GFX Design Collection</code> dengan menyelaraskan perilaku background <code>html</code> dan <code>body</code>",
       "changelog-li-pagefixes-cache": "merefresh banyak aset cache lewat bump versi service worker berulang agar perubahan benar-benar muncul",
+      "changelog-section-credit": "Terima Kasih Istimewa",
+      "changelog-li-credit-intro": "Changelog ini ditulis dengan bantuan dari:",
+      "changelog-li-credit-tool": "Command Code (<code>CommandCodeBot</code>) sebagai co-credit pada pembangunan portofolio ini",
+      "changelog-li-credit-thanks": "Terima kasih kepada asisten yang menemani sesi update hari ini!",
     },
     en: {
       "nav-home": "Home",
@@ -222,6 +226,10 @@
       "changelog-li-pagefixes-intro": "Fixed page-specific issues:",
       "changelog-li-pagefixes-gfx": "fixed the <code>Personal GFX Design Collection</code> page background mismatch by aligning <code>html</code> and <code>body</code> background behavior",
       "changelog-li-pagefixes-cache": "refreshed multiple cached assets through repeated service worker version bumps so changes actually show up",
+      "changelog-section-credit": "Special Thanks",
+      "changelog-li-credit-intro": "This changelog was written with help from:",
+      "changelog-li-credit-tool": "Command Code (<code>CommandCodeBot</code>) as a co-credit on this portfolio build",
+      "changelog-li-credit-thanks": "Thanks to the assistant for pairing on today's update session!",
     },
   };
 

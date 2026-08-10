@@ -6,11 +6,12 @@
   <link rel="icon" type="image/png" href="project/assets/logo-preview/logo-lemon.png" />
   <title>Certification - Jona Setiawan</title>
   <script src="theme-init.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="zoom-controls.css" />
   <link rel="stylesheet" href="webmeji-main/webmeji.css" />
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
-
     :root {
       --bg: #05101d;
       --surface: rgba(10, 23, 42, 0.82);
@@ -452,16 +453,6 @@
       gap: 1.15rem;
     }
 
-    .folder-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at top right, color-mix(in srgb, var(--accent) 12%, transparent), transparent 34%),
-        linear-gradient(180deg, color-mix(in srgb, white 4%, transparent), transparent 65%);
-      pointer-events: none;
-    }
-
     .folder-card-head {
       display: flex;
       align-items: flex-start;
@@ -664,14 +655,18 @@
     .folder-files {
       display: grid;
       gap: 0.85rem;
-      padding: 0 1.1rem 1.1rem;
-      max-height: 0;
+      padding: 0 1.1rem;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.3s ease, padding 0.3s ease;
+    }
+
+    .folder-files-inner {
       overflow: hidden;
-      transition: max-height 0.24s ease;
     }
 
     .folder-accordion.open .folder-files {
-      max-height: 1400px;
+      grid-template-rows: 1fr;
+      padding: 0 1.1rem 1.1rem;
     }
 
     .folder-file {
@@ -833,12 +828,6 @@
       background: linear-gradient(135deg, rgba(111, 125, 181, 0.16), rgba(151, 164, 214, 0.18));
       color: #5b638e;
       border-color: rgba(111, 125, 181, 0.22);
-    }
-
-    :root[data-theme="light"] .folder-card::before {
-      background:
-        radial-gradient(circle at top right, rgba(111, 125, 181, 0.16), transparent 34%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.72), transparent);
     }
 
     :root[data-theme="light"] .folder-modal {
@@ -1234,6 +1223,7 @@
         </button>
 
         <div class="folder-files" id="toefl-folder-files">
+          <div class="folder-files-inner">
           <div class="folder-file">
             <div class="folder-file-copy">
               <strong>TOEFL ITP</strong>
@@ -1331,6 +1321,7 @@
               <span>Writing structure practice PDF part IV.</span>
             </div>
             <a class="certificate-link" href="project/assets/certification-files/Written & Structure _ Writing Structure Part IV.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+          </div>
           </div>
         </div>
       </div>
@@ -1545,10 +1536,11 @@
 
     updateCertificates();
   </script>
-  <script src="language-controls.js?v=20260410-2"></script>
-  <script src="theme-controls.js"></script>
-  <script src="zoom-controls.js"></script>
-  <script src="webmeji-main/config.js"></script>
-  <script src="webmeji-main/webmeji.js"></script>
+  <script defer src="language-controls.js?v=20260410-2"></script>
+  <script defer src="theme-controls.js"></script>
+  <script defer src="performance-utils.js"></script>
+  <script defer src="zoom-controls.js"></script>
+  <script defer src="webmeji-main/config.js"></script>
+  <script defer src="webmeji-main/webmeji.js"></script>
 </body>
 </html>
