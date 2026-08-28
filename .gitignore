@@ -7,3 +7,7 @@
 serviceAccountKey.json
 firebase-adminsdk-*.json
 portofolio-jsfolio-firebase-adminsdk-*.json
+
+.tools/
+project/assets/ikm-project/sort stuff/
+.vercel
