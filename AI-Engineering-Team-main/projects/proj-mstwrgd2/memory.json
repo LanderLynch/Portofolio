@@ -1,0 +1,297 @@
+{
+  "projectId": "proj-mstwrgd2",
+  "metadata": {
+    "projectId": "proj-mstwrgd2",
+    "name": "Demo Project",
+    "description": "Demonstrate the full AI Engineering Team workflow.",
+    "goals": [
+      "Create a simple product dashboard",
+      "Allow authenticated data access"
+    ],
+    "scope": [],
+    "createdAt": "2026-08-15T05:01:03.255Z",
+    "updatedAt": "2026-08-15T05:01:03.256Z",
+    "status": "CREATED"
+  },
+  "workflowState": {
+    "currentStage": "COMPLETED",
+    "currentAgent": "Reporter",
+    "previousStage": "DEPLOYMENT",
+    "nextStage": null,
+    "status": "COMPLETED",
+    "retryCount": 0
+  },
+  "tasks": [],
+  "artifacts": [
+    "artifact-mstwrgd4-3734sqmn",
+    "artifact-mstwrgd9-snmsd1rp",
+    "artifact-mstwrgdp-pr5bgzzm",
+    "artifact-mstwrgdt-abeeehvg",
+    "artifact-mstwrge2-7whtaldx",
+    "artifact-mstwrge8-pgw9t16f",
+    "artifact-mstwrgej-qiw8l8xx",
+    "artifact-mstwrget-608iyw6x",
+    "artifact-mstwrgf0-z4rnx68s"
+  ],
+  "executionHistory": [
+    {
+      "executionId": "exec-mstwrgda-syslsrqf",
+      "agent": "Planner",
+      "stage": "PLANNING",
+      "startedAt": "2026-08-15T05:01:03.261Z",
+      "finishedAt": "2026-08-15T05:01:03.262Z",
+      "status": "COMPLETED",
+      "summary": "Planned 6 features and 6 tasks for Demo Project."
+    },
+    {
+      "executionId": "exec-mstwrgdp-dkksuznj",
+      "agent": "Architect",
+      "stage": "ARCHITECTURE",
+      "startedAt": "2026-08-15T05:01:03.276Z",
+      "finishedAt": "2026-08-15T05:01:03.277Z",
+      "status": "COMPLETED",
+      "summary": "Designed 6 modules, 2 entities, and 4 endpoints from the planning output."
+    },
+    {
+      "executionId": "exec-mstwrgdu-wp89c01z",
+      "agent": "Backend",
+      "stage": "BACKEND_DEVELOPMENT",
+      "startedAt": "2026-08-15T05:01:03.281Z",
+      "finishedAt": "2026-08-15T05:01:03.282Z",
+      "status": "COMPLETED",
+      "summary": "Backend implemented 8 source files from the architecture blueprint."
+    },
+    {
+      "executionId": "exec-mstwrge3-v5nxvqx7",
+      "agent": "Frontend",
+      "stage": "FRONTEND_DEVELOPMENT",
+      "startedAt": "2026-08-15T05:01:03.290Z",
+      "finishedAt": "2026-08-15T05:01:03.291Z",
+      "status": "COMPLETED",
+      "summary": "Frontend implemented 8 source files using 8 backend files and the architecture blueprint."
+    },
+    {
+      "executionId": "exec-mstwrge9-6x6lrh23",
+      "agent": "QA",
+      "stage": "QUALITY_ASSURANCE",
+      "startedAt": "2026-08-15T05:01:03.295Z",
+      "finishedAt": "2026-08-15T05:01:03.297Z",
+      "status": "COMPLETED",
+      "summary": "QA passed all 7 test cases."
+    },
+    {
+      "executionId": "exec-mstwrgek-vam3trip",
+      "agent": "Security",
+      "stage": "SECURITY_AUDIT",
+      "startedAt": "2026-08-15T05:01:03.307Z",
+      "finishedAt": "2026-08-15T05:01:03.308Z",
+      "status": "COMPLETED",
+      "summary": "Security audit completed with no blocking findings."
+    },
+    {
+      "executionId": "exec-mstwrgeu-exu8as8c",
+      "agent": "DevOps",
+      "stage": "DEPLOYMENT",
+      "startedAt": "2026-08-15T05:01:03.317Z",
+      "finishedAt": "2026-08-15T05:01:03.318Z",
+      "status": "COMPLETED",
+      "summary": "Deployment prepared and verified for project proj-mstwrgd2."
+    },
+    {
+      "executionId": "exec-mstwrgf1-o89bd89g",
+      "agent": "Reporter",
+      "stage": "REPORTING",
+      "startedAt": "2026-08-15T05:01:03.324Z",
+      "finishedAt": "2026-08-15T05:01:03.325Z",
+      "status": "COMPLETED",
+      "summary": "Final project report produced."
+    }
+  ],
+  "errorHistory": [],
+  "auditHistory": [
+    {
+      "auditId": "audit-mstwrgd5-e6hvwmjm",
+      "timestamp": "2026-08-15T05:01:03.257Z",
+      "event": "PROJECT_CREATED",
+      "details": {
+        "request": {
+          "name": "Demo Project",
+          "description": "Demonstrate the full AI Engineering Team workflow.",
+          "goals": [
+            "Create a simple product dashboard",
+            "Allow authenticated data access"
+          ],
+          "additionalNotes": "Default demo request created by the CLI."
+        }
+      }
+    },
+    {
+      "auditId": "audit-mstwrgd6-4sy4nyui",
+      "timestamp": "2026-08-15T05:01:03.258Z",
+      "event": "WORKFLOW_STARTED",
+      "details": {
+        "projectId": "proj-mstwrgd2"
+      }
+    },
+    {
+      "auditId": "audit-mstwrgd9-mpj0dusk",
+      "timestamp": "2026-08-15T05:01:03.261Z",
+      "event": "AGENT_STARTED",
+      "details": {
+        "agentName": "Planner",
+        "stage": "PLANNING"
+      }
+    },
+    {
+      "auditId": "audit-mstwrgdb-bggmz4p8",
+      "timestamp": "2026-08-15T05:01:03.263Z",
+      "event": "AGENT_COMPLETED",
+      "details": {
+        "agentName": "Planner",
+        "stage": "PLANNING",
+        "artifacts": 1
+      }
+    },
+    {
+      "auditId": "audit-mstwrgdo-8oa8efal",
+      "timestamp": "2026-08-15T05:01:03.276Z",
+      "event": "AGENT_STARTED",
+      "details": {
+        "agentName": "Architect",
+        "stage": "ARCHITECTURE"
+      }
+    },
+    {
+      "auditId": "audit-mstwrgdq-w5h4crsi",
+      "timestamp": "2026-08-15T05:01:03.278Z",
+      "event": "AGENT_COMPLETED",
+      "details": {
+        "agentName": "Architect",
+        "stage": "ARCHITECTURE",
+        "artifacts": 1
+      }
+    },
+    {
+      "auditId": "audit-mstwrgds-sf0qn0iv",
+      "timestamp": "2026-08-15T05:01:03.280Z",
+      "event": "AGENT_STARTED",
+      "details": {
+        "agentName": "Backend",
+        "stage": "BACKEND_DEVELOPMENT"
+      }
+    },
+    {
+      "auditId": "audit-mstwrgdu-2zkpzk05",
+      "timestamp": "2026-08-15T05:01:03.282Z",
+      "event": "AGENT_COMPLETED",
+      "details": {
+        "agentName": "Backend",
+        "stage": "BACKEND_DEVELOPMENT",
+        "artifacts": 1
+      }
+    },
+    {
+      "auditId": "audit-mstwrge1-dpg50cu7",
+      "timestamp": "2026-08-15T05:01:03.289Z",
+      "event": "AGENT_STARTED",
+      "details": {
+        "agentName": "Frontend",
+        "stage": "FRONTEND_DEVELOPMENT"
+      }
+    },
+    {
+      "auditId": "audit-mstwrge3-efadylv1",
+      "timestamp": "2026-08-15T05:01:03.291Z",
+      "event": "AGENT_COMPLETED",
+      "details": {
+        "agentName": "Frontend",
+        "stage": "FRONTEND_DEVELOPMENT",
+        "artifacts": 1
+      }
+    },
+    {
+      "auditId": "audit-mstwrge7-fc7e53d9",
+      "timestamp": "2026-08-15T05:01:03.295Z",
+      "event": "AGENT_STARTED",
+      "details": {
+        "agentName": "QA",
+        "stage": "QUALITY_ASSURANCE"
+      }
+    },
+    {
+      "auditId": "audit-mstwrge9-olf32pwy",
+      "timestamp": "2026-08-15T05:01:03.297Z",
+      "event": "AGENT_COMPLETED",
+      "details": {
+        "agentName": "QA",
+        "stage": "QUALITY_ASSURANCE",
+        "artifacts": 1
+      }
+    },
+    {
+      "auditId": "audit-mstwrgei-7kf3xpop",
+      "timestamp": "2026-08-15T05:01:03.306Z",
+      "event": "AGENT_STARTED",
+      "details": {
+        "agentName": "Security",
+        "stage": "SECURITY_AUDIT"
+      }
+    },
+    {
+      "auditId": "audit-mstwrgek-ozakadfs",
+      "timestamp": "2026-08-15T05:01:03.308Z",
+      "event": "AGENT_COMPLETED",
+      "details": {
+        "agentName": "Security",
+        "stage": "SECURITY_AUDIT",
+        "artifacts": 1
+      }
+    },
+    {
+      "auditId": "audit-mstwrget-ivoxiane",
+      "timestamp": "2026-08-15T05:01:03.317Z",
+      "event": "AGENT_STARTED",
+      "details": {
+        "agentName": "DevOps",
+        "stage": "DEPLOYMENT"
+      }
+    },
+    {
+      "auditId": "audit-mstwrgev-yck62157",
+      "timestamp": "2026-08-15T05:01:03.319Z",
+      "event": "AGENT_COMPLETED",
+      "details": {
+        "agentName": "DevOps",
+        "stage": "DEPLOYMENT",
+        "artifacts": 1
+      }
+    },
+    {
+      "auditId": "audit-mstwrgf0-qlh801aa",
+      "timestamp": "2026-08-15T05:01:03.324Z",
+      "event": "AGENT_STARTED",
+      "details": {
+        "agentName": "Reporter",
+        "stage": "REPORTING"
+      }
+    },
+    {
+      "auditId": "audit-mstwrgf1-we6ls7zj",
+      "timestamp": "2026-08-15T05:01:03.325Z",
+      "event": "AGENT_COMPLETED",
+      "details": {
+        "agentName": "Reporter",
+        "stage": "REPORTING",
+        "artifacts": 1
+      }
+    },
+    {
+      "auditId": "audit-mstwrgf2-7ksen5zg",
+      "timestamp": "2026-08-15T05:01:03.326Z",
+      "event": "WORKFLOW_COMPLETED",
+      "details": {
+        "projectId": "proj-mstwrgd2"
+      }
+    }
+  ]
+}

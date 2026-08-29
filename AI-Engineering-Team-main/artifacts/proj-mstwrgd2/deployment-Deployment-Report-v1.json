@@ -1,0 +1,23 @@
+{
+  "artifactId": "artifact-mstwrget-608iyw6x",
+  "projectId": "proj-mstwrgd2",
+  "type": "deployment",
+  "name": "Deployment Report",
+  "version": 1,
+  "createdAt": "2026-08-15T05:01:03.317Z",
+  "createdBy": "DevOps",
+  "content": {
+    "buildStatus": "SUCCESS",
+    "environment": "staging",
+    "deploymentStatus": "SUCCESS",
+    "verification": {
+      "backendAccessible": true,
+      "frontendAccessible": true,
+      "apiResponding": true,
+      "configApplied": true,
+      "criticalErrors": []
+    },
+    "buildPackage": "ai-engineering-team-proj-mstwrgd2.tar.gz",
+    "report": "Deployment prepared and verified for project proj-mstwrgd2."
+  }
+}

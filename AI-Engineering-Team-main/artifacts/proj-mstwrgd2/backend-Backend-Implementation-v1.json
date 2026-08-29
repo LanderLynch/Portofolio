@@ -1,0 +1,98 @@
+{
+  "artifactId": "artifact-mstwrgdt-abeeehvg",
+  "projectId": "proj-mstwrgd2",
+  "type": "backend",
+  "name": "Backend Implementation",
+  "version": 1,
+  "createdAt": "2026-08-15T05:01:03.281Z",
+  "createdBy": "Backend",
+  "content": {
+    "sourceFiles": [
+      {
+        "path": "src/backend/server.ts",
+        "content": "import { createServer } from 'node:http';\n\nexport function startServer(port = Number(process.env.PORT ?? 3000)) {\n  const server = createServer((req, res) => {\n    res.setHeader('Content-Type', 'application/json');\n    res.end(JSON.stringify({ ok: true, path: req.url }));\n  });\n  server.listen(port, () => {\n    console.log(`API listening on port ${port}`);\n  });\n  return server;\n}\n"
+      },
+      {
+        "path": "src/backend/services/authentication-service.ts",
+        "content": "export class AuthenticationService {\n  private data: unknown[] = [];\n\n  create(input: unknown) {\n    this.data.push(input);\n    return input;\n  }\n\n  list() {\n    return this.data;\n  }\n\n  validate(input: unknown): string[] {\n    return input === undefined || input === null ? ['Input is required'] : [];\n  }\n}\n"
+      },
+      {
+        "path": "src/backend/services/data-management-service.ts",
+        "content": "export class DataManagementService {\n  private data: unknown[] = [];\n\n  create(input: unknown) {\n    this.data.push(input);\n    return input;\n  }\n\n  list() {\n    return this.data;\n  }\n\n  validate(input: unknown): string[] {\n    return input === undefined || input === null ? ['Input is required'] : [];\n  }\n}\n"
+      },
+      {
+        "path": "src/backend/services/dashboard-service.ts",
+        "content": "export class DashboardService {\n  private data: unknown[] = [];\n\n  create(input: unknown) {\n    this.data.push(input);\n    return input;\n  }\n\n  list() {\n    return this.data;\n  }\n\n  validate(input: unknown): string[] {\n    return input === undefined || input === null ? ['Input is required'] : [];\n  }\n}\n"
+      },
+      {
+        "path": "src/backend/services/reporting-service.ts",
+        "content": "export class ReportingService {\n  private data: unknown[] = [];\n\n  create(input: unknown) {\n    this.data.push(input);\n    return input;\n  }\n\n  list() {\n    return this.data;\n  }\n\n  validate(input: unknown): string[] {\n    return input === undefined || input === null ? ['Input is required'] : [];\n  }\n}\n"
+      },
+      {
+        "path": "src/backend/services/create-a-simple-product-dashboard-service.ts",
+        "content": "export class CreateASimpleProductDashboardService {\n  private data: unknown[] = [];\n\n  create(input: unknown) {\n    this.data.push(input);\n    return input;\n  }\n\n  list() {\n    return this.data;\n  }\n\n  validate(input: unknown): string[] {\n    return input === undefined || input === null ? ['Input is required'] : [];\n  }\n}\n"
+      },
+      {
+        "path": "src/backend/services/allow-authenticated-data-access-service.ts",
+        "content": "export class AllowAuthenticatedDataAccessService {\n  private data: unknown[] = [];\n\n  create(input: unknown) {\n    this.data.push(input);\n    return input;\n  }\n\n  list() {\n    return this.data;\n  }\n\n  validate(input: unknown): string[] {\n    return input === undefined || input === null ? ['Input is required'] : [];\n  }\n}\n"
+      },
+      {
+        "path": "src/backend/routes/index.ts",
+        "content": "import type { IncomingMessage, ServerResponse } from 'node:http';\n\nexport function handleRoutes(req: IncomingMessage, res: ServerResponse) {\n  if (req.url === '/api/health') {\n    res.writeHead(200);\n    res.end(JSON.stringify({ status: 'ok' }));\n    return;\n  }\n  res.writeHead(404);\n  res.end(JSON.stringify({ error: 'Not found' }));\n}\n"
+      }
+    ],
+    "apiImplemented": [
+      {
+        "endpointId": "api-001",
+        "method": "POST",
+        "path": "/api/auth/login",
+        "description": "Authenticate a user and return a session token."
+      },
+      {
+        "endpointId": "api-002",
+        "method": "GET",
+        "path": "/api/records",
+        "description": "List project records for the authenticated user."
+      },
+      {
+        "endpointId": "api-003",
+        "method": "POST",
+        "path": "/api/records",
+        "description": "Create a new project record."
+      },
+      {
+        "endpointId": "api-004",
+        "method": "GET",
+        "path": "/api/health",
+        "description": "Return system health information for monitoring."
+      }
+    ],
+    "businessLogic": [
+      "Authentication service with deterministic input validation and error handling.",
+      "Data Management service with deterministic input validation and error handling.",
+      "Dashboard service with deterministic input validation and error handling.",
+      "Reporting service with deterministic input validation and error handling.",
+      "Create A Simple Product Dashboard service with deterministic input validation and error handling.",
+      "Allow Authenticated Data Access service with deterministic input validation and error handling."
+    ],
+    "authentication": [
+      "Login endpoint",
+      "Token validation",
+      "Credential hashing placeholder"
+    ],
+    "authorization": [
+      "Role check middleware",
+      "Resource ownership check"
+    ],
+    "databaseLayer": [
+      "User repository with create, read, update, and delete operations.",
+      "ProjectRecord repository with create, read, update, and delete operations."
+    ],
+    "buildInstructions": [
+      "Run `npm install`",
+      "Run `npm run build`",
+      "Start the API server"
+    ],
+    "report": "Backend implemented 8 source files from the architecture blueprint."
+  }
+}

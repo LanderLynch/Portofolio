@@ -1,0 +1,87 @@
+{
+  "artifactId": "artifact-mstwrge2-7whtaldx",
+  "projectId": "proj-mstwrgd2",
+  "type": "frontend",
+  "name": "Frontend Implementation",
+  "version": 1,
+  "createdAt": "2026-08-15T05:01:03.290Z",
+  "createdBy": "Frontend",
+  "content": {
+    "sourceFiles": [
+      {
+        "path": "src/frontend/pages/authentication-page.ts",
+        "content": "export function renderAuthenticationPage() {\n  return `<section><h1>Authentication</h1><p>Implement the Authentication feature described in the planning artifact.</p></section>`;\n}\n"
+      },
+      {
+        "path": "src/frontend/pages/data-management-page.ts",
+        "content": "export function renderDataManagementPage() {\n  return `<section><h1>Data Management</h1><p>Implement the Data Management feature described in the planning artifact.</p></section>`;\n}\n"
+      },
+      {
+        "path": "src/frontend/pages/dashboard-page.ts",
+        "content": "export function renderDashboardPage() {\n  return `<section><h1>Dashboard</h1><p>Implement the Dashboard feature described in the planning artifact.</p></section>`;\n}\n"
+      },
+      {
+        "path": "src/frontend/pages/reporting-page.ts",
+        "content": "export function renderReportingPage() {\n  return `<section><h1>Reporting</h1><p>Implement the Reporting feature described in the planning artifact.</p></section>`;\n}\n"
+      },
+      {
+        "path": "src/frontend/pages/create-a-simple-product-dashboard-page.ts",
+        "content": "export function renderCreateASimpleProductDashboardPage() {\n  return `<section><h1>Create A Simple Product Dashboard</h1><p>Implement the Create A Simple Product Dashboard feature described in the planning artifact.</p></section>`;\n}\n"
+      },
+      {
+        "path": "src/frontend/pages/allow-authenticated-data-access-page.ts",
+        "content": "export function renderAllowAuthenticatedDataAccessPage() {\n  return `<section><h1>Allow Authenticated Data Access</h1><p>Implement the Allow Authenticated Data Access feature described in the planning artifact.</p></section>`;\n}\n"
+      },
+      {
+        "path": "src/frontend/app.ts",
+        "content": "import { renderAuthenticationPage } from './pages/authentication-page';\n\nexport function renderApp() {\n  return `<main>${renderAuthenticationPage()}</main>`;\n}\n"
+      },
+      {
+        "path": "src/frontend/api-client.ts",
+        "content": "export async function apiRequest<T>(path: string, options?: RequestInit): Promise<T> {\n  const response = await fetch(path, options);\n  if (!response.ok) {\n    throw new Error(`API request failed: ${response.status}`);\n  }\n  return response.json() as Promise<T>;\n}\n"
+      }
+    ],
+    "uiComponents": [
+      "AuthenticationView",
+      "Data ManagementView",
+      "DashboardView",
+      "ReportingView",
+      "Create A Simple Product DashboardView",
+      "Allow Authenticated Data AccessView"
+    ],
+    "pages": [
+      "AuthenticationPage",
+      "Data ManagementPage",
+      "DashboardPage",
+      "ReportingPage",
+      "Create A Simple Product DashboardPage",
+      "Allow Authenticated Data AccessPage"
+    ],
+    "routing": [
+      "/",
+      "/authentication",
+      "/data-management",
+      "/dashboard",
+      "/reporting",
+      "/create-a-simple-product-dashboard",
+      "/allow-authenticated-data-access"
+    ],
+    "apiIntegration": [
+      "POST /api/auth/login -> apiRequest",
+      "GET /api/records -> apiRequest",
+      "POST /api/records -> apiRequest",
+      "GET /api/health -> apiRequest"
+    ],
+    "clientValidation": [
+      "Required field checks",
+      "Email format check",
+      "Input length check"
+    ],
+    "buildInstructions": [
+      "Run `npm install`",
+      "Run `npm run build`",
+      "Serve the static output"
+    ],
+    "report": "Frontend implemented 8 source files using 8 backend files and the architecture blueprint."
+  }
+}

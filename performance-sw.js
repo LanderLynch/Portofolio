@@ -1,5 +1,5 @@
-const STATIC_CACHE = "portfolio-static-v29";
-const RUNTIME_CACHE = "portfolio-runtime-v29";
+const STATIC_CACHE = "portfolio-static-v30";
+const RUNTIME_CACHE = "portfolio-runtime-v30";
 const IMAGE_CACHE = "portfolio-images-v1";
 const CORE_ASSETS = [
   "/",
@@ -14,7 +14,10 @@ const CORE_ASSETS = [
   "/performance-main.js",
   "/zoom-controls.css",
   "/zoom-controls.js",
-  "/theme-init.js"
+  "/theme-init.js",
+  "/firebase-config.js",
+  "/admin-panel.js",
+  "/testimonials-guestbook.js"
 ];
 
 self.addEventListener("install", (event) => {
@@ -99,6 +102,11 @@ self.addEventListener("fetch", (event) => {
   }
 
   if (["style", "script", "font"].includes(destination)) {
+    const isFirebaseModule = url.pathname.includes("firebase-config") || url.pathname.includes("admin-panel") || url.pathname.includes("testimonials-guestbook");
+    if (isFirebaseModule) {
+      event.respondWith(networkFirst(request));
+      return;
+    }
     event.respondWith(staleWhileRevalidate(request));
   }
 });

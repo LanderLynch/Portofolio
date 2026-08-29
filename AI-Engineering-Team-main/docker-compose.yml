@@ -1,0 +1,12 @@
+services:
+  ai-engineering-team:
+    image: node:22-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: sh -c "npm install && npm run build && npm start"
+    environment:
+      NODE_ENV: production
+      AI_TEAM_PROJECTS_DIR: projects
+      AI_TEAM_ARTIFACTS_DIR: artifacts
+      AI_TEAM_LOGS_DIR: logs

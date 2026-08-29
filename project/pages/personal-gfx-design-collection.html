@@ -10,19 +10,44 @@
   <link rel="stylesheet" href="../../theme-palettes.css">
 
   <style>
-    :root {
-      --bg: #06111f;
-      --surface: rgba(10, 23, 42, 0.78);
-      --surface-soft: rgba(15, 30, 51, 0.7);
-      --border: rgba(148, 163, 184, 0.18);
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --accent: #60a5fa;
-      --accent-strong: #2563eb;
-      --shadow: 0 24px 70px rgba(2, 6, 23, 0.42);
-      --radius-xl: 28px;
-      --radius-lg: 20px;
-      --radius-md: 14px;
+    /* Page-level tokens. These build on the global theme variables
+       (--bg, --text, --surface, --border, --muted) so the page
+       recolors automatically when data-theme changes. */
+    :root,
+    :root[data-theme="light"],
+    :root[data-theme="blue"],
+    :root[data-theme="galaxy"] {
+      --gallery-ink: var(--text);
+      --gallery-muted: var(--muted);
+      --gallery-line: var(--border);
+      --gallery-accent: var(--accent);
+      --gallery-card: var(--surface);
+      --gallery-card-solid: var(--panel-bg);
+      --gallery-shadow: var(--shadow);
+      /* Single spacing variable used by every gap/margin */
+      --space: clamp(1.25rem, 2.5vw, 2.75rem);
+    }
+
+    /* ---- Theme background overlays -----------------------------------
+       Each theme contributes a translucent tint layered over the grid
+       pattern. mix-blend-mode + opacity keep the squares visible. */
+    :root,
+    :root[data-theme="blue"] {
+      --theme-overlay:
+        radial-gradient(circle at 50% 0%, rgba(96, 165, 250, 0.1), transparent 55%),
+        linear-gradient(180deg, #05101d 0%, #071528 55%, #020617 100%);
+    }
+
+    :root[data-theme="light"] {
+      --theme-overlay:
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.5), transparent 55%),
+        linear-gradient(180deg, #f5f2eb 0%, #efeae0 55%, #e9e3d6 100%);
+    }
+
+    :root[data-theme="galaxy"] {
+      --theme-overlay:
+        radial-gradient(circle at 50% 0%, rgba(102, 103, 171, 0.24), transparent 55%),
+        linear-gradient(180deg, #7b337e 0%, #420d4b 38%, #210635 100%);
     }
 
     * {
@@ -38,36 +63,38 @@
 
     body {
       min-height: 100vh;
-      font-family: "Inter", "Segoe UI", sans-serif;
+      font-family: "Inter", "Segoe UI", -apple-system, sans-serif;
       background: var(--bg);
-      color: var(--text);
+      color: var(--gallery-ink);
       line-height: 1.6;
       position: relative;
       overflow-x: hidden;
     }
 
+    /* Layer 1 — faint square grid, always visible */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      background:
-        radial-gradient(circle at top left, rgba(96, 165, 250, 0.18), transparent 32%),
-        radial-gradient(circle at 88% 10%, rgba(14, 165, 233, 0.12), transparent 28%),
-        linear-gradient(180deg, #08111f 0%, #06111f 55%, #020617 100%);
-      z-index: -2;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 64px 64px;
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 0;
     }
 
+    /* Layer 2 — theme tint over the grid, blended so the grid shows through */
     body::after {
       content: "";
       position: fixed;
       inset: 0;
-      background-image:
-        linear-gradient(90deg, rgba(148, 163, 184, 0.04) 1px, transparent 1px),
-        linear-gradient(rgba(148, 163, 184, 0.04) 1px, transparent 1px);
-      background-size: 88px 88px;
-      opacity: 0.16;
+      background: var(--theme-overlay);
+      opacity: 0.78;
+      mix-blend-mode: normal;
       pointer-events: none;
-      z-index: -1;
+      z-index: 0;
     }
 
     img {
@@ -77,420 +104,284 @@
 
     a {
       color: inherit;
-    }
-
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      padding: 1rem 1.5rem 0;
-    }
-
-    .nav-container {
-      max-width: 1240px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: flex-start;
-    }
-
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.85rem 1.4rem;
-      border-radius: 999px;
       text-decoration: none;
-      font-weight: 700;
-      color: var(--text);
-      background: rgba(5, 16, 29, 0.84);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-      transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
-    .back-btn:hover {
-      transform: translateX(-4px);
-      border-color: rgba(96, 165, 250, 0.35);
+    /* ---------- Minimal top bar: back link only ---------- */
+    .topbar {
+      position: relative;
+      z-index: 30;
+      padding: 1.5rem clamp(1.25rem, 5vw, 4.5rem);
     }
 
-    .hero {
-      padding: 5.5rem 2rem 4rem;
-      text-align: center;
-    }
-
-    .hero-content {
-      max-width: 940px;
-      margin: 0 auto;
-    }
-
-    .project-category {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.55rem 1.35rem;
-      border-radius: 999px;
-      background: rgba(96, 165, 250, 0.12);
-      border: 1px solid rgba(96, 165, 250, 0.22);
-      color: #bfdbfe;
+    .back-link {
+      display: inline-block;
       font-size: 0.9rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
+      color: var(--gallery-muted);
+      transition: color 0.2s ease;
     }
 
-    .hero h1 {
-      font-size: clamp(3rem, 7vw, 5.4rem);
-      line-height: 0.96;
-      letter-spacing: -0.05em;
-      font-weight: 800;
-      margin-bottom: 1.4rem;
-      background: linear-gradient(135deg, #ffffff 0%, #bfdbfe 50%, #60a5fa 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .back-link:hover {
+      color: var(--gallery-ink);
     }
 
-    .hero-description {
-      font-size: 1.14rem;
-      color: var(--muted);
-      margin-bottom: 2rem;
+    /* ---------- Main content: full viewport, symmetric padding ---------- */
+    .page-main {
+      position: relative;
+      z-index: 10;
+      padding: 1.5rem clamp(1.25rem, 5vw, 4.5rem) 4rem;
     }
 
-    .project-meta {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-    }
-
-    .meta-item {
-      min-width: 170px;
-      padding: 1rem 1.2rem;
-      border-radius: var(--radius-md);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-    }
-
-    .meta-label {
-      display: block;
-      color: var(--muted);
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 0.35rem;
-    }
-
-    .meta-value {
-      display: block;
-      color: #ffffff;
-      font-size: 1.05rem;
-      font-weight: 700;
-    }
-
-    .tech-stack {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .tech-tag {
-      padding: 0.55rem 1rem;
-      border-radius: 999px;
-      background: rgba(96, 165, 250, 0.12);
-      border: 1px solid rgba(96, 165, 250, 0.18);
-      color: #bfdbfe;
-      font-size: 0.92rem;
-      font-weight: 600;
-    }
-
-    .featured-image {
-      max-width: 1280px;
-      margin: -1.5rem auto 4rem;
-      padding: 0 2rem;
-    }
-
-    .featured-image img {
-      width: 100%;
-      border-radius: calc(var(--radius-xl) + 6px);
-      border: 1px solid rgba(148, 163, 184, 0.18);
-      box-shadow: var(--shadow);
-    }
-
-    .content-section {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 2rem 4rem;
-    }
-
-    .section-title {
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.04;
-      margin-bottom: 0.9rem;
-    }
-
-    .section-intro {
-      color: var(--muted);
-      font-size: 1.04rem;
-      margin-bottom: 1.8rem;
-    }
-
-    .overview-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
-      gap: 1.5rem;
-      align-items: start;
-    }
-
-    .intro-panel,
-    .focus-card,
-    .software-card,
-    .note-panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-    }
-
-    .intro-panel,
-    .note-panel {
-      padding: 1.5rem;
-    }
-
-    .intro-panel p,
-    .note-panel p {
-      color: var(--muted);
-      font-size: 1.02rem;
-    }
-
-    .intro-panel p + p,
-    .note-panel p + p {
-      margin-top: 1rem;
-    }
-
-    .focus-grid {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .focus-card {
-      padding: 1.25rem;
-    }
-
-    .focus-card h3,
-    .software-card h3 {
-      margin-bottom: 0.45rem;
-      font-size: 1.15rem;
-    }
-
-    .focus-card p,
-    .software-card p {
-      color: var(--muted);
-      font-size: 0.98rem;
-    }
-
-    .software-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .software-card {
-      padding: 1.4rem;
-    }
-
-    .software-label {
-      display: inline-flex;
-      margin-bottom: 0.8rem;
-      padding: 0.35rem 0.8rem;
-      border-radius: 999px;
-      background: rgba(96, 165, 250, 0.12);
-      color: #bfdbfe;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .gallery-header {
+    /* Header row shares the exact same padding as the grid below it */
+    .page-head {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      gap: 1rem;
-      margin-bottom: 1.8rem;
+      gap: 1.5rem;
+      margin-bottom: var(--space);
     }
 
-    .gallery-count {
-      display: inline-flex;
+    .page-head-copy {
+      min-width: 0;
+    }
+
+    .page-title {
+      font-family: Georgia, "Times New Roman", "Playfair Display", serif;
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--gallery-ink);
+    }
+
+    /* The shared theme engine forces a gradient fill on .page-title via
+       .project-detail-page .page-title. Override with equal specificity so
+       the elegant serif title uses the plain theme text color. */
+    .project-detail-page .page-title {
+      background: none !important;
+      -webkit-background-clip: initial !important;
+      background-clip: initial !important;
+      -webkit-text-fill-color: var(--gallery-ink) !important;
+      color: var(--gallery-ink) !important;
+    }
+
+    .page-sub {
+      font-family: "Inter", "Segoe UI", sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gallery-muted);
+      margin-top: 0.6rem;
+    }
+
+    /* ---------- Theme switcher (elegant text-based) ---------- */
+    .page-head-actions {
+      display: flex;
+      align-items: flex-end;
+      gap: 1.6rem;
+    }
+
+    .works-count {
+      font-family: "Inter", "Segoe UI", sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gallery-muted);
+      white-space: nowrap;
+      padding-bottom: 0.25rem;
+    }
+
+    .theme-switcher {
+      display: flex;
       align-items: center;
-      padding: 0.55rem 1rem;
-      border-radius: 999px;
-      background: rgba(96, 165, 250, 0.12);
-      border: 1px solid rgba(96, 165, 250, 0.18);
-      color: #bfdbfe;
-      font-size: 0.88rem;
+      gap: 1rem;
+      padding-bottom: 0.25rem;
+    }
+
+    .theme-switcher button {
+      font-family: "Inter", "Segoe UI", sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      color: var(--gallery-muted);
+      transition: color 0.2s ease;
+    }
+
+    .theme-switcher button:hover {
+      color: var(--gallery-ink);
+    }
+
+    .theme-switcher button.is-active {
+      color: var(--gallery-ink);
       font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1px;
     }
 
-    .gallery-masonry {
-      columns: 4 220px;
-      column-gap: 1.25rem;
-      column-fill: balance;
+    /* ---------- Masonry gallery: frameless, image-defines-box ---------- */
+    .gallery {
+      columns: 4;
+      column-gap: var(--space);
+      width: 100%;
     }
 
-    .gallery-card {
+    .gallery-item {
       break-inside: avoid;
-      margin-bottom: 1.25rem;
-      border-radius: calc(var(--radius-lg) + 4px);
-      overflow: hidden;
-      background: var(--surface-soft);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      transition: transform 0.25s ease, border-color 0.25s ease;
+      margin-bottom: var(--space);
     }
 
-    .gallery-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(96, 165, 250, 0.32);
+    .gallery-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-bottom: 0.8rem;
+      font-family: "Inter", "Segoe UI", sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gallery-muted);
     }
 
-    .gallery-link {
+    .gallery-meta .diamond {
+      font-size: 0.7rem;
+      color: var(--gallery-accent);
+      line-height: 1;
+    }
+
+    .gallery-frame {
       display: block;
-      text-decoration: none;
+      background: var(--gallery-card);
+      border: 1px solid var(--gallery-line);
+      padding: 0.8rem;
+      box-shadow: var(--gallery-shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.25s ease, border-color 0.25s ease;
     }
 
-    .gallery-card img {
+    .gallery-frame:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    /* Frameless logic: no fixed ratio, no object-fit, no cropping.
+       Each image keeps its native portrait/landscape proportions. */
+    .gallery-frame img {
       width: 100%;
       height: auto;
-      transition: transform 0.35s ease;
+      aspect-ratio: auto;
+      display: block;
     }
 
-    .gallery-card:hover img {
-      transform: scale(1.02);
+    /* ---------- Footer ---------- */
+    .page-footer {
+      position: relative;
+      z-index: 10;
+      padding: 0 clamp(1.25rem, 5vw, 4.5rem) 3rem;
     }
 
-    .gallery-caption {
-      padding: 0.95rem 1rem 1.1rem;
+    .footer-grid {
+      border-top: 1px solid var(--gallery-line);
+      padding-top: var(--space);
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space);
+      margin-bottom: var(--space);
     }
 
-    .gallery-caption h3 {
-      font-size: 1rem;
-      margin-bottom: 0.2rem;
-      word-break: break-word;
+    .about-block h3 {
+      font-family: "Inter", "Segoe UI", sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gallery-ink);
+      margin-bottom: 0.6rem;
     }
 
-    .gallery-caption span {
-      color: var(--muted);
-      font-size: 0.9rem;
+    .about-block p {
+      color: var(--gallery-muted);
+      font-size: 0.92rem;
     }
 
-    .cta-section {
-      margin: 0 2rem 2rem;
-      padding: 3.25rem 2rem;
-      border-radius: calc(var(--radius-xl) + 6px);
-      background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
-
-    .cta-section h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin-bottom: 0.8rem;
-      color: #ffffff;
-    }
-
-    .cta-section p {
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 1.8rem;
-      font-size: 1.08rem;
-    }
-
-    .cta-buttons {
+    .footer-bottom {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
       gap: 1rem;
+      border-top: 1px solid var(--gallery-line);
+      padding-top: 1.5rem;
     }
 
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 200px;
-      padding: 0.95rem 1.4rem;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    .footer-copy {
+      color: var(--gallery-muted);
+      font-size: 0.82rem;
     }
 
-    .cta-btn:hover {
-      transform: translateY(-2px);
+    .footer-nav {
+      display: flex;
+      gap: 1.6rem;
     }
 
-    .cta-btn-primary {
-      background: #ffffff;
-      color: #0f172a;
-      box-shadow: 0 18px 34px rgba(255, 255, 255, 0.22);
+    .footer-nav a {
+      font-family: "Inter", "Segoe UI", sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gallery-muted);
+      transition: color 0.2s ease;
     }
 
-    .cta-btn-secondary {
-      background: transparent;
-      color: #ffffff;
-      border: 2px solid rgba(255, 255, 255, 0.74);
+    .footer-nav a:hover {
+      color: var(--gallery-ink);
     }
 
-    .footer {
-      padding: 0 2rem 2rem;
-      text-align: center;
-      color: var(--muted);
+    /* ---------- Responsive: 4 -> 3 -> 2 -> 1 columns ---------- */
+    @media (max-width: 1200px) {
+      .gallery {
+        columns: 3;
+      }
     }
 
     @media (max-width: 900px) {
-      .overview-grid,
-      .software-grid {
-        grid-template-columns: 1fr;
+      .gallery {
+        columns: 2;
       }
 
-      .gallery-header {
-        flex-direction: column;
-        align-items: flex-start;
+      .footer-grid {
+        grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 640px) {
-      .navbar,
-      .hero,
-      .content-section,
-      .featured-image,
-      .footer,
-      .cta-section {
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-
-      .hero {
-        padding-top: 4.5rem;
-      }
-
-      .project-meta {
-        gap: 0.75rem;
-      }
-
-      .meta-item {
-        min-width: calc(50% - 0.5rem);
-      }
-
-      .gallery-masonry {
+    @media (max-width: 600px) {
+      .gallery {
         columns: 1;
       }
 
-      .cta-buttons {
+      .page-head {
         flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .page-head-actions {
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   </style>
@@ -525,153 +416,84 @@
       </div>
     </div>
   </div>
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="../../index.html" class="back-btn">
-        <img src="../assets/logo-preview/logo-lemon.png" alt="" class="back-btn-logo">
-        <span>Back to Portfolio</span>
-      </a>
-    </div>
-  </nav>
 
-  <section class="hero">
-    <div class="hero-content">
-      <span class="project-category">GFX Design</span>
-      <h1>Personal GFX Design Collection</h1>
-      <p class="hero-description">An ongoing personal project focused on character edits, poster compositions, typography experiments, and anime-inspired visual storytelling.</p>
-
-      <div class="project-meta">
-        <div class="meta-item">
-          <span class="meta-label">Duration</span>
-          <span class="meta-value">Still Going</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-label">Role</span>
-          <span class="meta-value">Personal Project</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-label">Status</span>
-          <span class="meta-value">On-going</span>
-        </div>
-      </div>
-
-      <div class="tech-stack">
-        <span class="tech-tag">Adobe Photoshop</span>
-        <span class="tech-tag">Adobe Illustrator</span>
-        <span class="tech-tag">Photo Manipulation</span>
-        <span class="tech-tag">Typography</span>
-      </div>
-    </div>
-  </section>
-
-  <div class="featured-image">
-    <img src="https://i.pinimg.com/736x/e2/79/15/e2791594bb7f8ef98b33e94fa06de84b.jpg" alt="Featured GFX design composition">
+  <div class="topbar">
+    <a class="back-link" href="../../index.html" data-i18n-key="gfx-back-main">&larr; Go back to portfolio main</a>
   </div>
 
-  <section class="content-section">
-    <h2 class="section-title">Project Overview</h2>
-    <p class="section-intro">This page now acts as a single place to showcase the GFX work you added into the project folder, with a layout built to keep every image visible and easy to browse.</p>
-
-    <div class="overview-grid">
-      <div class="intro-panel">
-        <p>This collection brings together personal edits, poster-style layouts, character-focused compositions, and visual experiments created as part of an ongoing GFX journey. The work blends sharp typography, layered effects, dramatic lighting, and high-contrast color treatment.</p>
-        <p>Instead of a traditional brand case study, the page is now centered on the real design pieces you uploaded so visitors can immediately see the range of your graphic style in one continuous gallery.</p>
+  <main class="page-main">
+    <div class="page-head">
+      <div class="page-head-copy">
+        <h1 class="page-title" data-i18n-key="gfx-page-title">Poster Design</h1>
+        <p class="page-sub" data-i18n-key="gfx-page-sub">Selected works · ongoing series</p>
       </div>
-
-      <div class="focus-grid">
-        <article class="focus-card">
-          <h3>Visual Direction</h3>
-          <p>Anime-inspired edits, poster layouts, strong focal points, and cinematic color contrast.</p>
-        </article>
-        <article class="focus-card">
-          <h3>Core Strengths</h3>
-          <p>Compositing, character framing, text placement, depth, and mood-building through color.</p>
-        </article>
-        <article class="focus-card">
-          <h3>Current Goal</h3>
-          <p>Keep expanding the library of polished GFX pieces while refining speed, consistency, and originality.</p>
-        </article>
+      <div class="page-head-actions">
+        <div class="theme-switcher" role="group" aria-label="Theme">
+          <button type="button" data-theme-value="light">Light</button>
+          <button type="button" data-theme-value="blue">Dark</button>
+          <button type="button" data-theme-value="galaxy">Galaxy</button>
+        </div>
+        <span class="works-count" id="works-count">28 works</span>
       </div>
     </div>
-  </section>
 
-  <section class="content-section">
-    <h2 class="section-title">Software Used</h2>
-    <p class="section-intro">The current workflow is built around these two main tools.</p>
+    <div class="gallery" id="gfx-gallery"></div>
+  </main>
 
-    <div class="software-grid">
-      <article class="software-card">
-        <span class="software-label">Main Editor</span>
-        <h3>Adobe Photoshop</h3>
-        <p>Used for compositing, image retouching, effects, lighting control, texture overlays, and final color work across most GFX pieces.</p>
+  <footer class="page-footer">
+    <div class="footer-grid">
+      <article class="about-block">
+        <h3 data-i18n-key="gfx-focus-direction">Visual Direction</h3>
+        <p data-i18n-key="gfx-focus-direction-text">Anime-inspired edits, poster layouts, strong focal points, and cinematic color contrast.</p>
       </article>
-
-      <article class="software-card">
-        <span class="software-label">Layout Support</span>
-        <h3>Adobe Illustrator</h3>
-        <p>Used to support vector shapes, cleaner typography handling, graphic accents, and layout elements when a sharper structure is needed.</p>
+      <article class="about-block">
+        <h3 data-i18n-key="gfx-focus-strengths">Core Strengths</h3>
+        <p data-i18n-key="gfx-focus-strengths-text">Compositing, character framing, text placement, depth, and mood-building through color.</p>
+      </article>
+      <article class="about-block">
+        <h3 data-i18n-key="gfx-focus-goal">Current Goal</h3>
+        <p data-i18n-key="gfx-focus-goal-text">Keep expanding the library of polished GFX pieces while refining speed, consistency, and originality.</p>
       </article>
     </div>
-  </section>
-
-  <section class="content-section">
-    <div class="gallery-header">
-      <div>
-        <h2 class="section-title">All GFX Designs</h2>
-        <p class="section-intro">Every item below is pulled from the local image files currently inside the design-gfx folder in this project.</p>
-      </div>
-      <span class="gallery-count" id="gallery-count">0 local artworks</span>
+    <div class="footer-bottom">
+      <p class="footer-copy" data-i18n-key="gfx-footer">© 2024 Jona Setiawan. All rights reserved.</p>
+      <nav class="footer-nav">
+        <a href="../../index.html" data-i18n-key="gfx-cta-back">Back to Portfolio</a>
+        <a href="mailto:jonasaevuddyinsetiawan@gmail.com" data-i18n-key="gfx-cta-contact">Contact Me</a>
+      </nav>
     </div>
-
-    <div class="gallery-masonry" id="gfx-gallery"></div>
-  </section>
-
-  <section class="content-section">
-    <h2 class="section-title">Current Direction</h2>
-    <div class="note-panel">
-      <p>This collection is still growing, so the gallery works as an active archive rather than a finished case study. New edits, poster experiments, alternate versions, and personal visual studies can keep being added as the project evolves.</p>
-      <p>Because the layout is focused on the local assets you placed in the folder, it can continue serving as a clean showcase for your latest GFX output without needing to force the work into a branding-only format.</p>
-    </div>
-  </section>
-
-  <section class="cta-section">
-    <h2>Want to see more of my design work?</h2>
-    <p>Browse the full portfolio or reach out if you want a custom visual style for your own project.</p>
-    <div class="cta-buttons">
-      <a href="../../index.html" class="cta-btn cta-btn-primary">Back to Portfolio</a>
-      <a href="mailto:jonasaevuddyinsetiawan@gmail.com" class="cta-btn cta-btn-secondary">Contact Me</a>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <p>&copy; 2024 Jona Setiawan. All rights reserved.</p>
   </footer>
 
   <script>
     const gfxFiles = [
-      "1(1).jpg",
-      "1.jpg",
-      "2(1).jpg",
-      "2.jpg",
-      "3(1).jpg",
-      "3.jpg",
-      "Ayane Nakiri.jpg",
-      "Chisa GFX design.jpg",
-      "Firefly.jpg",
-      "Hoshimi Miyabi.jpg",
-      "Hu tao GFX design.jpg",
-      "Kar98k.jpg",
-      "Kiana Kaslana.jpg",
-      "Lappland design.jpg",
-      "Lawine strinova.jpg",
-      "LOPIUM.jpg",
-      "Perspective.jpg",
-      "Raiden mei.jpg",
-      "result - yae miko.jpg",
-      "result.jpg",
-      "RUAN MEI.jpg",
-      "Zani wuthering wave.jpg",
-      "Columbina design GFX.jpg",
+      { file: "Meredith GFX purple.jpg", label: "Instagram" },
+      { file: "1.jpg", label: "Poster" },
+      { file: "2.jpg", label: "Instagram" },
+      { file: "3.jpg", label: "Poster" },
+      { file: "4.jpg", label: "Poster" },
+      { file: "5.jpg", label: "Instagram" },
+      { file: "1(1).jpg", label: "Poster" },
+      { file: "2(1).jpg", label: "Instagram" },
+      { file: "3(1).jpg", label: "Poster" },
+      { file: "Ayane Nakiri.jpg", label: "Instagram" },
+      { file: "Chisa GFX design.jpg", label: "Poster" },
+      { file: "Columbina design GFX.jpg", label: "Instagram" },
+      { file: "Firefly.jpg", label: "Poster" },
+      { file: "Hoshimi Miyabi.jpg", label: "Instagram" },
+      { file: "Hu tao GFX design.jpg", label: "Poster" },
+      { file: "Kar98k.jpg", label: "Instagram" },
+      { file: "Kiana Kaslana.jpg", label: "Poster" },
+      { file: "LOPIUM.jpg", label: "Poster" },
+      { file: "Lappland design.jpg", label: "Instagram" },
+      { file: "Lawine strinova.jpg", label: "Poster" },
+      { file: "Lawine GFX halftone.jpeg", label: "Instagram" },
+      { file: "Perspective.jpg", label: "Poster" },
+      { file: "RUAN MEI.jpg", label: "Instagram" },
+      { file: "Raiden mei.jpg", label: "Poster" },
+      { file: "Zani wuthering wave.jpg", label: "Instagram" },
+      { file: "result - yae miko.jpg", label: "Instagram" },
+      { file: "result.jpg", label: "Poster" },
+      { file: "shorekeeper.png", label: "Instagram" },
     ];
 
     const formatTitle = (file) => {
@@ -686,29 +508,48 @@
 
     const gfxFolder = "../assets/design-gfx/";
     const gallery = document.getElementById("gfx-gallery");
-    const count = document.getElementById("gallery-count");
+    const worksCount = document.getElementById("works-count");
 
-    if (gallery && count) {
-      count.textContent = `${gfxFiles.length} local artworks`;
+    const pad = (n) => String(n).padStart(2, "0");
 
+    /**
+     * Remove a gallery item completely from the DOM if its image
+     * is missing or fails to load (keeps the masonry clean).
+     */
+    const hideBroken = (img) => {
+      const removeItem = () => {
+        const item = img.closest(".gallery-item");
+        if (item) item.remove();
+      };
+      img.addEventListener("error", removeItem);
+      // Catch already-failed/cached broken images (naturalWidth === 0)
+      if (img.complete && img.naturalWidth === 0) {
+        removeItem();
+      }
+    };
+
+    if (gallery) {
       gallery.innerHTML = gfxFiles
-        .map((file) => {
-          const title = formatTitle(file);
-          const path = encodeURI(`${gfxFolder}${file}`);
-
+        .map((item, index) => {
+          const title = formatTitle(item.file);
+          const path = encodeURI(`${gfxFolder}${item.file}`);
           return `
-            <article class="gallery-card">
-              <a class="gallery-link" href="${path}" target="_blank" rel="noreferrer">
-                <img src="${path}" alt="${title}">
-                <div class="gallery-caption">
-                  <h3>${title}</h3>
-                  <span>Open full image</span>
-                </div>
+            <figure class="gallery-item">
+              <div class="gallery-meta"><span class="diamond">&#9670;</span>${pad(index + 1)} / ${item.label}</div>
+              <a class="gallery-frame" href="${path}" target="_blank" rel="noreferrer">
+                <img src="${path}" alt="${title}" loading="lazy">
               </a>
-            </article>
+            </figure>
           `;
         })
         .join("");
+
+      // Attach the broken-image guard to every rendered image
+      gallery.querySelectorAll(".gallery-frame img").forEach(hideBroken);
+    }
+
+    if (worksCount) {
+      worksCount.textContent = `${gfxFiles.length} works`;
     }
   </script>
   <script defer src="../../language-controls.js?v=20260410-2"></script>

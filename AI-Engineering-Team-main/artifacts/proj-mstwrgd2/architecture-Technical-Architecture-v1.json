@@ -1,0 +1,192 @@
+{
+  "artifactId": "artifact-mstwrgdp-pr5bgzzm",
+  "projectId": "proj-mstwrgd2",
+  "type": "architecture",
+  "name": "Technical Architecture",
+  "version": 1,
+  "createdAt": "2026-08-15T05:01:03.277Z",
+  "createdBy": "Architect",
+  "content": {
+    "technicalSpecification": "Orchestrator-centric multi-agent system. The application is split into clear backend and frontend modules, with deterministic data flow and standardized artifact handoffs.",
+    "architectureStyle": "Layered + modular monolith (first version)",
+    "layers": [
+      "Presentation",
+      "Application",
+      "Domain",
+      "Infrastructure"
+    ],
+    "projectStructure": [
+      "src/backend/",
+      "src/frontend/",
+      "src/shared/",
+      "tests/",
+      "artifacts/"
+    ],
+    "moduleDesigns": [
+      {
+        "moduleId": "mod-001",
+        "name": "Authentication",
+        "purpose": "Implement the Authentication feature described in the planning artifact.",
+        "responsibilities": [
+          "Expose the Authentication capability to its consumers.",
+          "Validate inputs and return structured results.",
+          "Follow the shared error and logging standards."
+        ],
+        "dependencies": []
+      },
+      {
+        "moduleId": "mod-002",
+        "name": "Data Management",
+        "purpose": "Implement the Data Management feature described in the planning artifact.",
+        "responsibilities": [
+          "Expose the Data Management capability to its consumers.",
+          "Validate inputs and return structured results.",
+          "Follow the shared error and logging standards."
+        ],
+        "dependencies": [
+          "mod-001"
+        ]
+      },
+      {
+        "moduleId": "mod-003",
+        "name": "Dashboard",
+        "purpose": "Implement the Dashboard feature described in the planning artifact.",
+        "responsibilities": [
+          "Expose the Dashboard capability to its consumers.",
+          "Validate inputs and return structured results.",
+          "Follow the shared error and logging standards."
+        ],
+        "dependencies": [
+          "mod-002"
+        ]
+      },
+      {
+        "moduleId": "mod-004",
+        "name": "Reporting",
+        "purpose": "Implement the Reporting feature described in the planning artifact.",
+        "responsibilities": [
+          "Expose the Reporting capability to its consumers.",
+          "Validate inputs and return structured results.",
+          "Follow the shared error and logging standards."
+        ],
+        "dependencies": [
+          "mod-003"
+        ]
+      },
+      {
+        "moduleId": "mod-005",
+        "name": "Create A Simple Product Dashboard",
+        "purpose": "Implement the Create A Simple Product Dashboard feature described in the planning artifact.",
+        "responsibilities": [
+          "Expose the Create A Simple Product Dashboard capability to its consumers.",
+          "Validate inputs and return structured results.",
+          "Follow the shared error and logging standards."
+        ],
+        "dependencies": [
+          "mod-004"
+        ]
+      },
+      {
+        "moduleId": "mod-006",
+        "name": "Allow Authenticated Data Access",
+        "purpose": "Implement the Allow Authenticated Data Access feature described in the planning artifact.",
+        "responsibilities": [
+          "Expose the Allow Authenticated Data Access capability to its consumers.",
+          "Validate inputs and return structured results.",
+          "Follow the shared error and logging standards."
+        ],
+        "dependencies": [
+          "mod-005"
+        ]
+      }
+    ],
+    "databaseDesign": [
+      {
+        "entityId": "ent-001",
+        "name": "User",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "constraints": "primary key"
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "constraints": "unique, required"
+          },
+          {
+            "name": "createdAt",
+            "type": "datetime",
+            "constraints": "required"
+          }
+        ],
+        "relationships": [
+          "Has many project records"
+        ]
+      },
+      {
+        "entityId": "ent-002",
+        "name": "ProjectRecord",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string",
+            "constraints": "primary key"
+          },
+          {
+            "name": "userId",
+            "type": "string",
+            "constraints": "foreign key to User"
+          },
+          {
+            "name": "data",
+            "type": "json",
+            "constraints": "required"
+          }
+        ],
+        "relationships": [
+          "Belongs to one User"
+        ]
+      }
+    ],
+    "apiDesign": [
+      {
+        "endpointId": "api-001",
+        "method": "POST",
+        "path": "/api/auth/login",
+        "description": "Authenticate a user and return a session token."
+      },
+      {
+        "endpointId": "api-002",
+        "method": "GET",
+        "path": "/api/records",
+        "description": "List project records for the authenticated user."
+      },
+      {
+        "endpointId": "api-003",
+        "method": "POST",
+        "path": "/api/records",
+        "description": "Create a new project record."
+      },
+      {
+        "endpointId": "api-004",
+        "method": "GET",
+        "path": "/api/health",
+        "description": "Return system health information for monitoring."
+      }
+    ],
+    "technologyStack": [
+      "TypeScript",
+      "Node.js",
+      "REST API"
+    ],
+    "developmentGuidelines": [
+      "Single responsibility per module.",
+      "Structured validation at every boundary.",
+      "No direct communication between agents outside the Orchestrator.",
+      "Keep artifacts traceable and versioned."
+    ],
+    "summary": "Designed 6 modules, 2 entities, and 4 endpoints from the planning output."
+  }
+}

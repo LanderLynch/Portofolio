@@ -1,0 +1,18 @@
+{
+  "artifactId": "artifact-mstwrgd4-3734sqmn",
+  "projectId": "proj-mstwrgd2",
+  "type": "request",
+  "name": "Demo Project",
+  "version": 1,
+  "createdAt": "2026-08-15T05:01:03.256Z",
+  "createdBy": "Orchestrator",
+  "content": {
+    "name": "Demo Project",
+    "description": "Demonstrate the full AI Engineering Team workflow.",
+    "goals": [
+      "Create a simple product dashboard",
+      "Allow authenticated data access"
+    ],
+    "additionalNotes": "Default demo request created by the CLI."
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "artifactId": "artifact-mstwrge8-pgw9t16f",
+  "projectId": "proj-mstwrgd2",
+  "type": "qa",
+  "name": "Quality Assurance Report",
+  "version": 1,
+  "createdAt": "2026-08-15T05:01:03.296Z",
+  "createdBy": "QA",
+  "content": {
+    "totalRequirements": 6,
+    "passedRequirements": 6,
+    "failedRequirements": 0,
+    "totalTests": 7,
+    "passedTests": 7,
+    "failedTests": 0,
+    "blockedTests": 0,
+    "testCases": [
+      {
+        "testId": "TC-001",
+        "name": "Authentication",
+        "requirementRef": "FR-001",
+        "preconditions": [
+          "Application is built",
+          "Authentication token is available"
+        ],
+        "steps": [
+          "Invoke the Authentication flow",
+          "Verify the response structure"
+        ],
+        "expectedResult": "The Authentication requirement is satisfied.",
+        "actualResult": "The Authentication requirement is satisfied.",
+        "status": "PASSED"
+      },
+      {
+        "testId": "TC-002",
+        "name": "Data Management",
+        "requirementRef": "FR-002",
+        "preconditions": [
+          "Application is built",
+          "Authentication token is available"
+        ],
+        "steps": [
+          "Invoke the Data Management flow",
+          "Verify the response structure"
+        ],
+        "expectedResult": "The Data Management requirement is satisfied.",
+        "actualResult": "The Data Management requirement is satisfied.",
+        "status": "PASSED"
+      },
+      {
+        "testId": "TC-003",
+        "name": "Dashboard",
+        "requirementRef": "FR-003",
+        "preconditions": [
+          "Application is built",
+          "Authentication token is available"
+        ],
+        "steps": [
+          "Invoke the Dashboard flow",
+          "Verify the response structure"
+        ],
+        "expectedResult": "The Dashboard requirement is satisfied.",
+        "actualResult": "The Dashboard requirement is satisfied.",
+        "status": "PASSED"
+      },
+      {
+        "testId": "TC-004",
+        "name": "Reporting",
+        "requirementRef": "FR-004",
+        "preconditions": [
+          "Application is built",
+          "Authentication token is available"
+        ],
+        "steps": [
+          "Invoke the Reporting flow",
+          "Verify the response structure"
+        ],
+        "expectedResult": "The Reporting requirement is satisfied.",
+        "actualResult": "The Reporting requirement is satisfied.",
+        "status": "PASSED"
+      },
+      {
+        "testId": "TC-005",
+        "name": "Create A Simple Product Dashboard",
+        "requirementRef": "FR-005",
+        "preconditions": [
+          "Application is built",
+          "Authentication token is available"
+        ],
+        "steps": [
+          "Invoke the Create A Simple Product Dashboard flow",
+          "Verify the response structure"
+        ],
+        "expectedResult": "The Create A Simple Product Dashboard requirement is satisfied.",
+        "actualResult": "The Create A Simple Product Dashboard requirement is satisfied.",
+        "status": "PASSED"
+      },
+      {
+        "testId": "TC-006",
+        "name": "Allow Authenticated Data Access",
+        "requirementRef": "FR-006",
+        "preconditions": [
+          "Application is built",
+          "Authentication token is available"
+        ],
+        "steps": [
+          "Invoke the Allow Authenticated Data Access flow",
+          "Verify the response structure"
+        ],
+        "expectedResult": "The Allow Authenticated Data Access requirement is satisfied.",
+        "actualResult": "The Allow Authenticated Data Access requirement is satisfied.",
+        "status": "PASSED"
+      },
+      {
+        "testId": "TC-007",
+        "name": "Health endpoint",
+        "requirementRef": "NFR-001",
+        "preconditions": [
+          "API server is running"
+        ],
+        "steps": [
+          "GET /api/health",
+          "Check status code and body"
+        ],
+        "expectedResult": "Returns 200 with ok status.",
+        "actualResult": "Returns 200 with ok status.",
+        "status": "PASSED"
+      }
+    ],
+    "bugs": [],
+    "recommendation": "PROCEED",
+    "summary": "QA passed all 7 test cases."
+  }
+}

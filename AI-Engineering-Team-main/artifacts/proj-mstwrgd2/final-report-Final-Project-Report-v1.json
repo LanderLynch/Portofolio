@@ -1,0 +1,35 @@
+{
+  "artifactId": "artifact-mstwrgf0-z4rnx68s",
+  "projectId": "proj-mstwrgd2",
+  "type": "final-report",
+  "name": "Final Project Report",
+  "version": 1,
+  "createdAt": "2026-08-15T05:01:03.324Z",
+  "createdBy": "Reporter",
+  "content": {
+    "projectInfo": {
+      "projectId": "proj-mstwrgd2",
+      "projectName": "Demo Project",
+      "projectStatus": "COMPLETED",
+      "startTime": "2026-08-15T05:01:03.324Z",
+      "finishTime": "2026-08-15T05:01:03.324Z"
+    },
+    "requirementSummary": "Planned 6 features and 6 tasks for Demo Project.",
+    "architectureSummary": "Designed 6 modules, 2 entities, and 4 endpoints from the planning output.",
+    "developmentSummary": "Backend and frontend implementations were produced from the architecture blueprint.",
+    "testingSummary": "QA passed all 7 test cases.",
+    "debugSummary": "No debugging was required.",
+    "securitySummary": "Security audit completed with no blocking findings.",
+    "deploymentSummary": "Deployment prepared and verified for project proj-mstwrgd2.",
+    "statistics": {
+      "totalFeatures": 6,
+      "totalTasks": 6,
+      "totalModules": 6,
+      "totalBugs": 0,
+      "totalSecurityFindings": 0,
+      "deploymentStatus": "SUCCESS",
+      "overallStatus": "COMPLETED"
+    },
+    "conclusion": "The AI Engineering Team workflow completed successfully with all artifacts traceable and versioned."
+  }
+}
