@@ -1,263 +1,445 @@
-const firebaseStorageMediaBase =
-  "https://firebasestorage.googleapis.com/v0/b/portofolio-jsfolio.firebasestorage.app/o/";
+// Google Drive backend catalog for Photography Archive
+// Root folder: https://drive.google.com/drive/folders/11QlaOo-vYYHgZh9QWuJtIk34s3eGIk81?usp=sharing
 
-function buildStorageMediaUrl(path) {
-  return firebaseStorageMediaBase + encodeURIComponent(path) + "?alt=media";
+const googleDriveRootFolderUrl =
+  "https://drive.google.com/drive/folders/11QlaOo-vYYHgZh9QWuJtIk34s3eGIk81?usp=sharing";
+
+function buildDriveImageUrl(fileId, width) {
+  const size = width || 2400;
+  return "https://drive.google.com/thumbnail?id=" + encodeURIComponent(fileId) + "&sz=w" + size;
 }
 
-const november2025HaflahFolder =
-  "photography/2025/November/haflah khotmul Qur'an dan imtihan ke-4/";
-
-const november2025HaflahFiles = [
-  "DSCF1650.JPG",
-  "DSCF1652.JPG",
-  "DSCF1653.JPG",
-  "DSCF1654.JPG",
-  "DSCF1657.JPG",
-  "DSCF1661.JPG",
-  "DSCF1662.JPG",
-  "DSCF1663.JPG",
-  "DSCF1664.JPG",
-  "DSCF1665.JPG",
-  "DSCF1666.JPG",
-  "DSCF1667.JPG",
-  "DSCF1670.JPG",
-  "DSCF1671.JPG",
-  "DSCF1672.JPG",
-  "DSCF1674.JPG",
-  "DSCF1675.JPG",
-  "DSCF1676.JPG",
-  "DSCF1677.JPG",
-  "DSCF1678.JPG",
-  "DSCF1679.JPG",
-  "DSCF1681.JPG",
-  "DSCF1682.JPG",
-  "DSCF1683.JPG",
-  "DSCF1684.JPG",
-  "DSCF1685.JPG",
-  "DSCF1686.JPG",
-  "DSCF1687.JPG",
-  "DSCF1713.JPG",
-  "DSCF1714.JPG",
-  "DSCF1715.JPG",
-  "DSCF1716.JPG",
-  "DSCF1718.JPG",
-  "DSCF1719.JPG",
-  "DSCF1720.JPG",
-  "DSCF1721.JPG",
-  "DSCF1722.JPG",
-  "DSCF1723.JPG",
-  "DSCF1724.JPG",
-  "DSCF1725.JPG",
-  "DSCF1727.JPG",
-  "DSCF1734.JPG",
-  "DSCF1735.JPG",
-  "DSCF1736.JPG",
-  "DSCF1737.JPG",
-  "DSCF1740.JPG",
-  "DSCF1742.JPG",
-  "DSCF1746.JPG",
-  "DSCF1747.JPG",
-  "DSCF1750.JPG",
-  "DSCF1752.JPG",
-  "DSCF1753.JPG",
-  "DSCF1754.JPG"
-];
-
-const november2025HaflahImages = november2025HaflahFiles.map(function (fileName) {
-  return buildStorageMediaUrl(november2025HaflahFolder + fileName);
-});
-
-const cosplayDraft2024Folder =
-  "photography/2024/Cosplay draft/";
-
-const cosplayDraft2024RandomFiles = [
-  "DSCF7145.JPG",
-  "DSCF7183.JPG",
-  "DSCF7474.JPG",
-  "DSCF7704.JPG",
-  "DSCF7723.JPG",
-  "DSCF7724.JPG"
-];
-
-const cosplayDraft2024RandomImages = cosplayDraft2024RandomFiles.map(function (fileName) {
-  return buildStorageMediaUrl(cosplayDraft2024Folder + fileName);
-});
-
-function buildSortImages(folderPath, fileNames) {
-  return fileNames.map(function (fileName) {
-    return buildStorageMediaUrl(folderPath + fileName);
-  });
+function buildDriveGallerySet(fileIds, coverFileId) {
+  const resolvedCoverId = coverFileId || fileIds[0];
+  return {
+    coverImage: buildDriveImageUrl(resolvedCoverId, 2400),
+    previewCoverImage: buildDriveImageUrl(resolvedCoverId, 960),
+    images: fileIds.map(function (id) {
+      return buildDriveImageUrl(id, 2400);
+    }),
+    previewImages: fileIds.map(function (id) {
+      return buildDriveImageUrl(id, 640);
+    })
+  };
 }
 
-const cosplayDraftAndrianFolder =
-  "photography/2024/Cosplay draft/@andrian_m.r.a/";
-const cosplayDraftAndrianFiles = [
-  "DSCF9453.JPG",
-  "DSCF9454.JPG",
-  "DSCF9455.JPG",
-  "DSCF9456.JPG"
-];
-const cosplayDraftAndrianImages = buildSortImages(
-  cosplayDraftAndrianFolder,
-  cosplayDraftAndrianFiles
+const january2026TeamBuildingSet = buildDriveGallerySet(
+  [
+  "1lDfg6EO6j15skftC35cN4QW44cpHqj7S",
+  "1mIoFXolhKyDnjFp7TW7cWSS2g7ryxg4p",
+  "1_V3v616m7h4-QvdrIKjlM-dQ-kSMqVaH",
+  "1KZ85lKRmVnJOa10dg0C_fO1bSwa47aWc",
+  "1Orp0dIxSdi3pWwAAVuj8sLxM10aHsyq8",
+  "1aF2a1wsF6-cPXJVOm2t0YwKQdkPaELoH",
+  "1iamtxKhmkCC3pPizEYFRL3uq_Aks91YY",
+  "1JEfOX3DIVQ-mJ12HmmO3Jc0bJyzrmXlJ",
+  "1bVQ6HSvkaPmlYL0jtXhimJwzg0WoHKJz",
+  "1SyBlLb67MhGdLe_tCgpSY-S95rPznkLA",
+  "1U70iGnn-F8eNHGmMzR2ggUASoOIShr8v",
+  "1F9v7EFqqDYwBbDbS4_bFT_SVqLLZRUuW",
+  "1ojnZk1WE9SD1rhEFEKZcHzOWI79eyw63",
+  "1D31DxLAlorKLNPh8-sfRdI03NHVkY8Qk",
+  "1D5pAQaaQiiBzztCDj6gKeJ2b5PirzPr_",
+  "144VFE_nwuQ3iqbjkcsMIfkQ7_xsLX40Q",
+  "1TlIOWvUb7mC5jK897ux-do-y9SfsetTF",
+  "13g1P90aurPqDuWVIQLiEdXG1W7CmuZ-U",
+  "1cExd9eRbyduwi1aOsIcT-FDhrECnl9pl",
+  "1mt3SuOwNMRXXC5P0V_cI2enUn771T4tO",
+  "1LTIGNpf-NpcoSAgiwkJEPZmQXt_FfGV-",
+  "1b1FT-1czC-U-7ufkR6cjs6rmzMosBLfH",
+  "1W29UB8RqvAT1LBw66wPM4RfT45znC2na",
+  "1L2WfVwcZM_Dws5W2-zNf8WBExNHJn3Ar",
+  "1B794ot6qpGnq9BQOYMG14NNL685rqh1N",
+  "1p3mOgOEg9nFznldYmteJyoP-zgdxjKaO",
+  "1T_0j5jUhY0jZH58walo8mfFLQboQ2etm",
+  "1cv2C5pVO2zhMJmgA5MqP4Mr7oh8rlSsP",
+  "1veILH-gwCploHlrFOp1XHdRqFyrNafxe",
+  "1WZyDgfAWpbAjtpiAMJM7R01GGV3udk0r",
+  "1NGE2rMEHwfR0rgc-om6oZB_N05pntUTK",
+  "1WCp19Qbj_JtVhHs8DE0qVhy9Zcx8K4zr",
+  "1J3NF4Qtmqqw_DDr_-orOTFZb84lAWXi7",
+  "1h1HJH0yMpKJDp368ZDXTOvOWeCXSyxXo",
+  "13r8uVYdqptP8OepKFmkrYzAXx1I6oyTR",
+  "1q_oraNiC5rIkPC-nJtwCfwieLwDrLJFy",
+  "14aF_99mRvNHz9UZJYRJD73qR5Kje1orM",
+  "1lPEUdfdB9IGDX8OsSLUAt4PPPgnGS0mV",
+  "1w3Cy862qOAJZtJGTAErVBsaNjyNn6Wv9",
+  "1gN9rPEoAo2ljk_vCjFDvcgLWREv4M4gO",
+  "1Haz4jERwYi9SPJoHDEX57_nmOBwUwVDz",
+  "1epQU01URHunxub_FmPLlxXhFMgR5N159",
+  "19UepJwGqaftwKupfLgOiONaOggBq78Gp",
+  "12QycynYguJ7hu6IswvX_iBtgXWvtTz-m",
+  "1GqKghtwewd2iVQOROFxU1O3MRS6suCMc",
+  "1sN_r0y69IOtSBD0k6WsfaG9Gnw81ah0u",
+  "15NTkon1yB-1Y5hNnGmoeou-Xog2M7v1J",
+  "1nJvNemg42REPmOKB5qnBV1ZfVy6Shzvt",
+  "12YPFrBxkQvIkYU7FgbxFug7e43m5Pa60",
+  "11FR3i2HO33qi8-HinPpzDDSOIiP5kv5b",
+  "1uLf3PDNExCWBvmtpzZt-BqvI3GTpwuUd",
+  "10aDclftxwa5evcBmj-z3NL99iTBZdUma",
+  "13-FDTwcmOlLmWkoL2GE65o_aUxKOWZtb",
+  "1LGY-TjyQPH0Rx2OXzp6xFoKacgzqeWJC",
+  "1S2OmfS1WKVEfqHt4Yi84aCZSMsav4kVw",
+  "1CdGtb1JbMohmUqZtiXZPoCWtGXRrXqqs",
+  "19gKIrLRsgQAx_DQmvVO3HM8s-wv3H5aR",
+  "1dW2ccaoPG4mPHKC48pzK1zQsShMcd_cA",
+  "1imNzSCKFzZQQW1fTF8bqzsgIRpH5O8pR",
+  "1piVWnpMNWQqdSviAxnn4lJhFk9WTtIIn",
+  "1fdbl59gpMIysuJlXKXS42Sk0lzzuoM-G",
+  "17aS-FBug2lbbXVwV-gvcKv6_41-qRIZo",
+  "18yZe3lYo_kr91qp6JF756i6_b9AWpfWo",
+  "1BET-HJ5IkwGtgf0L8k3moxQh_lfPcvZR"
+],
+  "1S2OmfS1WKVEfqHt4Yi84aCZSMsav4kVw"
 );
 
-const cosplayDraftFedriFolder =
-  "photography/2024/Cosplay draft/@fe.d.ri/";
-const cosplayDraftFedriFiles = [
-  "DSCF9416.JPG",
-  "DSCF9417.JPG",
-  "DSCF9418.JPG",
-  "DSCF9419.JPG",
-  "DSCF9469.JPG",
-  "DSCF9470.JPG"
-];
-const cosplayDraftFedriImages = buildSortImages(
-  cosplayDraftFedriFolder,
-  cosplayDraftFedriFiles
+const january2026HaflahSet = buildDriveGallerySet(
+  [
+  "1YZ9ehtkKT31zxT7qYubibxx4SFX290h8",
+  "185CNN0ivpSu4o_eBJTZKv6pgtbV3yIhv",
+  "1YqgVZlJFiDW9y0nplXVK8-tJNrQZirhp",
+  "1r1wiPW_R4jtxefJ6SQ3At4loyqoJCpu6",
+  "15btBAUfHSoIWs4NPOaMgWsCuMKmnrAJ6",
+  "1V6KP_qC2Ex32JLLacR07JHihV7tsyCYo",
+  "1gpYQlOSY9wCRdIoZxsl_o-to96isekIV",
+  "1tDW6n6cY2drVLeD7I3MbHWtqPF9w6vME",
+  "1fIJGtb_BoeW4sFrX1cXMPw8T4RgnigDL",
+  "1QwF0gV5w9XweROIH9ZJVVTVLTotLbTD6",
+  "17O_CCz_-qN8mAlCMwCiJeuyI89EQ1ZKd",
+  "1y6uJPspz4FuIiKxRLhqFALKDghKqj8Wd",
+  "1U5a4K8rBI4rYaI2rK2v3XIE6GuUQ5giP",
+  "1gmqAqLk38b_mPPVKORZzdm64C0xS5YTp",
+  "1fxZLiumRzNl-XjOIg2Zqmszq6P8T6XwK",
+  "1h0fcYgCgd_CtChx6ZDpnAE1QfutlpA_I",
+  "1Y8rY6x0M-fDHHKtlN7DWRNUIgZSHEkT2",
+  "1VXo0pSfBnLltBuLVifnmulSxSqTKons1",
+  "1FTs8rDiKbWGTeXaRebyokWnT-dJWVWsZ",
+  "1edpnVndl5PQIs9b0CnZ8fC57IfYjcAlP",
+  "1D1LJsgDfhfzh8gQnkH35cjXyssYDTTs-",
+  "1Qu5IDocfpCpN1k0CLD2hUiE3jp_VCHYf",
+  "10Cadz44axAI7K2xggs7Ewnn5qEnkmLYW",
+  "14Dmykt8NCmyowxZGRVnrwMuVYMn5ULRU",
+  "13xKNMA9KjfZCHI4ZJqxNgJ7RHfTjGdrh",
+  "1sYPyo1cJDol77up8FJptVOcH9KlqQHPL",
+  "1TBcyxmkxqirVBOXHpk0t7mr-LHdBjhFh",
+  "1UVzWJiOECtSxJH7np4bUzX0_b1YSf45C",
+  "1DTB6yvORyCRo_LB9IXvToumln1QNP47u",
+  "1yLLK5q0zuve16rnLPWs-v6P162Ln2jPf",
+  "14vl8pBNKaRQraDPq012JQhtQIaEQgA9c",
+  "1eH0szSc_Y8bhWmTm7b2xOFOU1DrqdnnH",
+  "1E7ii0YlmzEVy-TNRPrcBBCrzdt15D2yz",
+  "1Ily41RyOpVEWauXG3aq2peQNT2AwP9Dc",
+  "1EQ3_A3QPWedmv10wD2H4IbDzMeUjvRiO",
+  "1oPVEFpeAD2yd2yHfsH9WGUbsIW1SShWX",
+  "18SY0qIiaifyGV0JhZ8t1nYLPPkRf8p09",
+  "19B3GaPyE0lfzxUzzqxLJQO-hm7HIn6Us",
+  "1CG9DZ67wQHP2MhMqD8DkHydYsiAa0Og3",
+  "1FuQF4tszNHl-fyu-nZZHBn81xgttGOra",
+  "1H3D7L2Fp1eHKFzyqux5rdjmEYuvY7pck",
+  "1aliZzQmIAyhKWnyUwuKT9kND3HMDVPbK",
+  "1zzZug61o4iQbi6k3FGQptfJ2QgIBhJMH",
+  "1wJ2ThWXTKgJlPCUmencM0y0GRJrls8uO",
+  "1TjupURrCwzjxdh9wFZ9cuLVqdrGeuSy2",
+  "1Ce1bvmigkPh6YR_ayaXHAQdAN6Lo0QVP",
+  "1yg86SGLzvu8eU1IVAVJNttXTXw_ufIcd",
+  "1Cw3Dr6-aGag_lieSn6_0tHKMMDATwkcs",
+  "1xVoziCNjhczTN2LW8D9fvLUI0ALP0opI",
+  "1iqTUHQrI0uXoX4nr38f3Z4KizU2_dWkL",
+  "1QLyPvqIlFLlQtTWc4xnOs2aabDfCZAN0",
+  "1g1HazLDucX9qcu-ki73LakEtPlGuVhr3",
+  "13yiwtUmLqjj9MYNWbJdaIzIryWMNKLAK",
+  "1FX8LCEU0T3ZFncxftYmvMHiOH6zemnfZ",
+  "1aoW9LsAVbILrysyxuRSOhpefZt1O7Uvp",
+  "1-cbTbRdQOiMuxQZdLDKcBaOwPYZ6zldn",
+  "1WqrJCIQckmwbbV-z0x3XLDE-z1xAdKhR",
+  "1Hb3VrgkQYHxD7rh8uhNASF6J2uOuGNpa",
+  "1G2f9whrSpXQzFL6d5XRm9WjVDHdnNlGc",
+  "1gr0fxCDC5R60MnfkX8FJocTMBLquw_dC",
+  "1wgYODT3jX3vkF4qC6rPQth7d3-vxMIId",
+  "1gOkt4AfCaO_tWx0PJb0ORFGTZJEQQaJ0",
+  "16W0J-KS0Bv2mpmz1pKn1iqkFnrRM_9Qc",
+  "1EVB34uc7wkvubVh1Oc3XbLXCPA0nMQ63",
+  "1X-kjSzF1Bjj3DclNiFNpBjSINxrN847X",
+  "1mF_2boVvGHtnhlzTZlkurQuP2lato-RW",
+  "1bGEjcMykYbmQm6lfLre7b8Rr3_3A7QIA",
+  "1FQFDohbj1FUiRZs-uwp5Oqc6rkd0Pk-h",
+  "1zJIhNTQkL6vyyoWDjF2h0NCCkacADprf",
+  "1GwFuYilaez-yOPquRt0c9Z2LgdlIra1W",
+  "1oHrUkhxPy7MCxaULtuWo9QzEZUnjOyBY",
+  "1ivo9-MrmGQjhwlVuKoh3KRC9Rue-3e5_",
+  "1dNE1brDLzG0t5iox1dlpI9y9LQn3u4Ou",
+  "15mLcnQa7vCpzjbYKuXsTWZIxo_-oTqLw",
+  "1h9sfxptsNdzl9sSus-qZ_rnfhWN4a0Y_",
+  "1t6arZw-l6cB4XMyNBgbEXT4pVCbVlnd6",
+  "1UrLXKHKpafpsE5NLfl5ERoTYPtc56bAc",
+  "19w3LObGho8LfvzLbkKfNFR0M_mwjvOBM",
+  "1Z38NIx1yQvRy86evjvsX45uIglTTQvyy",
+  "1wBWCCqS6pxOZ1mHV15SQRgc48pawKGUX",
+  "1RYH1H21-W0J8JOEmY4ux8O8YbVzMT0_g",
+  "1lllViYLDBXCHdrZhFc4Wj-fg8Jdpjgo7",
+  "1NOlSp6KwhHurHPcPR-njvan8MuxsmrVx",
+  "1EJ2IPWMHTYJfRSr1FkEocUUVAtsKzj5n",
+  "1Q6UijY9cLcnmD4RqtnEeiP1TQv1AT8l-",
+  "1OckAq8T4g2GyzewMUhUWEFN01QNN_eMu",
+  "1jjQwFLZwBG9hWqWry-DPcMW4yiYSWWMY",
+  "1Q-Yax2eOoVeCkd9gJInuorWjRdHW24Dt",
+  "11EtRVbB9X6KdMY23mRT9vyvkclgP-rRv",
+  "1Dz8USLkYF14rBnlG4cuwGcs5RmiNIxLd",
+  "1Vvf38fHLp9JUQZnNZRHatqdBsMkEPHBQ",
+  "1RWUdodAKPqbuTBiO6ANLT9tLBgEjkG1Y",
+  "1Raszii4EtADsEJyl6qhYOMw8Pa0RUNeL",
+  "1CkUeYf3HPrBVhJ5VPY5IKReKdsY4uoei",
+  "107w5BnhozLe-0mB8suSOv543NAjEzxZl",
+  "1j4cbAKRc-M6dEl-wEn41RLgIONmd0-qS",
+  "1xTxaDIEz7SzmwezJAFMS1GQtwSeRwPb0",
+  "1L6yUIm_7oVmpOiO8o3n4rjiq4MgfhMhH",
+  "134shF6X6NZC5rBiMTU71rj9EN3wJi1Ya",
+  "18czQF8v47FooTAvqRJfa6jcEbDHAHjlT",
+  "1021ld988O91DEiRlr3BJiJlxprm6AaXc",
+  "1lpsZzHBGav9SbbUsN3GFk9H3hB-TZR2U",
+  "1ZX6shYY8hTmBwgt0XFOra8N3Wc3LnZKv",
+  "1sMiTOq2dP2pY1Z2IkHMy6yUosIH2rs8b",
+  "16iO33f6FSDIHmfbkiHCes4zTvpyJ1FIb",
+  "1-iVRvKPPHCgClGxRbybk2JHwpjAFzQ5H",
+  "1nsM4hY28PAPAlcWYviqTxJKXEw3bZMDU",
+  "179diN-KiKrNsu0Lqoe8rrtX5K5B87yWu",
+  "11SmIieE_RUVth6lZcaLIm0NweNG33Osb",
+  "1L5TffeN3Cm-5TqOWFvb8i__mtg1V2uyj",
+  "1xxn6_-K_PlDJ3WrdR3n32Uxc4MXeZGm-",
+  "1ITjQ0E0y8VflXfVudhkUEC5J0zbCeMI9",
+  "1EnbRsrgPN-c7dXovPiA3MblG-BtV1Uz6",
+  "1EvhyU_VydAZafDqbpnnwdjvo17gmi_q3",
+  "1pJV9k3IXWydh1HM5kwEalOy3YKTEuW9c",
+  "1fj3S51B05tbZqDTVEaXIHN3k3Dl2v1MT",
+  "1X81uMBGvh1mdxOUm_ZkVmRahSkKx-O8w",
+  "1GTuHFFcxwob1gqpqHU0xQCa0rt1fR2-_",
+  "1AMT6zZp-O5qqPn7LoQUvKIJBEY-Rgb-I",
+  "10RcXA8_b9qJPOsDO8mNsDPkqo0fKm1ae",
+  "1s75k41YtZLvkaleE3QTxmk7TWCqEUzCb",
+  "1J8uym67R9gXAroaMqhjJCnUkyNJ2ggpa",
+  "1_AvWQfrD3EJWlDEqNPqDqU4tpBpmlg9T",
+  "18SAIaP5E-KrWAT81-4MhKkJBUaVmGBLR",
+  "1ZZXSPfQUGpuJZyrNaUQrV6vx8xvPwY70",
+  "1bumLdRetHU6ZBdgMKD2S_wx990QZa0QX",
+  "1YIULkwFxrIy1GwTtpdeIz-CMtdCG4TRH",
+  "1gudMAyGI6a5zM11sxS_OkDy5JCafI3TU",
+  "1wHd-Q5Z4hFP3uhPFBjTF_Vk3TczzBWpW",
+  "12S8uSRGubs0pKQ50CI96kEAF2ur4hSxh",
+  "1A_Xlnx1orRaTV6dyUMv3WZCIB5UL4Hld",
+  "1RB_95hn1vMTQ1IyfyZ-tXkArbi0ji9pU",
+  "19qK7vhdIqjRX4LM1kL_zDJTkzKGvUI68",
+  "11qMdaFZpzfHAMjLSXGEFUx4J7KiyeUQW",
+  "1l9wJy0Xyvkdz4SWh08ydy0_di77LJKfA",
+  "1MJ1npwmFs52C1F4vSQb-hUNq1su9ADGx",
+  "1iPEUszHRwmGyt8VWjKWxDyW1DBMklvwk",
+  "1hmOFU2MPAqxcLx4CNnmdXafF3Y5Hxg6F",
+  "1VF_ow9ylv5WAmRWZ4Uy9rVf0Hc29heZe",
+  "1o7xji8VhfStvsRtHuLjASkCQDQJRJp8V",
+  "1T3voELGLPavt_h1m0y-f9T0VG88cJxMJ",
+  "1t4Rbl5Lm9qZqvMr7NvdI7pwMVt1IgOYN",
+  "1dSnavpau6hEds4RQp2F4IEAZ_DdD9xcC",
+  "1k41MV824OcM-TAwXolnljqw6bOsRcvhR",
+  "1gyQwXDkIJRN6YDOhi95jbhq6TNbv31Qv",
+  "1rlkrXpXWX9HOzAmnKLvuYDqnx43Fc1VA",
+  "1h24BZ0LWuaVFaBE97zqS6ya3paV4PHCM",
+  "1ONcSyTDkahfeK-gcIJ9LYvffjxF1Wzdo",
+  "1n7_Yurx7cEz3aenhhL7ZPvm_54thfauz",
+  "1TUWXces1r0WuajNCKcYqCOpcTf0jg35G",
+  "1c--WSOvUaXrxFgr892fGxv2MSYGgFuHb",
+  "1z0LMWAGPsaGoeN3Qz1pqx-bftIvLNuoq",
+  "1WjMuKwxpEAyk2-hwQ2Sal-Ichh1YZfsB",
+  "1AEhOi5JKJ3XR11LAxcM0mL_-nM872oR8",
+  "1FWc3AaDTHg7bVWl8PP9BqmmSr685V_GD",
+  "1Qiy7sA3qwc337xmM39ACdraJuSLNcvD6",
+  "1CD0fKqpsmoEGUGpCTA4NWJKRPlvoA-CL",
+  "1mp6fXA7cxo2xx530e603l-PgDL9Xa5in",
+  "1d5OgrLvIY7cjtQKVGrKnYc_TnScSF0eI",
+  "1HjrIJwg5PHYa75C_JLunJ-UyrsJ1RuYy",
+  "1FEb97ALmJRAvRLea2J7Ye7vXWdCMVTqw",
+  "1vJDJZCWDgMnSO0s2wwd7JUM9Myg20O8t",
+  "1pjjoCgQmdHwM_8lQRm98XnN0i4abuP7M",
+  "1CGmk1mxW_021EadlxaRVfDPGO8V0JErq",
+  "11PQOu91_lnA4OvgXRQmye7FBYgbG0-Mp",
+  "1gR--k546KTLPNPBAMMaqtpni5lSzjOiP",
+  "1s4BsFOmxtgf00JyFQTUNgilWvsushWzd",
+  "1PayfKJxg0_h2z65gicZYUC8czCzIwKDS",
+  "1QioZoZy6_siyOmPrqcLyfxMpkOKBANNm",
+  "1iq9l92BjEMREHKkvrrtWqXLPABezjCog",
+  "1JeNdgtlYhIkHMeuC4l3YfafiS4A1Lym8",
+  "1ookU9rRXZC9Y7VfAi-euPKSKoakpHUVb",
+  "1DQ6K1rR5D8dygl9PCq5bL7xzrZBi9J7h",
+  "1nS50qymx2cYAQS5OiwzW1iEtF1kvJlzv",
+  "14R7-4VPt9x1L8kakftcsY_x48auPnXSt",
+  "1Sybn16zlVbDtQ0ICkAoQoBQH0fLLZQYv",
+  "12_Oi5EzgEjPYK3DvsXVlrc9keOnpoMUq",
+  "1V-mh4dYN0P8QGltjSEh8EvQ1NoLHS8Yk",
+  "1tNva_RcdzFY8JnWLysUEvG-eYjToYNIF",
+  "1ZXNWN6v7tdbHvcvXW1rcVrgksSiO-Mpg",
+  "10s8ze7yWnGPwRCx_HX2cKAiOzNXY4Mjt",
+  "1xsvx3pLYAJGSoFY2yIh05OBwDGyYDmsJ",
+  "1HQcGxg8V7WGJI1qxwMA5flM7hzgbQ64P",
+  "1aZryTXcuk7fvaoEBysNka6XA1G0PqlL4",
+  "1eRPbT3IC0OMzpeYhmHau79SjRCcYgnU_",
+  "1Zi3VXDLTOYU8f2MUaf5aL62IBH2rjMyn",
+  "1CVubpRrSRAaZ90FmNaKE5oAl1wwrk1rj",
+  "1sXKUEvZ2r9JHm_VYFLgvoSl_mta3lP6a",
+  "1EoRmyX-bCDaJ10YGc2GzFtwiGhtZLQS5",
+  "1T2WZPMIqYxnCMetLndzeazXLuWcBGZXh",
+  "1vQjmOqXdBJ_lMeMs5YKDNnNWMQuCBn3z",
+  "1cPsa2rjHBUC-f1q7llbISFnXYLqZJwoH",
+  "1oYHcsrTlKJimdqlqJd7_qojP9wc0oGlo",
+  "1Zseoq1CCEwN2v0F6mxyovLsoewEzS4Rg",
+  "1qQu3UNVWpvjnwvMMKpeIc6_a3Vo63mn_",
+  "1emKlWdt5Bv4SwbFcTdIrhbqnvLyf849v",
+  "19fOHdfNCzjKMLqUtzVqJ_ArfXrjLLuUX",
+  "1XprsBIHw2dBhNoi93ZllgrnWwcJTEiqZ",
+  "1ZV6B960mAp034X0t3DRSVyIV_pPb8l6r",
+  "18KQQ32qeRts4E7EYHWggM00_k3pLPeAJ",
+  "1kZzJgSzz7RdeatS07NHFhpS-IKD2YJRa",
+  "1GhpeYcy7NeBRUSp_3J5fxXHzu4R7Z5jP",
+  "16JkarUZMx6a0E4IXcEjTEEj76GI9LndZ",
+  "1S6XWpwbGm1ZwGsA6d-TLhwnKZGa_yeZ1",
+  "1MIG-IC-ga-nmtjplVjYd17YccLIj2aDn",
+  "1Rrj4dProxA-S4rEniVxj4ep2Bf2vwQZD",
+  "12HIfbjTGkx_Y8hg-NSMfm9zrHj4WlvSo",
+  "1gPGgLtUAIiWPR08UWCTw3vnagkXMI_XG",
+  "1pBgpup5-avP2Jfg8DORkhaTLPpL6Se6e",
+  "1DhUwhZHVlnDDmfDB7bRPmxftRtU1hRKx",
+  "1NQhnHrIrQ_8T3YvrryapEtR46xDRABKE",
+  "17kw_2erzXtgqpQBO58HjE0qnKh2HOnJR",
+  "1sKXIKJODscGRzxt691j4VVYd0y_ZabNT",
+  "1Uzeza-PsKrJef2WN01UPtL2zsJLcJbJW",
+  "1AQhudjsecRSbq6f6hOTb3TAsfgbnkyAo",
+  "19v9_xlDIjMgjShmLZbLptV3BQq2xr4Hc",
+  "19iiEt5QUs_2HDKJy1FSu0OXDzrpvIGS2"
+],
+  "1YZ9ehtkKT31zxT7qYubibxx4SFX290h8"
 );
 
-const cosplayDraftMarceliaFolder =
-  "photography/2024/Cosplay draft/@marcelia_ellia/";
-const cosplayDraftMarceliaFiles = [
-  "DSCF9449.JPG",
-  "DSCF9450.JPG",
-  "DSCF9451.JPG",
-  "DSCF9452.JPG",
-  "DSCF9457.JPG",
-  "DSCF9458.JPG",
-  "DSCF9459.JPG",
-  "DSCF9460.JPG",
-  "DSCF9461.JPG",
-  "DSCF9462.JPG",
-  "DSCF9463.JPG",
-  "DSCF9464.JPG"
-];
-const cosplayDraftMarceliaImages = buildSortImages(
-  cosplayDraftMarceliaFolder,
-  cosplayDraftMarceliaFiles
+const november2025HaflahSet = buildDriveGallerySet(
+  [
+  "1xFM7FEXQbfWe_OnR-LNu8T6crzi1dpBe",
+  "1G_I801FtbdvRI0FOzlXBKJ21MLM_XCTO",
+  "1SLcbtAzyxzsPUi9MoyxcU1JQZ4WnRhlv",
+  "1TXyL4mXS4WomJhqRwm7VyEZn2ULWBsfb",
+  "1qwdxXr9PPar8AKPF4tlnHGRdcOuk8Wx8",
+  "1473FxWPXfr8lcj1vwmgPRWOLrA1-hgWq",
+  "1q-O-r0DdFURRRxwI2dJwtwPQG7duJdIL",
+  "1tx53Qzh_pIr4OTh1-IgYxvglNrLjP8zO",
+  "11Nba99XR9MNh_pE4BtFjNbjopzJE6joj",
+  "1DQGR4Lo-w7abyr-oZftdyq6U9eNVpdLO",
+  "1ZmJWvgICtmkiHHYTwWfU7BOm-oS9i0sU",
+  "1dHFy-b_YkquZ_XIJRoUKddvaRvvAF45H",
+  "1IfPiCwtO-7zBSENDNxvi_64VOIH2FxJ1",
+  "1NlcAUg7uh33W9cz1yRavqWTlXI0-4cDh",
+  "183O7lTe7BEhriOU2wkKKywBiuBpdHP9t",
+  "1Rs-vPtQziYU-IO9L4vT8quvwUnpxEKm7",
+  "1CsMo0nhBS6wcqc_D7NcSaPXgtGTBaqvG",
+  "1_wpvix2UaA3ierFnAzC8A1TddI8IIr72",
+  "1eb6A0CkNO0ajHGFMTY0vk7DQIxh0N-6b",
+  "1S_MOM2jp316Y_LLff-kVmedHwtf5Qmo5",
+  "1UrYaEntmuPkgnNwaNfNwZmyhilv5--fI",
+  "1700tVBT1x-kKTv9YPqiVFo5V54PKBDpR",
+  "1jx8ke1XfIPAIDnENv90JOfAxiJ1r1tRT",
+  "11v-AWO_rHfqZRQzzmhO-qZkXXPQ_BBmn",
+  "1dIIrPvgv4xuMF0o3WaiYcya26Rxi1EGu",
+  "1dnhgadimwcqTvRod3xgQi8gZDsBwtUpd",
+  "1E34rrs18ilAfmhelRXP7Nok6M-qidP1V",
+  "1LDpm7DPUNrv2wDc8OCuZT2VNoLkV8xmh",
+  "1osgWg0ztNe_NJ2Tuvq6MksF1o0qyNXbr",
+  "1srLJT36j3Y8rxCWytpOICWpMV85jpW6p",
+  "1QG6WMwsAKstSmuhlpGabVP0IaQmzBgx5",
+  "1WTkiEpkAdWxsRyjG_e38mWK5ErO0U43R",
+  "1KmhS6UzGhVf0EsidtNk3z9o2bVazNwMp",
+  "1n3ZMQXQQncwTrs0uwuPVWyxv6d-W-bhw",
+  "161pihG9Xigr9HMRZ4X0KgRhUqaP9RMs9",
+  "12qMYWn4a--yWE8AK7DF2IJQAtxcF_YXG",
+  "1PQZmWYOKu9JecYg1w6UBlzZCjDf4yLP4",
+  "18TkCaG0l1XMrvXM9GqJUw8RrJez-f_XV",
+  "11MEwwb50ZO2jcQgMzsI7V2H4bw8qLlkN",
+  "1Eadgzcf3G1Na8gidbJQRzZ0vE9trwPjh",
+  "1Y3wEcAWfCilBFIpYRCV6YFfvywz5TbKE",
+  "14NIxOfjWcMTE7JXJP5zWOhAxc-kFf0tJ",
+  "1oWM208byw2IU8fW9jcWBcPC7jhT6OKua",
+  "1BgUoRBeL1HksU_bZO-O6fNKxV3WC3GcC",
+  "1whfP0nD4EeOK2soU13kc0Pq29zVm0O_J",
+  "1rUAoN4E8d6II5A6mzZcV3MYosyYi3ua7",
+  "1gPqgqy4uAFbNGAAHptZsb5RZwrsuRYX7",
+  "1CtlhT0hq6S_PLWO31YcAUVKTYP0lLJUz",
+  "1b8pLzuV9emLRXbxV6i9n5rrSn8TEugF0",
+  "1qMN61pSZGt8pzd5a57IAgiNvLIglSDlO",
+  "1cGPQMm4NDBWZTDsUMv_B6o_ChHO7Duwa",
+  "1pQp35rqYuH0sLYaxppUFXQDRjg85X792",
+  "1xNDa-1x1fWoYtMsJj0zROcQ6DXa-53fW"
+],
+  "1pQp35rqYuH0sLYaxppUFXQDRjg85X792"
 );
 
-const cosplayDraftMrizkyFolder =
-  "photography/2024/Cosplay draft/@mrizky_04_/";
-const cosplayDraftMrizkyFiles = [
-  "DSCF1550.JPG",
-  "DSCF1551.JPG",
-  "DSCF1552.JPG",
-  "DSCF9466.JPG",
-  "DSCF9467.JPG",
-  "DSCF9468.JPG"
-];
-const cosplayDraftMrizkyImages = buildSortImages(
-  cosplayDraftMrizkyFolder,
-  cosplayDraftMrizkyFiles
+const cosplayDraft2024RandomSet = buildDriveGallerySet(
+  [
+  "1Uy4X3iV-cb2LA_J7uB_WUAtGWKzGkndt",
+  "1gif7d2c_ofIxvoMvea78ScK5d1OhYE2j",
+  "1zYl0QAYx_6hx9aXIgwRnEFXjj3Cu8Gp1",
+  "1VEh6uzznVzcNUrOkup_mxd5MaBc0MsY3",
+  "1yqNkW1FQM6dm_lVsHIEp-_Zes69o8F3-",
+  "1_2bdqn0gWkRfrfvb6oZ9dUobeqAtkwuM"
+],
+  "1_2bdqn0gWkRfrfvb6oZ9dUobeqAtkwuM"
 );
 
-const cosplayDraftFinaRinaFolder =
-  "photography/2024/Cosplay draft/Fina Rina/";
-const cosplayDraftFinaRinaFiles = [
-  "DSCF1567.JPG",
-  "DSCF1568.JPG",
-  "DSCF1576.JPG",
-  "DSCF1578.JPG",
-  "DSCF1581.JPG"
-];
-const cosplayDraftFinaRinaImages = buildSortImages(
-  cosplayDraftFinaRinaFolder,
-  cosplayDraftFinaRinaFiles
+const cosplayDraftFedriSet = buildDriveGallerySet(
+  [
+  "1GOna3v-gYm81h0Gjdn9W9CbNm36t6Aff",
+  "13KUnl5SAASdoNMly4VtOCo3T6WYx5nAb",
+  "1ei2riUCQBWTi_wktcQajqN-vebgwxxLJ",
+  "1z5HQyfOBa4FljGmJ3TiV3f8i-5PrQdbD",
+  "1rGNmMwIaPdAIa5BtIs2dblAMoyLwvFVO"
+],
+  "1GOna3v-gYm81h0Gjdn9W9CbNm36t6Aff"
 );
 
-const january2026TeamBuildingFolder =
-  "photography/2026/January/Team building Akademi Imigrasi/";
-const january2026TeamBuildingFiles = [
-  "DSCF2099 (Small).JPG",
-  "DSCF2100 (Small).JPG",
-  "DSCF2101 (Small).JPG",
-  "DSCF2102 (Small).JPG",
-  "DSCF2106 (Small).JPG",
-  "DSCF2107 (Small).JPG",
-  "DSCF2108 (Small).JPG",
-  "DSCF2109 (Small).JPG",
-  "DSCF2110 (Small).JPG",
-  "DSCF2111 (Small).JPG",
-  "DSCF2112 (Small).JPG",
-  "DSCF2114 (Small).JPG",
-  "DSCF2117 (Small).JPG",
-  "DSCF2119 (Small).JPG",
-  "DSCF2120 (Small).JPG",
-  "DSCF2121 (Small).JPG",
-  "DSCF2122 (Small).JPG",
-  "DSCF2123 (Small).JPG",
-  "DSCF2124 (Small).JPG",
-  "DSCF2125 (Small).JPG",
-  "DSCF2126 (Small).JPG",
-  "DSCF2127 (Small).JPG",
-  "DSCF2129 (Small).JPG",
-  "DSCF2130 (Small).JPG",
-  "DSCF2131 (Small).JPG",
-  "DSCF2132 (Small).JPG",
-  "DSCF2133 (Small).JPG",
-  "DSCF2134 (Small).JPG",
-  "DSCF2135 (Small).JPG",
-  "DSCF2136 (Small).JPG",
-  "DSCF2137 (Small).JPG",
-  "DSCF2138 (Small).JPG",
-  "DSCF2140 (Small).JPG",
-  "DSCF2141 (Small).JPG",
-  "DSCF2142 (Small).JPG",
-  "DSCF2143 (Small).JPG",
-  "DSCF2144 (Small).JPG",
-  "DSCF2145 (Small).JPG",
-  "DSCF2153 (Small).JPG",
-  "DSCF2165 (Small).JPG",
-  "DSCF2167 (Small).JPG",
-  "DSCF2170 (Small).JPG",
-  "DSCF2172 (Small).JPG",
-  "DSCF2176 (Small).JPG",
-  "DSCF2177 (Small).JPG",
-  "DSCF2178 (Small).JPG",
-  "DSCF2179 (Small).JPG",
-  "DSCF2180 (Small).JPG",
-  "DSCF2182 (Small).JPG",
-  "DSCF2183 (Small).JPG",
-  "DSCF2184 (Small).JPG",
-  "DSCF2185 (Small).JPG",
-  "DSCF2186 (Small).JPG",
-  "DSCF2187 (Small).JPG",
-  "DSCF2188 (Small).JPG",
-  "DSCF2189 (Small).JPG",
-  "DSCF2191 (Small).JPG",
-  "DSCF2192 (Small).JPG",
-  "DSCF2194 (Small).JPG",
-  "DSCF2201 (Small).JPG",
-  "DSCF2209 (Small).JPG",
-  "DSCF2218 (Small).JPG",
-  "DSCF2219 (Small).JPG",
-  "DSCF2221 (Small).JPG"
-];
-const january2026TeamBuildingImages = buildSortImages(
-  january2026TeamBuildingFolder,
-  january2026TeamBuildingFiles
+const cosplayDraftMarceliaSet = buildDriveGallerySet(
+  [
+  "1s7V7nppFcZ24km4TvSeO3_CNrMvQ2fWk",
+  "11Ds9Cxw8gpidkoth6xMKE37sOlwZd-fD",
+  "1L7AC__TggLqVfwWcT2zNx1pyqSWQCrxX",
+  "1XiXNx7Ieyud6i3Sp-Obt2z1827xoU1B_",
+  "1sqaqwnQoeKhgwjXDaMhnWCZFAZGb1AIp",
+  "1F-PWbnDwKeR18_9fC4wa52DB0NZhN_ai",
+  "1A3kzPAueEP820fWCo-fzXCr2KvEO8eOW",
+  "18TCUek_ZIEEVKiF2DUhEC5ooy5vSyH89",
+  "1TmnmJtv-V87kc35zbXSurJ7u3sJ5DG3O",
+  "1ijPx1zPhEMVoNn4l8DGkUniFYdm6bcve",
+  "1EbyCVfjTYmBZ6W66Beez_M_AF3ehDj_s",
+  "1V6B_7DkBaOISL9C-FT4jGaJBTWQW6c9k"
+],
+  "1s7V7nppFcZ24km4TvSeO3_CNrMvQ2fWk"
 );
 
-const january2026HaflahFolder =
-  "photography/2026/January/Haflah Khotmul Qur'an dan Imtihan Ke-5/";
-const january2026HaflahFiles = [
-  "DSCF2233 (Small).JPG",
-  "DSCF2234 (Small).JPG",
-  "DSCF2240 (Small).JPG",
-  "DSCF2242 (Small).JPG",
-  "DSCF2243 (Small).JPG",
-  "DSCF2244 (Small).JPG",
-  "DSCF2245 (Small).JPG",
-  "DSCF2246 (Small).JPG",
-  "DSCF2247 (Small).JPG"
-];
-const january2026HaflahImages = buildSortImages(
-  january2026HaflahFolder,
-  january2026HaflahFiles
+const cosplayDraftMrizkySet = buildDriveGallerySet(
+  [
+  "1SXRy2ffyiFeTrU9q_iDNO2v4K4zZQAHT",
+  "1509jbXdnURNbOfVZzLoCAiKUgsw60q6y",
+  "127lPWzh1OwLua9zwEHLZmqHrnaPpCrGv",
+  "1bkdoMdHawmUIVe9cNewNWRMAIY9riZeU",
+  "1-CFW5RDq2OfSDeBLsxEJ91yQyICma3uf",
+  "1iE-xrNCT1Pg7_csSrt40CDlqO04P-d4q"
+],
+  "1bkdoMdHawmUIVe9cNewNWRMAIY9riZeU"
 );
+
+const cosplayDraftFinaRinaSet = buildDriveGallerySet(
+  [
+  "11HaphOg6Fs1xjsJmNOlNvg3-KxEkrJnH",
+  "1QBoT4SlTV31LVtc5N2lBfMpq9W8JC8VR",
+  "1eL7H8VxLUi0Op3tQq24Nz8SMDGQt3Cy8",
+  "19Iw2IdZyUF7xfKINEWG70HSYAPOxMDr6",
+  "18xHGS9CTLdcmaoZISDxRWWnpkiKwuHbS"
+],
+  "11HaphOg6Fs1xjsJmNOlNvg3-KxEkrJnH"
+);
+
+window.photographyDriveBackendUrl = googleDriveRootFolderUrl;
 
 window.photographyArchive = [
   {
@@ -269,8 +451,11 @@ window.photographyArchive = [
     location: "Team building event coverage and group activity documentation",
     description:
       "A team building documentation set for Akademi Imigrasi, covering candid interactions, activity moments, and group atmosphere across the January 2026 event.",
-    coverImage: buildStorageMediaUrl(january2026TeamBuildingFolder + "DSCF2188 (Small).JPG"),
-    images: january2026TeamBuildingImages
+    folderLink: "https://drive.google.com/drive/folders/15MBMDMBm1nwXZnqcYywys93gueJ2IjPi?usp=sharing",
+    coverImage: january2026TeamBuildingSet.coverImage,
+    previewCoverImage: january2026TeamBuildingSet.previewCoverImage,
+    images: january2026TeamBuildingSet.images,
+    previewImages: january2026TeamBuildingSet.previewImages
   },
   {
     year: 2026,
@@ -281,9 +466,11 @@ window.photographyArchive = [
     location: "January 2026 event coverage archive",
     description:
       "A January 2026 Haflah documentation set covering stage moments, guest interactions, and event atmosphere for Haflah Khotmul Qur'an dan Imtihan Ke-5.",
-    folderLink: "https://drive.google.com/drive/folders/1v-Xc4U4ZH5AdOmRByrPEfJp4nHnyvo1O?usp=sharing",
-    coverImage: buildStorageMediaUrl(january2026HaflahFolder + "DSCF2233 (Small).JPG"),
-    images: january2026HaflahImages
+    folderLink: "https://drive.google.com/drive/folders/10n9W2Mv6-DovS9pPLOHvzSr8M87xy9Ub?usp=sharing",
+    coverImage: january2026HaflahSet.coverImage,
+    previewCoverImage: january2026HaflahSet.previewCoverImage,
+    images: january2026HaflahSet.images,
+    previewImages: january2026HaflahSet.previewImages
   },
   {
     year: 2025,
@@ -294,8 +481,11 @@ window.photographyArchive = [
     location: "Client to client photography work",
     description:
       "A full event photography set covering stage moments, family interactions, group portraits, candid reactions, and the overall atmosphere of Haflah Khotmul Qur'an dan Imtihan Ke-4.",
-    coverImage: buildStorageMediaUrl(november2025HaflahFolder + "DSCF1753.JPG"),
-    images: november2025HaflahImages
+    folderLink: "https://drive.google.com/drive/folders/1mWzdbQojIV9fJrcZFQJjRvVzAD5pumRB?usp=sharing",
+    coverImage: november2025HaflahSet.coverImage,
+    previewCoverImage: november2025HaflahSet.previewCoverImage,
+    images: november2025HaflahSet.images,
+    previewImages: november2025HaflahSet.previewImages
   },
   {
     year: 2024,
@@ -306,56 +496,66 @@ window.photographyArchive = [
     location: "Random photography studies and casual cosplay experiments",
     description:
       "A flexible cosplay draft archive built for mixed portrait experiments, spontaneous framing tests, and looser photography moments that do not need a full event-style gallery structure.",
-    coverImage: buildStorageMediaUrl(cosplayDraft2024Folder + "DSCF7724.JPG"),
-    images: cosplayDraft2024RandomImages,
+    folderLink: "https://drive.google.com/drive/folders/1ow0nRlWZW5C2WXh5lsH9n3BmA48iK7sl?usp=sharing",
+    coverImage: cosplayDraft2024RandomSet.coverImage,
+    previewCoverImage: cosplayDraft2024RandomSet.previewCoverImage,
+    images: cosplayDraft2024RandomSet.images,
+    previewImages: cosplayDraft2024RandomSet.previewImages,
     sorts: [
       {
         id: "random-photography",
         label: "Random Photography",
         description:
-          "A mixed set of random cosplay draft photos pulled from the new 2024 insert folder so individual frames can be chosen from one clean sort.",
-        coverImage: buildStorageMediaUrl(cosplayDraft2024Folder + "DSCF7724.JPG"),
-        images: cosplayDraft2024RandomImages
-      },
-      {
-        id: "andrian-mra",
-        label: "@andrian_m.r.a",
-        description:
-          "A focused cosplay draft subset for @andrian_m.r.a so the folder can be opened as its own selection instead of staying buried inside storage.",
-        coverImage: buildStorageMediaUrl(cosplayDraftAndrianFolder + "DSCF9453.JPG"),
-        images: cosplayDraftAndrianImages
+          "A mixed set of random cosplay draft photos pulled from the 2024 folder so individual frames can be chosen from one clean sort.",
+        folderLink: "https://drive.google.com/drive/folders/1ow0nRlWZW5C2WXh5lsH9n3BmA48iK7sl?usp=sharing",
+        coverImage: cosplayDraft2024RandomSet.coverImage,
+        previewCoverImage: cosplayDraft2024RandomSet.previewCoverImage,
+        images: cosplayDraft2024RandomSet.images,
+        previewImages: cosplayDraft2024RandomSet.previewImages
       },
       {
         id: "fe-d-ri",
         label: "@fe.d.ri",
         description:
           "A dedicated sort for @fe.d.ri that keeps this folder readable as its own mini portrait set inside the 2024 cosplay draft archive.",
-        coverImage: buildStorageMediaUrl(cosplayDraftFedriFolder + "DSCF9416.JPG"),
-        images: cosplayDraftFedriImages
+        folderLink: "https://drive.google.com/drive/folders/1GGKAHgsmnUFOnlGNBIgVPhzrhmefWge9?usp=sharing",
+        coverImage: cosplayDraftFedriSet.coverImage,
+        previewCoverImage: cosplayDraftFedriSet.previewCoverImage,
+        images: cosplayDraftFedriSet.images,
+        previewImages: cosplayDraftFedriSet.previewImages
       },
       {
         id: "marcelia-ellia",
         label: "@marcelia_ellia",
         description:
-          "A dedicated sort for @marcelia_ellia so the inserted folder can be browsed directly from the photography page with its own cover and frame list.",
-        coverImage: buildStorageMediaUrl(cosplayDraftMarceliaFolder + "DSCF9449.JPG"),
-        images: cosplayDraftMarceliaImages
+          "A dedicated sort for @marcelia_ellia so the folder can be browsed directly from the photography page with its own cover and frame list.",
+        folderLink: "https://drive.google.com/drive/folders/1pOuhOvAqekCsbNbYQt_OWX4RHhrZV4WQ?usp=sharing",
+        coverImage: cosplayDraftMarceliaSet.coverImage,
+        previewCoverImage: cosplayDraftMarceliaSet.previewCoverImage,
+        images: cosplayDraftMarceliaSet.images,
+        previewImages: cosplayDraftMarceliaSet.previewImages
       },
       {
         id: "mrizky-04",
         label: "@mrizky_04_",
         description:
-          "A compact sort for @mrizky_04_ that opens the new folder as a separate choice under Cosplay Draft.",
-        coverImage: buildStorageMediaUrl(cosplayDraftMrizkyFolder + "DSCF9466.JPG"),
-        images: cosplayDraftMrizkyImages
+          "A compact sort for @mrizky_04_ that opens the folder as a separate choice under Cosplay Draft.",
+        folderLink: "https://drive.google.com/drive/folders/1OsvnQW64KpSU0o7D6x1OUGS7KblmHlFM?usp=sharing",
+        coverImage: cosplayDraftMrizkySet.coverImage,
+        previewCoverImage: cosplayDraftMrizkySet.previewCoverImage,
+        images: cosplayDraftMrizkySet.images,
+        previewImages: cosplayDraftMrizkySet.previewImages
       },
       {
         id: "fina-rina",
         label: "Fina Rina",
         description:
-          "A dedicated sort for the Fina Rina folder so this new cosplay draft set can be browsed as its own selection inside the 2024 archive.",
-        coverImage: buildStorageMediaUrl(cosplayDraftFinaRinaFolder + "DSCF1567.JPG"),
-        images: cosplayDraftFinaRinaImages
+          "A dedicated sort for the Fina Rina folder so this cosplay draft set can be browsed as its own selection inside the 2024 archive.",
+        folderLink: "https://drive.google.com/drive/folders/1baULtvczJAj8PFoxw-lFjBaEjQmvakgL?usp=sharing",
+        coverImage: cosplayDraftFinaRinaSet.coverImage,
+        previewCoverImage: cosplayDraftFinaRinaSet.previewCoverImage,
+        images: cosplayDraftFinaRinaSet.images,
+        previewImages: cosplayDraftFinaRinaSet.previewImages
       }
     ]
   }

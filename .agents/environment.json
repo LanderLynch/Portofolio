@@ -1,0 +1,3 @@
+{
+  "install": "python3 --version && node --version && test -f index.html && test -f css/styles.css && test -f js/firebase-config.js && test -f performance-sw.js"
+}

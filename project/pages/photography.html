@@ -6,9 +6,9 @@
   <link rel="icon" type="image/png" href="../assets/logo-preview/logo-lemon.png" />
   <link rel="preconnect" href="https://firebasestorage.googleapis.com" crossorigin />
   <title>Photography - Jona Setiawan</title>
-  <script src="../../theme-init.js"></script>
-  <link rel="stylesheet" href="../../zoom-controls.css" />
-  <link rel="stylesheet" href="../../theme-palettes.css" />
+  <script src="../../js/theme-init.js"></script>
+  <link rel="stylesheet" href="../../css/zoom-controls.css" />
+  <link rel="stylesheet" href="../../css/theme-palettes.css" />
   <style>
     :root {
       --hero-image: none;
@@ -209,6 +209,7 @@
       aspect-ratio: 4 / 5;
       overflow: hidden;
       border-radius: 16px;
+      background: var(--surface-soft);
       border: 1px solid color-mix(in srgb, white 8%, var(--border));
     }
     .shoot-cover img { width: 100%; height: 100%; object-fit: cover; }
@@ -582,7 +583,7 @@
     </div>
   </div>
 
-  <script defer src="../../performance-utils.js"></script>
+  <script defer src="../../js/performance-utils.js"></script>
   <script src="../scripts/photography-archive.js"></script>
   <script>
     (function () {
@@ -642,9 +643,20 @@
         return Array.isArray(activeSort?.images) && activeSort.images.length ? activeSort.images : entry.images;
       }
 
+      function entryGalleryPreviewImages(entry) {
+        const activeSort = activeEntrySort(entry);
+        if (Array.isArray(activeSort?.previewImages) && activeSort.previewImages.length) {
+          return activeSort.previewImages;
+        }
+        if (Array.isArray(entry.previewImages) && entry.previewImages.length) {
+          return entry.previewImages;
+        }
+        return entryGalleryImages(entry);
+      }
+
       function entryGalleryCover(entry) {
         const activeSort = activeEntrySort(entry);
-        return activeSort?.coverImage || entry.coverImage;
+        return activeSort?.previewCoverImage || activeSort?.coverImage || entry.previewCoverImage || entry.coverImage;
       }
 
       function entryGalleryDescription(entry) {
@@ -695,22 +707,24 @@
           const sorts = entrySorts(entry);
           const activeSort = activeEntrySort(entry);
           const galleryImages = entryGalleryImages(entry);
+          const previewImages = entryGalleryPreviewImages(entry);
           const previewCount = Math.min(galleryImages.length, MAX_THUMBS_PER_CARD);
-          const thumbs = galleryImages.slice(0, previewCount).map((image, index) => '<button class="gallery-thumb" type="button" data-entry="' + entry.slug + '" data-index="' + index + '" aria-label="Open image ' + (index + 1) + ' from ' + escapeHtml(entry.title) + '"><img src="' + image + '" alt="' + escapeHtml(entry.title) + ' preview ' + (index + 1) + '" loading="lazy" decoding="async" fetchpriority="low" /><span class="gallery-thumb-label">Frame ' + (index + 1) + '</span></button>').join("");
+          const thumbs = galleryImages.slice(0, previewCount).map((image, index) => '<button class="gallery-thumb" type="button" data-entry="' + entry.slug + '" data-index="' + index + '" aria-label="Open image ' + (index + 1) + ' from ' + escapeHtml(entry.title) + '"><img src="' + (previewImages[index] || image) + '" alt="' + escapeHtml(entry.title) + ' preview ' + (index + 1) + '" width="240" height="240" loading="lazy" decoding="async" fetchpriority="low" /><span class="gallery-thumb-label">Frame ' + (index + 1) + '</span></button>').join("");
         const moreButton = galleryImages.length > previewCount
           ? '<button class="gallery-thumb" type="button" data-entry="' + entry.slug + '" data-index="' + previewCount + '" aria-label="Open more images from ' + escapeHtml(entry.title) + '"><span class="gallery-thumb-more"><strong>+' + (galleryImages.length - previewCount) + '</strong><span>More frames</span></span></button>'
           : "";
           const sortControls = sorts
             ? '<div class="shoot-sort-shell"><div class="shoot-sort-row">' + sorts.map((sort) => '<button class="shoot-sort-btn' + (activeSort && sort.id === activeSort.id ? ' is-active' : '') + '" type="button" data-entry-sort="' + entry.slug + '" data-sort-id="' + sort.id + '">' + escapeHtml(sort.label) + '</button>').join("") + '</div><p class="shoot-sort-description">' + escapeHtml(entryGalleryDescription(entry)) + '</p></div>'
             : '';
-          const folderLink = entry.folderLink
-            ? '<a class="shoot-folder-link" href="' + escapeHtml(entry.folderLink) + '" target="_blank" rel="noreferrer noopener">Open Folder</a>'
+          const resolvedFolderLink = activeSort?.folderLink || entry.folderLink;
+          const folderLink = resolvedFolderLink
+            ? '<a class="shoot-folder-link" href="' + escapeHtml(resolvedFolderLink) + '" target="_blank" rel="noreferrer noopener">Open Drive Folder</a>'
             : '';
           const galleryActions = '<div class="shoot-gallery-actions"><span class="shoot-gallery-hint">' + galleryImages.length + ' photos ready in this view</span><div class="shoot-action-row">' + folderLink + '<button class="shoot-gallery-toggle" type="button" data-entry-preview-toggle="' + entry.slug + '">' + (isEntryExpanded(entry) ? 'Hide Preview Frames' : 'Show Preview Frames') + '</button></div></div>';
           const galleryMarkup = isEntryExpanded(entry)
             ? '<div class="gallery-grid">' + thumbs + moreButton + '</div>'
             : '';
-        return '<article class="shoot-card"><div class="shoot-cover"><img src="' + entryGalleryCover(entry) + '" alt="' + escapeHtml(entry.title) + ' cover image" loading="lazy" decoding="async" fetchpriority="low" /><span class="shoot-cover-badge">' + galleryImages.length + ' photos</span></div><div class="shoot-body"><div class="shoot-meta"><span class="shoot-tag">' + escapeHtml(entry.projectType) + '</span><span class="shoot-tag">' + escapeHtml(entry.dateLabel) + '</span></div><div><h4>' + escapeHtml(entry.title) + '</h4><p class="shoot-description">' + escapeHtml(entry.description) + '</p></div>' + sortControls + galleryActions + galleryMarkup + '</div></article>';
+        return '<article class="shoot-card"><div class="shoot-cover"><img src="' + entryGalleryCover(entry) + '" alt="' + escapeHtml(entry.title) + ' cover image" width="480" height="600" loading="lazy" decoding="async" fetchpriority="low" /><span class="shoot-cover-badge">' + galleryImages.length + ' photos</span></div><div class="shoot-body"><div class="shoot-meta"><span class="shoot-tag">' + escapeHtml(entry.projectType) + '</span><span class="shoot-tag">' + escapeHtml(entry.dateLabel) + '</span></div><div><h4>' + escapeHtml(entry.title) + '</h4><p class="shoot-description">' + escapeHtml(entry.description) + '</p></div>' + sortControls + galleryActions + galleryMarkup + '</div></article>';
       }
 
       function updateHero() {
@@ -718,8 +732,9 @@
         heroYears.textContent = years.length > 1 ? years[years.length - 1] + ' - ' + years[0] : String(years[0]);
         heroLatest.textContent = latest ? latest.dateLabel : '-';
         heroFocus.textContent = latest ? latest.projectType : '-';
-        if (latest && latest.coverImage) {
-          document.documentElement.style.setProperty('--hero-image', 'url(\"' + latest.coverImage + '\")');
+        const heroCover = latest ? (latest.previewCoverImage || latest.coverImage) : null;
+        if (heroCover) {
+          document.documentElement.style.setProperty('--hero-image', 'url(\"' + heroCover + '\")');
         }
       }
 
@@ -815,8 +830,8 @@
       renderArchive();
     })();
   </script>
-  <script defer src="../../language-controls.js?v=20260410-2"></script>
-  <script defer src="../../theme-controls.js"></script>
-  <script defer src="../../zoom-controls.js"></script>
+  <script defer src="../../js/language-controls.js?v=20260410-2"></script>
+  <script defer src="../../js/theme-controls.js"></script>
+  <script defer src="../../js/zoom-controls.js"></script>
 </body>
 </html>

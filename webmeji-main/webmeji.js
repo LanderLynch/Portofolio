@@ -8,35 +8,101 @@
 // this is likely very unoptimized and quite messy code, i apologize for that. plain info on each function is at the bottom of the readme
 // this project was made with the intention that changing anything in the config.js would be easy. this is not that. modifying this comes at your own risk.
 
-window.addEventListener('DOMContentLoaded', () => {
-  // collect unique config names from SPAWNING
-  const configNames = [...new Set(
-    window.SPAWNING.map(spawn => spawn.config)
-  )];
+const WEBMEJI_STORAGE_KEY = 'portfolio-webmeji-enabled';
+let activeCreatures = [];
+let preloadPromise = null;
 
-  // resolve them to actual config objects on window
-  const configs = configNames
-    .map(name => window[name])
-    .filter(Boolean);
+function isWebmejiEnabled() {
+  try {
+    const saved = window.localStorage.getItem(WEBMEJI_STORAGE_KEY);
+    return saved === null ? true : saved === 'true';
+  } catch (e) {
+    return true;
+  }
+}
 
-  // preload all images
-  Promise.all(configs.map(preloadImages))
+function setWebmejiEnabled(enabled) {
+  try {
+    window.localStorage.setItem(WEBMEJI_STORAGE_KEY, enabled ? 'true' : 'false');
+  } catch (e) {
+    // Ignore storage access errors and keep the in-memory state active.
+  }
+}
+
+function ensureConfigsPreloaded() {
+  if (preloadPromise) return preloadPromise;
+  const configNames = [...new Set((window.SPAWNING || []).map(spawn => spawn.config))];
+  const configs = configNames.map(name => window[name]).filter(Boolean);
+  preloadPromise = Promise.all(configs.map(preloadImages));
+  return preloadPromise;
+}
+
+function spawnCreatures() {
+  if (activeCreatures.length) return;
+  ensureConfigsPreloaded()
     .then(() => {
-      console.log("all images are loaded!");
-
-      const creatures = [];
-      window.SPAWNING.forEach(({ id, config }) => {
+      if (!isWebmejiEnabled() || activeCreatures.length) return;
+      (window.SPAWNING || []).forEach(({ id, config }) => {
         const cfg = window[config];
-        if (!cfg) {
-          console.warn(`config not found: ${config}`);
-          return;
-        }
-        creatures.push(new Creature(id, cfg));
+        if (!cfg) return;
+        activeCreatures.push(new Creature(id, cfg));
       });
     })
     .catch(error => {
       console.error("error loading images:", error);
     });
+}
+
+function destroyCreatures() {
+  while (activeCreatures.length) {
+    const creature = activeCreatures.pop();
+    creature.destroy();
+  }
+}
+
+function mountWebmejiToggleButton() {
+  if (document.getElementById('webmeji-toggle-btn')) return;
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.id = 'webmeji-toggle-btn';
+  btn.className = 'webmeji-toggle-btn';
+
+  const firstSpawn = (window.SPAWNING || [])[0];
+  const firstCfg = firstSpawn ? window[firstSpawn.config] : null;
+  const iconSrc = firstCfg?.stand?.frames?.[0] || firstCfg?.walk?.frames?.[0] || '';
+
+  const updateButtonUI = (enabled) => {
+    btn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+    btn.setAttribute('aria-label', enabled ? 'Deactivate Webmeji mascot' : 'Activate Webmeji mascot');
+    btn.title = enabled ? 'Deactivate Webmeji mascot' : 'Activate Webmeji mascot';
+    btn.innerHTML =
+      (iconSrc ? `<img class="webmeji-toggle-icon" src="${iconSrc}" width="24" height="24" alt="" aria-hidden="true">` : '') +
+      `<span class="webmeji-toggle-dot" aria-hidden="true"></span>` +
+      `<span class="webmeji-toggle-label">${enabled ? 'Mascot ON' : 'Mascot OFF'}</span>`;
+  };
+
+  let enabled = isWebmejiEnabled();
+  updateButtonUI(enabled);
+
+  btn.addEventListener('click', () => {
+    enabled = !enabled;
+    setWebmejiEnabled(enabled);
+    updateButtonUI(enabled);
+    if (enabled) {
+      spawnCreatures();
+    } else {
+      destroyCreatures();
+    }
+  });
+
+  document.body.appendChild(btn);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  mountWebmejiToggleButton();
+  if (isWebmejiEnabled()) {
+    spawnCreatures();
+  }
 });
 
 function getPageZoomScale() {
@@ -291,9 +357,25 @@ class Creature {
   // cancel all timers and animation frames
   clearAllTimers() {
     this.resetAnimation();
+    if (this.dragFrameTimer) {
+      clearInterval(this.dragFrameTimer);
+      this.dragFrameTimer = null;
+    }
     if (this.animationFrameId) {
       cancelAnimationFrame(this.animationFrameId);
       this.animationFrameId = null;
+    }
+  }
+
+  destroy() {
+    this.isDestroyed = true;
+    this.tripAfterFallActive = false;
+    this.clearAllTimers();
+    if (this.resizeHandler) {
+      window.removeEventListener('resize', this.resizeHandler);
+    }
+    if (this.container && this.container.parentNode) {
+      this.container.parentNode.removeChild(this.container);
     }
   }
 
@@ -975,6 +1057,7 @@ class Creature {
 
   // main animation loop --------------------------------------------------
   animate(time) {
+    if (this.isDestroyed) return;
     if (!this.lastTime) this.lastTime = time;
     const delta = (time - this.lastTime) / 1000;
     this.lastTime = time;

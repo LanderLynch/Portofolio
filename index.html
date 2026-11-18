@@ -4,26 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jona Setiawan - Portfolio</title>
-  <script src="theme-init.js"></script>
+  <script src="js/theme-init.js"></script>
   <link rel="icon" type="image/png" href="project/assets/logo-preview/logo-lemon.png" />
   <link rel="preload" as="image" href="project/assets/logo-preview/logo-lemon.png" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="high">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
-  <link rel="preconnect" href="https://firebasestorage.googleapis.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="high">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap"></noscript>
+  <link rel="preconnect" href="https://drive.google.com" crossorigin>
+  <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin>
   <link rel="dns-prefetch" href="https://i.pinimg.com">
   <link rel="dns-prefetch" href="https://images.unsplash.com">
-  <link rel="stylesheet" href="styles.css?v=20260413-6">
-  <link rel="stylesheet" href="theme-palettes.css?v=20260413-7">
+  <link rel="stylesheet" href="css/styles.css?v=20260413-6">
+  <link rel="stylesheet" href="css/theme-palettes.css?v=20260413-7">
   <link rel="stylesheet" href="webmeji-main/webmeji.css">
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Lewati ke konten utama</a>
   <!-- Portfolio Title - Separated from Navigation -->
   <div class="portfolio-title-container">
     <div class="portfolio-title-row">
       <a href="#home" class="portfolio-title-link">
-        <img src="project/assets/logo-preview/logo-lemon.png" alt="Logo Lemon" class="portfolio-logo" loading="eager" decoding="async" fetchpriority="high" data-priority="high" />
+        <img src="project/assets/logo-preview/logo-lemon.png" alt="Logo Lemon" width="40" height="40" class="portfolio-logo" loading="eager" decoding="async" fetchpriority="high" data-priority="high" />
         <span class="portfolio-text">Beranda</span>
       </a>
       <div class="zoom-control" id="zoom-control">
@@ -220,6 +222,7 @@
     </div>
   </aside>
 
+  <main id="main-content">
   <!-- Home Section -->
   <section id="home" class="home-section" data-section-label="Beranda">
     <h1 class="hero-title">Jona Setiawan</h1>
@@ -228,40 +231,30 @@
     </div>
     
     <div class="button-group">
-      <a href="https://drive.usercontent.google.com/download?id=18oRkNH1VU8Gg_WOEhky9bfeP1LufCNkr&export=download&authuser=5&confirm=t&uuid=6b7a7de9-1694-4107-b6bd-43112cf1555f&at=AN8xHops-tHAbhs0J98uHkYxc9pB:1753280713067" class="btn btn-secondary" data-i18n-key="hero-download-cv">Unduh CV</a>
-      <a href="certification.html" class="btn btn-secondary" data-i18n-key="hero-certification">Sertifikasi</a>
       <a href="#projects" class="btn btn-primary" data-i18n-key="hero-explore-projects">Lihat Proyek</a>
+      <a href="certification.html" class="btn btn-secondary" data-i18n-key="hero-certification">Sertifikasi</a>
+      <a href="https://drive.usercontent.google.com/download?id=18oRkNH1VU8Gg_WOEhky9bfeP1LufCNkr&export=download&authuser=5&confirm=t&uuid=6b7a7de9-1694-4107-b6bd-43112cf1555f&at=AN8xHops-tHAbhs0J98uHkYxc9pB:1753280713067" class="btn btn-secondary" data-i18n-key="hero-download-cv">Unduh CV</a>
     </div>
     
     <div class="social-links">
-      <a href="https://www.instagram.com/jona.mmzv/" target="_blank" class="social-btn" aria-label="Instagram">
-        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="3.75" y="3.75" width="16.5" height="16.5" rx="4.5"></rect>
-          <circle cx="12" cy="12" r="3.75"></circle>
-          <circle cx="17.25" cy="6.75" r="0.75" class="social-icon-fill"></circle>
+      <a href="https://www.instagram.com/jona.mmzv/" target="_blank" rel="noreferrer" class="social-btn" aria-label="Instagram">
+        <svg class="social-icon social-icon-fill" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95h-8.5zm9.65 1.45a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4z"/>
         </svg>
       </a>
-      <a href="https://www.linkedin.com/in/jona-setiawan-099149311/" target="_blank" class="social-btn" aria-label="LinkedIn">
-        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M7.125 9.75V18"></path>
-          <path d="M7.125 6.75h.015"></path>
-          <path d="M11.25 18V9.75"></path>
-          <path d="M16.875 18v-4.5a2.625 2.625 0 0 0-5.25 0"></path>
-          <rect x="3.75" y="3.75" width="16.5" height="16.5" rx="4.5"></rect>
+      <a href="https://www.linkedin.com/in/jona-setiawan-099149311/" target="_blank" rel="noreferrer" class="social-btn" aria-label="LinkedIn">
+        <svg class="social-icon social-icon-fill" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 9.94v-8.37H5.5v8.37h2.77z"/>
         </svg>
       </a>
-      <a href="https://github.com/LanderLynch" target="_blank" class="social-btn" aria-label="GitHub">
-        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M9 18.75c-3.75 1.125-3.75-2.25-5.25-2.625"></path>
-          <path d="M14.25 21v-2.91c0-.78.06-1.17-.375-1.5 2.82-.315 5.775-1.38 5.775-6.24a4.875 4.875 0 0 0-1.305-3.39 4.53 4.53 0 0 0-.075-3.345s-1.065-.315-3.495 1.29a11.94 11.94 0 0 0-6.75 0c-2.43-1.605-3.495-1.29-3.495-1.29a4.53 4.53 0 0 0-.075 3.345A4.875 4.875 0 0 0 3.15 10.35c0 4.83 2.955 5.895 5.775 6.24-.435.33-.435.99-.375 1.5V21"></path>
-          <path d="M12 2.625a9.375 9.375 0 0 0-2.97 18.27"></path>
-          <path d="M12 2.625a9.375 9.375 0 0 1 2.25 18.48"></path>
+      <a href="https://github.com/LanderLynch" target="_blank" rel="noreferrer" class="social-btn" aria-label="GitHub">
+        <svg class="social-icon social-icon-fill" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
         </svg>
       </a>
-      <a href="https://x.com/CandyLordberry/media" target="_blank" class="social-btn" aria-label="X">
-        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4.5 4.5 19.5 19.5"></path>
-          <path d="M19.5 4.5 4.5 19.5"></path>
+      <a href="https://x.com/CandyLordberry/media" target="_blank" rel="noreferrer" class="social-btn" aria-label="X">
+        <svg class="social-icon social-icon-fill" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
         </svg>
       </a>
     </div>
@@ -280,43 +273,27 @@
         <div>Projects</div>
       </div>
       <div class="stat-card">
-        <div class="stat-value">70/100</div>
-        <div>AVG Score</div>
+        <div class="stat-value">25</div>
+        <div>Certifications</div>
       </div>
     </div>
     
     <div class="scroll-indicator">
-      <a href="#about" class="scroll-indicator-link">&#x25BC; Scroll Down</a>
+      <a href="#about" class="scroll-indicator-link">Scroll Down</a>
     </div>
   </section>
 
   <section id="about" class="about-section" data-section-label="Tentang">
     <div class="about-header">
       <h2 class="about-main-title">About Me</h2>
-      <p class="about-subtitle">Discover my journey, passions, and the story behind my work</p>
+      <p class="about-subtitle">Graphic design, brand identity, and visual production from Jakarta</p>
     </div>
     
     <div class="about-content-wrapper">
       <div class="about-image-container">
-        <img src="https://i.pinimg.com/736x/51/6b/3d/516b3dfcab87be8bbf46c9ed05184eeb.jpg" alt="Jona Setiawan Photo" loading="lazy" decoding="async" fetchpriority="low" />
-        
-        <!-- Floating Skill Icons -->
-        <div class="floating-icon html" title="HTML5">
-          &lt;/&gt;
-        </div>
-        <div class="floating-icon css" title="CSS3">
-          { }
-        </div>
-        <div class="floating-icon react" title="React" aria-label="React icon">
-          <svg class="floating-react-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="1.9"></circle>
-            <ellipse cx="12" cy="12" rx="9" ry="3.9"></ellipse>
-            <ellipse cx="12" cy="12" rx="9" ry="3.9" transform="rotate(60 12 12)"></ellipse>
-            <ellipse cx="12" cy="12" rx="9" ry="3.9" transform="rotate(120 12 12)"></ellipse>
-          </svg>
-        </div>
+        <img src="https://i.pinimg.com/736x/51/6b/3d/516b3dfcab87be8bbf46c9ed05184eeb.jpg" alt="Jona Setiawan Photo" width="420" height="560" loading="lazy" decoding="async" fetchpriority="low" />
         <div class="floating-icon javascript" title="Logo Lemon">
-          <img src="project/assets/logo-preview/logo-lemon.png" alt="Logo Lemon" class="floating-icon-image" loading="lazy" decoding="async" fetchpriority="low" />
+          <img src="project/assets/logo-preview/logo-lemon.png" alt="Logo Lemon" width="40" height="40" class="floating-icon-image" loading="lazy" decoding="async" fetchpriority="low" />
         </div>
       </div>
       <div class="about-info-grid">
@@ -327,7 +304,7 @@
             </div>
             <h3>Who Am I</h3>
           </div>
-          <p>I'm a multimedia designer who specializes in graphic design and visual communication. With a background in multimedia design, I create engaging visual content that tells compelling stories.</p>
+          <p>I am a multimedia designer focused on graphic design, poster composition, and brand identity. I build clear visual systems for campaigns, social feeds, and print collateral.</p>
         </div>
         
         <div class="info-card">
@@ -337,7 +314,7 @@
             </div>
             <h3>My Approach</h3>
           </div>
-          <p>I focus on creative storytelling through visual design, combining technical skills with artistic vision to deliver impactful multimedia experiences that resonate with audiences.</p>
+          <p>Every layout starts with hierarchy and audience context, pairing Adobe Photoshop, Illustrator, and UI prototyping so print and digital assets stay consistent.</p>
         </div>
         
         <div class="personal-info-card">
@@ -409,24 +386,15 @@
               </div>
             </div>
             
-            <div class="personal-info-item">
-              <div class="personal-info-icon" aria-hidden="true">
-                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 3v18h18"></path><path d="M7.5 15V9.75"></path><path d="M12 15V6.75"></path><path d="M16.5 15v-3.75"></path></svg>
-              </div>
-              <div class="personal-info-content">
-                <span class="personal-info-label">AVG Score:</span>
-                <span class="personal-info-value">70/100</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- Enhanced Projects Section -->
+  <!-- Projects Section -->
   <section id="projects" class="projects-section" data-section-label="Proyek">
-    <h2 class="section-title">My Creative Portfolio</h2>
-    <p class="section-subtitle">Explore my latest multimedia design projects and creative solutions</p>
+    <h2 class="section-title">Selected Works</h2>
+    <p class="section-subtitle">Branding, graphic design, video editing, and UI projects</p>
     <!-- Project Filter Tabs -->
     <div class="project-filters">
       <button class="filter-btn active" data-filter="all">All Projects</button>
@@ -440,14 +408,7 @@
       <!-- Featured Project -->
       <div class="project-card featured-project" data-category="graphic">
         <div class="project-image">
-          <img src="https://i.pinimg.com/736x/e2/79/15/e2791594bb7f8ef98b33e94fa06de84b.jpg" alt="Personal GFX Design Collection" loading="lazy" decoding="async" fetchpriority="low" />
-          <div class="project-overlay">
-            <div class="project-quick-actions">
-              <a href="project/pages/personal-gfx-design-collection.html" class="quick-action-btn" title="View Project" aria-label="View Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
-              <a href="project/pages/personal-gfx-design-collection.html" class="quick-action-btn" title="Live Demo" aria-label="Live Demo"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M13.5 6H19.5V12"></path><path d="m10.5 13.5 9-9"></path><path d="M19.5 14.25v3A2.25 2.25 0 0 1 17.25 19.5h-10.5A2.25 2.25 0 0 1 4.5 17.25v-10.5A2.25 2.25 0 0 1 6.75 4.5h3"></path></svg></a>
-              <a href="project/pages/personal-gfx-design-collection.html" class="quick-action-btn" title="Source Code" aria-label="Source Code"><svg class="icon-svg" viewBox="0 0 24 24"><path d="m8.25 8.25-4.5 3.75 4.5 3.75"></path><path d="m15.75 8.25 4.5 3.75-4.5 3.75"></path><path d="m13.5 4.5-3 15"></path></svg></a>
-            </div>
-          </div>
+          <img src="https://i.pinimg.com/736x/e2/79/15/e2791594bb7f8ef98b33e94fa06de84b.jpg" alt="Personal GFX Design Collection" width="640" height="400" loading="lazy" decoding="async" fetchpriority="low" />
         </div>
         <div class="project-content">
           <div class="project-header">
@@ -469,7 +430,7 @@
             <div class="project-type">Personal Project</div>
           </div>
           <a href="project/pages/personal-gfx-design-collection.html" class="view-project-btn">
-            View Full Project &rarr;
+            View Full Project
           </a>
         </div>
       </div>
@@ -478,13 +439,7 @@
       
       <div class="project-card" data-category="graphic">
         <div class="project-image">
-          <img src="project/assets/logo-preview/internusa-kreasindo-mandiri.jpg" alt="Internusa Kreasindo Mandiri logo" loading="lazy" decoding="async" fetchpriority="low" />
-          <div class="project-overlay">
-            <div class="project-quick-actions">
-              <a href="project/pages/ikm-design-creative-project.html" class="quick-action-btn" title="View Project" aria-label="View Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
-              <a href="project/pages/ikm-design-creative-project.html" class="quick-action-btn" title="Case Study" aria-label="Case Study"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75"></path><path d="M9 3.75h6l4.5 4.5v8.25A2.25 2.25 0 0 1 17.25 18.75H6.75A2.25 2.25 0 0 1 4.5 16.5v-10.5A2.25 2.25 0 0 1 6.75 3.75H9Z"></path><path d="M15 3.75v4.5h4.5"></path></svg></a>
-            </div>
-          </div>
+          <img src="project/assets/logo-preview/internusa-kreasindo-mandiri.jpg" alt="Internusa Kreasindo Mandiri logo" width="640" height="400" loading="lazy" decoding="async" fetchpriority="low" />
         </div>
         <div class="project-content">
           <div class="project-header">
@@ -505,20 +460,14 @@
             <div class="project-type">Main work</div>
           </div>
           <a href="project/pages/ikm-design-creative-project.html" class="view-project-btn">
-            View Full Project &rarr;
+            View Full Project
           </a>
         </div>
       </div>
 
       <div class="project-card" data-category="ui">
         <div class="project-image">
-          <img src="project/assets/logo-preview/fortress-logo.jpg" alt="Fortress logo" loading="lazy" decoding="async" fetchpriority="low" />
-          <div class="project-overlay">
-            <div class="project-quick-actions">
-              <a href="project/pages/marketing-assistant-hr.html" class="quick-action-btn" title="View Project" aria-label="View Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
-              <a href="project/assets/project-fortress/riset-data-nama-fortress.xlsx" class="quick-action-btn" title="Open Workbook" aria-label="Open Workbook"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M19.5 14.25v3A2.25 2.25 0 0 1 17.25 19.5H6.75A2.25 2.25 0 0 1 4.5 17.25v-10.5A2.25 2.25 0 0 1 6.75 4.5h5.379a2.25 2.25 0 0 1 1.591.659l5.121 5.121a2.25 2.25 0 0 1 .659 1.591v.879"></path><path d="M12 8.25v6"></path><path d="m9.75 12 2.25 2.25L14.25 12"></path></svg></a>
-            </div>
-          </div>
+          <img src="project/assets/logo-preview/fortress-logo.jpg" alt="Fortress logo" width="640" height="400" loading="lazy" decoding="async" fetchpriority="low" />
         </div>
         <div class="project-content">
           <div class="project-header">
@@ -540,20 +489,14 @@
             <div class="project-type">Training / PKL</div>
           </div>
           <a href="project/pages/marketing-assistant-hr.html" class="view-project-btn">
-            View Full Project &rarr;
+            View Full Project
           </a>
         </div>
       </div>
       
       <div class="project-card" data-category="graphic">
         <div class="project-image">
-          <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=500&h=300&fit=crop" alt="Event Poster Design" loading="lazy" decoding="async" fetchpriority="low" />
-          <div class="project-overlay">
-            <div class="project-quick-actions">
-              <a href="project/pages/event-poster-campaign.html" class="quick-action-btn" title="View Project" aria-label="View Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
-              <a href="project/pages/event-poster-campaign.html" class="quick-action-btn" title="Download" aria-label="Download"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 3.75v10.5"></path><path d="m8.25 10.5 3.75 3.75 3.75-3.75"></path><path d="M4.5 18.75h15"></path></svg></a>
-            </div>
-          </div>
+          <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=500&h=300&fit=crop" alt="Event Poster Design" width="640" height="400" loading="lazy" decoding="async" fetchpriority="low" />
         </div>
         <div class="project-content">
           <div class="project-header">
@@ -575,20 +518,14 @@
             <div class="project-type">Client Work</div>
           </div>
           <a href="project/pages/event-poster-campaign.html" class="view-project-btn">
-            View Full Project &rarr;
+            View Full Project
           </a>
         </div>
       </div>
 
       <div class="project-card" data-category="multimedia">
         <div class="project-image">
-          <img src="https://firebasestorage.googleapis.com/v0/b/portofolio-jsfolio.firebasestorage.app/o/photography%2F2025%2FNovember%2Fhaflah%20khotmul%20Qur%27an%20dan%20imtihan%20ke-4%2FDSCF1753.JPG?alt=media" alt="Haflah Khotmul Qur'an event photography" loading="lazy" decoding="async" fetchpriority="low" />
-          <div class="project-overlay">
-            <div class="project-quick-actions">
-              <a href="project/pages/photography.html" class="quick-action-btn" title="View Archive" aria-label="View Archive"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
-              <a href="project/pages/photography.html" class="quick-action-btn" title="Open Gallery" aria-label="Open Gallery"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 6.75h16.5v10.5H3.75z"></path><path d="m7.5 13.5 2.25-2.25 2.25 2.25 3-3 3 3"></path></svg></a>
-            </div>
-          </div>
+          <img src="https://drive.google.com/thumbnail?id=1S2OmfS1WKVEfqHt4Yi84aCZSMsav4kVw&sz=w960" alt="Photography Archive event documentation cover" width="640" height="400" loading="lazy" decoding="async" fetchpriority="low" />
         </div>
         <div class="project-content">
           <div class="project-header">
@@ -609,20 +546,14 @@
             <div class="project-type">Client Work</div>
           </div>
           <a href="project/pages/photography.html" class="view-project-btn">
-            View Full Project &rarr;
+            View Full Project
           </a>
         </div>
       </div>
 
       <div class="project-card" data-category="branding">
         <div class="project-image">
-          <img src="project/assets/lariso-project/Lariso logo circle.png" alt="Lariso logo circle" loading="lazy" decoding="async" fetchpriority="low" />
-          <div class="project-overlay">
-            <div class="project-quick-actions">
-              <a href="project/pages/lariso-brand-identity.html" class="quick-action-btn" title="View Brand Story" aria-label="View Brand Story"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
-              <a href="project/pages/lariso-brand-identity.html" class="quick-action-btn" title="Open Project" aria-label="Open Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M13.5 6H19.5V12"></path><path d="m10.5 13.5 9-9"></path><path d="M19.5 14.25v3A2.25 2.25 0 0 1 17.25 19.5h-10.5A2.25 2.25 0 0 1 4.5 17.25v-10.5A2.25 2.25 0 0 1 6.75 4.5h3"></path></svg></a>
-            </div>
-          </div>
+          <img src="project/assets/lariso-project/Lariso logo circle.png" alt="Lariso logo circle" width="640" height="400" loading="lazy" decoding="async" fetchpriority="low" />
         </div>
         <div class="project-content">
           <div class="project-header">
@@ -642,20 +573,14 @@
             <div class="project-type">Client Work</div>
           </div>
           <a href="project/pages/lariso-brand-identity.html" class="view-project-btn">
-            View Full Project &rarr;
+            View Full Project
           </a>
         </div>
       </div>
 
       <div class="project-card" data-category="graphic">
         <div class="project-image">
-          <img src="project/assets/E-Money card Design Honkai star rail/E-money hsr.jpg" alt="Honkai Star Rail e-money transit card series thumbnail" loading="lazy" decoding="async" fetchpriority="low" />
-          <div class="project-overlay">
-            <div class="project-quick-actions">
-              <a href="project/pages/honkai-star-rail-e-money-transit-series.html" class="quick-action-btn" title="View Case Study" aria-label="View Case Study"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
-              <a href="project/pages/honkai-star-rail-e-money-transit-series.html" class="quick-action-btn" title="Open Project" aria-label="Open Project"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M13.5 6H19.5V12"></path><path d="m10.5 13.5 9-9"></path><path d="M19.5 14.25v3A2.25 2.25 0 0 1 17.25 19.5h-10.5A2.25 2.25 0 0 1 4.5 17.25v-10.5A2.25 2.25 0 0 1 6.75 4.5h3"></path></svg></a>
-            </div>
-          </div>
+          <img src="project/assets/E-Money card Design Honkai star rail/E-money hsr.jpg" alt="Honkai Star Rail e-money transit card series thumbnail" width="640" height="400" loading="lazy" decoding="async" fetchpriority="low" />
         </div>
         <div class="project-content">
           <div class="project-header">
@@ -675,20 +600,14 @@
             <div class="project-type">Client Work</div>
           </div>
           <a href="project/pages/honkai-star-rail-e-money-transit-series.html" class="view-project-btn">
-            View Full Project &rarr;
+            View Full Project
           </a>
         </div>
       </div>
       
       <div class="project-card" data-category="video">
         <div class="project-image">
-          <img src="project/assets/logo-preview/yuppentek-logo-kota-tua-version.jpg" alt="Yuppentek Kota Tua logo for Documentary Kota Tua UKK" loading="lazy" decoding="async" fetchpriority="low" />
-          <div class="project-overlay">
-            <div class="project-quick-actions">
-              <a href="project/pages/documentary-kota-tua-ukk.html" class="quick-action-btn" title="Watch Video" aria-label="Watch Video"><svg class="icon-svg" viewBox="0 0 24 24"><path d="m8.25 7.5 8.25 4.5-8.25 4.5V7.5Z"></path></svg></a>
-              <a href="project/pages/documentary-kota-tua-ukk.html" class="quick-action-btn" title="Behind Scenes" aria-label="Behind Scenes"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M3.75 7.5h16.5v9H3.75z"></path><path d="m9 7.5 1.5-3h3L15 7.5"></path><path d="m10.5 10.5 3 1.5-3 1.5v-3Z"></path></svg></a>
-            </div>
-          </div>
+          <img src="project/assets/logo-preview/yuppentek-logo-kota-tua-version.jpg" alt="Yuppentek Kota Tua logo for Documentary Kota Tua UKK" width="640" height="400" loading="lazy" decoding="async" fetchpriority="low" />
         </div>
         <div class="project-content">
           <div class="project-header">
@@ -710,7 +629,7 @@
             <div class="project-type">School Project</div>
           </div>
           <a href="project/pages/documentary-kota-tua-ukk.html" class="view-project-btn">
-            View Full Project &rarr;
+            View Full Project
           </a>
         </div>
       </div>
@@ -718,13 +637,7 @@
       <!-- Hidden projects for "Load More" functionality -->
       <div class="project-card hidden" data-category="graphic">
         <div class="project-image">
-          <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=500&h=300&fit=crop" alt="Logo Design Collection" loading="lazy" decoding="async" fetchpriority="low" />
-          <div class="project-overlay">
-            <div class="project-quick-actions">
-              <a href="project/pages/logo-design-collection.html" class="quick-action-btn" title="View Collection" aria-label="View Collection"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"></path><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg></a>
-              <a href="project/pages/logo-design-collection.html" class="quick-action-btn" title="Process" aria-label="Process"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M10.5 6h3"></path><path d="M9.336 3.75h5.328l.42 2.099a6.75 6.75 0 0 1 1.737.999l2.004-.667 2.664 4.614-1.584 1.404a6.792 6.792 0 0 1 0 1.998l1.584 1.404-2.664 4.614-2.004-.667a6.75 6.75 0 0 1-1.737.999l-.42 2.099H9.336l-.42-2.099a6.75 6.75 0 0 1-1.737-.999l-2.004.667L2.511 15.6l1.584-1.404a6.792 6.792 0 0 1 0-1.998L2.511 10.8l2.664-4.614 2.004.667a6.75 6.75 0 0 1 1.737-.999l.42-2.099Z"></path><path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path></svg></a>
-            </div>
-          </div>
+          <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=500&h=300&fit=crop" alt="Logo Design Collection" width="640" height="400" loading="lazy" decoding="async" fetchpriority="low" />
         </div>
         <div class="project-content">
           <div class="project-header">
@@ -745,7 +658,7 @@
             <div class="project-type">Portfolio</div>
           </div>
           <a href="project/pages/logo-design-collection.html" class="view-project-btn">
-            View Full Project &rarr;
+            View Full Project
           </a>
         </div>
       </div>
@@ -769,7 +682,7 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="project/assets/logo-preview/yuppentek-logo.jpg" alt="Yuppentek logo" loading="lazy" decoding="async" fetchpriority="low">
+            <img src="project/assets/logo-preview/yuppentek-logo.jpg" alt="Yuppentek logo" width="640" height="360" loading="lazy" decoding="async" fetchpriority="low">
           </div>
           <div class="timeline-info">
             <div class="timeline-date">2021 - 2022</div>
@@ -791,7 +704,7 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="project/assets/logo-preview/fortress-logo.jpg" alt="Pintu Baja Fortress logo" loading="lazy" decoding="async" fetchpriority="low">
+            <img src="project/assets/logo-preview/fortress-logo.jpg" alt="Pintu Baja Fortress logo" width="640" height="360" loading="lazy" decoding="async" fetchpriority="low">
           </div>
           <div class="timeline-info">
             <div class="timeline-date">September 2022 - November 2022</div>
@@ -813,7 +726,7 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="project/assets/logo-preview/yuppentek-logo.jpg" alt="Yuppentek logo" loading="lazy" decoding="async" fetchpriority="low">
+            <img src="project/assets/logo-preview/yuppentek-logo.jpg" alt="Yuppentek logo" width="640" height="360" loading="lazy" decoding="async" fetchpriority="low">
           </div>
           <div class="timeline-info">
             <div class="timeline-date">2022 - 2023</div>
@@ -835,7 +748,7 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=400&fit=crop" alt="Graphic Design and Photographer Freelance" loading="lazy" decoding="async" fetchpriority="low">
+            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=400&fit=crop" alt="Graphic Design and Photographer Freelance" width="640" height="360" loading="lazy" decoding="async" fetchpriority="low">
           </div>
           <div class="timeline-info">
             <span class="timeline-status active">Active</span>
@@ -858,7 +771,7 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="project/assets/logo-preview/aryaduta-logo.jpg" alt="Hotel Aryaduta Country Club logo" loading="lazy" decoding="async" fetchpriority="low">
+            <img src="project/assets/logo-preview/aryaduta-logo.jpg" alt="Hotel Aryaduta Country Club logo" width="640" height="360" loading="lazy" decoding="async" fetchpriority="low">
           </div>
           <div class="timeline-info">
             <div class="timeline-date">July 2024 - October 2024</div>
@@ -880,7 +793,7 @@
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <div class="timeline-image">
-            <img src="project/assets/logo-preview/internusa-kreasindo-mandiri.jpg" alt="PT Internusa Kreasindo Mandiri logo" loading="lazy" decoding="async" fetchpriority="low">
+            <img src="project/assets/logo-preview/internusa-kreasindo-mandiri.jpg" alt="PT Internusa Kreasindo Mandiri logo" width="640" height="360" loading="lazy" decoding="async" fetchpriority="low">
           </div>
           <div class="timeline-info">
             <span class="timeline-status active">Active</span>
@@ -1016,7 +929,7 @@
         <h3>Open the full certification page</h3>
         <p>Inside the page, I added filter options for all certifications, MySkill, skill, trainee, and competition so everything stays grouped and easy to browse.</p>
         <div class="certification-actions">
-          <a href="certification.html" class="view-project-btn">View All Certifications &rarr;</a>
+          <a href="certification.html" class="view-project-btn">View All Certifications</a>
         </div>
       </div>
     </div>
@@ -1029,18 +942,18 @@
       <div class="guestbook-shell guestbook-shell-inline">
         <div class="guestbook-header">
           <p class="guestbook-kicker">Guestbook</p>
-          <h3>Guestbook</h3>
-          <p class="guestbook-intro">Feel free to share your thoughts, suggestions, questions, or anything else.</p>
+          <h2 class="guestbook-heading">Guestbook</h2>
+          <p class="guestbook-intro">Share feedback, questions, or project inquiries below.</p>
         </div>
 
-        <div class="guestbook-feed" id="guestbook-feed">
+        <div class="guestbook-feed" id="guestbook-feed" aria-live="polite">
           <div class="guestbook-empty" id="guestbook-empty">
             No guestbook messages yet. Be the first to say hello.
           </div>
         </div>
 
         <div class="guestbook-auth-bar" id="guestbook-auth-bar">
-          <p class="guestbook-auth-copy" id="guestbook-auth-copy">Please sign in to join the conversation. Don&apos;t worry, your data is safe with us.</p>
+          <p class="guestbook-auth-copy" id="guestbook-auth-copy">Sign in to post a message in the guestbook.</p>
 
           <div class="guestbook-provider-actions" id="guestbook-provider-actions">
             <button type="button" class="provider-btn provider-btn-google-circle" id="guestbook-google-btn" aria-label="Sign in with Google" title="Sign in with Google">
@@ -1050,6 +963,7 @@
 
           <form class="email-auth-form" id="email-auth-form">
             <div class="email-auth-grid">
+              <label for="guestbook-username" class="sr-only">Username</label>
               <input type="text" id="guestbook-username" placeholder="Username" autocomplete="username" required>
             </div>
             <div class="email-auth-actions">
@@ -1084,7 +998,7 @@
           <label class="guestbook-label" for="guestbook-message">Message</label>
           <textarea id="guestbook-message" rows="3" maxlength="400" placeholder="Write something kind, ask a question, or leave feedback..." required></textarea>
           <div class="guestbook-composer-footer">
-            <span class="guestbook-status" id="guestbook-status">Please sign in to join the conversation. Don&apos;t worry, your data is safe with us.</span>
+            <span class="guestbook-status" id="guestbook-status">Please sign in to join the conversation.</span>
             <button type="submit" class="submit-btn" id="guestbook-submit-btn" disabled>Send Message</button>
           </div>
         </form>
@@ -1095,7 +1009,7 @@
   <!-- Add New Project Modal -->
   <div class="project-modal" id="project-modal">
     <div class="project-modal-content">
-      <span class="close-project-modal" id="close-project-modal">&times;</span>
+      <button type="button" class="close-project-modal" id="close-project-modal" aria-label="Close project modal">&times;</button>
       <h3>Add New Project</h3>
       <form id="project-form">
         <div class="project-form-group">
@@ -1151,6 +1065,7 @@
             <!-- Tech tags will be added here -->
           </div>
           <div class="tech-stack-entry">
+            <label for="tech-input" class="sr-only">Technology name</label>
             <input type="text" id="tech-input" class="tech-input-field" placeholder="Add technology (e.g., Adobe Photoshop)">
             <button type="button" class="add-tech-btn" id="add-tech-btn">Add</button>
           </div>
@@ -1170,6 +1085,7 @@
       </form>
     </div>
   </div>
+  </main>
   <footer id="contact" class="portfolio-footer" data-section-label="Kontak">
     <div class="footer-inner">
       <div class="footer-brand">
@@ -1208,7 +1124,9 @@
       </div>
       <div class="admin-panel-controls">
         <form class="admin-login-form" id="admin-login-form">
+          <label for="admin-email" class="sr-only">Admin email</label>
           <input type="email" id="admin-email" placeholder="Admin email" required>
+          <label for="admin-password" class="sr-only">Admin password</label>
           <input type="password" id="admin-password" placeholder="Password" required>
           <button type="submit" class="add-project-btn">Sign In</button>
         </form>
@@ -1224,11 +1142,11 @@
     </div>
   </div>
 
-  <script src="project-card-utils.js"></script>
-  <script defer src="performance-utils.js"></script>
-  <script defer src="theme-controls.js?v=20260319-1"></script>
-  <script defer src="language-controls.js?v=20260410-2"></script>
-  <script defer src="performance-main.js"></script>
+  <script src="js/project-card-utils.js"></script>
+  <script defer src="js/performance-utils.js"></script>
+  <script defer src="js/theme-controls.js?v=20260319-1"></script>
+  <script defer src="js/language-controls.js?v=20260410-2"></script>
+  <script defer src="js/performance-main.js"></script>
   <script type="module">
     const testimonialsSection = document.getElementById("testimonials");
     const adminTrigger = document.getElementById("footer-admin-trigger");
@@ -1237,10 +1155,10 @@
 
     async function loadGuestbookModules() {
       if (firebaseModulesPromise) return firebaseModulesPromise;
-      firebaseModulesPromise = import("./firebase-config.js")
+      firebaseModulesPromise = import("./js/firebase-config.js")
         .then(() => Promise.all([
-          import("./admin-panel.js"),
-          import("./testimonials-guestbook.js")
+          import("./js/admin-panel.js"),
+          import("./js/testimonials-guestbook.js")
         ]))
         .catch((error) => {
           console.error("Failed to load guestbook modules.", error);

@@ -1,23 +1,27 @@
-const STATIC_CACHE = "portfolio-static-v30";
-const RUNTIME_CACHE = "portfolio-runtime-v30";
+const STATIC_CACHE = "portfolio-static-v32";
+const RUNTIME_CACHE = "portfolio-runtime-v32";
 const IMAGE_CACHE = "portfolio-images-v1";
 const CORE_ASSETS = [
   "/",
   "/index.html",
   "/changelog.html",
-  "/styles.css?v=20260413-6",
-  "/theme-palettes.css?v=20260413-7",
-  "/theme-controls.js?v=20260319-1",
-  "/language-controls.js?v=20260410-2",
-  "/project-card-utils.js",
-  "/performance-utils.js",
-  "/performance-main.js",
-  "/zoom-controls.css",
-  "/zoom-controls.js",
-  "/theme-init.js",
-  "/firebase-config.js",
-  "/admin-panel.js",
-  "/testimonials-guestbook.js"
+  "/css/styles.css?v=20260413-6",
+  "/css/theme-palettes.css?v=20260413-7",
+  "/js/theme-controls.js?v=20260319-1",
+  "/js/language-controls.js?v=20260410-2",
+  "/js/project-card-utils.js",
+  "/js/performance-utils.js",
+  "/js/performance-main.js",
+  "/project/scripts/photography-archive.js",
+  "/webmeji-main/webmeji.css",
+  "/webmeji-main/config.js",
+  "/webmeji-main/webmeji.js",
+  "/css/zoom-controls.css",
+  "/js/zoom-controls.js",
+  "/js/theme-init.js",
+  "/js/firebase-config.js",
+  "/js/admin-panel.js",
+  "/js/testimonials-guestbook.js"
 ];
 
 self.addEventListener("install", (event) => {

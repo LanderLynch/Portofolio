@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="../assets/logo-preview/logo-lemon.png" />
   <title>Personal GFX Design Collection - Jona Setiawan</title>
-  <script src="../../theme-init.js"></script>
-  <link rel="stylesheet" href="../../zoom-controls.css">
-  <link rel="stylesheet" href="../../theme-palettes.css">
+  <script src="../../js/theme-init.js"></script>
+  <link rel="stylesheet" href="../../css/zoom-controls.css">
+  <link rel="stylesheet" href="../../css/theme-palettes.css">
 
   <style>
     /* Page-level tokens. These build on the global theme variables
@@ -36,18 +36,21 @@
       --theme-overlay:
         radial-gradient(circle at 50% 0%, rgba(96, 165, 250, 0.1), transparent 55%),
         linear-gradient(180deg, #05101d 0%, #071528 55%, #020617 100%);
+      --grid-line-color: rgba(148, 163, 184, 0.16);
     }
 
     :root[data-theme="light"] {
       --theme-overlay:
         radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.5), transparent 55%),
         linear-gradient(180deg, #f5f2eb 0%, #efeae0 55%, #e9e3d6 100%);
+      --grid-line-color: rgba(31, 42, 68, 0.12);
     }
 
     :root[data-theme="galaxy"] {
       --theme-overlay:
         radial-gradient(circle at 50% 0%, rgba(102, 103, 171, 0.24), transparent 55%),
         linear-gradient(180deg, #7b337e 0%, #420d4b 38%, #210635 100%);
+      --grid-line-color: rgba(245, 213, 224, 0.15);
     }
 
     * {
@@ -71,30 +74,31 @@
       overflow-x: hidden;
     }
 
-    /* Layer 1 — faint square grid, always visible */
-    body::before {
+    /* Layer 1 — theme backdrop */
+    body.project-detail-page::before {
       content: "";
       position: fixed;
       inset: 0;
-      background-image:
-        linear-gradient(var(--border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 64px 64px;
-      opacity: 0.5;
+      background: var(--theme-overlay) !important;
+      opacity: 1 !important;
       pointer-events: none;
-      z-index: 0;
+      z-index: 0 !important;
     }
 
-    /* Layer 2 — theme tint over the grid, blended so the grid shows through */
-    body::after {
+    /* Layer 2 — crisp square-line grid over the backdrop */
+    body.project-detail-page::after {
       content: "";
       position: fixed;
       inset: 0;
-      background: var(--theme-overlay);
-      opacity: 0.78;
+      display: block !important;
+      background-image:
+        linear-gradient(var(--grid-line-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line-color) 1px, transparent 1px) !important;
+      background-size: 48px 48px !important;
+      opacity: 1 !important;
       mix-blend-mode: normal;
       pointer-events: none;
-      z-index: 0;
+      z-index: 0 !important;
     }
 
     img {
@@ -428,11 +432,6 @@
         <p class="page-sub" data-i18n-key="gfx-page-sub">Selected works · ongoing series</p>
       </div>
       <div class="page-head-actions">
-        <div class="theme-switcher" role="group" aria-label="Theme">
-          <button type="button" data-theme-value="light">Light</button>
-          <button type="button" data-theme-value="blue">Dark</button>
-          <button type="button" data-theme-value="galaxy">Galaxy</button>
-        </div>
         <span class="works-count" id="works-count">28 works</span>
       </div>
     </div>
@@ -552,9 +551,9 @@
       worksCount.textContent = `${gfxFiles.length} works`;
     }
   </script>
-  <script defer src="../../language-controls.js?v=20260410-2"></script>
-  <script defer src="../../performance-utils.js"></script>
-  <script defer src="../../theme-controls.js"></script>
-  <script defer src="../../zoom-controls.js"></script>
+  <script defer src="../../js/language-controls.js?v=20260410-2"></script>
+  <script defer src="../../js/performance-utils.js"></script>
+  <script defer src="../../js/theme-controls.js"></script>
+  <script defer src="../../js/zoom-controls.js"></script>
 </body>
 </html>
