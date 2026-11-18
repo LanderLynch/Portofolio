@@ -702,6 +702,38 @@
         align-items: flex-start;
       }
     }
+
+    .gallery-item {
+      content-visibility: auto;
+      contain-intrinsic-size: 280px 340px;
+    }
+
+    .gallery-load-more-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .gallery-load-more-wrap[hidden] {
+      display: none;
+    }
+
+    .gallery-load-more-btn {
+      min-height: 2.75rem;
+      padding: 0.7rem 1.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--gallery-line);
+      background: var(--gallery-surface);
+      color: var(--gallery-ink);
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.16s ease, border-color 0.16s ease;
+    }
+
+    .gallery-load-more-btn:hover {
+      transform: translateY(-1px);
+      border-color: var(--gallery-ink);
+    }
   </style>
 </head>
 <body class="project-detail-page">
@@ -716,20 +748,6 @@
           <button class="page-zoom-step" id="page-zoom-out" type="button" aria-label="Zoom out">-</button>
           <button class="page-zoom-value" id="page-zoom-value" type="button" aria-label="Reset zoom to default">80%</button>
           <button class="page-zoom-step" id="page-zoom-in" type="button" aria-label="Zoom in">+</button>
-        </div>
-      </div>
-      <div class="page-zoom-panel-group">
-        <span class="page-zoom-label">Palette</span>
-        <div class="zoom-theme-actions" role="group" aria-label="Color palette">
-          <button class="zoom-theme-btn" type="button" data-theme-value="blue" aria-label="Blue mode" aria-pressed="false" title="Blue mode">
-            <svg class="zoom-theme-icon" viewBox="0 0 24 24"><path d="M21 12.8A8.8 8.8 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg>
-          </button>
-          <button class="zoom-theme-btn" type="button" data-theme-value="light" aria-label="Light mode" aria-pressed="false" title="Light mode">
-            <svg class="zoom-theme-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.5"></path><path d="M12 19v2.5"></path><path d="M4.93 4.93l1.77 1.77"></path><path d="M17.3 17.3l1.77 1.77"></path><path d="M2.5 12H5"></path><path d="M19 12h2.5"></path><path d="M4.93 19.07l1.77-1.77"></path><path d="M17.3 6.7l1.77-1.77"></path></svg>
-          </button>
-          <button class="zoom-theme-btn" type="button" data-theme-value="galaxy" aria-label="Galaxy mode" aria-pressed="false" title="Galaxy mode">
-            <svg class="zoom-theme-icon hat-icon" viewBox="0 0 24 24"><path d="M4 19.5h16"></path><path d="M8 19.5c0-2.7 1.4-5.1 3.7-6.6l2.1-1.4-1.7-5.8-5.1 4.1"></path><path d="M14.4 9.8 17.7 8l2.3 5.9-3.9-.3"></path><path d="M13.2 4.5 14 6.2"></path><path d="M18.4 4.9l.4 1.2"></path><path d="M19.7 7.7l1.3.1"></path></svg>
-          </button>
         </div>
       </div>
     </div>
@@ -769,6 +787,9 @@
     </section>
 
     <div class="gallery" id="ikm-gallery"></div>
+    <div class="gallery-load-more-wrap" id="gallery-load-more-wrap" hidden>
+      <button type="button" class="gallery-load-more-btn" id="gallery-load-more-btn">Load More Works</button>
+    </div>
   </main>
 
   <footer class="page-footer">
@@ -798,7 +819,7 @@
   <div class="ikm-lightbox" id="ikm-lightbox" hidden aria-modal="true" role="dialog" aria-label="Bag design preview">
     <div class="ikm-lightbox-dialog" id="lightbox-dialog">
       <div class="ikm-lightbox-media">
-        <img id="lightbox-image" src="" alt="">
+        <img id="lightbox-image" referrerpolicy="no-referrer" src="" alt="">
       </div>
       <div class="ikm-lightbox-info">
         <div>
@@ -815,6 +836,7 @@
     </div>
   </div>
 
+  <script src="../scripts/ikm-drive-map.js"></script>
   <script>
     const archiveData = {
       2025: [
@@ -1577,9 +1599,9 @@
               ]
             },
             {
-              id: 'chinese-year-bear',
-              label: 'Chinese Year Bear',
-              description: 'Chinese Year Bear groups the pouch and totebag sablon series plus the koko bear totebag from July 2026.',
+              id: 'bear-brand',
+              label: 'Bear Brand',
+              description: 'Bear Brand groups the Chinese New Year Bear pouch and totebag sablon series, koko bear totebag, blacu totebags, and knot bag studies from July 2026.',
               assets: [
                 {
                   title: 'Pouch Sablon Chinese Year Bear 1',
@@ -1690,14 +1712,7 @@
                   title: 'Totebag Koko Bear',
                   image: 'ikm-project/2026/July/totebag koko bear.jpg',
                   description: 'The koko bear totebag concept grouped with the Chinese Year Bear series.'
-                }
-              ]
-            },
-            {
-              id: 'bear-brand',
-              label: 'Bear Brand',
-              description: 'Bear Brand groups the blacu totebag and knot bag studies from July 2026.',
-              assets: [
+                },
                 {
                   title: 'Totebag Blacu Bear Brand 1',
                   image: 'ikm-project/2026/July/Totebag blacu Bear brand 1.jpg',
@@ -1973,11 +1988,22 @@
 
     const getBrandTint = (sortId) => brandTintPalette[sortId] || '#8b5e3c';
 
+    const googleDriveIkmRootUrl =
+      'https://drive.google.com/drive/folders/1VgSPxRN9Rz-iDghYNxqGwSrvemaPr4qI?usp=sharing';
+    // Map relative 'ikm-project/...' paths to Google Drive file IDs once uploaded to Portofolio-Backend.
+    const ikmDriveFileIds = window.ikmDriveFileIds || {};
+    const buildDriveImageUrl = (fileId, width = 600) =>
+      `https://lh3.googleusercontent.com/d/${encodeURIComponent(fileId)}=w${width}`;
+
     const assetBase = '../assets/';
-    const withAssetBase = (path) => {
+    const withAssetBase = (path, width = 600) => {
       if (!path) return path;
       if (path.startsWith('data:') || path.startsWith('http') || path.startsWith('../')) {
         return path;
+      }
+      const driveId = ikmDriveFileIds[path];
+      if (driveId) {
+        return buildDriveImageUrl(driveId, width);
       }
       return encodeURI(`${assetBase}${path}`);
     };
@@ -2142,21 +2168,96 @@
       }
     }
 
+    const PAGE_SIZE = 24;
+    let renderedCount = 0;
+    const loadMoreWrap = document.getElementById('gallery-load-more-wrap');
+    const loadMoreBtn = document.getElementById('gallery-load-more-btn');
+
     const bindCardImage = (img) => {
+      let attempts = 0;
       const removeItem = () => {
         const item = img.closest('.gallery-item');
         if (item) item.remove();
       };
-      img.addEventListener('error', removeItem);
-      img.addEventListener('load', () => applyImageAura(img));
-      if (img.complete) {
-        if (img.naturalWidth === 0) {
-          removeItem();
-        } else {
+      img.addEventListener('error', () => {
+        if (img.src && img.src.startsWith('http') && attempts < 3) {
+          attempts += 1;
+          const currentSrc = img.getAttribute('src') || '';
+          const match = currentSrc.match(/\/d\/([A-Za-z0-9_-]+)/);
+          window.setTimeout(() => {
+            if (attempts === 2 && match) {
+              img.src = `https://drive.google.com/thumbnail?id=${encodeURIComponent(match[1])}&sz=w600`;
+            } else {
+              const sep = currentSrc.includes('?') ? '&' : '?';
+              img.src = currentSrc.split(/[?&]retry=/)[0] + sep + 'retry=' + attempts;
+            }
+          }, attempts * 650);
+          return;
+        }
+        removeItem();
+      });
+      if (img.src && !img.src.startsWith('http')) {
+        img.addEventListener('load', () => applyImageAura(img), { once: true });
+        if (img.complete && img.naturalWidth > 0) {
           applyImageAura(img);
         }
       }
+      if (img.complete && img.naturalWidth === 0) {
+        removeItem();
+      }
     };
+
+    function createGalleryCardHtml(item, index) {
+      const src = withAssetBase(item.image, 600);
+      return `
+        <figure class="gallery-item" style="--item-tint: ${item.tint}">
+          <div class="gallery-meta">
+            <span class="gallery-meta-left">
+              <span class="cell-index">${pad(index + 1)}</span>
+              <span class="cell-period">${item.month} ${item.year}</span>
+            </span>
+            <span class="gallery-brand-tag">${item.sortLabel}</span>
+          </div>
+          <button class="gallery-frame" type="button" data-lightbox-index="${index}">
+            <div class="gallery-stage">
+              <div class="gallery-mat">
+                <img src="${src}" referrerpolicy="no-referrer" alt="${item.title}" loading="lazy" decoding="async">
+              </div>
+            </div>
+            <div class="gallery-caption">
+              <span class="gallery-title">${item.title}</span>
+            </div>
+          </button>
+        </figure>
+      `;
+    }
+
+    function updateLoadMoreButton() {
+      if (!loadMoreWrap || !loadMoreBtn) return;
+      const remaining = currentFilteredItems.length - renderedCount;
+      loadMoreWrap.hidden = remaining <= 0;
+      if (remaining > 0) {
+        loadMoreBtn.textContent = `Load More Works (${remaining} left)`;
+      }
+    }
+
+    function appendNextBatch() {
+      const nextSlice = currentFilteredItems.slice(renderedCount, renderedCount + PAGE_SIZE);
+      if (!nextSlice.length) {
+        updateLoadMoreButton();
+        return;
+      }
+      const startIndex = renderedCount;
+      const html = nextSlice.map((item, offset) => createGalleryCardHtml(item, startIndex + offset)).join('');
+      gallery.insertAdjacentHTML('beforeend', html);
+      const newCards = Array.from(gallery.querySelectorAll('.gallery-item')).slice(startIndex);
+      newCards.forEach((card) => {
+        const img = card.querySelector('.gallery-frame img');
+        if (img) bindCardImage(img);
+      });
+      renderedCount += nextSlice.length;
+      updateLoadMoreButton();
+    }
 
     function renderGallery() {
       currentFilteredItems = allCatalogItems.filter((item) => {
@@ -2183,33 +2284,12 @@
         `;
       }
 
-      gallery.innerHTML = currentFilteredItems.map((item, index) => {
-        const src = withAssetBase(item.image);
-        return `
-          <figure class="gallery-item" style="--item-tint: ${item.tint}">
-            <div class="gallery-meta">
-              <span class="gallery-meta-left">
-                <span class="cell-index">${pad(index + 1)}</span>
-                <span class="cell-period">${item.month} ${item.year}</span>
-              </span>
-              <span class="gallery-brand-tag">${item.sortLabel}</span>
-            </div>
-            <button class="gallery-frame" type="button" data-lightbox-index="${index}">
-              <div class="gallery-stage">
-                <div class="gallery-mat">
-                  <img src="${src}" alt="${item.title}" loading="lazy">
-                </div>
-              </div>
-              <div class="gallery-caption">
-                <span class="gallery-title">${item.title}</span>
-              </div>
-            </button>
-          </figure>
-        `;
-      }).join('');
-
-      gallery.querySelectorAll('.gallery-frame img').forEach(bindCardImage);
+      gallery.innerHTML = '';
+      renderedCount = 0;
+      appendNextBatch();
     }
+
+    loadMoreBtn?.addEventListener('click', appendNextBatch);
 
     function openLightbox(index) {
       if (!currentFilteredItems.length) return;
@@ -2222,7 +2302,7 @@
       if (lightboxDialog) {
         lightboxDialog.style.setProperty('--lightbox-tint', computedTint);
       }
-      lightboxImage.src = withAssetBase(item.image);
+      lightboxImage.src = withAssetBase(item.image, 1600);
       lightboxImage.alt = item.title;
       lightboxMeta.textContent = `${pad(currentLightboxIndex + 1)} / ${item.month} ${item.year} · ${item.sortLabel}`;
       lightboxTitle.textContent = item.title;
@@ -2232,6 +2312,7 @@
 
     function closeLightbox() {
       lightbox.hidden = true;
+      lightboxImage.src = '';
     }
 
     function refreshAll() {

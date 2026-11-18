@@ -8,25 +8,54 @@
   <script src="js/theme-init.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap">
   <link rel="stylesheet" href="css/zoom-controls.css" />
   <link rel="stylesheet" href="webmeji-main/webmeji.css" />
   <style>
-    :root {
-      --bg: #05101d;
-      --surface: rgba(10, 23, 42, 0.82);
-      --surface-soft: rgba(15, 30, 51, 0.76);
-      --border: rgba(148, 163, 184, 0.18);
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --accent: #60a5fa;
-      --accent-strong: #2563eb;
-      --accent-soft: rgba(96, 165, 250, 0.16);
-      --shadow: 0 24px 70px rgba(2, 6, 23, 0.42);
-      --radius-xl: 28px;
-      --radius-lg: 20px;
-      --radius-md: 14px;
+    :root,
+    :root[data-theme="light"],
+    :root[data-theme="blue"],
+    :root[data-theme="galaxy"] {
+      color-scheme: light;
+
+      --color-paper: #F3EDE3;
+      --color-paper-soft: #F8F4ED;
+      --color-paper-deep: #EAE0D3;
+      --color-ink: #30221D;
+      --color-ink-soft: #57463D;
+      --color-muted: #76655A;
+      --color-terracotta: #B84F38;
+      --color-terracotta-btn: #983E2B;
+      --color-terracotta-hover: #7F3121;
+      --color-terracotta-soft: #D9A18D;
+      --color-border: #DCCFC0;
+      --color-border-strong: #C8B6A5;
+      --shadow-soft: 0 8px 24px rgba(65, 43, 31, 0.045);
+
+      --font-display: "Cormorant Garamond", "Georgia", serif;
+      --font-body: "Lora", "Georgia", serif;
+      --font-ui: "DM Sans", "Arial", sans-serif;
+
+      --radius-card: 14px;
+      --radius-control: 10px;
+      --radius-pill: 999px;
       --content-width: 1180px;
+      --grid-size: 27px;
+      --grid-line: rgba(74, 58, 47, 0.12);
+
+      /* Shared token bridge for zoom-controls, language switcher, and webmeji */
+      --bg: var(--color-paper);
+      --surface: var(--color-paper-soft);
+      --surface-soft: var(--color-paper-deep);
+      --panel-bg: rgba(248, 244, 237, 0.94);
+      --panel-bg-strong: rgba(248, 244, 237, 0.98);
+      --border: var(--color-border);
+      --text: var(--color-ink);
+      --muted: var(--color-muted);
+      --accent: var(--color-terracotta);
+      --accent-strong: var(--color-terracotta-btn);
+      --accent-soft: rgba(184, 79, 56, 0.12);
+      --shadow: var(--shadow-soft);
     }
 
     * {
@@ -35,13 +64,13 @@
 
     body {
       margin: 0;
-      font-family: "Inter", "Segoe UI", sans-serif;
+      font-family: var(--font-ui);
       line-height: 1.6;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(96, 165, 250, 0.18), transparent 34%),
-        radial-gradient(circle at 85% 12%, rgba(14, 165, 233, 0.12), transparent 28%),
-        linear-gradient(180deg, #08111f 0%, #05101d 55%, #020617 100%);
+      color: var(--color-ink);
+      background-color: var(--color-paper);
+      background-image:
+        radial-gradient(circle at 12% 8%, rgba(217, 161, 141, 0.16), transparent 36%),
+        radial-gradient(circle at 90% 18%, rgba(200, 182, 165, 0.18), transparent 34%);
       min-height: 100vh;
     }
 
@@ -49,147 +78,253 @@
       color: inherit;
     }
 
-    .page-shell {
-      max-width: var(--content-width);
-      margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
+    :focus-visible {
+      outline: 2px solid var(--color-terracotta);
+      outline-offset: 3px;
     }
 
+    .page-shell {
+      position: relative;
+      isolation: isolate;
+      min-height: 100vh;
+      max-width: var(--content-width);
+      margin: 0 auto;
+      padding: 4.25rem 1.5rem 4rem;
+    }
+
+    .page-shell::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+      background-size: var(--grid-size) var(--grid-size);
+    }
+
+    @media (max-width: 768px) {
+      :root,
+      :root[data-theme="light"],
+      :root[data-theme="blue"],
+      :root[data-theme="galaxy"] {
+        --grid-size: 23px;
+        --grid-line: rgba(74, 58, 47, 0.09);
+      }
+    }
+
+    @media (min-width: 1480px) {
+      .page-shell {
+        padding-top: 2.25rem;
+      }
+    }
+
+    /* Editorial Top Navigation */
     .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
-      margin-bottom: 2rem;
-      padding: 1rem 1.2rem;
-      border-radius: 999px;
-      background: rgba(5, 16, 29, 0.84);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
+      padding-bottom: 1.1rem;
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 2.75rem;
     }
 
     .brand {
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .back-btn,
-    .certificate-link,
-    .folder-open-btn {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      text-decoration: none;
+      gap: 0.65rem;
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
       font-weight: 700;
-      border-radius: 999px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-ink);
+    }
+
+    .brand-mark {
+      width: 1.35rem;
+      height: 1.35rem;
+      color: var(--color-terracotta);
+      flex-shrink: 0;
     }
 
     .back-btn {
-      padding: 0.85rem 1.3rem;
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      min-height: 2.75rem;
+      padding: 0.5rem 1.15rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--color-border-strong);
+      background: var(--color-paper-soft);
+      color: var(--color-ink);
+      font-family: var(--font-ui);
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
     }
 
-    .back-btn:hover,
-    .certificate-link:hover,
-    .folder-open-btn:hover,
-    .filter-control:hover {
-      transform: translateY(-2px);
+    .back-btn::after {
+      content: "↗";
+      font-size: 0.9em;
+      color: var(--color-terracotta);
     }
 
+    .back-btn:hover {
+      border-color: var(--color-terracotta);
+      background: var(--color-paper-deep);
+    }
+
+    /* Editorial Hero */
     .hero {
-      padding: 2.5rem;
-      border-radius: calc(var(--radius-xl) + 8px);
-      background: rgba(5, 16, 29, 0.38);
-      border: 1px solid rgba(148, 163, 184, 0.1);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 2.5rem;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding: 2rem 2.25rem;
+      border-radius: var(--radius-card);
+      background: var(--color-paper-soft);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-main {
+      min-width: 0;
     }
 
     .hero-kicker {
-      margin: 0 0 0.8rem;
-      color: var(--accent);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.24em;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin: 0 0 0.55rem;
+      color: var(--color-muted);
+      font-family: var(--font-ui);
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
+    }
+
+    .hero-kicker::after {
+      content: "";
+      width: 2.5rem;
+      height: 1px;
+      background: var(--color-border-strong);
+      flex-shrink: 0;
+    }
+
+    .hero-title-row {
+      display: inline-flex;
+      align-items: flex-start;
+      gap: 0.5rem;
     }
 
     .hero h1 {
       margin: 0;
-      font-size: clamp(2.6rem, 7vw, 4.6rem);
-      line-height: 0.95;
-      letter-spacing: -0.05em;
+      font-family: var(--font-display);
+      font-size: clamp(3.1rem, 5.8vw, 4.5rem);
+      font-weight: 600;
+      line-height: 0.96;
+      letter-spacing: -0.02em;
+      color: var(--color-ink);
+    }
+
+    .hero-sparkle {
+      width: 1.25rem;
+      height: 1.25rem;
+      margin-top: 0.45rem;
+      color: var(--color-terracotta);
+      flex-shrink: 0;
     }
 
     .hero p {
-      max-width: 780px;
-      color: var(--muted);
-      font-size: 1.05rem;
-      margin: 1rem 0 0;
+      margin: 0.9rem 0 0;
+      max-width: 44ch;
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.98rem;
+      line-height: 1.62;
+      color: var(--color-ink-soft);
     }
 
+    /* Editorial Statistics (Side-by-Side) */
     .hero-stats {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-      margin-top: 1.75rem;
+      padding-left: 2.25rem;
+      border-left: 1px solid var(--color-border-strong);
+      align-items: start;
     }
 
     .hero-stat {
-      padding: 1.2rem 1.3rem;
-      border-radius: var(--radius-lg);
-      background: var(--surface);
-      border: 1px solid var(--border);
+      padding: 0.25rem 1.25rem;
+    }
+
+    .hero-stat:first-child {
+      padding-left: 0;
+    }
+
+    .hero-stat:last-child {
+      padding-right: 0;
+    }
+
+    .hero-stat + .hero-stat {
+      border-left: 1px solid var(--color-border);
     }
 
     .hero-stat strong {
       display: block;
-      font-size: 1.7rem;
+      font-family: var(--font-display);
+      font-size: clamp(2.15rem, 3.3vw, 2.7rem);
+      font-weight: 600;
+      line-height: 1.02;
+      color: var(--color-terracotta);
     }
 
     .hero-stat span {
-      color: var(--muted);
+      display: block;
+      margin-top: 0.3rem;
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      line-height: 1.35;
+      color: var(--color-muted);
+    }
+
+    /* Search and Filters */
+    .filters-bar {
+      margin: 1.75rem 0 0.75rem;
     }
 
     .filters {
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(220px, 1fr) minmax(220px, 1fr);
+      grid-template-columns: minmax(0, 1.35fr) minmax(195px, 0.85fr) minmax(195px, 0.85fr);
       gap: 0.9rem;
       align-items: start;
-      margin: 2rem 0 1rem;
     }
 
     .filter-control {
       position: relative;
       display: flex;
       align-items: center;
-      min-height: 3.9rem;
-      border-radius: 1.35rem;
-      background: rgba(15, 23, 42, 0.75);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-      transition:
-        transform 0.24s ease,
-        border-color 0.24s ease,
-        box-shadow 0.24s ease,
-        background 0.24s ease;
+      min-height: 2.9rem;
+      border-radius: var(--radius-control);
+      background: var(--color-paper-soft);
+      border: 1px solid var(--color-border);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .filter-control:hover {
-      border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+      border-color: var(--color-border-strong);
     }
 
     .filter-control:focus-within {
-      border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
-      box-shadow:
-        var(--shadow),
-        0 0 0 4px color-mix(in srgb, var(--accent) 14%, transparent);
+      border-color: var(--color-terracotta);
+      box-shadow: 0 0 0 3px rgba(184, 79, 56, 0.14);
     }
 
     .filter-dropdown {
@@ -197,21 +332,22 @@
     }
 
     .filter-control-search {
-      padding: 0 1.15rem;
-      gap: 0.8rem;
+      padding: 0 1rem;
+      gap: 0.65rem;
     }
 
     .filter-icon {
-      width: 1.4rem;
-      height: 1.4rem;
+      width: 1.15rem;
+      height: 1.15rem;
       flex: 0 0 auto;
-      color: var(--muted);
+      color: var(--color-muted);
       display: inline-flex;
       align-items: center;
       justify-content: center;
     }
 
-    .filter-icon svg {
+    .filter-icon svg,
+    .filter-chevron svg {
       width: 100%;
       height: 100%;
       stroke: currentColor;
@@ -222,39 +358,34 @@
     }
 
     .filter-search-input,
-    .filter-dropdown-search-input,
-    .filter-dropdown-toggle {
+    .filter-dropdown-search-input {
       width: 100%;
       border: 0;
       outline: 0;
       background: transparent;
-      color: var(--text);
-      font: inherit;
+      color: var(--color-ink);
+      font-family: var(--font-ui);
+      font-size: 0.92rem;
     }
 
-    .filter-search-input {
-      padding: 0;
-      font-size: 1rem;
-    }
-
-    .filter-search-input::placeholder {
-      color: var(--muted);
-      opacity: 1;
-    }
-
+    .filter-search-input::placeholder,
     .filter-dropdown-search-input::placeholder {
-      color: var(--muted);
+      color: var(--color-muted);
       opacity: 1;
     }
 
     .filter-dropdown-toggle {
+      width: 100%;
+      outline: 0;
+      color: var(--color-ink);
+      font-family: var(--font-ui);
+      font-size: 0.92rem;
       display: flex;
       align-items: center;
-      min-height: 3.9rem;
-      padding: 0 3.25rem 0 1.15rem;
+      min-height: 2.9rem;
+      padding: 0 2.75rem 0 1.1rem;
       text-align: left;
       cursor: pointer;
-      font-size: 1rem;
     }
 
     .filter-dropdown-value {
@@ -267,385 +398,433 @@
 
     .filter-chevron {
       position: absolute;
-      right: 1.05rem;
+      right: 1rem;
       top: 50%;
-      width: 1.35rem;
-      height: 1.35rem;
+      width: 1.1rem;
+      height: 1.1rem;
       pointer-events: none;
-      color: var(--muted);
+      color: var(--color-muted);
       transform: translateY(-50%);
       display: inline-flex;
       align-items: center;
       justify-content: center;
     }
 
-    .filter-chevron svg {
-      width: 100%;
-      height: 100%;
-      stroke: currentColor;
-      stroke-width: 2;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
     .filter-dropdown-panel {
       position: absolute;
-      top: calc(100% + 0.65rem);
+      top: calc(100% + 0.5rem);
       left: 0;
       right: 0;
       z-index: 30;
       display: grid;
-      gap: 0.55rem;
-      padding: 0.8rem 0.45rem 0.45rem;
-      border-radius: 1.35rem;
-      background: rgba(15, 23, 42, 0.94);
-      border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
-      box-shadow: 0 26px 54px rgba(2, 6, 23, 0.26);
-      backdrop-filter: blur(22px);
+      gap: 0.45rem;
+      padding: 0.65rem 0.45rem 0.45rem;
+      border-radius: var(--radius-card);
+      background: var(--color-paper-soft);
+      border: 1px solid var(--color-border-strong);
+      box-shadow: 0 16px 36px rgba(48, 34, 29, 0.12);
       opacity: 0;
-      transform: translateY(-10px) scale(0.98);
-      transform-origin: top center;
+      transform: translateY(-6px);
       pointer-events: none;
-      transition: opacity 0.24s ease, transform 0.28s ease;
+      transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
     .filter-dropdown.is-open .filter-dropdown-panel {
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: translateY(0);
       pointer-events: auto;
     }
 
     .filter-dropdown-search {
       display: flex;
       align-items: center;
-      gap: 0.7rem;
-      margin: 0 0.35rem;
-      padding: 0 0.35rem 0.7rem;
-      border-bottom: 1px solid color-mix(in srgb, var(--accent) 10%, var(--border));
-    }
-
-    .filter-dropdown-search-input {
-      padding: 0;
-      font-size: 0.98rem;
+      gap: 0.5rem;
+      margin: 0 0.25rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius-control);
+      background: var(--color-paper);
+      border: 1px solid var(--color-border);
     }
 
     .filter-dropdown-options {
       display: grid;
-      gap: 0.18rem;
-      max-height: 16.5rem;
-      overflow: auto;
-      padding: 0 0.2rem;
+      gap: 0.2rem;
     }
 
     .filter-dropdown-option {
       width: 100%;
-      padding: 0.82rem 0.95rem;
+      min-height: 2.5rem;
+      padding: 0.5rem 0.85rem;
       border: 0;
-      border-radius: 0.95rem;
+      border-radius: var(--radius-control);
       background: transparent;
-      color: var(--text);
-      font: inherit;
+      color: var(--color-ink);
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
       text-align: left;
       cursor: pointer;
-      transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
+      transition: background-color 0.16s ease, color 0.16s ease;
     }
 
     .filter-dropdown-option:hover,
     .filter-dropdown-option.is-active {
-      background: color-mix(in srgb, var(--accent) 14%, transparent);
-      color: color-mix(in srgb, var(--text) 92%, white 8%);
-      transform: translateX(2px);
+      background: var(--color-paper-deep);
+      color: var(--color-terracotta-btn);
+      font-weight: 600;
     }
 
     .filter-dropdown-empty {
       display: none;
-      padding: 0.75rem 0.95rem;
-      color: var(--muted);
-      font-size: 0.92rem;
+      padding: 0.65rem 0.85rem;
+      color: var(--color-muted);
+      font-size: 0.88rem;
     }
 
     .filter-dropdown-empty.is-visible {
       display: block;
     }
 
-    .filter-summary {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .filter-summary .section-note {
-      margin: 0;
-    }
-
     .results-total {
       margin: 0;
-      color: var(--muted);
-      font-size: 1rem;
+      color: var(--color-muted);
+      font-family: var(--font-ui);
+      font-size: 0.84rem;
       font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .filter-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding: 0.55rem 1rem;
+      border-radius: var(--radius-control);
+      background: var(--color-paper-soft);
+      border: 1px solid var(--color-border);
     }
 
     .section-note {
-      margin: 0 0 1.5rem;
-      color: var(--muted);
+      margin: 0;
+      color: var(--color-muted);
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.84rem;
+      text-align: right;
     }
 
+    /* Certificate Grid & Cards */
     .certificates-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
     }
 
     .certificate-card,
     .empty-state {
-      padding: 1.35rem;
-      border-radius: var(--radius-xl);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
+      padding: 1.5rem;
+      border-radius: var(--radius-card);
+      background: var(--color-paper-soft);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-soft);
     }
 
     .certificate-card {
       display: flex;
       flex-direction: column;
-      gap: 0.95rem;
+      gap: 0.75rem;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .certificate-card:hover {
+      border-color: var(--color-border-strong);
+      background: #FBF8F3;
     }
 
     .certificate-tag {
       display: inline-flex;
       align-self: flex-start;
-      padding: 0.4rem 0.75rem;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: #bfdbfe;
-      font-size: 0.8rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-pill);
+      background: var(--color-paper-deep);
+      border: 1px solid var(--color-border);
+      color: var(--color-ink-soft);
+      font-family: var(--font-ui);
+      font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.1em;
     }
 
     .certificate-card h2 {
       margin: 0;
-      font-size: 1.12rem;
-      line-height: 1.4;
+      font-family: var(--font-display);
+      font-size: 1.48rem;
+      font-weight: 600;
+      line-height: 1.18;
+      color: var(--color-ink);
     }
 
     .certificate-card p {
       margin: 0;
-      color: var(--muted);
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      line-height: 1.58;
+      color: var(--color-ink-soft);
       flex: 1;
     }
 
-    .certificate-link {
-      padding: 0.85rem 1.2rem;
-      background: linear-gradient(135deg, var(--accent-strong), var(--accent));
-      color: #fff;
-      box-shadow: 0 18px 32px rgba(37, 99, 235, 0.28);
+    .certificate-link,
+    .folder-open-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: flex-start;
+      gap: 0.4rem;
+      min-height: 2.75rem;
+      margin-top: 0.5rem;
+      padding: 0.55rem 1.25rem;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-ui);
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     }
 
-    .folder-card {
-      position: relative;
-      overflow: hidden;
-      gap: 1.15rem;
+    .certificate-link {
+      border: 1px solid transparent;
+      background: var(--color-terracotta-btn);
+      color: #FAF6F0;
+    }
+
+    .certificate-link::after,
+    .folder-open-btn::after {
+      content: "↗";
+      font-size: 0.9em;
+    }
+
+    .certificate-link:hover {
+      background: var(--color-terracotta-hover);
+    }
+
+    .folder-open-btn {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--color-border-strong);
+      color: var(--color-ink);
+    }
+
+    .folder-open-btn:hover {
+      border-color: var(--color-terracotta);
+      background: var(--color-paper-deep);
     }
 
     .folder-card-head {
       display: flex;
       align-items: flex-start;
-      gap: 1rem;
+      gap: 0.9rem;
+      flex: 1;
     }
 
     .folder-icon {
-      width: 3.1rem;
-      height: 3.1rem;
+      width: 2.6rem;
+      height: 2.6rem;
       flex: 0 0 auto;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border-radius: 1rem;
-      background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 20%, transparent), color-mix(in srgb, var(--accent-strong) 18%, transparent));
-      color: color-mix(in srgb, var(--accent) 76%, white 24%);
-      border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--border));
-      box-shadow: 0 12px 28px color-mix(in srgb, var(--accent-strong) 16%, transparent);
+      border-radius: var(--radius-control);
+      background: var(--color-paper-deep);
+      color: var(--color-terracotta-btn);
+      border: 1px solid var(--color-border);
     }
 
     .folder-icon svg {
-      width: 1.55rem;
-      height: 1.55rem;
+      width: 1.3rem;
+      height: 1.3rem;
       stroke: currentColor;
-      stroke-width: 1.9;
+      stroke-width: 1.8;
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
     .folder-summary {
-      display: grid;
-      gap: 0.55rem;
-      flex: 1;
-    }
-
-    .folder-summary h2 {
-      color: color-mix(in srgb, var(--text) 92%, var(--accent) 8%);
-    }
-
-    .folder-summary p {
-      max-width: 52ch;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
 
     .folder-stats {
       display: inline-flex;
+      align-self: flex-start;
+      margin-top: 0.15rem;
+      padding: 0.28rem 0.7rem;
+      border-radius: var(--radius-pill);
+      background: var(--color-paper-deep);
+      border: 1px solid var(--color-border);
+      color: var(--color-ink-soft);
+      font-family: var(--font-ui);
+      font-size: 0.76rem;
+      font-weight: 600;
+    }
+
+    .empty-state {
+      display: none;
+      text-align: center;
+      color: var(--color-muted);
+    }
+
+    .empty-state.visible {
+      display: block;
+    }
+
+    .empty-state h2 {
+      margin: 0 0 0.4rem;
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      color: var(--color-ink);
+    }
+
+    /* Editorial Footer */
+    .editorial-footer {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 0.45rem;
-      width: fit-content;
-      padding: 0.42rem 0.8rem;
-      border-radius: 999px;
-      background: color-mix(in srgb, var(--accent) 12%, transparent);
-      border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
-      color: color-mix(in srgb, var(--accent) 70%, white 30%);
+      gap: 1rem;
+      margin-top: 3.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--color-border);
+      color: var(--color-muted);
       font-size: 0.84rem;
+    }
+
+    .editorial-footer-brand {
       font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-ink);
     }
 
-    .folder-open-btn {
-      width: 100%;
-      padding: 0.85rem 1.2rem;
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text);
-      border: 1px solid var(--border);
-      box-shadow: none;
-    }
-
+    /* TOEFL Folder Modal */
     .folder-modal {
       position: fixed;
       inset: 0;
-      z-index: 90;
-      display: none;
+      z-index: 60;
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1.5rem;
-      background: rgba(2, 6, 23, 0.7);
-      backdrop-filter: blur(12px);
+      padding: 1.25rem;
+      background: rgba(48, 34, 29, 0.42);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
     }
 
     .folder-modal.is-open {
-      display: flex;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
     }
 
     .folder-modal-card {
       position: relative;
-      width: min(100%, 760px);
-      max-height: min(88vh, 820px);
+      width: min(760px, 100%);
+      max-height: min(84vh, 860px);
       overflow: auto;
-      padding: 1.5rem;
-      border-radius: calc(var(--radius-xl) + 4px);
-      background: rgba(5, 16, 29, 0.94);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
+      padding: 2rem;
+      border-radius: var(--radius-card);
+      background: var(--color-paper-soft);
+      border: 1px solid var(--color-border-strong);
+      box-shadow: 0 24px 56px rgba(48, 34, 29, 0.18);
     }
 
     .folder-modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      width: 2.7rem;
-      height: 2.7rem;
-      border: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      float: right;
+      width: 2.75rem;
+      height: 2.75rem;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text);
-      cursor: pointer;
+      border: 1px solid var(--color-border-strong);
+      background: var(--color-paper);
+      color: var(--color-ink);
       font-size: 1.35rem;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .folder-modal-close:hover {
-      transform: translateY(-1px);
-      border-color: rgba(96, 165, 250, 0.35);
-    }
-
-    .folder-modal-header {
-      display: grid;
-      gap: 0.7rem;
-      margin-bottom: 1.4rem;
-      padding-right: 3.2rem;
+      line-height: 1;
+      cursor: pointer;
     }
 
     .folder-modal-kicker {
-      margin: 0;
-      color: var(--accent);
-      font-size: 0.8rem;
+      margin: 0 0 0.35rem;
+      color: var(--color-terracotta-btn);
+      font-size: 0.74rem;
       font-weight: 700;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
     }
 
     .folder-modal-header h2 {
       margin: 0;
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      line-height: 1.1;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--color-ink);
     }
 
     .folder-modal-header p {
-      margin: 0;
-      color: var(--muted);
+      margin: 0.6rem 0 1.25rem;
+      color: var(--color-ink-soft);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
     }
 
     .folder-accordion {
-      border-radius: var(--radius-xl);
-      background: var(--surface);
-      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      background: var(--color-paper);
+      border: 1px solid var(--color-border);
       overflow: hidden;
     }
 
     .folder-toggle {
       width: 100%;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
+      display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 1rem;
-      padding: 1rem 1.1rem;
+      padding: 1rem 1.2rem;
       border: 0;
       background: transparent;
-      color: var(--text);
+      color: var(--color-ink);
       text-align: left;
       cursor: pointer;
     }
 
     .folder-toggle-copy {
-      display: grid;
-      grid-template-columns: auto minmax(0, 1fr);
+      display: flex;
       align-items: center;
       gap: 0.85rem;
-      min-width: 0;
-    }
-
-    .folder-toggle-copy > span:last-child {
-      min-width: 0;
     }
 
     .folder-toggle-copy strong {
       display: block;
-      font-size: 1rem;
-      line-height: 1.35;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
     }
 
     .folder-toggle-copy span {
       display: block;
-      color: var(--muted);
-      font-size: 0.88rem;
+      color: var(--color-muted);
+      font-size: 0.84rem;
     }
 
     .folder-chevron {
-      transition: transform 0.22s ease;
-      color: var(--muted);
-      font-size: 1.2rem;
-      line-height: 1;
+      font-size: 1.1rem;
+      color: var(--color-muted);
+      transition: transform 0.2s ease;
     }
 
     .folder-accordion.open .folder-chevron {
@@ -654,19 +833,19 @@
 
     .folder-files {
       display: grid;
-      gap: 0.85rem;
-      padding: 0 1.1rem;
       grid-template-rows: 0fr;
-      transition: grid-template-rows 0.3s ease, padding 0.3s ease;
-    }
-
-    .folder-files-inner {
-      overflow: hidden;
+      transition: grid-template-rows 0.24s ease;
     }
 
     .folder-accordion.open .folder-files {
       grid-template-rows: 1fr;
-      padding: 0 1.1rem 1.1rem;
+    }
+
+    .folder-files-inner {
+      overflow: hidden;
+      padding: 0 1.2rem 1.2rem;
+      display: grid;
+      gap: 0.7rem;
     }
 
     .folder-file {
@@ -674,262 +853,80 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      padding: 0.95rem 1rem;
-      border-radius: var(--radius-lg);
-      background: color-mix(in srgb, var(--surface) 92%, transparent);
-      border: 1px solid color-mix(in srgb, var(--accent) 10%, var(--border));
-    }
-
-    .folder-file-copy {
-      min-width: 0;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-control);
+      background: var(--color-paper-soft);
+      border: 1px solid var(--color-border);
     }
 
     .folder-file-copy strong {
       display: block;
-      font-size: 0.98rem;
-      line-height: 1.4;
+      font-size: 0.95rem;
+      color: var(--color-ink);
     }
 
     .folder-file-copy span {
       display: block;
-      color: var(--muted);
-      font-size: 0.88rem;
-      margin-top: 0.2rem;
+      font-size: 0.84rem;
+      color: var(--color-muted);
+      margin-top: 0.15rem;
     }
 
-    .empty-state {
-      display: none;
-      text-align: center;
-      color: var(--muted);
+    .folder-file .certificate-link {
+      margin-top: 0;
+      flex-shrink: 0;
     }
 
-    .empty-state.visible {
-      display: block;
-    }
+    /* Responsive Breakpoints */
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        align-items: start;
+      }
 
-    .page-zoom-toggle,
-    .page-zoom-step,
-    .page-zoom-value,
-    .page-zoom-panel,
-    .zoom-theme-btn {
-      border-color: color-mix(in srgb, var(--accent) 34%, var(--border));
-      color: var(--text);
-      background: color-mix(in srgb, var(--surface) 94%, rgba(5, 16, 29, 0.92));
-      box-shadow: var(--shadow);
-    }
+      .hero-stats {
+        padding-left: 0;
+        padding-top: 1.25rem;
+        border-left: 0;
+        border-top: 1px solid var(--color-border);
+      }
 
-    .page-zoom-panel {
-      background: color-mix(in srgb, var(--surface) 96%, rgba(5, 16, 29, 0.94));
-    }
+      .filters {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
 
-    .page-zoom-label {
-      color: var(--muted);
-    }
+      .filter-control-search {
+        grid-column: 1 / -1;
+      }
 
-    .page-zoom-value {
-      background: color-mix(in srgb, var(--surface-soft) 96%, rgba(15, 30, 51, 0.82));
-    }
-
-    .page-zoom-toggle:hover,
-    .page-zoom-step:hover,
-    .page-zoom-value:hover,
-    .zoom-theme-btn:hover {
-      border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
-    }
-
-    .zoom-theme-btn.is-active {
-      background: linear-gradient(135deg, var(--accent-strong), var(--accent));
-      color: #ffffff;
-      border-color: transparent;
-    }
-
-    :root[data-theme="light"] {
-      color: #2c2f47;
-      background:
-        radial-gradient(circle at top left, rgba(111, 125, 181, 0.18), transparent 34%),
-        radial-gradient(circle at 85% 12%, rgba(148, 163, 184, 0.16), transparent 28%),
-        linear-gradient(180deg, #f3f4fb 0%, #eceff7 55%, #e7ebf5 100%);
-    }
-
-    :root[data-theme="light"] .topbar,
-    :root[data-theme="light"] .hero,
-    :root[data-theme="light"] .hero-stat,
-    :root[data-theme="light"] .certificate-card,
-    :root[data-theme="light"] .empty-state,
-    :root[data-theme="light"] .folder-accordion {
-      background: rgba(245, 246, 251, 0.94);
-      border-color: rgba(93, 98, 136, 0.14);
-      box-shadow: 0 24px 54px rgba(93, 98, 136, 0.14);
-    }
-
-    :root[data-theme="light"] .brand,
-    :root[data-theme="light"] .hero h1,
-    :root[data-theme="light"] .certificate-card h2,
-    :root[data-theme="light"] .folder-modal-header h2,
-    :root[data-theme="light"] .folder-toggle,
-    :root[data-theme="light"] .folder-file-copy strong {
-      color: #2c2f47;
-    }
-
-    :root[data-theme="light"] .hero p,
-    :root[data-theme="light"] .hero-stat span,
-    :root[data-theme="light"] .section-note,
-    :root[data-theme="light"] .certificate-card p,
-    :root[data-theme="light"] .empty-state,
-    :root[data-theme="light"] .folder-modal-header p,
-    :root[data-theme="light"] .folder-toggle-copy span,
-    :root[data-theme="light"] .folder-file-copy span,
-    :root[data-theme="light"] .folder-chevron {
-      color: #6b7191;
-    }
-
-    :root[data-theme="light"] .back-btn,
-    :root[data-theme="light"] .folder-open-btn,
-    :root[data-theme="light"] .filter-control {
-      background: rgba(255, 255, 255, 0.88);
-      color: #4f5479;
-      border-color: rgba(93, 98, 136, 0.16);
-    }
-
-    :root[data-theme="light"] .filter-search-input,
-    :root[data-theme="light"] .filter-dropdown-search-input,
-    :root[data-theme="light"] .filter-dropdown-toggle,
-    :root[data-theme="light"] .filter-dropdown-option {
-      color: #2c2f47;
-    }
-
-    :root[data-theme="light"] .filter-search-input::placeholder,
-    :root[data-theme="light"] .filter-dropdown-search-input::placeholder,
-    :root[data-theme="light"] .filter-icon,
-    :root[data-theme="light"] .filter-chevron,
-    :root[data-theme="light"] .results-total {
-      color: #7b829f;
-    }
-
-    :root[data-theme="light"] .filter-dropdown-panel {
-      background: rgba(245, 246, 251, 0.98);
-      border-color: rgba(93, 98, 136, 0.16);
-      box-shadow: 0 28px 58px rgba(93, 98, 136, 0.18);
-    }
-
-    :root[data-theme="light"] .filter-dropdown-search {
-      border-bottom-color: rgba(93, 98, 136, 0.16);
-    }
-
-    :root[data-theme="light"] .filter-dropdown-option:hover,
-    :root[data-theme="light"] .filter-dropdown-option.is-active {
-      background: rgba(111, 125, 181, 0.12);
-      color: #2c2f47;
-    }
-
-    :root[data-theme="light"] .certificate-tag,
-    :root[data-theme="light"] .folder-icon,
-    :root[data-theme="light"] .folder-stats {
-      background: linear-gradient(135deg, rgba(111, 125, 181, 0.16), rgba(151, 164, 214, 0.18));
-      color: #5b638e;
-      border-color: rgba(111, 125, 181, 0.22);
-    }
-
-    :root[data-theme="light"] .folder-modal {
-      background: rgba(110, 119, 154, 0.28);
-    }
-
-    :root[data-theme="light"] .folder-modal-card {
-      background: rgba(245, 246, 251, 0.98);
-      border-color: rgba(93, 98, 136, 0.16);
-      box-shadow: 0 28px 58px rgba(93, 98, 136, 0.18);
-    }
-
-    :root[data-theme="light"] .folder-modal-close {
-      background: rgba(255, 255, 255, 0.88);
-      color: #4f5479;
-      border-color: rgba(93, 98, 136, 0.14);
-    }
-
-    :root[data-theme="light"] .folder-file {
-      background: rgba(255, 255, 255, 0.76);
-      border-color: rgba(93, 98, 136, 0.1);
-    }
-
-    :root[data-theme="light"] .page-zoom-toggle,
-    :root[data-theme="light"] .page-zoom-step,
-    :root[data-theme="light"] .page-zoom-value,
-    :root[data-theme="light"] .page-zoom-panel,
-    :root[data-theme="light"] .zoom-theme-btn {
-      background: rgba(245, 246, 251, 0.96);
-      color: #4f5479;
-      border-color: rgba(93, 98, 136, 0.16);
-      box-shadow: 0 24px 54px rgba(93, 98, 136, 0.14);
-    }
-
-    :root[data-theme="light"] .page-zoom-label {
-      color: #7b829f;
-    }
-
-    :root[data-theme="light"] .page-zoom-value {
-      background: rgba(255, 255, 255, 0.9);
-      color: #4f5479;
-    }
-
-    :root[data-theme="light"] .page-zoom-toggle:hover,
-    :root[data-theme="light"] .page-zoom-step:hover,
-    :root[data-theme="light"] .page-zoom-value:hover,
-    :root[data-theme="light"] .zoom-theme-btn:hover {
-      border-color: rgba(111, 125, 181, 0.3);
-    }
-
-    :root[data-theme="light"] .zoom-theme-btn.is-active {
-      background: linear-gradient(135deg, #6f7db5, #97a4d6);
-      color: #ffffff;
-      border-color: transparent;
-    }
-
-    :root[data-theme="galaxy"] .page-zoom-toggle,
-    :root[data-theme="galaxy"] .page-zoom-step,
-    :root[data-theme="galaxy"] .page-zoom-value,
-    :root[data-theme="galaxy"] .page-zoom-panel,
-    :root[data-theme="galaxy"] .zoom-theme-btn {
-      background: color-mix(in srgb, var(--panel-bg) 94%, transparent);
-      color: var(--text);
-      border-color: color-mix(in srgb, var(--accent) 34%, var(--border));
-      box-shadow: var(--shadow);
-    }
-
-    :root[data-theme="galaxy"] .page-zoom-label {
-      color: var(--muted);
-    }
-
-    :root[data-theme="galaxy"] .page-zoom-value {
-      background: var(--secondary-button-bg);
-      color: var(--text);
-    }
-
-    :root[data-theme="galaxy"] .page-zoom-toggle:hover,
-    :root[data-theme="galaxy"] .page-zoom-step:hover,
-    :root[data-theme="galaxy"] .page-zoom-value:hover,
-    :root[data-theme="galaxy"] .zoom-theme-btn:hover {
-      border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
-    }
-
-    :root[data-theme="galaxy"] .zoom-theme-btn.is-active {
-      background: linear-gradient(135deg, var(--accent-strong), var(--accent));
-      color: var(--button-primary-text);
-      border-color: transparent;
+      .certificates-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
     @media (max-width: 720px) {
-      .topbar {
-        border-radius: 24px;
-        flex-direction: column;
-        align-items: stretch;
+      .page-shell {
+        padding: 4.5rem 1.15rem 3.5rem;
       }
 
-      .hero {
-        padding: 1.5rem;
+      .topbar {
+        flex-wrap: wrap;
       }
 
       .hero-stats {
         grid-template-columns: 1fr;
+        gap: 0.9rem;
+      }
+
+      .hero-stat {
+        padding: 0.35rem 0;
+      }
+
+      .hero-stat + .hero-stat {
+        border-left: 0;
+        border-top: 1px solid var(--color-border);
+        padding-top: 0.9rem;
       }
 
       .filters {
@@ -941,11 +938,14 @@
         align-items: flex-start;
       }
 
+      .section-note {
+        text-align: left;
+      }
+
       .certificates-grid {
         grid-template-columns: 1fr;
       }
 
-      .back-btn,
       .certificate-link,
       .folder-open-btn {
         width: 100%;
@@ -956,247 +956,247 @@
         align-items: stretch;
       }
 
-      .folder-card-head,
-      .folder-toggle-copy {
-        grid-template-columns: 1fr;
-        display: grid;
+      .editorial-footer {
+        flex-direction: column;
+        align-items: flex-start;
       }
+    }
 
-      .folder-icon {
-        width: 2.8rem;
-        height: 2.8rem;
-      }
-
-      .folder-toggle {
-        grid-template-columns: 1fr auto;
-        align-items: start;
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
       }
     }
   </style>
-  <link rel="stylesheet" href="css/theme-palettes.css" />
 </head>
 <body>
   <div class="page-zoom-control" id="page-zoom-control">
     <button class="page-zoom-toggle" id="page-zoom-toggle" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="page-zoom-panel">
-      <svg class="page-zoom-icon" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
+      <svg viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
     </button>
     <div class="page-zoom-panel" id="page-zoom-panel" aria-hidden="true">
-      <div class="page-zoom-panel-group">
+      <div class="page-zoom-group">
         <span class="page-zoom-label">Zoom</span>
-        <div class="page-zoom-actions">
+        <div class="page-zoom-controls">
           <button class="page-zoom-step" id="page-zoom-out" type="button" aria-label="Zoom out">-</button>
           <button class="page-zoom-value" id="page-zoom-value" type="button" aria-label="Reset zoom to default">80%</button>
           <button class="page-zoom-step" id="page-zoom-in" type="button" aria-label="Zoom in">+</button>
         </div>
       </div>
-      <div class="page-zoom-panel-group">
-        <span class="page-zoom-label">Palette</span>
-        <div class="zoom-theme-actions" role="group" aria-label="Color palette">
-          <button class="zoom-theme-btn" type="button" data-theme-value="blue" aria-label="Blue mode" aria-pressed="false" title="Blue mode">
-            <svg class="zoom-theme-icon" viewBox="0 0 24 24"><path d="M21 12.8A8.8 8.8 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg>
-          </button>
-          <button class="zoom-theme-btn" type="button" data-theme-value="light" aria-label="Light mode" aria-pressed="false" title="Light mode">
-            <svg class="zoom-theme-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.5"></path><path d="M12 19v2.5"></path><path d="M4.93 4.93l1.77 1.77"></path><path d="M17.3 17.3l1.77 1.77"></path><path d="M2.5 12H5"></path><path d="M19 12h2.5"></path><path d="M4.93 19.07l1.77-1.77"></path><path d="M17.3 6.7l1.77-1.77"></path></svg>
-          </button>
-          <button class="zoom-theme-btn" type="button" data-theme-value="galaxy" aria-label="Galaxy mode" aria-pressed="false" title="Galaxy mode">
-            <svg class="zoom-theme-icon hat-icon" viewBox="0 0 24 24"><path d="M4 19.5h16"></path><path d="M8 19.5c0-2.7 1.4-5.1 3.7-6.6l2.1-1.4-1.7-5.8-5.1 4.1"></path><path d="M14.4 9.8 17.7 8l2.3 5.9-3.9-.3"></path><path d="M13.2 4.5 14 6.2"></path><path d="M18.4 4.9l.4 1.2"></path><path d="M19.7 7.7l1.3.1"></path></svg>
-          </button>
-        </div>
-      </div>
     </div>
   </div>
+
   <div class="page-shell">
-    <div class="topbar">
+    <header class="topbar">
       <div class="brand">
-        <img src="project/assets/logo-preview/logo-lemon.png" alt="" class="brand-logo">
+        <svg class="brand-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M12 3v18M5 12h14M7.2 7.2l9.6 9.6M16.8 7.2l-9.6 9.6" stroke-linecap="round" />
+        </svg>
         <span>Jona Setiawan</span>
       </div>
       <a href="index.html#certification" class="back-btn">Back to Portfolio</a>
-    </div>
+    </header>
 
-    <section class="hero">
-      <p class="hero-kicker">Achievement Archive</p>
-      <h1>Certification</h1>
-      <p>These are the certification files I have so far. I grouped them here so visitors can quickly browse MySkill, skill, trainee, and competition certifications in one place.</p>
-
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <strong>25</strong>
-          <span>Total certification files</span>
+    <main>
+      <section class="hero">
+        <div class="hero-main">
+          <p class="hero-kicker">Achievement Archive</p>
+          <div class="hero-title-row">
+            <h1>Certification</h1>
+            <svg class="hero-sparkle" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 1.5 14.4 9.6 22.5 12l-8.1 2.4L12 22.5l-2.4-8.1L1.5 12l8.1-2.4L12 1.5Z"/>
+            </svg>
+          </div>
+          <p>These are the certification files I have so far. I grouped them here so visitors can quickly browse MySkill, skill, trainee, and competition certifications in one place.</p>
         </div>
-        <div class="hero-stat">
-          <strong>8</strong>
-          <span>MySkill certifications</span>
-        </div>
-        <div class="hero-stat">
-          <strong>3</strong>
-          <span>Trainee & competition files</span>
-        </div>
-      </div>
-    </section>
 
-    <div class="filters" aria-label="Certificate filters">
-      <label class="filter-control filter-control-search" for="certificate-search">
-        <span class="filter-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path></svg>
-        </span>
-        <input class="filter-search-input" id="certificate-search" type="search" placeholder="Search..." autocomplete="off">
-      </label>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <strong>25</strong>
+            <span>Total certification files</span>
+          </div>
+          <div class="hero-stat">
+            <strong>8</strong>
+            <span>MySkill certifications</span>
+          </div>
+          <div class="hero-stat">
+            <strong>3</strong>
+            <span>Trainee &amp; competition files</span>
+          </div>
+        </div>
+      </section>
 
-      <div class="filter-dropdown" id="certificate-type-filter" data-dropdown-type="type" data-value="all">
-        <button class="filter-control filter-dropdown-toggle" type="button" aria-expanded="false" aria-controls="certificate-type-panel">
-          <span class="filter-dropdown-value">Filter by Type</span>
-        </button>
-        <span class="filter-chevron" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
-        </span>
-        <div class="filter-dropdown-panel" id="certificate-type-panel">
-          <label class="filter-dropdown-search" for="certificate-type-search">
+      <div class="filters-bar">
+        <div class="filters" aria-label="Certificate filters">
+          <label class="filter-control filter-control-search" for="certificate-search">
             <span class="filter-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path></svg>
             </span>
-            <input class="filter-dropdown-search-input" id="certificate-type-search" type="search" placeholder="Search type" autocomplete="off">
+            <input class="filter-search-input" id="certificate-search" type="search" placeholder="Search..." autocomplete="off">
           </label>
-          <div class="filter-dropdown-options">
-            <button class="filter-dropdown-option is-active" type="button" data-value="all" data-label="filter by type">Filter by Type</button>
-            <button class="filter-dropdown-option" type="button" data-value="certificate" data-label="certificate file">Certificate File</button>
-            <button class="filter-dropdown-option" type="button" data-value="folder" data-label="folder group">Folder Group</button>
-          </div>
-          <div class="filter-dropdown-empty">No type found.</div>
-        </div>
-      </div>
 
-      <div class="filter-dropdown" id="certificate-category-filter" data-dropdown-type="category" data-value="all">
-        <button class="filter-control filter-dropdown-toggle" type="button" aria-expanded="false" aria-controls="certificate-category-panel">
-          <span class="filter-dropdown-value">Filter by Category</span>
-        </button>
-        <span class="filter-chevron" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
-        </span>
-        <div class="filter-dropdown-panel" id="certificate-category-panel">
-          <label class="filter-dropdown-search" for="certificate-category-search">
-            <span class="filter-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path></svg>
+          <div class="filter-dropdown" id="certificate-type-filter" data-dropdown-type="type" data-value="all">
+            <button class="filter-control filter-dropdown-toggle" type="button" aria-expanded="false" aria-controls="certificate-type-panel">
+              <span class="filter-dropdown-value">Filter by Type</span>
+            </button>
+            <span class="filter-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
             </span>
-            <input class="filter-dropdown-search-input" id="certificate-category-search" type="search" placeholder="Search category" autocomplete="off">
-          </label>
-          <div class="filter-dropdown-options">
-            <button class="filter-dropdown-option is-active" type="button" data-value="all" data-label="filter by category">Filter by Category</button>
-            <button class="filter-dropdown-option" type="button" data-value="myskill" data-label="myskill">MySkill</button>
-            <button class="filter-dropdown-option" type="button" data-value="skill" data-label="skill">Skill</button>
-            <button class="filter-dropdown-option" type="button" data-value="trainee" data-label="trainee">Trainee</button>
-            <button class="filter-dropdown-option" type="button" data-value="competition" data-label="competition">Competition</button>
+            <div class="filter-dropdown-panel" id="certificate-type-panel">
+              <label class="filter-dropdown-search" for="certificate-type-search">
+                <span class="filter-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path></svg>
+                </span>
+                <input class="filter-dropdown-search-input" id="certificate-type-search" type="search" placeholder="Search type" autocomplete="off">
+              </label>
+              <div class="filter-dropdown-options">
+                <button class="filter-dropdown-option is-active" type="button" data-value="all" data-label="filter by type">Filter by Type</button>
+                <button class="filter-dropdown-option" type="button" data-value="certificate" data-label="certificate file">Certificate File</button>
+                <button class="filter-dropdown-option" type="button" data-value="folder" data-label="folder group">Folder Group</button>
+              </div>
+              <div class="filter-dropdown-empty">No type found.</div>
+            </div>
           </div>
-          <div class="filter-dropdown-empty">No category found.</div>
-        </div>
-      </div>
-    </div>
 
-    <div class="filter-summary">
-      <p class="results-total" id="results-total">Total: 11</p>
-      <p class="section-note" id="results-note">Showing all certification groups and files.</p>
-    </div>
-
-    <section class="certificates-grid" id="certificates-grid">
-      <article class="certificate-card" data-category="myskill" data-type="certificate">
-        <span class="certificate-tag">MySkill</span>
-        <h2>Graphic Design MySkill Januari 2025</h2>
-        <p>E-sertifikat short class MySkill for graphic design.</p>
-        <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan E-Sertifikat SC Graphic Design MySkill Januari 2025.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="myskill" data-type="certificate">
-        <span class="certificate-tag">MySkill</span>
-        <h2>Webdev MySkill</h2>
-        <p>E-sertifikat peserta short class web development from MySkill.</p>
-        <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan E-Sertifikat peserta SC Webdev MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="myskill" data-type="certificate">
-        <span class="certificate-tag">MySkill</span>
-        <h2>Accounting Fundamentals MySkill</h2>
-        <p>E-sertif MySkill for accounting fundamentals.</p>
-        <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan - E-Sertif SC Accounting Fundamentals MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="myskill" data-type="certificate">
-        <span class="certificate-tag">MySkill</span>
-        <h2>Motivation Letter and Interview for Scholarship Preparation</h2>
-        <p>MySkill certificate for scholarship preparation training.</p>
-        <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan - E-Certificate SC Motivation Letter and Interview for Scholarship Preparation MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="myskill" data-type="certificate">
-        <span class="certificate-tag">MySkill</span>
-        <h2>Brand Identity Design</h2>
-        <p>MySkill certificate focused on brand identity design.</p>
-        <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan - E-Certificate SC Brand Identity Design Juni 2025_2.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="myskill" data-type="certificate">
-        <span class="certificate-tag">MySkill</span>
-        <h2>Introduction to UX Research</h2>
-        <p>MySkill certificate on UX research basics and methods.</p>
-        <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan - E-Certif SC Introduction to UX Research MySkill (1).pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="myskill" data-type="certificate">
-        <span class="certificate-tag">MySkill</span>
-        <h2>Content Marketing Strategy</h2>
-        <p>MySkill certificate covering content marketing strategy.</p>
-        <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan - E-Certif SC Content Marketing Strategy MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card" data-category="myskill" data-type="certificate">
-        <span class="certificate-tag">MySkill</span>
-        <h2>Color and Typography</h2>
-        <p>MySkill certificate for design fundamentals in color and typography.</p>
-        <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan - E-Certif SC Color and Typography MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-
-      <article class="certificate-card folder-card" data-category="skill" data-type="folder">
-        <span class="certificate-tag">Skill</span>
-        <div class="folder-card-head">
-          <span class="folder-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M3.75 6.75A2.25 2.25 0 0 1 6 4.5h4.06c.4 0 .78.16 1.06.44l1.19 1.19c.28.28.66.44 1.06.44h4.63A2.25 2.25 0 0 1 20.25 8.8v8.45A2.25 2.25 0 0 1 18 19.5H6a2.25 2.25 0 0 1-2.25-2.25V6.75Z"></path></svg>
-          </span>
-          <div class="folder-summary">
-            <h2>TOEFL Training PDFs</h2>
-            <p>All skill files here are part of the same TOEFL training material set. Open this group to browse the full listening, reading, and structure PDF collection in one place.</p>
-            <div class="folder-stats">
-              <span>14 PDFs grouped</span>
+          <div class="filter-dropdown" id="certificate-category-filter" data-dropdown-type="category" data-value="all">
+            <button class="filter-control filter-dropdown-toggle" type="button" aria-expanded="false" aria-controls="certificate-category-panel">
+              <span class="filter-dropdown-value">Filter by Category</span>
+            </button>
+            <span class="filter-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
+            </span>
+            <div class="filter-dropdown-panel" id="certificate-category-panel">
+              <label class="filter-dropdown-search" for="certificate-category-search">
+                <span class="filter-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path></svg>
+                </span>
+                <input class="filter-dropdown-search-input" id="certificate-category-search" type="search" placeholder="Search category" autocomplete="off">
+              </label>
+              <div class="filter-dropdown-options">
+                <button class="filter-dropdown-option is-active" type="button" data-value="all" data-label="filter by category">Filter by Category</button>
+                <button class="filter-dropdown-option" type="button" data-value="myskill" data-label="myskill">MySkill</button>
+                <button class="filter-dropdown-option" type="button" data-value="skill" data-label="skill">Skill</button>
+                <button class="filter-dropdown-option" type="button" data-value="trainee" data-label="trainee">Trainee</button>
+                <button class="filter-dropdown-option" type="button" data-value="competition" data-label="competition">Competition</button>
+              </div>
+              <div class="filter-dropdown-empty">No category found.</div>
             </div>
           </div>
         </div>
-        <button class="folder-open-btn" type="button" id="toefl-folder-open-btn">Open Folder Group</button>
-      </article>
 
-      <article class="certificate-card" data-category="trainee" data-type="certificate">
-        <span class="certificate-tag">Trainee</span>
-        <h2>Aryaduta Trainee Website Certification</h2>
-        <p>Certification file from the Aryaduta trainee program website work.</p>
-        <a class="certificate-link" href="project/assets/certification-files/certification-trainee/aryaduta-trainee-website-certification.jpg" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
+      </div>
 
-      <article class="certificate-card" data-category="trainee" data-type="certificate">
-        <span class="certificate-tag">Trainee</span>
-        <h2>Aryaduta Trainee Performance Score</h2>
-        <p>Performance score file from the Aryaduta trainee period.</p>
-        <a class="certificate-link" href="project/assets/certification-files/certification-trainee/aryaduta-trainee-performance-score.jpg" target="_blank" rel="noopener noreferrer">Open Performance Score</a>
-      </article>
+      <div class="filter-summary">
+        <p class="results-total" id="results-total">Total: 12</p>
+        <p class="section-note" id="results-note">Showing all certification groups and files.</p>
+      </div>
 
-      <article class="certificate-card" data-category="competition" data-type="certificate">
-        <span class="certificate-tag">Competition</span>
-        <h2>Kota Tangerang Competition Award 2024</h2>
-        <p>Competition recognition file from the antar Kota Tangerang event on 26-29 February 2024.</p>
-        <a class="certificate-link" href="project/assets/certification-files/certification-trainee/kota-tangerang-competition-award-feb-2024.jpg" target="_blank" rel="noopener noreferrer">Open File</a>
-      </article>
-    </section>
+      <section class="certificates-grid" id="certificates-grid">
+        <article class="certificate-card" data-category="myskill" data-type="certificate">
+          <span class="certificate-tag">MySkill</span>
+          <h2>Graphic Design MySkill Januari 2025</h2>
+          <p>E-sertifikat short class MySkill for graphic design.</p>
+          <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan E-Sertifikat SC Graphic Design MySkill Januari 2025.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        </article>
 
-    <div class="empty-state" id="empty-state">
-      <h2>No certifications here yet</h2>
-      <p>No certification files match this category yet.</p>
-    </div>
+        <article class="certificate-card" data-category="myskill" data-type="certificate">
+          <span class="certificate-tag">MySkill</span>
+          <h2>Webdev MySkill</h2>
+          <p>E-sertifikat peserta short class web development from MySkill.</p>
+          <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan E-Sertifikat peserta SC Webdev MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        </article>
+
+        <article class="certificate-card" data-category="myskill" data-type="certificate">
+          <span class="certificate-tag">MySkill</span>
+          <h2>Accounting Fundamentals MySkill</h2>
+          <p>E-sertif MySkill for accounting fundamentals.</p>
+          <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan - E-Sertif SC Accounting Fundamentals MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        </article>
+
+        <article class="certificate-card" data-category="myskill" data-type="certificate">
+          <span class="certificate-tag">MySkill</span>
+          <h2>Motivation Letter and Interview for Scholarship Preparation</h2>
+          <p>MySkill certificate for scholarship preparation training.</p>
+          <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan - E-Certificate SC Motivation Letter and Interview for Scholarship Preparation MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        </article>
+
+        <article class="certificate-card" data-category="myskill" data-type="certificate">
+          <span class="certificate-tag">MySkill</span>
+          <h2>Brand Identity Design</h2>
+          <p>MySkill certificate focused on brand identity design.</p>
+          <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan - E-Certificate SC Brand Identity Design Juni 2025_2.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        </article>
+
+        <article class="certificate-card" data-category="myskill" data-type="certificate">
+          <span class="certificate-tag">MySkill</span>
+          <h2>Introduction to UX Research</h2>
+          <p>MySkill certificate on UX research basics and methods.</p>
+          <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan - E-Certif SC Introduction to UX Research MySkill (1).pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        </article>
+
+        <article class="certificate-card" data-category="myskill" data-type="certificate">
+          <span class="certificate-tag">MySkill</span>
+          <h2>Content Marketing Strategy</h2>
+          <p>MySkill certificate covering content marketing strategy.</p>
+          <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan - E-Certif SC Content Marketing Strategy MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        </article>
+
+        <article class="certificate-card" data-category="myskill" data-type="certificate">
+          <span class="certificate-tag">MySkill</span>
+          <h2>Color and Typography</h2>
+          <p>MySkill certificate for design fundamentals in color and typography.</p>
+          <a class="certificate-link" href="project/assets/certification-files/Jona Saevuddyn Setiawan - E-Certif SC Color and Typography MySkill.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        </article>
+
+        <article class="certificate-card folder-card" data-category="skill" data-type="folder">
+          <span class="certificate-tag">Skill</span>
+          <div class="folder-card-head">
+            <span class="folder-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3.75 6.75A2.25 2.25 0 0 1 6 4.5h4.06c.4 0 .78.16 1.06.44l1.19 1.19c.28.28.66.44 1.06.44h4.63A2.25 2.25 0 0 1 20.25 8.8v8.45A2.25 2.25 0 0 1 18 19.5H6a2.25 2.25 0 0 1-2.25-2.25V6.75Z"></path></svg>
+            </span>
+            <div class="folder-summary">
+              <h2>TOEFL Training PDFs</h2>
+              <p>All skill files here are part of the same TOEFL training material set. Open this group to browse the full listening, reading, and structure PDF collection in one place.</p>
+              <div class="folder-stats">
+                <span>14 PDFs grouped</span>
+              </div>
+            </div>
+          </div>
+          <button class="folder-open-btn" type="button" id="toefl-folder-open-btn">Open Folder Group</button>
+        </article>
+
+        <article class="certificate-card" data-category="trainee" data-type="certificate">
+          <span class="certificate-tag">Trainee</span>
+          <h2>Aryaduta Trainee Website Certification</h2>
+          <p>Certification file from the Aryaduta trainee program website work.</p>
+          <a class="certificate-link" href="project/assets/certification-files/certification-trainee/aryaduta-trainee-website-certification.jpg" target="_blank" rel="noopener noreferrer">Open File</a>
+        </article>
+
+        <article class="certificate-card" data-category="trainee" data-type="certificate">
+          <span class="certificate-tag">Trainee</span>
+          <h2>Aryaduta Trainee Performance Score</h2>
+          <p>Performance score file from the Aryaduta trainee period.</p>
+          <a class="certificate-link" href="project/assets/certification-files/certification-trainee/aryaduta-trainee-performance-score.jpg" target="_blank" rel="noopener noreferrer">Open Performance Score</a>
+        </article>
+
+        <article class="certificate-card" data-category="competition" data-type="certificate">
+          <span class="certificate-tag">Competition</span>
+          <h2>Kota Tangerang Competition Award 2024</h2>
+          <p>Competition recognition file from the antar Kota Tangerang event on 26-29 February 2024.</p>
+          <a class="certificate-link" href="project/assets/certification-files/certification-trainee/kota-tangerang-competition-award-feb-2024.jpg" target="_blank" rel="noopener noreferrer">Open File</a>
+        </article>
+      </section>
+
+      <div class="empty-state" id="empty-state">
+        <h2>No certifications here yet</h2>
+        <p>No certification files match this category yet.</p>
+      </div>
+    </main>
+
+    <footer class="editorial-footer">
+      <span class="editorial-footer-brand">Jona Setiawan</span>
+      <span>Achievement &amp; certification archive</span>
+    </footer>
   </div>
 
   <div class="folder-modal" id="toefl-folder-modal" aria-hidden="true">

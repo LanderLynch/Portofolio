@@ -1,12 +1,10 @@
 (function () {
-  const themeConfig = window.portfolioThemeConfig || {
+  const themeConfig = {
     defaultTheme: "light",
     storageKey: "portfolio-color-theme",
-    supportedThemes: ["blue", "light", "galaxy"],
+    supportedThemes: ["light"],
   };
-  const supportedThemes = Array.isArray(themeConfig.supportedThemes)
-    ? [...themeConfig.supportedThemes]
-    : ["blue", "light", "galaxy"];
+  const supportedThemes = ["light"];
   const defaultTheme =
     typeof themeConfig.defaultTheme === "string"
       ? themeConfig.defaultTheme
@@ -54,7 +52,7 @@
         logoWrap.insertBefore(logoImg, logoWrap.firstChild);
       }
     };
-    logoImg.src = "project/assets/logo-preview/logo-lemon.png";
+    logoImg.src = "/project/assets/logo-preview/logo-lemon.png";
 
     const style = document.createElement("style");
     style.textContent = `

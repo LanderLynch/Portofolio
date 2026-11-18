@@ -15,9 +15,9 @@ let preloadPromise = null;
 function isWebmejiEnabled() {
   try {
     const saved = window.localStorage.getItem(WEBMEJI_STORAGE_KEY);
-    return saved === null ? true : saved === 'true';
+    return saved === 'true';
   } catch (e) {
-    return true;
+    return false;
   }
 }
 
@@ -62,40 +62,71 @@ function destroyCreatures() {
 
 function mountWebmejiToggleButton() {
   if (document.getElementById('webmeji-toggle-btn')) return;
+  const titleContainer = document.querySelector('.portfolio-title-container');
+  const mobileBtn = document.getElementById('mobile-webmeji-toggle');
+  const mobileLabel = document.getElementById('mobile-webmeji-label');
+
   const btn = document.createElement('button');
   btn.type = 'button';
   btn.id = 'webmeji-toggle-btn';
-  btn.className = 'webmeji-toggle-btn';
+  btn.className = titleContainer
+    ? 'webmeji-toggle-btn webmeji-toggle-btn--inline'
+    : 'webmeji-toggle-btn';
 
   const firstSpawn = (window.SPAWNING || [])[0];
   const firstCfg = firstSpawn ? window[firstSpawn.config] : null;
   const iconSrc = firstCfg?.stand?.frames?.[0] || firstCfg?.walk?.frames?.[0] || '';
 
-  const updateButtonUI = (enabled) => {
+  const getLabelText = (enabled) => {
+    const raw = enabled ? 'Mascot ON' : 'Mascot OFF';
+    const lang = document.documentElement.getAttribute('lang');
+    if (window.portfolioLanguage && typeof window.portfolioLanguage.translateText === 'function' && lang) {
+      return window.portfolioLanguage.translateText(raw, lang);
+    }
+    return raw;
+  };
+
+  const syncButtonsUI = (enabled) => {
+    const labelText = getLabelText(enabled);
+    const ariaLabel = enabled ? 'Deactivate Webmeji mascot' : 'Activate Webmeji mascot';
+
     btn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
-    btn.setAttribute('aria-label', enabled ? 'Deactivate Webmeji mascot' : 'Activate Webmeji mascot');
-    btn.title = enabled ? 'Deactivate Webmeji mascot' : 'Activate Webmeji mascot';
+    btn.setAttribute('aria-label', ariaLabel);
+    btn.title = ariaLabel;
     btn.innerHTML =
       (iconSrc ? `<img class="webmeji-toggle-icon" src="${iconSrc}" width="24" height="24" alt="" aria-hidden="true">` : '') +
       `<span class="webmeji-toggle-dot" aria-hidden="true"></span>` +
-      `<span class="webmeji-toggle-label">${enabled ? 'Mascot ON' : 'Mascot OFF'}</span>`;
+      `<span class="webmeji-toggle-label">${labelText}</span>`;
+
+    if (mobileBtn) {
+      mobileBtn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+      mobileBtn.setAttribute('aria-label', ariaLabel);
+      if (mobileLabel) {
+        mobileLabel.textContent = labelText;
+      }
+    }
   };
 
   let enabled = isWebmejiEnabled();
-  updateButtonUI(enabled);
+  syncButtonsUI(enabled);
 
-  btn.addEventListener('click', () => {
+  const handleToggle = () => {
     enabled = !enabled;
     setWebmejiEnabled(enabled);
-    updateButtonUI(enabled);
+    syncButtonsUI(enabled);
     if (enabled) {
       spawnCreatures();
     } else {
       destroyCreatures();
     }
-  });
+  };
 
-  document.body.appendChild(btn);
+  btn.addEventListener('click', handleToggle);
+  if (mobileBtn) {
+    mobileBtn.addEventListener('click', handleToggle);
+  }
+
+  (titleContainer || document.body).appendChild(btn);
 }
 
 window.addEventListener('DOMContentLoaded', () => {

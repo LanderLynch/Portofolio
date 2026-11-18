@@ -126,7 +126,7 @@
   }
 
   var storedDesktopNavLayout = localStorage.getItem(desktopNavLayoutStorageKey);
-  setDesktopNavLayout(storedDesktopNavLayout === 'topbar' ? 'topbar' : 'sidebar', false);
+  setDesktopNavLayout(storedDesktopNavLayout === 'sidebar' ? 'sidebar' : 'topbar', false);
 
   function setMobileMenuState(isOpen) {
     if (!hamburgerBtn || !mobileMenuPanel) {
@@ -229,7 +229,7 @@
 
       if (window.innerWidth > 768) {
         var persistedLayout = localStorage.getItem(desktopNavLayoutStorageKey);
-        setDesktopNavLayout(persistedLayout === 'topbar' ? 'topbar' : 'sidebar', false);
+        setDesktopNavLayout(persistedLayout === 'sidebar' ? 'sidebar' : 'topbar', false);
       }
     });
 

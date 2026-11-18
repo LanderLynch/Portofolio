@@ -1,12 +1,15 @@
 // Google Drive backend catalog for Photography Archive
-// Root folder: https://drive.google.com/drive/folders/11QlaOo-vYYHgZh9QWuJtIk34s3eGIk81?usp=sharing
+// Backend Root folder (Portofolio-Backend): https://drive.google.com/drive/folders/1VgSPxRN9Rz-iDghYNxqGwSrvemaPr4qI?usp=sharing
+// Photography Subfolder (PortfolioPhotography): https://drive.google.com/drive/folders/11QlaOo-vYYHgZh9QWuJtIk34s3eGIk81?usp=sharing
 
 const googleDriveRootFolderUrl =
+  "https://drive.google.com/drive/folders/1VgSPxRN9Rz-iDghYNxqGwSrvemaPr4qI?usp=sharing";
+const googleDrivePhotographyFolderUrl =
   "https://drive.google.com/drive/folders/11QlaOo-vYYHgZh9QWuJtIk34s3eGIk81?usp=sharing";
 
 function buildDriveImageUrl(fileId, width) {
   const size = width || 2400;
-  return "https://drive.google.com/thumbnail?id=" + encodeURIComponent(fileId) + "&sz=w" + size;
+  return "https://lh3.googleusercontent.com/d/" + encodeURIComponent(fileId) + "=w" + size;
 }
 
 function buildDriveGallerySet(fileIds, coverFileId) {
@@ -18,7 +21,7 @@ function buildDriveGallerySet(fileIds, coverFileId) {
       return buildDriveImageUrl(id, 2400);
     }),
     previewImages: fileIds.map(function (id) {
-      return buildDriveImageUrl(id, 640);
+      return buildDriveImageUrl(id, 960);
     })
   };
 }

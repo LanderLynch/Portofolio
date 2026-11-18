@@ -1,13 +1,11 @@
 (function () {
-  const themeConfig = window.portfolioThemeConfig || {
+  const themeConfig = {
     defaultTheme: "light",
     storageKey: "portfolio-color-theme",
-    supportedThemes: ["blue", "light", "galaxy"],
+    supportedThemes: ["light"],
   };
   const storageKey = themeConfig.storageKey;
-  const supportedThemes = Array.isArray(themeConfig.supportedThemes)
-    ? [...themeConfig.supportedThemes]
-    : ["blue", "light", "galaxy"];
+  const supportedThemes = ["light"];
   const supportedThemeSet = new Set(supportedThemes);
   const defaultTheme =
     typeof themeConfig.defaultTheme === "string"

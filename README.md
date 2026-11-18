@@ -1,14 +1,15 @@
 # Portfolio Site — Jona Setiawan
 
-A bilingual (`ID` / `EN`), multi-theme (`Blue`, `Light`, `Galaxy`) creative & multimedia portfolio website built with a zero-framework frontend and a Firebase serverless backend, hosted on Vercel with a custom Service Worker caching layer.
+A bilingual (`ID` / `EN`), Pure Light Mode (**Warm Editorial Parchment & Terracotta**) creative & multimedia portfolio website built with a zero-framework frontend, Google Drive asset hosting (`Portofolio-Backend`), and a Firebase serverless backend, hosted on Vercel with a custom Service Worker caching layer.
 
 ---
 
 ## 1. Tech Stack & Languages
 
 ### Frontend
-- **HTML5**: Semantic multi-page static architecture (`index.html`, `certification.html`, `changelog.html`, and project case-study pages in `project/pages/`).
-- **CSS3**: Custom properties (`--bg`, `--surface`, `--accent`, etc.) powering 3 switchable palettes (`Blue` default, `Light`, `Galaxy`), responsive layouts, custom cursors, and zoom scaling.
+- **HTML5**: Semantic multi-page static architecture (`index.html`, `certification.html`, `changelog.html`, and 9 project case-study pages in `project/pages/`).
+- **CSS3**: Warm Editorial custom properties (`#F4EEE5` parchment, `#FAF6F0` cards, `#30221D` ink, `#983E2B` / `#B84F38` terracotta, `#DDCFC0` borders) + static `27px × 27px` (`23px` mobile) square-grid overlay (`body::after`), responsive layouts, custom cursors, and zoom scaling.
+- **Typography**: `Cormorant Garamond` (display/headings), `Lora` (editorial body), and `DM Sans` (UI controls).
 - **JavaScript (ES6+ & ES Modules)**:
   - Zero build step / no bundler required; runs natively in modern browsers.
   - Core UI, theme, language (`ID` / `EN`), zoom, and performance scripts use classic deferred `<script>` tags.
@@ -69,12 +70,14 @@ Portofolio/
 │   ├── admin-panel.js          # Admin authentication & Firestore project CRUD logic
 │   └── testimonials-guestbook.js # Guestbook auth, avatar upload, and real-time feed
 ├── project/
-│   ├── assets/                 # Logos, thumbnails, cursors, photography & case-study media
-│   ├── pages/                  # Detailed project case-study HTML pages
-│   └── scripts/                # Project-specific helper scripts
+│   ├── assets/                 # Local logos, cursors, certification files & case-study media (ikm-project moved to Drive)
+│   ├── pages/                  # 9 project case-study HTML pages (inherit Warm Editorial UI via theme-palettes.css)
+│   └── scripts/
+│       ├── photography-archive.js # Google Drive catalog for Photography (PortfolioPhotography)
+│       └── ikm-drive-map.js       # Google Drive file-ID map for 163 IKM bag designs
 ├── server/
 │   └── firebase-admin.example.js # Node.js firebase-admin example (server-side only)
-└── webmeji-main/               # Interactive web shimeji companion assets & scripts
+└── webmeji-main/               # Interactive web shimeji companion (defaults to OFF)
 ```
 
 ---
@@ -85,21 +88,24 @@ The site uses a **multi-layer caching strategy** across the Service Worker (`per
 
 ### A. Service Worker (`performance-sw.js`)
 Registered at root scope (`/`) with three dedicated Cache Storage buckets:
-1. **`portfolio-static-v30` (Precache on `install`)**:
-   - Precaches core shell files (`/`, `/index.html`, `/changelog.html`, `/css/*.css`, `/js/*.js`) during Service Worker installation (`cache.addAll(CORE_ASSETS)`).
+1. **`portfolio-static-v33` (Precache on `install`)**:
+   - Precaches core shell files (`/`, `/index.html`, `/changelog.html`, `/css/*.css`, `/js/*.js`, `/project/scripts/photography-archive.js`) during Service Worker installation.
    - Calls `self.skipWaiting()` and cleans up outdated cache versions on `activate`.
-2. **`portfolio-runtime-v30` (Dynamic & Asset Cache)**:
-   - **Navigation (`request.mode === "navigate"`) — `Network First`**: Always tries the network first so HTML updates appear immediately, falling back to `portfolio-runtime-v30` if offline.
+2. **`portfolio-runtime-v33` (Dynamic & Asset Cache)**:
+   - **Cross-origin requests** (`url.origin !== self.location.origin`, e.g., Google Drive / `lh3.googleusercontent.com`) are **bypassed** so the browser handles them natively without opaque-response issues.
+   - **Navigation (`request.mode === "navigate"`) — `Network First`**: Always tries the network first so HTML updates appear immediately.
    - **Firebase Modules (`firebase-config`, `admin-panel`, `testimonials-guestbook`) — `Network First`**: Ensures auth/database logic is never served stale.
-   - **Static CSS, JS, & Fonts — `Stale-While-Revalidate`**: Serves the cached asset immediately for instant rendering while fetching and updating the cache in the background.
+   - **Static CSS, JS, & Fonts — `Stale-While-Revalidate`**: Serves cached assets immediately while updating in the background.
 3. **`portfolio-images-v1` (Media Cache)**:
-   - **Images (`destination === "image"`) — `Cache First with Background Refresh`**: Returns cached project thumbnails, logos, and cursors instantly while silently refreshing the cached copy from the network in the background.
+   - **Same-origin Images (`destination === "image"`) — `Cache First with Background Refresh`**.
 
 ### B. HTTP Cache Headers (`vercel.json`)
 - `/performance-sw.js` is explicitly served with `Cache-Control: no-cache, no-store, must-revalidate` and `Service-Worker-Allowed: /` so browsers always detect new Service Worker versions immediately.
 
 ### C. Browser `localStorage` Persistence
-- **`portfolio-color-theme`**: Stores the active palette (`blue`, `light`, or `galaxy`). Applied synchronously by `js/theme-init.js` before CSS paints and synchronized across tabs via `window.addEventListener("storage", ...)`.
+- **`portfolio-color-theme`**: Locked to `"light"` by `js/theme-init.js` and `js/theme-controls.js` (Blue and Galaxy modes removed).
+- **`portfolio-desktop-nav-layout`**: Defaults to `"topbar"` (can be toggled to `"sidebar"`).
+- **`portfolio-webmeji-enabled`**: Defaults to `"false"` (Mascot OFF by default).
 - **Language & Zoom State**: Stores the visitor's selected language (`id` / `en`) and zoom percentage across page navigations.
 
 ---
@@ -134,3 +140,33 @@ Then open `http://127.0.0.1:8080` in your browser.
 - The config in `js/firebase-config.js` is the public browser client config; security is enforced by `firestore.rules` and `storage.rules`.
 - Never commit Firebase Service Account JSON keys or `.env` secrets to the repository.
 - See `FIREBASE_SECURITY.md` for full security checklist and key rotation steps.
+
+---
+
+## 6. AI Handoff & Architecture Quick-Reference (Updated 2026-11-18)
+
+### A. File Responsibility Map
+| File / Folder | Responsibility | Non-Negotiable Rules |
+| :--- | :--- | :--- |
+| `css/theme-palettes.css` | Global Pure Light Mode tokens, `27px` (`23px` mobile) square-grid (`body::after`), and shared `.project-detail-page` Warm Editorial overrides | Keep `body`, `.hero`, `.case-page`, `.page-shell` backgrounds transparent so `body::after` grid stays visible behind cards |
+| `js/theme-init.js` & `js/theme-controls.js` | Locks `data-theme="light"` (`supportedThemes: ["light"]`) and injects `#boot-loader` | Do not re-add dark/purple themes; keep `logoImg.src` root-relative (`/project/assets/logo-preview/logo-lemon.png`) |
+| `js/performance-main.js` | Defaults desktop layout to `topbar`, handles zoom & scroll state | Keep `topbar` default (`storedDesktopNavLayout === 'sidebar' ? 'sidebar' : 'topbar'`) |
+| `index.html` & `css/styles.css` | Main portfolio page: 2-column arched portrait hero, 4-column stats bar, 3×2 **Pohon Keahlian** grid, projects, experience, guestbook | Preserve `data-i18n-key` hooks & `#mobile-webmeji-toggle` inside `#mobile-menu-panel` |
+| `certification.html` | Editorial certification archive (`25` / `8` / `3` stats, 3-column filter bar, 12 cards + TOEFL modal) | Keep `.hero` and `.filter-summary` opaque (`#F8F4ED`) so grid lines do not cross text |
+| `changelog.html` | Versioned changelog (`v4.0` latest) | Add new entries as a new tab/panel at the top |
+| `webmeji-main/webmeji.js` & `webmeji.css` | Roaming Furina mascot | Must default to **OFF** (`isWebmejiEnabled()`), mount top-left on desktop, and hide inline button on `<= 720px` |
+| `performance-sw.js` | Root Service Worker (`v33`) | Must bypass cross-origin fetches (`url.origin !== self.location.origin`) |
+
+### B. Google Drive Backend (`Portofolio-Backend`)
+Root folder: `https://drive.google.com/drive/folders/1VgSPxRN9Rz-iDghYNxqGwSrvemaPr4qI?usp=sharing`
+
+| Drive Subfolder | Folder ID | Wired Into | Notes |
+| :--- | :--- | :--- | :--- |
+| `PortfolioPhotography` | `11QlaOo-vYYHgZh9QWuJtIk34s3eGIk81` | `project/scripts/photography-archive.js` | `2024`, `2025`, `2026` shoots; shared `w960` cover/preview, `w2400` lightbox |
+| `ikm-project` | `1u_qRl5HKyhtLWfPJt-vq4TRyGrbF-EXh` | `project/scripts/ikm-drive-map.js` | `163` bag designs (`251.1 MB` local folder removed); `PAGE_SIZE = 24`, `w600` grid / `w1600` lightbox; `Bear Brand` includes `Chinese Year Bear` |
+| `website-previews` | `1Ux_N3k9X9Zte0-4htxWGF_s-_vORE7ZL` | `index.html` | `7` main project & experience preview images (`w1200`) |
+
+### C. Drive Image Loading Rules (Do Not Break)
+1. Always build Drive image URLs with **`https://lh3.googleusercontent.com/d/<FILE_ID>=w<SIZE>`** (avoid `drive.google.com/thumbnail?id=...` which triggers 429 burst throttling).
+2. Always include `referrerpolicy="no-referrer"` and retry-on-error backoff on Drive-backed `<img>` elements.
+3. Never call canvas `getImageData()` (`applyImageAura`) on cross-origin Drive URLs.

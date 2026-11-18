@@ -1,5 +1,5 @@
-const STATIC_CACHE = "portfolio-static-v32";
-const RUNTIME_CACHE = "portfolio-runtime-v32";
+const STATIC_CACHE = "portfolio-static-v33";
+const RUNTIME_CACHE = "portfolio-runtime-v33";
 const IMAGE_CACHE = "portfolio-images-v1";
 const CORE_ASSETS = [
   "/",
@@ -94,6 +94,10 @@ self.addEventListener("fetch", (event) => {
   const request = event.request;
   const destination = request.destination;
   const url = new URL(request.url);
+
+  if (url.origin !== self.location.origin) {
+    return;
+  }
 
   if (request.mode === "navigate") {
     event.respondWith(networkFirst(request));

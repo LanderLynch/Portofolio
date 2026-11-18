@@ -8,72 +8,44 @@
   <script src="js/theme-init.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap">
   <link rel="stylesheet" href="css/zoom-controls.css" />
   <link rel="stylesheet" href="css/theme-palettes.css?v=20260413-7" />
   <link rel="stylesheet" href="webmeji-main/webmeji.css" />
   <style>
-    :root {
-      --bg: #05101d;
-      --bg-strong: #020617;
-      --surface: rgba(10, 23, 42, 0.82);
-      --surface-soft: rgba(15, 30, 51, 0.72);
-      --surface-bright: rgba(12, 28, 50, 0.92);
-      --border: rgba(148, 163, 184, 0.18);
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --accent: #60a5fa;
-      --accent-soft: rgba(96, 165, 250, 0.14);
-      --shadow: 0 24px 70px rgba(2, 6, 23, 0.42);
-      --radius-xl: 32px;
-      --radius-lg: 22px;
-      --radius-md: 16px;
-      --content-width: 1200px;
-    }
-
+    :root,
     html[data-theme="light"],
     body[data-theme="light"] {
-      --bg: #f6f8fc;
-      --bg-strong: #e5ebf6;
-      --surface: rgba(255, 255, 255, 0.84);
-      --surface-soft: rgba(255, 255, 255, 0.78);
-      --surface-bright: rgba(255, 255, 255, 0.92);
-      --border: rgba(140, 155, 184, 0.18);
-      --text: #2f3654;
-      --muted: #6a7390;
-      --accent: #5a6fa8;
-      --accent-soft: rgba(90, 111, 168, 0.14);
-      --shadow: 0 24px 70px rgba(166, 174, 191, 0.18);
+      --bg: #F4EEE5;
+      --bg-strong: #E9DED1;
+      --surface: #FAF6F0;
+      --surface-soft: #F3ECE2;
+      --surface-bright: #FAF6F0;
+      --border: #DDCFC0;
+      --text: #30221D;
+      --muted: #76655A;
+      --accent: #983E2B;
+      --accent-soft: rgba(184, 79, 56, 0.12);
+      --shadow: 0 8px 24px rgba(65, 43, 31, 0.05);
+      --radius-xl: 18px;
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --content-width: 1180px;
     }
 
-    html[data-theme="blue"],
-    body[data-theme="blue"] {
-      --bg: #08111f;
-      --bg-strong: #020617;
-      --surface: rgba(10, 23, 42, 0.82);
-      --surface-soft: rgba(15, 30, 51, 0.72);
-      --surface-bright: rgba(12, 28, 50, 0.92);
-      --border: rgba(148, 163, 184, 0.18);
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --accent: #60a5fa;
-      --accent-soft: rgba(96, 165, 250, 0.14);
-      --shadow: 0 24px 70px rgba(2, 6, 23, 0.42);
+    body {
+      font-family: "DM Sans", "Arial", sans-serif !important;
     }
 
-    html[data-theme="galaxy"],
-    body[data-theme="galaxy"] {
-      --bg: #140b24;
-      --bg-strong: #080312;
-      --surface: rgba(35, 20, 58, 0.82);
-      --surface-soft: rgba(48, 28, 78, 0.72);
-      --surface-bright: rgba(43, 25, 72, 0.92);
-      --border: rgba(194, 169, 255, 0.16);
-      --text: #efe8ff;
-      --muted: #b8add8;
-      --accent: #b794ff;
-      --accent-soft: rgba(183, 148, 255, 0.14);
-      --shadow: 0 24px 70px rgba(8, 3, 18, 0.5);
+    h1, h2, h3 {
+      font-family: "Cormorant Garamond", "Georgia", serif !important;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p,
+    .summary-card p,
+    .version-card li {
+      font-family: "Lora", "Georgia", serif;
     }
 
     * { box-sizing: border-box; }
@@ -264,7 +236,11 @@
     </section>
 
     <div class="version-tabs" role="tablist" aria-label="Changelog versions">
-      <button class="version-tab active" role="tab" aria-selected="true" id="tab-v3" data-version="v3">
+      <button class="version-tab active" role="tab" aria-selected="true" id="tab-v4" data-version="v4">
+        <span class="version-tab-label">v4.0</span>
+        <span class="version-tab-date">Nov 18, 2026</span>
+      </button>
+      <button class="version-tab" role="tab" aria-selected="false" id="tab-v3" data-version="v3">
         <span class="version-tab-label">v3.0</span>
         <span class="version-tab-date">Aug 9, 2026</span>
       </button>
@@ -278,8 +254,64 @@
       </button>
     </div>
 
+    <!-- v4.0 - November 18, 2026 -->
+    <div class="version-panel active" id="panel-v4" role="tabpanel" aria-labelledby="tab-v4">
+
+      <article class="timeline-entry">
+        <div class="entry-head">
+          <div>
+            <h2>November 18, 2026</h2>
+            <p>Warm Editorial Portfolio redesign, Pure Light Mode, Google Drive asset backend migration, and performance fixes.</p>
+          </div>
+          <span class="entry-date">Latest</span>
+        </div>
+
+        <div class="change-grid">
+
+          <section class="change-card">
+            <h3>Warm Editorial UI &amp; Square-Grid</h3>
+            <ul class="change-list">
+              <li>Locked site to Pure Simple Light Mode (<code>supportedThemes: ["light"]</code>; removed Blue &amp; Galaxy modes)</li>
+              <li>Applied <code>#F4EEE5</code> parchment, <code>#FAF6F0</code> cards, <code>#983E2B</code> terracotta accents, and <code>Cormorant Garamond</code> + <code>Lora</code> + <code>DM Sans</code></li>
+              <li>Added static <code>27px × 27px</code> (<code>23px</code> mobile) square-grid overlay across all pages</li>
+            </ul>
+          </section>
+
+          <section class="change-card">
+            <h3>Homepage, Certification &amp; Mascot</h3>
+            <ul class="change-list">
+              <li>Defaulted desktop navigation to horizontal topbar in <code>js/performance-main.js</code></li>
+              <li>Rebuilt Hero with 2-column arched portrait frame and 3×2 <strong>Pohon Keahlian</strong> card grid in <code>index.html</code></li>
+              <li>Redesigned <code>certification.html</code> with editorial hero, side-by-side stats (<code>25 / 8 / 3</code>), and opaque text surfaces</li>
+              <li>Set Webmeji mascot OFF by default; moved toggle top-left on desktop and into <code>#mobile-menu-panel</code> on mobile</li>
+            </ul>
+          </section>
+
+          <section class="change-card">
+            <h3>Google Drive Backend (<code>Portofolio-Backend</code>)</h3>
+            <ul class="change-list">
+              <li>Connected <code>163</code> IKM assets (<code>ikm-drive-map.js</code>) &amp; <code>7</code> homepage preview images to Google Drive folder <code>1VgSPxRN9Rz-iDghYNxqGwSrvemaPr4qI</code></li>
+              <li>Deleted <code>251.1 MB</code> local <code>project/assets/ikm-project/</code> folder after Drive verification</li>
+              <li>Merged <code>Chinese Year Bear</code> into <code>Bear Brand</code> in <code>ikm-design-creative-project.html</code></li>
+            </ul>
+          </section>
+
+          <section class="change-card">
+            <h3>Image Reliability &amp; Performance (AI Handoff)</h3>
+            <ul class="change-list">
+              <li>Always use direct <code>https://lh3.googleusercontent.com/d/&lt;ID&gt;=w&lt;SIZE&gt;</code> with <code>referrerpolicy="no-referrer"</code> + retry-on-error (avoids 429 bursts)</li>
+              <li>Keep <code>performance-sw.js</code> (<code>v33</code>) skipping cross-origin requests</li>
+              <li><code>ikm-design-creative-project.html</code> uses <code>PAGE_SIZE = 24</code> pagination, <code>w600</code> grid / <code>w1600</code> lightbox, and skips cross-origin canvas aura</li>
+            </ul>
+          </section>
+
+        </div>
+      </article>
+
+    </div>
+
     <!-- v3.0 - August 9, 2026 -->
-    <div class="version-panel active" id="panel-v3" role="tabpanel" aria-labelledby="tab-v3">
+    <div class="version-panel" id="panel-v3" role="tabpanel" aria-labelledby="tab-v3">
 
       <article class="timeline-entry">
         <div class="entry-head">
@@ -287,7 +319,7 @@
             <h2>August 9, 2026</h2>
             <p>Full performance audit & optimization pass across the entire portfolio.</p>
           </div>
-          <span class="entry-date">Latest</span>
+          <span class="entry-date">Archive</span>
         </div>
 
         <div class="change-grid">
