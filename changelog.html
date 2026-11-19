@@ -236,7 +236,11 @@
     </section>
 
     <div class="version-tabs" role="tablist" aria-label="Changelog versions">
-      <button class="version-tab active" role="tab" aria-selected="true" id="tab-v4" data-version="v4">
+      <button class="version-tab active" role="tab" aria-selected="true" id="tab-v41" data-version="v41">
+        <span class="version-tab-label">v4.1</span>
+        <span class="version-tab-date">Nov 19, 2026</span>
+      </button>
+      <button class="version-tab" role="tab" aria-selected="false" id="tab-v4" data-version="v4">
         <span class="version-tab-label">v4.0</span>
         <span class="version-tab-date">Nov 18, 2026</span>
       </button>
@@ -254,8 +258,63 @@
       </button>
     </div>
 
+    <!-- v4.1 - November 19, 2026 -->
+    <div class="version-panel active" id="panel-v41" role="tabpanel" aria-labelledby="tab-v41">
+
+      <article class="timeline-entry">
+        <div class="entry-head">
+          <div>
+            <h2>November 19, 2026</h2>
+            <p>Added new Case Studies (Dive Down Guide, Lariso, Ruang Kuliah, Lemon Bread), Work Daily Logbook, and Certificate Preview Modal.</p>
+          </div>
+          <span class="entry-date">Latest</span>
+        </div>
+
+        <div class="change-grid">
+
+          <section class="change-card">
+            <h3>New Project Case Studies</h3>
+            <ul class="change-list">
+              <li>Added <strong>Dive Down Guide</strong> case study (<code>project/pages/dive-down-guide.html</code>) in a deep-ocean navy &amp; cyan editorial layout with 8 real site screenshots</li>
+              <li>Added <strong>Lariso — Keripik Tempe Sagu</strong> case study (<code>project/pages/lariso-brand-identity.html</code>) &amp; <strong>Ruang Kuliah</strong> (<code>project/pages/ruang-kuliah.html</code>)</li>
+              <li>Added <strong>Lemon Bread</strong> business &amp; self-brand analysis page (<code>project/pages/lemon-bread-business-analysis.html</code>) and updated homepage caption</li>
+            </ul>
+          </section>
+
+          <section class="change-card">
+            <h3>Work Daily Logbook Page</h3>
+            <ul class="change-list">
+              <li>Created <code>logbook.html</code> &amp; <code>js/logbook-data.js</code> sourced from Notion <em>Daily Note</em>, focused on <code>27</code> Work entries (Sept–Oct 2026)</li>
+              <li>Added brand &amp; workflow filters, month filters, search, raw-note toggle, and optional serverless DeepSeek endpoint (<code>api/logbook-explain.js</code>)</li>
+              <li>Added <strong>Logbook</strong> navigation link in both desktop and mobile menus in <code>index.html</code></li>
+            </ul>
+          </section>
+
+          <section class="change-card">
+            <h3>Certification Preview &amp; Pop-Out Zoom</h3>
+            <ul class="change-list">
+              <li>Added inline PDF.js &amp; JPG preview thumbnails directly on certificate cards in <code>certification.html</code></li>
+              <li>Built pop-out lightbox modal with <code>50%–300%</code> zoom controls, drag-to-pan, and <code>Next Certificate</code> button showing the next certificate title</li>
+              <li>Updated TOEFL Training PDFs group label from <code>Skill</code> to <strong>MySkill Group</strong></li>
+            </ul>
+          </section>
+
+          <section class="change-card">
+            <h3>Portfolio Polish &amp; Reliability</h3>
+            <ul class="change-list">
+              <li>Updated Hero stat to <code>2+ Years Experience</code> and Education to <code>ITB Ahmad Dahlan Jakarta (On-Going)</code></li>
+              <li>Moved <code>Marketing &amp; Assistant HR</code> next to <code>Documentary Kota Tua UKK</code> (status changed to <code>Completed</code>)</li>
+              <li>Migrated remaining 11 <code>drive.google.com/thumbnail</code> URLs in <code>index.html</code> to <code>lh3.googleusercontent.com/d/...</code> and bumped <code>performance-sw.js</code> to <code>v35</code></li>
+            </ul>
+          </section>
+
+        </div>
+      </article>
+
+    </div>
+
     <!-- v4.0 - November 18, 2026 -->
-    <div class="version-panel active" id="panel-v4" role="tabpanel" aria-labelledby="tab-v4">
+    <div class="version-panel" id="panel-v4" role="tabpanel" aria-labelledby="tab-v4">
 
       <article class="timeline-entry">
         <div class="entry-head">
@@ -263,7 +322,7 @@
             <h2>November 18, 2026</h2>
             <p>Warm Editorial Portfolio redesign, Pure Light Mode, Google Drive asset backend migration, and performance fixes.</p>
           </div>
-          <span class="entry-date">Latest</span>
+          <span class="entry-date">v4.0</span>
         </div>
 
         <div class="change-grid">
