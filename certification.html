@@ -2018,6 +2018,14 @@
       return /\.pdf(?:$|\?)/i.test(url || "");
     }
 
+    function getPreviewImageUrl(url) {
+      if (!isPdfPath(url)) return url;
+      return url.replace(
+        /^project\/assets\/certification-files\/(.+)\.pdf$/i,
+        "project/assets/certification-files/previews/$1.jpg"
+      );
+    }
+
     function getPdfDocument(url) {
       if (!window.pdfjsLib) return Promise.reject(new Error("PDF.js unavailable"));
       if (!pdfDocCache.has(url)) {
@@ -2045,23 +2053,6 @@
     }
 
     function initCertificateCardPreviews() {
-      const thumbObserver = "IntersectionObserver" in window
-        ? new IntersectionObserver((entries, observer) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) return;
-              const trigger = entry.target;
-              const canvas = trigger.querySelector("canvas");
-              const fallback = trigger.querySelector(".certificate-preview-fallback");
-              const url = trigger.dataset.src;
-              if (canvas && url && !trigger.dataset.rendered) {
-                trigger.dataset.rendered = "1";
-                renderPdfThumbnail(canvas, fallback, url);
-              }
-              observer.unobserve(trigger);
-            });
-          }, { rootMargin: "180px" })
-        : null;
-
       certificateCards.forEach((card) => {
         if (card.dataset.type !== "certificate") return;
         const link = card.querySelector("a.certificate-link");
@@ -2069,6 +2060,7 @@
         if (!link || !titleEl) return;
 
         const href = link.getAttribute("href");
+        const previewUrl = getPreviewImageUrl(href);
         const title = titleEl.textContent.trim();
 
         const trigger = document.createElement("button");
@@ -2077,26 +2069,12 @@
         trigger.dataset.src = href;
         trigger.setAttribute("aria-label", `Preview ${title}`);
 
-        if (isPdfPath(href)) {
-          const canvas = document.createElement("canvas");
-          const fallback = document.createElement("div");
-          fallback.className = "certificate-preview-fallback";
-          fallback.innerHTML = `<span>PDF Preview</span><small>${title}</small>`;
-          trigger.appendChild(canvas);
-          trigger.appendChild(fallback);
-          if (thumbObserver) {
-            thumbObserver.observe(trigger);
-          } else {
-            renderPdfThumbnail(canvas, fallback, href);
-          }
-        } else {
-          const img = document.createElement("img");
-          img.src = href;
-          img.alt = `${title} preview`;
-          img.loading = "lazy";
-          img.decoding = "async";
-          trigger.appendChild(img);
-        }
+        const img = document.createElement("img");
+        img.src = previewUrl;
+        img.alt = `${title} preview`;
+        img.loading = "lazy";
+        img.decoding = "async";
+        trigger.appendChild(img);
 
         const badge = document.createElement("span");
         badge.className = "certificate-preview-badge";
@@ -2105,19 +2083,9 @@
 
         card.insertBefore(trigger, titleEl);
 
-        const openFromCard = (event) => {
+        trigger.addEventListener("click", (event) => {
           event.preventDefault();
           openCardPlaylist(card);
-        };
-        trigger.addEventListener("click", openFromCard);
-        link.addEventListener("click", openFromCard);
-      });
-
-      const folderFileLinks = toeflFolderModal?.querySelectorAll(".folder-file a.certificate-link") || [];
-      folderFileLinks.forEach((link) => {
-        link.addEventListener("click", (event) => {
-          event.preventDefault();
-          openFolderPlaylist(link);
         });
       });
     }
@@ -2221,7 +2189,8 @@
       certModalViewport.innerHTML = `<div class="cert-modal-status">Loading preview...</div>`;
       applyZoomToViewport();
 
-      if (isPdfPath(item.url)) {
+      const previewSrc = getPreviewImageUrl(item.url);
+      if (isPdfPath(previewSrc)) {
         try {
           const pdf = await getPdfDocument(item.url);
           if (token !== modalRenderToken) return;
@@ -2258,7 +2227,7 @@
       } else {
         const img = document.createElement("img");
         img.className = "cert-modal-image";
-        img.src = item.url;
+        img.src = previewSrc;
         img.alt = item.title;
         img.title = "Click to toggle zoom";
         img.onload = () => {

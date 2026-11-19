@@ -242,7 +242,11 @@
     </section>
 
     <div class="version-tabs" role="tablist" aria-label="Changelog versions">
-      <button class="version-tab active" role="tab" aria-selected="true" id="tab-v41" data-version="v41">
+      <button class="version-tab active" role="tab" aria-selected="true" id="tab-v42" data-version="v42">
+        <span class="version-tab-label">v4.2</span>
+        <span class="version-tab-date">Nov 20, 2026</span>
+      </button>
+      <button class="version-tab" role="tab" aria-selected="false" id="tab-v41" data-version="v41">
         <span class="version-tab-label">v4.1</span>
         <span class="version-tab-date">Nov 19, 2026</span>
       </button>
@@ -264,8 +268,60 @@
       </button>
     </div>
 
+    <!-- v4.2 - November 20, 2026 -->
+    <div class="version-panel active" id="panel-v42" role="tabpanel" aria-labelledby="tab-v42">
+
+      <article class="timeline-entry">
+        <div class="entry-head">
+          <div>
+            <h2>November 20, 2026</h2>
+            <p>Editorial Creative Archive UI Redesign, 5 Selected Works, Compact Project Archive, and Certificate JPG Previews.</p>
+          </div>
+          <span class="entry-date">Latest</span>
+        </div>
+
+        <div class="change-grid">
+
+          <section class="change-card">
+            <h3>Editorial Creative Archive Theme &amp; UI</h3>
+            <ul class="change-list">
+              <li>Added <code>css/editorial-archive.css</code> with <code>Fraunces</code> italic-emphasis display headings and <code>IBM Plex Mono</code> metadata kickers across all 7 homepage sections</li>
+              <li>Replaced rounded/glass card shells with flat <code>1px</code>-bordered archival mats (<code>#FAF6F0</code> on <code>#F4EEE5</code>) and hairline dividers</li>
+              <li>Locked navigation permanently to top-right, removed the sidebar/topbar toggle, simplified the top-left badge to logo-only, and preserved all 9 nav items with icons</li>
+            </ul>
+          </section>
+
+          <section class="change-card">
+            <h3>Selected Works &amp; Compact Project Archive</h3>
+            <ul class="change-list">
+              <li>Added <strong>01 / Selected Works</strong> featuring 5 flagship case studies: Lemon Bread, Ruang Kuliah, Lariso, Personal GFX Design Collection, and IKM Design Creative Project</li>
+              <li>Compacted <strong>02 / Project Archive</strong> into a tighter 3-column desktop grid and removed software/tool tag clutter from archive cards</li>
+            </ul>
+          </section>
+
+          <section class="change-card">
+            <h3>Certification JPG Previews &amp; Direct PDF Links</h3>
+            <ul class="change-list">
+              <li>Converted all 22 certificate PDFs into <code>.jpg</code> previews in <code>project/assets/certification-files/previews/</code> for instant card &amp; modal rendering</li>
+              <li>Updated <code>certification.html</code> so <strong>Open File</strong> links open the original <code>.pdf</code> directly while thumbnail clicks open the Pop Out + Zoom modal</li>
+            </ul>
+          </section>
+
+          <section class="change-card">
+            <h3>SEO, Landmarks &amp; Playwright QA</h3>
+            <ul class="change-list">
+              <li>Added <code>&lt;meta name="description"&gt;</code>, Open Graph (<code>og:*</code>) tags, skip links, and <code>&lt;main&gt;</code> landmarks across core pages</li>
+              <li>Verified zero console errors, zero broken images, and zero horizontal overflow across 6 responsive viewports (<code>375×812</code> to <code>1920×1080</code>)</li>
+            </ul>
+          </section>
+
+        </div>
+      </article>
+
+    </div>
+
     <!-- v4.1 - November 19, 2026 -->
-    <div class="version-panel active" id="panel-v41" role="tabpanel" aria-labelledby="tab-v41">
+    <div class="version-panel" id="panel-v41" role="tabpanel" aria-labelledby="tab-v41">
 
       <article class="timeline-entry">
         <div class="entry-head">
