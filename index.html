@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jona Setiawan - Portfolio</title>
+  <meta name="description" content="Creative & multimedia portfolio of Jona Setiawan — GFX design, brand identity, web development, UI/UX, photography, and strategic business case studies." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Jona Setiawan - Portfolio" />
+  <meta property="og:description" content="Creative & multimedia portfolio of Jona Setiawan — GFX design, brand identity, web development, UI/UX, photography, and strategic business case studies." />
   <script src="js/theme-init.js"></script>
   <link rel="icon" type="image/png" href="project/assets/logo-preview/logo-lemon.png" />
   <link rel="preload" as="image" href="project/assets/logo-preview/logo-lemon.png" fetchpriority="high">
@@ -15,18 +19,17 @@
   <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin>
   <link rel="dns-prefetch" href="https://i.pinimg.com">
   <link rel="dns-prefetch" href="https://images.unsplash.com">
-  <link rel="stylesheet" href="css/styles.css?v=20261119-1">
+  <link rel="stylesheet" href="css/styles.css?v=20261119-3">
   <link rel="stylesheet" href="css/theme-palettes.css?v=20261119-1">
   <link rel="stylesheet" href="webmeji-main/webmeji.css">
 </head>
-<body>
+<body class="desktop-nav-topbar">
   <a href="#main-content" class="skip-link">Lewati ke konten utama</a>
   <!-- Portfolio Title - Separated from Navigation -->
   <div class="portfolio-title-container">
     <div class="portfolio-title-row">
-      <a href="#home" class="portfolio-title-link">
+      <a href="#home" class="portfolio-title-link" aria-label="Beranda">
         <img src="project/assets/logo-preview/logo-lemon.png" alt="Logo Lemon" width="40" height="40" class="portfolio-logo" loading="eager" decoding="async" fetchpriority="high" data-priority="high" />
-        <span class="portfolio-text">Beranda</span>
       </a>
       <div class="zoom-control" id="zoom-control">
         <button class="zoom-toggle-btn" id="zoom-toggle-btn" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="zoom-panel">
@@ -43,21 +46,6 @@
           </div>
         </div>
       </div>
-      <button class="sidebar-toggle-btn" id="desktop-sidebar-toggle" type="button" aria-label="Switch to topbar layout" aria-controls="desktop-sidebar-nav" data-layout-target="topbar">
-        <svg class="icon-svg sidebar-toggle-icon sidebar-toggle-icon-topbar" viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="3.5" y="4.5" width="17" height="15" rx="2.5"></rect>
-          <path d="M6.5 8.25h11"></path>
-          <path d="M6.5 11.75h11"></path>
-          <path d="M6.5 15.25h7.5"></path>
-        </svg>
-        <svg class="icon-svg sidebar-toggle-icon sidebar-toggle-icon-sidebar" viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="3.5" y="4.5" width="17" height="15" rx="2.5"></rect>
-          <path d="M9 4.5v15"></path>
-          <path d="M12.5 9h4"></path>
-          <path d="M12.5 12h4"></path>
-          <path d="M12.5 15h3"></path>
-        </svg>
-      </button>
     </div>
   </div>
 
@@ -1083,7 +1071,7 @@
             <div class="guestbook-user-meta">
               <div class="guestbook-user-avatar-stack">
                 <button type="button" class="guestbook-avatar-trigger" id="guestbook-avatar-trigger" aria-label="Choose profile picture" aria-expanded="false" aria-controls="guestbook-avatar-picker">
-                  <img src="" alt="" class="guestbook-user-avatar" id="guestbook-user-avatar">
+                  <img src="project/assets/logo-preview/logo-lemon.png" alt="Guest avatar" class="guestbook-user-avatar" id="guestbook-user-avatar">
                 </button>
                 <div class="guestbook-avatar-picker" id="guestbook-avatar-picker" hidden>
                   <div class="guestbook-avatar-picker-bubble">

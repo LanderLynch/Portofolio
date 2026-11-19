@@ -4,28 +4,53 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="../assets/logo-preview/logo-lemon.png" />
-  <title>Ruang Kuliah - Jona Setiawan</title>
+  <title>Ruang Kuliah — AI-Assisted Learning Platform | Jona Setiawan</title>
+  <meta name="description" content="Case study documenting Ruang Kuliah's evolution from a static university material website to an AI-assisted academic learning platform." />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Ruang Kuliah — AI-Assisted Learning Platform" />
+  <meta property="og:description" content="Case study documenting Ruang Kuliah's evolution from a static university material website to an AI-assisted academic learning platform." />
   <script src="../../js/theme-init.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="../../css/zoom-controls.css" />
-  <link rel="stylesheet" href="../../css/theme-palettes.css" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body.project-detail-page {
-      color: var(--text, #30221D);
+    :root {
+      --rk-bg: #FFFFFF;
+      --rk-surface: #F8FAFC;
+      --rk-surface-soft: #F1F5F9;
+      --rk-ink: #0F172A;
+      --rk-muted: #475569;
+      --rk-border: #E2E8F0;
+      --rk-green: #15803D;
+      --rk-green-soft: #DCFCE7;
+      --rk-green-border: #86EFAC;
+      --rk-blue: #1D4ED8;
+      --rk-blue-soft: #DBEAFE;
+      --rk-blue-border: #93C5FD;
+      --rk-amber: #B45309;
+      --rk-amber-soft: #FEF3C7;
+      --rk-amber-border: #FCD34D;
+    }
+
+    body.ruang-kuliah-case {
+      font-family: "Plus Jakarta Sans", "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--rk-bg);
+      color: var(--rk-ink);
       line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
     }
 
     .page-container {
-      width: min(1160px, calc(100% - 2.5rem));
+      width: min(1180px, calc(100% - 2.5rem));
       margin: 0 auto;
     }
 
+    /* Top Nav */
     .navbar {
-      padding: 1.5rem 0 1rem;
-      border-bottom: 1px solid var(--border, #DDCFC0);
-      background: transparent !important;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--rk-border);
+      background: #FFFFFF;
     }
 
     .nav-container {
@@ -41,88 +66,197 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.6rem;
+      gap: 0.55rem;
       min-height: 2.75rem;
       padding: 0.55rem 1.2rem;
       border-radius: 999px;
       text-decoration: none;
       font-weight: 600;
       font-size: 0.88rem;
-      transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+      transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
     }
 
-    .back-btn:hover,
-    .live-btn:hover {
+    .back-btn {
+      color: var(--rk-ink);
+      background: var(--rk-surface);
+      border: 1px solid var(--rk-border);
+    }
+
+    .back-btn:hover {
       transform: translateY(-1px);
+      border-color: var(--rk-blue);
     }
 
     .live-btn {
-      background: #983E2B;
-      color: #FAF6F0;
-      border: 1px solid #983E2B;
+      background: var(--rk-green);
+      color: #FFFFFF;
+      border: 1px solid var(--rk-green);
     }
 
     .live-btn:hover {
-      background: #7F3121;
-      border-color: #7F3121;
+      transform: translateY(-1px);
+      background: #166534;
     }
 
     .back-btn-logo {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       object-fit: cover;
     }
 
-    .hero {
-      padding: 3.25rem 0 2rem;
+    /* Sticky Chapter Bar */
+    .chapter-nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rk-border);
+      padding: 0.65rem 0;
     }
 
-    .hero-card {
-      padding: 2.25rem;
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
-      gap: 2rem;
+    .chapter-list {
+      display: flex;
+      gap: 0.45rem;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      padding-bottom: 0.1rem;
+    }
+
+    .chapter-pill {
+      flex: 0 0 auto;
+      display: inline-flex;
       align-items: center;
+      min-height: 2.25rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--rk-border);
+      background: var(--rk-surface);
+      color: var(--rk-ink);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: border-color 0.18s ease, background-color 0.18s ease, color 0.18s ease;
+    }
+
+    .chapter-pill:hover {
+      border-color: var(--rk-green);
+      background: var(--rk-green-soft);
+      color: var(--rk-green);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 3rem 0 2.25rem;
+      border-bottom: 1px solid var(--rk-border);
+    }
+
+    .hero-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.75fr);
+      gap: 2rem;
+      align-items: start;
+      margin-bottom: 2rem;
     }
 
     .eyebrow {
-      display: inline-block;
-      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.74rem;
       font-weight: 700;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #983E2B;
-      margin-bottom: 0.6rem;
+      color: var(--rk-green);
+      margin-bottom: 0.65rem;
     }
 
-    .hero-card h1 {
-      font-size: clamp(2.4rem, 5vw, 3.8rem);
-      line-height: 1.02;
+    .hero h1 {
+      font-size: clamp(2.4rem, 4.8vw, 3.6rem);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.65rem;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
       font-weight: 600;
-      margin-bottom: 0.9rem;
+      color: var(--rk-blue);
+      margin-bottom: 1rem;
     }
 
     .hero-lead {
-      font-size: 1.02rem;
-      color: #57463D;
-      max-width: 58ch;
+      font-size: 1rem;
+      color: var(--rk-muted);
+      max-width: 62ch;
       margin-bottom: 1.35rem;
     }
 
-    .hero-actions {
+    .tag-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.85rem;
-      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 1.25rem;
     }
 
-    .visual-figure {
-      padding: 0.65rem;
+    .cat-tag {
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      background: var(--rk-surface-soft);
+      border: 1px solid var(--rk-border);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--rk-ink);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.32rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .status-maintenance { background: var(--rk-amber-soft); color: var(--rk-amber); border: 1px solid var(--rk-amber-border); }
+    .status-implemented { background: var(--rk-green-soft); color: var(--rk-green); border: 1px solid var(--rk-green-border); }
+    .status-planned { background: var(--rk-blue-soft); color: var(--rk-blue); border: 1px solid var(--rk-blue-border); }
+
+    .hero-meta-card {
+      padding: 1.35rem;
       border-radius: 14px;
-      background: #FAF6F0;
-      border: 1px solid #DDCFC0;
-      box-shadow: 0 8px 24px rgba(65, 43, 31, 0.045);
+      background: var(--rk-surface);
+      border: 1px solid var(--rk-border);
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.75rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid var(--rk-border);
+      font-size: 0.88rem;
+    }
+
+    .meta-row:last-child { border-bottom: 0; padding-bottom: 0; }
+    .meta-row span { color: var(--rk-muted); }
+    .meta-row strong { color: var(--rk-ink); text-align: right; }
+
+    /* Visual Figures & Videos */
+    .visual-figure {
+      padding: 0.75rem;
+      border-radius: 14px;
+      background: var(--rk-surface);
+      border: 1px solid var(--rk-border);
     }
 
     .visual-figure img {
@@ -130,35 +264,67 @@
       height: auto;
       display: block;
       border-radius: 10px;
+      border: 1px solid var(--rk-border);
     }
 
     .visual-figure figcaption {
-      margin-top: 0.55rem;
-      padding: 0 0.25rem;
-      font-size: 0.8rem;
-      color: #76655A;
-      font-family: "Lora", "Georgia", serif;
-      font-style: italic;
+      margin-top: 0.6rem;
+      font-size: 0.82rem;
+      color: var(--rk-muted);
     }
 
+    .video-frame-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #0F172A;
+      border: 1px solid var(--rk-border);
+    }
+
+    .video-frame-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Main Sections */
     .case-main {
-      padding: 1rem 0 4rem;
+      padding: 2.5rem 0 4.5rem;
       display: grid;
-      gap: 2rem;
+      gap: 3.5rem;
+    }
+
+    .case-main section {
+      scroll-margin-top: 4.5rem;
+      min-width: 0;
+    }
+
+    .section-head {
+      margin-bottom: 1.5rem;
     }
 
     .section-head h2 {
-      font-size: clamp(1.85rem, 3.2vw, 2.5rem);
-      font-weight: 600;
-      line-height: 1.1;
-      margin-bottom: 0.35rem;
+      font-size: clamp(1.75rem, 3vw, 2.35rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.45rem;
     }
 
     .section-intro {
-      color: #57463D;
-      font-size: 0.96rem;
+      color: var(--rk-muted);
+      font-size: 0.98rem;
       max-width: 68ch;
-      margin-bottom: 1.15rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
     }
 
     .grid-3 {
@@ -167,49 +333,249 @@
       gap: 1.15rem;
     }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.15rem;
+    .grid-2 > *,
+    .grid-3 > * {
+      min-width: 0;
     }
 
-    .panel {
-      padding: 1.45rem;
+    .card {
+      padding: 1.35rem;
+      border-radius: 14px;
+      background: #FFFFFF;
+      border: 1px solid var(--rk-border);
     }
 
-    .panel-kicker {
-      display: inline-block;
-      margin-bottom: 0.45rem;
+    .card-soft {
+      background: var(--rk-surface);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.55rem;
+    }
+
+    .card-kicker {
       font-size: 0.72rem;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #983E2B;
+      color: var(--rk-blue);
     }
 
-    .panel h3 {
-      font-size: 1.35rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
+    .card h3 {
+      font-size: 1.18rem;
+      font-weight: 700;
+      margin-bottom: 0.45rem;
     }
 
-    .panel p,
-    .panel li {
+    .card p,
+    .card li {
       font-size: 0.92rem;
-      color: #57463D;
+      color: var(--rk-muted);
     }
 
-    .panel ul {
+    .card ul {
       padding-left: 1.15rem;
       display: grid;
       gap: 0.35rem;
       margin-top: 0.45rem;
     }
 
+    /* Feature Row */
+    .feature-stack {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .feature-block {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+      gap: 1.5rem;
+      align-items: center;
+      padding: 1.4rem;
+      border-radius: 14px;
+      border: 1px solid var(--rk-border);
+      background: #FFFFFF;
+    }
+
+    .feature-block > * { min-width: 0; }
+
+    /* Changelog Timeline */
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 1.25rem;
+      padding-left: 1.85rem;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0.55rem;
+      top: 0.4rem;
+      bottom: 0.4rem;
+      width: 2px;
+      background: var(--rk-border);
+    }
+
+    .release-item {
+      position: relative;
+      padding: 1.35rem 1.45rem;
+      border-radius: 14px;
+      border: 1px solid var(--rk-border);
+      background: #FFFFFF;
+    }
+
+    .release-item::before {
+      content: "";
+      position: absolute;
+      left: -1.62rem;
+      top: 1.65rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 3px solid var(--rk-green);
+    }
+
+    .release-item.milestone-ai {
+      border-color: var(--rk-blue-border);
+      background: linear-gradient(180deg, #F8FBFF 0%, #FFFFFF 100%);
+      box-shadow: 0 8px 24px rgba(29, 78, 216, 0.06);
+    }
+
+    .release-item.milestone-ai::before {
+      border-color: var(--rk-blue);
+      width: 14px;
+      height: 14px;
+      left: -1.68rem;
+    }
+
+    .release-item.milestone-alpha4 {
+      border-color: var(--rk-amber-border);
+      background: #FFFDF7;
+    }
+
+    .release-item.milestone-alpha4::before {
+      border-color: var(--rk-amber);
+    }
+
+    .release-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .version-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.22rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: var(--rk-surface-soft);
+      color: var(--rk-ink);
+      border: 1px solid var(--rk-border);
+    }
+
+    .release-item.milestone-ai .version-badge {
+      background: var(--rk-blue-soft);
+      color: var(--rk-blue);
+      border-color: var(--rk-blue-border);
+    }
+
+    .release-item h3 {
+      font-size: 1.22rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .release-desc {
+      font-size: 0.93rem;
+      color: var(--rk-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    details.release-details summary {
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--rk-blue);
+    }
+
+    details.release-details ul {
+      margin-top: 0.65rem;
+      padding-left: 1.2rem;
+      display: grid;
+      gap: 0.35rem;
+      font-size: 0.9rem;
+      color: var(--rk-muted);
+    }
+
+    /* Architecture Diagram */
+    .arch-diagram {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      padding: 1.35rem;
+      border-radius: 14px;
+      background: var(--rk-surface);
+      border: 1px solid var(--rk-border);
+      margin-bottom: 1.25rem;
+    }
+
+    .arch-node {
+      padding: 1rem;
+      border-radius: 12px;
+      background: #FFFFFF;
+      border: 1px solid var(--rk-border);
+    }
+
+    .arch-node strong {
+      display: block;
+      font-size: 0.92rem;
+      margin-bottom: 0.35rem;
+      color: var(--rk-ink);
+    }
+
+    .arch-node span {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--rk-muted);
+      line-height: 1.5;
+    }
+
+    /* Future Roadmap Divider */
+    .roadmap-section {
+      padding: 2rem;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #F0FDF4 0%, #EFF6FF 100%);
+      border: 1px solid var(--rk-blue-border);
+    }
+
+    .restriction-banner {
+      padding: 1rem 1.2rem;
+      border-radius: 12px;
+      background: #FFFFFF;
+      border: 1px solid var(--rk-amber-border);
+      border-left: 4px solid var(--rk-amber);
+      font-size: 0.92rem;
+      color: var(--rk-ink);
+      margin-bottom: 1.35rem;
+    }
+
     .page-footer {
-      border-top: 1px solid #DDCFC0;
+      border-top: 1px solid var(--rk-border);
       padding: 2rem 0 3rem;
-      background: transparent !important;
+      font-size: 0.88rem;
+      color: var(--rk-muted);
     }
 
     .footer-inner {
@@ -218,13 +584,13 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 1rem;
-      font-size: 0.86rem;
-      color: #76655A;
     }
 
     @media (max-width: 960px) {
-      .hero-card,
-      .grid-3 {
+      .hero-top,
+      .feature-block,
+      .grid-3,
+      .arch-diagram {
         grid-template-columns: 1fr;
       }
     }
@@ -233,31 +599,14 @@
       .grid-2 {
         grid-template-columns: 1fr;
       }
-
-      .hero-card,
-      .panel {
-        padding: 1.25rem;
+      .card, .feature-block, .release-item, .roadmap-section {
+        padding: 1.15rem;
       }
     }
   </style>
 </head>
-<body class="project-detail-page">
-  <div class="page-zoom-control" id="page-zoom-control">
-    <button class="page-zoom-toggle" id="page-zoom-toggle" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="page-zoom-panel">
-      <svg class="page-zoom-icon" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
-    </button>
-    <div class="page-zoom-panel" id="page-zoom-panel" aria-hidden="true">
-      <div class="page-zoom-panel-group">
-        <span class="page-zoom-label">Zoom</span>
-        <div class="page-zoom-actions">
-          <button class="page-zoom-step" id="page-zoom-out" type="button" aria-label="Zoom out">-</button>
-          <button class="page-zoom-value" id="page-zoom-value" type="button" aria-label="Reset zoom to default">80%</button>
-          <button class="page-zoom-step" id="page-zoom-in" type="button" aria-label="Zoom in">+</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
+<body class="ruang-kuliah-case">
+  <a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to main content</a>
   <nav class="navbar">
     <div class="page-container nav-container">
       <a class="back-btn" href="../../index.html#projects">
@@ -270,91 +619,448 @@
     </div>
   </nav>
 
+  <nav class="chapter-nav" aria-label="Case study sections">
+    <div class="page-container">
+      <div class="chapter-list">
+        <a class="chapter-pill" href="#sec-01">01 Introduction</a>
+        <a class="chapter-pill" href="#sec-02">02 The Problem</a>
+        <a class="chapter-pill" href="#sec-03">03 Features</a>
+        <a class="chapter-pill" href="#sec-04">04 Changelog</a>
+        <a class="chapter-pill" href="#sec-05">05 AI Tutor</a>
+        <a class="chapter-pill" href="#sec-06">06 Architecture</a>
+        <a class="chapter-pill" href="#sec-07">07 Beyond Alpha 4</a>
+        <a class="chapter-pill" href="#sec-08">08 Reflection</a>
+      </div>
+    </div>
+  </nav>
+
   <header class="hero">
     <div class="page-container">
-      <div class="hero-card">
+      <div class="hero-top">
         <div>
-          <span class="eyebrow">Web App · Student Community Project</span>
-          <h1>Ruang Kuliah</h1>
+          <span class="eyebrow">Software Product Case Study · Non-Profit Student Platform</span>
+          <h1>RUANG KULIAH</h1>
+          <p class="hero-subtitle">From a Simple Learning Website to an AI-Assisted Academic Platform.</p>
           <p class="hero-lead">
-            Platform pembelajaran mahasiswa yang dibuat <strong>murni untuk membantu teman-teman mahasiswa secara gratis tanpa pungut biaya</strong> — berfokus pada pembagian materi kuliah, informasi tugas, serta bantuan kisi-kisi ujian.
+            Platform pembelajaran terpusat yang dibangun secara gratis untuk membantu mahasiswa mengorganisasi materi perkuliahan, mengelola pertemuan dan tugas mingguan, melacak progres belajar, hingga berdiskusi dengan AI Tutor berbasis konteks materi.
           </p>
-          <div class="hero-actions">
-            <a class="live-btn" href="https://ruang-kuliah.vercel.app/" target="_blank" rel="noopener noreferrer">
-              <span>Visit ruang-kuliah.vercel.app ↗</span>
-            </a>
-            <a class="back-btn" href="../../index.html#projects">
-              <span>All Projects</span>
-            </a>
+          <div class="tag-row">
+            <span class="cat-tag">Education Technology</span>
+            <span class="cat-tag">Web Application</span>
+            <span class="cat-tag">Learning Management</span>
+            <span class="cat-tag">AI Integration</span>
+            <span class="status-pill status-maintenance">Alpha 4 — Maintenance in Progress</span>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
+            <a class="live-btn" href="https://ruang-kuliah.vercel.app/" target="_blank" rel="noopener noreferrer">Visit Live App ↗</a>
+            <a class="back-btn" href="#sec-04">View Version Changelog</a>
           </div>
         </div>
 
-        <figure class="visual-figure">
-          <img src="https://lh3.googleusercontent.com/d/1QQ4u0n2mCtmZmAnujSuhG5BY4uq7Kg5U=w1400" referrerpolicy="no-referrer" alt="Dashboard Ruang Kuliah" loading="eager" decoding="async" />
-          <figcaption>Tampilan Dashboard Ruang Kuliah (Alpha 2) — Ringkasan pertemuan, pengumuman tugas, dan panel Kisi-Kisi UTS.</figcaption>
-        </figure>
+        <aside class="hero-meta-card">
+          <div class="meta-row"><span>Status Rilis</span><strong>Alpha 4 (Maintenance)</strong></div>
+          <div class="meta-row"><span>Model Akses</span><strong>100% Gratis untuk Mahasiswa</strong></div>
+          <div class="meta-row"><span>Cakupan Materi</span><strong>8 Mata Kuliah · 128 Pertemuan</strong></div>
+          <div class="meta-row"><span>Frontend</span><strong>React 18 + Tailwind + Radix UI</strong></div>
+          <div class="meta-row"><span>Backend</span><strong>FastAPI (Python) on Vercel</strong></div>
+          <div class="meta-row"><span>Database &amp; Files</span><strong>MongoDB + Notion + Google Drive</strong></div>
+        </aside>
       </div>
+
+      <figure class="visual-figure">
+        <img src="../assets/ruang-kuliah/dashboard.png" alt="Live Dashboard Ruang Kuliah (ruang-kuliah.vercel.app)" loading="eager" decoding="async" />
+        <figcaption>Tangkapan layar aktual Dashboard Ruang Kuliah (<code>https://ruang-kuliah.vercel.app/</code>) — menampilkan ringkasan 128 pertemuan, 8 mata kuliah aktif, papan pengumuman, panel Kisi-Kisi UTS, dan Ruang Tugas Kuliah.</figcaption>
+      </figure>
     </div>
   </header>
 
-  <main class="page-container case-main">
-    <section aria-labelledby="sec-purpose">
+  <main id="main-content" class="page-container case-main">
+    <!-- SECTION 01 -->
+    <section id="sec-01" aria-labelledby="h-sec-01">
       <div class="section-head">
-        <span class="eyebrow">01 · Purpose &amp; Core Focus</span>
-        <h2 id="sec-purpose">Dibuat Gratis untuk Membantu Mahasiswa</h2>
-        <p class="section-intro">Ruang Kuliah hadir sebagai pusat informasi dan materi bersama agar mahasiswa tidak ketinggalan catatan, tenggat tugas, maupun persiapan UTS/UAS.</p>
+        <span class="eyebrow">Section 01 · Project Introduction</span>
+        <h2 id="h-sec-01">Pusat Belajar Digital Terintegrasi untuk Mahasiswa</h2>
+        <p class="section-intro">Ruang Kuliah dirancang untuk menyatukan seluruh kebutuhan belajar semester dalam satu ruang kerja: materi pertemuan, kuis latihan, pengingat tugas, pelacakan progres, dan asisten AI Tutor.</p>
       </div>
 
-      <div class="grid-3">
-        <article class="panel">
-          <span class="panel-kicker">Purely Non-Profit</span>
-          <h3>Tanpa Pungut Biaya</h3>
-          <p>Seluruh akses materi, info tugas, dan kisi-kisi disediakan 100% gratis murni untuk membantu sesama teman mahasiswa belajar lebih terstruktur.</p>
+      <div class="grid-3" style="margin-bottom: 1.5rem;">
+        <article class="card">
+          <span class="card-kicker">01 · Materi &amp; Pertemuan</span>
+          <h3>Terstruktur per Pertemuan</h3>
+          <p>Setiap mata kuliah dipetakan menjadi 16 pertemuan (Periode Pra-UTS, UTS, Menuju UAS, dan UAS) lengkap dengan slide PPTX/PDF dan catatan baca terformat.</p>
         </article>
-        <article class="panel">
-          <span class="panel-kicker">Study Hub</span>
-          <h3>Pembagian Materi &amp; Info Tugas</h3>
-          <p>Mengelompokkan materi tiap mata kuliah per pertemuan lengkap dengan papan pengumuman tugas, deadline pengumpulan, dan pelacakan progres belajar.</p>
+        <article class="card">
+          <span class="card-kicker">02 · Tugas &amp; Progres</span>
+          <h3>Pelacakan Belajar Aktif</h3>
+          <p>Mahasiswa dapat memantau tugas mingguan, kanal pengumpulan (SIAKAD, Drive, Email, Presentasi), riwayat kuis, dan persentase progres tiap mata kuliah.</p>
         </article>
-        <article class="panel">
-          <span class="panel-kicker">Exam Prep</span>
-          <h3>Bantu Kisi-Kisi Ujian</h3>
-          <p>Menyediakan panel khusus Kisi-Kisi UTS agar mahasiswa dapat langsung meninjau topik inti yang diujikan tanpa harus mencari ulang dari banyak chat.</p>
+        <article class="card">
+          <span class="card-kicker">03 · AI Study Support</span>
+          <h3>AI Tutor Berbasis Konteks</h3>
+          <p>AI Tutor membaca materi pertemuan yang sedang dibuka agar mahasiswa bisa bertanya, meminta penyederhanaan konsep, atau berlatih soal tanpa keluar halaman.</p>
+        </article>
+      </div>
+
+      <!-- Demo Videos Backend (Version 1 & Version 2 from Drive) -->
+      <div class="grid-2" id="rk-video-showcase"></div>
+    </section>
+
+    <!-- SECTION 02 -->
+    <section id="sec-02" aria-labelledby="h-sec-02">
+      <div class="section-head">
+        <span class="eyebrow">Section 02 · The Problem</span>
+        <h2 id="h-sec-02">Masalah Belajar yang Ingin Diselesaikan</h2>
+        <p class="section-intro">Sebelum Ruang Kuliah dibuat, materi dan informasi perkuliahan tersebar di berbagai grup chat, folder, dan tautan terpisah.</p>
+      </div>
+
+      <div class="grid-2">
+        <article class="card card-soft">
+          <span class="card-kicker">Problem 01–03</span>
+          <h3>Fragmentasi Materi, Tugas &amp; Progres</h3>
+          <ul>
+            <li><strong>Materi kuliah terpecah:</strong> File PDF, PPTX, dan catatan dosen tersimpan di banyak kanal sehingga sulit dicari ulang menjelang ujian.</li>
+            <li><strong>Pengorganisasian tugas sulit:</strong> Tenggat tugas dan ketentuan pengumpulan sering tenggelam di riwayat percakapan kelas.</li>
+            <li><strong>Progres belajar tidak terukur:</strong> Mahasiswa sulit melihat pertemuan mana yang sudah dipelajari dan topik mana yang masih tertinggal.</li>
+          </ul>
+        </article>
+        <article class="card card-soft">
+          <span class="card-kicker">Problem 04–05 &amp; Pendekatan Solusi</span>
+          <h3>Kesulitan Belajar Mandiri &amp; Ketiadaan AI Kontekstual</h3>
+          <ul>
+            <li><strong>Konsep sulit dipahami sendiri:</strong> Materi hitungan atau teori padat membutuhkan penjelasan ulang yang bertahap di luar jam kelas.</li>
+            <li><strong>Tidak ada AI terintegrasi materi:</strong> Chatbot umum tidak langsung terhubung ke silabus pertemuan mahasiswa.</li>
+            <li><strong>Pendekatan Ruang Kuliah:</strong> Menyatukan materi, tugas, kisi-kisi, kuis, dan AI Tutor dalam satu alur belajar per pertemuan.</li>
+          </ul>
         </article>
       </div>
     </section>
 
-    <section aria-labelledby="sec-arch">
+    <!-- SECTION 03 -->
+    <section id="sec-03" aria-labelledby="h-sec-03">
       <div class="section-head">
-        <span class="eyebrow">02 · Technical Architecture</span>
-        <h2 id="sec-arch">Arsitektur Frontend, Backend &amp; AI Chat</h2>
-        <p class="section-intro">Kombinasi teknologi multi-bahasa di sisi antarmuka, penyimpanan cloud yang hemat biaya, serta asisten AI untuk diskusi materi.</p>
+        <span class="eyebrow">Section 03 · Platform Features</span>
+        <h2 id="h-sec-03">Fitur Platform &amp; Bukti Implementasi</h2>
+        <p class="section-intro">Seluruh fitur di bawah diverifikasi langsung dari aplikasi live (<code>ruang-kuliah.vercel.app</code>) dan kode sumber, dengan pemisahan jelas antara fitur aktif dan pengembangan lanjutan.</p>
+      </div>
+
+      <div class="feature-stack">
+        <div class="feature-block">
+          <div>
+            <div class="card-top">
+              <span class="card-kicker">01 &amp; 02 · Dashboard &amp; Course Management</span>
+              <span class="status-pill status-implemented">Implemented</span>
+            </div>
+            <h3>Learning Dashboard &amp; Manajemen 8 Mata Kuliah</h3>
+            <p>Menampilkan jadwal kuliah Senin–Kamis, papan pengumuman terbarui, panel Kisi-Kisi UTS (5 mata kuliah), serta halaman detail tiap mata kuliah (<code>/courses/:courseId</code>) dengan 16 pertemuan, pembagian Pra-UTS/UAS, dan indikator progres.</p>
+          </div>
+          <figure class="visual-figure">
+            <img src="../assets/ruang-kuliah/course-detail-mbis.png" alt="Halaman Detail Mata Kuliah Matematika Bisnis" loading="lazy" decoding="async" />
+            <figcaption>Tampilan aktual halaman mata kuliah Matematika Bisnis (<code>MBS202</code>) dengan panel Kisi-Kisi UTS dan daftar pertemuan.</figcaption>
+          </figure>
+        </div>
+
+        <div class="feature-block">
+          <div>
+            <div class="card-top">
+              <span class="card-kicker">03 &amp; 07 · Materials &amp; Document / PDF Support</span>
+              <span class="status-pill status-implemented">Implemented</span>
+            </div>
+            <h3>Materi Terstruktur, Document Viewer &amp; PDF Support</h3>
+            <p>Halaman belajar (<code>/courses/:courseId/pertemuan/:meetingId</code>) memuat catatan terstruktur dengan dukungan rumus matematika (KaTeX), pratinjau dokumen PDF (<code>pdfjs-dist</code>) dan PPTX, serta pemrosesan PDF berbasis backend (<code>pypdf</code>) untuk analisis tugas/materi.</p>
+          </div>
+          <figure class="visual-figure">
+            <img src="../assets/ruang-kuliah/learning-ai-tutor.png" alt="Learning Page dengan Document Viewer dan AI Tutor Side Panel" loading="lazy" decoding="async" />
+            <figcaption>Workspace belajar Pertemuan 1 Matematika Bisnis dengan Document Viewer dan panel AI Tutor berdampingan.</figcaption>
+          </figure>
+        </div>
+
+        <div class="feature-block">
+          <div>
+            <div class="card-top">
+              <span class="card-kicker">04 &amp; 05 · Quiz, Task &amp; Progress Tracking</span>
+              <span class="status-pill status-implemented">Implemented</span>
+            </div>
+            <h3>Pusat Tugas Kuliah, Kuis Latihan &amp; Pelacakan Progres</h3>
+            <p>Fitur <code>/tugas</code> menyediakan checklist tugas mingguan, filter status &amp; kanal pengumpulan, serta arsip otomatis minggu lalu. Halaman <code>/progress</code> merekam pertemuan selesai (<code>0 / 128</code>), rata-rata kuis, grafik aktivitas 7/14 hari, dan progres per mata kuliah.</p>
+          </div>
+          <figure class="visual-figure">
+            <img src="../assets/ruang-kuliah/tugas-kuliah.png" alt="Pusat Tugas Perkuliahan Ruang Kuliah" loading="lazy" decoding="async" />
+            <figcaption>Halaman Pusat Tugas Perkuliahan (<code>/tugas</code>) dengan ringkasan 12 tugas, filter pengumpulan, dan arsip mingguan.</figcaption>
+          </figure>
+        </div>
+
+        <div class="grid-2">
+          <figure class="visual-figure">
+            <img src="../assets/ruang-kuliah/progress-tracker.png" alt="Halaman Progress Belajar Ruang Kuliah" loading="lazy" decoding="async" />
+            <figcaption>Halaman Progress (<code>/progress</code>) — grafik aktivitas harian, progres 8 mata kuliah, dan riwayat kuis.</figcaption>
+          </figure>
+          <figure class="visual-figure">
+            <img src="../assets/ruang-kuliah/ai-assistant.png" alt="Halaman AI Assistant Hub Ruang Kuliah" loading="lazy" decoding="async" />
+            <figcaption>Halaman AI Assistant (<code>/ai-assistant</code>) — pintasan langsung ke AI Tutor di setiap mata kuliah.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 04 -->
+    <section id="sec-04" aria-labelledby="h-sec-04">
+      <div class="section-head">
+        <span class="eyebrow">Section 04 · Development Timeline &amp; Changelog</span>
+        <h2 id="h-sec-04">Evolusi Produk: Version 1.0 → Alpha 4</h2>
+        <p class="section-intro">Riwayat pengembangan bertahap dari website materi statis menuju platform belajar interaktif dengan backend dan integrasi AI. Tidak ada tanggal rilis yang direkayasa untuk versi yang tidak terdokumentasi tanggalnya.</p>
+      </div>
+
+      <div class="timeline">
+        <article class="release-item">
+          <div class="release-head">
+            <span class="version-badge">Version 1.0 · Initial Release</span>
+            <span class="status-pill status-implemented">Completed</span>
+          </div>
+          <h3>Initial Learning Website</h3>
+          <p class="release-desc">Fondasi awal untuk menyatukan materi kuliah yang sebelumnya tersebar agar mudah diakses oleh mahasiswa.</p>
+          <details class="release-details">
+            <summary>Lihat rincian rilis</summary>
+            <ul>
+              <li>Initial learning website.</li>
+              <li>Basic page structure.</li>
+              <li>Course material presentation.</li>
+              <li>Basic navigation.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="release-item">
+          <div class="release-head">
+            <span class="version-badge">Version 2.0 · Learning Structure Expansion</span>
+            <span class="status-pill status-implemented">Completed</span>
+          </div>
+          <h3>Perluasan Struktur Pembelajaran</h3>
+          <p class="release-desc">Menata materi berdasarkan alur pertemuan kuliah sehingga mahasiswa lebih mudah mengikuti silabus mingguan.</p>
+          <details class="release-details">
+            <summary>Lihat rincian rilis</summary>
+            <ul>
+              <li>Improved course organization.</li>
+              <li>Meeting-based content structure.</li>
+              <li>Improved navigation.</li>
+              <li>Better learning content presentation.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="release-item">
+          <div class="release-head">
+            <span class="version-badge">Version 3.0 · Interface Refinement</span>
+            <span class="status-pill status-implemented">Completed</span>
+          </div>
+          <h3>Penyempurnaan Antarmuka &amp; Keterbacaan</h3>
+          <p class="release-desc">Memperbaiki hierarki visual dan konsistensi tata letak agar catatan materi nyaman dibaca.</p>
+          <details class="release-details">
+            <summary>Lihat rincian rilis</summary>
+            <ul>
+              <li>UI improvements.</li>
+              <li>Better content readability.</li>
+              <li>Improved layout consistency.</li>
+              <li>Navigation refinement.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="release-item">
+          <div class="release-head">
+            <span class="version-badge">Alpha 2 · Interactive Learning Features</span>
+            <span class="status-pill status-implemented">Completed</span>
+          </div>
+          <h3>Fitur Belajar Interaktif &amp; Manajemen Tugas</h3>
+          <p class="release-desc">Transisi dari pembaca materi menjadi aplikasi belajar lengkap dengan kuis, checklist tugas, pelacakan progres, dan dukungan PDF.</p>
+          <details class="release-details" open>
+            <summary>Lihat rincian rilis</summary>
+            <ul>
+              <li>Course gallery.</li>
+              <li>Meeting-based learning structure.</li>
+              <li>Quiz and practice questions.</li>
+              <li>Task checklist &amp; weekly task organization.</li>
+              <li>Study progress tracking &amp; PDF-related learning support.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="release-item milestone-ai">
+          <div class="release-head">
+            <span class="version-badge">Alpha 3 · Backend &amp; AI Integration Milestone</span>
+            <span class="status-pill status-implemented">Core Milestone</span>
+          </div>
+          <h3>Integrasi Backend &amp; AI Tutor</h3>
+          <p class="release-desc">Tonggak utama Ruang Kuliah: menghubungkan frontend React dengan backend FastAPI, sinkronisasi data belajar, serta AI Tutor untuk penjelasan dan latihan soal.</p>
+          <details class="release-details" open>
+            <summary>Lihat rincian rilis</summary>
+            <ul>
+              <li>Backend integration &amp; learning data management.</li>
+              <li>AI Tutor integration, AI-assisted explanations &amp; AI question answering.</li>
+              <li>Quiz generation development &amp; PDF analysis development.</li>
+              <li>Major UI enhancements.</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="release-item milestone-alpha4">
+          <div class="release-head">
+            <span class="version-badge">Alpha 4 · Maintenance &amp; Refinement</span>
+            <span class="status-pill status-maintenance">Maintenance in Progress</span>
+          </div>
+          <h3>Pemeliharaan Berkelanjutan &amp; Stabilitas Sistem</h3>
+          <p class="release-desc">Fase aktif saat ini untuk memastikan keandalan integrasi frontend-backend, stabilitas AI Tutor, dan responsivitas lintas perangkat.</p>
+          <details class="release-details" open>
+            <summary>Lihat rincian pemeliharaan</summary>
+            <ul>
+              <li>Bug fixes &amp; backend-frontend integration checks.</li>
+              <li>AI Tutor stability evaluation.</li>
+              <li>Performance optimization &amp; responsive interface improvements.</li>
+              <li>General system maintenance.</li>
+            </ul>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 05 -->
+    <section id="sec-05" aria-labelledby="h-sec-05">
+      <div class="section-head">
+        <span class="eyebrow">Section 05 · AI Tutor Development</span>
+        <h2 id="h-sec-05">Desain AI Tutor: Mendukung Pemahaman, Bukan Sekadar Jawaban</h2>
+        <p class="section-intro">AI Tutor ditempatkan langsung di samping materi pertemuan agar diskusi selalu mengacu pada konteks perkuliahan yang sedang dipelajari.</p>
       </div>
 
       <div class="grid-3">
-        <article class="panel">
-          <span class="panel-kicker">Frontend</span>
-          <h3>Multi-Bahasa &amp; Modular</h3>
+        <article class="card">
+          <span class="card-kicker">Context-Aware Chat</span>
+          <h3>Antarmuka Berdampingan</h3>
+          <p>Panel AI Tutor (<code>AITutorPanel.jsx</code>) dapat diubah ukurannya atau diperluas ke layar penuh, lengkap dengan 5 quick actions: <em>Jelaskan Sederhana</em>, <em>Berikan Contoh</em>, <em>Ringkas Materi</em>, <em>Uji Pemahaman</em>, dan <em>Visual &amp; Grafik</em>.</p>
+        </article>
+        <article class="card">
+          <span class="card-kicker">Pedagogical Role</span>
+          <h3>Mendorong Pemahaman Bertahap</h3>
+          <p>Peran edukatif AI diarahkan untuk memecah konsep sulit, memberi analogi, dan menguji pemahaman mahasiswa lewat latihan soal — bukan sekadar menyalin jawaban akhir tugas.</p>
+        </article>
+        <article class="card">
+          <span class="card-kicker">Quiz &amp; PDF Workflow</span>
+          <h3>Latihan &amp; Analisis Dokumen</h3>
+          <p>Mendukung pengembangan pembuatan soal latihan kontekstual serta ekstraksi isi PDF (<code>pypdf</code>) melalui <code>pdf_analyzer.py</code> untuk membantu mahasiswa membedah modul maupun brief tugas.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 06 -->
+    <section id="sec-06" aria-labelledby="h-sec-06">
+      <div class="section-head">
+        <span class="eyebrow">Section 06 · Technology &amp; Architecture</span>
+        <h2 id="h-sec-06">Arsitektur Teknis (Terverifikasi dari Kode Sumber)</h2>
+        <p class="section-intro">Seluruh komponen di bawah diverifikasi langsung dari repositori Ruang Kuliah (<code>frontend/package.json</code>, <code>backend/requirements.txt</code>, <code>backend/ai_tutor.py</code>, dan <code>vercel.json</code>).</p>
+      </div>
+
+      <div class="arch-diagram">
+        <div class="arch-node">
+          <strong>1. Frontend (SPA)</strong>
+          <span>React 18.3.1 + CRACO, React Router v7, Tailwind CSS, Radix UI, Framer Motion, KaTeX, Recharts, <code>pdfjs-dist</code>.</span>
+        </div>
+        <div class="arch-node">
+          <strong>2. Backend API</strong>
+          <span>Python FastAPI + Uvicorn (<code>api/index.py</code> → <code>backend/server.py</code>), autentikasi JWT &amp; bcrypt.</span>
+        </div>
+        <div class="arch-node">
+          <strong>3. Data &amp; Storage</strong>
+          <span>MongoDB (<code>pymongo</code> / <code>motor</code> + fallback <code>mongomock-motor</code>), Notion sync, local JSON edits, Google Drive files.</span>
+        </div>
+        <div class="arch-node">
+          <strong>4. AI &amp; Document Engine</strong>
+          <span>OpenAI Python SDK ke <code>api.pecutopus.web.id/v1</code> (DeepSeek V4.1 Flash / Claude / GPT), <code>pypdf</code> + Pillow.</span>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <article class="card">
+          <span class="card-kicker">Deployment &amp; Persistence</span>
+          <h3>Hosting &amp; Sinkronisasi Data</h3>
           <ul>
-            <li>Antarmuka dibangun dengan kombinasi berbagai bahasa/teknologi web (HTML, CSS, JavaScript/TypeScript).</li>
-            <li>Dilengkapi cache browser lokal dan mode Terang/Gelap/Sistem untuk akses cepat.</li>
+            <li><strong>Vercel Hybrid Build:</strong> <code>@vercel/static-build</code> untuk React SPA dan <code>@vercel/python</code> untuk route <code>/api/*</code>.</li>
+            <li><strong>Cache &amp; Persistensi:</strong> Cache browser lokal membuat materi cepat dibuka kembali, dengan tombol sinkronisasi Cloud Atlas saat pembaruan tersedia.</li>
           </ul>
         </article>
-        <article class="panel">
-          <span class="panel-kicker">Backend &amp; Storage</span>
-          <h3>MongoDB + Google Drive</h3>
+        <article class="card">
+          <span class="card-kicker">Experimental Voice Pipeline</span>
+          <h3>Eksplorasi RVC / TTS Worker</h3>
           <ul>
-            <li><strong>MongoDB:</strong> Menyimpan data mata kuliah, metadata tugas, pengumuman, dan struktur kisi-kisi.</li>
-            <li><strong>Google Drive:</strong> Berfungsi sebagai storage file materi agar kapasitas server tetap ringan dan hemat biaya.</li>
+            <li>Di repositori backend terdapat eksperimen lokal <code>rvc_worker.py</code> &amp; <code>cloud_rvc_worker</code> (Colab/Modal) sebagai fondasi riset suara untuk roadmap masa depan.</li>
+            <li>Fitur suara ini masih bersifat eksperimental/terproteksi PIN dan belum dirilis sebagai fitur penuh lintas mata kuliah.</li>
           </ul>
         </article>
-        <article class="panel">
-          <span class="panel-kicker">AI Assistant</span>
-          <h3>AI Chat (Pecut Opus)</h3>
-          <ul>
-            <li>Terintegrasi dengan asisten AI berbasis <strong>Pecut Opus</strong> untuk membantu menjelaskan materi dan kisi-kisi.</li>
-            <li>Menggunakan sistem pengisian/pembelian token ulang secara bertahap apabila kuota token AI habis.</li>
-          </ul>
+      </div>
+    </section>
+
+    <!-- SECTION 07 -->
+    <section id="sec-07" aria-labelledby="h-sec-07">
+      <div class="roadmap-section">
+        <div class="section-head">
+          <span class="eyebrow" style="color: var(--rk-blue);">Section 07 · Future Roadmap</span>
+          <h2 id="h-sec-07">BEYOND ALPHA 4 — THE NEXT LEARNING EXPERIENCE</h2>
+          <p class="section-intro">Pengembangan lanjutan yang secara tegas dipisahkan dari riwayat rilis yang sudah selesai.</p>
+        </div>
+
+        <div class="restriction-banner">
+          <strong>Batasan Cakupan Kritis (Scope Restriction):</strong> Seluruh fitur pada bagian ini — <strong>AI Voice Tutor</strong>, <strong>AI Video Tutor</strong>, dan <strong>Specialized Tutor</strong> — direncanakan <strong>HANYA untuk mata kuliah Matematika Bisnis (<code>MBS202</code>)</strong>, bukan untuk seluruh mata kuliah di Ruang Kuliah.
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-top">
+              <span class="card-kicker">01 · Matematika Bisnis Only</span>
+              <span class="status-pill status-planned">Planned / Future</span>
+            </div>
+            <h3>AI Voice Tutor</h3>
+            <p>Asisten belajar berbasis suara yang memungkinkan mahasiswa mengajukan pertanyaan lisan dan menerima penjelasan audio secara interaktif untuk topik Matematika Bisnis.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <span class="card-kicker">02 · Matematika Bisnis Only</span>
+              <span class="status-pill status-planned">Planned / Future</span>
+            </div>
+            <h3>AI Video Tutor</h3>
+            <p>Pengalaman generasi tutorial visual untuk menjelaskan konsep hitungan yang sulit melalui rumus, ilustrasi grafik, dan instruksi langkah demi langkah.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <span class="card-kicker">03 · Matematika Bisnis Only</span>
+              <span class="status-pill status-planned">Planned / Future</span>
+            </div>
+            <h3>Specialized Matematika Bisnis Tutor</h3>
+            <ul>
+              <li>Penjelasan rumus matematika bisnis (Deret, Bunga Majemuk, PV, NPV, ARR).</li>
+              <li>Penyelesaian persamaan langkah demi langkah &amp; tutorial kalkulasi bisnis.</li>
+              <li>Soal latihan berbasis tingkat kesulitan, penjelasan suara, dan tutorial visual.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 08 -->
+    <section id="sec-08" aria-labelledby="h-sec-08">
+      <div class="section-head">
+        <span class="eyebrow">Section 08 · Project Reflection</span>
+        <h2 id="h-sec-08">Refleksi Pengembangan &amp; Visi Jangka Panjang</h2>
+      </div>
+
+      <div class="grid-2">
+        <article class="card">
+          <span class="card-kicker">Iterative Lessons</span>
+          <h3>Dari Website Statis ke Sistem Belajar Terstruktur</h3>
+          <p>Ruang Kuliah berkembang secara bertahap dari kebutuhan nyata mahasiswa: dimulai dari sekadar merapikan file kuliah (v1–v3), lalu menambahkan kuis, tugas, dan progres belajar (Alpha 2), hingga integrasi backend FastAPI dan AI Tutor kontekstual (Alpha 3) yang kini terus dirawat di fase Alpha 4.</p>
+        </article>
+        <article class="card">
+          <span class="card-kicker">Long-Term Vision</span>
+          <h3>Visi Ruang Kuliah</h3>
+          <p>Menjadi pendamping belajar akademik gratis yang terstruktur, cepat, dan bertanggung jawab secara pedagogis — di mana AI berperan membantu mahasiswa memahami konsep secara mandiri, dimulai dari fokus terukur pada mata kuliah Matematika Bisnis untuk inovasi tutor suara dan visual berikutnya.</p>
         </article>
       </div>
     </section>
@@ -362,11 +1068,31 @@
 
   <footer class="page-footer">
     <div class="page-container footer-inner">
-      <span><strong>Jona Setiawan</strong> · Ruang Kuliah (https://ruang-kuliah.vercel.app/)</span>
+      <span><strong>Jona Setiawan</strong> · Ruang Kuliah Case Study (<code>https://ruang-kuliah.vercel.app/</code>)</span>
       <a class="back-btn" href="../../index.html#projects">Back to Portfolio</a>
     </div>
   </footer>
 
+  <script src="../scripts/ruang-kuliah/media-backend.js"></script>
+  <script>
+    (function () {
+      const container = document.getElementById('rk-video-showcase');
+      const data = window.RuangKuliahMediaBackend;
+      if (!container || !data || !data.videos) return;
+      container.innerHTML = data.videos.map((v) => `
+        <figure class="visual-figure">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;margin-bottom:0.65rem;flex-wrap:wrap;">
+            <strong style="font-size:0.95rem;">${v.title}</strong>
+            <a href="${v.viewUrl}" target="_blank" rel="noopener noreferrer" style="font-size:0.78rem;font-weight:700;color:#1D4ED8;text-decoration:none;">Buka di Drive ↗</a>
+          </div>
+          <div class="video-frame-wrap">
+            <iframe src="${v.previewUrl}" title="${v.title}" allow="autoplay" loading="lazy"></iframe>
+          </div>
+          <figcaption>${v.caption} (<code>${v.fileName}</code>)</figcaption>
+        </figure>
+      `).join('');
+    })();
+  </script>
   <script defer src="../../js/language-controls.js?v=20260410-2"></script>
   <script defer src="../../js/theme-controls.js"></script>
   <script defer src="../../js/performance-utils.js"></script>

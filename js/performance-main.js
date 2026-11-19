@@ -10,7 +10,6 @@
   const mobileMenuCloseBtn = document.getElementById('mobile-menu-close');
   const mobileThemeToggleBtn = document.getElementById('mobile-theme-toggle');
   const mobileThemeLabel = document.getElementById('mobile-theme-label');
-  const desktopSidebarToggleBtn = document.getElementById('desktop-sidebar-toggle');
   const zoomControl = document.getElementById('zoom-control');
   const zoomToggleBtn = document.getElementById('zoom-toggle-btn');
   const zoomPanel = document.getElementById('zoom-panel');
@@ -22,7 +21,6 @@
   const returnScrollKey = 'portfolio-return-scroll';
   const returnScrollPendingKey = 'portfolio-return-pending';
   const zoomStorageKey = 'portfolio-page-zoom';
-  const desktopNavLayoutStorageKey = 'portfolio-desktop-nav-layout';
   var defaultZoom = 80;
   var minZoom = 60;
   var maxZoom = 120;
@@ -106,27 +104,7 @@
     mobileThemeLabel.textContent = labelPrefix + ': ' + formatThemeName(activeTheme);
   }
 
-  function setDesktopNavLayout(layout, shouldPersist) {
-    var nextLayout = layout === 'topbar' ? 'topbar' : 'sidebar';
-    document.body.classList.toggle('desktop-nav-topbar', nextLayout === 'topbar');
-
-    if (desktopSidebarToggleBtn) {
-      var targetLayout = nextLayout === 'topbar' ? 'sidebar' : 'topbar';
-      desktopSidebarToggleBtn.dataset.layoutTarget = targetLayout;
-      desktopSidebarToggleBtn.setAttribute(
-        'aria-label',
-        targetLayout === 'sidebar' ? 'Switch to sidebar layout' : 'Switch to topbar layout'
-      );
-      desktopSidebarToggleBtn.setAttribute('title', targetLayout === 'sidebar' ? 'Switch to sidebar layout' : 'Switch to topbar layout');
-    }
-
-    if (shouldPersist) {
-      localStorage.setItem(desktopNavLayoutStorageKey, nextLayout);
-    }
-  }
-
-  var storedDesktopNavLayout = localStorage.getItem(desktopNavLayoutStorageKey);
-  setDesktopNavLayout(storedDesktopNavLayout === 'sidebar' ? 'sidebar' : 'topbar', false);
+  document.body.classList.add('desktop-nav-topbar');
 
   function setMobileMenuState(isOpen) {
     if (!hamburgerBtn || !mobileMenuPanel) {
@@ -180,13 +158,6 @@
     }
   });
 
-  if (desktopSidebarToggleBtn) {
-    desktopSidebarToggleBtn.addEventListener('click', function () {
-      var targetLayout = desktopSidebarToggleBtn.dataset.layoutTarget === 'topbar' ? 'topbar' : 'sidebar';
-      setDesktopNavLayout(targetLayout);
-    });
-  }
-
   if (hamburgerBtn && mobileMenuPanel) {
     hamburgerBtn.addEventListener('click', function () {
       var shouldOpen = !mobileMenuPanel.classList.contains('active');
@@ -225,11 +196,6 @@
     window.addEventListener('resize', function () {
       if (window.innerWidth > 768) {
         setMobileMenuState(false);
-      }
-
-      if (window.innerWidth > 768) {
-        var persistedLayout = localStorage.getItem(desktopNavLayoutStorageKey);
-        setDesktopNavLayout(persistedLayout === 'sidebar' ? 'sidebar' : 'topbar', false);
       }
     });
 
