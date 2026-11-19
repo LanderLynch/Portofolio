@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="project/assets/logo-preview/logo-lemon.png" />
+  <title>Daily Logbook - Jona Setiawan</title>
+  <script src="js/theme-init.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap">
+  <link rel="stylesheet" href="css/zoom-controls.css" />
+  <link rel="stylesheet" href="webmeji-main/webmeji.css" />
+  <style>
+    :root,
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --color-paper: #F3EDE3;
+      --color-paper-soft: #F8F4ED;
+      --color-paper-deep: #EAE0D3;
+      --color-ink: #30221D;
+      --color-ink-soft: #57463D;
+      --color-muted: #76655A;
+      --color-terracotta: #B84F38;
+      --color-terracotta-btn: #983E2B;
+      --color-terracotta-hover: #7F3121;
+      --color-border: #DCCFC0;
+      --color-border-strong: #C8B6A5;
+      --shadow-soft: 0 8px 24px rgba(65, 43, 31, 0.045);
+
+      --font-display: "Cormorant Garamond", "Georgia", serif;
+      --font-body: "Lora", "Georgia", serif;
+      --font-ui: "DM Sans", "Arial", sans-serif;
+
+      --radius-card: 14px;
+      --radius-control: 10px;
+      --radius-pill: 999px;
+      --content-width: 1180px;
+      --grid-size: 27px;
+      --grid-line: rgba(74, 58, 47, 0.12);
+
+      --bg: var(--color-paper);
+      --surface: var(--color-paper-soft);
+      --surface-soft: var(--color-paper-deep);
+      --border: var(--color-border);
+      --text: var(--color-ink);
+      --muted: var(--color-muted);
+      --accent: var(--color-terracotta);
+      --accent-strong: var(--color-terracotta-btn);
+      --accent-soft: rgba(184, 79, 56, 0.12);
+      --shadow: var(--shadow-soft);
+    }
+
+    * { box-sizing: border-box; }
+    html { min-height: 100%; background: var(--color-paper); }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-ui);
+      line-height: 1.6;
+      color: var(--color-ink);
+      background-color: var(--color-paper);
+      background-image:
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+      background-size: var(--grid-size) var(--grid-size);
+    }
+
+    .page-shell {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding: 0.9rem 1.2rem;
+      border-radius: var(--radius-pill);
+      background: rgba(248, 244, 237, 0.94);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(12px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-ink);
+    }
+
+    .brand-mark {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid var(--color-border-strong);
+      background: var(--color-paper);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .back-btn,
+    .notion-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      min-height: 2.5rem;
+      padding: 0.45rem 1.05rem;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-ui);
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .back-btn {
+      background: var(--color-paper);
+      border: 1px solid var(--color-border-strong);
+      color: var(--color-ink);
+    }
+
+    .back-btn:hover {
+      background: var(--color-paper-deep);
+      border-color: var(--color-terracotta);
+    }
+
+    .notion-link-btn {
+      background: var(--color-terracotta-btn);
+      border: 1px solid transparent;
+      color: #FAF6F0;
+    }
+
+    .notion-link-btn:hover {
+      background: var(--color-terracotta-hover);
+    }
+
+    .hero-card {
+      padding: 2.1rem;
+      margin-bottom: 1.5rem;
+      border-radius: var(--radius-card);
+      background: var(--color-paper-soft);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(240px, 0.75fr);
+      gap: 1.75rem;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      margin: 0 0 0.45rem;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-terracotta-btn);
+    }
+
+    .hero-card h1 {
+      margin: 0 0 0.75rem;
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 600;
+      line-height: 1.02;
+      color: var(--color-ink);
+    }
+
+    .hero-card p {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 0.98rem;
+      line-height: 1.65;
+      color: var(--color-ink-soft);
+    }
+
+    .hero-stats {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .hero-stat {
+      padding: 0.9rem 1.1rem;
+      border-radius: var(--radius-control);
+      background: var(--color-paper);
+      border: 1px solid var(--color-border);
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--color-ink);
+    }
+
+    .hero-stat span {
+      display: block;
+      margin-top: 0.15rem;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+
+    /* Controls / Filter Bar */
+    .controls-panel {
+      padding: 1.15rem 1.25rem;
+      margin-bottom: 1.5rem;
+      border-radius: var(--radius-card);
+      background: var(--color-paper-soft);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .controls-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      flex: 1 1 260px;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      min-height: 2.75rem;
+      padding: 0 0.95rem;
+      border-radius: var(--radius-pill);
+      background: var(--color-paper);
+      border: 1px solid var(--color-border-strong);
+    }
+
+    .search-box svg {
+      width: 17px;
+      height: 17px;
+      stroke: var(--color-muted);
+      fill: none;
+      stroke-width: 1.8;
+      flex-shrink: 0;
+    }
+
+    .search-box input {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: var(--color-ink);
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .raw-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      min-height: 2.5rem;
+      padding: 0.4rem 0.95rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--color-border-strong);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .raw-toggle input {
+      accent-color: var(--color-terracotta-btn);
+      cursor: pointer;
+    }
+
+    .filter-rows {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .pill-group {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-pill {
+      min-height: 2.25rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--color-border-strong);
+      background: var(--color-paper);
+      color: var(--color-ink-soft);
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .filter-pill:hover {
+      border-color: var(--color-terracotta);
+      color: var(--color-ink);
+    }
+
+    .filter-pill.is-active {
+      background: var(--color-terracotta-btn);
+      border-color: transparent;
+      color: #FAF6F0;
+    }
+
+    .results-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.86rem;
+      color: var(--color-muted);
+    }
+
+    /* Timeline Entries */
+    .logbook-list {
+      display: grid;
+      gap: 1.1rem;
+    }
+
+    .log-card {
+      padding: 1.45rem 1.6rem;
+      border-radius: var(--radius-card);
+      background: var(--color-paper-soft);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .log-card.is-rest {
+      padding: 1rem 1.4rem;
+      background: rgba(248, 244, 237, 0.75);
+    }
+
+    .log-card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.9rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .log-card.is-rest .log-card-head {
+      margin-bottom: 0;
+      align-items: center;
+    }
+
+    .log-date {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--color-ink);
+    }
+
+    .log-tags {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .log-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.24rem 0.65rem;
+      border-radius: var(--radius-pill);
+      background: var(--color-paper-deep);
+      border: 1px solid var(--color-border);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-ink-soft);
+    }
+
+    .log-tag--work {
+      background: rgba(152, 62, 43, 0.11);
+      border-color: rgba(152, 62, 43, 0.25);
+      color: var(--color-terracotta-btn);
+    }
+
+    .log-tag--outside {
+      background: rgba(65, 95, 75, 0.11);
+      border-color: rgba(65, 95, 75, 0.24);
+      color: #2F553D;
+    }
+
+    .log-sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1rem;
+    }
+
+    .log-section-box {
+      padding: 1.05rem 1.15rem;
+      border-radius: var(--radius-control);
+      background: var(--color-paper);
+      border: 1px solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .log-section-kicker {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-terracotta-btn);
+    }
+
+    .log-section-box--outside .log-section-kicker {
+      color: #2F553D;
+    }
+
+    .log-section-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.32rem;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--color-ink);
+    }
+
+    .log-section-body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 0.94rem;
+      line-height: 1.62;
+      color: var(--color-ink-soft);
+    }
+
+    .log-raw-box {
+      margin-top: 0.25rem;
+      padding: 0.6rem 0.8rem;
+      border-radius: 8px;
+      background: var(--color-paper-deep);
+      border: 1px dashed var(--color-border-strong);
+      font-size: 0.82rem;
+      color: var(--color-ink-soft);
+      display: none;
+    }
+
+    body.show-raw .log-raw-box {
+      display: block;
+    }
+
+    .log-raw-box strong {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 0.15rem;
+    }
+
+    .log-attachment-note {
+      font-size: 0.78rem;
+      color: var(--color-muted);
+      font-style: italic;
+    }
+
+    .log-ai-row {
+      margin-top: auto;
+      padding-top: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .log-ai-btn {
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--color-border-strong);
+      background: var(--color-paper-soft);
+      color: var(--color-ink);
+      font-family: var(--font-ui);
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .log-ai-btn:hover:not(:disabled) {
+      border-color: var(--color-terracotta);
+      background: var(--color-paper-deep);
+    }
+
+    .log-ai-btn:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    .log-ai-status {
+      font-size: 0.76rem;
+      color: var(--color-muted);
+    }
+
+    .empty-state {
+      padding: 2.5rem 1.5rem;
+      border-radius: var(--radius-card);
+      background: var(--color-paper-soft);
+      border: 1px solid var(--color-border);
+      text-align: center;
+      display: none;
+    }
+
+    .empty-state.is-visible {
+      display: block;
+    }
+
+    .editorial-footer {
+      margin-top: 2.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      flex-wrap: wrap;
+    }
+
+    .editorial-footer-brand {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--color-ink);
+    }
+
+    @media (max-width: 820px) {
+      .hero-card {
+        grid-template-columns: 1fr;
+        padding: 1.4rem;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: stretch;
+        border-radius: 16px;
+      }
+
+      .topbar-actions {
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-zoom-control" id="page-zoom-control">
+    <button class="page-zoom-toggle" id="page-zoom-toggle" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="page-zoom-panel">
+      <svg class="page-zoom-icon" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
+    </button>
+    <div class="page-zoom-panel" id="page-zoom-panel" aria-hidden="true">
+      <div class="page-zoom-panel-group">
+        <span class="page-zoom-label">Zoom</span>
+        <div class="page-zoom-actions">
+          <button class="page-zoom-step" id="page-zoom-out" type="button" aria-label="Zoom out">-</button>
+          <button class="page-zoom-value" id="page-zoom-value" type="button" aria-label="Reset zoom to default">80%</button>
+          <button class="page-zoom-step" id="page-zoom-in" type="button" aria-label="Zoom in">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">
+          <img src="project/assets/logo-preview/logo-lemon.png" alt="Jona Setiawan Logo" loading="eager" decoding="async" />
+        </span>
+        <span>Daily Logbook</span>
+      </div>
+      <div class="topbar-actions">
+        <a href="https://app.notion.com/p/3d7a22b9b6b2802d9312c1d4854d78d8?v=3d7a22b9b6b280bb93a9000cba830231" target="_blank" rel="noopener noreferrer" class="notion-link-btn">Open Notion Source &#8599;</a>
+        <a href="index.html" class="back-btn">Back to Portfolio</a>
+      </div>
+    </header>
+
+    <section class="hero-card">
+      <div>
+        <p class="hero-kicker">Work Activity Archive · Notion Sync</p>
+        <h1>Work Daily Logbook</h1>
+        <p>
+          Catatan aktivitas kerja harian (<strong>Work</strong>) dari database Notion <strong>Daily Note</strong> yang merangkum proyek desain tas, cooler bag, branding produk, penyiapan file cetak sablon/DTF, serta dokumentasi hasil produksi untuk berbagai brand. Setiap catatan mentah telah diperluas menjadi penjelasan terstruktur agar mudah dibaca.
+        </p>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <strong id="stat-work-entries">25</strong>
+          <span>Total catatan aktivitas Work</span>
+        </div>
+        <div class="hero-stat">
+          <strong id="stat-attachment-entries">23</strong>
+          <span>Catatan Work dengan lampiran visual</span>
+        </div>
+        <div class="hero-stat">
+          <strong>Sept – Oct 2026</strong>
+          <span>Periode log kerja aktif (10 Sept – 29 Okt 2026)</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="controls-panel" aria-label="Filter work logbook">
+      <div class="controls-top">
+        <label class="search-box" for="logbook-search">
+          <svg viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path></svg>
+          <input id="logbook-search" type="search" placeholder="Cari aktivitas work, brand (Dancow, Nestle, Milo, KitKat, Nescafe), atau tanggal..." autocomplete="off" />
+        </label>
+
+        <label class="raw-toggle" for="toggle-raw-notes">
+          <input type="checkbox" id="toggle-raw-notes" />
+          <span>Tampilkan Raw Note Notion</span>
+        </label>
+      </div>
+
+      <div class="filter-rows">
+        <div class="pill-group" role="group" aria-label="Filter fokus work">
+          <button type="button" class="filter-pill is-active" data-cat="all">Semua Work</button>
+          <button type="button" class="filter-pill" data-cat="dancow-nestle">Dancow &amp; Nestle</button>
+          <button type="button" class="filter-pill" data-cat="milo-kitkat">Milo &amp; KitKat</button>
+          <button type="button" class="filter-pill" data-cat="other-brands">Brand Lainnya</button>
+          <button type="button" class="filter-pill" data-cat="production">Printing &amp; Foto</button>
+        </div>
+
+        <div class="pill-group" role="group" aria-label="Filter bulan">
+          <button type="button" class="filter-pill is-active" data-month="all">Semua Bulan</button>
+          <button type="button" class="filter-pill" data-month="2026-10">Oct 2026</button>
+          <button type="button" class="filter-pill" data-month="2026-09">Sept 2026</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="results-bar">
+      <span id="logbook-results-count">Menampilkan catatan kerja</span>
+      <span>Sumber: Notion Daily Note (Work)</span>
+    </div>
+
+    <main>
+      <section class="logbook-list" id="logbook-list"></section>
+      <div class="empty-state" id="logbook-empty">
+        <h2>Tidak ada catatan yang cocok</h2>
+        <p>Coba ubah kata kunci pencarian atau pilih filter bulan/kategori lain.</p>
+      </div>
+    </main>
+
+    <footer class="editorial-footer">
+      <span class="editorial-footer-brand">Jona Setiawan</span>
+      <span>Daily activities logbook &amp; Notion archive</span>
+    </footer>
+  </div>
+
+  <script src="js/logbook-data.js"></script>
+  <script>
+    const entries = (Array.isArray(window.LOGBOOK_ENTRIES) ? window.LOGBOOK_ENTRIES : []).filter((entry) => Boolean(entry.work));
+    const listEl = document.getElementById("logbook-list");
+    const emptyEl = document.getElementById("logbook-empty");
+    const countEl = document.getElementById("logbook-results-count");
+    const searchInput = document.getElementById("logbook-search");
+    const rawToggle = document.getElementById("toggle-raw-notes");
+    const catButtons = document.querySelectorAll("[data-cat]");
+    const monthButtons = document.querySelectorAll("[data-month]");
+
+    let activeCat = "all";
+    let activeMonth = "all";
+
+    function escapeHtml(str) {
+      return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function getWorkGroups(entry) {
+      const text = `${entry.work?.title || ""} ${entry.work?.raw || ""}`.toLowerCase();
+      const groups = [];
+      if (/dancow|nestle/.test(text)) groups.push("dancow-nestle");
+      if (/milo|kitkat/.test(text)) groups.push("milo-kitkat");
+      if (/nescafe|purina|lactogrow|my baby/.test(text)) groups.push("other-brands");
+      if (/print|sablon|dtf|foto/.test(text)) groups.push("production");
+      return groups;
+    }
+
+    function renderSectionBox(entry, key, label, data, extraClass = "") {
+      if (!data) return "";
+      const attachmentHtml = data.attachmentNote
+        ? `<div class="log-attachment-note">${escapeHtml(data.attachmentNote)}</div>`
+        : "";
+      return `
+        <div class="log-section-box ${extraClass}">
+          <div class="log-section-kicker">
+            <span>${label}</span>
+          </div>
+          <h3 class="log-section-title">${escapeHtml(data.title)}</h3>
+          <p class="log-section-body" data-summary-for="${entry.id}-${key}">${escapeHtml(data.summary)}</p>
+          ${attachmentHtml}
+          <div class="log-raw-box">
+            <strong>Raw Notion Note</strong>
+            <span>${escapeHtml(data.raw)}</span>
+          </div>
+          <div class="log-ai-row">
+            <button type="button" class="log-ai-btn" data-explain-id="${entry.id}" data-explain-key="${key}">
+              Re-explain with DeepSeek AI
+            </button>
+            <span class="log-ai-status" id="ai-status-${entry.id}-${key}"></span>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderLogbook() {
+      const q = (searchInput?.value || "").trim().toLowerCase();
+
+      const filtered = entries.filter((entry) => {
+        if (activeMonth !== "all" && entry.month !== activeMonth) return false;
+        if (activeCat !== "all" && !getWorkGroups(entry).includes(activeCat)) return false;
+
+        if (q) {
+          const haystack = [
+            entry.date,
+            entry.work?.title,
+            entry.work?.raw,
+            entry.work?.summary
+          ]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase();
+          if (!haystack.includes(q)) return false;
+        }
+        return true;
+      });
+
+      countEl.textContent = `Menampilkan ${filtered.length} dari ${entries.length} catatan kerja`;
+      emptyEl.classList.toggle("is-visible", filtered.length === 0);
+
+      listEl.innerHTML = filtered
+        .map((entry) => {
+          const tags = [`<span class="log-tag log-tag--work">Work</span>`];
+          if (entry.attachments > 0) tags.push(`<span class="log-tag">${entry.attachments} Lampiran</span>`);
+
+          return `
+            <article class="log-card">
+              <div class="log-card-head">
+                <h2 class="log-date">${escapeHtml(entry.date)}</h2>
+                <div class="log-tags">${tags.join("")}</div>
+              </div>
+              <div class="log-sections">
+                ${renderSectionBox(entry, "work", "Work", entry.work)}
+              </div>
+            </article>
+          `;
+        })
+        .join("");
+    }
+
+    listEl.addEventListener("click", async (event) => {
+      const btn = event.target.closest("[data-explain-id]");
+      if (!btn) return;
+
+      const entryId = btn.dataset.explainId;
+      const key = btn.dataset.explainKey;
+      const entry = entries.find((item) => item.id === entryId);
+      const sectionData = entry?.[key];
+      if (!sectionData) return;
+
+      const statusEl = document.getElementById(`ai-status-${entryId}-${key}`);
+      const summaryEl = document.querySelector(`[data-summary-for="${entryId}-${key}"]`);
+
+      btn.disabled = true;
+      if (statusEl) statusEl.textContent = "Memproses dengan DeepSeek AI...";
+
+      try {
+        const res = await fetch("/api/logbook-explain", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            rawNote: sectionData.raw,
+            date: entry.date,
+            section: key === "work" ? "Work" : "Outside Work"
+          })
+        });
+        const payload = await res.json();
+        if (!res.ok) {
+          throw new Error(payload?.error || "Server AI belum dikonfigurasi.");
+        }
+        if (summaryEl && payload.explanation) {
+          summaryEl.textContent = payload.explanation;
+        }
+        if (statusEl) {
+          statusEl.textContent = `Diperbarui (${payload.model || "deepseek"})`;
+        }
+      } catch (err) {
+        if (statusEl) {
+          statusEl.textContent = err.message || "Gagal menghubungi endpoint DeepSeek.";
+        }
+      } finally {
+        btn.disabled = false;
+      }
+    });
+
+    rawToggle?.addEventListener("change", () => {
+      document.body.classList.toggle("show-raw", rawToggle.checked);
+    });
+
+    searchInput?.addEventListener("input", renderLogbook);
+
+    catButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        catButtons.forEach((b) => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
+        activeCat = btn.dataset.cat;
+        renderLogbook();
+      });
+    });
+
+    monthButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        monthButtons.forEach((b) => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
+        activeMonth = btn.dataset.month;
+        renderLogbook();
+      });
+    });
+
+    const attachmentEntriesCount = entries.filter((e) => e.attachments > 0).length;
+    document.getElementById("stat-work-entries").textContent = String(entries.length);
+    document.getElementById("stat-attachment-entries").textContent = String(attachmentEntriesCount);
+
+    renderLogbook();
+  </script>
+  <script defer src="js/language-controls.js?v=20260410-2"></script>
+  <script defer src="js/theme-controls.js"></script>
+  <script defer src="js/performance-utils.js"></script>
+  <script defer src="js/zoom-controls.js"></script>
+  <script defer src="webmeji-main/config.js"></script>
+  <script defer src="webmeji-main/webmeji.js"></script>
+</body>
+</html>

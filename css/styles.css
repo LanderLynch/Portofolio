@@ -4082,6 +4082,20 @@ body.desktop-nav-topbar .sidebar-toggle-icon-sidebar {
   }
 }
 
+.education-status-pill {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.14rem 0.55rem;
+  border-radius: 999px;
+  background: var(--accent-soft, rgba(184, 79, 56, 0.12));
+  border: 1px solid var(--tag-border, #D9A18D);
+  color: var(--accent-strong, #983E2B);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+}
+
 
 
 

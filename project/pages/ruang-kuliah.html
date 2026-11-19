@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="../assets/logo-preview/logo-lemon.png" />
+  <title>Ruang Kuliah - Jona Setiawan</title>
+  <script src="../../js/theme-init.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap">
+  <link rel="stylesheet" href="../../css/zoom-controls.css" />
+  <link rel="stylesheet" href="../../css/theme-palettes.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body.project-detail-page {
+      color: var(--text, #30221D);
+      line-height: 1.65;
+    }
+
+    .page-container {
+      width: min(1160px, calc(100% - 2.5rem));
+      margin: 0 auto;
+    }
+
+    .navbar {
+      padding: 1.5rem 0 1rem;
+      border-bottom: 1px solid var(--border, #DDCFC0);
+      background: transparent !important;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .back-btn,
+    .live-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      min-height: 2.75rem;
+      padding: 0.55rem 1.2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .back-btn:hover,
+    .live-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .live-btn {
+      background: #983E2B;
+      color: #FAF6F0;
+      border: 1px solid #983E2B;
+    }
+
+    .live-btn:hover {
+      background: #7F3121;
+      border-color: #7F3121;
+    }
+
+    .back-btn-logo {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .hero {
+      padding: 3.25rem 0 2rem;
+    }
+
+    .hero-card {
+      padding: 2.25rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #983E2B;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-card h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      line-height: 1.02;
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-lead {
+      font-size: 1.02rem;
+      color: #57463D;
+      max-width: 58ch;
+      margin-bottom: 1.35rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      align-items: center;
+    }
+
+    .visual-figure {
+      padding: 0.65rem;
+      border-radius: 14px;
+      background: #FAF6F0;
+      border: 1px solid #DDCFC0;
+      box-shadow: 0 8px 24px rgba(65, 43, 31, 0.045);
+    }
+
+    .visual-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .visual-figure figcaption {
+      margin-top: 0.55rem;
+      padding: 0 0.25rem;
+      font-size: 0.8rem;
+      color: #76655A;
+      font-family: "Lora", "Georgia", serif;
+      font-style: italic;
+    }
+
+    .case-main {
+      padding: 1rem 0 4rem;
+      display: grid;
+      gap: 2rem;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 0.35rem;
+    }
+
+    .section-intro {
+      color: #57463D;
+      font-size: 0.96rem;
+      max-width: 68ch;
+      margin-bottom: 1.15rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.15rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.15rem;
+    }
+
+    .panel {
+      padding: 1.45rem;
+    }
+
+    .panel-kicker {
+      display: inline-block;
+      margin-bottom: 0.45rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #983E2B;
+    }
+
+    .panel h3 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .panel p,
+    .panel li {
+      font-size: 0.92rem;
+      color: #57463D;
+    }
+
+    .panel ul {
+      padding-left: 1.15rem;
+      display: grid;
+      gap: 0.35rem;
+      margin-top: 0.45rem;
+    }
+
+    .page-footer {
+      border-top: 1px solid #DDCFC0;
+      padding: 2rem 0 3rem;
+      background: transparent !important;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.86rem;
+      color: #76655A;
+    }
+
+    @media (max-width: 960px) {
+      .hero-card,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card,
+      .panel {
+        padding: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body class="project-detail-page">
+  <div class="page-zoom-control" id="page-zoom-control">
+    <button class="page-zoom-toggle" id="page-zoom-toggle" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="page-zoom-panel">
+      <svg class="page-zoom-icon" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
+    </button>
+    <div class="page-zoom-panel" id="page-zoom-panel" aria-hidden="true">
+      <div class="page-zoom-panel-group">
+        <span class="page-zoom-label">Zoom</span>
+        <div class="page-zoom-actions">
+          <button class="page-zoom-step" id="page-zoom-out" type="button" aria-label="Zoom out">-</button>
+          <button class="page-zoom-value" id="page-zoom-value" type="button" aria-label="Reset zoom to default">80%</button>
+          <button class="page-zoom-step" id="page-zoom-in" type="button" aria-label="Zoom in">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <div class="page-container nav-container">
+      <a class="back-btn" href="../../index.html#projects">
+        <img class="back-btn-logo" src="../assets/logo-preview/logo-lemon.png" alt="Logo Lemon" />
+        <span>Back to Portfolio</span>
+      </a>
+      <a class="live-btn" href="https://ruang-kuliah.vercel.app/" target="_blank" rel="noopener noreferrer">
+        <span>Open Ruang Kuliah ↗</span>
+      </a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="page-container">
+      <div class="hero-card">
+        <div>
+          <span class="eyebrow">Web App · Student Community Project</span>
+          <h1>Ruang Kuliah</h1>
+          <p class="hero-lead">
+            Platform pembelajaran mahasiswa yang dibuat <strong>murni untuk membantu teman-teman mahasiswa secara gratis tanpa pungut biaya</strong> — berfokus pada pembagian materi kuliah, informasi tugas, serta bantuan kisi-kisi ujian.
+          </p>
+          <div class="hero-actions">
+            <a class="live-btn" href="https://ruang-kuliah.vercel.app/" target="_blank" rel="noopener noreferrer">
+              <span>Visit ruang-kuliah.vercel.app ↗</span>
+            </a>
+            <a class="back-btn" href="../../index.html#projects">
+              <span>All Projects</span>
+            </a>
+          </div>
+        </div>
+
+        <figure class="visual-figure">
+          <img src="https://lh3.googleusercontent.com/d/1QQ4u0n2mCtmZmAnujSuhG5BY4uq7Kg5U=w1400" referrerpolicy="no-referrer" alt="Dashboard Ruang Kuliah" loading="eager" decoding="async" />
+          <figcaption>Tampilan Dashboard Ruang Kuliah (Alpha 2) — Ringkasan pertemuan, pengumuman tugas, dan panel Kisi-Kisi UTS.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-container case-main">
+    <section aria-labelledby="sec-purpose">
+      <div class="section-head">
+        <span class="eyebrow">01 · Purpose &amp; Core Focus</span>
+        <h2 id="sec-purpose">Dibuat Gratis untuk Membantu Mahasiswa</h2>
+        <p class="section-intro">Ruang Kuliah hadir sebagai pusat informasi dan materi bersama agar mahasiswa tidak ketinggalan catatan, tenggat tugas, maupun persiapan UTS/UAS.</p>
+      </div>
+
+      <div class="grid-3">
+        <article class="panel">
+          <span class="panel-kicker">Purely Non-Profit</span>
+          <h3>Tanpa Pungut Biaya</h3>
+          <p>Seluruh akses materi, info tugas, dan kisi-kisi disediakan 100% gratis murni untuk membantu sesama teman mahasiswa belajar lebih terstruktur.</p>
+        </article>
+        <article class="panel">
+          <span class="panel-kicker">Study Hub</span>
+          <h3>Pembagian Materi &amp; Info Tugas</h3>
+          <p>Mengelompokkan materi tiap mata kuliah per pertemuan lengkap dengan papan pengumuman tugas, deadline pengumpulan, dan pelacakan progres belajar.</p>
+        </article>
+        <article class="panel">
+          <span class="panel-kicker">Exam Prep</span>
+          <h3>Bantu Kisi-Kisi Ujian</h3>
+          <p>Menyediakan panel khusus Kisi-Kisi UTS agar mahasiswa dapat langsung meninjau topik inti yang diujikan tanpa harus mencari ulang dari banyak chat.</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="sec-arch">
+      <div class="section-head">
+        <span class="eyebrow">02 · Technical Architecture</span>
+        <h2 id="sec-arch">Arsitektur Frontend, Backend &amp; AI Chat</h2>
+        <p class="section-intro">Kombinasi teknologi multi-bahasa di sisi antarmuka, penyimpanan cloud yang hemat biaya, serta asisten AI untuk diskusi materi.</p>
+      </div>
+
+      <div class="grid-3">
+        <article class="panel">
+          <span class="panel-kicker">Frontend</span>
+          <h3>Multi-Bahasa &amp; Modular</h3>
+          <ul>
+            <li>Antarmuka dibangun dengan kombinasi berbagai bahasa/teknologi web (HTML, CSS, JavaScript/TypeScript).</li>
+            <li>Dilengkapi cache browser lokal dan mode Terang/Gelap/Sistem untuk akses cepat.</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <span class="panel-kicker">Backend &amp; Storage</span>
+          <h3>MongoDB + Google Drive</h3>
+          <ul>
+            <li><strong>MongoDB:</strong> Menyimpan data mata kuliah, metadata tugas, pengumuman, dan struktur kisi-kisi.</li>
+            <li><strong>Google Drive:</strong> Berfungsi sebagai storage file materi agar kapasitas server tetap ringan dan hemat biaya.</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <span class="panel-kicker">AI Assistant</span>
+          <h3>AI Chat (Pecut Opus)</h3>
+          <ul>
+            <li>Terintegrasi dengan asisten AI berbasis <strong>Pecut Opus</strong> untuk membantu menjelaskan materi dan kisi-kisi.</li>
+            <li>Menggunakan sistem pengisian/pembelian token ulang secara bertahap apabila kuota token AI habis.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-container footer-inner">
+      <span><strong>Jona Setiawan</strong> · Ruang Kuliah (https://ruang-kuliah.vercel.app/)</span>
+      <a class="back-btn" href="../../index.html#projects">Back to Portfolio</a>
+    </div>
+  </footer>
+
+  <script defer src="../../js/language-controls.js?v=20260410-2"></script>
+  <script defer src="../../js/theme-controls.js"></script>
+  <script defer src="../../js/performance-utils.js"></script>
+  <script defer src="../../js/zoom-controls.js"></script>
+</body>
+</html>

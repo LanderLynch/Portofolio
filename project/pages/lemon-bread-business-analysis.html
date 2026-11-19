@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="../assets/logo-preview/logo-lemon.png" />
+  <title>Lemon Bread Business Analysis - Jona Setiawan</title>
+  <script src="../../js/theme-init.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap">
+  <link rel="stylesheet" href="../../css/zoom-controls.css" />
+  <link rel="stylesheet" href="../../css/theme-palettes.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body.project-detail-page {
+      color: var(--text, #30221D);
+      line-height: 1.65;
+    }
+
+    .page-container {
+      width: min(1160px, calc(100% - 2.5rem));
+      margin: 0 auto;
+    }
+
+    /* Top Navigation */
+    .navbar {
+      padding: 1.5rem 0 1rem;
+      border-bottom: 1px solid var(--border, #DDCFC0);
+      background: transparent !important;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      min-height: 2.75rem;
+      padding: 0.5rem 1.15rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-1px);
+      border-color: #983E2B !important;
+    }
+
+    .back-btn-logo {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .doc-badge {
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: #E9DED1;
+      border: 1px solid #DDCFC0;
+      color: #57463D;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 3.25rem 0 2rem;
+    }
+
+    .hero-card {
+      padding: 2.25rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(240px, 0.7fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #983E2B;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-card h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      line-height: 1.02;
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-lead {
+      font-size: 1.02rem;
+      color: #57463D;
+      max-width: 58ch;
+      margin-bottom: 1.35rem;
+    }
+
+    .hero-disclaimer {
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      background: #F4EEE5;
+      border: 1px solid #DDCFC0;
+      font-size: 0.84rem;
+      color: #57463D;
+    }
+
+    .hero-aside {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .hero-logo-box {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.15rem;
+      border-radius: 12px;
+      background: #F4EEE5;
+      border: 1px solid #DDCFC0;
+    }
+
+    .hero-logo-box img {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    .hero-logo-box strong {
+      display: block;
+      font-family: "Cormorant Garamond", "Georgia", serif;
+      font-size: 1.35rem;
+      color: #30221D;
+    }
+
+    .hero-logo-box span {
+      font-size: 0.82rem;
+      color: #76655A;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .meta-item {
+      padding: 0.85rem 1rem !important;
+      border-radius: 10px !important;
+    }
+
+    .meta-label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #76655A;
+    }
+
+    .meta-value {
+      display: block;
+      margin-top: 0.2rem;
+      font-family: "Cormorant Garamond", "Georgia", serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #983E2B;
+    }
+
+    /* Content Sections */
+    .case-main {
+      padding: 1rem 0 4rem;
+      display: grid;
+      gap: 2.25rem;
+    }
+
+    .section-head {
+      margin-bottom: 1.15rem;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+      font-weight: 600;
+      line-height: 1.1;
+    }
+
+    .section-intro {
+      margin-top: 0.35rem;
+      color: #57463D;
+      font-size: 0.96rem;
+      max-width: 68ch;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.15rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.15rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .panel {
+      padding: 1.4rem;
+    }
+
+    .panel h3 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .panel p,
+    .panel li {
+      font-size: 0.92rem;
+      color: #57463D;
+    }
+
+    .panel ul {
+      padding-left: 1.15rem;
+      display: grid;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+    }
+
+    .panel-kicker {
+      display: inline-block;
+      margin-bottom: 0.45rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #983E2B;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 14px;
+      background: #FAF6F0;
+      border: 1px solid #DDCFC0;
+      box-shadow: 0 8px 24px rgba(65, 43, 31, 0.045);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 0.85rem 1.05rem;
+      border-bottom: 1px solid #DDCFC0;
+      vertical-align: top;
+    }
+
+    th {
+      background: #EFE7DC;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #30221D;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    td strong {
+      color: #30221D;
+    }
+
+    /* Value Prop Quote */
+    .quote-banner {
+      padding: 1.6rem 1.85rem;
+      border-radius: 14px;
+      background: #FAF6F0;
+      border: 1px solid #C8B6A5;
+      border-left: 4px solid #983E2B;
+      margin-bottom: 1.15rem;
+    }
+
+    .quote-banner blockquote {
+      font-family: "Cormorant Garamond", "Georgia", serif;
+      font-size: clamp(1.55rem, 2.8vw, 2.1rem);
+      font-weight: 600;
+      color: #30221D;
+      margin-bottom: 0.4rem;
+    }
+
+    .quote-banner p {
+      font-family: "Lora", "Georgia", serif;
+      color: #57463D;
+      font-size: 0.95rem;
+    }
+
+    /* KPI / Stat Strip */
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-radius: 14px;
+      background: #FAF6F0;
+      border: 1px solid #DDCFC0;
+      overflow: hidden;
+    }
+
+    .stat-strip-item {
+      padding: 1.25rem;
+    }
+
+    .stat-strip-item + .stat-strip-item {
+      border-left: 1px solid #DDCFC0;
+    }
+
+    .stat-strip-num {
+      display: block;
+      font-family: "Cormorant Garamond", "Georgia", serif;
+      font-size: 1.95rem;
+      font-weight: 600;
+      color: #983E2B;
+      line-height: 1.05;
+    }
+
+    .stat-strip-label {
+      display: block;
+      margin-top: 0.3rem;
+      font-size: 0.82rem;
+      color: #76655A;
+    }
+
+    /* Footer */
+    .page-footer {
+      border-top: 1px solid #DDCFC0;
+      padding: 2rem 0 3rem;
+      background: transparent !important;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.86rem;
+      color: #76655A;
+    }
+
+    /* Visual Boards / Figures */
+    .visual-figure {
+      margin-top: 1.25rem;
+      padding: 0.75rem;
+      border-radius: 14px;
+      background: #FAF6F0;
+      border: 1px solid #DDCFC0;
+      box-shadow: 0 8px 24px rgba(65, 43, 31, 0.045);
+    }
+
+    .visual-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .visual-figure figcaption {
+      margin-top: 0.65rem;
+      padding: 0 0.35rem;
+      font-size: 0.82rem;
+      color: #76655A;
+      font-family: "Lora", "Georgia", serif;
+      font-style: italic;
+    }
+
+    .visual-pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.15rem;
+      margin-top: 1.25rem;
+    }
+
+    .visual-pair .visual-figure {
+      margin-top: 0;
+    }
+
+    @media (max-width: 960px) {
+      .hero-card,
+      .grid-3,
+      .grid-4,
+      .stat-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-card {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-strip-item + .stat-strip-item {
+        border-left: 0;
+        border-top: 1px solid #DDCFC0;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .stat-strip,
+      .meta-grid,
+      .visual-pair {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card,
+      .panel {
+        padding: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body class="project-detail-page">
+  <div class="page-zoom-control" id="page-zoom-control">
+    <button class="page-zoom-toggle" id="page-zoom-toggle" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="page-zoom-panel">
+      <svg class="page-zoom-icon" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
+    </button>
+    <div class="page-zoom-panel" id="page-zoom-panel" aria-hidden="true">
+      <div class="page-zoom-panel-group">
+        <span class="page-zoom-label">Zoom</span>
+        <div class="page-zoom-actions">
+          <button class="page-zoom-step" id="page-zoom-out" type="button" aria-label="Zoom out">-</button>
+          <button class="page-zoom-value" id="page-zoom-value" type="button" aria-label="Reset zoom to default">80%</button>
+          <button class="page-zoom-step" id="page-zoom-in" type="button" aria-label="Zoom in">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar">
+    <div class="page-container nav-container">
+      <a class="back-btn" href="../../index.html#projects">
+        <img class="back-btn-logo" src="../assets/logo-preview/logo-lemon.png" alt="Logo Lemon" />
+        <span>Back to Portfolio</span>
+      </a>
+      <span class="doc-badge">Project 01 · Strategic Marketing Plan</span>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="page-container">
+      <div class="hero-card">
+        <div>
+          <p class="eyebrow">Self-Brand Analysis &amp; Strategic Marketing Plan</p>
+          <h1>Lemon Bread — Business Model &amp; Feasibility</h1>
+          <p class="hero-lead">
+            <strong>Transit Refreshment Stop</strong> — analisis self-brand dan rencana pemasaran strategis untuk proyek brand F&amp;B pribadi, merancang konsep booth praktis dengan harga terjangkau bagi penumpang transit, komuter, dan pekerja di area terminal atau stasiun.
+          </p>
+          <div class="hero-disclaimer">
+            <strong>Status Dokumen (Draft 1.0 · November 2026):</strong> Seluruh angka harga awal (Rp10.000–Rp15.000), anggaran peralatan, dan simulasi BEP merupakan asumsi konseptual perencanaan yang dirancang untuk diuji melalui riset lokasi, HPP, dan pilot sales.
+          </div>
+        </div>
+
+        <div class="hero-aside">
+          <div class="hero-logo-box">
+            <img src="../assets/logo-preview/logo-lemon.png" alt="Lemon Bread Mascot" />
+            <div>
+              <strong>Lemon Bread</strong>
+              <span>Bakery &amp; More · Transit F&amp;B Concept</span>
+            </div>
+          </div>
+          <div class="meta-grid">
+            <div class="meta-item">
+              <span class="meta-label">Target Modal</span>
+              <span class="meta-value">Rp8,4 Juta</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Target Layanan</span>
+              <span class="meta-value">5–7 Menit</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">BEP Simulasi</span>
+              <span class="meta-value">304 Tx/Bln</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Kapasitas Booth</span>
+              <span class="meta-value">4–6 Kursi</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <figure class="visual-figure">
+        <img src="https://lh3.googleusercontent.com/d/13yJ76IsC8wqBkA7wfB5rW_au29MWcZzI=w1400" referrerpolicy="no-referrer" alt="Lemon Bread Brand Identity Board — Mascot, Color Palette, Logo Variations, and Packaging" loading="eager" decoding="async" />
+        <figcaption>Brand Identity Board — Maskot penguin, palet warna (Lemon Yellow, Cream Ivory, Bread Brown, Penguin Gray, Ice Blue), variasi logo, ekspresi maskot, dan contoh kemasan.</figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <main class="page-container case-main">
+    <!-- 1. Executive Summary & Strategic Direction -->
+    <section aria-labelledby="sec-summary">
+      <div class="section-head">
+        <span class="eyebrow">01 · Executive Summary &amp; Strategic Direction</span>
+        <h2 id="sec-summary">Ringkasan Keputusan Awal &amp; Arah Strategis</h2>
+        <p class="section-intro">Kombinasi <em>affordability</em>, <em>convenience</em>, dan <em>consistent quality</em> untuk mengisi kebutuhan konsumsi ringan di area tunggu transportasi.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Elemen</th>
+                <th>Keputusan Awal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Konsep</strong></td><td>Transit Refreshment Stop</td></tr>
+              <tr><td><strong>Lokasi</strong></td><td>Dekat area tunggu penumpang di terminal atau stasiun</td></tr>
+              <tr><td><strong>Format</strong></td><td>Booth kecil 6,0 m² (300 × 200 cm) dengan 4–6 kursi; fokus takeaway</td></tr>
+              <tr><td><strong>Produk</strong></td><td>Roti isi, snack ringan, coffee, lemon drinks, tea &amp; matcha (5–7 SKU)</td></tr>
+              <tr><td><strong>Model Penyajian</strong></td><td>Made-to-order dengan bahan terukur (prepped) sebelumnya</td></tr>
+              <tr><td><strong>Modal Awal</strong></td><td>Rp8.400.000 (belum termasuk biaya sewa &amp; izin lokasi)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <article class="panel">
+          <span class="panel-kicker">5 Pilar Strategi</span>
+          <h3>Prinsip Operasional &amp; Pemasaran</h3>
+          <ul>
+            <li><strong>Affordable:</strong> Harga terjangkau (konsep awal Rp10.000–Rp15.000) dengan margin kontribusi sehat.</li>
+            <li><strong>Convenient:</strong> Produk mudah dipilih, dipesan, dibawa, dan dinikmati sambil berjalan.</li>
+            <li><strong>Portion-friendly:</strong> Porsi ringan agar tidak terlalu berat sebelum perjalanan.</li>
+            <li><strong>Quick service:</strong> Alur satu arah dengan target waktu pelayanan 5–7 menit per pesanan.</li>
+            <li><strong>Consistent quality:</strong> Standar rasa, porsi, kebersihan, dan layanan dijaga lewat SOP.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="visual-pair">
+        <figure class="visual-figure">
+          <img src="https://lh3.googleusercontent.com/d/1xusLJA-h0IwCMBLBsNbQbWai1ikyJrcM=w1200" referrerpolicy="no-referrer" alt="Referensi Booth Transit — Tampak Eksterior" loading="lazy" decoding="async" />
+          <figcaption>Referensi konsep booth ringkas di area transit penumpang (eksterior &amp; rak display).</figcaption>
+        </figure>
+        <figure class="visual-figure">
+          <img src="https://lh3.googleusercontent.com/d/1fzel5DSGe2z2AbyiPZFINLef_5vdVrTp=w1200" referrerpolicy="no-referrer" alt="Referensi Booth Transit — Area Tunggu &amp; Kursi" loading="lazy" decoding="async" />
+          <figcaption>Referensi area tunggu dan tempat duduk singkat dekat jalur komuter.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 2. SWOT Matrix -->
+    <section aria-labelledby="sec-swot">
+      <div class="section-head">
+        <span class="eyebrow">02 · Situation Analysis</span>
+        <h2 id="sec-swot">Analisis SWOT Awal</h2>
+        <p class="section-intro">Hipotesis kondisi internal dan eksternal sebagai dasar strategi pengembangan usaha sebelum tahap pilot.</p>
+      </div>
+
+      <div class="grid-2">
+        <article class="panel">
+          <span class="panel-kicker">Internal · Strengths</span>
+          <h3>Kekuatan</h3>
+          <ul>
+            <li>Identitas brand kuat &amp; unik (maskot penguin yang ramah).</li>
+            <li>Kombinasi makanan &amp; minuman dalam satu booth (roti, snack, kopi, lemon drink, tea, matcha).</li>
+            <li>Harga terjangkau dengan konsep praktis dan cepat saji untuk konsumen transit.</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <span class="panel-kicker">Internal · Weaknesses</span>
+          <h3>Kelemahan</h3>
+          <ul>
+            <li>Brand awareness &amp; basis pelanggan belum terbentuk (perlu validasi data penjualan).</li>
+            <li>Modal awal terbatas (&lt; Rp10 juta) dan kapasitas duduk kecil (4–6 kursi).</li>
+            <li>Model made-to-order berisiko memperpanjang waktu tunggu saat jam ramai.</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <span class="panel-kicker">External · Opportunities</span>
+          <h3>Peluang</h3>
+          <ul>
+            <li>Mobilitas tinggi penumpang di terminal/stasiun memicu pembelian impulsif.</li>
+            <li>Pengembangan paket bundling (Bread/Snack + Drink), loyalty stamp card, dan pickup.</li>
+            <li>Potensi kolaborasi dengan pengelola lokasi maupun komunitas transportasi.</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <span class="panel-kicker">External · Threats</span>
+          <h3>Ancaman</h3>
+          <ul>
+            <li>Persaingan dengan kedai kopi, toko roti, dan food stall lain di area transit.</li>
+            <li>Fluktuasi harga bahan baku yang menekan HPP dan perubahan kebijakan sewa lokasi.</li>
+            <li>Antrean panjang saat jam sibuk dan risiko bahan baku tidak terjual (waste).</li>
+          </ul>
+        </article>
+      </div>
+
+      <figure class="visual-figure">
+        <img src="https://lh3.googleusercontent.com/d/1RGdPULjy-N5i6RAT6fECaxXc3Acemuhz=w1400" referrerpolicy="no-referrer" alt="SWOT Matrix Infographic — Analisis Strategis Lemon Bread" loading="lazy" decoding="async" />
+        <figcaption>SWOT Matrix — Pemetaan kondisi internal (Strengths &amp; Weaknesses) dan eksternal (Opportunities &amp; Threats) beserta implikasi strategi SO, WO, ST, dan WT.</figcaption>
+      </figure>
+    </section>
+
+    <!-- 3. Target Market, Persona & Value Proposition -->
+    <section aria-labelledby="sec-market">
+      <div class="section-head">
+        <span class="eyebrow">03 · Target Market &amp; Value Proposition</span>
+        <h2 id="sec-market">Segmentasi, Customer Persona &amp; Value Proposition</h2>
+      </div>
+
+      <div class="quote-banner">
+        <blockquote>“Your Affordable Stop Before You Go.”</blockquote>
+        <p>Lemon Bread menyediakan pilihan makanan ringan dan minuman yang praktis, berkualitas, dan terjangkau untuk menemani orang yang sedang bepergian, transit, maupun menjalankan aktivitas sehari-hari.</p>
+      </div>
+
+      <div class="grid-3">
+        <article class="panel">
+          <span class="panel-kicker">Draft Persona</span>
+          <h3>Raka Pratama (22 thn)</h3>
+          <p>Mahasiswa &amp; komuter KRL/Bus di Jakarta (3–5×/minggu) dengan waktu tunggu 5–30 menit dan kisaran pengeluaran Rp10.000–Rp15.000 per transaksi.</p>
+        </article>
+        <article class="panel">
+          <span class="panel-kicker">Customer Pains</span>
+          <h3>Masalah Konsumen Transit</h3>
+          <ul>
+            <li>Waktu tunggu terbatas sebelum jadwal keberangkatan.</li>
+            <li>Harga makanan di area transit sering terasa mahal.</li>
+            <li>Makanan dan minuman sering tidak tersedia di satu tempat.</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <span class="panel-kicker">Pain Relievers &amp; Gains</span>
+          <h3>Solusi Lemon Bread</h3>
+          <ul>
+            <li>Menu ringkas 5–7 SKU dengan paket hemat Bread/Snack + Drink.</li>
+            <li>Penyajian cepat 5–7 menit dan kemasan praktis dibawa.</li>
+            <li>Tempat duduk singkat 4–6 kursi jika area memungkinkan.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="visual-pair">
+        <figure class="visual-figure">
+          <img src="https://lh3.googleusercontent.com/d/1--Sm--yop90Y0df4n0-CyKbpFXICtwxB=w1200" referrerpolicy="no-referrer" alt="Customer Persona — Raka Pratama" loading="lazy" decoding="async" />
+          <figcaption>Customer Persona (Draft) — Raka Pratama, 22 tahun, mahasiswa &amp; pengguna rutin KRL/Bus.</figcaption>
+        </figure>
+        <figure class="visual-figure">
+          <img src="https://lh3.googleusercontent.com/d/1vRS4kNiSSwwkf484u2kz_Nm065XrO_mU=w1200" referrerpolicy="no-referrer" alt="Value Proposition Canvas — Lemon Bread" loading="lazy" decoding="async" />
+          <figcaption>Value Proposition Canvas — Kesesuaian antara Value Map Lemon Bread dan Customer Profile pengguna transit.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 4. Business Model Canvas (9 Blocks) -->
+    <section aria-labelledby="sec-bmc">
+      <div class="section-head">
+        <span class="eyebrow">04 · Business Model Canvas</span>
+        <h2 id="sec-bmc">Rancangan 9 Blok BMC</h2>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Komponen BMC</th>
+              <th>Rancangan Lemon Bread</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>1. Customer Segments</strong></td><td>Pengemudi/pengendara, penumpang terminal &amp; stasiun, komuter/pelajar, serta pekerja sekitar lokasi.</td></tr>
+            <tr><td><strong>2. Value Propositions</strong></td><td>Makanan dan minuman praktis, harga terjangkau (Rp10.000–Rp15.000), porsi ringan, layanan cepat (5–7 menit), dan tempat duduk singkat.</td></tr>
+            <tr><td><strong>3. Channels</strong></td><td>Booth fisik dekat area tunggu, signage &amp; menu visual, Google Maps, media sosial (Instagram/TikTok), dan opsi pesan antar bila ekonomis.</td></tr>
+            <tr><td><strong>4. Customer Relationships</strong></td><td>Pelayanan cepat &amp; konsisten, loyalty stamp card, promo bundling, serta pengumpulan feedback dan penanganan keluhan.</td></tr>
+            <tr><td><strong>5. Revenue Streams</strong></td><td>Penjualan roti isi, snack ringan, minuman (kopi, lemon drink, tea, matcha), dan paket bundling (Bread/Snack + Drink).</td></tr>
+            <tr><td><strong>6. Key Resources</strong></td><td>Booth &amp; peralatan operasional, bahan baku &amp; kemasan, resep/SOP, 1–2 karyawan, identitas brand, dan sistem kasir/pencatatan.</td></tr>
+            <tr><td><strong>7. Key Activities</strong></td><td>Persiapan bahan, produksi made-to-order, penyajian, manajemen stok &amp; kebersihan, pemasaran, serta evaluasi penjualan.</td></tr>
+            <tr><td><strong>8. Key Partners</strong></td><td>Supplier bahan baku &amp; kemasan, pengelola lokasi transit, penyedia pembayaran (QRIS/e-wallet), serta mitra distribusi bila diperlukan.</td></tr>
+            <tr><td><strong>9. Cost Structure</strong></td><td>Sewa/deposit lokasi, bahan baku &amp; kemasan, upah staf, listrik/air, peralatan, promosi, perizinan, dan biaya tak terduga.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="visual-figure">
+        <img src="https://lh3.googleusercontent.com/d/19q-W9R_PC1fBXYqbQHANRGKCaT1XWVnf=w1400" referrerpolicy="no-referrer" alt="Business Model Canvas — 9 Blocks Lemon Bread" loading="lazy" decoding="async" />
+        <figcaption>Business Model Canvas (9 Blocks) — Ringkasan penciptaan, penyampaian, dan perolehan nilai bisnis Lemon Bread.</figcaption>
+      </figure>
+    </section>
+
+    <!-- 5. Menu Architecture & Operational Workflow -->
+    <section aria-labelledby="sec-ops">
+      <div class="section-head">
+        <span class="eyebrow">05 · Menu Engineering &amp; Operational Feasibility</span>
+        <h2 id="sec-ops">Arsitektur Menu, Alur Order &amp; Floor Plan</h2>
+        <p class="section-intro">Pembatasan 5–7 SKU pada tahap awal menjaga persediaan, kecepatan layanan (≤ 7 menit), dan meminimalkan risiko waste.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Kategori SKU</th>
+                <th>Produk / Contoh</th>
+                <th>Target Harga</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Quick Bread</strong></td><td>Egg &amp; Cheese Bread, Tuna Mayo Bread, Choco Cream Bread</td><td>Rp15.000</td></tr>
+              <tr><td><strong>Road Snack</strong></td><td>Croissant Original, Snack Box (Mini Bites)</td><td>Rp10.000</td></tr>
+              <tr><td><strong>Beverage</strong></td><td>Coffee, Lemon Drink (identitas), Tea, Matcha</td><td>Rp10.000–Rp15.000</td></tr>
+              <tr><td><strong>Paket Hemat</strong></td><td>Bread + Drink Bundle / Snack + Drink Bundle</td><td>Rp20.000–Rp25.000</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Tahap Layanan</th>
+                <th>Aktivitas Utama</th>
+                <th>Target Waktu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>1–2. Arrival &amp; Order</strong></td><td>Pelanggan datang, memilih menu, dan membayar (Tunai/QRIS)</td><td>1 menit</td></tr>
+              <tr><td><strong>3. Order Preparation</strong></td><td>Pesanan diteruskan ke dapur/area persiapan bahan terukur</td><td>1 menit</td></tr>
+              <tr><td><strong>4. Production</strong></td><td>Roti dipanggang/dirakit &amp; minuman diseduh/diracik</td><td>2–4 menit</td></tr>
+              <tr><td><strong>5–6. QC &amp; Serving</strong></td><td>Cek kelengkapan &amp; kebersihan lalu serahkan ke pelanggan</td><td>1 menit (Total 5–7 menit)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="visual-pair">
+        <figure class="visual-figure">
+          <img src="https://lh3.googleusercontent.com/d/1J86gVrCjhrdNO0DudML7UbVLf7g01dxf=w1200" referrerpolicy="no-referrer" alt="Customer Journey Map — Lemon Bread" loading="lazy" decoding="async" />
+          <figcaption>Customer Journey Map — 6 tahap perjalanan pelanggan, touchpoint, emosi, dan KPI.</figcaption>
+        </figure>
+        <figure class="visual-figure">
+          <img src="https://lh3.googleusercontent.com/d/1SaORWMZ5Gj_TfIZ2Uph4TOz5nxCAHrrt=w1200" referrerpolicy="no-referrer" alt="Menu Board &amp; Contoh Perhitungan HPP" loading="lazy" decoding="async" />
+          <figcaption>Menu Board — Bread Menu, Snack Menu, Beverage Menu, Paket Hemat, dan contoh perhitungan HPP (45%).</figcaption>
+        </figure>
+      </div>
+
+      <div class="visual-pair">
+        <figure class="visual-figure">
+          <img src="https://lh3.googleusercontent.com/d/1PIpOl0JVFuvM0ltMXH0XBNtrU5ITZO65=w1200" referrerpolicy="no-referrer" alt="Booth Workflow / Service Blueprint" loading="lazy" decoding="async" />
+          <figcaption>Service Blueprint — Alur Frontstage, Backstage, Support Process, dan target KPI layanan (≤ 7 menit).</figcaption>
+        </figure>
+        <figure class="visual-figure">
+          <img src="https://lh3.googleusercontent.com/d/1lZ6XivHKrx3xpJDxLT2G0V9pLbbOsRyh=w1200" referrerpolicy="no-referrer" alt="Booth Floor Plan (Top-Down View)" loading="lazy" decoding="async" />
+          <figcaption>Booth Floor Plan (300 × 200 cm / 6,0 m²) — Tata letak 8 zona dari kasir hingga area duduk 4–6 kursi.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 6. Initial Capital & Financial Feasibility (BEP) -->
+    <section aria-labelledby="sec-finance">
+      <div class="section-head">
+        <span class="eyebrow">06 · Capital Plan &amp; Financial Feasibility</span>
+        <h2 id="sec-finance">Rencana Modal Awal &amp; Analisis Break-Even Point (BEP)</h2>
+        <p class="section-intro">Simulasi dasar menggunakan rata-rata transaksi Rp15.000, HPP 45% (margin kontribusi 55% / Rp8.250 per transaksi), biaya tetap Rp2.500.000/bulan, dan 26 hari operasional.</p>
+      </div>
+
+      <div class="stat-strip" style="margin-bottom: 1.25rem;">
+        <div class="stat-strip-item">
+          <span class="stat-strip-num">Rp8.400.000</span>
+          <span class="stat-strip-label">Estimasi Modal Awal (50% Peralatan)</span>
+        </div>
+        <div class="stat-strip-item">
+          <span class="stat-strip-num">Rp8.250</span>
+          <span class="stat-strip-label">Margin Kontribusi / Transaksi (55%)</span>
+        </div>
+        <div class="stat-strip-item">
+          <span class="stat-strip-num">304 tx/bln</span>
+          <span class="stat-strip-label">BEP Bulanan (~12 transaksi / hari)</span>
+        </div>
+        <div class="stat-strip-item">
+          <span class="stat-strip-num">607 tx/bln</span>
+          <span class="stat-strip-label">BEP jika Biaya Tetap Rp5 Juta (~24/hari)</span>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Alokasi Modal Awal</th>
+                <th>Porsi</th>
+                <th>Estimasi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Peralatan Operasional</strong> (booth, toaster, blender, termos, cooler)</td><td>50%</td><td>Rp4.200.000</td></tr>
+              <tr><td><strong>Bahan Baku &amp; Kemasan Awal</strong> (roti, snack, minuman, cup/box)</td><td>17%</td><td>Rp1.400.000</td></tr>
+              <tr><td><strong>Fasilitas Booth</strong> (signage/menu, meja, 4–6 kursi, dekorasi)</td><td>13%</td><td>Rp1.100.000</td></tr>
+              <tr><td><strong>Cadangan &amp; Pengadaan Awal</strong> (transportasi &amp; dana darurat)</td><td>20%</td><td>Rp1.700.000</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Skenario / Hari</th>
+                <th>Omzet / Bulan (26 hari)</th>
+                <th>Laba Kontribusi (55%)</th>
+                <th>Sisa Setelah Biaya Tetap Rp2,5 Jt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>12 transaksi</strong> (BEP)</td><td>Rp4.680.000</td><td>Rp2.574.000</td><td>Rp74.000</td></tr>
+              <tr><td><strong>20 transaksi</strong></td><td>Rp7.800.000</td><td>Rp4.290.000</td><td>Rp1.790.000</td></tr>
+              <tr><td><strong>30 transaksi</strong></td><td>Rp11.700.000</td><td>Rp6.435.000</td><td>Rp3.935.000</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <figure class="visual-figure">
+        <img src="https://lh3.googleusercontent.com/d/1YCyruVJYbeGQUo0km1-b8toPSeWeBO--=w1400" referrerpolicy="no-referrer" alt="Startup Cost Breakdown — Estimasi Modal Awal Rp8,4 Juta" loading="lazy" decoding="async" />
+        <figcaption>Startup Cost Breakdown — Rincian dan komposisi estimasi modal awal booth kecil Rp8.400.000 (belum termasuk sewa lokasi, listrik, dan perizinan).</figcaption>
+      </figure>
+    </section>
+
+    <!-- 7. Risk Assessment & Implementation Pilot -->
+    <section aria-labelledby="sec-risk">
+      <div class="section-head">
+        <span class="eyebrow">07 · Risk Assessment &amp; Validation Roadmap</span>
+        <h2 id="sec-risk">Mitigasi Risiko &amp; Tahap Pilot Project</h2>
+        <p class="section-intro">Prioritas tertinggi sebelum investasi adalah validasi biaya &amp; izin lokasi, kecukupan modal kerja, HPP per SKU, dan simulasi waktu pelayanan.</p>
+      </div>
+
+      <div class="grid-3">
+        <article class="panel">
+          <span class="panel-kicker">Risiko Utama</span>
+          <h3>Operasional &amp; Lokasi</h3>
+          <ul>
+            <li><strong>Antrean panjang:</strong> Menu ringkas, pembagian tugas kasir/dapur, bahan prepped.</li>
+            <li><strong>Bahan terbuang:</strong> Forecast stok, metode FIFO/FEFO, pencatatan waste harian.</li>
+            <li><strong>Biaya &amp; izin lokasi:</strong> Survei 5 titik lokasi &amp; konfirmasi tertulis sebelum kontrak.</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <span class="panel-kicker">6 Tahap Pilot</span>
+          <h3>Implementation Plan</h3>
+          <ul>
+            <li>1. Location research (5 lokasi &amp; footfall)</li>
+            <li>2. Customer research (20–30 survei awal)</li>
+            <li>3. Menu &amp; costing (5–7 SKU &amp; HPP)</li>
+            <li>4. Operations test (simulasi order &amp; SOP)</li>
+            <li>5. Pilot sales &amp; 6. Evaluasi KPI</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <span class="panel-kicker">Core KPIs</span>
+          <h3>Indikator Keberhasilan</h3>
+          <ul>
+            <li><strong>Waktu layanan:</strong> ≤ 7 menit/pesanan</li>
+            <li><strong>Akurasi pesanan:</strong> ≥ 98%</li>
+            <li><strong>Kepuasan &amp; Repeat:</strong> ≥ 4,5/5 &amp; ≥ 30%</li>
+            <li><strong>Konversi &amp; AOV:</strong> ≥ 60% pengunjung booth</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-container footer-inner">
+      <span><strong>Jona Setiawan</strong> · Lemon Bread Strategic Marketing Plan (Project 01 / Draft 1.0)</span>
+      <a class="back-btn" href="../../index.html#projects">Back to Portfolio</a>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.visual-figure img').forEach((img) => {
+      let attempts = 0;
+      img.addEventListener('error', () => {
+        if (attempts >= 3) return;
+        attempts += 1;
+        const src = img.getAttribute('src') || '';
+        const match = src.match(/\/d\/([A-Za-z0-9_-]+)/);
+        window.setTimeout(() => {
+          if (attempts === 2 && match) {
+            img.src = `https://drive.google.com/thumbnail?id=${encodeURIComponent(match[1])}&sz=w1400`;
+          } else {
+            const sep = src.includes('?') ? '&' : '?';
+            img.src = src.split(/[?&]retry=/)[0] + sep + 'retry=' + attempts;
+          }
+        }, attempts * 650);
+      });
+    });
+  </script>
+  <script defer src="../../js/language-controls.js?v=20260410-2"></script>
+  <script defer src="../../js/theme-controls.js"></script>
+  <script defer src="../../js/performance-utils.js"></script>
+  <script defer src="../../js/zoom-controls.js"></script>
+</body>
+</html>

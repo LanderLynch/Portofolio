@@ -1,14 +1,16 @@
-const STATIC_CACHE = "portfolio-static-v33";
-const RUNTIME_CACHE = "portfolio-runtime-v33";
+const STATIC_CACHE = "portfolio-static-v35";
+const RUNTIME_CACHE = "portfolio-runtime-v35";
 const IMAGE_CACHE = "portfolio-images-v1";
 const CORE_ASSETS = [
   "/",
   "/index.html",
+  "/logbook.html",
   "/changelog.html",
-  "/css/styles.css?v=20260413-6",
-  "/css/theme-palettes.css?v=20260413-7",
+  "/css/styles.css?v=20261119-1",
+  "/css/theme-palettes.css?v=20261119-1",
   "/js/theme-controls.js?v=20260319-1",
-  "/js/language-controls.js?v=20260410-2",
+  "/js/language-controls.js?v=20261119-2",
+  "/js/logbook-data.js",
   "/js/project-card-utils.js",
   "/js/performance-utils.js",
   "/js/performance-main.js",

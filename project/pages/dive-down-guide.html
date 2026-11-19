@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="../assets/logo-preview/logo-lemon.png" />
+  <title>Dive Down Guide Case Study - Jona Setiawan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" />
+  <link rel="stylesheet" href="../../css/zoom-controls.css" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --ocean-abyss: #050D1A;
+      --ocean-deep: #081528;
+      --ocean-navy: #0D203B;
+      --ocean-card: #102644;
+      --ocean-elevated: #143054;
+      --cyan: #38BDF8;
+      --turquoise: #2DD4BF;
+      --ink: #E6F2FF;
+      --ink-soft: #B4CBE0;
+      --muted: #7F9BB8;
+      --border: rgba(56, 189, 248, 0.16);
+      --border-strong: rgba(45, 212, 191, 0.34);
+      --shadow-deep: 0 24px 60px rgba(2, 8, 18, 0.55);
+
+      --font-display: "Space Grotesk", "DM Sans", sans-serif;
+      --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: "JetBrains Mono", monospace;
+
+      --max-w: 1160px;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+
+      /* Shared token bridge for zoom-controls */
+      --bg: var(--ocean-abyss);
+      --surface: var(--ocean-navy);
+      --surface-soft: var(--ocean-card);
+      --panel-bg: rgba(13, 32, 59, 0.94);
+      --panel-bg-strong: rgba(16, 38, 68, 0.98);
+      --text: var(--ink);
+      --accent: var(--cyan);
+      --accent-strong: var(--turquoise);
+      --accent-soft: rgba(56, 189, 248, 0.14);
+      --shadow: var(--shadow-deep);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--ocean-abyss);
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--ink);
+      line-height: 1.68;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse 70% 42% at 50% -6%, rgba(56, 189, 248, 0.12), transparent 68%),
+        radial-gradient(circle at 88% 28%, rgba(45, 212, 191, 0.06), transparent 42%),
+        linear-gradient(180deg, var(--ocean-abyss) 0%, var(--ocean-deep) 48%, #040A14 100%);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(var(--max-w), calc(100% - 2.5rem));
+      margin: 0 auto;
+    }
+
+    /* Top Bar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(14px);
+      background: rgba(5, 13, 26, 0.84);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 4.25rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.48rem 1rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border);
+      background: rgba(16, 38, 68, 0.65);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .back-link:hover {
+      border-color: var(--cyan);
+      background: rgba(20, 48, 84, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .topbar-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .topbar-tag {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--turquoise);
+      padding: 0.34rem 0.8rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(45, 212, 191, 0.28);
+      background: rgba(45, 212, 191, 0.08);
+    }
+
+    .live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 1.05rem;
+      border-radius: var(--radius-pill);
+      background: var(--cyan);
+      color: #031322;
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .live-pill:hover {
+      background: var(--turquoise);
+      transform: translateY(-1px);
+    }
+
+    /* Section Scaffolding */
+    .case-section {
+      padding: 4.5rem 0;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+    }
+
+    .case-section:last-of-type {
+      border-bottom: 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-num {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--turquoise);
+      margin-bottom: 0.7rem;
+    }
+
+    .section-num::before {
+      content: "";
+      width: 1.8rem;
+      height: 1px;
+      background: var(--turquoise);
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      letter-spacing: -0.025em;
+      color: var(--ink);
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.9rem, 3.4vw, 2.75rem);
+      line-height: 1.08;
+      font-weight: 700;
+    }
+
+    .section-lead {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      max-width: 60ch;
+    }
+
+    /* Section 01 — Project Hero */
+    .hero {
+      padding: 4.25rem 0 4.5rem;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.12);
+    }
+
+    .hero-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+      gap: 2.5rem;
+      align-items: end;
+      margin-bottom: 2.75rem;
+    }
+
+    .hero-category {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.9rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 4.4rem);
+      line-height: 1.01;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-display);
+      font-size: clamp(1.18rem, 2vw, 1.5rem);
+      font-weight: 500;
+      color: var(--turquoise);
+      margin-bottom: 1.15rem;
+    }
+
+    .hero-desc {
+      font-size: 1.02rem;
+      color: var(--ink-soft);
+      max-width: 58ch;
+    }
+
+    .hero-aside {
+      display: grid;
+      gap: 0.85rem;
+      padding: 1.4rem;
+      border-radius: var(--radius-lg);
+      background: rgba(13, 32, 59, 0.72);
+      border: 1px solid var(--border);
+    }
+
+    .hero-facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.65rem;
+      padding-bottom: 0.9rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .fact-box strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--cyan);
+    }
+
+    .fact-box span {
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-cta-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.35rem;
+      border-radius: var(--radius-pill);
+      background: var(--cyan);
+      color: #031322;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--turquoise);
+      transform: translateY(-1px);
+    }
+
+    /* Editorial Browser Mockup */
+    .browser-mockup {
+      border-radius: var(--radius-lg);
+      background: var(--ocean-navy);
+      border: 1px solid var(--border-strong);
+      box-shadow: var(--shadow-deep);
+      overflow: hidden;
+    }
+
+    .browser-chrome {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0.75rem 1.1rem;
+      background: #081529;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .browser-dots {
+      display: flex;
+      gap: 0.42rem;
+    }
+
+    .browser-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(180, 203, 224, 0.28);
+    }
+
+    .browser-url {
+      flex: 1;
+      padding: 0.3rem 0.8rem;
+      border-radius: var(--radius-pill);
+      background: rgba(5, 13, 26, 0.75);
+      border: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--ink-soft);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .browser-screen img {
+      width: 100%;
+      height: auto;
+    }
+
+    /* Section 02 — Overview Grid */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .editorial-panel {
+      padding: 1.65rem;
+      border-radius: var(--radius-md);
+      background: var(--ocean-navy);
+      border: 1px solid var(--border);
+    }
+
+    .editorial-panel h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.55rem;
+      color: var(--ink);
+    }
+
+    .editorial-panel p {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+    }
+
+    /* Section 03 — Problem & Solution */
+    .ps-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    .ps-card {
+      padding: 1.85rem;
+      border-radius: var(--radius-lg);
+      background: var(--ocean-navy);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .ps-card--solution {
+      background: linear-gradient(160deg, rgba(16, 38, 68, 0.95), rgba(13, 32, 59, 0.95));
+      border-color: var(--border-strong);
+    }
+
+    .ps-label {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .ps-card--solution .ps-label {
+      color: var(--turquoise);
+    }
+
+    .ps-card h3 {
+      font-size: 1.45rem;
+    }
+
+    .ps-card p {
+      color: var(--ink-soft);
+      font-size: 0.96rem;
+    }
+
+    .ps-list {
+      list-style: none;
+      display: grid;
+      gap: 0.55rem;
+      margin-top: 0.35rem;
+    }
+
+    .ps-list li {
+      position: relative;
+      padding-left: 1.2rem;
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+    }
+
+    .ps-list li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+      font-family: var(--font-mono);
+    }
+
+    /* Section 04 — Feature Breakdown */
+    .feature-stack {
+      display: grid;
+      gap: 2.25rem;
+    }
+
+    .feature-row {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.28fr);
+      gap: 2rem;
+      align-items: center;
+      padding: 1.65rem;
+      border-radius: var(--radius-lg);
+      background: rgba(13, 32, 59, 0.72);
+      border: 1px solid var(--border);
+      transition: border-color 0.25s ease;
+    }
+
+    .feature-row:hover {
+      border-color: rgba(56, 189, 248, 0.36);
+    }
+
+    .feature-row:nth-child(even) .feature-copy {
+      order: 2;
+    }
+
+    .feature-index {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--cyan);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-copy h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .feature-copy p {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      margin-bottom: 1rem;
+    }
+
+    .feature-purpose {
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-md);
+      background: rgba(5, 13, 26, 0.55);
+      border-left: 2px solid var(--turquoise);
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+    }
+
+    .feature-purpose strong {
+      color: var(--turquoise);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .feature-media {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--ocean-abyss);
+    }
+
+    .feature-media img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.35s ease;
+    }
+
+    .feature-row:hover .feature-media img {
+      transform: scale(1.015);
+    }
+
+    /* Section 05 — Information Architecture Diagram */
+    .ia-diagram {
+      padding: 2.1rem;
+      border-radius: var(--radius-lg);
+      background: var(--ocean-navy);
+      border: 1px solid var(--border);
+      display: grid;
+      gap: 1.85rem;
+    }
+
+    .ia-root {
+      justify-self: center;
+      text-align: center;
+      padding: 0.95rem 2rem;
+      border-radius: var(--radius-pill);
+      background: rgba(56, 189, 248, 0.14);
+      border: 1px solid var(--cyan);
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .ia-root span {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--turquoise);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .ia-branches {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 0.75rem;
+      position: relative;
+    }
+
+    .ia-node {
+      padding: 1rem 0.85rem;
+      border-radius: var(--radius-md);
+      background: var(--ocean-card);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .ia-node-num {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--cyan);
+    }
+
+    .ia-node strong {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .ia-node span {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .ia-caption {
+      font-size: 0.94rem;
+      color: var(--ink-soft);
+      border-top: 1px solid var(--border);
+      padding-top: 1.25rem;
+    }
+
+    /* Section 06 — User Journey */
+    .journey-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .journey-step {
+      padding: 1.35rem 1.15rem;
+      border-radius: var(--radius-md);
+      background: var(--ocean-navy);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      position: relative;
+    }
+
+    .journey-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--turquoise);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .journey-step h3 {
+      font-size: 1.25rem;
+      color: var(--ink);
+    }
+
+    .journey-step p {
+      font-size: 0.87rem;
+      color: var(--ink-soft);
+    }
+
+    /* Section 07 — Design & Development Showcase */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.35rem;
+    }
+
+    .showcase-card {
+      border-radius: var(--radius-md);
+      background: var(--ocean-navy);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .showcase-card img {
+      width: 100%;
+      height: auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .showcase-caption {
+      padding: 1rem 1.2rem;
+    }
+
+    .showcase-caption strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.08rem;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+
+    .showcase-caption span {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    /* Section 08 — Project Contribution */
+    .contrib-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 1.75rem;
+      align-items: start;
+    }
+
+    .chip-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .competency-chip {
+      padding: 0.55rem 1rem;
+      border-radius: var(--radius-pill);
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .integrity-box {
+      padding: 1.55rem;
+      border-radius: var(--radius-md);
+      background: var(--ocean-navy);
+      border: 1px solid var(--border);
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .integrity-box h3 {
+      font-size: 1.25rem;
+      color: var(--turquoise);
+    }
+
+    .integrity-box p {
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+    }
+
+    /* Section 09 — Project Reflection */
+    .reflection-card {
+      padding: 2.25rem;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(155deg, rgba(16, 38, 68, 0.92), rgba(8, 21, 40, 0.96));
+      border: 1px solid var(--border-strong);
+      display: grid;
+      gap: 1.1rem;
+    }
+
+    .reflection-card p {
+      font-size: 1.02rem;
+      color: var(--ink-soft);
+      max-width: 78ch;
+    }
+
+    .case-footer {
+      padding: 2.25rem 0 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 1020px) {
+      .ia-branches {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .journey-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 860px) {
+      .hero-top,
+      .section-head,
+      .overview-grid,
+      .ps-grid,
+      .feature-row,
+      .showcase-grid,
+      .contrib-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-row:nth-child(even) .feature-copy {
+        order: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(var(--max-w), calc(100% - 1.5rem));
+      }
+
+      .ia-branches,
+      .journey-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-facts {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-zoom-control" id="page-zoom-control">
+    <button class="page-zoom-toggle" id="page-zoom-toggle" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="page-zoom-panel">
+      <svg class="page-zoom-icon" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
+    </button>
+    <div class="page-zoom-panel" id="page-zoom-panel" aria-hidden="true">
+      <div class="page-zoom-panel-group">
+        <span class="page-zoom-label">Zoom</span>
+        <div class="page-zoom-actions">
+          <button class="page-zoom-step" id="page-zoom-out" type="button" aria-label="Zoom out">-</button>
+          <button class="page-zoom-value" id="page-zoom-value" type="button" aria-label="Reset zoom to default">80%</button>
+          <button class="page-zoom-step" id="page-zoom-in" type="button" aria-label="Zoom in">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="back-link" href="../../index.html#projects">&#8592; Back to Portfolio</a>
+      <div class="topbar-meta">
+        <span class="topbar-tag">Web Application / Gaming Guide</span>
+        <a class="live-pill" href="https://landerlynch.github.io/Dive-Down-Guide/" target="_blank" rel="noopener noreferrer">
+          Live Project &#8599;
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Section 01 — Project Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-top">
+          <div>
+            <p class="hero-category">Case Study · Web Application / Gaming Guide</p>
+            <h1>Dive Down Guide</h1>
+            <p class="hero-subtitle">A Centralized Gaming Knowledge Platform</p>
+            <p class="hero-desc">
+              A centralized web reference built for Roblox <strong>Dive Down</strong> players—bringing together fish rarity tables, biome locations, Ocean and Weather mutation multipliers, Rebirth upgrade tiers, farming tips, and Update 8 patch documentation in one structured interface.
+            </p>
+          </div>
+
+          <aside class="hero-aside" aria-label="Verified catalog scope">
+            <div class="hero-facts">
+              <div class="fact-box">
+                <strong>101</strong>
+                <span>Documented Fish</span>
+              </div>
+              <div class="fact-box">
+                <strong>15</strong>
+                <span>Biomes &amp; Special Tables</span>
+              </div>
+              <div class="fact-box">
+                <strong>10</strong>
+                <span>Rebirth Tiers (R1–R10)</span>
+              </div>
+            </div>
+            <div class="hero-cta-row">
+              <span class="hero-cta-note">Static web guide · GitHub Pages</span>
+              <a class="btn-primary" href="https://landerlynch.github.io/Dive-Down-Guide/" target="_blank" rel="noopener noreferrer">
+                Visit Live Guide &#8599;
+              </a>
+            </div>
+          </aside>
+        </div>
+
+        <div class="browser-mockup">
+          <div class="browser-chrome">
+            <div class="browser-dots" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="browser-url">https://landerlynch.github.io/Dive-Down-Guide/</div>
+          </div>
+          <div class="browser-screen">
+            <img src="../assets/dive-down-guide/01-landing-hero.png" alt="Dive Down Guide main landing page with sidebar navigation, fish search bar, and quick-nav cards" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 02 — Project Overview -->
+    <section class="case-section" id="overview">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-num">Section 02</span>
+            <h2>Project Overview</h2>
+          </div>
+          <p class="section-lead">
+            Dive Down Guide is an independent knowledge hub for the Roblox underwater fishing and progression game <strong>Dive Down</strong>, designed to make mid-session reference lookup fast and consistent.
+          </p>
+        </div>
+
+        <div class="overview-grid">
+          <article class="editorial-panel">
+            <h3>What Dive Down Guide Is</h3>
+            <p>
+              A single-page web reference combining a merged fish database, biome zone directory, mutation multiplier charts, a 10-tier Rebirth planner, farming strategies, Update 8 devlog notes, and an interactive FAQ accordion.
+            </p>
+          </article>
+          <article class="editorial-panel">
+            <h3>Why It Was Created</h3>
+            <p>
+              To give players one reliable place to check catch locations, rarity tiers (aligned with the Sportskeeda rarity list), and progression costs without switching between scattered threads, videos, or unorganized notes.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 03 — Problem & Solution -->
+    <section class="case-section" id="problem-solution">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-num">Section 03</span>
+            <h2>Problem &amp; Solution</h2>
+          </div>
+          <p class="section-lead">
+            Structuring fragmented game mechanics into a predictable, category-driven reference system.
+          </p>
+        </div>
+
+        <div class="ps-grid">
+          <article class="ps-card">
+            <span class="ps-label">The Problem</span>
+            <h3>Scattered References Slow Down Progression</h3>
+            <p>
+              Gaming information is scattered across multiple sources, making it difficult for players to find reliable references for fish rarity, biome locations, mutation values, and progression requirements.
+            </p>
+            <ul class="ps-list">
+              <li>Biome catch lists and special egg drops live in separate places.</li>
+              <li>Players struggle to verify conflicting rarity labels before grinding.</li>
+              <li>Rebirth fish requirements and permanent perk totals are hard to compare at a glance.</li>
+            </ul>
+          </article>
+
+          <article class="ps-card ps-card--solution">
+            <span class="ps-label">The Solution</span>
+            <h3>A Centralized, Category-First Knowledge Hub</h3>
+            <p>
+              A centralized information platform that organizes these resources into dedicated categories with clear navigation—pairing persistent sidebar links with quick-access cards and live fish-name lookup.
+            </p>
+            <ul class="ps-list">
+              <li>15 unified zone and special-category fish tables with icon, rarity pill, and notes.</li>
+              <li>Dedicated Ocean &amp; Weather mutation tables plus a toggleable Rebirth Guide view.</li>
+              <li>Update 8 devlog and 9-item FAQ accordion answering common mechanic questions.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 04 — Feature Breakdown -->
+    <section class="case-section" id="features">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-num">Section 04</span>
+            <h2>Feature Breakdown</h2>
+          </div>
+          <p class="section-lead">
+            Every core module observed on the live Dive Down Guide site, documented with its real interface screenshot and gameplay purpose.
+          </p>
+        </div>
+
+        <div class="feature-stack">
+          <article class="feature-row">
+            <div class="feature-copy">
+              <div class="feature-index">Feature 01</div>
+              <h3>Fish Database</h3>
+              <p>
+                Displays 101 documented fish across 15 tables with <strong>Fish Name</strong> (paired with PNG fish icons), color-coded <strong>Rarity</strong> badges, and <strong>Notes</strong>, alongside an auto-scrolling visual gallery strip.
+              </p>
+              <div class="feature-purpose">
+                <strong>Purpose</strong>
+                Provide a single, scannable catalog so players can verify fish identity and rarity tiers immediately.
+              </div>
+            </div>
+            <div class="feature-media">
+              <img src="../assets/dive-down-guide/02-fish-database.png" alt="Dive Down Guide Fish Database intro and scrolling visual gallery" loading="lazy" />
+            </div>
+          </article>
+
+          <article class="feature-row">
+            <div class="feature-copy">
+              <div class="feature-index">Feature 02</div>
+              <h3>Zone Guide</h3>
+              <p>
+                Organizes catches into 12 biome sections—from <em>Sunlight Zone</em> and <em>Coral Reef</em> through <em>Kraken World</em>, <em>Megalodon's Lair</em>, and <em>The Arctic</em>—plus 3 special tables (<em>OP Kraken Egg Fish</em>, <em>Shark Egg</em>, and <em>Limited</em>).
+              </p>
+              <div class="feature-purpose">
+                <strong>Purpose</strong>
+                Let players target the exact underwater biome or egg pool needed for their current progression goal.
+              </div>
+            </div>
+            <div class="feature-media">
+              <img src="../assets/dive-down-guide/03-zones.png" alt="Dive Down Guide Zone tables showing fish icons, rarity badges, and notes" loading="lazy" />
+            </div>
+          </article>
+
+          <article class="feature-row">
+            <div class="feature-copy">
+              <div class="feature-index">Feature 03</div>
+              <h3>Mutation Multiplier</h3>
+              <p>
+                Separates multipliers into two clean reference cards: <strong>Ocean Mutation</strong> (<em>Rainbow 3.0x</em>, <em>Gold 2.7x</em>, <em>Silver 2.4x</em>, <em>Normal 1.0x</em>) and <strong>Weather Mutation</strong> (<em>Evil 2.8x</em>, <em>Yin Yang 2.6x</em>, down to <em>Dry 1.1x</em>).
+              </p>
+              <div class="feature-purpose">
+                <strong>Purpose</strong>
+                Help players evaluate catch value quickly and understand that mutations do not stack.
+              </div>
+            </div>
+            <div class="feature-media">
+              <img src="../assets/dive-down-guide/04-mutations.png" alt="Dive Down Guide Ocean Mutation and Weather Mutation multiplier cards" loading="lazy" />
+            </div>
+          </article>
+
+          <article class="feature-row">
+            <div class="feature-copy">
+              <div class="feature-index">Feature 04</div>
+              <h3>Rebirth Guide</h3>
+              <p>
+                Switches into a dedicated in-page view detailing <em>No Full Reset</em>, <em>Permanent Perks</em>, and <em>Plan Ahead</em> principles, followed by all 10 tiers (<strong>R1–R10</strong>, from $5,000 + Goldfish to $500,000,000,000 + Licklid &amp; Shoober) and cumulative totals (<em>Swim Speed +28</em>, <em>Backpack Space +225</em>, <em>Cash Multiplier +2.25x</em>).
+              </p>
+              <div class="feature-purpose">
+                <strong>Purpose</strong>
+                Allow players to prepare required fish before rebirthing without losing track of permanent stat gains.
+              </div>
+            </div>
+            <div class="feature-media">
+              <img src="../assets/dive-down-guide/05b-rebirth-levels.png" alt="Dive Down Guide Rebirth Levels R1 to R10 requirements and perks" loading="lazy" />
+            </div>
+          </article>
+
+          <article class="feature-row">
+            <div class="feature-copy">
+              <div class="feature-index">Feature 05</div>
+              <h3>Tips &amp; Tricks</h3>
+              <p>
+                A concise 3-card strategy block covering <strong>Zone Farming</strong>, <strong>Check Rarity Conflicts</strong> (flagging discrepancies between sources for in-game verification), and <strong>Late-Game Route</strong> planning.
+              </p>
+              <div class="feature-purpose">
+                <strong>Purpose</strong>
+                Turn raw table data into practical farming habits and honest verification guidance.
+              </div>
+            </div>
+            <div class="feature-media">
+              <img src="../assets/dive-down-guide/06-tips-and-tricks.png" alt="Dive Down Guide Tips and Tricks 3-card strategy grid" loading="lazy" />
+            </div>
+          </article>
+
+          <article class="feature-row">
+            <div class="feature-copy">
+              <div class="feature-index">Feature 06</div>
+              <h3>Update Documentation</h3>
+              <p>
+                Documents <strong>Update 8 - Yin Yang</strong> (dated <em>April 18, 2026 • Updated 1:00 PM</em>) with 10 structured patch notes including <em>Dolphin</em>, <em>Custom Mermaid</em>, <em>Yin Yang Mutation</em>, <em>Dark Light Weather</em>, <em>Admin Abuse Poll System</em>, and <em>Fish Gifting</em>.
+              </p>
+              <div class="feature-purpose">
+                <strong>Purpose</strong>
+                Keep returning players informed about newly added catches, weather events, and system changes.
+              </div>
+            </div>
+            <div class="feature-media">
+              <img src="../assets/dive-down-guide/07-updates-devlog.png" alt="Dive Down Guide Update 8 Yin Yang devlog documentation" loading="lazy" />
+            </div>
+          </article>
+
+          <article class="feature-row">
+            <div class="feature-copy">
+              <div class="feature-index">Feature 07</div>
+              <h3>Search &amp; Navigation</h3>
+              <p>
+                Combines a persistent left sidebar (12 biome anchors, 3 special anchors, Help links, and Rebirth Guide switch), 7 hero quick-nav cards, a sticky header search toggle, and a live fish-name autocomplete dropdown that scrolls straight to the matching row with a temporary highlight.
+              </p>
+              <div class="feature-purpose">
+                <strong>Purpose</strong>
+                Minimize clicks between landing on the page and locating a specific fish, zone table, or progression tier.
+              </div>
+            </div>
+            <div class="feature-media">
+              <img src="../assets/dive-down-guide/01-landing-hero.png" alt="Dive Down Guide navigation sidebar, hero search bar, and 7 quick-nav cards" loading="lazy" />
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 05 — Information Architecture -->
+    <section class="case-section" id="architecture">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-num">Section 05</span>
+            <h2>Information Architecture</h2>
+          </div>
+          <p class="section-lead">
+            A flat, predictable hierarchy separating reference catalogs from progression planning and patch documentation.
+          </p>
+        </div>
+
+        <div class="ia-diagram">
+          <div class="ia-root">
+            <span>Root Platform</span>
+            Dive Down Guide
+          </div>
+
+          <div class="ia-branches">
+            <div class="ia-node">
+              <span class="ia-node-num">01</span>
+              <strong>Fish Database</strong>
+              <span>101 documented catches &amp; visual gallery</span>
+            </div>
+            <div class="ia-node">
+              <span class="ia-node-num">02</span>
+              <strong>Zones</strong>
+              <span>12 underwater biomes &amp; 3 special tables</span>
+            </div>
+            <div class="ia-node">
+              <span class="ia-node-num">03</span>
+              <strong>Mutations</strong>
+              <span>Ocean &amp; Weather multiplier cards</span>
+            </div>
+            <div class="ia-node">
+              <span class="ia-node-num">04</span>
+              <strong>Rebirth Guide</strong>
+              <span>Dedicated view for R1–R10 &amp; perk totals</span>
+            </div>
+            <div class="ia-node">
+              <span class="ia-node-num">05</span>
+              <strong>Tips &amp; Tricks</strong>
+              <span>Farming routes &amp; conflict checks</span>
+            </div>
+            <div class="ia-node">
+              <span class="ia-node-num">06</span>
+              <strong>Updates</strong>
+              <span>Update 8 Yin Yang devlog notes</span>
+            </div>
+            <div class="ia-node">
+              <span class="ia-node-num">07</span>
+              <strong>FAQs</strong>
+              <span>9 interactive accordion Q&amp;As</span>
+            </div>
+          </div>
+
+          <p class="ia-caption">
+            <strong>How this structure helps players:</strong> High-frequency lookups (fish tables, zones, and mutations) live on the main scrollable page with direct sidebar anchors, while multi-step progression planning (Rebirth Guide) switches cleanly into a focused view with its own section navigation and a one-click <em>Back to Fish Database</em> return path.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 06 — User Journey -->
+    <section class="case-section" id="user-journey">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-num">Section 06</span>
+            <h2>User Journey</h2>
+          </div>
+          <p class="section-lead">
+            Connecting reference lookup directly to in-game farming and rebirth decisions.
+          </p>
+        </div>
+
+        <div class="journey-grid">
+          <article class="journey-step">
+            <div class="journey-badge">
+              <span>Stage 01</span><span>→</span>
+            </div>
+            <h3>Discover</h3>
+            <p>Players land on the hero overview, see the 101 Fish / 15 Zones / 10 Rebirths scope, and orient via the 7 quick-nav cards.</p>
+          </article>
+
+          <article class="journey-step">
+            <div class="journey-badge">
+              <span>Stage 02</span><span>→</span>
+            </div>
+            <h3>Search</h3>
+            <p>Players type a target fish name in the hero or header search bar, or click a biome anchor in the left sidebar to jump straight to that zone.</p>
+          </article>
+
+          <article class="journey-step">
+            <div class="journey-badge">
+              <span>Stage 03</span><span>→</span>
+            </div>
+            <h3>Understand</h3>
+            <p>Players review the highlighted row's rarity badge, zone notes, and Ocean/Weather mutation multipliers to judge catch value.</p>
+          </article>
+
+          <article class="journey-step">
+            <div class="journey-badge">
+              <span>Stage 04</span><span>→</span>
+            </div>
+            <h3>Plan</h3>
+            <p>Players switch to the Rebirth Guide view to check cash and fish requirements for their next tier and review farming tips.</p>
+          </article>
+
+          <article class="journey-step">
+            <div class="journey-badge">
+              <span>Stage 05</span><span>✓</span>
+            </div>
+            <h3>Play</h3>
+            <p>Armed with target biomes and rebirth prerequisites, players launch Dive Down on Roblox via the top header CTA and farm efficiently.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 07 — Design & Development Showcase -->
+    <section class="case-section" id="showcase">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-num">Section 07</span>
+            <h2>Design &amp; Development Showcase</h2>
+          </div>
+          <p class="section-lead">
+            Unaltered screenshots captured directly from the live Dive Down Guide deployment.
+          </p>
+        </div>
+
+        <div class="showcase-grid">
+          <figure class="showcase-card">
+            <img src="../assets/dive-down-guide/01-landing-hero.png" alt="Dive Down Guide main landing page and navigation system" loading="lazy" />
+            <figcaption class="showcase-caption">
+              <strong>Main Landing Page &amp; Navigation System</strong>
+              <span>Persistent biome sidebar, sticky header search toggle, hero fish search, and 7-card quick-nav grid.</span>
+            </figcaption>
+          </figure>
+
+          <figure class="showcase-card">
+            <img src="../assets/dive-down-guide/02-fish-database.png" alt="Dive Down Guide Fish Database section" loading="lazy" />
+            <figcaption class="showcase-caption">
+              <strong>Fish Database &amp; Visual Gallery</strong>
+              <span>Database overview paired with the auto-scrolling 10-card underwater showcase strip.</span>
+            </figcaption>
+          </figure>
+
+          <figure class="showcase-card">
+            <img src="../assets/dive-down-guide/04-mutations.png" alt="Dive Down Guide Mutation reference cards" loading="lazy" />
+            <figcaption class="showcase-caption">
+              <strong>Mutation Multiplier Reference</strong>
+              <span>Two-column comparison for Ocean Mutation (up to 3.0x) and Weather Mutation (up to 2.8x).</span>
+            </figcaption>
+          </figure>
+
+          <figure class="showcase-card">
+            <img src="../assets/dive-down-guide/05-rebirth-guide.png" alt="Dive Down Guide Rebirth Guide overview and navigation" loading="lazy" />
+            <figcaption class="showcase-caption">
+              <strong>Rebirth Guide View</strong>
+              <span>Dedicated progression view with overview principles, R1–R10 requirements, and return navigation.</span>
+            </figcaption>
+          </figure>
+
+          <figure class="showcase-card">
+            <img src="../assets/dive-down-guide/07-updates-devlog.png" alt="Dive Down Guide Update 8 documentation" loading="lazy" />
+            <figcaption class="showcase-caption">
+              <strong>Update Documentation</strong>
+              <span>Timestamped Update 8 - Yin Yang devlog listing 10 new catches, events, and fixes.</span>
+            </figcaption>
+          </figure>
+
+          <figure class="showcase-card">
+            <img src="../assets/dive-down-guide/03-zones.png" alt="Dive Down Guide biome zone fish tables" loading="lazy" />
+            <figcaption class="showcase-caption">
+              <strong>Biome Zone Reference Tables</strong>
+              <span>Structured 3-column tables (Fish Name with PNG icon, Rarity badge, and Notes) per biome.</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 08 — Project Contribution -->
+    <section class="case-section" id="contribution">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-num">Section 08</span>
+            <h2>Project Contribution &amp; Implementation Scope</h2>
+          </div>
+          <p class="section-lead">
+            Competencies demonstrated and a transparent boundary between live interactive features and static reference content.
+          </p>
+        </div>
+
+        <div class="contrib-layout">
+          <div class="editorial-panel">
+            <h3>Core Competencies</h3>
+            <div class="chip-grid" style="margin-top: 1rem;">
+              <span class="competency-chip">Information Architecture</span>
+              <span class="competency-chip">Content Organization</span>
+              <span class="competency-chip">User Experience Design</span>
+              <span class="competency-chip">Web Interface Design</span>
+              <span class="competency-chip">Gaming Documentation</span>
+              <span class="competency-chip">Data Presentation</span>
+              <span class="competency-chip">Problem Solving</span>
+            </div>
+          </div>
+
+          <div class="integrity-box">
+            <h3>Verified Implementation vs. Documented Data</h3>
+            <p>
+              <strong>Implemented Client-Side Functionality:</strong> Live fish-name search dropdown (both hero and toggled header inputs) with smooth scroll-to-row highlighting, SPA view switching between the main guide and the Rebirth Guide, a 9-item FAQ accordion, and a floating scroll-to-top control—hosted as a static site on GitHub Pages.
+            </p>
+            <p>
+              <strong>Documented Reference Content:</strong> Static zone fish tables (101 entries across 15 tables, without column sorting or rarity filter controls), Ocean &amp; Weather mutation cards, Rebirth R1–R10 requirements, Tips &amp; Tricks, and Update 8 devlog notes. No backend database or live user analytics are claimed.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 09 — Project Reflection -->
+    <section class="case-section" id="reflection">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-num">Section 09</span>
+            <h2>Project Reflection</h2>
+          </div>
+          <p class="section-lead">
+            Why structure, clarity, and honest documentation matter in community-focused web products.
+          </p>
+        </div>
+
+        <div class="reflection-card">
+          <p>
+            Transforming scattered game mechanics into a structured knowledge platform proves that good information design can deliver immediate value without heavy infrastructure. Players do not need flashy dashboards when trying to check a fish's biome or calculate a rebirth requirement—they need predictable categories, scannable tables, and fast navigation.
+          </p>
+          <p>
+            Equally important is transparency: clearly distinguishing between verified rarity data, potential source conflicts, and what a search bar actually indexes builds long-term trust with the community. By prioritizing hierarchy, readability, and user-focused organization, Dive Down Guide turns fragmented notes into a practical companion for everyday gameplay.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container case-footer">
+    <span>Case Study · Dive Down Guide (Original Guide by Monaco_m2)</span>
+    <a class="back-link" href="../../index.html#projects">&#8592; Return to Portfolio Projects</a>
+  </footer>
+
+  <script defer src="../../js/zoom-controls.js"></script>
+</body>
+</html>
