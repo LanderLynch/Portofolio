@@ -105,6 +105,9 @@
     img {
       display: block;
       max-width: 100%;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-user-drag: none;
     }
 
     a {
@@ -183,8 +186,44 @@
     /* ---------- Theme switcher (elegant text-based) ---------- */
     .page-head-actions {
       display: flex;
-      align-items: flex-end;
-      gap: 1.6rem;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .focus-tabs {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.28rem;
+      border-radius: 999px;
+      border: 1px solid var(--gallery-line);
+      background: var(--gallery-card);
+      box-shadow: var(--gallery-shadow);
+    }
+
+    .focus-tab {
+      font-family: "Inter", "Segoe UI", sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.48rem 1rem;
+      border-radius: 999px;
+      border: 0;
+      background: transparent;
+      color: var(--gallery-muted);
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .focus-tab:hover {
+      color: var(--gallery-ink);
+    }
+
+    .focus-tab.is-active {
+      background: var(--gallery-ink);
+      color: var(--gallery-card);
     }
 
     .works-count {
@@ -268,6 +307,9 @@
       border: 1px solid var(--gallery-line);
       padding: 0.8rem;
       box-shadow: var(--gallery-shadow);
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
       transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.25s ease, border-color 0.25s ease;
     }
 
@@ -350,6 +392,71 @@
       color: var(--gallery-ink);
     }
 
+    /* ---------- Pure Smooth Pop-Out Lightbox ---------- */
+    .gfx-popout {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: rgba(12, 10, 9, 0.78);
+      backdrop-filter: blur(6px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      cursor: zoom-out;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: opacity 0.28s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.28s ease;
+    }
+
+    .gfx-popout.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .gfx-popout img {
+      max-width: min(92vw, 1120px);
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+      cursor: zoom-in;
+      transform-origin: center center;
+      transform: translate(0px, 0px) scale(0.92);
+      opacity: 0;
+      transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.24s ease;
+      will-change: transform;
+    }
+
+    .gfx-popout.is-open img {
+      transform: translate(0px, 0px) scale(1);
+      opacity: 1;
+    }
+
+    .gfx-popout.is-zoomed img {
+      cursor: grab;
+      transition: transform 0.12s ease-out, opacity 0.24s ease;
+    }
+
+    .gfx-popout.is-dragging img {
+      cursor: grabbing;
+      transition: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gfx-popout,
+      .gfx-popout img {
+        transition-duration: 0.01ms !important;
+      }
+    }
+
     /* ---------- Responsive: 4 -> 3 -> 2 -> 1 columns ---------- */
     @media (max-width: 1200px) {
       .gallery {
@@ -419,12 +526,20 @@
         <p class="page-sub" data-i18n-key="gfx-page-sub">Selected works Â· ongoing series</p>
       </div>
       <div class="page-head-actions">
+        <div class="focus-tabs" role="tablist" aria-label="Collection focus">
+          <button type="button" class="focus-tab is-active" role="tab" aria-selected="true" data-focus="gfx">GFX Design</button>
+          <button type="button" class="focus-tab" role="tab" aria-selected="false" data-focus="feeds">Feeds Post</button>
+        </div>
         <span class="works-count" id="works-count">28 works</span>
       </div>
     </div>
 
     <div class="gallery" id="gfx-gallery"></div>
   </main>
+
+  <div class="gfx-popout" id="gfx-popout" aria-hidden="true" role="dialog" aria-label="Image preview">
+    <img id="gfx-popout-img" src="" alt="" draggable="false" />
+  </div>
 
   <footer class="page-footer">
     <div class="footer-grid">
@@ -482,6 +597,14 @@
       { file: "shorekeeper.png", label: "Instagram" },
     ];
 
+    const feedsFiles = [
+      {
+        file: "hari-santri-nasional-2026.jpg",
+        title: "Selamat Hari Santri Nasional (22 Oktober 2026)",
+        label: "Feeds Post · 22 Okt 2026"
+      }
+    ];
+
     const formatTitle = (file) => {
       const name = file.replace(/\.[^.]+$/, "");
       return name
@@ -493,8 +616,12 @@
     };
 
     const gfxFolder = "../assets/design-gfx/";
+    const feedsFolder = "../assets/feeds-post/";
     const gallery = document.getElementById("gfx-gallery");
     const worksCount = document.getElementById("works-count");
+    const pageTitle = document.querySelector(".page-title");
+    const pageSub = document.querySelector(".page-sub");
+    const focusTabs = document.querySelectorAll(".focus-tab");
 
     const pad = (n) => String(n).padStart(2, "0");
 
@@ -508,35 +635,184 @@
         if (item) item.remove();
       };
       img.addEventListener("error", removeItem);
-      // Catch already-failed/cached broken images (naturalWidth === 0)
       if (img.complete && img.naturalWidth === 0) {
         removeItem();
       }
     };
 
-    if (gallery) {
-      gallery.innerHTML = gfxFiles
-        .map((item, index) => {
-          const title = formatTitle(item.file);
-          const path = encodeURI(`${gfxFolder}${item.file}`);
-          return `
-            <figure class="gallery-item">
-              <div class="gallery-meta"><span class="diamond">&#9670;</span>${pad(index + 1)} / ${item.label}</div>
-              <a class="gallery-frame" href="${path}" target="_blank" rel="noreferrer">
-                <img src="${path}" alt="${title}" loading="lazy">
-              </a>
-            </figure>
-          `;
-        })
-        .join("");
+    function renderCollection(focus) {
+      const isFeeds = focus === "feeds";
+      const list = isFeeds ? feedsFiles : gfxFiles;
+      const folder = isFeeds ? feedsFolder : gfxFolder;
 
-      // Attach the broken-image guard to every rendered image
-      gallery.querySelectorAll(".gallery-frame img").forEach(hideBroken);
+      if (pageTitle) {
+        pageTitle.textContent = isFeeds ? "Feeds Post" : "Poster Design";
+      }
+      if (pageSub) {
+        pageSub.textContent = isFeeds
+          ? "Social media feeds · Hari Santri Nasional & ongoing series"
+          : "Selected works · ongoing series";
+      }
+
+      if (gallery) {
+        gallery.innerHTML = list
+          .map((item, index) => {
+            const title = item.title || formatTitle(item.file);
+            const path = encodeURI(`${folder}${item.file}`);
+            return `
+              <figure class="gallery-item">
+                <div class="gallery-meta"><span class="diamond">&#9670;</span>${pad(index + 1)} / ${item.label}</div>
+                <a class="gallery-frame" href="${path}" target="_blank" rel="noreferrer">
+                  <img src="${path}" alt="${title}" loading="lazy" draggable="false">
+                </a>
+              </figure>
+            `;
+          })
+          .join("");
+
+        gallery.querySelectorAll(".gallery-frame img").forEach(hideBroken);
+      }
+
+      if (worksCount) {
+        worksCount.textContent = `${list.length} ${list.length === 1 ? "work" : "works"}`;
+      }
     }
 
-    if (worksCount) {
-      worksCount.textContent = `${gfxFiles.length} works`;
+    focusTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        focusTabs.forEach((btn) => {
+          btn.classList.remove("is-active");
+          btn.setAttribute("aria-selected", "false");
+        });
+        tab.classList.add("is-active");
+        tab.setAttribute("aria-selected", "true");
+        renderCollection(tab.dataset.focus);
+      });
+    });
+
+    const gfxPopout = document.getElementById("gfx-popout");
+    const gfxPopoutImg = document.getElementById("gfx-popout-img");
+    let popScale = 1;
+    let popTx = 0;
+    let popTy = 0;
+    let popDragging = false;
+    let popMoved = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let dragBaseTx = 0;
+    let dragBaseTy = 0;
+
+    function applyPopTransform() {
+      if (!gfxPopoutImg || !gfxPopout) return;
+      gfxPopout.classList.toggle("is-zoomed", popScale > 1);
+      gfxPopoutImg.style.transform = `translate(${popTx.toFixed(2)}px, ${popTy.toFixed(2)}px) scale(${popScale.toFixed(4)})`;
     }
+
+    function resetPopTransform() {
+      popScale = 1;
+      popTx = 0;
+      popTy = 0;
+      if (gfxPopout) gfxPopout.classList.remove("is-zoomed", "is-dragging");
+      if (gfxPopoutImg) gfxPopoutImg.style.transform = "";
+    }
+
+    function openPopout(src, alt) {
+      if (!gfxPopout || !gfxPopoutImg) return;
+      resetPopTransform();
+      gfxPopoutImg.src = src;
+      gfxPopoutImg.alt = alt || "";
+      gfxPopout.classList.add("is-open");
+      gfxPopout.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closePopout() {
+      if (!gfxPopout) return;
+      gfxPopout.classList.remove("is-open");
+      gfxPopout.setAttribute("aria-hidden", "true");
+      resetPopTransform();
+      document.body.style.overflow = "";
+    }
+
+    gallery?.addEventListener("click", (event) => {
+      const frame = event.target.closest(".gallery-frame");
+      if (!frame) return;
+      const img = frame.querySelector("img");
+      if (!img) return;
+      event.preventDefault();
+      openPopout(img.currentSrc || img.src, img.alt);
+    });
+
+    gfxPopout?.addEventListener("wheel", (event) => {
+      if (!gfxPopout.classList.contains("is-open")) return;
+      event.preventDefault();
+
+      const factor = event.deltaY < 0 ? 1.18 : 1 / 1.18;
+      let nextScale = Math.min(4, Math.max(1, popScale * factor));
+      if (nextScale < 1.04) nextScale = 1;
+
+      if (nextScale === 1) {
+        popScale = 1;
+        popTx = 0;
+        popTy = 0;
+        applyPopTransform();
+        return;
+      }
+
+      const ox = window.innerWidth / 2;
+      const oy = window.innerHeight / 2;
+      const ratio = nextScale / popScale;
+      popTx = event.clientX - ox - (event.clientX - ox - popTx) * ratio;
+      popTy = event.clientY - oy - (event.clientY - oy - popTy) * ratio;
+      popScale = nextScale;
+      applyPopTransform();
+    }, { passive: false });
+
+    gfxPopoutImg?.addEventListener("mousedown", (event) => {
+      if (popScale <= 1 || event.button !== 0) return;
+      event.preventDefault();
+      popDragging = true;
+      popMoved = false;
+      dragStartX = event.clientX;
+      dragStartY = event.clientY;
+      dragBaseTx = popTx;
+      dragBaseTy = popTy;
+      gfxPopout.classList.add("is-dragging");
+    });
+
+    window.addEventListener("mousemove", (event) => {
+      if (!popDragging) return;
+      const dx = event.clientX - dragStartX;
+      const dy = event.clientY - dragStartY;
+      if (Math.abs(dx) > 3 || Math.abs(dy) > 3) popMoved = true;
+      popTx = dragBaseTx + dx;
+      popTy = dragBaseTy + dy;
+      applyPopTransform();
+    });
+
+    window.addEventListener("mouseup", () => {
+      if (!popDragging) return;
+      popDragging = false;
+      gfxPopout?.classList.remove("is-dragging");
+    });
+
+    gfxPopout?.addEventListener("click", (event) => {
+      if (popMoved) {
+        popMoved = false;
+        return;
+      }
+      if (event.target === gfxPopout) {
+        closePopout();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && gfxPopout?.classList.contains("is-open")) {
+        closePopout();
+      }
+    });
+
+    renderCollection("gfx");
   </script>
   <script defer src="../../js/language-controls.js?v=20260410-2"></script>
   <script defer src="../../js/performance-utils.js"></script>

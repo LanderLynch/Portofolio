@@ -3616,6 +3616,21 @@ footer {
     gap: 2rem;
   }
 
+  .hero-editorial-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-title-row {
+    justify-content: center;
+  }
+
+  .typing-container {
+    margin-inline: auto;
+  }
+
   .hero-editorial-bio {
     margin-inline: auto;
   }

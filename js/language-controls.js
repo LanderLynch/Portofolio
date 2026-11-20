@@ -844,15 +844,9 @@
         border-color: color-mix(in srgb, var(--accent, #60a5fa) 48%, var(--border, rgba(148,163,184,0.24)));
       }
 
-      @media (max-width: 720px) {
+      @media (max-width: 960px) {
         .floating-language-toggle {
-          right: 0.85rem;
-          bottom: 0.85rem;
-        }
-
-        body.mobile-menu-open .floating-language-toggle {
-          opacity: 0;
-          pointer-events: none;
+          display: none !important;
         }
       }
     `;

@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="../assets/logo-preview/logo-lemon.png" />
+  <title>Lemon Bread Case Study — From Scroll Storytelling to Complete F&B Brand Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="../../css/zoom-controls.css" />
+  <style>
+    :root {
+      color-scheme: light;
+      --cream: #FEF7E8;
+      --cream-line: #F0E2B8;
+      --lemon: #FEDA50;
+      --lemon-deep: #E0B72E;
+      --lemon-soft: #FFF1B8;
+      --ink: #4A2C1D;
+      --ink-mute: #7A5A48;
+      --bread: #7B472C;
+      --ice-blue: #7FCBEE;
+      --ice-soft: #D6EEFA;
+      --penguin-gray: #858496;
+      --blush: #F9B8C4;
+      --white: #FFFFFF;
+
+      --shadow-warm: 0 10px 28px rgba(74, 44, 29, 0.08);
+      --shadow-lift: 0 16px 36px rgba(74, 44, 29, 0.13);
+      --font-display: "Fredoka", "Nunito", sans-serif;
+      --font-body: "Nunito", -apple-system, BlinkMacSystemFont, sans-serif;
+      --radius-card: 20px;
+      --radius-sm: 14px;
+      --radius-pill: 999px;
+      --max-w: 1140px;
+
+      /* Shared token bridge for zoom-controls */
+      --bg: var(--cream);
+      --surface: var(--white);
+      --surface-soft: var(--lemon-soft);
+      --panel-bg: rgba(254, 247, 232, 0.96);
+      --panel-bg-strong: rgba(255, 255, 255, 0.98);
+      --border: var(--cream-line);
+      --text: var(--ink);
+      --muted: var(--ink-mute);
+      --accent: var(--lemon-deep);
+      --accent-strong: var(--bread);
+      --accent-soft: var(--lemon-soft);
+      --shadow: var(--shadow-warm);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--cream);
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .sticker-badge, .step-num {
+      font-family: var(--font-display);
+      letter-spacing: -0.01em;
+    }
+
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    button { font-family: inherit; color: inherit; }
+
+    button:focus-visible,
+    a:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 3px solid var(--ice-blue);
+      outline-offset: 3px;
+    }
+
+    .container {
+      width: min(var(--max-w), calc(100% - 2.25rem));
+      margin: 0 auto;
+    }
+
+    /* Top Navigation */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(254, 247, 232, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--cream-line);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.9rem;
+      min-height: 4.35rem;
+      flex-wrap: wrap;
+      padding: 0.5rem 0;
+    }
+
+    .brand-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.02rem;
+    }
+
+    .brand-pill img {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      border: 2px solid var(--cream-line);
+      background: var(--white);
+      object-fit: contain;
+    }
+
+    .topbar-links {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      min-height: 2.5rem;
+      padding: 0.45rem 1rem;
+      border-radius: var(--radius-pill);
+      border: 2px solid var(--cream-line);
+      background: var(--white);
+      font-size: 0.86rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+    }
+
+    .nav-btn:hover {
+      border-color: var(--lemon-deep);
+      background: var(--lemon-soft);
+      transform: translateY(-1px);
+    }
+
+    .nav-btn--primary {
+      background: var(--lemon);
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .nav-btn--primary:hover {
+      background: var(--lemon-deep);
+      border-color: var(--ink);
+    }
+
+    /* Section Base */
+    .case-section {
+      padding: 4rem 0;
+      border-bottom: 2px solid var(--cream-line);
+      position: relative;
+    }
+
+    .case-section:last-of-type {
+      border-bottom: 0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .sticker-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.34rem 0.9rem;
+      border-radius: var(--radius-pill);
+      background: var(--lemon-soft);
+      border: 2px solid var(--lemon-deep);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      margin-bottom: 0.7rem;
+    }
+
+    .sticker-badge--ice {
+      background: var(--ice-soft);
+      border-color: var(--ice-blue);
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.85rem, 3.6vw, 2.65rem);
+      line-height: 1.1;
+      font-weight: 700;
+    }
+
+    .section-sub {
+      max-width: 54ch;
+      color: var(--ink-mute);
+      font-size: 0.98rem;
+      font-weight: 600;
+    }
+
+    /* Status Taxonomy Pills */
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 2px solid transparent;
+      white-space: nowrap;
+    }
+
+    .status-pill--verified {
+      background: #E4F6EC;
+      border-color: #6CC296;
+      color: #1D5A3A;
+    }
+
+    .status-pill--concept {
+      background: var(--ice-soft);
+      border-color: var(--ice-blue);
+      color: #1E4E68;
+    }
+
+    .status-pill--proposed {
+      background: var(--lemon-soft);
+      border-color: var(--lemon-deep);
+      color: var(--ink);
+    }
+
+    .status-pill--pending {
+      background: #FDE8EC;
+      border-color: var(--blush);
+      color: #7B2B3B;
+    }
+
+    /* Warm Card Primitive */
+    .warm-card {
+      background: var(--white);
+      border: 2px solid var(--cream-line);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-warm);
+      padding: 1.5rem;
+    }
+
+    /* SECTION A — Hero */
+    .hero-section {
+      padding: 3.5rem 0 0;
+      border-bottom: 2px solid var(--cream-line);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-decor {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.65;
+    }
+
+    .hero-decor--lemon {
+      top: 1.75rem;
+      right: 4%;
+      width: 78px;
+      height: 78px;
+      border-radius: 44% 56% 52% 48%;
+      background: var(--lemon);
+      border: 2px solid var(--ink);
+      animation: floatSoft 6s ease-in-out infinite;
+    }
+
+    .hero-decor--ice {
+      bottom: 5.5rem;
+      left: 2%;
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      transform: rotate(14deg);
+      background: var(--ice-soft);
+      border: 2px solid var(--ice-blue);
+      animation: floatSoft 7.5s ease-in-out infinite reverse;
+    }
+
+    @keyframes floatSoft {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(4deg); }
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      gap: 2.25rem;
+      align-items: start;
+      padding-bottom: 3rem;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(2.25rem, 4.6vw, 3.45rem);
+      line-height: 1.07;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .hero-copy p {
+      font-size: 1.03rem;
+      color: var(--ink-mute);
+      margin-bottom: 0.9rem;
+      max-width: 58ch;
+      font-weight: 600;
+    }
+
+    .hero-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-top: 1.35rem;
+    }
+
+    .meta-tile {
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      border: 2px solid var(--cream-line);
+    }
+
+    .meta-tile span {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--penguin-gray);
+    }
+
+    .meta-tile strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.98rem;
+      color: var(--ink);
+      margin-top: 0.15rem;
+    }
+
+    /* Interactive Preview Switcher */
+    .preview-switcher-card {
+      padding: 1.15rem;
+      background: var(--white);
+      border: 2px solid var(--ink);
+      border-radius: var(--radius-card);
+      box-shadow: 0 14px 0 var(--cream-line);
+    }
+
+    .preview-tabs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .preview-tab {
+      min-height: 2.75rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius-sm);
+      border: 2px solid var(--cream-line);
+      background: var(--cream);
+      font-family: var(--font-display);
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .preview-tab.is-active {
+      background: var(--lemon);
+      border-color: var(--ink);
+    }
+
+    .preview-panel {
+      display: none;
+    }
+
+    .preview-panel.is-active {
+      display: block;
+    }
+
+    .preview-frame {
+      border-radius: var(--radius-sm);
+      border: 2px solid var(--cream-line);
+      overflow: hidden;
+      background: var(--cream);
+      margin-bottom: 0.9rem;
+    }
+
+    .preview-chrome {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.5rem 0.8rem;
+      background: var(--lemon-soft);
+      border-bottom: 2px solid var(--cream-line);
+      font-size: 0.76rem;
+      font-weight: 700;
+    }
+
+    .preview-strategy-box {
+      padding: 1.25rem;
+      background: linear-gradient(180deg, var(--ice-soft) 0%, var(--cream) 100%);
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .preview-strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.55rem;
+    }
+
+    .mini-portal-tile {
+      padding: 0.65rem 0.75rem;
+      border-radius: 10px;
+      background: var(--white);
+      border: 2px solid var(--cream-line);
+      font-size: 0.8rem;
+    }
+
+    .mini-portal-tile strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.86rem;
+    }
+
+    .preview-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      min-height: 2.75rem;
+      padding: 0.55rem 1.2rem;
+      border-radius: var(--radius-pill);
+      border: 2px solid var(--ink);
+      background: var(--lemon);
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.16s ease, background-color 0.16s ease;
+    }
+
+    .action-btn:hover {
+      background: var(--lemon-deep);
+      transform: translateY(-2px);
+    }
+
+    .action-btn--ice {
+      background: var(--ice-soft);
+      border-color: var(--ice-blue);
+    }
+
+    .action-btn--ice:hover {
+      background: var(--ice-blue);
+      border-color: var(--ink);
+    }
+
+    /* Marquee */
+    .marquee-bar {
+      background: var(--lemon);
+      border-top: 2px solid var(--ink);
+      padding: 0.7rem 0;
+      overflow: hidden;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      gap: 2rem;
+      animation: marqueeScroll 26s linear infinite;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* SECTION B — Before vs After */
+    .ba-controls {
+      display: inline-flex;
+      padding: 0.35rem;
+      border-radius: var(--radius-pill);
+      background: var(--white);
+      border: 2px solid var(--cream-line);
+      gap: 0.35rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .ba-btn {
+      min-height: 2.6rem;
+      padding: 0.45rem 1.25rem;
+      border-radius: var(--radius-pill);
+      border: 2px solid transparent;
+      background: transparent;
+      font-family: var(--font-display);
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .ba-btn.is-active {
+      background: var(--lemon);
+      border-color: var(--ink);
+    }
+
+    .ba-stage {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .ba-list {
+      list-style: none;
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .ba-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      padding: 0.75rem 0.95rem;
+      border-radius: var(--radius-sm);
+      background: var(--cream);
+      border: 2px solid var(--cream-line);
+      font-weight: 600;
+      font-size: 0.94rem;
+    }
+
+    .ba-legend {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .legend-item {
+      padding: 0.9rem 1rem;
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      border: 2px solid var(--cream-line);
+    }
+
+    .legend-item p {
+      font-size: 0.86rem;
+      color: var(--ink-mute);
+      margin-top: 0.4rem;
+    }
+
+    /* SECTION C — Skill & Competency Matrix */
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .filter-pill {
+      min-height: 2.6rem;
+      padding: 0.45rem 1rem;
+      border-radius: var(--radius-pill);
+      border: 2px solid var(--cream-line);
+      background: var(--white);
+      font-family: var(--font-display);
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+    }
+
+    .filter-pill:hover {
+      border-color: var(--lemon-deep);
+      transform: translateY(-1px);
+    }
+
+    .filter-pill.is-active {
+      background: var(--lemon);
+      border-color: var(--ink);
+    }
+
+    .discipline-grid {
+      display: grid;
+      gap: 1.15rem;
+    }
+
+    .discipline-card {
+      background: var(--white);
+      border: 2px solid var(--cream-line);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-warm);
+      overflow: hidden;
+    }
+
+    .discipline-card[hidden] {
+      display: none;
+    }
+
+    .discipline-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .discipline-title-wrap {
+      min-width: 240px;
+      flex: 1;
+    }
+
+    .discipline-kicker {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--bread);
+    }
+
+    .discipline-head h3 {
+      font-size: 1.4rem;
+      margin-top: 0.15rem;
+    }
+
+    .skill-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.7rem;
+    }
+
+    .skill-chip {
+      padding: 0.25rem 0.7rem;
+      border-radius: var(--radius-pill);
+      background: var(--cream);
+      border: 2px solid var(--cream-line);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .evidence-toggle-btn {
+      min-height: 2.65rem;
+      padding: 0.45rem 1.05rem;
+      border-radius: var(--radius-pill);
+      border: 2px solid var(--ink);
+      background: var(--lemon-soft);
+      font-family: var(--font-display);
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .evidence-drawer {
+      display: none;
+      padding: 1.25rem 1.5rem 1.5rem;
+      border-top: 2px solid var(--cream-line);
+      background: #FFFDF8;
+    }
+
+    .discipline-card.is-expanded .evidence-drawer {
+      display: block;
+    }
+
+    .evidence-list {
+      list-style: none;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .evidence-list li {
+      padding-left: 1.25rem;
+      position: relative;
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: var(--ink-mute);
+    }
+
+    .evidence-list li::before {
+      content: "◆";
+      position: absolute;
+      left: 0;
+      color: var(--lemon-deep);
+      font-size: 0.75rem;
+      top: 0.12rem;
+    }
+
+    /* Interactive 4-Classification Governance Explorer */
+    .gov-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.5rem;
+      margin: 0.85rem 0;
+    }
+
+    .gov-tab {
+      min-height: 2.5rem;
+      padding: 0.45rem 0.6rem;
+      border-radius: 10px;
+      border: 2px solid var(--cream-line);
+      background: var(--white);
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .gov-tab.is-active {
+      border-color: var(--ink);
+      background: var(--lemon);
+    }
+
+    .gov-detail {
+      padding: 1rem 1.15rem;
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      border: 2px solid var(--cream-line);
+    }
+
+    /* SECTION D — 5-Stage Process Stepper */
+    .stepper-rail {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .step-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.35rem;
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      border: 2px solid var(--cream-line);
+      background: var(--white);
+      text-align: left;
+      cursor: pointer;
+      transition: transform 0.16s ease, border-color 0.16s ease, background-color 0.16s ease;
+    }
+
+    .step-btn:hover {
+      border-color: var(--lemon-deep);
+      transform: translateY(-2px);
+    }
+
+    .step-btn.is-active {
+      background: var(--lemon);
+      border-color: var(--ink);
+      box-shadow: 0 6px 0 var(--cream-line);
+    }
+
+    .step-num {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.15rem 0.55rem;
+      border-radius: var(--radius-pill);
+      background: var(--cream);
+      border: 2px solid var(--cream-line);
+    }
+
+    .step-btn strong {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .process-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.15rem;
+    }
+
+    .process-box {
+      padding: 1rem 1.1rem;
+      border-radius: var(--radius-sm);
+      background: var(--cream);
+      border: 2px solid var(--cream-line);
+    }
+
+    .process-box span {
+      display: block;
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--bread);
+      margin-bottom: 0.3rem;
+    }
+
+    /* SECTION E — Design System Showcase */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 0.85rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .swatch-btn {
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--radius-sm);
+      border: 2px solid var(--cream-line);
+      background: var(--white);
+      overflow: hidden;
+      text-align: left;
+      cursor: pointer;
+      box-shadow: var(--shadow-warm);
+      transition: transform 0.16s ease, border-color 0.16s ease;
+    }
+
+    .swatch-btn:hover {
+      border-color: var(--ink);
+      transform: translateY(-2px);
+    }
+
+    .swatch-color {
+      height: 68px;
+      width: 100%;
+      border-bottom: 2px solid var(--cream-line);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 0.4rem;
+    }
+
+    .swatch-copied {
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-pill);
+      background: var(--ink);
+      color: var(--cream);
+      font-size: 0.7rem;
+      font-weight: 700;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .swatch-btn.is-copied .swatch-copied {
+      opacity: 1;
+    }
+
+    .swatch-info {
+      padding: 0.65rem 0.75rem;
+    }
+
+    .swatch-info strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.86rem;
+    }
+
+    .swatch-info code {
+      font-size: 0.78rem;
+      color: var(--ink-mute);
+      font-weight: 700;
+    }
+
+    .ds-split {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .typo-sample-btn {
+      padding: 0.35rem 0.8rem;
+      border-radius: var(--radius-pill);
+      border: 2px solid var(--cream-line);
+      background: var(--cream);
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .typo-sample-btn.is-active {
+      background: var(--lemon);
+      border-color: var(--ink);
+    }
+
+    .comp-demo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* 3D Flip Card */
+    .flip-scene {
+      perspective: 1000px;
+    }
+
+    .flip-card {
+      width: 100%;
+      min-height: 210px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      cursor: pointer;
+      border: 0;
+      background: transparent;
+      text-align: left;
+    }
+
+    .flip-card.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    .flip-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      padding: 1.35rem;
+      border-radius: var(--radius-card);
+      border: 2px solid var(--ink);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-warm);
+    }
+
+    .flip-face--front {
+      background: var(--lemon-soft);
+    }
+
+    .flip-face--back {
+      background: var(--ice-soft);
+      transform: rotateY(180deg);
+    }
+
+    /* Tilt Product Card */
+    .tilt-card {
+      padding: 1.35rem;
+      border-radius: var(--radius-card);
+      border: 2px solid var(--cream-line);
+      background: var(--white);
+      box-shadow: var(--shadow-warm);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      transform-style: preserve-3d;
+    }
+
+    /* SECTION F — Outcome */
+    .outcome-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .reflection-banner {
+      padding: 1.75rem;
+      border-radius: var(--radius-card);
+      background: var(--lemon-soft);
+      border: 2px solid var(--ink);
+      box-shadow: var(--shadow-warm);
+    }
+
+    .case-footer {
+      padding: 2rem 0 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-weight: 700;
+      color: var(--ink-mute);
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .ba-stage,
+      .ds-split,
+      .outcome-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stepper-rail {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .swatch-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        width: min(var(--max-w), calc(100% - 1.5rem));
+      }
+
+      .hero-meta-grid,
+      .process-detail-grid,
+      .comp-demo-grid,
+      .gov-tabs,
+      .preview-strategy-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stepper-rail {
+        grid-template-columns: 1fr;
+      }
+
+      .swatch-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-zoom-control" id="page-zoom-control">
+    <button class="page-zoom-toggle" id="page-zoom-toggle" type="button" aria-label="Open zoom controls" aria-expanded="false" aria-controls="page-zoom-panel">
+      <svg class="page-zoom-icon" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35"></path><path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"></path><path d="M10.5 7.5v6"></path><path d="M7.5 10.5h6"></path></svg>
+    </button>
+    <div class="page-zoom-panel" id="page-zoom-panel" aria-hidden="true">
+      <div class="page-zoom-panel-group">
+        <span class="page-zoom-label">Zoom</span>
+        <div class="page-zoom-actions">
+          <button class="page-zoom-step" id="page-zoom-out" type="button" aria-label="Zoom out">-</button>
+          <button class="page-zoom-value" id="page-zoom-value" type="button" aria-label="Reset zoom to default">80%</button>
+          <button class="page-zoom-step" id="page-zoom-in" type="button" aria-label="Zoom in">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand-pill" href="../../index.html#projects">
+        <img src="../assets/logo-preview/logo-lemon.png" alt="Lemon Bread Mascot" />
+        <span>Lemon Bread Case Study</span>
+      </a>
+      <nav class="topbar-links" aria-label="Case study navigation">
+        <a class="nav-btn" href="#before-after">Before vs After</a>
+        <a class="nav-btn" href="#skills-matrix">Skills</a>
+        <a class="nav-btn" href="#process-explorer">Process</a>
+        <a class="nav-btn" href="#design-system">Design System</a>
+        <a class="nav-btn nav-btn--primary" href="https://lemon-scroll-story.vercel.app/" target="_blank" rel="noopener noreferrer">Live Site &#8599;</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- SECTION A — CASE STUDY HERO -->
+    <section class="hero-section">
+      <div class="hero-decor hero-decor--lemon" aria-hidden="true"></div>
+      <div class="hero-decor hero-decor--ice" aria-hidden="true"></div>
+
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="sticker-badge">Case Study · F&amp;B Brand &amp; Frontend</span>
+          <h1>From Scroll Storytelling to Complete F&amp;B Brand Experience</h1>
+          <p>
+            <strong>Lemon Bread — Bakery &amp; More</strong> is a conceptual F&amp;B brand positioned as a <em>Transit Refreshment Stop</em> with the tagline <em>"Your Affordable Stop Before You Go."</em>
+          </p>
+          <p>
+            This portfolio case study documents how an academic-style business plan evolved into an interactive digital brand experience while keeping strategic planning and unvalidated assumptions clearly separated.
+          </p>
+
+          <div class="hero-meta-grid">
+            <div class="meta-tile">
+              <span>Category</span>
+              <strong>F&amp;B Brand &amp; Digital Experience</strong>
+            </div>
+            <div class="meta-tile">
+              <span>Focus</span>
+              <strong>Brand Strategy, UX/UI, Frontend</strong>
+            </div>
+            <div class="meta-tile">
+              <span>Project</span>
+              <strong>Lemon Bread</strong>
+            </div>
+            <div class="meta-tile">
+              <span>Status</span>
+              <strong>Concept Development / Digital Experience</strong>
+            </div>
+          </div>
+        </div>
+
+        <aside class="preview-switcher-card" aria-label="Project live destination switcher">
+          <div class="preview-tabs" role="tablist" aria-label="Preview options">
+            <button type="button" class="preview-tab is-active" role="tab" aria-selected="true" data-preview="customer">
+              1. Customer Brand Website
+            </button>
+            <button type="button" class="preview-tab" role="tab" aria-selected="false" data-preview="strategy">
+              2. Business &amp; Strategy Portal
+            </button>
+          </div>
+
+          <div class="preview-panel is-active" id="preview-customer" role="tabpanel">
+            <div class="preview-frame">
+              <div class="preview-chrome">
+                <span>https://lemon-scroll-story.vercel.app/</span>
+                <span class="status-pill status-pill--verified">Live · HTTP 200</span>
+              </div>
+              <img src="../assets/lemon-bread/hero-live.png" alt="Live screenshot of Lemon Bread Customer Brand Website" />
+            </div>
+            <div class="preview-actions">
+              <span style="font-size: 0.84rem; font-weight: 700; color: var(--ink-mute);">
+                7 chapters · 6 menu cards · Penguin stamp card
+              </span>
+              <a class="action-btn" href="https://lemon-scroll-story.vercel.app/" target="_blank" rel="noopener noreferrer">
+                Open Live Website &#8599;
+              </a>
+            </div>
+          </div>
+
+          <div class="preview-panel" id="preview-strategy" role="tabpanel" hidden>
+            <div class="preview-frame">
+              <div class="preview-chrome">
+                <span>https://lemon-scroll-story.vercel.app/strategy</span>
+                <span class="status-pill status-pill--verified">Live · HTTP 200</span>
+              </div>
+              <div class="preview-strategy-box">
+                <strong style="font-family: var(--font-display); font-size: 1.05rem;">
+                  Rencana Program &amp; Strategi Lemon Bread (2027–2028)
+                </strong>
+                <div class="preview-strategy-grid">
+                  <div class="mini-portal-tile">
+                    <strong>SWOT Flip Cards</strong>
+                    Interactive S / W / O / T breakdown
+                  </div>
+                  <div class="mini-portal-tile">
+                    <strong>6-Stop Roadmap</strong>
+                    Animated program journey + Mode Presentasi
+                  </div>
+                  <div class="mini-portal-tile">
+                    <strong>24-Month Gantt</strong>
+                    2027–2028 execution schedule
+                  </div>
+                  <div class="mini-portal-tile">
+                    <strong>Budget Allocation</strong>
+                    2027 (Rp26M) + 2028 (Rp17M) plan
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="preview-actions">
+              <a class="action-btn action-btn--ice" href="lemon-bread-business-analysis.html">
+                Local Business Analysis
+              </a>
+              <a class="action-btn" href="https://lemon-scroll-story.vercel.app/strategy" target="_blank" rel="noopener noreferrer">
+                Open /strategy Portal &#8599;
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="marquee-bar" aria-label="Core project themes">
+        <div class="marquee-track">
+          <span>BRAND STRATEGY</span><span>•</span>
+          <span>DIGITAL EXPERIENCE</span><span>•</span>
+          <span>F&amp;B CONCEPT</span><span>•</span>
+          <span>INTERACTIVE DEVELOPMENT</span><span>•</span>
+          <span>CUSTOMER JOURNEY</span><span>•</span>
+          <span>BRAND STRATEGY</span><span>•</span>
+          <span>DIGITAL EXPERIENCE</span><span>•</span>
+          <span>F&amp;B CONCEPT</span><span>•</span>
+          <span>INTERACTIVE DEVELOPMENT</span><span>•</span>
+          <span>CUSTOMER JOURNEY</span><span>•</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION B — THE CHALLENGE: BEFORE VS AFTER -->
+    <section class="case-section" id="before-after">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="sticker-badge">Section B · Challenge &amp; Evolution</span>
+            <h2>Before vs. After Direction</h2>
+          </div>
+          <p class="section-sub">
+            Comparing the original academic presentation framing with the expanded customer-facing F&amp;B brand architecture.
+          </p>
+        </div>
+
+        <div class="ba-controls" role="tablist" aria-label="Compare Before and After">
+          <button type="button" class="ba-btn is-active" role="tab" aria-selected="true" data-ba="before">
+            Before (Original State)
+          </button>
+          <button type="button" class="ba-btn" role="tab" aria-selected="false" data-ba="after">
+            After (Expanded Brand Experience)
+          </button>
+        </div>
+
+        <div class="ba-stage">
+          <div class="warm-card" id="ba-detail-card">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:0.75rem; flex-wrap:wrap;">
+              <h3 id="ba-title" style="font-size: 1.55rem;">Original Academic Scroll Presentation</h3>
+              <span class="status-pill status-pill--concept" id="ba-badge">Baseline State</span>
+            </div>
+            <p id="ba-desc" style="color: var(--ink-mute); font-weight: 600; margin-top: 0.45rem;">
+              Initially framed around planning coursework rather than everyday commuter discovery.
+            </p>
+            <ul class="ba-list" id="ba-list"></ul>
+          </div>
+
+          <aside class="ba-legend" aria-label="Implementation status legend">
+            <div class="legend-item">
+              <span class="status-pill status-pill--verified">Existing Implementation</span>
+              <p>Live on <code>lemon-scroll-story.vercel.app</code>: 7-chapter brand site, <code>/strategy</code> portal, 4 drink photos, penguin stamp simulator, and FAQ accordion.</p>
+            </div>
+            <div class="legend-item">
+              <span class="status-pill status-pill--concept">In Progress / Concept</span>
+              <p>Quick Bread &amp; Road Snacks food categories remain marked <em>"Pending Validasi"</em> awaiting recipe testing and HPP validation.</p>
+            </div>
+            <div class="legend-item">
+              <span class="status-pill status-pill--proposed">Proposed Direction</span>
+              <p>Full 6-category menu completion, verified booth addresses, operating hours, and real customer feedback after launch.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION C — INTERACTIVE SKILL & COMPETENCY MATRIX -->
+    <section class="case-section" id="skills-matrix">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="sticker-badge sticker-badge--ice">Section C · Verified Competencies</span>
+            <h2>Interactive Skill &amp; Evidence Matrix</h2>
+          </div>
+          <p class="section-sub">
+            Filter by discipline and expand any card to inspect concrete project evidence—without arbitrary percentages or progress bars.
+          </p>
+        </div>
+
+        <div class="filter-pills" role="group" aria-label="Filter disciplines">
+          <button type="button" class="filter-pill is-active" data-disc="all">All Disciplines (5)</button>
+          <button type="button" class="filter-pill" data-disc="01">01 Brand Strategy</button>
+          <button type="button" class="filter-pill" data-disc="02">02 IA &amp; UX</button>
+          <button type="button" class="filter-pill" data-disc="03">03 Frontend &amp; Motion</button>
+          <button type="button" class="filter-pill" data-disc="04">04 Data Governance</button>
+          <button type="button" class="filter-pill" data-disc="05">05 QA &amp; Release</button>
+        </div>
+
+        <div class="discipline-grid" id="discipline-grid">
+          <article class="discipline-card is-expanded" data-disc-id="01">
+            <div class="discipline-head">
+              <div class="discipline-title-wrap">
+                <span class="discipline-kicker">Discipline 01</span>
+                <h3>Product &amp; Brand Strategy</h3>
+                <div class="skill-chips">
+                  <span class="skill-chip">Brand Positioning</span>
+                  <span class="skill-chip">Value Proposition</span>
+                  <span class="skill-chip">Brand Personality</span>
+                  <span class="skill-chip">Conceptual Brand Story</span>
+                  <span class="skill-chip">SWOT Analysis</span>
+                  <span class="skill-chip">Business Concept Development</span>
+                </div>
+              </div>
+              <button type="button" class="evidence-toggle-btn" aria-expanded="true">Hide Evidence</button>
+            </div>
+            <div class="evidence-drawer">
+              <ul class="evidence-list">
+                <li><strong>Transit Refreshment Stop</strong> positioning built for commuters and short-break travelers.</li>
+                <li><strong>"Your Affordable Stop Before You Go"</strong> value proposition pairing quick bread and drinks.</li>
+                <li>6-trait brand personality framework (Friendly, Approachable, Playful, Cheerful, Comforting, Practical).</li>
+                <li>4-part conceptual brand narrative (<em>Mengapa Hadir</em>, <em>Makna Nama</em>, <em>Perjalanan Harian</em>, <em>Arah Visi</em>).</li>
+                <li>Interactive SWOT flip cards and 2027–2028 strategic program roadmap in <code>/strategy</code>.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="discipline-card" data-disc-id="02">
+            <div class="discipline-head">
+              <div class="discipline-title-wrap">
+                <span class="discipline-kicker">Discipline 02</span>
+                <h3>Information Architecture &amp; UX</h3>
+                <div class="skill-chips">
+                  <span class="skill-chip">Content Audit</span>
+                  <span class="skill-chip">Information Architecture</span>
+                  <span class="skill-chip">User Journey Mapping</span>
+                  <span class="skill-chip">Menu Architecture</span>
+                  <span class="skill-chip">Content Hierarchy</span>
+                  <span class="skill-chip">Experience Design</span>
+                </div>
+              </div>
+              <button type="button" class="evidence-toggle-btn" aria-expanded="false">Inspect Evidence</button>
+            </div>
+            <div class="evidence-drawer">
+              <ul class="evidence-list">
+                <li>Clean route separation between customer-facing showcase (<code>/</code>) and internal planning (<code>/strategy</code>).</li>
+                <li>6-step customer journey (<em>Temukan Booth</em> → <em>Nikmati di Jalan</em>) mapped in <code>#experience</code>.</li>
+                <li>6-category menu filter architecture (Quick Bread, Road Snacks, Lemon Drinks, Coffee, Tea, Matcha).</li>
+                <li>Content audit eliminating placeholder confusion by labeling pending food categories explicitly.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="discipline-card" data-disc-id="03">
+            <div class="discipline-head">
+              <div class="discipline-title-wrap">
+                <span class="discipline-kicker">Discipline 03</span>
+                <h3>Frontend &amp; Motion Engineering</h3>
+                <div class="skill-chips">
+                  <span class="skill-chip">React Architecture</span>
+                  <span class="skill-chip">Scroll-Triggered Reveals</span>
+                  <span class="skill-chip">CSS &amp; Motion Design</span>
+                  <span class="skill-chip">Interactive UI</span>
+                  <span class="skill-chip">Responsive Development</span>
+                </div>
+              </div>
+              <button type="button" class="evidence-toggle-btn" aria-expanded="false">Inspect Evidence</button>
+            </div>
+            <div class="evidence-drawer">
+              <ul class="evidence-list">
+                <li>Compiled React web application bundle verified live (<code>/assets/index-BAHWs5ex.js</code> &amp; <code>/assets/index-BJEwk22Q.css</code>).</li>
+                <li>Scroll-triggered section transitions, continuous hero marquee, floating/bobbing/wiggle mascot animations, and 7-dot chapter navigation.</li>
+                <li>Interactive menu category tabs, loyalty stamp card simulator (0/6), preview feedback form, and 5-item FAQ accordion.</li>
+                <li><em>Scope note:</em> Detailed source-bundle reconstruction (e.g., internal GSAP/Lenis/Framer Motion hook wiring) is not claimed here because only the compiled production deployment was inspected.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="discipline-card" data-disc-id="04">
+            <div class="discipline-head">
+              <div class="discipline-title-wrap">
+                <span class="discipline-kicker">Discipline 04</span>
+                <h3>Data &amp; Factual Governance</h3>
+                <div class="skill-chips">
+                  <span class="skill-chip">Content Verification</span>
+                  <span class="skill-chip">Information Classification</span>
+                  <span class="skill-chip">Evidence-Based Communication</span>
+                  <span class="skill-chip">Product Information Governance</span>
+                </div>
+              </div>
+              <button type="button" class="evidence-toggle-btn" aria-expanded="false">Inspect Evidence</button>
+            </div>
+            <div class="evidence-drawer">
+              <p style="font-weight: 700; color: var(--ink-mute); margin-bottom: 0.5rem;">
+                Separating verified assets from conceptual plans prevents presenting unvalidated prices, recipes, or legal entities as operating facts. Select a classification:
+              </p>
+              <div class="gov-tabs" role="tablist" aria-label="Information classifications">
+                <button type="button" class="gov-tab is-active" role="tab" aria-selected="true" data-gov="verified">1. Verified Facts</button>
+                <button type="button" class="gov-tab" role="tab" aria-selected="false" data-gov="concept">2. Established Concepts</button>
+                <button type="button" class="gov-tab" role="tab" aria-selected="false" data-gov="proposed">3. Proposed Ideas</button>
+                <button type="button" class="gov-tab" role="tab" aria-selected="false" data-gov="pending">4. Pending Info</button>
+              </div>
+              <div class="gov-detail" id="gov-detail"></div>
+            </div>
+          </article>
+
+          <article class="discipline-card" data-disc-id="05">
+            <div class="discipline-head">
+              <div class="discipline-title-wrap">
+                <span class="discipline-kicker">Discipline 05</span>
+                <h3>QA &amp; Release Safety</h3>
+                <div class="skill-chips">
+                  <span class="skill-chip">Git Workflow</span>
+                  <span class="skill-chip">Regression Testing</span>
+                  <span class="skill-chip">Responsive QA</span>
+                  <span class="skill-chip">Route Validation</span>
+                  <span class="skill-chip">Error Handling</span>
+                </div>
+              </div>
+              <button type="button" class="evidence-toggle-btn" aria-expanded="false">Inspect Evidence</button>
+            </div>
+            <div class="evidence-drawer">
+              <ul class="evidence-list">
+                <li><strong>Verified Live Checks:</strong> Tested <code>/</code> and <code>/strategy</code> routes (both HTTP 200), image loading (<code>produk-1</code> to <code>produk-4</code>, mascot, logo), and 0 console errors.</li>
+                <li><strong>Portfolio Preservation:</strong> Kept existing <code>lemon-bread-business-analysis.html</code> untouched while adding this dedicated case study page.</li>
+                <li><strong>Planned Safeguards:</strong> Dedicated backup branches/tags (<code>backup/original-static</code> and <code>v0.1-original-static</code>) are documented as <em>planned safeguards</em> rather than existing git artifacts in this repository.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION D — PROCESS & ARCHITECTURE EXPLORER -->
+    <section class="case-section" id="process-explorer">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="sticker-badge">Section D · Execution Roadmap</span>
+            <h2>Process &amp; Architecture Explorer</h2>
+          </div>
+          <p class="section-sub">
+            Select any of the five stages below to inspect objectives, key decisions, deliverables, and implementation status.
+          </p>
+        </div>
+
+        <div class="stepper-rail" role="tablist" aria-label="5-stage process">
+          <button type="button" class="step-btn is-active" role="tab" aria-selected="true" data-stage="0">
+            <span class="step-num">01</span>
+            <strong>Audit</strong>
+          </button>
+          <button type="button" class="step-btn" role="tab" aria-selected="false" data-stage="1">
+            <span class="step-num">02</span>
+            <strong>Architecture</strong>
+          </button>
+          <button type="button" class="step-btn" role="tab" aria-selected="false" data-stage="2">
+            <span class="step-num">03</span>
+            <strong>Brand &amp; Menu</strong>
+          </button>
+          <button type="button" class="step-btn" role="tab" aria-selected="false" data-stage="3">
+            <span class="step-num">04</span>
+            <strong>Strategy Separation</strong>
+          </button>
+          <button type="button" class="step-btn" role="tab" aria-selected="false" data-stage="4">
+            <span class="step-num">05</span>
+            <strong>Desktop &amp; Mobile QA</strong>
+          </button>
+        </div>
+
+        <div class="warm-card" id="process-panel" role="tabpanel">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:0.75rem; flex-wrap:wrap;">
+            <h3 id="proc-title" style="font-size: 1.55rem;"></h3>
+            <span class="status-pill status-pill--verified" id="proc-status"></span>
+          </div>
+          <p id="proc-objective" style="margin-top: 0.5rem; font-weight: 700; color: var(--ink-mute);"></p>
+          <div class="process-detail-grid">
+            <div class="process-box">
+              <span>Key Activities</span>
+              <p id="proc-activities"></p>
+            </div>
+            <div class="process-box">
+              <span>Design / Technical Decisions</span>
+              <p id="proc-decisions"></p>
+            </div>
+            <div class="process-box">
+              <span>Expected Deliverables</span>
+              <p id="proc-deliverables"></p>
+            </div>
+            <div class="process-box">
+              <span>Verification Note</span>
+              <p id="proc-note"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION E — DESIGN SYSTEM & COMPONENT SHOWCASE -->
+    <section class="case-section" id="design-system">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="sticker-badge sticker-badge--ice">Section E · Interactive Exhibit</span>
+            <h2>Design System &amp; Component Showcase</h2>
+          </div>
+          <p class="section-sub">
+            Click any color swatch to copy its exact hex token, toggle typography weights, and test the interactive card primitives.
+          </p>
+        </div>
+
+        <h3 style="font-size: 1.3rem; margin-bottom: 0.9rem;">1. Lemon Bread Color Palette (Click to Copy Hex)</h3>
+        <div class="swatch-grid" id="swatch-grid"></div>
+
+        <div class="ds-split">
+          <div class="warm-card">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:0.5rem; flex-wrap:wrap; margin-bottom: 0.9rem;">
+              <h3 style="font-size: 1.3rem;">2. Typography Specimen</h3>
+              <div style="display:flex; gap:0.35rem;">
+                <button type="button" class="typo-sample-btn is-active" data-weight="700">Bold 700</button>
+                <button type="button" class="typo-sample-btn" data-weight="500">Medium 500</button>
+                <button type="button" class="typo-sample-btn" data-weight="400">Regular 400</button>
+              </div>
+            </div>
+            <p id="typo-display" style="font-family: var(--font-display); font-size: 1.9rem; font-weight: 700; line-height: 1.15; margin-bottom: 0.65rem;">
+              Fredoka — Your Affordable Stop Before You Go.
+            </p>
+            <p id="typo-body" style="font-family: var(--font-body); font-size: 1rem; font-weight: 700; color: var(--ink-mute);">
+              Nunito — Warm, friendly, and scannable body copy designed for quick commuter reading on both desktop and mobile screens.
+            </p>
+          </div>
+
+          <div class="warm-card">
+            <h3 style="font-size: 1.3rem; margin-bottom: 0.85rem;">Badge Taxonomy</h3>
+            <p style="font-size: 0.92rem; color: var(--ink-mute); font-weight: 600; margin-bottom: 0.9rem;">
+              Every claim across the case study uses one of four explicit evidence statuses:
+            </p>
+            <div style="display:flex; flex-wrap:wrap; gap:0.65rem;">
+              <span class="status-pill status-pill--verified">Verified — Observed Asset</span>
+              <span class="status-pill status-pill--concept">Concept — Defined Positioning</span>
+              <span class="status-pill status-pill--proposed">Proposed — Future Menu/Promo</span>
+              <span class="status-pill status-pill--pending">Pending — Needs Validation</span>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.3rem; margin-bottom: 0.9rem;">3. Interactive Component Demonstrations</h3>
+        <div class="comp-demo-grid">
+          <div class="flip-scene">
+            <button type="button" class="flip-card" id="demo-flip-card" aria-pressed="false">
+              <div class="flip-face flip-face--front">
+                <span class="status-pill status-pill--concept">3D Flip Card · Front</span>
+                <div>
+                  <h4 style="font-size: 1.35rem;">SWOT &amp; Strategy Card</h4>
+                  <p style="font-size: 0.9rem; color: var(--ink-mute); font-weight: 600;">Click or press Enter to flip and inspect the underlying rationale.</p>
+                </div>
+                <span style="font-size: 0.8rem; font-weight: 800;">Tap to flip &#8635;</span>
+              </div>
+              <div class="flip-face flip-face--back">
+                <span class="status-pill status-pill--verified">3D Flip Card · Back</span>
+                <div>
+                  <h4 style="font-size: 1.25rem;">Transit Positioning</h4>
+                  <p style="font-size: 0.9rem; color: var(--ink); font-weight: 600;">Mirrors the interactive SWOT flip cards on <code>/strategy</code> with accessible keyboard + touch support.</p>
+                </div>
+                <span style="font-size: 0.8rem; font-weight: 800;">Tap to return &#8634;</span>
+              </div>
+            </button>
+          </div>
+
+          <div class="tilt-card" id="demo-tilt-card">
+            <span class="status-pill status-pill--proposed">Tilt Product Card</span>
+            <h4 style="font-size: 1.35rem; margin-top: 0.75rem;">Warm Card &amp; Pointer Tilt</h4>
+            <p style="font-size: 0.92rem; color: var(--ink-mute); font-weight: 600; margin-top: 0.45rem;">
+              Uses <code>2px solid #F0E2B8</code> cream-line borders, <code>20px</code> radius, warm shadows, and subtle pointer tilt on fine pointers (disabled gracefully on touch &amp; reduced motion).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION F — OUTCOME & PROJECT STATUS -->
+    <section class="case-section" id="outcome">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="sticker-badge">Section F · Honest Summary</span>
+            <h2>Outcome &amp; Project Status</h2>
+          </div>
+          <p class="section-sub">
+            A clear boundary between completed digital deliverables and real-world commercial steps still awaiting validation.
+          </p>
+        </div>
+
+        <div class="outcome-grid">
+          <article class="warm-card">
+            <span class="status-pill status-pill--verified">Demonstrated Deliverables</span>
+            <h3 style="font-size: 1.4rem; margin-top: 0.75rem;">What Exists Today</h3>
+            <ul class="ba-list">
+              <li>Verified visual identity system (Fredoka, Nunito, 12-token palette, penguin mascot).</li>
+              <li>Live customer-facing pre-launch website (<code>lemon-scroll-story.vercel.app</code>) with 7 chapters &amp; 4 drink visuals.</li>
+              <li>Live <code>/strategy</code> portal with 2027–2028 roadmap, Gantt timeline, budget allocation, and SWOT flip cards.</li>
+              <li>Documented UX, information architecture, and local Business Analysis companion.</li>
+            </ul>
+          </article>
+
+          <article class="warm-card">
+            <span class="status-pill status-pill--pending">Pending Real-World Validation</span>
+            <h3 style="font-size: 1.4rem; margin-top: 0.75rem;">Not Yet Validated</h3>
+            <ul class="ba-list">
+              <li>Physical transit booth location survey &amp; finalized operating hours.</li>
+              <li>Final product recipes for Quick Bread &amp; Road Snacks series.</li>
+              <li>Verified HPP calculations, final selling prices, and commercial sales performance.</li>
+              <li>Legal entity verification (<code>PT Lemon Bread Indonesia</code>) and live customer feedback.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="reflection-banner">
+          <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Project Reflection</h3>
+          <p style="font-weight: 600; color: var(--ink);">
+            The project demonstrates the development of a business concept into a structured digital brand experience, combining strategic thinking, information architecture, visual identity, and frontend implementation—while maintaining strict honesty about what remains conceptual versus verified.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container case-footer">
+    <span>Lemon Bread — Interactive Portfolio Case Study</span>
+    <a class="nav-btn" href="../../index.html#projects">&#8592; Back to Portfolio</a>
+  </footer>
+
+  <script>
+    /* Section A: Preview Switcher */
+    const previewTabs = document.querySelectorAll("[data-preview]");
+    const previewCustomer = document.getElementById("preview-customer");
+    const previewStrategy = document.getElementById("preview-strategy");
+
+    previewTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const isCustomer = tab.dataset.preview === "customer";
+        previewTabs.forEach((btn) => {
+          const active = btn === tab;
+          btn.classList.toggle("is-active", active);
+          btn.setAttribute("aria-selected", String(active));
+        });
+        previewCustomer.classList.toggle("is-active", isCustomer);
+        previewCustomer.hidden = !isCustomer;
+        previewStrategy.classList.toggle("is-active", !isCustomer);
+        previewStrategy.hidden = isCustomer;
+      });
+    });
+
+    /* Section B: Before vs After */
+    const baData = {
+      before: {
+        title: "Original Academic Scroll Presentation",
+        badge: "Baseline State",
+        badgeClass: "status-pill--concept",
+        desc: "Initially framed around planning coursework rather than everyday commuter discovery.",
+        items: [
+          "Single-page academic-style scroll presentation.",
+          "Presentation-oriented content focused on planning assignments.",
+          "Title and framing tailored to coursework review rather than customers.",
+          "Incomplete customer-facing brand story and practical menu details.",
+          "Developer/pending placeholders inside food product sections."
+        ]
+      },
+      after: {
+        title: "Expanded F&B Brand Experience (Target + Live Concept)",
+        badge: "Target Architecture",
+        badgeClass: "status-pill--proposed",
+        desc: "Separates customer discovery on / from internal planning on /strategy, with explicit status labels for unvalidated items.",
+        items: [
+          "Customer-facing 7-chapter F&B brand experience on lemon-scroll-story.vercel.app.",
+          "Dedicated internal Business & Strategy Portal on /strategy (HTTP 200).",
+          "Four-part conceptual brand storytelling and Penguin mascot identity.",
+          "Six-category menu architecture (4 photographed drinks + 2 pending food series).",
+          "Explicit 4-tier classification separating verified assets from pending validation."
+        ]
+      }
+    };
+
+    const baButtons = document.querySelectorAll("[data-ba]");
+    const baTitle = document.getElementById("ba-title");
+    const baBadge = document.getElementById("ba-badge");
+    const baDesc = document.getElementById("ba-desc");
+    const baList = document.getElementById("ba-list");
+
+    function renderBeforeAfter(mode) {
+      const state = baData[mode] || baData.before;
+      baTitle.textContent = state.title;
+      baBadge.textContent = state.badge;
+      baBadge.className = `status-pill ${state.badgeClass}`;
+      baDesc.textContent = state.desc;
+      baList.innerHTML = state.items.map((item) => `<li>${item}</li>`).join("");
+    }
+
+    baButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        baButtons.forEach((b) => {
+          const active = b === btn;
+          b.classList.toggle("is-active", active);
+          b.setAttribute("aria-selected", String(active));
+        });
+        renderBeforeAfter(btn.dataset.ba);
+      });
+    });
+    renderBeforeAfter("before");
+
+    /* Section C: Discipline Filters, Expandable Evidence & Governance Tabs */
+    const discPills = document.querySelectorAll("[data-disc]");
+    const discCards = document.querySelectorAll(".discipline-card");
+
+    discPills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        const target = pill.dataset.disc;
+        discPills.forEach((p) => p.classList.toggle("is-active", p === pill));
+        discCards.forEach((card) => {
+          const show = target === "all" || card.dataset.discId === target;
+          card.hidden = !show;
+          if (target !== "all" && show) {
+            card.classList.add("is-expanded");
+            const btn = card.querySelector(".evidence-toggle-btn");
+            if (btn) {
+              btn.setAttribute("aria-expanded", "true");
+              btn.textContent = "Hide Evidence";
+            }
+          }
+        });
+      });
+    });
+
+    discCards.forEach((card) => {
+      const btn = card.querySelector(".evidence-toggle-btn");
+      btn?.addEventListener("click", () => {
+        const expanded = card.classList.toggle("is-expanded");
+        btn.setAttribute("aria-expanded", String(expanded));
+        btn.textContent = expanded ? "Hide Evidence" : "Inspect Evidence";
+      });
+    });
+
+    const govCopy = {
+      verified: {
+        badge: "Verified Facts",
+        cls: "status-pill--verified",
+        text: "Existing visual assets (logo, penguin mascot, 4 drink photos), the live React deployment on lemon-scroll-story.vercel.app, and the /strategy portal (HTTP 200)."
+      },
+      concept: {
+        badge: "Established Concepts",
+        cls: "status-pill--concept",
+        text: "Transit Refreshment Stop positioning, 'Your Affordable Stop Before You Go' tagline, 6-trait brand personality, and 6-step customer journey."
+      },
+      proposed: {
+        badge: "Proposed Ideas",
+        cls: "status-pill--proposed",
+        text: "Quick Bread & Road Snacks bundles, Kartu Cap Pinguin loyalty program, seasonal lemon specials, and 2027–2028 marketing rollout."
+      },
+      pending: {
+        badge: "Pending Information",
+        cls: "status-pill--pending",
+        text: "Final food recipes, HPP & final retail prices, transit booth location survey, operating hours, and legal entity verification."
+      }
+    };
+
+    const govTabs = document.querySelectorAll("[data-gov]");
+    const govDetail = document.getElementById("gov-detail");
+
+    function renderGov(key) {
+      const g = govCopy[key] || govCopy.verified;
+      govDetail.innerHTML = `
+        <span class="status-pill ${g.cls}" style="margin-bottom:0.5rem;">${g.badge}</span>
+        <p style="font-size:0.93rem; font-weight:600; color:var(--ink);">${g.text}</p>
+      `;
+    }
+
+    govTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        govTabs.forEach((t) => {
+          const active = t === tab;
+          t.classList.toggle("is-active", active);
+          t.setAttribute("aria-selected", String(active));
+        });
+        renderGov(tab.dataset.gov);
+      });
+    });
+    renderGov("verified");
+
+    /* Section D: 5-Stage Process Explorer */
+    const stages = [
+      {
+        title: "01. Content & Concept Audit",
+        status: "Completed",
+        statusClass: "status-pill--verified",
+        objective: "Review existing strategic marketing notes, identify gaps between internal coursework framing and customer needs, and flag unverified claims.",
+        activities: "Cataloged existing assets, audited placeholder sections, and separated verified drink visuals from pending food categories.",
+        decisions: "Label pending recipes and HPP transparently instead of inventing commercial metrics or store hours.",
+        deliverables: "Content inventory, 4-tier classification rules, and gap list.",
+        note: "Reflected live on lemon-scroll-story.vercel.app via explicit pre-launch disclaimers."
+      },
+      {
+        title: "02. Information Architecture",
+        status: "Completed",
+        statusClass: "status-pill--verified",
+        objective: "Organize scattered product, story, and planning content into a scannable hierarchy for commuters and reviewers.",
+        activities: "Structured 7 main chapters (#home to #contact), 7-dot navigation, and a 6-step customer journey.",
+        decisions: "Keep consumer storytelling scannable while moving dense multi-year planning tables to a dedicated route.",
+        deliverables: "7-chapter sitemap, 6-step journey map, and section hierarchy.",
+        note: "Verified live with sticky section navigation and chapter indicators."
+      },
+      {
+        title: "03. Brand & Menu System",
+        status: "Concept Active",
+        statusClass: "status-pill--concept",
+        objective: "Express the Transit Refreshment Stop identity through a cohesive palette, Fredoka/Nunito typography, and 6-category menu.",
+        activities: "Defined 12 color tokens, penguin mascot expressions, and interactive category filter tabs across drinks and planned snacks.",
+        decisions: "Pair playful rounded borders with clear price-planning tags and 'Pending Validasi' food badges.",
+        deliverables: "Visual identity tokens, 6-category menu UI, and mascot expression set.",
+        note: "4 drink items have verified photos; 2 food series await recipe validation."
+      },
+      {
+        title: "04. Strategy Separation (/strategy)",
+        status: "Completed",
+        statusClass: "status-pill--verified",
+        objective: "Give business reviewers a focused portal for SWOT, roadmaps, Gantt charts, and budgets without cluttering customer pages.",
+        activities: "Built /strategy with SWOT flip cards, 6-stop animated roadmap, 24-month Gantt, and Mode Presentasi.",
+        decisions: "Provide bidirectional header switching between Brand Website (/) and Business & Strategy Portal (/strategy).",
+        deliverables: "Live /strategy route (HTTP 200) + local Business Analysis companion page.",
+        note: "Verified /strategy returns HTTP 200 with full interactive controls."
+      },
+      {
+        title: "05. Desktop & Mobile QA",
+        status: "Verified",
+        statusClass: "status-pill--verified",
+        objective: "Ensure responsive readability, accessible keyboard controls, reduced-motion compliance, and zero console/asset errors.",
+        activities: "Tested 1280x800 desktop and 390x844 mobile layouts, interactive tabs, copy swatches, and 3D card states.",
+        decisions: "Disable pointer tilt on coarse pointers/reduced motion and ensure every interactive control is keyboard-focusable.",
+        deliverables: "QA pass across routes, asset loading checks, and responsive layout verification.",
+        note: "Backup git tags remain documented as planned safeguards rather than existing repo artifacts."
+      }
+    ];
+
+    const stepBtns = document.querySelectorAll("[data-stage]");
+    const procTitle = document.getElementById("proc-title");
+    const procStatus = document.getElementById("proc-status");
+    const procObj = document.getElementById("proc-objective");
+    const procAct = document.getElementById("proc-activities");
+    const procDec = document.getElementById("proc-decisions");
+    const procDel = document.getElementById("proc-deliverables");
+    const procNote = document.getElementById("proc-note");
+
+    function renderStage(idx) {
+      const s = stages[idx] || stages[0];
+      procTitle.textContent = s.title;
+      procStatus.textContent = s.status;
+      procStatus.className = `status-pill ${s.statusClass}`;
+      procObj.textContent = s.objective;
+      procAct.textContent = s.activities;
+      procDec.textContent = s.decisions;
+      procDel.textContent = s.deliverables;
+      procNote.textContent = s.note;
+    }
+
+    stepBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        stepBtns.forEach((b) => {
+          const active = b === btn;
+          b.classList.toggle("is-active", active);
+          b.setAttribute("aria-selected", String(active));
+        });
+        renderStage(Number(btn.dataset.stage || 0));
+      });
+    });
+    renderStage(0);
+
+    /* Section E: Swatches, Typography, Flip & Tilt */
+    const palette = [
+      { name: "Cream", hex: "#FEF7E8", darkText: true },
+      { name: "Cream Line", hex: "#F0E2B8", darkText: true },
+      { name: "Lemon", hex: "#FEDA50", darkText: true },
+      { name: "Lemon Deep", hex: "#E0B72E", darkText: true },
+      { name: "Lemon Soft", hex: "#FFF1B8", darkText: true },
+      { name: "Chocolate", hex: "#4A2C1D", darkText: false },
+      { name: "Ink Mute", hex: "#7A5A48", darkText: false },
+      { name: "Bread", hex: "#7B472C", darkText: false },
+      { name: "Ice Blue", hex: "#7FCBEE", darkText: true },
+      { name: "Ice Soft", hex: "#D6EEFA", darkText: true },
+      { name: "Penguin Gray", hex: "#858496", darkText: false },
+      { name: "Blush", hex: "#F9B8C4", darkText: true }
+    ];
+
+    const swatchGrid = document.getElementById("swatch-grid");
+    swatchGrid.innerHTML = palette
+      .map(
+        (c) => `
+          <button type="button" class="swatch-btn" data-hex="${c.hex}" aria-label="Copy ${c.name} ${c.hex}">
+            <span class="swatch-color" style="background:${c.hex};">
+              <span class="swatch-copied">Copied!</span>
+            </span>
+            <span class="swatch-info">
+              <strong>${c.name}</strong>
+              <code>${c.hex}</code>
+            </span>
+          </button>
+        `
+      )
+      .join("");
+
+    swatchGrid.addEventListener("click", async (event) => {
+      const btn = event.target.closest(".swatch-btn");
+      if (!btn) return;
+      const hex = btn.dataset.hex;
+      try {
+        await navigator.clipboard.writeText(hex);
+      } catch (e) {
+        // Fallback still shows visual confirmation
+      }
+      btn.classList.add("is-copied");
+      setTimeout(() => btn.classList.remove("is-copied"), 1200);
+    });
+
+    const typoBtns = document.querySelectorAll("[data-weight]");
+    const typoDisplay = document.getElementById("typo-display");
+    const typoBody = document.getElementById("typo-body");
+    typoBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        typoBtns.forEach((b) => b.classList.toggle("is-active", b === btn));
+        const w = btn.dataset.weight;
+        typoDisplay.style.fontWeight = w;
+        typoBody.style.fontWeight = w;
+      });
+    });
+
+    const flipCard = document.getElementById("demo-flip-card");
+    flipCard?.addEventListener("click", () => {
+      const flipped = flipCard.classList.toggle("is-flipped");
+      flipCard.setAttribute("aria-pressed", String(flipped));
+    });
+
+    const tiltCard = document.getElementById("demo-tilt-card");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const finePointer = window.matchMedia("(pointer: fine)").matches;
+    if (tiltCard && finePointer && !prefersReducedMotion) {
+      tiltCard.addEventListener("mousemove", (e) => {
+        const rect = tiltCard.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        tiltCard.style.transform = `perspective(700px) rotateX(${(-y * 7).toFixed(2)}deg) rotateY(${(x * 7).toFixed(2)}deg)`;
+      });
+      tiltCard.addEventListener("mouseleave", () => {
+        tiltCard.style.transform = "";
+      });
+    }
+  </script>
+  <script defer src="../../js/zoom-controls.js"></script>
+</body>
+</html>
