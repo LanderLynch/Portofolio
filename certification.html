@@ -1399,8 +1399,8 @@
 
         <div class="hero-stats">
           <div class="hero-stat">
-            <strong>25</strong>
-            <span>Total certification files</span>
+            <strong>33</strong>
+            <span>Total certification &amp; study files</span>
           </div>
           <div class="hero-stat">
             <strong>8</strong>
@@ -1461,6 +1461,8 @@
               </label>
               <div class="filter-dropdown-options">
                 <button class="filter-dropdown-option is-active" type="button" data-value="all" data-label="filter by category">Filter by Category</button>
+                <button class="filter-dropdown-option" type="button" data-value="coursera" data-label="coursera">Coursera</button>
+                <button class="filter-dropdown-option" type="button" data-value="hp-life" data-label="hp life">HP LIFE</button>
                 <button class="filter-dropdown-option" type="button" data-value="myskill" data-label="myskill">MySkill</button>
                 <button class="filter-dropdown-option" type="button" data-value="trainee" data-label="trainee">Trainee</button>
                 <button class="filter-dropdown-option" type="button" data-value="competition" data-label="competition">Competition</button>
@@ -1473,11 +1475,47 @@
       </div>
 
       <div class="filter-summary">
-        <p class="results-total" id="results-total">Total: 12</p>
+        <p class="results-total" id="results-total">Total: 16</p>
         <p class="section-note" id="results-note">Showing all certification groups and files.</p>
       </div>
 
       <section class="certificates-grid" id="certificates-grid">
+        <article class="certificate-card folder-card" data-category="coursera" data-type="folder">
+          <span class="certificate-tag">Coursera · Certificate Pending</span>
+          <div class="folder-card-head">
+            <span class="folder-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4.5 5.25A2.25 2.25 0 0 1 6.75 3h10.5A2.25 2.25 0 0 1 19.5 5.25v13.5A2.25 2.25 0 0 1 17.25 21H6.75A2.25 2.25 0 0 1 4.5 18.75V5.25Z"></path><path d="M8.25 8.25h7.5M8.25 12h7.5M8.25 15.75h4.5"></path></svg>
+            </span>
+            <div class="folder-summary">
+              <h2>Dasar-dasar Pemasaran Digital dan E-commerce</h2>
+              <p>Dokumentasi materi &amp; glosarium lengkap yang dipelajari dari program Coursera (451 istilah). <strong>Status Sertifikat:</strong> Masih kosong / menunggu unggahan manual ke Google Drive.</p>
+              <div class="folder-stats">
+                <span>451 istilah &amp; definisi (A–W)</span>
+                <span>Sertifikat: Pending (Google Drive)</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.65rem;margin-top:auto;align-items:center;">
+            <button class="folder-open-btn" type="button" id="coursera-notes-open-btn">Buka Catatan &amp; Materi</button>
+            <a class="certificate-link" href="project/assets/certification-files/Digital-Marketing-E-commerce-Certificate-Glossary.docx" download>Unduh Catatan (.docx)</a>
+            <span style="font-size:0.78rem;color:var(--color-muted,#76655A);font-weight:600;">Sertifikat PDF/JPG: Belum tersedia (Google Drive)</span>
+          </div>
+        </article>
+
+                <article class="certificate-card" data-category="hp-life" data-type="certificate">
+          <span class="certificate-tag">HP LIFE</span>
+          <h2>Perencanaan Strategis di Era AI</h2>
+          <p>Sertifikat Penyelesaian HP LIFE | HP Foundation (21 Nov 2026) — perencanaan strategis bisnis &amp; penggunaan alat AI untuk pengambilan keputusan.</p>
+          <a class="certificate-link" href="project/assets/certification-files/hp-life-perencanaan-strategis-di-era-ai.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        </article>
+
+        <article class="certificate-card" data-category="hp-life" data-type="certificate">
+          <span class="certificate-tag">HP LIFE</span>
+          <h2>AI for Business Professionals</h2>
+          <p>Certificate of Completion HP LIFE | HP Foundation (21 Nov 2026) — AI's role in business, effective prompting, ethical use, and professional growth.</p>
+          <a class="certificate-link" href="project/assets/certification-files/hp-life-ai-for-business-professionals.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        </article>
+
         <article class="certificate-card" data-category="myskill" data-type="certificate">
           <span class="certificate-tag">MySkill</span>
           <h2>Graphic Design MySkill Januari 2025</h2>
@@ -1551,6 +1589,23 @@
           <button class="folder-open-btn" type="button" id="toefl-folder-open-btn">Open Folder Group</button>
         </article>
 
+        <article class="certificate-card folder-card" data-category="myskill" data-type="folder">
+          <span class="certificate-tag">MySkill Group · Business</span>
+          <div class="folder-card-head">
+            <span class="folder-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3.75 6.75A2.25 2.25 0 0 1 6 4.5h4.06c.4 0 .78.16 1.06.44l1.19 1.19c.28.28.66.44 1.06.44h4.63A2.25 2.25 0 0 1 20.25 8.8v8.45A2.25 2.25 0 0 1 18 19.5H6a2.25 2.25 0 0 1-2.25-2.25V6.75Z"></path></svg>
+            </span>
+            <div class="folder-summary">
+              <h2>Business Development Series (5 / 15)</h2>
+              <p>Grup sertifikat MySkill yang berfokus pada pengembangan bisnis (Business Development). Saat ini 5 sertifikat telah selesai dan 10 sertifikat berikutnya menyusul.</p>
+              <div class="folder-stats">
+                <span>5 / 15 Selesai · 10 Menyusul</span>
+              </div>
+            </div>
+          </div>
+          <button class="folder-open-btn" type="button" id="business-folder-open-btn">Open Folder Group</button>
+        </article>
+
         <article class="certificate-card" data-category="trainee" data-type="certificate">
           <span class="certificate-tag">Trainee</span>
           <h2>Aryaduta Trainee Website Certification</h2>
@@ -1586,15 +1641,26 @@
   </div>
 
   <div class="folder-modal" id="toefl-folder-modal" aria-hidden="true">
-    <div class="folder-modal-card" role="dialog" aria-modal="true" aria-labelledby="toefl-folder-title">
+    <div class="folder-modal-card" role="dialog" aria-modal="true" aria-labelledby="toefl-folder-title" style="max-width:980px;">
       <button class="folder-modal-close" type="button" id="toefl-folder-close-btn" aria-label="Close TOEFL folder">&times;</button>
-      <div class="folder-modal-header">
-        <p class="folder-modal-kicker">MySkill Group</p>
+      <div class="folder-modal-header" style="margin-bottom:0.85rem;">
+        <p class="folder-modal-kicker">MySkill Group · 14 PDFs</p>
         <h2 id="toefl-folder-title">TOEFL Training PDFs</h2>
-        <p>This folder gathers the full MySkill TOEFL training set into one expandable place so the MySkill section stays cleaner while still showing every related PDF.</p>
+        <p id="toefl-active-meta">Pilih nomor 1–14 di bawah untuk melihat pratinjau materi TOEFL.</p>
       </div>
 
-      <div class="folder-accordion" id="toefl-folder-accordion">
+      <div id="toefl-slot-buttons" style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem;" role="tablist" aria-label="TOEFL Training PDFs 1 to 14"></div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:0.75rem;flex-wrap:wrap;margin-bottom:0.75rem;">
+        <strong id="toefl-active-title" style="font-size:1rem;color:var(--color-ink,#30221D);">1. TOEFL ITP</strong>
+        <a id="toefl-open-pdf-link" class="certificate-link" href="#" target="_blank" rel="noopener noreferrer" style="margin:0;">Open PDF &#8599;</a>
+      </div>
+
+      <div id="toefl-preview-stage" style="border-radius:12px;border:1px solid var(--color-border,#DCCFC0);background:var(--color-paper-soft,#F8F4ED);min-height:420px;max-height:60vh;overflow:auto;display:flex;align-items:center;justify-content:center;padding:0.75rem;">
+        <span style="color:var(--color-muted,#76655A);font-size:0.9rem;">Loading preview...</span>
+      </div>
+
+      <div class="folder-accordion" id="toefl-folder-accordion" style="display:none;">
         <button class="folder-toggle" type="button" id="toefl-folder-toggle" aria-expanded="true">
           <span class="folder-toggle-copy">
             <span class="folder-icon" aria-hidden="true">
@@ -1758,6 +1824,51 @@
     </div>
   </div>
 
+  <div class="folder-modal" id="business-folder-modal" aria-hidden="true">
+    <div class="folder-modal-card" role="dialog" aria-modal="true" aria-labelledby="business-folder-title" style="max-width:980px;">
+      <button class="folder-modal-close" type="button" id="business-folder-close-btn" aria-label="Close Business Development folder">&times;</button>
+      <div class="folder-modal-header" style="margin-bottom:0.85rem;">
+        <p class="folder-modal-kicker">MySkill Group · Business</p>
+        <h2 id="business-folder-title">Business Development Series (5 / 15)</h2>
+        <p id="business-active-meta">1. Introduction to Business Development · 21 November 2026 · ID: MS-20261121-IJ4VPX2CIwxQzO7fwqNa</p>
+      </div>
+
+      <div id="business-slot-buttons" style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem;" role="tablist" aria-label="Business Development certificates 1 to 15"></div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:0.75rem;flex-wrap:wrap;margin-bottom:0.75rem;">
+        <strong id="business-active-title" style="font-size:1rem;color:var(--color-ink,#30221D);">1. Introduction to Business Development</strong>
+        <a id="business-open-pdf-link" class="certificate-link" href="project/assets/certification-files/business/introduction-to-business-development.pdf" target="_blank" rel="noopener noreferrer" style="margin:0;">Open PDF &#8599;</a>
+      </div>
+
+      <div id="business-preview-stage" style="border-radius:12px;border:1px solid var(--color-border,#DCCFC0);background:var(--color-paper-soft,#F8F4ED);min-height:420px;max-height:60vh;overflow:auto;display:flex;align-items:center;justify-content:center;padding:0.75rem;">
+        <span style="color:var(--color-muted,#76655A);font-size:0.9rem;">Loading preview...</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="folder-modal" id="coursera-notes-modal" aria-hidden="true">
+    <div class="folder-modal-card" role="dialog" aria-modal="true" aria-labelledby="coursera-notes-title" style="max-width:960px;">
+      <button class="folder-modal-close" type="button" id="coursera-notes-close-btn" aria-label="Close Coursera study notes">&times;</button>
+      <div class="folder-modal-header">
+        <p class="folder-modal-kicker">Coursera · Ringkasan Materi &amp; Glosarium (Sertifikat Pending Google Drive)</p>
+        <h2 id="coursera-notes-title">Dasar-dasar Pemasaran Digital dan E-commerce</h2>
+        <p>Rangkuman kompetensi dan 451 istilah kunci yang dipelajari dalam sertifikasi ini: mulai dari struktur Marketing Funnel (Awareness → Consideration → Conversion → Loyalty), SEO/SEM, Google Ads &amp; Google Analytics, Email &amp; Social Media Marketing, hingga pengelolaan toko E-Commerce, ROAS, dan LTV/CAC.</p>
+      </div>
+
+      <div style="display:grid;gap:0.85rem;margin-bottom:1rem;">
+        <div style="display:flex;flex-wrap:wrap;gap:0.65rem;align-items:center;justify-content:space-between;">
+          <input id="coursera-glossary-search" type="search" placeholder="Cari istilah atau definisi (contoh: ROAS, SEO, A/B testing, Omnichannel, Funnel)..." style="flex:1 1 280px;padding:0.65rem 0.95rem;border-radius:8px;border:1px solid var(--color-border-strong,#C8B6A5);background:var(--color-paper-soft,#F8F4ED);color:var(--color-ink,#30221D);font:inherit;" />
+          <span id="coursera-term-count" style="font-size:0.84rem;font-weight:700;color:var(--color-terracotta-btn,#983E2B);">451 istilah</span>
+          <a class="certificate-link" href="project/assets/certification-files/Digital-Marketing-E-commerce-Certificate-Glossary.docx" download style="margin:0;">Unduh Dokumen (.docx)</a>
+        </div>
+        <div id="coursera-letter-pills" style="display:flex;flex-wrap:wrap;gap:0.35rem;"></div>
+      </div>
+
+      <div id="coursera-glossary-list" style="max-height:52vh;overflow-y:auto;display:grid;gap:0.65rem;padding-right:0.35rem;"></div>
+    </div>
+  </div>
+
+  <script src="project/scripts/coursera-glossary.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     const certificateSearch = document.getElementById("certificate-search");
@@ -1779,6 +1890,8 @@
 
       if (categoryFilter !== "all") {
         const categoryMap = {
+          coursera: "Coursera",
+          "hp-life": "HP LIFE",
           myskill: "MySkill",
           trainee: "Trainee",
           competition: "Competition"
@@ -1918,10 +2031,59 @@
     certificateSearch?.addEventListener("input", updateCertificates);
     filterDropdowns.forEach(setupDropdown);
 
+    const toeflSlotButtons = document.getElementById("toefl-slot-buttons");
+    const toeflActiveTitle = document.getElementById("toefl-active-title");
+    const toeflActiveMeta = document.getElementById("toefl-active-meta");
+    const toeflOpenPdfLink = document.getElementById("toefl-open-pdf-link");
+    const toeflPreviewStage = document.getElementById("toefl-preview-stage");
+    const toeflItems = Array.from(toeflFolderModal?.querySelectorAll(".folder-file") || []).map((row, idx) => ({
+      num: idx + 1,
+      title: row.querySelector(".folder-file-copy strong")?.textContent.trim() || `TOEFL File ${idx + 1}`,
+      meta: row.querySelector(".folder-file-copy span")?.textContent.trim() || "TOEFL Training Material",
+      url: row.querySelector("a.certificate-link")?.getAttribute("href") || "#"
+    }));
+    let activeToeflNum = 1;
+    let toeflRenderToken = 0;
+
+    function renderToeflSlotButtons() {
+      if (!toeflSlotButtons) return;
+      toeflSlotButtons.innerHTML = toeflItems.map((item) => {
+        const isActive = item.num === activeToeflNum;
+        const bg = isActive ? "var(--color-terracotta-btn,#983E2B)" : "var(--color-paper-soft,#F8F4ED)";
+        const color = isActive ? "#FAF6F0" : "var(--color-ink,#30221D)";
+        return `<button type="button" data-toefl-num="${item.num}" style="min-width:2.35rem;height:2.35rem;padding:0 0.65rem;border-radius:8px;border:1px solid var(--color-border-strong,#C8B6A5);background:${bg};color:${color};font-weight:700;font-size:0.84rem;cursor:pointer;">${item.num}</button>`;
+      }).join("");
+    }
+
+    async function selectToeflCertificate(num) {
+      activeToeflNum = num;
+      renderToeflSlotButtons();
+      const item = toeflItems.find((x) => x.num === num);
+      if (!item) return;
+
+      if (toeflActiveTitle) toeflActiveTitle.textContent = `${item.num}. ${item.title}`;
+      if (toeflActiveMeta) toeflActiveMeta.textContent = item.meta;
+      if (toeflOpenPdfLink) toeflOpenPdfLink.href = item.url;
+
+      if (toeflPreviewStage) {
+        const webpUrl = getPreviewImageUrl(item.url);
+        toeflPreviewStage.innerHTML = `<img src="${webpUrl}" alt="${item.title}" decoding="async" style="width:100%;max-width:860px;height:auto;border-radius:8px;display:block;" />`;
+      }
+    }
+
+    toeflSlotButtons?.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-toefl-num]");
+      if (!btn) return;
+      selectToeflCertificate(Number(btn.dataset.toeflNum));
+    });
+
     function setToeflFolderOpen(isOpen) {
       toeflFolderModal.classList.toggle("is-open", isOpen);
       toeflFolderModal.setAttribute("aria-hidden", String(!isOpen));
       document.body.style.overflow = isOpen ? "hidden" : "";
+      if (isOpen) {
+        selectToeflCertificate(activeToeflNum);
+      }
     }
 
     function setAccordionOpen(isOpen) {
@@ -2022,7 +2184,7 @@
       if (!isPdfPath(url)) return url;
       return url.replace(
         /^project\/assets\/certification-files\/(.+)\.pdf$/i,
-        "project/assets/certification-files/previews/$1.jpg"
+        "project/assets/certification-files/previews/$1.webp"
       );
     }
 
@@ -2316,6 +2478,210 @@
 
     initCertificateCardPreviews();
     updateCertificates();
+
+    /* Business Development Folder Modal (Direct Preview + 1..15 Buttons) */
+    const businessModal = document.getElementById("business-folder-modal");
+    const businessOpenBtn = document.getElementById("business-folder-open-btn");
+    const businessCloseBtn = document.getElementById("business-folder-close-btn");
+    const businessSlotButtons = document.getElementById("business-slot-buttons");
+    const businessActiveTitle = document.getElementById("business-active-title");
+    const businessActiveMeta = document.getElementById("business-active-meta");
+    const businessOpenPdfLink = document.getElementById("business-open-pdf-link");
+    const businessPreviewStage = document.getElementById("business-preview-stage");
+
+    const businessItems = [
+      {
+        num: 1,
+        title: "Introduction to Business Development",
+        meta: "21 November 2026 · ID: MS-20261121-IJ4VPX2CIwxQzO7fwqNa",
+        url: "project/assets/certification-files/business/introduction-to-business-development.pdf"
+      },
+      {
+        num: 2,
+        title: "Business Development Process",
+        meta: "21 November 2026 · ID: MS-20261121-ris13ruBrxdpPgkUus2b",
+        url: "project/assets/certification-files/business/business-development-process.pdf"
+      },
+      {
+        num: 3,
+        title: "Business Opportunity Analysis",
+        meta: "21 November 2026 · ID: MS-20261121-wufdeCAS64PJS0D68qf2",
+        url: "project/assets/certification-files/business/business-opportunity-analysis.pdf"
+      },
+      {
+        num: 4,
+        title: "Market Research",
+        meta: "21 November 2026 · ID: MS-20261121-3BBCiU78lZLu0BwK1CaJ",
+        url: "project/assets/certification-files/business/market-research.pdf"
+      },
+      {
+        num: 5,
+        title: "Key Metrics and Strategies",
+        meta: "21 November 2026 · ID: MS-20261121-7M6sZJZD79O8ua5K4xKY",
+        url: "project/assets/certification-files/business/key-metrics-and-strategies.pdf"
+      }
+    ];
+    let activeBusinessNum = 1;
+    let businessRenderToken = 0;
+
+    function renderBusinessSlotButtons() {
+      if (!businessSlotButtons) return;
+      const btns = [];
+      for (let i = 1; i <= 15; i += 1) {
+        const item = businessItems.find((x) => x.num === i);
+        const isActive = i === activeBusinessNum;
+        const isPending = !item;
+        const bg = isActive
+          ? "var(--color-terracotta-btn,#983E2B)"
+          : isPending
+            ? "var(--color-paper-deep,#EAE0D3)"
+            : "var(--color-paper-soft,#F8F4ED)";
+        const color = isActive
+          ? "#FAF6F0"
+          : isPending
+            ? "var(--color-muted,#76655A)"
+            : "var(--color-ink,#30221D)";
+        btns.push(
+          `<button type="button" data-biz-num="${i}" style="min-width:2.35rem;height:2.35rem;padding:0 0.65rem;border-radius:8px;border:1px solid var(--color-border-strong,#C8B6A5);background:${bg};color:${color};font-weight:700;font-size:0.84rem;cursor:pointer;opacity:${isPending && !isActive ? "0.65" : "1"};">${i}</button>`
+        );
+      }
+      businessSlotButtons.innerHTML = btns.join("");
+    }
+
+    async function selectBusinessCertificate(num) {
+      activeBusinessNum = num;
+      renderBusinessSlotButtons();
+      const item = businessItems.find((x) => x.num === num);
+
+      if (!item) {
+        if (businessActiveTitle) businessActiveTitle.textContent = `${num}. Upcoming Business Development Module`;
+        if (businessActiveMeta) businessActiveMeta.textContent = "Status: Menyusul — sertifikat belum diselesaikan.";
+        if (businessOpenPdfLink) businessOpenPdfLink.style.display = "none";
+        if (businessPreviewStage) {
+          businessPreviewStage.innerHTML = `<div style="text-align:center;padding:2rem;color:var(--color-muted,#76655A);"><strong>Slot ${num} / 15</strong><p style="margin-top:0.35rem;">Sertifikat ini masih menyusul dan akan ditambahkan setelah modul selesai.</p></div>`;
+        }
+        return;
+      }
+
+      if (businessActiveTitle) businessActiveTitle.textContent = `${item.num}. ${item.title}`;
+      if (businessActiveMeta) businessActiveMeta.textContent = item.meta;
+      if (businessOpenPdfLink) {
+        businessOpenPdfLink.style.display = "inline-flex";
+        businessOpenPdfLink.href = item.url;
+      }
+
+      if (businessPreviewStage) {
+        const webpUrl = item.url.replace(
+          /^project\/assets\/certification-files\/business\/(.+)\.pdf$/i,
+          "project/assets/certification-files/business/previews/$1.webp"
+        );
+        businessPreviewStage.innerHTML = `<img src="${webpUrl}" alt="${item.title}" decoding="async" style="width:100%;max-width:860px;height:auto;border-radius:8px;display:block;" />`;
+      }
+    }
+
+    businessSlotButtons?.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-biz-num]");
+      if (!btn) return;
+      selectBusinessCertificate(Number(btn.dataset.bizNum));
+    });
+
+    function setBusinessModalOpen(isOpen) {
+      if (!businessModal) return;
+      businessModal.classList.toggle("is-open", isOpen);
+      businessModal.setAttribute("aria-hidden", String(!isOpen));
+      document.body.style.overflow = isOpen ? "hidden" : "";
+      if (isOpen) {
+        selectBusinessCertificate(activeBusinessNum);
+      }
+    }
+
+    businessOpenBtn?.addEventListener("click", () => setBusinessModalOpen(true));
+    businessCloseBtn?.addEventListener("click", () => setBusinessModalOpen(false));
+    businessModal?.addEventListener("click", (e) => {
+      if (e.target === businessModal) setBusinessModalOpen(false);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && businessModal?.classList.contains("is-open")) {
+        setBusinessModalOpen(false);
+      }
+    });
+
+    /* Coursera Study Notes & Glossary Modal */
+    const courseraModal = document.getElementById("coursera-notes-modal");
+    const courseraOpenBtn = document.getElementById("coursera-notes-open-btn");
+    const courseraCloseBtn = document.getElementById("coursera-notes-close-btn");
+    const courseraSearchInput = document.getElementById("coursera-glossary-search");
+    const courseraLetterPills = document.getElementById("coursera-letter-pills");
+    const courseraListEl = document.getElementById("coursera-glossary-list");
+    const courseraCountEl = document.getElementById("coursera-term-count");
+    const glossaryData = Array.isArray(window.COURSERA_DM_GLOSSARY) ? window.COURSERA_DM_GLOSSARY : [];
+    let activeGlossaryLetter = "ALL";
+
+    function renderCourseraGlossary() {
+      if (!courseraListEl) return;
+      const q = (courseraSearchInput?.value || "").trim().toLowerCase();
+      const filtered = glossaryData.filter((item) => {
+        const matchLetter = activeGlossaryLetter === "ALL" || item.letter === activeGlossaryLetter;
+        const matchQuery = !q || item.term.toLowerCase().includes(q) || item.definition.toLowerCase().includes(q);
+        return matchLetter && matchQuery;
+      });
+      if (courseraCountEl) {
+        courseraCountEl.textContent = `${filtered.length} istilah`;
+      }
+      if (!filtered.length) {
+        courseraListEl.innerHTML = `<div style="padding:1rem;border-radius:10px;background:var(--color-paper-soft,#F8F4ED);border:1px solid var(--color-border,#DCCFC0);color:var(--color-muted,#76655A);">Tidak ada istilah yang cocok dengan pencarian.</div>`;
+        return;
+      }
+      courseraListEl.innerHTML = filtered.map((item) => `
+        <div style="padding:0.85rem 1rem;border-radius:10px;background:var(--color-paper-soft,#F8F4ED);border:1px solid var(--color-border,#DCCFC0);">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:0.5rem;">
+            <strong style="color:var(--color-ink,#30221D);font-size:0.96rem;">${item.term}</strong>
+            <span style="font-size:0.72rem;font-weight:700;color:var(--color-terracotta-btn,#983E2B);">${item.letter}</span>
+          </div>
+          <p style="margin:0.3rem 0 0;font-size:0.88rem;color:var(--color-ink-soft,#57463D);line-height:1.55;">${item.definition}</p>
+        </div>
+      `).join("");
+    }
+
+    function renderCourseraPills() {
+      if (!courseraLetterPills) return;
+      const letters = ["ALL", ...new Set(glossaryData.map((x) => x.letter))];
+      courseraLetterPills.innerHTML = letters.map((l) => `
+        <button type="button" data-letter="${l}" style="padding:0.28rem 0.62rem;border-radius:6px;border:1px solid var(--color-border-strong,#C8B6A5);background:${l === activeGlossaryLetter ? "var(--color-terracotta-btn,#983E2B)" : "var(--color-paper-soft,#F8F4ED)"};color:${l === activeGlossaryLetter ? "#FAF6F0" : "var(--color-ink,#30221D)"};font-size:0.75rem;font-weight:700;cursor:pointer;">${l === "ALL" ? "Semua" : l}</button>
+      `).join("");
+    }
+
+    courseraLetterPills?.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-letter]");
+      if (!btn) return;
+      activeGlossaryLetter = btn.dataset.letter;
+      renderCourseraPills();
+      renderCourseraGlossary();
+    });
+
+    function setCourseraModalOpen(isOpen) {
+      if (!courseraModal) return;
+      courseraModal.classList.toggle("is-open", isOpen);
+      courseraModal.setAttribute("aria-hidden", String(!isOpen));
+      document.body.style.overflow = isOpen ? "hidden" : "";
+      if (isOpen) {
+        renderCourseraGlossary();
+        window.setTimeout(() => courseraSearchInput?.focus(), 80);
+      }
+    }
+
+    courseraOpenBtn?.addEventListener("click", () => setCourseraModalOpen(true));
+    courseraCloseBtn?.addEventListener("click", () => setCourseraModalOpen(false));
+    courseraModal?.addEventListener("click", (e) => {
+      if (e.target === courseraModal) setCourseraModalOpen(false);
+    });
+    courseraSearchInput?.addEventListener("input", renderCourseraGlossary);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && courseraModal?.classList.contains("is-open")) {
+        setCourseraModalOpen(false);
+      }
+    });
+    renderCourseraPills();
   </script>
   <script defer src="js/language-controls.js?v=20260410-2"></script>
   <script defer src="js/theme-controls.js"></script>

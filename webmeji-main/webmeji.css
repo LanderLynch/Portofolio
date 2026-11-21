@@ -35,10 +35,10 @@
   min-height: 2.75rem;
   padding: 0.4rem 0.85rem 0.4rem 0.55rem;
   border-radius: 999px;
-  border: 1px solid var(--border, rgba(148, 163, 184, 0.22));
-  background: var(--panel-bg, rgba(5, 16, 29, 0.92));
-  color: var(--text, #e2e8f0);
-  box-shadow: var(--shadow, none);
+  border: 1px solid var(--border, var(--color-border, #DCCFC0));
+  background: var(--panel-bg, var(--color-paper-soft, #FAF6F0));
+  color: var(--text, var(--color-ink, #30221D));
+  box-shadow: var(--shadow, var(--shadow-soft, 0 8px 24px rgba(65, 43, 31, 0.045)));
   backdrop-filter: blur(12px);
   font-family: inherit;
   font-size: 0.78rem;
@@ -56,7 +56,7 @@
 
 .webmeji-toggle-btn:hover {
   transform: translateY(-2px);
-  border-color: var(--accent, #60a5fa);
+  border-color: var(--accent, var(--color-terracotta-btn, #983E2B));
 }
 
 .webmeji-toggle-btn[aria-pressed="false"] {
@@ -81,7 +81,7 @@
 
 .webmeji-toggle-btn[aria-pressed="false"] .webmeji-toggle-dot,
 .mobile-menu-mascot[aria-pressed="false"] .webmeji-toggle-dot {
-  background: var(--muted, #94a3b8);
+  background: var(--muted, var(--color-muted, #76655A));
 }
 
 @media (max-width: 720px) {

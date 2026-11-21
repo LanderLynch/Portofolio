@@ -242,7 +242,11 @@
     </section>
 
     <div class="version-tabs" role="tablist" aria-label="Changelog versions">
-      <button class="version-tab active" role="tab" aria-selected="true" id="tab-v42" data-version="v42">
+      <button class="version-tab active" role="tab" aria-selected="true" id="tab-v43" data-version="v43">
+        <span class="version-tab-label">v4.3</span>
+        <span class="version-tab-date">Nov 22, 2026</span>
+      </button>
+      <button class="version-tab" role="tab" aria-selected="false" id="tab-v42" data-version="v42">
         <span class="version-tab-label">v4.2</span>
         <span class="version-tab-date">Nov 20, 2026</span>
       </button>
@@ -268,8 +272,58 @@
       </button>
     </div>
 
+    <!-- v4.3 - November 22, 2026 -->
+    <div class="version-panel active" id="panel-v43" role="tabpanel" aria-labelledby="tab-v43">
+
+      <article class="timeline-entry">
+        <div class="entry-head">
+          <div>
+            <h2>November 22, 2026</h2>
+            <p>Added Coursera Digital Marketing &amp; E-Commerce Glossary, MySkill Business Development Series (5/15), HP LIFE AI Certifications, Instant WebP Previews, and Archive Logo Polish.</p>
+          </div>
+          <span class="entry-date">Latest</span>
+        </div>
+
+        <div class="change-grid">
+
+          <section class="change-card">
+            <h3>Coursera &amp; HP LIFE Certifications</h3>
+            <ul class="change-list">
+              <li>Added <strong>Dasar-dasar Pemasaran Digital dan E-commerce (Coursera)</strong> with an interactive 451-term searchable glossary modal (<code>project/scripts/coursera-glossary.js</code>) and pending Google Drive certificate indicator</li>
+              <li>Added 2 <strong>HP LIFE | HP Foundation</strong> certificates: <em>Perencanaan Strategis di Era AI</em> and <em>AI for Business Professionals</em></li>
+            </ul>
+          </section>
+
+          <section class="change-card">
+            <h3>Business Development &amp; TOEFL Direct Previews</h3>
+            <ul class="change-list">
+              <li>Created <strong>Business Development Series (5 / 15)</strong> group with numbered <code>1</code>–<code>15</code> switcher buttons and direct preview modal</li>
+              <li>Applied the same direct preview + numbered <code>1</code>–<code>14</code> switcher to <strong>TOEFL Training PDFs</strong></li>
+            </ul>
+          </section>
+
+          <section class="change-card">
+            <h3>Instant WebP Previews &amp; Dual-File Storage</h3>
+            <ul class="change-list">
+              <li>Converted all certificate PDFs to lightweight <code>.webp</code> previews (<code>~50–68 KB</code>) for instant loading while keeping all original <code>.pdf</code> and <code>.jpg</code> files intact</li>
+              <li>Fixed Mascot ON/OFF toggle button colors on <code>logbook.html</code> and <code>certification.html</code></li>
+            </ul>
+          </section>
+
+          <section class="change-card">
+            <h3>Project Archive Logo Polish</h3>
+            <ul class="change-list">
+              <li>Updated <strong>Ruang Kuliah</strong> and <strong>Dive Down Guide</strong> cards in <code>#projects-container</code> to centered logos on clean white backgrounds (<code>1797×900</code>)</li>
+            </ul>
+          </section>
+
+        </div>
+      </article>
+
+    </div>
+
     <!-- v4.2 - November 20, 2026 -->
-    <div class="version-panel active" id="panel-v42" role="tabpanel" aria-labelledby="tab-v42">
+    <div class="version-panel" id="panel-v42" role="tabpanel" aria-labelledby="tab-v42">
 
       <article class="timeline-entry">
         <div class="entry-head">

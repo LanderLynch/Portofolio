@@ -595,6 +595,11 @@ body.desktop-nav-topbar .nav-link-item {
   height: auto !important;
 }
 
+.project-image.project-image-logo-white {
+  background: #FFFFFF !important;
+  padding: 0 !important;
+}
+
 .project-image img {
   width: 100% !important;
   height: auto !important;
