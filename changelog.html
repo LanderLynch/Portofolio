@@ -242,7 +242,11 @@
     </section>
 
     <div class="version-tabs" role="tablist" aria-label="Changelog versions">
-      <button class="version-tab active" role="tab" aria-selected="true" id="tab-v43" data-version="v43">
+      <button class="version-tab active" role="tab" aria-selected="true" id="tab-v44" data-version="v44">
+        <span class="version-tab-label">v4.4</span>
+        <span class="version-tab-date">Nov 23, 2026</span>
+      </button>
+      <button class="version-tab" role="tab" aria-selected="false" id="tab-v43" data-version="v43">
         <span class="version-tab-label">v4.3</span>
         <span class="version-tab-date">Nov 22, 2026</span>
       </button>
@@ -272,8 +276,45 @@
       </button>
     </div>
 
+    <!-- v4.4 - November 23, 2026 -->
+    <div class="version-panel active" id="panel-v44" role="tabpanel" aria-labelledby="tab-v44">
+
+      <article class="timeline-entry">
+        <div class="entry-head">
+          <div>
+            <h2>November 23, 2026</h2>
+            <p>Completed MySkill Business Development Series (15/15 + Specialization), added HP LIFE Agile Project Management, and synced Daily Logbook with Notion &amp; Pecut DeepSeek API.</p>
+          </div>
+          <span class="entry-date">Latest</span>
+        </div>
+
+        <div class="change-grid">
+
+          <section class="change-card">
+            <h3>Certifications (15/15 Complete)</h3>
+            <ul>
+              <li>Completed all 15 MySkill Business Development courses + Certificate of Skill Specialization with WebP previews.</li>
+              <li>Added HP LIFE <em>Manajemen Proyek Agile</em> certification &amp; preview.</li>
+              <li>Aligned card heights, descriptions, and direct previews across certification groups.</li>
+            </ul>
+          </section>
+
+          <section class="change-card">
+            <h3>Daily Logbook &amp; Notion Sync</h3>
+            <ul>
+              <li>Added <code>api/logbook-notion-sync.js</code> serverless endpoint and <strong>Sync Notion</strong> UI in <code>logbook.html</code>.</li>
+              <li>Synced latest November 4–23, 2026 Work entry via Pecut DeepSeek API and added <strong>Nov 2026</strong> filter.</li>
+              <li>Fixed non-JSON error handling on Re-explain and added cache-busting for <code>js/logbook-data.js</code>.</li>
+            </ul>
+          </section>
+
+        </div>
+      </article>
+
+    </div>
+
     <!-- v4.3 - November 22, 2026 -->
-    <div class="version-panel active" id="panel-v43" role="tabpanel" aria-labelledby="tab-v43">
+    <div class="version-panel" id="panel-v43" role="tabpanel" aria-labelledby="tab-v43">
 
       <article class="timeline-entry">
         <div class="entry-head">
@@ -281,7 +322,7 @@
             <h2>November 22, 2026</h2>
             <p>Added Coursera Digital Marketing &amp; E-Commerce Glossary, MySkill Business Development Series (5/15), HP LIFE AI Certifications, Instant WebP Previews, and Archive Logo Polish.</p>
           </div>
-          <span class="entry-date">Latest</span>
+          <span class="entry-date">v4.3</span>
         </div>
 
         <div class="change-grid">

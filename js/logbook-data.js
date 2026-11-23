@@ -1,6 +1,21 @@
-// Daily Logbook entries sourced from Notion "Daily Note" (Sept 10 – Nov 3, 2026)
+// Daily Logbook entries sourced from Notion "Daily Note" (Sept 10 – Nov 23, 2026)
 // Raw notes are preserved verbatim alongside structured, expanded explanations.
 window.LOGBOOK_ENTRIES = [
+  {
+    id: "2026-11-23",
+    date: "November 4–23, 2026",
+    month: "2026-11",
+    categories: ["work"],
+    attachments: 9,
+    work: {
+      title: "Produksi Desain dan Printing Totebag Promosi Berbagai Merek",
+      raw: "Buat totebag koko krunch  dan buat cooleg bag isi 6 kaleng nescafe dengan 3 varian, design gillette dan printing dan jadikan tas utuh dari generated AI, design dancow totebag dan printing 1 tas yang terpilih",
+      summary:
+        "Mengerjakan desain dan printing totebag promosi untuk Koko Krunch serta cooler bag berisi 6 kaleng Nescafe dengan 3 varian. Selain itu, membuat desain Gillette dan mengubah hasil generated AI menjadi tas utuh, serta mendesain dan mencetak satu totebag Dancow terpilih.",
+      attachmentNote: "9 file gambar terlampir di Notion"
+    },
+    outside: null
+  },
   {
     id: "2026-11-03",
     date: "November 3, 2026",

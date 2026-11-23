@@ -519,6 +519,14 @@
     }
 
     /* Certificate Grid & Cards */
+    .certificate-card p,
+    .folder-summary p {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
     .certificates-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -904,7 +912,15 @@
         grid-column: 1 / -1;
       }
 
-      .certificates-grid {
+      .certificate-card p,
+    .folder-summary p {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .certificates-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
@@ -946,7 +962,15 @@
         text-align: left;
       }
 
-      .certificates-grid {
+      .certificate-card p,
+    .folder-summary p {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .certificates-grid {
         grid-template-columns: 1fr;
       }
 
@@ -1399,7 +1423,7 @@
 
         <div class="hero-stats">
           <div class="hero-stat">
-            <strong>33</strong>
+            <strong>45</strong>
             <span>Total certification &amp; study files</span>
           </div>
           <div class="hero-stat">
@@ -1475,7 +1499,7 @@
       </div>
 
       <div class="filter-summary">
-        <p class="results-total" id="results-total">Total: 16</p>
+        <p class="results-total" id="results-total">Total: 17</p>
         <p class="section-note" id="results-note">Showing all certification groups and files.</p>
       </div>
 
@@ -1488,7 +1512,7 @@
             </span>
             <div class="folder-summary">
               <h2>Dasar-dasar Pemasaran Digital dan E-commerce</h2>
-              <p>Dokumentasi materi &amp; glosarium lengkap yang dipelajari dari program Coursera (451 istilah). <strong>Status Sertifikat:</strong> Masih kosong / menunggu unggahan manual ke Google Drive.</p>
+              <p>Catatan &amp; glosarium 451 istilah program Coursera (sertifikat menyusul ke Google Drive).</p>
               <div class="folder-stats">
                 <span>451 istilah &amp; definisi (A–W)</span>
                 <span>Sertifikat: Pending (Google Drive)</span>
@@ -1514,6 +1538,13 @@
           <h2>AI for Business Professionals</h2>
           <p>Certificate of Completion HP LIFE | HP Foundation (21 Nov 2026) — AI's role in business, effective prompting, ethical use, and professional growth.</p>
           <a class="certificate-link" href="project/assets/certification-files/hp-life-ai-for-business-professionals.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
+        </article>
+
+        <article class="certificate-card" data-category="hp-life" data-type="certificate">
+          <span class="certificate-tag">HP LIFE</span>
+          <h2>Manajemen Proyek Agile</h2>
+          <p>Sertifikat Penyelesaian HP LIFE | HP Foundation (23 Nov 2026) — produk minimum yang layak (MVP), pengembangan berulang &amp; bertahap, serta alat Agile (Scrum &amp; Kanban).</p>
+          <a class="certificate-link" href="project/assets/certification-files/hp-life-manajemen-proyek-agile.pdf" target="_blank" rel="noopener noreferrer">Open File</a>
         </article>
 
         <article class="certificate-card" data-category="myskill" data-type="certificate">
@@ -1574,15 +1605,19 @@
 
         <article class="certificate-card folder-card" data-category="myskill" data-type="folder">
           <span class="certificate-tag">MySkill Group</span>
+          <button type="button" class="certificate-preview-trigger" id="toefl-preview-trigger" aria-label="Preview TOEFL Training PDFs">
+            <img src="project/assets/certification-files/previews/TOEFL ITP.webp" alt="TOEFL ITP preview" loading="lazy" decoding="async" />
+            <span class="certificate-preview-badge">14 PDFs · Preview</span>
+          </button>
           <div class="folder-card-head">
             <span class="folder-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M3.75 6.75A2.25 2.25 0 0 1 6 4.5h4.06c.4 0 .78.16 1.06.44l1.19 1.19c.28.28.66.44 1.06.44h4.63A2.25 2.25 0 0 1 20.25 8.8v8.45A2.25 2.25 0 0 1 18 19.5H6a2.25 2.25 0 0 1-2.25-2.25V6.75Z"></path></svg>
             </span>
             <div class="folder-summary">
-              <h2>TOEFL Training PDFs</h2>
-              <p>All MySkill files here are part of the same TOEFL training material set. Open this group to browse the full listening, reading, and structure PDF collection in one place.</p>
+              <h2>TOEFL Training PDFs (14 / 14)</h2>
+              <p>Materi pelatihan TOEFL ITP MySkill: Listening, Reading, dan Written &amp; Structure.</p>
               <div class="folder-stats">
-                <span>14 PDFs grouped</span>
+                <span>14 / 14 Modul TOEFL</span>
               </div>
             </div>
           </div>
@@ -1591,15 +1626,19 @@
 
         <article class="certificate-card folder-card" data-category="myskill" data-type="folder">
           <span class="certificate-tag">MySkill Group · Business</span>
+          <button type="button" class="certificate-preview-trigger" id="business-preview-trigger" aria-label="Preview Business Development Series">
+            <img src="project/assets/certification-files/business/previews/business-development-complete.webp" alt="Business Development Specialization preview" loading="lazy" decoding="async" />
+            <span class="certificate-preview-badge">15 + Complete · Preview</span>
+          </button>
           <div class="folder-card-head">
             <span class="folder-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M3.75 6.75A2.25 2.25 0 0 1 6 4.5h4.06c.4 0 .78.16 1.06.44l1.19 1.19c.28.28.66.44 1.06.44h4.63A2.25 2.25 0 0 1 20.25 8.8v8.45A2.25 2.25 0 0 1 18 19.5H6a2.25 2.25 0 0 1-2.25-2.25V6.75Z"></path></svg>
             </span>
             <div class="folder-summary">
-              <h2>Business Development Series (5 / 15)</h2>
-              <p>Grup sertifikat MySkill yang berfokus pada pengembangan bisnis (Business Development). Saat ini 5 sertifikat telah selesai dan 10 sertifikat berikutnya menyusul.</p>
+              <h2>Business Development Series (15 / 15 · Complete)</h2>
+              <p>15 kursus Business Development MySkill selesai + Certificate of Skill Specialization.</p>
               <div class="folder-stats">
-                <span>5 / 15 Selesai · 10 Menyusul</span>
+                <span>15 / 15 Courses + Specialization</span>
               </div>
             </div>
           </div>
@@ -1829,7 +1868,7 @@
       <button class="folder-modal-close" type="button" id="business-folder-close-btn" aria-label="Close Business Development folder">&times;</button>
       <div class="folder-modal-header" style="margin-bottom:0.85rem;">
         <p class="folder-modal-kicker">MySkill Group · Business</p>
-        <h2 id="business-folder-title">Business Development Series (5 / 15)</h2>
+        <h2 id="business-folder-title">Business Development Series (15 / 15 · Complete)</h2>
         <p id="business-active-meta">1. Introduction to Business Development · 21 November 2026 · ID: MS-20261121-IJ4VPX2CIwxQzO7fwqNa</p>
       </div>
 
@@ -2092,6 +2131,10 @@
     }
 
     toeflFolderOpenBtn?.addEventListener("click", () => {
+      setToeflFolderOpen(true);
+      setAccordionOpen(true);
+    });
+    document.getElementById("toefl-preview-trigger")?.addEventListener("click", () => {
       setToeflFolderOpen(true);
       setAccordionOpen(true);
     });
@@ -2519,6 +2562,73 @@
         title: "Key Metrics and Strategies",
         meta: "21 November 2026 · ID: MS-20261121-7M6sZJZD79O8ua5K4xKY",
         url: "project/assets/certification-files/business/key-metrics-and-strategies.pdf"
+      },
+      {
+        num: 6,
+        title: "Business Development Strategy",
+        meta: "23 November 2026 · ID: MS-20261123-vJkYy89yHMPOt1qKYT7l",
+        url: "project/assets/certification-files/business/business-development-strategy.pdf"
+      },
+      {
+        num: 7,
+        title: "Broadening Network",
+        meta: "23 November 2026 · ID: MS-20261123-acYqNwKpPpv3ZEIRa62c",
+        url: "project/assets/certification-files/business/broadening-network.pdf"
+      },
+      {
+        num: 8,
+        title: "Mapping and Canvassing Potential Leads",
+        meta: "23 November 2026 · ID: MS-20261123-YTyT9kCuUaC4iy5Ddo5j",
+        url: "project/assets/certification-files/business/mapping-and-canvassing-potential-leads.pdf"
+      },
+      {
+        num: 9,
+        title: "Qualifying Leads",
+        meta: "23 November 2026 · ID: MS-20261123-GnWBD77Xkyiv3O4TcPB2",
+        url: "project/assets/certification-files/business/qualifying-leads.pdf"
+      },
+      {
+        num: 10,
+        title: "Reaching Leads",
+        meta: "23 November 2026 · ID: MS-20261123-lUX35JjvdTdCIIxRNwXl",
+        url: "project/assets/certification-files/business/reaching-leads.pdf"
+      },
+      {
+        num: 11,
+        title: "Scenario in Handling Leads",
+        meta: "23 November 2026 · ID: MS-20261123-ZLS1SDP4vWTXiSnH3WWZ",
+        url: "project/assets/certification-files/business/scenario-in-handling-leads.pdf"
+      },
+      {
+        num: 12,
+        title: "Connecting to Client",
+        meta: "23 November 2026 · ID: MS-20261123-j4oxnKDkBHDD6lnDKyVq",
+        url: "project/assets/certification-files/business/connecting-to-client.pdf"
+      },
+      {
+        num: 13,
+        title: "Pitching Presentation",
+        meta: "23 November 2026 · ID: MS-20261123-FUf2a7aU0osVgYZm2Fwc",
+        url: "project/assets/certification-files/business/pitching-presentation.pdf"
+      },
+      {
+        num: 14,
+        title: "Making Pitch Deck and Pitching",
+        meta: "23 November 2026 · ID: MS-20261123-SX6rDVEd39kMTVfZj0pb",
+        url: "project/assets/certification-files/business/making-pitch-deck-and-pitching.pdf"
+      },
+      {
+        num: 15,
+        title: "Negotiation Scenario",
+        meta: "23 November 2026 · ID: MS-20261123-rrBegiZSkFO2nKAbchVe",
+        url: "project/assets/certification-files/business/negotiation-scenario.pdf"
+      },
+      {
+        num: "complete",
+        label: "Complete",
+        title: "Certificate of Skill Specialization — Business Development",
+        meta: "23 November 2026 · 15 Courses (15 Hours) · ID: MS-20261123-EH6wVptKEfMq3HubpMS1",
+        url: "project/assets/certification-files/business/business-development-complete.pdf"
       }
     ];
     let activeBusinessNum = 1;
@@ -2526,44 +2636,23 @@
 
     function renderBusinessSlotButtons() {
       if (!businessSlotButtons) return;
-      const btns = [];
-      for (let i = 1; i <= 15; i += 1) {
-        const item = businessItems.find((x) => x.num === i);
-        const isActive = i === activeBusinessNum;
-        const isPending = !item;
-        const bg = isActive
-          ? "var(--color-terracotta-btn,#983E2B)"
-          : isPending
-            ? "var(--color-paper-deep,#EAE0D3)"
-            : "var(--color-paper-soft,#F8F4ED)";
-        const color = isActive
-          ? "#FAF6F0"
-          : isPending
-            ? "var(--color-muted,#76655A)"
-            : "var(--color-ink,#30221D)";
-        btns.push(
-          `<button type="button" data-biz-num="${i}" style="min-width:2.35rem;height:2.35rem;padding:0 0.65rem;border-radius:8px;border:1px solid var(--color-border-strong,#C8B6A5);background:${bg};color:${color};font-weight:700;font-size:0.84rem;cursor:pointer;opacity:${isPending && !isActive ? "0.65" : "1"};">${i}</button>`
-        );
-      }
-      businessSlotButtons.innerHTML = btns.join("");
+      businessSlotButtons.innerHTML = businessItems.map((item) => {
+        const isActive = String(item.num) === String(activeBusinessNum);
+        const bg = isActive ? "var(--color-terracotta-btn,#983E2B)" : "var(--color-paper-soft,#F8F4ED)";
+        const color = isActive ? "#FAF6F0" : "var(--color-ink,#30221D)";
+        const text = item.label || String(item.num);
+        return `<button type="button" data-biz-num="${item.num}" style="min-width:2.35rem;height:2.35rem;padding:0 0.7rem;border-radius:8px;border:1px solid var(--color-border-strong,#C8B6A5);background:${bg};color:${color};font-weight:700;font-size:0.84rem;cursor:pointer;">${text}</button>`;
+      }).join("");
     }
 
     async function selectBusinessCertificate(num) {
       activeBusinessNum = num;
       renderBusinessSlotButtons();
-      const item = businessItems.find((x) => x.num === num);
+      const item = businessItems.find((x) => String(x.num) === String(num));
+      if (!item) return;
 
-      if (!item) {
-        if (businessActiveTitle) businessActiveTitle.textContent = `${num}. Upcoming Business Development Module`;
-        if (businessActiveMeta) businessActiveMeta.textContent = "Status: Menyusul — sertifikat belum diselesaikan.";
-        if (businessOpenPdfLink) businessOpenPdfLink.style.display = "none";
-        if (businessPreviewStage) {
-          businessPreviewStage.innerHTML = `<div style="text-align:center;padding:2rem;color:var(--color-muted,#76655A);"><strong>Slot ${num} / 15</strong><p style="margin-top:0.35rem;">Sertifikat ini masih menyusul dan akan ditambahkan setelah modul selesai.</p></div>`;
-        }
-        return;
-      }
-
-      if (businessActiveTitle) businessActiveTitle.textContent = `${item.num}. ${item.title}`;
+      const prefix = item.label ? "Complete" : item.num;
+      if (businessActiveTitle) businessActiveTitle.textContent = `${prefix}. ${item.title}`;
       if (businessActiveMeta) businessActiveMeta.textContent = item.meta;
       if (businessOpenPdfLink) {
         businessOpenPdfLink.style.display = "inline-flex";
@@ -2582,7 +2671,7 @@
     businessSlotButtons?.addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-biz-num]");
       if (!btn) return;
-      selectBusinessCertificate(Number(btn.dataset.bizNum));
+      selectBusinessCertificate(btn.dataset.bizNum);
     });
 
     function setBusinessModalOpen(isOpen) {
@@ -2596,6 +2685,7 @@
     }
 
     businessOpenBtn?.addEventListener("click", () => setBusinessModalOpen(true));
+    document.getElementById("business-preview-trigger")?.addEventListener("click", () => setBusinessModalOpen(true));
     businessCloseBtn?.addEventListener("click", () => setBusinessModalOpen(false));
     businessModal?.addEventListener("click", (e) => {
       if (e.target === businessModal) setBusinessModalOpen(false);

@@ -621,6 +621,7 @@
         <span>Daily Logbook</span>
       </div>
       <div class="topbar-actions">
+        <button type="button" id="sync-notion-btn" class="notion-link-btn" style="cursor:pointer;">Sync Notion</button>
         <a href="https://app.notion.com/p/3d7a22b9b6b2802d9312c1d4854d78d8?v=3d7a22b9b6b280bb93a9000cba830231" target="_blank" rel="noopener noreferrer" class="notion-link-btn">Open Notion Source &#8599;</a>
         <a href="index.html" class="back-btn">Back to Portfolio</a>
       </div>
@@ -644,7 +645,7 @@
           <span>Catatan Work dengan lampiran visual</span>
         </div>
         <div class="hero-stat">
-          <strong>Sept – Oct 2026</strong>
+          <strong>Sept – Nov 2026</strong>
           <span>Periode log kerja aktif (10 Sept – 29 Okt 2026)</span>
         </div>
       </div>
@@ -662,6 +663,7 @@
           <span>Tampilkan Raw Note Notion</span>
         </label>
       </div>
+      <p id="notion-sync-status" style="margin-top:0.6rem;font-size:0.82rem;color:var(--color-muted,#76655A);">Status Notion: Menggunakan arsip lokal tersinkron (<code>js/logbook-data.js</code>).</p>
 
       <div class="filter-rows">
         <div class="pill-group" role="group" aria-label="Filter fokus work">
@@ -674,6 +676,7 @@
 
         <div class="pill-group" role="group" aria-label="Filter bulan">
           <button type="button" class="filter-pill is-active" data-month="all">Semua Bulan</button>
+          <button type="button" class="filter-pill" data-month="2026-11">Nov 2026</button>
           <button type="button" class="filter-pill" data-month="2026-10">Oct 2026</button>
           <button type="button" class="filter-pill" data-month="2026-09">Sept 2026</button>
         </div>
@@ -699,7 +702,7 @@
     </footer>
   </div>
 
-  <script src="js/logbook-data.js"></script>
+  <script src="js/logbook-data.js?v=20261123b"></script>
   <script>
     const entries = (Array.isArray(window.LOGBOOK_ENTRIES) ? window.LOGBOOK_ENTRIES : []).filter((entry) => Boolean(entry.work));
     const listEl = document.getElementById("logbook-list");
@@ -829,9 +832,15 @@
             section: key === "work" ? "Work" : "Outside Work"
           })
         });
-        const payload = await res.json();
+        const rawText = await res.text();
+        let payload = {};
+        try {
+          payload = JSON.parse(rawText);
+        } catch {
+          payload = {};
+        }
         if (!res.ok) {
-          throw new Error(payload?.error || "Server AI belum dikonfigurasi.");
+          throw new Error(payload?.error || "Endpoint AI (/api/logbook-explain) hanya aktif di Vercel; ringkasan sudah tersimpan.");
         }
         if (summaryEl && payload.explanation) {
           summaryEl.textContent = payload.explanation;
@@ -884,5 +893,46 @@
   <script defer src="js/zoom-controls.js"></script>
   <script defer src="webmeji-main/config.js"></script>
   <script defer src="webmeji-main/webmeji.js"></script>
+  <script>
+    (function () {
+      const syncBtn = document.getElementById("sync-notion-btn");
+      const statusEl = document.getElementById("notion-sync-status");
+      if (!syncBtn || !statusEl) return;
+
+      const STORAGE_KEY = "portfolio-logbook-notion-sync";
+      const latestDate = (window.LOGBOOK_ENTRIES && window.LOGBOOK_ENTRIES[0] && window.LOGBOOK_ENTRIES[0].date) || "terbaru";
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed && parsed.syncedAt) {
+            statusEl.textContent = "Sudah terbaru (entri terakhir: " + latestDate + ") · Sinkron: " + new Date(parsed.syncedAt).toLocaleString("id-ID");
+          }
+        } else {
+          statusEl.textContent = "Sudah terbaru · Entri terakhir: " + latestDate;
+        }
+      } catch (e) {}
+
+      syncBtn.addEventListener("click", async () => {
+        syncBtn.disabled = true;
+        syncBtn.textContent = "Syncing...";
+        statusEl.textContent = "Menghubungkan ke Notion API (/api/logbook-notion-sync)...";
+        try {
+          const res = await fetch("/api/logbook-notion-sync");
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok) {
+            throw new Error(data.error || "Server lokal tidak memiliki NOTION_TOKEN.");
+          }
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({ syncedAt: data.syncedAt, count: data.count }));
+          statusEl.textContent = "Berhasil sinkron dari Notion: " + data.count + " entri (" + new Date(data.syncedAt).toLocaleTimeString("id-ID") + ").";
+        } catch (err) {
+          statusEl.textContent = "Sudah terbaru (entri terakhir: " + latestDate + ") · Mode lokal.";
+        } finally {
+          syncBtn.disabled = false;
+          syncBtn.textContent = "Sync Notion";
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
