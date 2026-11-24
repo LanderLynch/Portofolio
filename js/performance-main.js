@@ -672,13 +672,36 @@
     setTimeout(function () { successDiv.remove(); }, 3000);
   }
 
+  function scrollToAnchorTarget(target) {
+    if (!target) return;
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    var scrollMargin = parseFloat(window.getComputedStyle(target).scrollMarginTop) || 0;
+    var corrected = false;
+    var alignIfNeeded = function () {
+      if (corrected) return;
+      corrected = true;
+      var rect = target.getBoundingClientRect();
+      if (Math.abs(rect.top - scrollMargin) > 36) {
+        window.scrollTo({
+          top: Math.max(0, window.scrollY + rect.top - scrollMargin),
+          left: 0,
+          behavior: 'smooth'
+        });
+      }
+    };
+
+    if ('onscrollend' in window) {
+      window.addEventListener('scrollend', alignIfNeeded, { once: true });
+    }
+    setTimeout(alignIfNeeded, 750);
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
       var target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      scrollToAnchorTarget(target);
     });
   });
 

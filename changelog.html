@@ -242,7 +242,11 @@
     </section>
 
     <div class="version-tabs" role="tablist" aria-label="Changelog versions">
-      <button class="version-tab active" role="tab" aria-selected="true" id="tab-v44" data-version="v44">
+      <button class="version-tab active" role="tab" aria-selected="true" id="tab-v45" data-version="v45">
+        <span class="version-tab-label">v4.5</span>
+        <span class="version-tab-date">Nov 24, 2026</span>
+      </button>
+      <button class="version-tab" role="tab" aria-selected="false" id="tab-v44" data-version="v44">
         <span class="version-tab-label">v4.4</span>
         <span class="version-tab-date">Nov 23, 2026</span>
       </button>
@@ -276,8 +280,44 @@
       </button>
     </div>
 
+    <!-- v4.5 - November 24, 2026 -->
+    <div class="version-panel active" id="panel-v45" role="tabpanel" aria-labelledby="tab-v45">
+
+      <article class="timeline-entry">
+        <div class="entry-head">
+          <div>
+            <h2>November 24, 2026</h2>
+            <p>Synced homepage certification archive with visual preview cards, added Instagram profile photo &amp; nav-social translation, and fixed first-click anchor navigation accuracy.</p>
+          </div>
+          <span class="entry-date">Latest</span>
+        </div>
+
+        <div class="change-grid">
+
+          <section class="change-card">
+            <h3>Social Media Page &amp; Navigation i18n</h3>
+            <ul>
+              <li>Added circular profile photo inside the Instagram gradient ring in <code>social.html</code> and synced live <code>profile_picture_url</code> from <code>api/instagram-feed.js</code>.</li>
+              <li>Added <code>nav-social</code> (<em>Media Sosial</em> / <em>Social Media</em>) translation keys and fallback safety in <code>js/language-controls.js</code> so missing keys never overwrite labels with raw attribute keys.</li>
+              <li>Fixed header logo and favicon asset paths on <code>social.html</code>.</li>
+            </ul>
+          </section>
+
+          <section class="change-card">
+            <h3>Homepage Certification Sync &amp; First-Click Scroll Fix</h3>
+            <ul>
+              <li>Synced <code>#certification</code> on <code>index.html</code> with <code>certification.html</code> (45 Files / 5 Categories, stats 45 / 8 / 3) and added a 4-card visual WebP preview strip (HP LIFE Agile Project Management, Business Development 15/15, Graphic Design MySkill, and TOEFL Training).</li>
+              <li>Removed <code>content-visibility: auto</code> layout-shift heights on <code>.timeline-item</code> / section containers and added post-scroll target verification in <code>js/performance-main.js</code> so clicking <strong>Pencapaian</strong> from the top lands accurately on the first click.</li>
+            </ul>
+          </section>
+
+        </div>
+      </article>
+
+    </div>
+
     <!-- v4.4 - November 23, 2026 -->
-    <div class="version-panel active" id="panel-v44" role="tabpanel" aria-labelledby="tab-v44">
+    <div class="version-panel" id="panel-v44" role="tabpanel" aria-labelledby="tab-v44">
 
       <article class="timeline-entry">
         <div class="entry-head">
@@ -285,7 +325,7 @@
             <h2>November 23, 2026</h2>
             <p>Completed MySkill Business Development Series (15/15 + Specialization), added HP LIFE Agile Project Management, and synced Daily Logbook with Notion &amp; Pecut DeepSeek API.</p>
           </div>
-          <span class="entry-date">Latest</span>
+          <span class="entry-date">v4.4</span>
         </div>
 
         <div class="change-grid">

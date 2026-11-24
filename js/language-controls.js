@@ -17,6 +17,8 @@
       "nav-testimonials": "Buku Tamu",
       "nav-logbook": "Logbook",
       "nav-changelog": "Changelog",
+      "nav-social": "Media Sosial",
+      "nav-sosial": "Media Sosial",
       "nav-contact": "Kontak",
       "menu-kicker": "PORTOFOLIO",
       "menu-direct": "PESAN LANGSUNG",
@@ -179,6 +181,8 @@
       "nav-testimonials": "Guestbook",
       "nav-logbook": "Logbook",
       "nav-changelog": "Changelog",
+      "nav-social": "Social Media",
+      "nav-sosial": "Social Media",
       "nav-contact": "Contact",
       "menu-kicker": "PORTFOLIO",
       "menu-direct": "DIRECT MESSAGE",
@@ -782,12 +786,18 @@
   function applyKeyedTranslations(language) {
       document.querySelectorAll("[data-i18n-key]").forEach((element) => {
         const key = element.dataset.i18nKey;
-        element.textContent = translateKey(key, language);
+        const translated = translateKey(key, language);
+        if (translated && translated !== key) {
+          element.textContent = translated;
+        }
       });
 
       document.querySelectorAll("[data-i18n-html-key]").forEach((element) => {
         const key = element.dataset.i18nHtmlKey;
-        element.innerHTML = translateKey(key, language);
+        const translated = translateKey(key, language);
+        if (translated && translated !== key) {
+          element.innerHTML = translated;
+        }
       });
     }
 

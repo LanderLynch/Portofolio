@@ -1,19 +1,21 @@
-const STATIC_CACHE = "portfolio-static-v40";
-const RUNTIME_CACHE = "portfolio-runtime-v40";
+const STATIC_CACHE = "portfolio-static-v43";
+const RUNTIME_CACHE = "portfolio-runtime-v43";
 const IMAGE_CACHE = "portfolio-images-v1";
 const CORE_ASSETS = [
   "/",
   "/index.html",
   "/logbook.html",
   "/changelog.html",
-  "/css/styles.css?v=20261120-1",
+  "/social.html",
+  "/css/styles.css?v=20261124-2",
   "/css/theme-palettes.css?v=20261119-1",
+  "/css/editorial-archive.css?v=20261124-2",
   "/js/theme-controls.js?v=20260319-1",
-  "/js/language-controls.js?v=20261120-3",
+  "/js/language-controls.js?v=20261124-2",
   "/js/logbook-data.js",
   "/js/project-card-utils.js",
   "/js/performance-utils.js",
-  "/js/performance-main.js",
+  "/js/performance-main.js?v=20261124-2",
   "/project/scripts/photography-archive.js",
   "/webmeji-main/webmeji.css",
   "/webmeji-main/config.js",

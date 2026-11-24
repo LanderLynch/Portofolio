@@ -4,11 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Social Media (@jona.mmzv) - Jona Setiawan</title>
-  <link rel="icon" type="image/png" href="project/assets/favicon/icon.png">
+  <link rel="icon" type="image/png" href="project/assets/logo-preview/logo-lemon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
   <style>
     :root {
       --bg-paper: #FBF9F6;
@@ -150,16 +149,26 @@
     }
 
     .ig-avatar {
-      width: 56px;
-      height: 56px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
+      padding: 2.5px;
       background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
-      color: #fff;
       display: grid;
       place-items: center;
-      font-weight: 700;
-      font-size: 1.1rem;
       flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .ig-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 2px solid #F7F2EB;
+      display: block;
+      background: #EFE9E0;
     }
 
     .ig-handle {
@@ -267,7 +276,7 @@
   <div class="social-shell">
     <header class="social-topbar">
       <div class="social-brand">
-        <img src="project/assets/favicon/icon.png" alt="Logo">
+        <img src="project/assets/logo-preview/logo-lemon.png" alt="Logo">
         <span>Social Media</span>
       </div>
       <div class="social-actions">
@@ -284,7 +293,9 @@
         <p>Halaman ini menampilkan aktivitas dan postingan Instagram secara langsung melalui endpoint <code>/api/instagram-feed</code> (Instagram Graph API) saat token aktif di Vercel.</p>
       </div>
       <div class="ig-profile-card">
-        <div class="ig-avatar" aria-hidden="true">JM</div>
+        <div class="ig-avatar">
+          <img id="ig-avatar-img" src="https://i.pinimg.com/736x/51/6b/3d/516b3dfcab87be8bbf46c9ed05184eeb.jpg" alt="Jona Setiawan (@jona.mmzv) Profile Picture" />
+        </div>
         <div>
           <p class="ig-handle">@jona.mmzv</p>
           <p class="ig-meta">Instagram · Jona Setiawan</p>
@@ -322,6 +333,11 @@
           const raw = await res.text();
           let data = {};
           try { data = JSON.parse(raw); } catch {}
+
+          const avatarImg = document.getElementById("ig-avatar-img");
+          if (avatarImg && data.profilePicUrl) {
+            avatarImg.src = data.profilePicUrl;
+          }
 
           if (!res.ok || !data.ok) {
             statusEl.textContent = "Mode lokal / token Instagram belum aktif.";

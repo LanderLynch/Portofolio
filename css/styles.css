@@ -105,17 +105,7 @@ img {
 }
 
 .project-card,
-.timeline-item,
-.certification-card,
-.guestbook-shell,
-.home-section,
-.about-section,
-.experience-section,
-.skills-section,
-.certification-section {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 440px;
-}
+/* Sections render full intrinsic layout immediately for accurate anchor navigation */
 
 a {
   color: inherit;

@@ -19,16 +19,30 @@ export default async function handler(req, res) {
   }
 
   try {
-    const baseEndpoint = token.startsWith("EAA")
+    const isGraphFb = token.startsWith("EAA");
+    const baseEndpoint = isGraphFb
       ? `https://graph.facebook.com/v21.0/${encodeURIComponent(igUserId)}/media`
       : `https://graph.instagram.com/me/media`;
+    const profileEndpoint = isGraphFb
+      ? `https://graph.facebook.com/v21.0/${encodeURIComponent(igUserId)}?fields=id,username,profile_picture_url&access_token=${encodeURIComponent(token)}`
+      : `https://graph.instagram.com/me?fields=id,username,profile_picture_url&access_token=${encodeURIComponent(token)}`;
     const url =
       `${baseEndpoint}` +
       `?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp` +
       `&limit=9&access_token=${encodeURIComponent(token)}`;
 
-    const response = await fetch(url);
+    const [response, profileRes] = await Promise.all([
+      fetch(url),
+      fetch(profileEndpoint).catch(() => null)
+    ]);
     const data = await response.json();
+    let profilePicUrl = null;
+    if (profileRes && profileRes.ok) {
+      try {
+        const profileData = await profileRes.json();
+        profilePicUrl = profileData?.profile_picture_url || null;
+      } catch {}
+    }
 
     if (!response.ok) {
       return res.status(response.status).json({
@@ -57,6 +71,7 @@ export default async function handler(req, res) {
       configured: true,
       username,
       profileUrl,
+      profilePicUrl,
       syncedAt: new Date().toISOString(),
       posts
     });
