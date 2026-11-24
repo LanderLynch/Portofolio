@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Media (@jona.mmzv) - Jona Setiawan</title>
+  <link rel="icon" type="image/png" href="project/assets/favicon/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --bg-paper: #FBF9F6;
+      --bg-card: #FFFFFF;
+      --ink-main: #241914;
+      --ink-muted: #76655A;
+      --accent: #9E331E;
+      --border-soft: rgba(36, 25, 20, 0.12);
+    }
+
+    body {
+      background-color: var(--bg-paper);
+      background-image:
+        linear-gradient(to right, rgba(36, 25, 20, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(36, 25, 20, 0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      color: var(--ink-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    .social-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 4rem;
+    }
+
+    .social-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      background: rgba(251, 249, 246, 0.9);
+      border: 1px solid var(--border-soft);
+      border-radius: 999px;
+      margin-bottom: 1.75rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .social-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-main);
+    }
+
+    .social-brand img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
+
+    .social-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 0.95rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--border-soft);
+      background: var(--bg-card);
+      color: var(--ink-main);
+      cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-pill:hover {
+      transform: translateY(-1px);
+      border-color: var(--ink-main);
+    }
+
+    .btn-pill.primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .social-hero {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 24px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .social-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .social-hero h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      margin: 0 0 0.5rem;
+      line-height: 1.05;
+    }
+
+    .social-hero p {
+      margin: 0;
+      color: var(--ink-muted);
+      max-width: 56ch;
+      line-height: 1.6;
+      font-size: 0.94rem;
+    }
+
+    .ig-profile-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border-radius: 18px;
+      background: #F7F2EB;
+      border: 1px solid var(--border-soft);
+    }
+
+    .ig-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .ig-handle {
+      font-weight: 700;
+      font-size: 1rem;
+      margin: 0 0 0.2rem;
+    }
+
+    .ig-meta {
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      margin: 0;
+    }
+
+    .feed-status {
+      font-size: 0.84rem;
+      color: var(--ink-muted);
+      margin-bottom: 1rem;
+    }
+
+    .ig-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .ig-post-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .ig-post-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(36, 25, 20, 0.08);
+    }
+
+    .ig-post-media {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: #EFE9E0;
+      display: block;
+    }
+
+    .ig-post-body {
+      padding: 0.9rem 1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      flex: 1;
+    }
+
+    .ig-post-date {
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .ig-post-caption {
+      font-size: 0.86rem;
+      line-height: 1.5;
+      color: var(--ink-main);
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .fallback-box {
+      background: var(--bg-card);
+      border: 1px dashed var(--border-soft);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      color: var(--ink-muted);
+    }
+
+    .fallback-box h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.6rem;
+      color: var(--ink-main);
+      margin: 0 0 0.5rem;
+      font-weight: 400;
+    }
+
+    .fallback-box p {
+      max-width: 58ch;
+      margin: 0 auto 1.25rem;
+      line-height: 1.6;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="social-shell">
+    <header class="social-topbar">
+      <div class="social-brand">
+        <img src="project/assets/favicon/icon.png" alt="Logo">
+        <span>Social Media</span>
+      </div>
+      <div class="social-actions">
+        <button type="button" id="refresh-ig-btn" class="btn-pill">Refresh Feed</button>
+        <a href="https://www.instagram.com/jona.mmzv/" target="_blank" rel="noopener noreferrer" class="btn-pill primary">Buka @jona.mmzv ↗</a>
+        <a href="index.html" class="btn-pill">Kembali ke Portofolio</a>
+      </div>
+    </header>
+
+    <section class="social-hero">
+      <div>
+        <div class="social-eyebrow">LIVE SOCIAL FEED · INSTAGRAM</div>
+        <h1>Instagram @jona.mmzv</h1>
+        <p>Halaman ini menampilkan aktivitas dan postingan Instagram secara langsung melalui endpoint <code>/api/instagram-feed</code> (Instagram Graph API) saat token aktif di Vercel.</p>
+      </div>
+      <div class="ig-profile-card">
+        <div class="ig-avatar" aria-hidden="true">JM</div>
+        <div>
+          <p class="ig-handle">@jona.mmzv</p>
+          <p class="ig-meta">Instagram · Jona Setiawan</p>
+        </div>
+      </div>
+    </section>
+
+    <p id="feed-status" class="feed-status">Memeriksa koneksi live feed Instagram...</p>
+    <main id="ig-feed-container"></main>
+  </div>
+
+  <script>
+    (function () {
+      const statusEl = document.getElementById("feed-status");
+      const containerEl = document.getElementById("ig-feed-container");
+      const refreshBtn = document.getElementById("refresh-ig-btn");
+
+      function renderFallback(reason) {
+        containerEl.innerHTML = `
+          <div class="fallback-box">
+            <h2>@jona.mmzv di Instagram</h2>
+            <p>${reason}</p>
+            <a href="https://www.instagram.com/jona.mmzv/" target="_blank" rel="noopener noreferrer" class="btn-pill primary">Lihat Postingan di Instagram @jona.mmzv ↗</a>
+          </div>
+        `;
+      }
+
+      async function loadFeed() {
+        refreshBtn.disabled = true;
+        refreshBtn.textContent = "Loading...";
+        statusEl.textContent = "Menghubungkan ke /api/instagram-feed...";
+
+        try {
+          const res = await fetch("/api/instagram-feed");
+          const raw = await res.text();
+          let data = {};
+          try { data = JSON.parse(raw); } catch {}
+
+          if (!res.ok || !data.ok) {
+            statusEl.textContent = "Mode lokal / token Instagram belum aktif.";
+            renderFallback(
+              data.error ||
+              "Endpoint /api/instagram-feed hanya aktif di Vercel dengan INSTAGRAM_ACCESS_TOKEN (Instagram Graph API)."
+            );
+            return;
+          }
+
+          if (!data.posts || data.posts.length === 0) {
+            statusEl.textContent = "Terhubung ke @jona.mmzv · Belum ada postingan.";
+            renderFallback("Akun @jona.mmzv terhubung, tetapi belum ada postingan yang dikembalikan.");
+            return;
+          }
+
+          statusEl.textContent = `Live dari @${data.username} · ${data.posts.length} postingan terbaru`;
+          containerEl.innerHTML = `<div class="ig-grid">${data.posts.map((post) => `
+            <a class="ig-post-card" href="${post.permalink}" target="_blank" rel="noopener noreferrer">
+              <img class="ig-post-media" src="${post.imageUrl}" alt="Instagram post @jona.mmzv" loading="lazy">
+              <div class="ig-post-body">
+                <span class="ig-post-date">${new Date(post.timestamp).toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" })}</span>
+                <p class="ig-post-caption">${post.caption || "Lihat postingan di Instagram"}</p>
+              </div>
+            </a>
+          `).join("")}</div>`;
+        } catch (err) {
+          statusEl.textContent = "Mode lokal · Live feed membutuhkan server Vercel.";
+          renderFallback("Server statis lokal tidak menjalankan /api/instagram-feed. Buka langsung profil @jona.mmzv di Instagram.");
+        } finally {
+          refreshBtn.disabled = false;
+          refreshBtn.textContent = "Refresh Feed";
+        }
+      }
+
+      refreshBtn.addEventListener("click", loadFeed);
+      loadFeed();
+    })();
+  </script>
+</body>
+</html>
