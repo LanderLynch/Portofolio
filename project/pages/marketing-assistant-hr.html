@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="../assets/logo-preview/logo-lemon.png">
-  <title>Marketing &amp; Assistant HR - Jona Setiawan</title>
+  <title>Marketing &amp; Human Resource (Internship) - Jona Setiawan</title>
   <script src="../../js/theme-init.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
@@ -18,9 +18,42 @@
       padding: 0;
     }
 
+    :root,
+    :root[data-theme="light"],
+    :root[data-theme="blue"],
+    :root[data-theme="galaxy"] {
+      color-scheme: light;
+      --bg: #F3EDE3;
+      --bg-alt: #EFE7DC;
+      --surface: #FBF8F3;
+      --panel-bg: #F8F4ED;
+      --panel-bg-strong: rgba(248, 244, 237, 0.96);
+      --panel-soft: #F3EDE3;
+      --panel-soft-alt: #EFE7DC;
+      --panel-separator: #DCCFC0;
+      --border: #DCCFC0;
+      --text: #30221D;
+      --muted: #76655A;
+      --accent: #B84F38;
+      --accent-strong: #983E2B;
+      --accent-soft: rgba(184, 79, 56, 0.11);
+      --accent-label-text: #983E2B;
+      --tag-bg-soft: #EFE7DC;
+      --tag-text: #57463D;
+      --button-primary-text: #FAF6F0;
+      --secondary-button-bg: #EFE7DC;
+      --input-bg: #FBF8F3;
+      --hero-title-highlight: linear-gradient(135deg, #30221D 0%, #983E2B 100%);
+      --shadow: 0 8px 24px rgba(65, 43, 31, 0.045);
+    }
+
     body {
-      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
+      font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(to right, rgba(74, 58, 47, 0.10) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(74, 58, 47, 0.10) 1px, transparent 1px);
+      background-size: 27px 27px;
       color: var(--text);
       line-height: 1.7;
     }
@@ -113,10 +146,7 @@
 
     .hero {
       padding: 6rem 2rem 3.5rem;
-      background:
-        radial-gradient(circle at top left, color-mix(in srgb, var(--accent) 18%, transparent), transparent 36%),
-        radial-gradient(circle at 85% 14%, color-mix(in srgb, var(--accent-strong) 14%, transparent), transparent 24%),
-        linear-gradient(180deg, color-mix(in srgb, var(--bg-alt) 92%, transparent), color-mix(in srgb, var(--bg) 96%, transparent));
+      background: transparent;
     }
 
     .hero-content,
@@ -138,10 +168,10 @@
     .feature-card,
     .workbook-shell,
     .cta-shell {
-      border: 1px solid color-mix(in srgb, var(--accent) 16%, var(--border));
-      background: linear-gradient(180deg, color-mix(in srgb, var(--panel-bg) 94%, transparent), color-mix(in srgb, var(--panel-soft) 92%, transparent));
+      border: 1px solid var(--border);
+      background: var(--panel-bg);
       box-shadow: var(--shadow);
-      border-radius: 2rem;
+      border-radius: 3px;
     }
 
     .hero-copy {
@@ -164,14 +194,27 @@
       text-transform: uppercase;
     }
 
+    .hero h1,
+    .section-title,
+    .cta-shell h2 {
+      font-family: "Cormorant Garamond", "Georgia", serif;
+      font-weight: 600;
+    }
+
     .hero h1 {
       font-size: clamp(2.7rem, 5vw, 4.4rem);
       line-height: 1.03;
       margin-bottom: 1rem;
-      background: var(--hero-title-highlight);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--text);
+      background: none;
+      -webkit-background-clip: initial;
+      -webkit-text-fill-color: var(--text);
+      background-clip: initial;
+    }
+
+    .hero-description,
+    .section-intro {
+      font-family: "Lora", "Georgia", serif;
     }
 
     .hero-description {
@@ -365,22 +408,123 @@
 
     .feature-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
     }
 
-    .feature-card {
-      padding: 1.35rem;
+    /* Dashboard Skill Card UI */
+    .skill-editorial-card {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      border-radius: 3px;
+      background: var(--surface, #FBF8F3);
+      border: 1px solid var(--border, #DDCFC0);
+      box-shadow: none;
+      transition: border-color 0.2s ease, transform 0.2s ease;
     }
 
-    .feature-card h3 {
-      font-size: 1.18rem;
-      margin-bottom: 0.65rem;
-      color: var(--text);
+    .skill-editorial-card:hover {
+      border-color: #C8B6A5;
+      transform: translateY(-2px);
     }
 
-    .feature-card p {
-      color: var(--muted);
+    .skill-card-corner {
+      position: absolute;
+      top: -1.6rem;
+      right: -1.6rem;
+      width: 5.5rem;
+      height: 5.5rem;
+      border-radius: 50%;
+      background: rgba(217, 161, 141, 0.24);
+      pointer-events: none;
+    }
+
+    .skill-card-icon {
+      width: 2.75rem;
+      height: 2.75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: #EFE7DC;
+      border: 1px solid #DDCFC0;
+      color: #983E2B;
+      margin-bottom: 1.1rem;
+    }
+
+    .skill-card-icon svg {
+      width: 1.3rem;
+      height: 1.3rem;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .skill-card-title {
+      margin: 0;
+      font-family: "Cormorant Garamond", "Georgia", serif;
+      font-size: 1.48rem;
+      font-weight: 600;
+      line-height: 1.18;
+      color: var(--text, #30221D);
+    }
+
+    .skill-card-desc {
+      margin: 0.55rem 0 0;
+      font-family: "Lora", "Georgia", serif;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--muted, #76655A);
+      flex: 1;
+    }
+
+    .skill-card-tools {
+      margin-top: 1.25rem;
+      padding-top: 0.95rem;
+      border-top: 1px solid var(--border, #DDCFC0);
+    }
+
+    .skill-tools-label {
+      margin: 0 0 0.65rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #983E2B;
+    }
+
+    .skill-tools-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.75rem;
+      align-items: center;
+    }
+
+    .skill-tool-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text, #30221D);
+    }
+
+    .skill-tool-badge {
+      width: 1.35rem;
+      height: 1.35rem;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      background: #EFE7DC;
+      border: 1px solid #DDCFC0;
+      color: #983E2B;
     }
 
     .workbook-shell {
@@ -743,9 +887,9 @@
     <div class="hero-content">
       <div class="hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow">Training / PKL Project</span>
-          <h1>Marketing &amp; Assistant HR</h1>
-          <p class="hero-description">This project turns my Fortress training workbook into a web-based table experience. During the September 2022 to November 2022 PKL period, I supported marketing, social media, advertisement preparation, and assistant HR tasks using Excel as the main operational workspace.</p>
+          <span class="eyebrow">Internship / Magang</span>
+          <h1>Marketing &amp; Human Resource</h1>
+          <p class="hero-description">This page documents my September 2022 to November 2022 internship at Fortress, where I focused on two main areas: Marketing and Human Resource—handling candidate interviews and psychological assessment records. There is no photographic evidence; all work is documented strictly through Excel data.</p>
 
           <div class="project-meta">
             <div class="meta-item">
@@ -757,8 +901,8 @@
               <span class="meta-value">Completed</span>
             </div>
             <div class="meta-item">
-              <span class="meta-label">Purpose</span>
-              <span class="meta-value">Training / PKL</span>
+              <span class="meta-label">Program</span>
+              <span class="meta-value">Internship / Magang</span>
             </div>
             <div class="meta-item">
               <span class="meta-label">Company</span>
@@ -767,10 +911,10 @@
           </div>
 
           <div class="tech-stack">
-            <span class="tech-tag">Excel</span>
-            <span class="tech-tag">Marketing Social Media</span>
-            <span class="tech-tag">Advertisement</span>
-            <span class="tech-tag">Assistant HR</span>
+            <span class="tech-tag">Excel Data</span>
+            <span class="tech-tag">Marketing</span>
+            <span class="tech-tag">HR Interview</span>
+            <span class="tech-tag">Psychological Assessment</span>
           </div>
 
           <div class="hero-actions">
@@ -783,8 +927,8 @@
           <div class="preview-brand">
             <img src="../assets/logo-preview/fortress-logo.jpg" alt="Fortress logo">
             <div>
-              <h2>Fortress Training Archive</h2>
-              <p>Original workbook source from the Fortress internship documentation.</p>
+              <h2>Fortress Internship Archive</h2>
+              <p>Original Excel data documentation from the internship period (no photo evidence).</p>
             </div>
           </div>
 
@@ -794,20 +938,20 @@
               <strong>riset-data-nama-fortress.xlsx</strong>
             </div>
             <div class="preview-metric">
-              <span>Primary Output</span>
-              <strong>Interactive Excel-style Web Table</strong>
+              <span>Evidence Format</span>
+              <strong>Excel Data Only (No Photos)</strong>
             </div>
             <div class="preview-metric">
-              <span>Main Focus</span>
-              <strong>Marketing Support</strong>
+              <span>Focus 1</span>
+              <strong>Marketing &amp; Social Ads</strong>
             </div>
             <div class="preview-metric">
-              <span>Secondary Focus</span>
-              <strong>Assistant HR Admin</strong>
+              <span>Focus 2</span>
+              <strong>HR Interview &amp; Psychology</strong>
             </div>
           </div>
 
-          <p class="preview-note">Each page inside the workbook is rendered as its own tab below, so the Excel structure stays readable while feeling more like a website dashboard.</p>
+          <p class="preview-note">Every worksheet from the Excel workbook is rendered as a switchable web table below—serving as the sole empirical record of the internship.</p>
         </aside>
       </div>
     </div>
@@ -815,23 +959,44 @@
 
   <section class="content-section">
     <div class="section-header">
-      <span class="eyebrow">Responsibility Snapshot</span>
-      <h2 class="section-title">What This Training Covered</h2>
-      <p class="section-intro">The project was not a client delivery or main company project. It was a PKL / training experience where Excel supported daily coordination, data tracking, and internal support work.</p>
+      <span class="eyebrow">2 Core Internship Divisions</span>
+      <h2 class="section-title">What This Internship Covered</h2>
+      <p class="section-intro">During the internship, my responsibilities centered on two core areas—Marketing and Human Resource—with all records kept purely in Excel spreadsheets without photographic documentation.</p>
     </div>
 
     <div class="feature-grid">
-      <article class="feature-card">
-        <h3>Marketing Support</h3>
-        <p>Helped organize material related to marketing activity, campaign tracking, and social-media-oriented supporting work inside one practical workbook flow.</p>
+      <article class="skill-editorial-card">
+        <span class="skill-card-corner" aria-hidden="true"></span>
+        <div class="skill-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 11l18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+        </div>
+        <h3 class="skill-card-title">01 · Marketing Division</h3>
+        <p class="skill-card-desc">Supported marketing operations, social media promotion, and advertisement planning, organizing campaign tracking and outreach notes inside structured Excel sheets.</p>
+        <div class="skill-card-tools">
+          <p class="skill-tools-label">Tools &amp; Focus</p>
+          <div class="skill-tools-row">
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Ex</span>Excel Data</span>
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Sm</span>Social Media</span>
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Ad</span>Advertisement</span>
+          </div>
+        </div>
       </article>
-      <article class="feature-card">
-        <h3>Advertisement Tasks</h3>
-        <p>Used spreadsheet structure to keep ad-related references, planning, and activity notes easier to scan and update during the training period.</p>
-      </article>
-      <article class="feature-card">
-        <h3>Assistant HR Admin</h3>
-        <p>Supported assistant HR administration through structured records, making naming data and tabular information easier to revisit and work with.</p>
+
+      <article class="skill-editorial-card">
+        <span class="skill-card-corner" aria-hidden="true"></span>
+        <div class="skill-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="skill-card-title">02 · Human Resource (Interview &amp; Psychological Assessment)</h3>
+        <p class="skill-card-desc">Handled candidate interview coordination and psychological assessment scoring, recording participant evaluations and HR data strictly in Excel without photo documentation.</p>
+        <div class="skill-card-tools">
+          <p class="skill-tools-label">Tools &amp; Focus</p>
+          <div class="skill-tools-row">
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Ex</span>Excel Data</span>
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Hr</span>Candidate Interview</span>
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Ps</span>Psychological Scoring</span>
+          </div>
+        </div>
       </article>
     </div>
   </section>

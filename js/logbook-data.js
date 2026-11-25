@@ -12,7 +12,45 @@ window.LOGBOOK_ENTRIES = [
       raw: "Buat totebag koko krunch  dan buat cooleg bag isi 6 kaleng nescafe dengan 3 varian, design gillette dan printing dan jadikan tas utuh dari generated AI, design dancow totebag dan printing 1 tas yang terpilih",
       summary:
         "Mengerjakan desain dan printing totebag promosi untuk Koko Krunch serta cooler bag berisi 6 kaleng Nescafe dengan 3 varian. Selain itu, membuat desain Gillette dan mengubah hasil generated AI menjadi tas utuh, serta mendesain dan mencetak satu totebag Dancow terpilih.",
-      attachmentNote: "9 file gambar terlampir di Notion"
+      attachmentNote: "9 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Totebag Koko Krunch Promosi",
+          url: "https://www.notion.so/image/attachment%3A56aa787d-07fd-40e8-85f9-96a75c889997%3ATotebag_koko_krunch_2.jpg?id=41ea22b9-b6b2-802c-8d51-d654cb018782&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        },
+        {
+          title: "Nescafe Cooler Bag 6 Kaleng — Camera Snapshot (Red)",
+          url: "https://lh3.googleusercontent.com/d/1fb2QpkPkhBLotfwGMI33Gk_kq8Z8sO1j=w1600"
+        },
+        {
+          title: "Nescafe Cooler Bag 6 Kaleng — Night Camp Van (Black)",
+          url: "https://lh3.googleusercontent.com/d/1fGgsbqhuqwODrjaI-LvoicYbTczZ-Nka=w1600"
+        },
+        {
+          title: "Nescafe Cooler Bag 6 Kaleng — Ocean Flight (Royal Blue)",
+          url: "https://lh3.googleusercontent.com/d/1QcR2JXtbeyQdwMvdVk-FX91yNqW1KmBG=w1600"
+        },
+        {
+          title: "Nescafe Cooler Bag 6 Kaleng — Hot Air Balloon (Royal Blue)",
+          url: "https://lh3.googleusercontent.com/d/1G_K-CFCQbo0R89kZ7FbMf6lXHmalKN6c=w1600"
+        },
+        {
+          title: "Nescafe Cooler Bag 6 Kaleng — Travel Luggage (Yellow)",
+          url: "https://lh3.googleusercontent.com/d/1hF50oCBJk2ZHWvCLh4gfCH-nuuB8Ru-6=w1600"
+        },
+        {
+          title: "Dancow FortiGro Backpack — Duck Pond (Green)",
+          url: "https://lh3.googleusercontent.com/d/1SF7CLBpth8mnwC1sNJp1skRJiHi3hEQl=w1600"
+        },
+        {
+          title: "Dancow FortiGro Backpack — Dino Volcano (Orange)",
+          url: "https://lh3.googleusercontent.com/d/1VlvNopl3xzYPsDHqAs0WNvkIX3vxU6Jg=w1600"
+        },
+        {
+          title: "Dancow FortiGro Backpack — Submarine Ocean (Navy)",
+          url: "https://lh3.googleusercontent.com/d/1VB9P1S3tGIWmgrzR9YB9UvgsZOYgO1PV=w1600"
+        }
+      ]
     },
     outside: null
   },
@@ -78,7 +116,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Nescafe cooler bag Design",
       summary:
         "Melanjutkan pengembangan desain cooler bag untuk brand Nescafe. Fokus pekerjaan mencakup penyempurnaan tata letak grafis, penyesuaian proporsi branding pada permukaan tas insulasi, serta pengecekan kesiapan visual sebelum masuk ke tahap produksi.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Nescafe Cooler Bag Design (29 Okt 2026)",
+          url: "https://www.notion.so/image/attachment%3A6a2aeecc-3cba-4229-a54b-166e9399d054%3Aimage.png?id=40ca22b9-b6b2-807b-8e5d-ce54b693f59f&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: null
   },
@@ -93,7 +137,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Nescafe Cooler bag Design",
       summary:
         "Memulai perancangan konsep desain cooler bag untuk klien Nescafe. Pada sesi ini disusun komposisi visual awal, penempatan identitas warna khas Nescafe, serta penyesuaian struktur desain dengan bentuk tas pendingin.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Nescafe Cooler Bag Design (28 Okt 2026)",
+          url: "https://www.notion.so/image/attachment%3A86787a1b-be18-4ca5-a929-dfcafbb2cc91%3Aimage.png?id=407a22b9-b6b2-80b6-83b2-f984beaf9133&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: null
   },
@@ -108,7 +158,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Printing hasil design design untuk dancow fortigrow",
       summary:
         "Menyiapkan dan menjalankan proses cetak (printing) untuk rangkaian desain tas dan pencil case Dancow Fortigrow yang telah dikerjakan pada sesi-sesi sebelumnya. Tahap ini memastikan hasil warna, ukuran pola, dan ketajaman grafis sesuai dengan standar cetak fisik.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Printing Hasil Desain Dancow Fortigrow (27 Okt 2026)",
+          url: "https://www.notion.so/image/attachment%3A6fde3cb1-e46c-4c3c-83f6-ab1dddfc63dd%3Aimage.png?id=407a22b9-b6b2-800b-ac2a-e21f5e59502d&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: null
   },
@@ -123,7 +179,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Lanjut design tas dan pencil case untuk dancow fortigrow",
       summary:
         "Melanjutkan penyempurnaan akhir pada paket desain tas dan kotak pensil (pencil case) Dancow Fortigrow. Konsistensi elemen visual antara tas utama dan aksesori pencil case dirapikan agar siap masuk ke tahap cetak.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Finalisasi Desain Tas & Pencil Case Dancow Fortigrow (26 Okt 2026)",
+          url: "https://www.notion.so/image/attachment%3Ada5b9ba6-bec1-4afe-99c8-87b0ac2d65b4%3Aimage.png?id=407a22b9-b6b2-8064-8554-d6081e18b9b2&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: null
   },
@@ -138,7 +200,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Lanjut design tas dan pencil case untuk dancow fortigrow",
       summary:
         "Melanjutkan pengerjaan detail desain tas dan pencil case Dancow Fortigrow, termasuk penyesuaian detail grafis karakter/branding pada bidang jahit serta pengecekan keselarasan warna antar varian.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Desain Tas & Pencil Case Dancow Fortigrow — Hari ke-4 (23 Okt 2026)",
+          url: "https://www.notion.so/image/attachment%3A841dfeb9-a6ac-4ccf-9049-54023c149619%3Aimage.png?id=407a22b9-b6b2-8047-a10a-c57becef4699&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: null
   },
@@ -153,7 +221,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Lanjut design tas dan pencil case untuk dancow fortigrow",
       summary:
         "Meneruskan iterasi desain tas dan pencil case Dancow Fortigrow untuk menyempurnakan komposisi visual dan penempatan logo agar tetap proporsional pada ukuran tas maupun tempat pensil.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Desain Tas & Pencil Case Dancow Fortigrow — Hari ke-3 (22 Okt 2026)",
+          url: "https://www.notion.so/image/attachment%3A29679442-4bfe-4af2-a5f9-a0097e362aeb%3Aimage.png?id=407a22b9-b6b2-80aa-b46f-cf4daf0be188&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: null
   },
@@ -168,7 +242,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Lanjut design tas dan pencil case untuk dancow fortigrow",
       summary:
         "Melanjutkan penyusunan layout desain tas serta mulai menyelaraskan pola visual ke format pencil case Dancow Fortigrow sebagai satu set merchandise yang seragam.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Desain Tas & Pencil Case Dancow Fortigrow — Hari ke-2 (21 Okt 2026)",
+          url: "https://www.notion.so/image/attachment%3A34160fac-072c-414e-9d8d-e617e8227103%3Aimage.png?id=407a22b9-b6b2-8077-98a9-d5dde9c4cfb4&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: null
   },
@@ -211,7 +291,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Design tas untuk Dancow fortigrow",
       summary:
         "Melanjutkan eksplorasi dan penyempurnaan visual tas untuk lini Dancow Fortigrow, memastikan elemen grafis utama terlihat jelas dan selaras dengan identitas merek Dancow.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Desain Tas Dancow Fortigrow — Sesi 3 (16 Okt 2026)",
+          url: "https://www.notion.so/image/attachment%3A9ff7ea74-75ba-4ac7-bb45-5e24148b5341%3Aimage.png?id=407a22b9-b6b2-809f-8edf-e58ec532399c&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: null
   },
@@ -226,7 +312,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Design tas untuk dancow fortigrow",
       summary:
         "Meneruskan pengembangan mockup dan komposisi grafis tas Dancow Fortigrow dari konsep awal, menyesuaikan penempatan panel warna serta proporsi logo pada badan tas.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Desain Tas Dancow Fortigrow — Sesi 2 (15 Okt 2026)",
+          url: "https://www.notion.so/image/attachment%3Aa330eb5d-6214-4e45-ba2b-c05fe7f68392%3Aimage.png?id=3faa22b9-b6b2-801a-ac1a-d8eabf630d80&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: null
   },
@@ -242,7 +334,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Masuk Kuliah (LEGAL ASPECT IN BUSINESS & PENDIDIKAN PANCASILA) Pembacaan Materi",
       summary:
         "Menghadiri perkuliahan untuk dua mata kuliah sekaligus, yaitu Legal Aspect in Business dan Pendidikan Pancasila, dengan fokus utama pada pembacaan serta pemahaman materi dasar perkuliahan.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Perkuliahan Legal Aspect in Business & Pendidikan Pancasila (14 Okt 2026)",
+          url: "https://www.notion.so/image/attachment%3Aa33b03a0-f21f-4548-8e1f-adcaa6b13393%3Aimage.png?id=3faa22b9-b6b2-8005-86c4-fd4f4dc1990c&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     }
   },
   {
@@ -256,7 +354,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Design tas untuk dancow fortigrow",
       summary:
         "Memulai proyek desain tas khusus varian Dancow Fortigrow dengan menyusun konsep bentuk, area branding, dan referensi palet warna sesuai karakter produk.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Inisiasi Desain Tas Dancow Fortigrow (13 Okt 2026)",
+          url: "https://www.notion.so/image/attachment%3A9e99a1a4-83e9-4662-af20-74861957092f%3Aimage.png?id=3f8a22b9-b6b2-806f-8a26-fa93fc57e30d&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: {
       title: "Penyusunan PPT Tugas Pengantar Bisnis",
@@ -323,7 +427,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Kerjain Dancow Tas tutup lipat kancing",
       summary:
         "Mengerjakan desain tas promosi Dancow dengan konstruksi penutup lipat berkancing (flap button), menyesuaikan posisi grafis pada bagian tutup depan agar tetap terbaca jelas saat tas tertutup.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Desain Tas Dancow Tutup Lipat Kancing (7 Okt 2026)",
+          url: "https://www.notion.so/image/attachment%3Adf0d43c6-0b78-439e-ba02-dc05283c07aa%3Aimage.png?id=3f2a22b9-b6b2-8027-a6ca-c29d229fd1af&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: {
       title: "Pembuatan Template Tugas Pengantar Akuntansi",
@@ -352,7 +462,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Lanjut Design nestle Kantong 2",
       summary:
         "Melanjutkan penyempurnaan akhir desain ransel Nestle model 2 kantong, memastikan detail panel depan, kantong kedua, dan identitas visual Nestle sudah siap untuk review produksi.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Finalisasi Desain Nestle Backpack Kantong 2 — Sesi 4 (29 Sept 2026)",
+          url: "https://www.notion.so/image/attachment%3Aff67fd98-70b4-426a-adb4-f46295fe9647%3Aimage.png?id=3eaa22b9-b6b2-80ce-97fe-d2009fab6848&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: null
   },
@@ -367,7 +483,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Lanjutin Design Nestle kantong 2",
       summary:
         "Meneruskan pengerjaan detail grafis dan tata letak kompartemen pada desain tas ransel Nestle dua kantong.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Desain Nestle Backpack Kantong 2 — Sesi 3 (28 Sept 2026)",
+          url: "https://www.notion.so/image/attachment%3A7133d5db-513d-42f8-91f2-fcbdceece04a%3Aimage.png?id=3eaa22b9-b6b2-8078-8286-d6e25aab623d&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: null
   },
@@ -382,7 +504,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Lanjutin Design Nestle kantong 2",
       summary:
         "Melanjutkan pengembangan desain tas ransel Nestle dengan dua kantong depan, menyempurnakan proporsi elemen visual dan kontras warna.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Desain Nestle Backpack Kantong 2 — Sesi 2 (25 Sept 2026)",
+          url: "https://www.notion.so/image/attachment%3A17842df0-4546-4b2c-a28e-8e5ac9292510%3Aimage.png?id=3e6a22b9-b6b2-80c5-aeb3-c831da4c3405&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: {
       title: "Penyempurnaan Subtitle, Durasi & Tipografi Video Masta",
@@ -402,7 +530,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Design nestle backpack kantong 2",
       summary:
         "Memulai rancangan desain tas ransel (backpack) Nestle dengan konfigurasi dua kantong, menentukan penempatan logo dan pembagian area warna pada tiap kompartemen.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Inisiasi Desain Nestle Backpack Kantong 2 (24 Sept 2026)",
+          url: "https://www.notion.so/image/attachment%3A182bf9cd-9e4f-460b-a933-3e220f41fc3e%3Aimage.png?id=3e6a22b9-b6b2-8021-b804-d89a11798156&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: {
       title: "Editing Cutting, Voice Over & Konsep Video Masta",
@@ -422,7 +556,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Design variant baru model untuk milo",
       summary:
         "Membuat rancangan varian model tas baru untuk brand Milo guna memberikan alternatif bentuk dan tampilan visual bagi kebutuhan promosi.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Desain Varian Model Baru Tas Milo (23 Sept 2026)",
+          url: "https://www.notion.so/image/attachment%3Ab33ecc3c-d64a-458f-9703-ed830800cb60%3Aimage.png?id=3e4a22b9-b6b2-809c-9c61-cf176c75efae&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: {
       title: "Pra-Produksi & Intro Video Masta",
@@ -442,7 +582,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Disuruh Design pouch untuk Milo",
       summary:
         "Merancang desain pouch (tas serbaguna berukuran ringkas) untuk brand Milo dengan menyesuaikan skala grafis dan warna khas Milo pada bentuk pouch.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Desain Pouch untuk Brand Milo (22 Sept 2026)",
+          url: "https://www.notion.so/image/attachment%3Acb59a47c-887f-4cc0-b270-50d40c129b81%3A94CA86DC-7C57-46B4-94E8-AF23A0544BD8.png?id=3e3a22b9-b6b2-8039-aec0-d17e3418c8af&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: {
       title: "Pembaruan UI Chat AI Box TM Opera O & Rencana LLM Lokal",
@@ -462,7 +608,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Disuruh Design variant untuk milo untuk memperkecil budget (kurangin Ring cantol, Kurangin Ring Jalan)",
       summary:
         "Merancang ulang varian tas Milo dengan fokus efisiensi anggaran produksi (cost-down): mengurangi komponen aksesori logam/plastik seperti ring cantol dan ring jalan tanpa mengorbankan fungsi dasar maupun estetika tas.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Optimasi Desain Varian Tas Milo (21 Sept 2026)",
+          url: "https://www.notion.so/image/attachment%3Ad298e339-0f63-478d-966d-ef5a48466118%3A94CA86DC-7C57-46B4-94E8-AF23A0544BD8.png?id=3e3a22b9-b6b2-8053-ae15-fa77710be571&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: null
   },
@@ -477,7 +629,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Foto Tas Hasil",
       summary:
         "Melakukan pemotretan dokumentasi terhadap sampel/hasil jadi produksi tas fisik untuk kebutuhan arsip, evaluasi kualitas jahitan dan cetak, serta materi presentasi.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Dokumentasi Foto Hasil Produksi Tas (18 Sept 2026)",
+          url: "https://www.notion.so/image/attachment%3A5bd691b1-6bc3-4bb5-9853-2f274713bcb9%3Aimage.png?id=3dfa22b9-b6b2-804a-b029-f24323c51436&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: null
   },
@@ -492,7 +650,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "ubah warna pada tas My baby",
       summary:
         "Melakukan penyesuaian palet warna pada desain tas untuk brand My Baby agar kombinasi warnanya lebih sesuai dengan identitas visual produk dan kebutuhan revisi.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Revisi Penyesuaian Warna Tas My Baby (17 Sept 2026)",
+          url: "https://www.notion.so/image/attachment%3A82bda136-6b30-4c73-9c2d-3d9b5055fb12%3Aimage.png?id=3dea22b9-b6b2-8010-88bf-cd2fb80dd826&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: null
   },
@@ -526,7 +690,17 @@ window.LOGBOOK_ENTRIES = [
       raw: "Disuruh Buat Design Tas untuk Lactogrow dan lanjutkan komposisi warna color dancow totebag crinkle",
       summary:
         "Menangani dua proyek tas sekaligus: memulai desain tas baru untuk brand Lactogrow serta melanjutkan eksplorasi kombinasi warna pada proyek totebag crinkle Dancow.",
-      attachmentNote: "2 file gambar terlampir di Notion"
+      attachmentNote: "2 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Desain Tas Lactogrow (15 Sept 2026 — Lampiran 1)",
+          url: "https://www.notion.so/image/attachment%3Ac1876a0e-19b7-4154-80d3-be5aa70c27f6%3Aimage.png?id=3dca22b9-b6b2-8090-864f-dbc8e4aedd41&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        },
+        {
+          title: "Komposisi Warna Dancow Totebag Crinkle (15 Sept 2026 — Lampiran 2)",
+          url: "https://www.notion.so/image/attachment%3Acd5c5861-10a5-4609-bc85-106a706a620e%3Aimage.png?id=3dca22b9-b6b2-8090-864f-dbc8e4aedd41&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: null
   },
@@ -541,7 +715,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Disuruh Bikin komposisi color dancow totebag crinkle",
       summary:
         "Menyusun beberapa alternatif komposisi warna untuk desain totebag berbahan crinkle milik brand Dancow guna mencari paduan warna yang paling menarik dan sesuai karakter merek.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Komposisi Warna Dancow Totebag Crinkle (14 Sept 2026)",
+          url: "https://www.notion.so/image/attachment%3Ae7541c92-b7d5-4f8a-a963-a4656ce1973e%3Aimage.png?id=3d8a22b9-b6b2-801c-8b74-feca484918d4&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: {
       title: "Upload Aset Pola & Ilustrasi ke Magnific Contributor (56 / 150 Target)",
@@ -561,7 +741,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Disuruh buat carrier Animal Totebag untuk Purina dengan bolong tengah untuk kepala hewan keluar",
       summary:
         "Merancang totebag fungsional pembawa hewan peliharaan (animal carrier totebag) untuk brand Purina, lengkap dengan bukaan khusus di bagian tengah/sisi atas agar kepala hewan dapat keluar dengan nyaman dan aman.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Desain Animal Carrier Totebag untuk Purina (11 Sept 2026)",
+          url: "https://www.notion.so/image/attachment%3A01bcbda2-54ba-4e86-9456-a60bd0175e2b%3Aimage.png?id=3d8a22b9-b6b2-8097-864a-c373d91d2643&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: null
   },
@@ -576,7 +762,13 @@ window.LOGBOOK_ENTRIES = [
       raw: "Lanjutin Design Nestle Totebag dengan DTF ungu kuning",
       summary:
         "Melanjutkan pengerjaan desain totebag Nestle menggunakan teknik cetak DTF (Direct to Film) dengan kombinasi aksen warna ungu dan kuning yang kontras.",
-      attachmentNote: "1 file gambar terlampir di Notion"
+      attachmentNote: "1 file gambar terlampir di Notion",
+      attachmentFiles: [
+        {
+          title: "Desain Nestle Totebag DTF Ungu-Kuning (10 Sept 2026)",
+          url: "https://www.notion.so/image/attachment%3Ac1d2ffe6-269d-49da-abd3-985bac91479e%3Apreview_tas_dancow_3.16.jpg?id=3d7a22b9-b6b2-8068-9156-c889380d99eb&table=block&spaceId=3114f9e6-823e-40aa-a030-99e7b9d9b7d0&width=1600&cache=v2"
+        }
+      ]
     },
     outside: {
       title: "Upload Pola & Ilustrasi ke Magnific Contributor (52 / 150 Target)",

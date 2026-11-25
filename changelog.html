@@ -242,7 +242,11 @@
     </section>
 
     <div class="version-tabs" role="tablist" aria-label="Changelog versions">
-      <button class="version-tab active" role="tab" aria-selected="true" id="tab-v45" data-version="v45">
+      <button class="version-tab active" role="tab" aria-selected="true" id="tab-v46" data-version="v46">
+        <span class="version-tab-label">v4.6</span>
+        <span class="version-tab-date">Nov 25, 2026</span>
+      </button>
+      <button class="version-tab" role="tab" aria-selected="false" id="tab-v45" data-version="v45">
         <span class="version-tab-label">v4.5</span>
         <span class="version-tab-date">Nov 24, 2026</span>
       </button>
@@ -280,8 +284,51 @@
       </button>
     </div>
 
+    <!-- v4.6 - November 25, 2026 -->
+    <div class="version-panel active" id="panel-v46" role="tabpanel" aria-labelledby="tab-v46">
+
+      <article class="timeline-entry">
+        <div class="entry-head">
+          <div>
+            <h2>November 25, 2026</h2>
+            <p>Synced all certification counters to 45/38/7, added interactive Logbook attachment pop-out with mouse-focal zoom, and redesigned the Fortress Internship (Marketing &amp; HR) project page.</p>
+          </div>
+          <span class="entry-date">Latest</span>
+        </div>
+
+        <div class="change-grid">
+
+          <section class="change-card">
+            <h3>Certification Counter Auto-Sync</h3>
+            <ul>
+              <li>Synced the hero stat card on <code>index.html</code> from <code>25</code> to <code>45</code> and aligned <code>#certification</code> &amp; <code>certification.html</code> totals (<strong>45</strong> Total, <strong>38</strong> MySkill, <strong>7</strong> Coursera/HP LIFE/Trainee/Competition).</li>
+              <li>Added automatic counter sync in <code>js/performance-main.js</code> and ID/ENG translation pairs in <code>js/language-controls.js</code>.</li>
+            </ul>
+          </section>
+
+          <section class="change-card">
+            <h3>Logbook Pop-Out Attachment Viewer</h3>
+            <ul>
+              <li>Added thumbnail previews and <strong>Lihat Lampiran (N)</strong> pop-out buttons across Work entries in <code>logbook.html</code> and <code>js/logbook-data.js</code>.</li>
+              <li>Built lightbox navigation (left/right arrows, keyboard shortcuts) and transform-based mouse-following zoom (<code>100%</code> fit-to-stage default, pan/drag, zero scrollbars).</li>
+            </ul>
+          </section>
+
+          <section class="change-card">
+            <h3>Fortress Internship (Marketing &amp; HR) Redesign</h3>
+            <ul>
+              <li>Reframed the Fortress project as <strong>Marketing &amp; Human Resource (Internship / Magang)</strong> in <code>index.html</code> and <code>project/pages/marketing-assistant-hr.html</code>, highlighting the two divisions (Marketing &amp; HR Candidate Interview / Psychological Assessment) with Excel-only data evidence.</li>
+              <li>Applied the dashboard Editorial Archive &amp; <code>.skill-editorial-card</code> UI styling with full ID/ENG translations.</li>
+            </ul>
+          </section>
+
+        </div>
+      </article>
+
+    </div>
+
     <!-- v4.5 - November 24, 2026 -->
-    <div class="version-panel active" id="panel-v45" role="tabpanel" aria-labelledby="tab-v45">
+    <div class="version-panel" id="panel-v45" role="tabpanel" aria-labelledby="tab-v45">
 
       <article class="timeline-entry">
         <div class="entry-head">
@@ -289,7 +336,7 @@
             <h2>November 24, 2026</h2>
             <p>Synced homepage certification archive with visual preview cards, added Instagram profile photo &amp; nav-social translation, and fixed first-click anchor navigation accuracy.</p>
           </div>
-          <span class="entry-date">Latest</span>
+          <span class="entry-date">v4.5</span>
         </div>
 
         <div class="change-grid">

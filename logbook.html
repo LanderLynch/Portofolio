@@ -506,6 +506,388 @@
       font-style: italic;
     }
 
+    .log-attachment-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 0.35rem;
+      padding: 0.55rem 0.75rem;
+      border-radius: 10px;
+      background: var(--color-paper-soft);
+      border: 1px solid var(--color-border);
+    }
+
+    .log-attachment-thumbs {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .log-attachment-thumb {
+      width: 2.35rem;
+      height: 2.35rem;
+      padding: 0;
+      border-radius: 6px;
+      border: 1px solid var(--color-border-strong);
+      background: var(--color-paper-deep);
+      overflow: hidden;
+      cursor: zoom-in;
+      transition: transform 0.16s ease, border-color 0.16s ease;
+    }
+
+    .log-attachment-thumb:hover {
+      transform: translateY(-1px);
+      border-color: var(--color-terracotta);
+    }
+
+    .log-attachment-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .log-attachment-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.36rem 0.85rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid transparent;
+      background: var(--color-terracotta-btn);
+      color: #FAF6F0;
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.18s ease, transform 0.16s ease;
+    }
+
+    .log-attachment-btn:hover {
+      background: var(--color-terracotta-hover);
+      transform: translateY(-1px);
+    }
+
+    .log-attachment-btn svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .log-tag-btn {
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .log-tag-btn:hover {
+      border-color: var(--color-terracotta);
+      color: var(--color-terracotta-btn);
+    }
+
+    /* Attachment Pop-Out Lightbox Modal */
+    .log-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 220;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      background: rgba(34, 24, 20, 0.72);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.22s ease, visibility 0.22s ease;
+    }
+
+    .log-modal.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .log-modal-card {
+      position: relative;
+      width: min(1040px, 96vw);
+      height: min(88vh, 840px);
+      display: flex;
+      flex-direction: column;
+      border-radius: 16px;
+      background: var(--color-paper-soft);
+      border: 1px solid var(--color-border-strong);
+      box-shadow: 0 28px 68px rgba(24, 16, 12, 0.38);
+      overflow: hidden;
+      transform: scale(0.96);
+      transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .log-modal.is-open .log-modal-card {
+      transform: scale(1);
+    }
+
+    .log-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem 1.25rem;
+      background: var(--color-paper);
+      border-bottom: 1px solid var(--color-border);
+      flex-wrap: wrap;
+    }
+
+    .log-modal-meta {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .log-modal-kicker {
+      margin: 0 0 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-terracotta-btn);
+    }
+
+    .log-modal-counter {
+      padding: 0.14rem 0.55rem;
+      border-radius: var(--radius-pill);
+      background: var(--color-paper-deep);
+      border: 1px solid var(--color-border);
+      color: var(--color-ink-soft);
+    }
+
+    .log-modal-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--color-ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .log-modal-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .log-zoom-group {
+      display: inline-flex;
+      align-items: center;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--color-border-strong);
+      background: var(--color-paper-soft);
+      overflow: hidden;
+    }
+
+    .log-tool-btn {
+      min-height: 2.25rem;
+      padding: 0 0.75rem;
+      border: 0;
+      background: transparent;
+      color: var(--color-ink);
+      font-family: var(--font-ui);
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: background-color 0.16s ease, color 0.16s ease;
+    }
+
+    .log-tool-btn:hover:not(:disabled) {
+      background: var(--color-paper-deep);
+    }
+
+    .log-tool-btn:disabled {
+      opacity: 0.42;
+      cursor: not-allowed;
+    }
+
+    .log-zoom-level {
+      min-width: 3.6rem;
+      border-left: 1px solid var(--color-border);
+      border-right: 1px solid var(--color-border);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .log-close-btn {
+      width: 2.25rem;
+      height: 2.25rem;
+      padding: 0;
+      border-radius: 50%;
+      border: 1px solid var(--color-border-strong);
+      background: var(--color-paper-soft);
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    .log-modal-body {
+      position: relative;
+      flex: 1;
+      display: flex;
+      min-height: 0;
+      background: var(--color-paper-deep);
+    }
+
+    .log-modal-stage {
+      position: relative;
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 4.25rem;
+      user-select: none;
+    }
+
+    .log-modal-stage.is-zoomed {
+      cursor: grab;
+    }
+
+    .log-modal-stage.is-dragging {
+      cursor: grabbing;
+    }
+
+    .log-modal-viewport {
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .log-modal-image {
+      display: block;
+      max-width: none;
+      height: auto;
+      border-radius: 10px;
+      background: #ffffff;
+      box-shadow: 0 14px 36px rgba(34, 24, 20, 0.22);
+      transform-origin: center center;
+      will-change: transform;
+      cursor: zoom-in;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .log-modal-stage.is-zoomed .log-modal-image {
+      cursor: inherit;
+    }
+
+    .log-side-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 15;
+      width: 2.85rem;
+      height: 2.85rem;
+      border-radius: 50%;
+      border: 1px solid var(--color-border-strong);
+      background: rgba(248, 244, 237, 0.94);
+      color: var(--color-ink);
+      box-shadow: 0 8px 22px rgba(34, 24, 20, 0.16);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+    }
+
+    .log-side-arrow:hover {
+      background: var(--color-terracotta-btn);
+      border-color: var(--color-terracotta-btn);
+      color: #FAF6F0;
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    .log-side-arrow--prev {
+      left: 0.9rem;
+    }
+
+    .log-side-arrow--next {
+      right: 0.9rem;
+    }
+
+    .log-modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.85rem;
+      padding: 0.75rem 1.25rem;
+      background: var(--color-paper);
+      border-top: 1px solid var(--color-border);
+      flex-wrap: wrap;
+    }
+
+    .log-modal-dots {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .log-modal-dot {
+      min-width: 2rem;
+      height: 2rem;
+      padding: 0 0.5rem;
+      border-radius: 7px;
+      border: 1px solid var(--color-border-strong);
+      background: var(--color-paper-soft);
+      color: var(--color-ink);
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .log-modal-dot.is-active {
+      background: var(--color-terracotta-btn);
+      border-color: transparent;
+      color: #FAF6F0;
+    }
+
+    .log-modal-hint {
+      font-size: 0.78rem;
+      color: var(--color-muted);
+    }
+
+    @media (max-width: 680px) {
+      .log-modal {
+        padding: 0.5rem;
+      }
+
+      .log-modal-card {
+        height: 92vh;
+      }
+
+      .log-modal-stage {
+        padding: 1rem 3.25rem;
+      }
+
+      .log-side-arrow {
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+    }
+
     .log-ai-row {
       margin-top: auto;
       padding-top: 0.35rem;
@@ -702,7 +1084,43 @@
     </footer>
   </div>
 
-  <script src="js/logbook-data.js?v=20261123b"></script>
+  <!-- Pop-Out Attachment Lightbox Modal -->
+  <div class="log-modal" id="log-attachment-modal" aria-hidden="true">
+    <div class="log-modal-card" role="dialog" aria-modal="true" aria-labelledby="log-modal-title">
+      <div class="log-modal-header">
+        <div class="log-modal-meta">
+          <p class="log-modal-kicker">
+            <span id="log-modal-date">Logbook Attachment</span>
+            <span class="log-modal-counter" id="log-modal-counter">1 / 1</span>
+          </p>
+          <h2 class="log-modal-title" id="log-modal-title">Lampiran Visual</h2>
+        </div>
+        <div class="log-modal-toolbar">
+          <div class="log-zoom-group" role="group" aria-label="Zoom controls">
+            <button class="log-tool-btn" type="button" id="log-zoom-out" aria-label="Zoom out">&minus;</button>
+            <button class="log-tool-btn log-zoom-level" type="button" id="log-zoom-reset" title="Reset zoom">100%</button>
+            <button class="log-tool-btn" type="button" id="log-zoom-in" aria-label="Zoom in">+</button>
+          </div>
+          <button class="log-tool-btn log-close-btn" type="button" id="log-modal-close" aria-label="Tutup pop out">&times;</button>
+        </div>
+      </div>
+
+      <div class="log-modal-body">
+        <button class="log-side-arrow log-side-arrow--prev" type="button" id="log-prev-btn" aria-label="Lampiran sebelumnya">&#8592;</button>
+        <div class="log-modal-stage" id="log-modal-stage">
+          <div class="log-modal-viewport" id="log-modal-viewport"></div>
+        </div>
+        <button class="log-side-arrow log-side-arrow--next" type="button" id="log-next-btn" aria-label="Lampiran selanjutnya">&#8594;</button>
+      </div>
+
+      <div class="log-modal-footer">
+        <div class="log-modal-dots" id="log-modal-dots" role="tablist" aria-label="Daftar lampiran pada catatan ini"></div>
+        <span class="log-modal-hint">Scroll mouse untuk zoom · Panah kiri/kanan untuk navigasi · Klik di luar untuk tutup</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/logbook-data.js?v=20261125-1"></script>
   <script>
     const entries = (Array.isArray(window.LOGBOOK_ENTRIES) ? window.LOGBOOK_ENTRIES : []).filter((entry) => Boolean(entry.work));
     const listEl = document.getElementById("logbook-list");
@@ -734,11 +1152,47 @@
       return groups;
     }
 
+    function getThumbnailUrl(url) {
+      if (!url) return "";
+      if (url.includes("notion.so/image/")) {
+        return url.replace(/width=\d+/, "width=240");
+      }
+      if (url.includes("googleusercontent.com/d/")) {
+        return url.replace(/=w\d+$/, "=w320");
+      }
+      return url;
+    }
+
     function renderSectionBox(entry, key, label, data, extraClass = "") {
       if (!data) return "";
-      const attachmentHtml = data.attachmentNote
-        ? `<div class="log-attachment-note">${escapeHtml(data.attachmentNote)}</div>`
-        : "";
+      const files = Array.isArray(data.attachmentFiles) ? data.attachmentFiles : [];
+      let attachmentHtml = "";
+      if (files.length > 0) {
+        const thumbs = files
+          .slice(0, 6)
+          .map(
+            (file, idx) => `
+              <button type="button" class="log-attachment-thumb" data-open-attachment="${entry.id}" data-attachment-index="${idx}" title="${escapeHtml(file.title)}">
+                <img src="${escapeHtml(getThumbnailUrl(file.url))}" alt="${escapeHtml(file.title)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+              </button>
+            `
+          )
+          .join("");
+        attachmentHtml = `
+          <div class="log-attachment-bar">
+            <div class="log-attachment-thumbs">
+              ${thumbs}
+              <span class="log-attachment-note">${escapeHtml(data.attachmentNote || `${files.length} lampiran visual`)}</span>
+            </div>
+            <button type="button" class="log-attachment-btn" data-open-attachment="${entry.id}" data-attachment-index="0">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+              <span>Lihat Lampiran (${files.length})</span>
+            </button>
+          </div>
+        `;
+      } else if (data.attachmentNote) {
+        attachmentHtml = `<div class="log-attachment-note">${escapeHtml(data.attachmentNote)}</div>`;
+      }
       return `
         <div class="log-section-box ${extraClass}">
           <div class="log-section-kicker">
@@ -789,7 +1243,16 @@
       listEl.innerHTML = filtered
         .map((entry) => {
           const tags = [`<span class="log-tag log-tag--work">Work</span>`];
-          if (entry.attachments > 0) tags.push(`<span class="log-tag">${entry.attachments} Lampiran</span>`);
+          const hasAttachmentFiles = Array.isArray(entry.work?.attachmentFiles) && entry.work.attachmentFiles.length > 0;
+          if (entry.attachments > 0) {
+            if (hasAttachmentFiles) {
+              tags.push(
+                `<button type="button" class="log-tag log-tag-btn" data-open-attachment="${entry.id}" data-attachment-index="0">${entry.attachments} Lampiran &#8599;</button>`
+              );
+            } else {
+              tags.push(`<span class="log-tag">${entry.attachments} Lampiran</span>`);
+            }
+          }
 
           return `
             <article class="log-card">
@@ -881,11 +1344,374 @@
       });
     });
 
-    const attachmentEntriesCount = entries.filter((e) => e.attachments > 0).length;
-    document.getElementById("stat-work-entries").textContent = String(entries.length);
-    document.getElementById("stat-attachment-entries").textContent = String(attachmentEntriesCount);
+    function updateLogbookStats() {
+      const attachmentEntriesCount = entries.filter((e) => e.attachments > 0).length;
+      document.getElementById("stat-work-entries").textContent = String(entries.length);
+      document.getElementById("stat-attachment-entries").textContent = String(attachmentEntriesCount);
+    }
 
+    function inferMonthKey(dateLabel, fallbackIso) {
+      const str = `${dateLabel || ""} ${fallbackIso || ""}`;
+      const isoMatch = str.match(/(202\d-\d{2})/);
+      if (isoMatch) return isoMatch[1];
+      if (/nov/i.test(str)) return "2026-11";
+      if (/oct|okt/i.test(str)) return "2026-10";
+      if (/sep/i.test(str)) return "2026-09";
+      if (/dec|des/i.test(str)) return "2026-12";
+      return "2026-11";
+    }
+
+    function mergeNotionLiveEntries(liveItems) {
+      if (!Array.isArray(liveItems) || !liveItems.length) return 0;
+      let addedCount = 0;
+
+      liveItems.forEach((item) => {
+        const rawText = (item.rawNote || "").trim();
+        if (!rawText || /^rest$/i.test(rawText)) return;
+
+        const dateLabel = (item.title && item.title !== "Untitled" ? item.title : item.date) || "Catatan Baru";
+        const normDate = dateLabel.toLowerCase().replace(/\s+/g, " ").trim();
+        const normRaw = rawText.toLowerCase().replace(/\s+/g, " ").trim();
+
+        const existing = entries.find((e) => {
+          const eDate = (e.date || "").toLowerCase().replace(/\s+/g, " ").trim();
+          const eRaw = (e.work?.raw || "").toLowerCase().replace(/\s+/g, " ").trim();
+          return e.id === item.id || (eDate && eDate === normDate) || (eRaw && eRaw === normRaw);
+        });
+
+        if (existing) {
+          if (rawText && existing.work && existing.work.raw !== rawText) {
+            existing.work.raw = rawText;
+          }
+          if (typeof item.attachments === "number" && item.attachments > 0 && !existing.attachments) {
+            existing.attachments = item.attachments;
+            if (existing.work && !existing.work.attachmentNote) {
+              existing.work.attachmentNote = `${item.attachments} file gambar terlampir di Notion`;
+            }
+          }
+          return;
+        }
+
+        const monthKey = inferMonthKey(dateLabel, item.date || item.lastEditedTime);
+        const attachmentCount = Number(item.attachments) || 0;
+        entries.unshift({
+          id: item.id || `notion-${Date.now()}-${addedCount}`,
+          date: dateLabel,
+          month: monthKey,
+          categories: ["work"],
+          attachments: attachmentCount,
+          work: {
+            title: `Catatan Work (${dateLabel})`,
+            raw: rawText,
+            summary: rawText,
+            attachmentNote: attachmentCount > 0 ? `${attachmentCount} file gambar terlampir di Notion` : ""
+          },
+          outside: null
+        });
+        addedCount += 1;
+      });
+
+      if (addedCount > 0) {
+        updateLogbookStats();
+        renderLogbook();
+      }
+      return addedCount;
+    }
+
+    window.mergeNotionLiveEntries = mergeNotionLiveEntries;
+
+    updateLogbookStats();
     renderLogbook();
+
+    /* Pop-Out Attachment Lightbox Controller */
+    const logModal = document.getElementById("log-attachment-modal");
+    const logModalDate = document.getElementById("log-modal-date");
+    const logModalCounter = document.getElementById("log-modal-counter");
+    const logModalTitle = document.getElementById("log-modal-title");
+    const logModalStage = document.getElementById("log-modal-stage");
+    const logModalViewport = document.getElementById("log-modal-viewport");
+    const logModalDots = document.getElementById("log-modal-dots");
+    const logZoomOutBtn = document.getElementById("log-zoom-out");
+    const logZoomResetBtn = document.getElementById("log-zoom-reset");
+    const logZoomInBtn = document.getElementById("log-zoom-in");
+    const logModalCloseBtn = document.getElementById("log-modal-close");
+    const logPrevBtn = document.getElementById("log-prev-btn");
+    const logNextBtn = document.getElementById("log-next-btn");
+
+    const DEFAULT_ATTACHMENT_ZOOM = 1;
+    const MIN_ATTACHMENT_ZOOM = 0.25;
+    const MAX_ATTACHMENT_ZOOM = 3.5;
+
+    let activePlaylist = [];
+    let activeAttachmentIndex = 0;
+    let activeZoom = DEFAULT_ATTACHMENT_ZOOM;
+    let panX = 0;
+    let panY = 0;
+    let isPanning = false;
+    let didPanMove = false;
+    let panStartX = 0;
+    let panStartY = 0;
+    let panStartOffsetX = 0;
+    let panStartOffsetY = 0;
+
+    function buildGlobalAttachmentPlaylist() {
+      const items = [];
+      entries.forEach((entry) => {
+        const files = Array.isArray(entry.work?.attachmentFiles) ? entry.work.attachmentFiles : [];
+        files.forEach((file, idx) => {
+          items.push({
+            entryId: entry.id,
+            entryDate: entry.date,
+            entryTitle: entry.work?.title || "Work Logbook",
+            localIndex: idx,
+            localTotal: files.length,
+            title: file.title || `${entry.work?.title || entry.date} (${idx + 1})`,
+            url: file.url
+          });
+        });
+      });
+      return items;
+    }
+
+    function openAttachmentModal(entryId, localIdx = 0) {
+      activePlaylist = buildGlobalAttachmentPlaylist();
+      if (!activePlaylist.length) return;
+
+      const foundIdx = activePlaylist.findIndex(
+        (item) => item.entryId === entryId && item.localIndex === Number(localIdx)
+      );
+      activeAttachmentIndex = foundIdx >= 0 ? foundIdx : 0;
+      activeZoom = DEFAULT_ATTACHMENT_ZOOM;
+      panX = 0;
+      panY = 0;
+
+      logModal.classList.add("is-open");
+      logModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      renderActiveAttachment();
+    }
+
+    function closeAttachmentModal() {
+      logModal.classList.remove("is-open");
+      logModal.setAttribute("aria-hidden", "true");
+      logModalViewport.innerHTML = "";
+      document.body.style.overflow = "";
+    }
+
+    function stepAttachment(delta) {
+      if (!activePlaylist.length) return;
+      activeAttachmentIndex = (activeAttachmentIndex + delta + activePlaylist.length) % activePlaylist.length;
+      activeZoom = DEFAULT_ATTACHMENT_ZOOM;
+      panX = 0;
+      panY = 0;
+      renderActiveAttachment();
+    }
+
+    function clampAttachmentPan(baseWidth, img) {
+      if (activeZoom <= 1) {
+        panX = 0;
+        panY = 0;
+        return;
+      }
+      const stageRect = logModalStage.getBoundingClientRect();
+      const aspect = img.naturalWidth > 0 && img.naturalHeight > 0 ? img.naturalHeight / img.naturalWidth : 1;
+      const baseHeight = baseWidth * aspect;
+      const maxPanX = Math.max(120, (baseWidth * activeZoom - stageRect.width * 0.4) / 2);
+      const maxPanY = Math.max(120, (baseHeight * activeZoom - stageRect.height * 0.4) / 2);
+      panX = Math.min(maxPanX, Math.max(-maxPanX, panX));
+      panY = Math.min(maxPanY, Math.max(-maxPanY, panY));
+    }
+
+    function applyAttachmentZoom() {
+      const pct = Math.round(activeZoom * 100);
+      logZoomResetBtn.textContent = `${pct}%`;
+      logZoomOutBtn.disabled = activeZoom <= MIN_ATTACHMENT_ZOOM;
+      logZoomInBtn.disabled = activeZoom >= MAX_ATTACHMENT_ZOOM;
+      logModalStage.classList.toggle("is-zoomed", activeZoom > 1);
+
+      const img = logModalViewport.querySelector(".log-modal-image");
+      if (!img) return;
+
+      const availW = Math.max(260, logModalStage.clientWidth - 140);
+      const availH = Math.max(220, logModalStage.clientHeight - 48);
+      let baseWidth = Math.min(780, availW);
+      if (img.naturalWidth > 0 && img.naturalHeight > 0) {
+        const aspectFitWidth = Math.min(availW, availH * (img.naturalWidth / img.naturalHeight));
+        baseWidth = Math.min(780, Math.max(220, aspectFitWidth));
+      }
+
+      clampAttachmentPan(baseWidth, img);
+      img.style.width = `${Math.round(baseWidth)}px`;
+      img.style.transform = `translate3d(${panX.toFixed(1)}px, ${panY.toFixed(1)}px, 0) scale(${activeZoom})`;
+    }
+
+    function setAttachmentZoom(nextZoom, focusClientX, focusClientY) {
+      const prevZoom = activeZoom;
+      const clampedZoom = Math.min(MAX_ATTACHMENT_ZOOM, Math.max(MIN_ATTACHMENT_ZOOM, Math.round(nextZoom * 100) / 100));
+
+      if (clampedZoom <= 1) {
+        panX = 0;
+        panY = 0;
+      } else if (typeof focusClientX === "number" && typeof focusClientY === "number") {
+        const stageRect = logModalStage.getBoundingClientRect();
+        const cx = stageRect.left + stageRect.width / 2;
+        const cy = stageRect.top + stageRect.height / 2;
+        const ratio = clampedZoom / prevZoom;
+        panX = focusClientX - cx - (focusClientX - cx - panX) * ratio;
+        panY = focusClientY - cy - (focusClientY - cy - panY) * ratio;
+      }
+
+      activeZoom = clampedZoom;
+      applyAttachmentZoom();
+    }
+
+    function renderActiveAttachment() {
+      const item = activePlaylist[activeAttachmentIndex];
+      if (!item) return;
+
+      logModalDate.textContent = item.entryDate;
+      logModalCounter.textContent = `${activeAttachmentIndex + 1} / ${activePlaylist.length}`;
+      logModalTitle.textContent = item.title;
+      logModalStage.scrollTo({ top: 0, left: 0 });
+
+      const siblings = activePlaylist
+        .map((entryItem, globalIdx) => ({ ...entryItem, globalIdx }))
+        .filter((entryItem) => entryItem.entryId === item.entryId);
+
+      if (siblings.length > 1) {
+        logModalDots.innerHTML = siblings
+          .map(
+            (sib, i) => `
+              <button type="button" class="log-modal-dot ${sib.globalIdx === activeAttachmentIndex ? "is-active" : ""}" data-goto-global="${sib.globalIdx}">
+                ${i + 1}
+              </button>
+            `
+          )
+          .join("");
+      } else {
+        logModalDots.innerHTML = `<span class="log-modal-hint">${escapeHtml(item.entryTitle)}</span>`;
+      }
+
+      logModalViewport.innerHTML = "";
+      const img = document.createElement("img");
+      img.className = "log-modal-image";
+      img.src = item.url;
+      img.alt = item.title;
+      img.referrerPolicy = "no-referrer";
+      img.draggable = false;
+      img.addEventListener("load", () => {
+        if (img.isConnected) {
+          applyAttachmentZoom();
+        }
+      });
+      logModalViewport.appendChild(img);
+      applyAttachmentZoom();
+    }
+
+    listEl.addEventListener("click", (event) => {
+      const openBtn = event.target.closest("[data-open-attachment]");
+      if (!openBtn) return;
+      const entryId = openBtn.dataset.openAttachment;
+      const attIndex = Number(openBtn.dataset.attachmentIndex || 0);
+      openAttachmentModal(entryId, attIndex);
+    });
+
+    logModalDots?.addEventListener("click", (event) => {
+      const dot = event.target.closest("[data-goto-global]");
+      if (!dot) return;
+      activeAttachmentIndex = Number(dot.dataset.gotoGlobal);
+      activeZoom = DEFAULT_ATTACHMENT_ZOOM;
+      panX = 0;
+      panY = 0;
+      renderActiveAttachment();
+    });
+
+    logPrevBtn?.addEventListener("click", () => stepAttachment(-1));
+    logNextBtn?.addEventListener("click", () => stepAttachment(1));
+    logZoomOutBtn?.addEventListener("click", () => setAttachmentZoom(activeZoom - 0.25));
+    logZoomInBtn?.addEventListener("click", () => setAttachmentZoom(activeZoom + 0.25));
+    logZoomResetBtn?.addEventListener("click", () => setAttachmentZoom(DEFAULT_ATTACHMENT_ZOOM));
+    logModalCloseBtn?.addEventListener("click", closeAttachmentModal);
+
+    logModal?.addEventListener("click", (event) => {
+      if (event.target === logModal) {
+        closeAttachmentModal();
+      }
+    });
+
+    logModalStage?.addEventListener("click", (event) => {
+      if (didPanMove) {
+        didPanMove = false;
+        return;
+      }
+      if (event.target === logModalStage || event.target === logModalViewport) {
+        closeAttachmentModal();
+      } else if (event.target.classList.contains("log-modal-image")) {
+        setAttachmentZoom(activeZoom > DEFAULT_ATTACHMENT_ZOOM ? DEFAULT_ATTACHMENT_ZOOM : 1.5, event.clientX, event.clientY);
+      }
+    });
+
+    logModalStage?.addEventListener(
+      "wheel",
+      (event) => {
+        if (!logModal.classList.contains("is-open")) return;
+        event.preventDefault();
+        const delta = event.deltaY < 0 ? 0.22 : -0.22;
+        setAttachmentZoom(activeZoom + delta, event.clientX, event.clientY);
+      },
+      { passive: false }
+    );
+
+    logModalStage?.addEventListener("mousedown", (event) => {
+      if (activeZoom <= 1 || event.button !== 0) return;
+      isPanning = true;
+      didPanMove = false;
+      panStartX = event.clientX;
+      panStartY = event.clientY;
+      panStartOffsetX = panX;
+      panStartOffsetY = panY;
+      logModalStage.classList.add("is-dragging");
+    });
+
+    window.addEventListener("mousemove", (event) => {
+      if (!isPanning) return;
+      const dx = event.clientX - panStartX;
+      const dy = event.clientY - panStartY;
+      if (Math.abs(dx) > 4 || Math.abs(dy) > 4) {
+        didPanMove = true;
+      }
+      panX = panStartOffsetX + dx;
+      panY = panStartOffsetY + dy;
+      applyAttachmentZoom();
+    });
+
+    window.addEventListener("mouseup", () => {
+      if (!isPanning) return;
+      isPanning = false;
+      logModalStage.classList.remove("is-dragging");
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (!logModal?.classList.contains("is-open")) return;
+      if (event.key === "Escape") {
+        closeAttachmentModal();
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        stepAttachment(1);
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        stepAttachment(-1);
+      } else if (event.key === "+" || event.key === "=") {
+        event.preventDefault();
+        setAttachmentZoom(activeZoom + 0.25);
+      } else if (event.key === "-") {
+        event.preventDefault();
+        setAttachmentZoom(activeZoom - 0.25);
+      } else if (event.key === "0") {
+        event.preventDefault();
+        setAttachmentZoom(DEFAULT_ATTACHMENT_ZOOM);
+      }
+    });
   </script>
   <script defer src="js/language-controls.js?v=20260410-2"></script>
   <script defer src="js/theme-controls.js"></script>
@@ -900,38 +1726,69 @@
       if (!syncBtn || !statusEl) return;
 
       const STORAGE_KEY = "portfolio-logbook-notion-sync";
-      const latestDate = (window.LOGBOOK_ENTRIES && window.LOGBOOK_ENTRIES[0] && window.LOGBOOK_ENTRIES[0].date) || "terbaru";
+      const CACHE_ENTRIES_KEY = "portfolio-logbook-notion-entries";
+      const getLatestDate = () =>
+        (window.LOGBOOK_ENTRIES && window.LOGBOOK_ENTRIES[0] && window.LOGBOOK_ENTRIES[0].date) || "terbaru";
+
       try {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          if (parsed && parsed.syncedAt) {
-            statusEl.textContent = "Sudah terbaru (entri terakhir: " + latestDate + ") · Sinkron: " + new Date(parsed.syncedAt).toLocaleString("id-ID");
-          }
-        } else {
-          statusEl.textContent = "Sudah terbaru · Entri terakhir: " + latestDate;
+        const cachedEntries = localStorage.getItem(CACHE_ENTRIES_KEY);
+        if (cachedEntries && typeof window.mergeNotionLiveEntries === "function") {
+          window.mergeNotionLiveEntries(JSON.parse(cachedEntries));
         }
       } catch (e) {}
 
-      syncBtn.addEventListener("click", async () => {
+      async function runNotionSync({ isAuto = false } = {}) {
         syncBtn.disabled = true;
         syncBtn.textContent = "Syncing...";
-        statusEl.textContent = "Menghubungkan ke Notion API (/api/logbook-notion-sync)...";
+        if (!isAuto) {
+          statusEl.textContent = "Menghubungkan ke Notion API (/api/logbook-notion-sync)...";
+        }
         try {
-          const res = await fetch("/api/logbook-notion-sync");
+          const res = await fetch("/api/logbook-notion-sync", { cache: "no-store" });
           const data = await res.json().catch(() => ({}));
           if (!res.ok) {
-            throw new Error(data.error || "Server lokal tidak memiliki NOTION_TOKEN.");
+            throw new Error(data.error || "Endpoint Notion belum aktif di environment ini.");
+          }
+          let added = 0;
+          if (Array.isArray(data.entries) && typeof window.mergeNotionLiveEntries === "function") {
+            added = window.mergeNotionLiveEntries(data.entries);
+            try {
+              localStorage.setItem(CACHE_ENTRIES_KEY, JSON.stringify(data.entries));
+            } catch (e) {}
           }
           localStorage.setItem(STORAGE_KEY, JSON.stringify({ syncedAt: data.syncedAt, count: data.count }));
-          statusEl.textContent = "Berhasil sinkron dari Notion: " + data.count + " entri (" + new Date(data.syncedAt).toLocaleTimeString("id-ID") + ").";
+          const timeLabel = new Date(data.syncedAt).toLocaleTimeString("id-ID");
+          statusEl.textContent =
+            added > 0
+              ? `Auto-sync Notion aktif: +${added} catatan baru ditambahkan (${timeLabel}).`
+              : `Auto-sync Notion aktif · Sudah terbaru (entri terakhir: ${getLatestDate()} · dicek ${timeLabel}).`;
         } catch (err) {
-          statusEl.textContent = "Sudah terbaru (entri terakhir: " + latestDate + ") · Mode lokal.";
+          let fallbackText = `Auto-sync siap · Menggunakan arsip tersinkron (entri terakhir: ${getLatestDate()}).`;
+          try {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+              const parsed = JSON.parse(saved);
+              if (parsed && parsed.syncedAt) {
+                fallbackText = `Sudah terbaru (entri terakhir: ${getLatestDate()}) · Sinkron terakhir: ${new Date(parsed.syncedAt).toLocaleString("id-ID")}`;
+              }
+            }
+          } catch (e) {}
+          statusEl.textContent = fallbackText;
         } finally {
           syncBtn.disabled = false;
           syncBtn.textContent = "Sync Notion";
         }
-      });
+      }
+
+      syncBtn.addEventListener("click", () => runNotionSync({ isAuto: false }));
+
+      // Otomatis live-sync saat halaman dibuka dan setiap 5 menit selama tab aktif
+      runNotionSync({ isAuto: true });
+      window.setInterval(() => {
+        if (document.visibilityState === "visible") {
+          runNotionSync({ isAuto: true });
+        }
+      }, 5 * 60 * 1000);
     })();
   </script>
 </body>

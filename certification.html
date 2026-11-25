@@ -1423,16 +1423,16 @@
 
         <div class="hero-stats">
           <div class="hero-stat">
-            <strong>45</strong>
+            <strong data-cert-stat="total">45</strong>
             <span>Total certification &amp; study files</span>
           </div>
           <div class="hero-stat">
-            <strong>8</strong>
-            <span>MySkill certifications</span>
+            <strong data-cert-stat="myskill">38</strong>
+            <span>MySkill certifications &amp; modules</span>
           </div>
           <div class="hero-stat">
-            <strong>3</strong>
-            <span>Trainee &amp; competition files</span>
+            <strong data-cert-stat="other">7</strong>
+            <span>Coursera, HP LIFE, trainee &amp; competition</span>
           </div>
         </div>
       </section>
@@ -2522,6 +2522,21 @@
     initCertificateCardPreviews();
     updateCertificates();
 
+    (function syncCertHeroTotals() {
+      const standaloneCards = Array.from(certificateCards).filter((c) => c.dataset.type === "certificate");
+      const myskillStandalone = standaloneCards.filter((c) => c.dataset.category === "myskill").length;
+      const otherStandalone = standaloneCards.filter((c) => c.dataset.category !== "myskill").length;
+      const toeflCount = toeflItems.length;
+      const bizCount = 16; // 15 courses + 1 specialization
+      const courseraCount = 1;
+      const myskillTotal = myskillStandalone + toeflCount + bizCount;
+      const otherTotal = otherStandalone + courseraCount;
+      const grandTotal = myskillTotal + otherTotal;
+      document.querySelectorAll('[data-cert-stat="total"]').forEach((el) => { el.textContent = String(grandTotal); });
+      document.querySelectorAll('[data-cert-stat="myskill"]').forEach((el) => { el.textContent = String(myskillTotal); });
+      document.querySelectorAll('[data-cert-stat="other"]').forEach((el) => { el.textContent = String(otherTotal); });
+    })();
+
     /* Business Development Folder Modal (Direct Preview + 1..15 Buttons) */
     const businessModal = document.getElementById("business-folder-modal");
     const businessOpenBtn = document.getElementById("business-folder-open-btn");
@@ -2773,7 +2788,7 @@
     });
     renderCourseraPills();
   </script>
-  <script defer src="js/language-controls.js?v=20260410-2"></script>
+  <script defer src="js/language-controls.js?v=20261125-1"></script>
   <script defer src="js/theme-controls.js"></script>
   <script defer src="js/performance-utils.js"></script>
   <script defer src="js/zoom-controls.js"></script>

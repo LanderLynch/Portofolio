@@ -1,5 +1,16 @@
 // Vercel Serverless Function to sync Work Daily Logbook entries from Notion Database.
 // Configure NOTION_TOKEN and optional NOTION_DATABASE_ID in Vercel Environment Variables.
+function extractPlainText(prop) {
+  if (!prop) return "";
+  if (prop.type === "title") {
+    return (prop.title || []).map((t) => t.plain_text).join("").trim();
+  }
+  if (prop.type === "rich_text") {
+    return (prop.rich_text || []).map((t) => t.plain_text).join("").trim();
+  }
+  return "";
+}
+
 export default async function handler(req, res) {
   if (req.method !== "GET" && req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -35,12 +46,24 @@ export default async function handler(req, res) {
     const data = await response.json();
     const entries = (data.results || []).map((page) => {
       const props = page.properties || {};
-      const titleProp = Object.values(props).find((p) => p.type === "title");
-      const title = (titleProp?.title || []).map((t) => t.plain_text).join("").trim() || "Untitled";
-      const dateProp = Object.values(props).find((p) => p.type === "date");
-      const date = dateProp?.date?.start || page.created_time?.slice(0, 10) || "";
-      const textProp = Object.values(props).find((p) => p.type === "rich_text");
-      const rawNote = (textProp?.rich_text || []).map((t) => t.plain_text).join("").trim();
+      const propEntries = Object.entries(props);
+
+      const titleEntry = propEntries.find(([, p]) => p.type === "title");
+      const titleText = extractPlainText(titleEntry?.[1]) || "Untitled";
+
+      const dateEntry = propEntries.find(([, p]) => p.type === "date");
+      const rawDate = dateEntry?.[1]?.date?.start || "";
+
+      const workPropEntry =
+        propEntries.find(([name, p]) => p.type === "rich_text" && /^work$/i.test(name.trim())) ||
+        propEntries.find(([name, p]) => p.type === "rich_text" && /work/i.test(name) && !/outside/i.test(name)) ||
+        propEntries.find(([, p]) => p.type === "rich_text");
+      const rawNote = extractPlainText(workPropEntry?.[1]);
+
+      const filesCount = propEntries
+        .filter(([, p]) => p.type === "files")
+        .reduce((acc, [, p]) => acc + (Array.isArray(p.files) ? p.files.length : 0), 0);
+
       const selectProp = Object.values(props).find((p) => p.type === "select" || p.type === "multi_select");
       const category =
         selectProp?.select?.name ||
@@ -49,14 +72,17 @@ export default async function handler(req, res) {
 
       return {
         id: page.id,
-        date,
-        title,
+        date: rawDate || titleText,
+        title: titleText,
         category,
         rawNote,
+        attachments: filesCount,
+        lastEditedTime: page.last_edited_time || page.created_time || "",
         url: page.url
       };
     });
 
+    res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate=300");
     return res.status(200).json({
       entries,
       count: entries.length,
