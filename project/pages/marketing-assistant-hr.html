@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="../assets/logo-preview/logo-lemon.png">
-  <title>Marketing &amp; Human Resource (Internship) - Jona Setiawan</title>
+  <title>Fortress — Marketing &amp; HR Administration - Jona Setiawan</title>
   <script src="../../js/theme-init.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
@@ -408,8 +408,75 @@
 
     .feature-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 1.25rem;
+    }
+
+    .skill-card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .skill-card-head .skill-card-icon {
+      margin-bottom: 0;
+    }
+
+    .scope-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.26rem 0.68rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid #DDCFC0;
+      background: #EFE7DC;
+      color: #57463D;
+    }
+
+    .scope-badge--independent {
+      background: rgba(152, 62, 43, 0.11);
+      border-color: rgba(152, 62, 43, 0.28);
+      color: #983E2B;
+    }
+
+    .skills-developed-shell {
+      margin-top: 1.75rem;
+      padding: 1.35rem 1.5rem;
+      border-radius: 3px;
+      background: var(--surface, #FBF8F3);
+      border: 1px solid var(--border, #DDCFC0);
+    }
+
+    .skills-developed-label {
+      margin: 0 0 0.85rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #983E2B;
+    }
+
+    .skills-developed-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .skills-developed-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.42rem 0.85rem;
+      border-radius: 999px;
+      background: #EFE7DC;
+      border: 1px solid #DDCFC0;
+      color: #30221D;
+      font-size: 0.84rem;
+      font-weight: 600;
     }
 
     /* Dashboard Skill Card UI */
@@ -716,28 +783,43 @@
       color: #fca5a5;
     }
 
-    .cta-section {
+    .project-detail-page .cta-section {
+      max-width: 1280px;
+      margin: 0 auto;
       padding: 0 2rem 4rem;
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
     }
 
     .cta-shell {
-      padding: 2rem;
+      padding: 2.25rem 2rem;
       text-align: center;
     }
 
     .cta-shell h2 {
       font-size: clamp(1.9rem, 4vw, 2.6rem);
       margin-bottom: 0.8rem;
+      color: var(--text);
     }
 
     .cta-shell p {
       max-width: 44rem;
       margin: 0 auto 1.4rem;
-      color: var(--muted);
+      color: var(--muted) !important;
+      font-family: "Lora", "Georgia", serif;
     }
 
-    .footer {
-      padding: 0 2rem 3rem;
+    .cta-shell .cta-buttons {
+      justify-content: center;
+    }
+
+    .project-detail-page .footer {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 3rem;
+      border-top: 1px solid var(--border);
+      background: transparent !important;
       text-align: center;
       color: var(--muted);
     }
@@ -887,9 +969,9 @@
     <div class="hero-content">
       <div class="hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow">Internship / Magang</span>
-          <h1>Marketing &amp; Human Resource</h1>
-          <p class="hero-description">This page documents my September 2022 to November 2022 internship at Fortress, where I focused on two main areas: Marketing and Human Resource—handling candidate interviews and psychological assessment records. There is no photographic evidence; all work is documented strictly through Excel data.</p>
+          <span class="eyebrow">Fortress · PKL / Internship</span>
+          <h1>Marketing &amp; HR Administration</h1>
+          <p class="hero-description">Fortress was a practical work internship (PKL) covering HR administration and marketing support for steel door products. During this period, work focused on promoting products across digital platforms, tracking promotional activity in Microsoft Excel, writing tailored copywriting, managing product databases by door type and marketing region, and supporting HR candidate interviews—documented strictly via Excel without photo evidence.</p>
 
           <div class="project-meta">
             <div class="meta-item">
@@ -897,12 +979,12 @@
               <span class="meta-value">September 2022 - November 2022</span>
             </div>
             <div class="meta-item">
-              <span class="meta-label">Status</span>
-              <span class="meta-value">Completed</span>
+              <span class="meta-label">Role</span>
+              <span class="meta-value">Marketing &amp; HR Administration Assistant</span>
             </div>
             <div class="meta-item">
               <span class="meta-label">Program</span>
-              <span class="meta-value">Internship / Magang</span>
+              <span class="meta-value">PKL / Internship</span>
             </div>
             <div class="meta-item">
               <span class="meta-label">Company</span>
@@ -911,10 +993,11 @@
           </div>
 
           <div class="tech-stack">
-            <span class="tech-tag">Excel Data</span>
-            <span class="tech-tag">Marketing</span>
-            <span class="tech-tag">HR Interview</span>
-            <span class="tech-tag">Psychological Assessment</span>
+            <span class="tech-tag">Microsoft Excel</span>
+            <span class="tech-tag">Product Database</span>
+            <span class="tech-tag">Digital Promotion</span>
+            <span class="tech-tag">Promotional Copywriting</span>
+            <span class="tech-tag">HR Administration</span>
           </div>
 
           <div class="hero-actions">
@@ -928,7 +1011,7 @@
             <img src="../assets/logo-preview/fortress-logo.jpg" alt="Fortress logo">
             <div>
               <h2>Fortress Internship Archive</h2>
-              <p>Original Excel data documentation from the internship period (no photo evidence).</p>
+              <p>Original Excel data documentation from the PKL period (no photo evidence).</p>
             </div>
           </div>
 
@@ -942,16 +1025,16 @@
               <strong>Excel Data Only (No Photos)</strong>
             </div>
             <div class="preview-metric">
-              <span>Focus 1</span>
-              <strong>Marketing &amp; Social Ads</strong>
+              <span>Promotion Channels</span>
+              <strong>Kaskus, Shopee, Tokopedia, Pinterest</strong>
             </div>
             <div class="preview-metric">
-              <span>Focus 2</span>
-              <strong>HR Interview &amp; Psychology</strong>
+              <span>HR Support</span>
+              <strong>Candidate Communication &amp; Interview Support</strong>
             </div>
           </div>
 
-          <p class="preview-note">Every worksheet from the Excel workbook is rendered as a switchable web table below—serving as the sole empirical record of the internship.</p>
+          <p class="preview-note">Every worksheet from the Excel workbook is rendered as a switchable web table below—documenting product types, regional promotion grouping, and spreadsheet tracking without unverified claims.</p>
         </aside>
       </div>
     </div>
@@ -959,45 +1042,124 @@
 
   <section class="content-section">
     <div class="section-header">
-      <span class="eyebrow">2 Core Internship Divisions</span>
-      <h2 class="section-title">What This Internship Covered</h2>
-      <p class="section-intro">During the internship, my responsibilities centered on two core areas—Marketing and Human Resource—with all records kept purely in Excel spreadsheets without photographic documentation.</p>
+      <span class="eyebrow">Responsibilities &amp; Work Scope</span>
+      <h2 class="section-title">Core Responsibilities</h2>
+      <p class="section-intro">Tasks carried out independently are clearly separated from operational activities assisted or supported under HR and marketing supervision, with all records preserved strictly in Excel.</p>
     </div>
 
     <div class="feature-grid">
       <article class="skill-editorial-card">
         <span class="skill-card-corner" aria-hidden="true"></span>
-        <div class="skill-card-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M3 11l18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+        <div class="skill-card-head">
+          <div class="skill-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 11l18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+          </div>
+          <span class="scope-badge">Supported / Assisted</span>
         </div>
-        <h3 class="skill-card-title">01 · Marketing Division</h3>
-        <p class="skill-card-desc">Supported marketing operations, social media promotion, and advertisement planning, organizing campaign tracking and outreach notes inside structured Excel sheets.</p>
+        <h3 class="skill-card-title">01 · Digital Product Promotion</h3>
+        <p class="skill-card-desc">Assisted in publishing and promoting steel door products across digital marketplace and social channels to support regional product visibility.</p>
         <div class="skill-card-tools">
-          <p class="skill-tools-label">Tools &amp; Focus</p>
+          <p class="skill-tools-label">Platforms Used</p>
           <div class="skill-tools-row">
-            <span class="skill-tool-chip"><span class="skill-tool-badge">Ex</span>Excel Data</span>
-            <span class="skill-tool-chip"><span class="skill-tool-badge">Sm</span>Social Media</span>
-            <span class="skill-tool-chip"><span class="skill-tool-badge">Ad</span>Advertisement</span>
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Kk</span>Kaskus</span>
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Sp</span>Shopee</span>
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Tp</span>Tokopedia</span>
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Pt</span>Pinterest</span>
           </div>
         </div>
       </article>
 
       <article class="skill-editorial-card">
         <span class="skill-card-corner" aria-hidden="true"></span>
-        <div class="skill-card-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <div class="skill-card-head">
+          <div class="skill-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 3 5-6"/></svg>
+          </div>
+          <span class="scope-badge scope-badge--independent">Independent Work</span>
         </div>
-        <h3 class="skill-card-title">02 · Human Resource (Interview &amp; Psychological Assessment)</h3>
-        <p class="skill-card-desc">Handled candidate interview coordination and psychological assessment scoring, recording participant evaluations and HR data strictly in Excel without photo documentation.</p>
+        <h3 class="skill-card-title">02 · Promotion Activity Tracking</h3>
+        <p class="skill-card-desc">Used Microsoft Excel independently to recapitulate and monitor uploaded content and product listings across the promotional platforms.</p>
         <div class="skill-card-tools">
           <p class="skill-tools-label">Tools &amp; Focus</p>
           <div class="skill-tools-row">
-            <span class="skill-tool-chip"><span class="skill-tool-badge">Ex</span>Excel Data</span>
-            <span class="skill-tool-chip"><span class="skill-tool-badge">Hr</span>Candidate Interview</span>
-            <span class="skill-tool-chip"><span class="skill-tool-badge">Ps</span>Psychological Scoring</span>
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Ex</span>Microsoft Excel</span>
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Rc</span>Activity Recapitulation</span>
           </div>
         </div>
       </article>
+
+      <article class="skill-editorial-card">
+        <span class="skill-card-corner" aria-hidden="true"></span>
+        <div class="skill-card-head">
+          <div class="skill-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
+          </div>
+          <span class="scope-badge scope-badge--independent">Independent Work</span>
+        </div>
+        <h3 class="skill-card-title">03 · Product Database Management</h3>
+        <p class="skill-card-desc">Built and maintained steel door promotional databases categorized by steel door type, target marketing area, and regional grouping needs across Indonesia.</p>
+        <div class="skill-card-tools">
+          <p class="skill-tools-label">Database Structure</p>
+          <div class="skill-tools-row">
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Tp</span>Door Type</span>
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Rg</span>Marketing Region</span>
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Id</span>Indonesia Coverage</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="skill-editorial-card">
+        <span class="skill-card-corner" aria-hidden="true"></span>
+        <div class="skill-card-head">
+          <div class="skill-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 1 1 3 3L7 19l-4 1 1-4Z"/></svg>
+          </div>
+          <span class="scope-badge scope-badge--independent">Independent Work</span>
+        </div>
+        <h3 class="skill-card-title">04 · Promotional Copywriting</h3>
+        <p class="skill-card-desc">Drafted promotional copywriting for steel door listings tailored to each specific product type and target marketing region.</p>
+        <div class="skill-card-tools">
+          <p class="skill-tools-label">Tools &amp; Focus</p>
+          <div class="skill-tools-row">
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Cw</span>Promotional Copywriting</span>
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Rg</span>Regional Tailoring</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="skill-editorial-card">
+        <span class="skill-card-corner" aria-hidden="true"></span>
+        <div class="skill-card-head">
+          <div class="skill-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <span class="scope-badge">Supported / Assisted</span>
+        </div>
+        <h3 class="skill-card-title">05 · HR &amp; Candidate Interview Support</h3>
+        <p class="skill-card-desc">Supported HR operations related to candidate communication, interview scheduling coordination, and recording psychological assessment notes in Excel (no photographic evidence).</p>
+        <div class="skill-card-tools">
+          <p class="skill-tools-label">Tools &amp; Focus</p>
+          <div class="skill-tools-row">
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Hr</span>Candidate Communication</span>
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Iv</span>Interview Support</span>
+            <span class="skill-tool-chip"><span class="skill-tool-badge">Ps</span>Psychological Notes</span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="skills-developed-shell">
+      <p class="skills-developed-label">Skills Developed</p>
+      <div class="skills-developed-list">
+        <span class="skills-developed-pill">Microsoft Excel &amp; Data Recapitulation</span>
+        <span class="skills-developed-pill">Product Database Management</span>
+        <span class="skills-developed-pill">Digital Marketing Administration</span>
+        <span class="skills-developed-pill">Marketplace &amp; Social Media Promotion</span>
+        <span class="skills-developed-pill">Promotional Copywriting</span>
+        <span class="skills-developed-pill">Product and Regional Data Categorization</span>
+        <span class="skills-developed-pill">HR Administration</span>
+        <span class="skills-developed-pill">Candidate Communication &amp; Interview Support</span>
+      </div>
     </div>
   </section>
 
