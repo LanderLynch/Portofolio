@@ -56,13 +56,21 @@ export default async function handler(req, res) {
 
       const workPropEntry =
         propEntries.find(([name, p]) => p.type === "rich_text" && /^work$/i.test(name.trim())) ||
-        propEntries.find(([name, p]) => p.type === "rich_text" && /work/i.test(name) && !/outside/i.test(name)) ||
-        propEntries.find(([, p]) => p.type === "rich_text");
-      const rawNote = extractPlainText(workPropEntry?.[1]);
+        propEntries.find(([name, p]) => p.type === "rich_text" && /work/i.test(name) && !/outside/i.test(name));
+      const workRichText = extractPlainText(workPropEntry?.[1]);
+      const rawNote = workRichText || (titleText && !/^(untitled|nothing~?)$/i.test(titleText) ? titleText : "");
 
-      const filesCount = propEntries
+      const attachmentFiles = propEntries
         .filter(([, p]) => p.type === "files")
-        .reduce((acc, [, p]) => acc + (Array.isArray(p.files) ? p.files.length : 0), 0);
+        .flatMap(([, p]) =>
+          (Array.isArray(p.files) ? p.files : [])
+            .map((f) => ({
+              title: f.name || titleText || "Lampiran Notion",
+              url: f.type === "external" ? f.external?.url : f.file?.url
+            }))
+            .filter((f) => Boolean(f.url))
+        );
+      const filesCount = attachmentFiles.length;
 
       const selectProp = Object.values(props).find((p) => p.type === "select" || p.type === "multi_select");
       const category =
@@ -77,6 +85,7 @@ export default async function handler(req, res) {
         category,
         rawNote,
         attachments: filesCount,
+        attachmentFiles,
         lastEditedTime: page.last_edited_time || page.created_time || "",
         url: page.url
       };

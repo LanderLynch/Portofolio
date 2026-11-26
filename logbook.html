@@ -1365,18 +1365,26 @@
       if (!Array.isArray(liveItems) || !liveItems.length) return 0;
       let addedCount = 0;
 
+      const latestBundledDate = (Array.isArray(window.LOGBOOK_ENTRIES) && window.LOGBOOK_ENTRIES[0]?.id) || "2026-11-23";
+
       liveItems.forEach((item) => {
         const rawText = (item.rawNote || "").trim();
-        if (!rawText || /^rest$/i.test(rawText)) return;
+        if (!rawText || /^rest$/i.test(rawText) || /^nothing~?$/i.test(rawText)) return;
 
-        const dateLabel = (item.title && item.title !== "Untitled" ? item.title : item.date) || "Catatan Baru";
+        const isoDate = /^\d{4}-\d{2}-\d{2}$/.test(item.date || "") ? item.date : "";
+        const dateLabel = isoDate || item.date || "Catatan Baru";
         const normDate = dateLabel.toLowerCase().replace(/\s+/g, " ").trim();
         const normRaw = rawText.toLowerCase().replace(/\s+/g, " ").trim();
 
         const existing = entries.find((e) => {
           const eDate = (e.date || "").toLowerCase().replace(/\s+/g, " ").trim();
           const eRaw = (e.work?.raw || "").toLowerCase().replace(/\s+/g, " ").trim();
-          return e.id === item.id || (eDate && eDate === normDate) || (eRaw && eRaw === normRaw);
+          return (
+            e.id === item.id ||
+            (isoDate && e.id === isoDate) ||
+            (eDate && eDate === normDate) ||
+            (eRaw && eRaw === normRaw)
+          );
         });
 
         if (existing) {
@@ -1392,10 +1400,16 @@
           return;
         }
 
+        // Skip historical entries already curated into bundled js/logbook-data.js (e.g. Nov 4-23 range)
+        if (isoDate && isoDate <= latestBundledDate) {
+          return;
+        }
+
         const monthKey = inferMonthKey(dateLabel, item.date || item.lastEditedTime);
-        const attachmentCount = Number(item.attachments) || 0;
+        const attachmentFiles = Array.isArray(item.attachmentFiles) ? item.attachmentFiles : [];
+        const attachmentCount = attachmentFiles.length || Number(item.attachments) || 0;
         entries.unshift({
-          id: item.id || `notion-${Date.now()}-${addedCount}`,
+          id: isoDate || item.id || `notion-${Date.now()}-${addedCount}`,
           date: dateLabel,
           month: monthKey,
           categories: ["work"],
@@ -1404,7 +1418,8 @@
             title: `Catatan Work (${dateLabel})`,
             raw: rawText,
             summary: rawText,
-            attachmentNote: attachmentCount > 0 ? `${attachmentCount} file gambar terlampir di Notion` : ""
+            attachmentNote: attachmentCount > 0 ? `${attachmentCount} file gambar terlampir di Notion` : "",
+            attachmentFiles
           },
           outside: null
         });
@@ -1726,7 +1741,7 @@
       if (!syncBtn || !statusEl) return;
 
       const STORAGE_KEY = "portfolio-logbook-notion-sync";
-      const CACHE_ENTRIES_KEY = "portfolio-logbook-notion-entries";
+      const CACHE_ENTRIES_KEY = "portfolio-logbook-notion-entries-v2";
       const getLatestDate = () =>
         (window.LOGBOOK_ENTRIES && window.LOGBOOK_ENTRIES[0] && window.LOGBOOK_ENTRIES[0].date) || "terbaru";
 
