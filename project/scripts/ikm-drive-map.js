@@ -187,6 +187,21 @@
     "ikm-project/2026/October/nescafe-cooler-bag-oct-03-blue-abstract-rolltop.jpg":  "138IAJ-o8HD0qxPEwgP7-WpoJjM80Dip4",
     "ikm-project/2026/October/nescafe-cooler-bag-oct-04-sage-sun-rolltop.jpg":  "1avgapAfWdEHFETtpUIMvPhCvC2-CX73p",
     "ikm-project/2026/October/nescafe-cooler-bag-oct-05-lineart-green-rolltop.jpg":  "1EKhoT5qzyyRnBVkQ39q7gJGfF1RINBUB",
-    "ikm-project/2026/October/nescafe-cooler-bag-oct-06-blue-curves-drawstring.jpg":  "1BuW9DIpkp6IL8SIH3cnfJ2q9qoDhe_im"
+    "ikm-project/2026/October/nescafe-cooler-bag-oct-06-blue-curves-drawstring.jpg":  "1BuW9DIpkp6IL8SIH3cnfJ2q9qoDhe_im",
+    "ikm-project/2026/September/milo-01-sling-black-strap-front-pocket.webp":  "1bfjk-oypiGnSNSp8AsNPEi41REJMgqu_",
+    "ikm-project/2026/September/milo-02-vertical-lunch-bag-center-zip.webp":  "1t_KLuKGgLUPWahkRwK3x-HVT-fWaevJC",
+    "ikm-project/2026/September/milo-03-flat-sling-green-strap.webp":  "1n69EMUvnYYTGIqeVG4Pm6b-WSE5J89jT",
+    "ikm-project/2026/September/milo-04-crossbody-fixed-black-strap.webp":  "1xAfxxz67RCZ9t0L2ZidM_uQR5zcMLTR-",
+    "ikm-project/2026/September/milo-05-rectangular-mesh-top-pouch.webp":  "1sdTKc-j0LNB9I9OU9zgX7EjBQ-a9yXpE",
+    "ikm-project/2026/September/milo-06-square-flap-brown-strap-clasp.webp":  "1t8TyW7sGEt8bLR462rxQ05vW6vlVioFw",
+    "ikm-project/2026/September/milo-07-sling-adjustable-black-strap.webp":  "1KAqn8SMqKXk7PU3AwF1p-F_YWyQrdig6",
+    "ikm-project/2026/September/milo-08-sling-open-pocket-black-strap.webp":  "12VDbAj3GSxQqg8anyAJXMEgdYK31t2ai",
+    "ikm-project/2026/September/milo-09-vertical-split-brown-green-clasp.webp":  "1WpT9-Ym2UPJTTdiKugqsVhbXQ8Uap19A",
+    "ikm-project/2026/September/milo-10-mini-tote-brown-handles-strap.webp":  "1gihF3iQrQs6K0vvS0wag6NtLso3s-fOK",
+    "ikm-project/2026/September/milo-11-square-bag-brown-strap-dring.webp":  "1B0d-qeiBKNdRbnsDZ_ecY2s4BRz4s1IK",
+    "ikm-project/2026/September/milo-12-flat-sling-adjustable-green-strap.webp":  "1CSsY7Da71kdDr5gQQjMvkZYK9J39s0Mi",
+    "ikm-project/2026/September/milo-13-vertical-split-fixed-brown-strap.webp":  "1ZvTVmONUeqwus0xlMPfzZ59uCZtIPkDl",
+    "ikm-project/2026/September/milo-14-crossbody-front-zip-pocket.webp":  "1q-R0pPpoBX8vP46_AfjCIwOUI_Vnfect",
+    "ikm-project/2026/September/milo-15-square-bag-fixed-brown-strap.webp":  "1R2bST4gkRXgMu0ye0XuHK7s4BK6JaYpO"
 }
 ;
