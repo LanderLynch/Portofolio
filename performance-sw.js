@@ -1,5 +1,5 @@
-const STATIC_CACHE = "portfolio-static-v51";
-const RUNTIME_CACHE = "portfolio-runtime-v51";
+const STATIC_CACHE = "portfolio-static-v52";
+const RUNTIME_CACHE = "portfolio-runtime-v52";
 const IMAGE_CACHE = "portfolio-images-v1";
 const CORE_ASSETS = [
   "/",
@@ -113,12 +113,12 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  if (["style", "script", "font"].includes(destination)) {
-    const isFirebaseModule = url.pathname.includes("firebase-config") || url.pathname.includes("admin-panel") || url.pathname.includes("testimonials-guestbook");
-    if (isFirebaseModule) {
-      event.respondWith(networkFirst(request));
-      return;
-    }
+  if (["style", "script"].includes(destination)) {
+    event.respondWith(networkFirst(request));
+    return;
+  }
+
+  if (destination === "font") {
     event.respondWith(staleWhileRevalidate(request));
   }
 });
