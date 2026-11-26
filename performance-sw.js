@@ -1,5 +1,5 @@
-const STATIC_CACHE = "portfolio-static-v50";
-const RUNTIME_CACHE = "portfolio-runtime-v50";
+const STATIC_CACHE = "portfolio-static-v51";
+const RUNTIME_CACHE = "portfolio-runtime-v51";
 const IMAGE_CACHE = "portfolio-images-v1";
 const CORE_ASSETS = [
   "/",

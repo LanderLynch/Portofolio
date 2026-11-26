@@ -140,10 +140,23 @@
       return;
     }
 
+    const hadController = Boolean(navigator.serviceWorker.controller);
+    let refreshing = false;
+
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+      if (!hadController || refreshing) {
+        return;
+      }
+      refreshing = true;
+      window.location.reload();
+    });
+
     window.addEventListener("load", () => {
-      navigator.serviceWorker.register("/performance-sw.js").catch((error) => {
-        console.warn("Performance service worker registration failed.", error);
-      });
+      navigator.serviceWorker.register("/performance-sw.js", { updateViaCache: "none" })
+        .then((registration) => registration.update())
+        .catch((error) => {
+          console.warn("Performance service worker registration failed.", error);
+        });
     }, { once: true });
   }
 
